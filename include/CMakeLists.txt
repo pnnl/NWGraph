@@ -111,13 +111,28 @@ target_sources(nw_graph
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
-find_package(TBB REQUIRED)
+# find_package(TBB REQUIRED)
 
 # find_package(TBB)
 # if (not TBB_Found)
 #   FetchContent(
 #     TBB_STUFF)
 # endif()
+
+# Use fetch content rather than as a submodule
+include(FetchContent)
+FetchContent_Declare(
+  oneTBB
+  GIT_REPOSITORY https://github.com/oneapi-src/oneTBB.git
+#  GIT_TAG v2021.5.0
+)
+message(STATUS "Fetching TBB")
+option(BUILD_SHARED_LIBS "Enable building TBB shared library" ON)
+message(STATUS "BUILD_SHARED_LIBS " ${BUILD_SHARED_LIBS})
+if (DEFINED BUILD_SHARED_LIBS)
+message(STATUS "defined")
+endif()
+FetchContent_MakeAvailable(oneTBB)
 
 find_package(Threads REQUIRED)
 target_compile_definitions(nw_graph INTERFACE EXECUTION_POLICY)

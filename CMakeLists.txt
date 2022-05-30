@@ -16,6 +16,22 @@
 ##########################################################################
 cmake_minimum_required(VERSION 3.18.2 FATAL_ERROR)
 
+# The cmake options don't seem to really work
+if ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}") 
+  message(FATAL_ERROR "In-source builds are disabled.
+    Please create a subfolder and use `cmake ..` inside it.
+    IMPORTANT: cmake will still have created CMakeCache.txt and CMakeFiles/*.
+               You must delete them, or cmake will refuse to work.")
+endif() # yes, end-markers and even else() need empty parens
+
+# The cmake way, but still creates CMakeCache.txt and CMakeFiles/*, but
+# does not provide any error message about what went wrong (nor how
+# to remedy
+# set(CMAKE_DISABLE_SOURCE_CHANGES ON)
+# set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
+
+set(CMAKE_CXX_STANDARD 20)
+
 set(NW_GRAPH_VERSION 0.3)
 
 project(
