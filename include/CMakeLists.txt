@@ -1,45 +1,36 @@
 # -----------------------------------------------------------------------------
-# Define the primary NW_GRAPH target.
+# Define the primary NWGRAPH target.
 # -----------------------------------------------------------------------------
 #
-# This target keeps track of all of the header sources for NW_GRAPH, and sets up all
+# This target keeps track of all of the header sources for NWGRAPH, and sets up all
 # of the associated flags and dependencies such that we can correctly compile
-# and link executables that are dependent on NW_GRAPH. Ultimately this target will
+# and link executables that are dependent on NWGRAPH. Ultimately this target will
 # control the install target too, once we have one.
 #
-# Executable targets should be defined with `target_link_libraries(exec nw_graph)`
+# Executable targets should be defined with `target_link_libraries(exec nwgraph)`
 # and then they'll have the appropriate `-I`, `-D`, and `-l` stuff set
 # automagically though the transitive dependency infrastructure.
 
 # @note
-#   If NW_GRAPH starts to have .cpp sources, change this from an interface library to
+#   If NWGRAPH starts to have .cpp sources, change this from an interface library to
 #   a STATIC (or DYNAMIC) library, and add those sources here. Change other
 #   instances of INTERFACE to PUBLIC.
 # @note
 
-include(FetchContent)
-
-# FetchContent_Declare(nwut
-#   GIT_REPOSITORY     git@github.com:NWmath/NWut.git
-#   GIT_TAG            master
-#   # URL ${CMAKE_SOURCE_DIR}/contrib/nwut-something.zip
-#   # URL_MD5 HASH_FOR_ZIP^
-#   )
-# FetchContent_MakeAvailable(nwut)
-
-add_library(nw_graph INTERFACE)
+add_library(nwgraph INTERFACE)
+target_link_libraries(nwgraph INTERFACE nwgraph_tbb)
 
 # Require C++20
-target_compile_features(nw_graph INTERFACE cxx_std_20)
+target_compile_features(nwgraph INTERFACE cxx_std_20)
 
 # Add an alias for external uses
-add_library(nw::graph ALIAS nw_graph)
+add_library(nw::graph ALIAS nwgraph)
 
 # make sure we have the right include path
-target_include_directories(nw_graph INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+target_include_directories(nwgraph INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 
 # Extend this as needed.
-target_sources(nw_graph
+target_sources(nwgraph
   INTERFACE
   nwgraph/adaptors/back_edge_range.hpp
   nwgraph/adaptors/bfs_edge_range.hpp
@@ -106,60 +97,11 @@ target_sources(nw_graph
 
 
 # -----------------------------------------------------------------------------
-# Handle requests for parallel execution
-# -----------------------------------------------------------------------------
-
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-
-# find_package(TBB REQUIRED)
-
-# find_package(TBB)
-# if (not TBB_Found)
-#   FetchContent(
-#     TBB_STUFF)
-# endif()
-
-# Use fetch content rather than as a submodule
-include(FetchContent)
-FetchContent_Declare(
-  oneTBB
-  GIT_REPOSITORY https://github.com/oneapi-src/oneTBB.git
-#  GIT_TAG v2021.5.0
-)
-message(STATUS "Fetching TBB")
-option(BUILD_SHARED_LIBS "Enable building TBB shared library" ON)
-message(STATUS "BUILD_SHARED_LIBS " ${BUILD_SHARED_LIBS})
-if (DEFINED BUILD_SHARED_LIBS)
-message(STATUS "defined")
-endif()
-FetchContent_MakeAvailable(oneTBB)
-
-find_package(Threads REQUIRED)
-target_compile_definitions(nw_graph INTERFACE EXECUTION_POLICY)
-target_link_libraries(nw_graph INTERFACE TBB::tbb Threads::Threads)
-if (NW_GRAPH_USE_TBBMALLOC)
-  target_link_libraries(nw_graph INTERFACE TBB::tbbmalloc) 
-endif ()
-
-
-
-# -----------------------------------------------------------------------------
-# Ranges V3
-# -----------------------------------------------------------------------------
-
-# FetchContent_Declare(range-v3
-#   GIT_REPOSITORY     https://github.com/ericniebler/range-v3
-#   GIT_TAG            master)
-# FetchContent_MakeAvailable(range-v3)
-# target_link_libraries(nw_graph INTERFACE range-v3::range-v3)
-
-
-# -----------------------------------------------------------------------------
 # Handle Apple-specific things
 # -----------------------------------------------------------------------------
 if (APPLE)
   if (NOT "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
-    target_compile_definitions(nw_graph INTERFACE _Atomic=volatile)
+    target_compile_definitions(nwgraph INTERFACE _Atomic=volatile)
   endif()
 endif()
 

@@ -1,5 +1,5 @@
 ##########################################################################
-#	CMake Build Rules for the NW Graph (v0.3)                        #
+#	CMake Build Rules for  NWGraph (v0.3)                            #
 ##########################################################################
 # Basic Usage:                                                           #
 #   cmake ..								 #
@@ -32,17 +32,22 @@ endif() # yes, end-markers and even else() need empty parens
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(NW_GRAPH_VERSION 0.3)
+set(NWGRAPH_VERSION 0.3)
 
 project(
-  NW_GRAPH
-  VERSION ${NW_GRAPH_VERSION}
+  NWGRAPH
+  VERSION ${NWGRAPH_VERSION}
   LANGUAGES CXX)
+
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 
 # -----------------------------------------------------------------------------
 # Extend the module path so we can find our custom modules
 # -----------------------------------------------------------------------------
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
 
 # -----------------------------------------------------------------------------
 # Build types and default flags
@@ -76,52 +81,109 @@ include(CompilerFlags)
 # -----------------------------------------------------------------------------
 # Options
 # -----------------------------------------------------------------------------
-set(NW_GRAPH_SANITIZE "" CACHE STRING "-fsanitize compiler options (e.g., =address)")
-if (NW_GRAPH_SANITIZE)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -fsanitize=${NW_GRAPH_SANITIZE}")
-  set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -fsanitize=${NW_GRAPH_SANITIZE}")
-endif (NW_GRAPH_SANITIZE)
+set(NWGRAPH_SANITIZE "" CACHE STRING "-fsanitize compiler options (e.g., =address)")
+if (NWGRAPH_SANITIZE)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -fsanitize=${NWGRAPH_SANITIZE}")
+  set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -fsanitize=${NWGRAPH_SANITIZE}")
+endif (NWGRAPH_SANITIZE)
 
-option(NW_GRAPH_BUILD_APBS "Determines whether to build abstraction penalty benchmarks." OFF)
-option(NW_GRAPH_BUILD_BENCH "Determines whether to build performance benchmarks." OFF)
-# option(NW_GRAPH_BUILD_DOCS "Determines whether to build documentation." OFF)
-option(NW_GRAPH_BUILD_EXAMPLES "Determines whether to build examples." OFF)
-option(NW_GRAPH_BUILD_TESTS "Determines whether to build tests." ON)
-option(NW_GRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
+option(NWGRAPH_BUILD_APBS "Determines whether to build abstraction penalty benchmarks." OFF)
+option(NWGRAPH_BUILD_BENCH "Determines whether to build performance benchmarks." OFF)
+# option(NWGRAPH_BUILD_DOCS "Determines whether to build documentation." OFF)
+option(NWGRAPH_BUILD_EXAMPLES "Determines whether to build examples." OFF)
+option(NWGRAPH_BUILD_TESTS "Determines whether to build tests." ON)
+option(NWGRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
 
-add_subdirectory(include)
+
+# -----------------------------------------------------------------------------
+# Handle requests for parallel execution
+# -----------------------------------------------------------------------------
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+
+option(TBB_TEST "" OFF)
+
+option(BUILD_SHARED_LIBS "Enable building TBB shared library" ON)
+
+message(STATUS "BUILD_SHARED_LIBS " ${BUILD_SHARED_LIBS})
+if (DEFINED BUILD_SHARED_LIBS)
+message(STATUS "defined")
+endif()
+
+option(TBBMALLOC_BUILD "Enable tbbmalloc build" OFF)
+
+if(NWGRAPH_FETCH_TBB)
+
+include(FetchContent)
+
+# Use fetch content rather than as a submodule
+include(FetchContent)
+FetchContent_Declare(
+  oneTBB
+  GIT_REPOSITORY https://github.com/oneapi-src/oneTBB.git
+#  GIT_TAG v2021.5.0
+)
+message(STATUS "Fetching TBB")
+
+FetchContent_MakeAvailable(oneTBB)
+
+else()
+
+add_subdirectory(external/oneTBB)
+
+endif()
+
+# find_package(TBB REQUIRED)
+
+# find_package(TBB)
+# if (not TBB_Found)
+#   FetchContent(
+#     TBB_STUFF)
+# endif()
+
+find_package(Threads REQUIRED)
+
+add_library(nwgraph_tbb INTERFACE)
+target_compile_definitions(nwgraph_tbb INTERFACE EXECUTION_POLICY)
+target_link_libraries(nwgraph_tbb INTERFACE TBB::tbb Threads::Threads)
+if (NWGRAPH_USE_TBBMALLOC)
+  target_link_libraries(nwgraph_tbb INTERFACE TBB::tbbmalloc) 
+endif ()
 
 include(Docopt)
+
+add_subdirectory(include)
   
-if (NW_GRAPH_BUILD_APBS)
+if (NWGRAPH_BUILD_APBS)
   add_subdirectory(apb)
 endif()
 
-if (NW_GRAPH_BUILD_BENCH)
+if (NWGRAPH_BUILD_BENCH)
   add_subdirectory(bench)
 endif()
 
 # Documentation is built specially in CI for now
-# if (NW_GRAPH_BUILD_DOCS)
+# if (NWGRAPH_BUILD_DOCS)
 #   add_subdirectory(doc-src)
 # endif()
 
-if (NW_GRAPH_BUILD_EXAMPLES)
+if (NWGRAPH_BUILD_EXAMPLES)
   add_subdirectory(examples/imdb)
 endif()
 
 #Artifacts
-option(NW_GRAPH_BUILD_HPEC "Determines whether to build HPEC artifact." OFF)
-if (NW_GRAPH_BUILD_HPEC)
+option(NWGRAPH_BUILD_HPEC "Determines whether to build HPEC artifact." OFF)
+if (NWGRAPH_BUILD_HPEC)
    add_subdirectory(${CMAKE_SOURCE_DIR}/../Artifacts/hpec hpec)
 endif()
 
 # Set up testing after all other includes (so third-party tests aren't included)
-if (NW_GRAPH_BUILD_TESTS)
+if (NWGRAPH_BUILD_TESTS)
 #  enable_testing()
   include(CTest)
   add_subdirectory(test)
 endif()
 
+
 # https://cmake.org/cmake/help/latest/command/install.html
-install(TARGETS nw_graph)
+install(TARGETS nwgraph)

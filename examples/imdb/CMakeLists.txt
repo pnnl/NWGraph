@@ -58,23 +58,23 @@ endif()
 
 find_package(OpenMP)
 if(OpenMP_CXX_FOUND)
-    target_link_libraries(nw_graph INTERFACE OpenMP::OpenMP_CXX)
+    target_link_libraries(nwgraph INTERFACE OpenMP::OpenMP_CXX)
 endif()
 
 # set(CMAKE_CXX_CLANG_TIDY clang-tidy -checks=-*,readability-*)
 
 add_executable(imdb.exe imdb.cpp)
-target_link_libraries(imdb.exe nw_graph xtensor)
+target_link_libraries(imdb.exe nwgraph xtensor)
 
 add_executable(dns.exe dns.cpp)
-target_link_libraries(dns.exe nw_graph xtensor)
+target_link_libraries(dns.exe nwgraph xtensor)
 
 add_executable(oracle.exe oracle.cpp)
-target_link_libraries(oracle.exe nw_graph nlohmann_json::nlohmann_json)
+target_link_libraries(oracle.exe nwgraph nlohmann_json::nlohmann_json)
 
 add_executable(dblp.exe dblp.cpp)
-target_link_libraries(dblp.exe nw_graph nlohmann_json::nlohmann_json)
+target_link_libraries(dblp.exe nwgraph nlohmann_json::nlohmann_json)
 
 add_executable(oracle+dblp.exe oracle+dblp.cpp)
-target_link_libraries(oracle+dblp.exe nw_graph nlohmann_json::nlohmann_json)
+target_link_libraries(oracle+dblp.exe nwgraph nlohmann_json::nlohmann_json)
 
