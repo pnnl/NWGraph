@@ -23,14 +23,6 @@ jobs:
       with:
         path: NWgr
 
-    - name: Checkout NWut
-      uses: actions/checkout@v2
-      with:
-        repository: NWmath/NWut
-        token: ${{ secrets.PULL_FROM_NWMATH }}
-        ref: master
-        path: NWut
-
     - name: prep
       run: |
         wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB      \
