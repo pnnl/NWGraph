@@ -93,6 +93,8 @@ option(NWGRAPH_BUILD_BENCH "Determines whether to build performance benchmarks."
 option(NWGRAPH_BUILD_EXAMPLES "Determines whether to build examples." OFF)
 option(NWGRAPH_BUILD_TESTS "Determines whether to build tests." ON)
 option(NWGRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
+option(NWGRAPH_FETCH_TBB "Fetch TBB during build process" ON)
+option(NWGRAPH_USE_SUBMODULE "Use TBB submodule for build" OFF)
 
 
 # -----------------------------------------------------------------------------
@@ -102,15 +104,18 @@ option(NWGRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 option(TBB_TEST "" OFF)
-
 option(BUILD_SHARED_LIBS "Enable building TBB shared library" ON)
 
-message(STATUS "BUILD_SHARED_LIBS " ${BUILD_SHARED_LIBS})
-if (DEFINED BUILD_SHARED_LIBS)
-message(STATUS "defined")
+if (NWGRAPH_USE_TBBMALLOC AND APPLE AND ${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "arm64")
+  message(WARNING "TBB malloc will probably not work on Apple arm64.
+You should probably disable it with -DNWGRAPH_USE_TBBMALLOC=OFF")
 endif()
 
+if (NOT NWGRAPH_USE_TBBMALLOC)
 option(TBBMALLOC_BUILD "Enable tbbmalloc build" OFF)
+else()
+option(TBBMALLOC_BUILD "Enable tbbmalloc build" OFF)
+endif()
 
 if(NWGRAPH_FETCH_TBB)
 
@@ -127,19 +132,24 @@ message(STATUS "Fetching TBB")
 
 FetchContent_MakeAvailable(oneTBB)
 
-else()
+elseif(NWGRAPH_USE_SUBMODULE)
 
+# Use submodule
 add_subdirectory(external/oneTBB)
 
-endif()
+else()
 
-# find_package(TBB REQUIRED)
+# Use locall installed version
+find_package(TBB REQUIRED)
 
 # find_package(TBB)
 # if (not TBB_Found)
 #   FetchContent(
 #     TBB_STUFF)
 # endif()
+
+endif()
+
 
 find_package(Threads REQUIRED)
 
@@ -171,7 +181,7 @@ if (NWGRAPH_BUILD_EXAMPLES)
   add_subdirectory(examples/imdb)
 endif()
 
-#Artifacts
+# Artifacts
 option(NWGRAPH_BUILD_HPEC "Determines whether to build HPEC artifact." OFF)
 if (NWGRAPH_BUILD_HPEC)
    add_subdirectory(${CMAKE_SOURCE_DIR}/../Artifacts/hpec hpec)
