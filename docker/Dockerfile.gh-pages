@@ -1,0 +1,62 @@
+from ubuntu:22.04
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get -y update    \
+               &&        \
+    apt-get -y install   \
+               apt-utils 
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get -y install   	   \
+    git	       			   \
+    wget			   \
+    rsync			   \
+    software-properties-common
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get -y install   	   \
+    doxygen    		 	   \
+    graphviz		 	   \
+    python3
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get -y install		   \
+    python3-pip
+
+RUN DEBIAN_FRONTEND=noninteractive		     \
+    apt-get install -y locate			     \
+    cmake	       				     \
+    flex	       				     \
+    bison	       				     \
+    zlib1g-dev	       				     \
+    libclang-dev       				     \
+    g++						     \
+    clang
+
+RUN wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
+    && apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB                                  \
+    && rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB                                           \
+    && add-apt-repository "deb https://apt.repos.intel.com/oneapi all main"           \
+    && apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get -y install    	   \
+    intel-oneapi-tbb-devel
+
+RUN git clone https://github.com/doxygen/doxygen.git \
+    && cd doxygen 				     \
+    && mkdir build				     \
+    && cd build					     \
+    && cmake .. 				     \
+       -Duse_libclang=ON			     \
+    && make ; make install ; make clean		     
+
+RUN pip3 install -U sphinx
+RUN pip3 install -U sphinx-rtd-theme
+RUN pip3 install -U breathe
+RUN pip3 install -U sphinxcontrib-bibtex
+
+# We use a customized exhale, but install for dependencies
+RUN pip3 install -U exhale 
+
+RUN apt-get clean

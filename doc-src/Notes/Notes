@@ -1,0 +1,23 @@
+
+
+"CSR-like"
+  incidence
+  adjacency
+
+"hypersparse"
+  - another layer of indirection to efficiently look up neighbor lists and properties for non-contiguous vertex indices
+  - outer range is map (or something associative) or we have an indirection
+    - indirection is more efficient and is partitionable
+
+
+
+// Raw data to incidence
+
+// could have holes ("hypersparse")
+template <range Vertex_t, range Edge_t>
+auto make_index_incidence(const Vertex_t& V, const Edge_t& E);
+
+// not have "holes" because vertices are implicit
+//   indices don't mean anything, can't get vertex properties
+template <range Edge_t>
+auto make_index_incidence(const Edge_t& E);

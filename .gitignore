@@ -1,0 +1,57 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+*~
+\#*
+
+*.trace
+CMakeFiles
+CMakeCache.txt
+attic
+basement
+build
+build.docker
+
+.DS_Store
+__pycache__
+_build
+_hyde
+_doxygen
+_api
+*.mtx
+*.tsv
+*.csv
+dblp.json
+oracle.json
+
+checks.json

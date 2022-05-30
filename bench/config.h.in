@@ -1,0 +1,40 @@
+/**
+ * @file config.h.in
+ *
+ * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
+ * @copyright SPDX-FileCopyrightText: 2022 University of Washington
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * @authors
+ *   Luke D'Alessandro
+ *   Andrew Lumsdaine
+ *   Tony Liu
+ *
+ */
+
+#ifndef NW_GRAPH_BENCH_CONFIG_H
+#define NW_GRAPH_BENCH_CONFIG_H
+
+// #cmakedefine01 CXX_FILESYSTEM_IS_EXPERIMENTAL
+// #define CXX_FILESYSTEM_NAMESPACE @CXX_FILESYSTEM_NAMESPACE@
+
+
+#define CXX_FILESYSTEM_IS_EXPERIMENTAL 0
+#define CXX_FILESYSTEM_NAMESPACE std::filesystem
+
+
+namespace nw::graph {
+namespace bench {
+
+constexpr const char BUILD_TYPE[]      = "@CMAKE_BUILD_TYPE@";
+constexpr const char CXX_VERSION[]     = "@CMAKE_CXX_COMPILER_VERSION@";
+constexpr const char CXX_COMPILER_ID[] = "@CMAKE_CXX_COMPILER_ID@";
+constexpr const char CXX_COMPILER[]    = "@NWGRAPH_CXX_COMPILER@";
+constexpr const char USE_TBBMALLOC[]   = "@NWGRAPH_USE_TBBMALLOC@";
+
+}
+}
+
+
+#endif //  NW_GRAPH_BENCH_CONFIG_H

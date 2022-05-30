@@ -1,0 +1,59 @@
+
+
+Idioms for traversing a graph
+
+Outer range
+
+for (size_t i = 0; i < num_vertices(graph); ++i) {
+  graph[i] is a range
+}
+
+for (auto n = begin(graph); n != end(graph); ++n) {
+  n is an iterator, *n is a range
+}
+
+std::for_each(begin(graph), end(graph), [] (auto& n) {
+  n is a range
+}
+
+for (auto& n: graph) {
+  n is a range
+}
+
+
+Inner range
+
+for ([u, v, w] : n) {
+  
+}
+
+// Presumably this is what is actually stored
+for ([v, w] : n) {
+  
+}
+
+for ([v, w] : neighbors(n)) {
+  
+}
+
+for ([u, v, w] : out_edges(n)) {
+  
+}
+
+
+Should work with std::vector<std::<forward_list<std::tuple>>>
+Should also work with "csr"
+
+I. Two concepts -- adjacency and incidence, one does
+for ([u, v, w] : n) { } and the other does
+for ([v, w] : n) { }
+std::vector<std::forward_list> models one but not the other
+(similarly "csr" and nw::graph::adjacency)
+If you need u, write algorithm with it indexing outer loop
+
+II. Wrapper to turn adjacency to incidence
+
+III. Can out_edges work?
+
+
+

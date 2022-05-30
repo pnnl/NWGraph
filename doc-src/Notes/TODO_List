@@ -1,0 +1,90 @@
+TODO List
+
+"pre_release" branch
+
+- change "fill" to "copy"
+  - make edge list const (don't sort original edge list)
+  - make an overload with move that steals the input vectors
+  - fix fill undirected to work in place like fill directed (no Tmp)
+
+- add adjacency constructor(s) for pair of vector / vector of pairs, with and without N argument (#vertices)
+
+- parallelize "iota" in proxysort (make a util/par_iota.hpp -- we use this alot)
+
+- what is the reference type for outer_iterator in compressed?
+
+=> AL
+
+- define definitively adjacency vs incidence and provide in adjacency.hpp and incidence.hpp (and appropriate concepts and adapters) 
+=> AL
+
+- Cleanup of documentation (need to write some more intro material)
+
+- Create more tests that give us more coverage
+
+- Make sure all tests and benchmarks and apbs compile and run
+
+- Make sure cmake and so forth all work
+  - Docker image
+  => AL 
+
+- migrate bench to json output
+  - remove std::filesystem
+  => JF?
+
+- move bipartite graph functionality from NWhy to NWgr
+- propagate new interface in NWgr to NWhy
+  => XL
+
+- build.hpp:  rename "fill" to "copy"  (and add "move")
+  => AL
+
+- Q: how should we handle all the different variants of some algorithms?
+  A: "experimental" subdirectory
+
+- QQ:  What are the "best" versions for each algorithm (from the IISWC paper)?
+  => XL to find out for all the algorithms and note 
+
+- Q: is the organization of files what we want?
+
+- Q: what is NW graph?
+  A: Library of graph concepts, algorithms, and data structures compatible with C++ standard library and modern C++ programming idioms.
+
+  - one approach -- files that users include are at top level
+    adjacency, build, edge_list
+
+    - documentation should be navigable
+
+- Where does is_open go?  Need to use consistently.  (If we need it.)
+
+- Q: non-default move constructors needed for adjacency ?
+  => XL
+
+- Change enums to class enums
+
+
+=====
+Small
+
+  get rid of N_ ?
+
+
+=====
+
+- struct of arrays view of other containers to build graph
+  - struct of arrays view of containers as edge list
+  - struct of arrays view of containers as compressed 
+  - reorder vs indirect
+
+
+- Graph containers should have read/write flags (static)
+
+- bipartite_graph_base should allow two different vertex_id types
+
+- batch insert constructor / function -- parallel
+
+- hypersparse support
+
+
+
+

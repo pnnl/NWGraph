@@ -1,0 +1,21 @@
+/**
+ * @file {{ filename }}
+ *
+{% for copyright_line in copyright_lines %}
+ * @copyright {{ copyright_line }}
+{% endfor %}
+{% if copyright_lines and spdx_expressions %}
+ *
+{% endif %}
+{% for expression in spdx_expressions %}
+ * SPDX-License-Identifier: {{ expression }}
+{% endfor %}
+{% if authors %}
+ *
+ * @authors
+{% for author in authors %}
+ *   {{ author }}
+{% endfor %}
+ *
+{% endif %}
+ */
