@@ -17,7 +17,6 @@ class has_push_back {
     return true;
   }
 
-
   template <class W>
   requires(requires(W v, typename W::value_type t) { v.push_back(t); } == false) static constexpr bool test() {
     return false;
@@ -55,9 +54,15 @@ bool has_push_back_v = has::has_push_back<V>::value;
 template <template <class> class V, class T>
 bool has_push_front_v = has::has_push_front<V, T>::value;
 
+template <class>
+class graph_adaptor;
 
+
+// clang-format off
 template <class T>
-requires(min_idx_adjacency_list<T> || idx_adjacency_list<T>) class graph_adaptor : public unipartite_graph_base, public T {
+requires (min_idx_adjacency_list<T> || idx_adjacency_list<T>)
+class graph_adaptor<T> : public unipartite_graph_base, public T {
+  // clang-format on
 
   using base       = T;
   using graph_base = unipartite_graph_base;
@@ -95,69 +100,92 @@ public:
     base::operator[](i).emplace_back(attrs...);
   }
 
-  auto size() const {
-    return base::size();
-  }
   auto num_vertices() const {
     return base::size();
   }
   auto num_edgees() const {
     return num_edges_;
   }
+
+private:
+  auto size() const {
+    return base::size();
+  }
 };
 
+
+// clang-format off
+template <class T>
+requires (!min_idx_adjacency_list<T> && !idx_adjacency_list<T>)
+class graph_adaptor<T> : public unipartite_graph_base, public T {
+  // clang-format on
+
+  using base       = T;
+  using graph_base = unipartite_graph_base;
+
+  size_t num_vertices_{0};
+
+public:
+  using vertex_id_type = vertex_id_t<T>;
+
+  explicit graph_adaptor(size_t N = 0) : base(N) {
+  }
+
+  void open_for_push_back() {
+    graph_base::is_open = true;
+  }
+  void close_for_push_back() {
+    graph_base::is_open = true;
+  }
+
+  template <class... Attributes>
+  void push_back(vertex_id_type i, vertex_id_type j, Attributes... attrs) {
+    base::emplace_back(attrs...);
+  }
+
+  template <class... Attributes>
+  void push_front(vertex_id_type i, vertex_id_type j, Attributes... attrs) {
+    base::emplace_front(attrs...);
+  }
+
+  auto num_vertices() const {
+    return num_vertices_;
+  }
+  auto num_edgees() const {
+    return base::size();
+  }
+
+private:
+  auto size() const {
+    return base::size();
+  }
+};
+
+
+template <class V>
+auto tag_invoke(const num_edges_tag, const graph_adaptor<V>& graph) {
+  return graph.num_edges();
+}
+
+template <class V>
+auto tag_invoke(const num_vertices_tag, const graph_adaptor<V>& graph) {
+  return graph.num_vertices();
+}
+
+template <class V>
+auto& tag_invoke(const source_tag, graph_adaptor<V>& v, typename V::value_type e) {
+  return source(V(), e);
+}
+
+template <class V>
+auto& tag_invoke(const target_tag, graph_adaptor<V>& v, typename V::value_type e) {
+  return target(V(), e);
+}
 
 template <typename... Ts>
 auto graph_edge(std::tuple<Ts...> t) {
   return nth_cdr<1>(t);
 }
-
-/**
- * Fill a plain graph from edge list
- */
-template <class EdgeList, class Adjacency>
-void push_back_plain_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
-  const size_t jdx = (idx + 1) % 2;
-
-  for (auto&& e : edge_list) {
-
-    if (idx == 0) {
-      std::apply([&](size_t u, size_t v) { adj[u].emplace_back(v); }, e);
-      if (!directed) {
-        std::apply([&](size_t u, size_t v) { adj[v].emplace_back(u); }, e);
-      }
-    } else {
-      std::apply([&](size_t u, size_t v) { adj[v].emplace_back(u); }, e);
-      if (!directed) {
-        std::apply([&](size_t u, size_t v) { adj[u].emplace_back(v); }, e);
-      }
-    }
-  }
-}
-
-/**
- * Fill a non-plain graph from edge list
- */
-template <class EdgeList, class Adjacency>
-void push_back_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
-  const size_t jdx = (idx + 1) % 2;
-
-  for (auto&& e : edge_list) {
-
-    if (idx == 0) {
-      std::apply([&](size_t u, size_t v, auto... props) { adj[u].emplace_back(v, props...); }, e);
-      if (!directed) {
-        std::apply([&](size_t u, size_t v, auto... props) { adj[v].emplace_back(u, props...); }, e);
-      }
-    } else {
-      std::apply([&](size_t u, size_t v, auto... props) { adj[v].emplace_back(u, props...); }, e);
-      if (!directed) {
-        std::apply([&](size_t u, size_t v, auto... props) { adj[u].emplace_back(v, props...); }, e);
-      }
-    }
-  }
-}
-
 
 /**
  * Make an edge list with properties copied from original data, e.g., vector<tuple<size_t, size_t, props...>>

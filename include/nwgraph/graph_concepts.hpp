@@ -225,10 +225,18 @@ struct graph_traits<Outer<Inner<std::tuple<Index, Attributes...>>>> {
 };
 
 template <template <class> class Outer, template <class> class Inner, std::integral Index>
-requires std::ranges::random_access_range<Outer<Inner<Index>>> && std::ranges::forward_range<Inner<Index>>
-struct graph_traits<Outer<Inner<Index>>> {
+requires std::ranges::random_access_range<Outer<Inner<Index>>>&&
+    std::ranges::forward_range<Inner<Index>> struct graph_traits<Outer<Inner<Index>>> {
   using vertex_id_type = Index;
 };
+
+// clang-format off
+template <template <class> class Rng, std::integral Index, class... Attributes>
+requires std::ranges::forward_range <Rng<std::tuple<Index, Index, Attributes...>>>
+struct graph_traits<Rng<std::tuple<Index, Index, Attributes...>>> {
+  using vertex_id_type = Index;
+};
+//clang-format on
 
 
 // The following concepts are to capture some general concrete graphs that are used: 
@@ -247,7 +255,7 @@ concept property_edge_list_c = std::ranges::forward_range<R> && requires(std::ra
   std::get<1>(e);
 };
 
-//This concept is for CPO definition. It is not a graph concept,
+// This concept is for CPO definition. It is not a graph concept,
 // comparing with adjacency_list_graph concept.
 template <typename G>
 concept min_idx_adjacency_list = 
@@ -268,6 +276,20 @@ concept idx_adjacency_list =
   && requires(G g, std::tuple_element_t<0, inner_value_t<G>> u) {
   { g[u] } -> std::convertible_to<inner_range_t<G>>;
 };
+
+
+// This concept is for CPO definition. It is not a graph concept,
+// comparing with adjacency_list_graph concept.
+template <typename G>
+concept min_idx_edge_list = 
+     std::ranges::forward_range<G>
+  && requires(G g, std::ranges::range_reference_t<G> e) {
+  { std::get<0>(e) } -> std::convertible_to<vertex_id_t<G>>;
+  { std::get<1>(e) } -> std::convertible_to<vertex_id_t<G>>;
+};
+
+template <typename G>
+concept idx_edge_list = min_idx_edge_list<G>;
 
 
 // Based on the above concepts, we define concept-based overloads for vertex_id_type and some CPOs
@@ -293,6 +315,31 @@ template <min_idx_adjacency_list T, class U>
 auto& tag_invoke(const target_tag, const T& graph, const U& e) {
   return e;
 }
+
+
+// source and target CPOs
+
+template <idx_edge_list T, class U>
+auto& tag_invoke(const source_tag, const T& graph, const U& e) {
+  return std::get<0>(e);
+}
+
+//template <min_idx_edge_list T, class U>
+//auto& tag_invoke(const source_tag, const T& graph, const U& e) {
+//  return std::get<0>(e);
+//}
+
+
+template <idx_edge_list T, class U>
+auto& tag_invoke(const target_tag, const T& graph, const U& e) {
+  return std::get<1>(e);
+}
+
+//template <min_idx_edge_list T, class U>
+//auto& tag_invoke(const target_tag, const T& graph, const U& e) {
+//  return std::get<1>(e);
+//}
+
 
 // num_vertices CPO
 template <idx_adjacency_list T>
