@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Graph Theory to Programming with Graphs &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script>window.MathJax = {"TeX": {"Macros": {"RR": "{\\mathbb R}", "Real": "{\\mathbb R}", "Complex": "{\\mathbb C}", "mat": ["{\\mathbf{#1}}", 1], "vec": ["{\\mathbf{#1}}", 1], "bold": ["{\\bf #1}", 1], "Spc": ["\\mathbb{#1}", 1], "norm": ["|| #1 ||", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>From Graph Theory to Programming with Graphs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/userguide/old/bridge.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="from-graph-theory-to-programming-with-graphs">
+<h1>From Graph Theory to Programming with Graphs<a class="headerlink" href="#from-graph-theory-to-programming-with-graphs" title="Permalink to this headline"></a></h1>
+<p>Although the abstract / theoretical terminology for graphs is that a
+graph <span class="math notranslate nohighlight">\(G = (V,\ E)\)</span>and so on, in fact, graph algorithms are
+based on efficient concrete representations of the relationships induced
+on <span class="math notranslate nohighlight">\(V\)</span> by <span class="math notranslate nohighlight">\(E.\)</span> In particular, graph algorithms
+require efficient access to this structure. Graph algorithms are
+interesting because of the structure and so almost all graph algorithms
+require efficient traversal, and hence require an index adjacency list
+to operate over. (A few graph algorithms only require access to the
+edges without the need to traverse the structure and hence only need the
+index edge list rather than the adjacency list.) Out of 30 algorithms
+examined from Boost.Graph, only one did not require an index adjacency
+list. Unfortunately, it is often the case that <span class="math notranslate nohighlight">\(G\)</span>and
+<span class="math notranslate nohighlight">\(Adj\)</span> will both be referred to as “the graph,” and, in
+fact, it is most often the case that when someone refers to “the graph,”
+they actually mean <span class="math notranslate nohighlight">\(Adj.\)</span> It is nonetheless important to
+maintain the distinction between the graph <span class="math notranslate nohighlight">\(G\)</span>and <span class="math notranslate nohighlight">\(Adj,\)</span>
+the index adjacency list over it.</p>
+<p>NW Graph follows the principles of generic programming (as initially pioneered by the Standard Template Library, or STL).
+That is, it
+is algorithm-centric and algorithms are realized as function templates
+with well-defined requirements. These type requirements are organized
+into a small set of related abstractions such that the algorithms
+defined with them can operate correctly and efficiently on the widest
+possible set of input types. In particular, it is essential that the
+library fully support composition with and among third-party libraries.</p>
+<p>Thus, as with the STL, our goal with NW Graph is to provide
+a systematic organization of the domain of graph algorithms, consisting
+of a set of minimal type requirements for graph algorithms (aka
+“concepts” in the general sense), an API for realizing those type
+requirements in C++, a set of algorithms, and some representative data
+structures that might not be trivially realizable using composed
+containers from the standard library.</p>
+<p>Consequently, the library is not built around a single graph type or
+even a single graph abstraction. We will group requirements together and
+use graph terminology to name those sets of requirements.</p>
+<section id="basic-concepts">
+<h2>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline"></a></h2>
+<section id="edge-list-structure">
+<h3>Edge List Structure<a class="headerlink" href="#edge-list-structure" title="Permalink to this headline"></a></h3>
+</section>
+<section id="index-adjacency-structure">
+<h3>Index Adjacency Structure<a class="headerlink" href="#index-adjacency-structure" title="Permalink to this headline"></a></h3>
+<p>Based on our observations of graphs and their representations, an index
+adjacency structure of a graph (i.e., <span class="math notranslate nohighlight">\(Adj(G)\)</span>) is a <em>range of
+ranges,</em> specifically, a random access range of forward ranges. As such,
+the outer range conforms completely to the requirements of the
+<cite>random_access_range</cite> concept and the inner range conforms completely to
+the requirements of the <cite>forward_range</cite> concept, including all valid
+expressions and associated types (such as begin, end, etc.).</p>
+<p>The size of a graph is the cardinality of its vertex set. This can be accessed via the
+size() function on the outer range of an index adjacency structure, or via the
+num_vertices() function on any graph.</p>
+<p>The vertices and edges of a graph are abstract notions that are only implicitly
+reified in a program via vertex and edge properties (see examples above). However,
+these properties do need handles in order to be accessed, and the index adjacency
+structure of the graph needs indices in order to be traversed. Accordingly, we have
+<strong>vertex identifiers</strong> and <strong>edge identifiers</strong> (vertex ids and edge ids).</p>
+<p>The outer range of a graph is indexed with a vertex id. Indexing into
+the outer range with a vertex id <span class="math notranslate nohighlight">\(u\)</span> returns an inner range,
+corresponding to the vertex indices representing the set of edges or or set of vertices reachable from
+<span class="math notranslate nohighlight">\(u,\)</span>i.e., it contains information about all <span class="math notranslate nohighlight">\((u,v)\)</span>in
+the index edge set of the graph. The objects stored by the inner range
+associated with <span class="math notranslate nohighlight">\(u\)</span> can be accessed to obtain the source vertex
+id <span class="math notranslate nohighlight">\(u,\)</span>the target vertex index <span class="math notranslate nohighlight">\(v\)</span> and the properties
+associated with the edge <span class="math notranslate nohighlight">\((u,v).\)</span></p>
+<p>The following code assumes the inner range stores vertices,
+corresponding to the “out” neighbors each vertex, and iterates
+through all of the neighbors of all of the vertices in the graph:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">adjacency_graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="n">adjacency_graph</span><span class="w"> </span><span class="n">graph</span><span class="p">(...);</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">graph</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Neighbors: &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that a graph composed of standard library containers, e.g.,
+std:vector&lt;std::forward_list&lt;std::tuple&lt;int&gt;&gt;&gt; could be used in the
+example above.</p>
+<p>For a select few algorithms, we may also need the information about
+every <span class="math notranslate nohighlight">\((v,u)\)</span>, given <span class="math notranslate nohighlight">\(\text{u.}\)</span> (This is essentially the
+transpose of <span class="math notranslate nohighlight">\((u,v)\)</span>). A graph that stores information for both
+<span class="math notranslate nohighlight">\((v,u)\)</span> and <span class="math notranslate nohighlight">\((u,v)\)</span> is called a <strong>bidirectional graph</strong>
+(which is necessarily also an incidence graph). The “transpose”
+neighborhood range associated with a given vertex is accessed using the
+function <strong>in_edges</strong>.</p>
+<p>Some graph algorithms require knowing the degree of each vertex (the
+size of each neighborhood). In that case, the inner range should also be
+a sized range. The degree of each vertex can be accessed with the range
+function size on the inner range or with the degree() function (which
+takes a vertex key as argument). The degree must be accessible in
+constant time.</p>
+<p>In rare cases a graph algorithm will require knowing the total number of
+edges in a graph. If all of the edges are stored in a single
+sized_range, this can be obtained from the size function on that range.
+In other cases, the number of edges will need to be maintained as part
+of the graph. The total number of edges of a graph can be obtained with
+the num_edges() function (which takes a graph as argument).</p>
+</section>
+<section id="index-incidence">
+<h3>Index Incidence<a class="headerlink" href="#index-incidence" title="Permalink to this headline"></a></h3>
+</section>
+<section id="graph-traversal">
+<h3>Graph Traversal<a class="headerlink" href="#graph-traversal" title="Permalink to this headline"></a></h3>
+<p>Traversing a graph is accomplished by iterating over the ranges
+comprising the graph. The iterator types are those associated with each
+range type. We refer to the outer range of the graph as a <strong>vertex
+range</strong> and its corresponding iterator as a <strong>vertex iterator</strong>. An
+<strong>out edge iterator</strong> is used to iterate over the out edges associated
+with a vertex in an incidence graph and an <strong>in edge iterator</strong> is used
+to iterate over the in edges of a bidirectional graph.</p>
+<p>An example traversing an incidence graph is shown below.</p>
+</section>
+<section id="adaptors">
+<h3>Adaptors<a class="headerlink" href="#adaptors" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="vertex-and-edge-properties">
+<h2>Vertex and Edge Properties<a class="headerlink" href="#vertex-and-edge-properties" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

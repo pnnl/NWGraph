@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generic Programming in C++20 &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generic Graph Algorithms" href="graph-concepts.html" />
+    <link rel="prev" title="Graph Background" href="graph-background-ii.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generic Programming in C++20</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generic-programming">Generic Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-generic-programming-process">The Generic Programming Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lifting">Lifting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specialization">Specialization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#concepts-in-c-20">Concepts in C++20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ranges-in-c-20">Ranges in C++20</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Generic Programming in C++20</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/userguide/generic-programming.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generic-programming-in-c-20">
+<span id="sec-generic-programming-background"></span><h1>Generic Programming in C++20<a class="headerlink" href="#generic-programming-in-c-20" title="Permalink to this headline"></a></h1>
+<section id="generic-programming">
+<span id="sec-gen-programming"></span><h2>Generic Programming<a class="headerlink" href="#generic-programming" title="Permalink to this headline"></a></h2>
+<p>Generic programming is a software development paradigm inspired by the
+organizational principles of
+mathematics <span id="id1">[<a class="reference internal" href="references.html#id3" title="Alexander A Stepanov and Daniel E Rose. From mathematics to generic programming. Pearson Education, 2014.">SR14</a>]</span>. That is, a
+generic library comprises a framework of algorithms in a problem domain,
+based on a systematic organization of common type requirements for those
+algorithms. The type requirements themselves, specified as <em>concepts</em>
+are part of the library as well, and provide the interface that enables
+composition of library components with other, independently-developed,
+components. The <code class="docutils literal notranslate"><span class="pre">iterator</span></code> concept taxonomy, for example, was the
+foundation upon which the STL was
+organized <span id="id2">[<a class="reference internal" href="references.html#id4" title="David R. Musser and Alexander A. Stepanov. Generic programming. In P Gianni, editor, International Symposium ISSAC 1988, volume 38 of Lecture Notes in Computer Science, pages 13–25. Springer-Verlag, 1989.">MS89</a>, <a class="reference internal" href="references.html#id2" title="Alexander Stepanov and Meng Lee. The standard template library. Technical Report HPL-95-11, HP Laboratories, November 1995.">SL95</a>]</span>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Generic algorithms (that is, algorithms in a generic library) are
+designed so that the requirements they impose on types are as minimal as
+possible without compromising efficiency, thus enabling the widest scope
+of potential composition, and therefore, reuse. Generic algorithms are
+derived from concrete ones, which are gradually made more generic by
+removing (“lifting”) unnecessary requirements. This process continues as
+long as instantiation of the generic algorithm with concrete types
+remains as efficient as the equivalent concrete algorithm would have
+been. Generic libraries do not tolerate abstraction penalty.</p>
+</section>
+<section id="the-generic-programming-process">
+<h2>The Generic Programming Process<a class="headerlink" href="#the-generic-programming-process" title="Permalink to this headline"></a></h2>
+<section id="lifting">
+<h3>Lifting<a class="headerlink" href="#lifting" title="Permalink to this headline"></a></h3>
+<p>The first (and major) phase of the generic programming process is
+sometimes known as “lifting“ where we create generic algorithms through
+a process of successive generaliation. That is, the process is</p>
+<ol class="arabic simple">
+<li><p>Study the concrete implementation of an algorithm</p></li>
+<li><p>Lift away unnecessary requirements to produce a more abstract
+algorithm</p></li>
+<li><p>Repeat the lifting process until we have obtained a generic algorithm
+that is as general as possible but that still instantiates to
+efficient concrete implementations</p></li>
+<li><p>Catalog remaining requirements and organize them into concepts</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">Iter</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Op</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">T</span><span class="w"> </span><span class="n">accumulate</span><span class="p">(</span><span class="n">Iter</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Iter</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">Op</span><span class="w"> </span><span class="n">op</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">first</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">last</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">first</span><span class="o">++</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Fig. <a class="reference external" href="#fig:sum">[fig:sum]</a> shows two concrete implementations of a
+<code class="docutils literal notranslate"><span class="pre">sum</span></code> algorithm. The first steps through an array of integers,
+indexing into the array at each step and summing the resulting value
+into <code class="docutils literal notranslate"><span class="pre">s</span></code>. Instead of an array, any eligible container (for example,
+linked list) can store the values.</p>
+<p>The authors of the STL realized the commonality of traversal and element
+access across most basic computer science algorithms. The requirements
+for traversal and access were generalized and unified into a hierarchy
+of type requirements known as iterators <span id="id3">[<a class="reference internal" href="references.html#id2" title="Alexander Stepanov and Meng Lee. The standard template library. Technical Report HPL-95-11, HP Laboratories, November 1995.">SL95</a>]</span>.</p>
+<p>An iterator-based algorithm for accumulating elements in a container is
+shown in Fig. <a class="reference external" href="#fig:accum">[fig:accum]</a>. Note that this single
+parameterized algorithm replaces the <code class="docutils literal notranslate"><span class="pre">sum</span></code> algorithms shown in
+Fig. <a class="reference external" href="#fig:sum">[fig:sum]</a> (and more). The process of summation has
+further been generalized by the introduction of a function object
+(<code class="docutils literal notranslate"><span class="pre">op</span></code>).</p>
+</section>
+<section id="specialization">
+<h3>Specialization<a class="headerlink" href="#specialization" title="Permalink to this headline"></a></h3>
+<p>In generic programming, the dual to lifting is <em>specialization.</em> That
+is, once an algorithm is lifted and made generic, it is specialized
+through composition with a concrete data type to realize a concrete
+implementation of the algorithm. Fig. <a class="reference external" href="#fig:spec">[fig:spec]</a> shows
+an example of usage of the generic <code class="docutils literal notranslate"><span class="pre">accumulate</span></code>, composing it with a
+linked list from the STL.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">accumulate</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">forward_list</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accumulate</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">times</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">());</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now, there is a crucial requirement that is part of specialization. In
+generic programming, we don’t just require that when we have a lifted
+algorithm that we can compose with the data types that we lifted from.
+In addition to that basic requirement, we also require that <em>there is
+zero abstraction penalty</em>. That is, the specialized generic algorithm
+should provide exactly the same performance as the concrete algorithm
+from which it was lifted, when composed with the original types that
+were lifted. With modern compilers and libraries, this requirement is
+actually met, and is one of the reasons that libraries such as the C++
+standard library have been so successful in practice.</p>
+</section>
+</section>
+<section id="concepts-in-c-20">
+<h2>Concepts in C++20<a class="headerlink" href="#concepts-in-c-20" title="Permalink to this headline"></a></h2>
+<p>In generic programming, concepts consist of valid expressions and
+associated types, which define a family of allowable types admissable
+for composition with generic algorithms. Introduced as a language
+feature for C++20, concepts constrain the set of types that can be
+substituted for class and function template arguments. This development
+has been instrumental in the notable development of the ranges algorithm
+library taxonomy, serving as the link between generic algorithm
+interface and implementation.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">concept</span></code> definition declares a set of requirements on types. There
+are four types of requirements:</p>
+<ul class="simple">
+<li><p>A simple requirement is an arbitrary expression statement. The
+requirement is that the expression is valid.</p></li>
+<li><p>A type requirement is the keyword <code class="docutils literal notranslate"><span class="pre">typename</span></code> followed by a type
+name, optionally qualified. The requirement is that the named type
+exists.</p></li>
+<li><p>A compound requirement specifies a conjunction of arbitrary
+constraints such as expression constraint, exception constraint, and
+type constraint, etc.</p></li>
+<li><p>A nested requirement is another requires-clause, terminated with a
+semicolon. This is used to introduce predicate constraints expressed
+in terms of other named concepts applied to the local parameters.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>template &lt;class I&gt;
+<span class="linenos">2</span>concept input_iterator = requires(I i) {
+<span class="linenos">3</span>  typename std::iter_value_t&lt;I&gt;;
+<span class="linenos">4</span>  typename std::iter_reference_t&lt;I&gt;;
+<span class="linenos">5</span>  { *i } -&gt; std::same_as&lt;std::iter_reference_t&lt;I&gt;&gt;;!\label{code:iterator:dereference}!
+<span class="linenos">6</span>  { ++i } -&gt; std::same_as&lt;I &amp;&gt;;!\label{code:iterator:postincrement}!
+<span class="linenos">7</span>  i++;!\label{code:iterator:preincrement}!};
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Fig. <a class="reference external" href="#fig:iterator-concepts">[fig:iterator-concepts]</a> shows the
+skeleton of the C++ concept definition for <code class="docutils literal notranslate"><span class="pre">input_iterator</span></code>. As
+hinted in our example, this concept specifies that an
+<code class="docutils literal notranslate"><span class="pre">input_iterator</span></code> can be de-referenced with <code class="docutils literal notranslate"><span class="pre">operator*</span></code>
+(line <a class="reference external" href="#code:iterator:dereference">[code:iterator:dereference]</a>)
+and incremented with <code class="docutils literal notranslate"><span class="pre">operator++</span></code>
+(lines <a class="reference external" href="#code:iterator:postincrement">[code:iterator:postincrement]</a>
+and <a class="reference external" href="#code:iterator:preincrement">[code:iterator:preincrement]</a>).
+Additionally, the concept specifies two associated types:
+<code class="docutils literal notranslate"><span class="pre">std::iter_value_t&lt;I&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">std::iter_reference_t&lt;I&gt;</span></code>.
+Line <a class="reference external" href="#code:iterator:dereference">[code:iterator:dereference]</a> also
+indicates that the expression <code class="docutils literal notranslate"><span class="pre">*i</span></code> returns the same type as
+<code class="docutils literal notranslate"><span class="pre">std::iter_reference_t&lt;I&gt;</span></code>. Again, this example is abbreviated for
+purposes of illustration. A complete description of the C++20 standard
+library concepts (including the iterator hierarchy) can be found
+online at</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">https://en.cppreference.com/w/cpp/concepts</span></code>.</div>
+</div>
+</section>
+<section id="ranges-in-c-20">
+<h2>Ranges in C++20<a class="headerlink" href="#ranges-in-c-20" title="Permalink to this headline"></a></h2>
+<p>The new C++20 Ranges library <span id="id4">[<a class="reference internal" href="references.html#id9" title="Eric Niebler, Casey Carter, and Christopher Di Bella. The one ranges proposal. Technical Report, Tech. rep. P0896r4. Nov. 2018. url: http://www. open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0896r4. pdf, 2018.">NCDB18</a>]</span>
+generalizes iterators and containers in C++. Ranges provide a way to
+make STL algorithms <em>composable</em> and improve the readability and
+writability of C++ code. Ranges consist of a pair of begin and end
+iterators, which are not required to be the same type. An example of
+using <code class="docutils literal notranslate"><span class="pre">ranges</span></code> is:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">min_element</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="c1">//iterator API</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">min_element</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">         </span><span class="c1">//ranges API</span>
+</pre></div>
+</div>
+<p>In the first case, the generic <code class="docutils literal notranslate"><span class="pre">min_element</span></code> function is called with
+an iterator pair (<code class="docutils literal notranslate"><span class="pre">begin</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> of the container <code class="docutils literal notranslate"><span class="pre">v</span></code>). In the
+second case, <code class="docutils literal notranslate"><span class="pre">min_element</span></code> function is called directly with <code class="docutils literal notranslate"><span class="pre">v</span></code> as
+the parameter, as a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> is a range (specifically, it
+satisfies the requirements for the <code class="docutils literal notranslate"><span class="pre">random_access_range</span></code> concept.</p>
+<p>C++20 ranges are defined in terms of C++20 concepts. A <code class="docutils literal notranslate"><span class="pre">std::range</span></code>
+itself is a very straightforward concept:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">concept</span><span class="w"> </span><span class="nc">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">ranges</span><span class="o">::</span><span class="n">begin</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ranges</span><span class="o">::</span><span class="n">end</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>It has two valid expressions: <code class="docutils literal notranslate"><span class="pre">begin</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">std::input_range</span></code>, which abstracts containers that have forward
+iterators, is thus defined:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">concept</span><span class="w"> </span><span class="nc">input_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ranges</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">input_iterator</span><span class="o">&lt;</span><span class="n">ranges</span><span class="o">::</span><span class="n">iterator_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This definition states that an <code class="docutils literal notranslate"><span class="pre">input_range</span></code> is a <code class="docutils literal notranslate"><span class="pre">range</span></code> and that
+the iterator type associated with that range meets the requirements of
+the <code class="docutils literal notranslate"><span class="pre">std::input_iterator</span></code> concept.</p>
+<p>Related to graphs, two range concepts of particular relevance include
+<code class="docutils literal notranslate"><span class="pre">ranges::forward_range</span></code>, which allows iteration over a collection from
+beginning to end multiple times (as opposed to an input iterator which
+is only guaranteed to be able to iterator over a collection once) and
+<code class="docutils literal notranslate"><span class="pre">ranges::random_access_range</span></code>, which further allows indexing into a
+collection with <code class="docutils literal notranslate"><span class="pre">operator[]</span></code> in constant time.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="graph-background-ii.html" class="btn btn-neutral float-left" title="Graph Background" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="graph-concepts.html" class="btn btn-neutral float-right" title="Generic Graph Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

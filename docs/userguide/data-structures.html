@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Data Structures &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Performance Evaluation" href="performance.html" />
+    <link rel="prev" title="Graph Range Adaptors" href="adaptors.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Model Data Structures</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/userguide/data-structures.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="model-data-structures">
+<span id="sec-data-structures"></span><h1>Model Data Structures<a class="headerlink" href="#model-data-structures" title="Permalink to this headline"></a></h1>
+<p>In (lifting) , we have demonstrated that the built-in types in the
+standard library are sufficient to construct a graph. Additionally, we
+discussed that any data structure meeting the requirements specified by
+the NWGraph concepts can be composed with the NWGraph algorithms based
+on those concepts. For instance,
+<code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::vector&lt;</span> <span class="pre">std::tuple&lt;size_t,</span> <span class="pre">double&gt;&gt;&gt;</span></code> meets the
+requirements of <code class="docutils literal notranslate"><span class="pre">adjacency_list</span></code> concept, hence can be used with any
+of the appropriate algorithms. Beyond simple composition of standard
+library components are data structures such as compressed sparse
+structures (we note that as far as a graph is concerned, compressed
+sparse row (CSR) is structurally same as compressed sparse column),
+which offer higher performance. Even though a compressed structure is
+not technically made as a range of ranges, it can provide the interface
+of a range of ranges. The workhorse graph structure for NWGraph is
+<code class="docutils literal notranslate"><span class="pre">nwgraph::adjacency</span></code>, with the following (highly abbreviated)
+interface:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="p">..</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">class</span><span class="w"> </span><span class="nc">adjacency</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">outer_iterator</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">using</span><span class="w"> </span><span class="n">iterator_category</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">random_access_iterator_tag</span><span class="p">;</span><span class="w"> </span><span class="p">..};</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">inner_iterator</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">outer_iterator</span><span class="w"> </span><span class="nf">begin</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">outer_iterator</span><span class="w"> </span><span class="nf">end</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">operator</span><span class="p">[](</span><span class="n">index_t</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w">  </span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Here, to make CSR equivalent as an <code class="docutils literal notranslate"><span class="pre">adjacency_list</span></code> (range of ranges),
+we define a private iterator type that acts as a random access iterator.</p>
+<p>NWGraph has a small set of utility functions for building graphs from a
+given dataset in a generic fashion. The first step involves building an
+index edge list, given a vertex table and edge table. The second step is
+to build an index graph (that is, filling in a structure modeling
+adjacency), given an index edge list. Oftentimes, it is needed to have
+sorted data in the neighborhood range. The graph construction algorithms
+take a runtime flag that indicate whether sorting should be done during
+graph construction. We also have functions to sort graphs that have
+already been constructed. The pertinent APIs for graph construction are
+shown below:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">IndexEdgeList</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">VRange</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ERange</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">IndexEdgeList</span><span class="w"> </span><span class="n">make_index_edge_list</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">VRange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vertices</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ERange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">edges</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">adjacency_list</span><span class="w"> </span><span class="n">Graph</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">IndexEdgeList</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">Graph</span><span class="w"> </span><span class="n">make_graph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">IndexEdgeList</span><span class="o">&amp;</span><span class="w"> </span><span class="n">edge_list</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="adaptors.html" class="btn btn-neutral float-left" title="Graph Range Adaptors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="performance.html" class="btn btn-neutral float-right" title="Performance Evaluation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

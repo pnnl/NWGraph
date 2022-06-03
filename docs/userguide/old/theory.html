@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practical Graph Theory &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script>window.MathJax = {"TeX": {"Macros": {"RR": "{\\mathbb R}", "Real": "{\\mathbb R}", "Complex": "{\\mathbb C}", "mat": ["{\\mathbf{#1}}", 1], "vec": ["{\\mathbf{#1}}", 1], "bold": ["{\\bf #1}", 1], "Spc": ["\\mathbb{#1}", 1], "norm": ["|| #1 ||", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Practical Graph Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/userguide/old/theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="practical-graph-theory">
+<h1>Practical Graph Theory<a class="headerlink" href="#practical-graph-theory" title="Permalink to this headline"></a></h1>
+<p>Graphs are powerful abstractions for reasoning about entities in relationship.  Yet
+graph algorithms require more than just graph models of problems domains – they
+require data structures over which they can operate (even more so for implementations
+of graph algorithms in software).</p>
+<p>By this we mean the following.  You will often see definitions for graphs
+(which we in fact use below)
+along the lines of:
+A graph is a set <span class="math notranslate nohighlight">\(G = \{ V, E \}\)</span> , where <span class="math notranslate nohighlight">\(V\)</span>
+is a finite set of vertices and <span class="math notranslate nohighlight">\(E\)</span> is a finite set of edges, etc.  This is
+fine, but one can’t build algorithms or software with finite sets of things.  One
+needs a more useful organization of these entities, such as an adjacency list.
+Unfortunately, these more useful structures are also referred to as <a href="#id1"><span class="problematic" id="id2">``</span></a>graphs’’.
+Moreover, the terminology used in theoretical presentations of algorithms, e.g., an
+adjacency list, may not be at all what is actually used in a software implementation.</p>
+<p>In this section, we briefly go through the terminology used in graph theory, but from
+the point of view of knowing that we will ultimately be building a software
+library for graph computing.
+We start with the basic definition of a graph as a pair of finite
+sets and then build up the particular organization structures that are needed to
+describe graph algorithms and which we will reify in software to implement those
+algorithms.  We then provide a high-level overview of the realization of those
+structures in NW Graph.</p>
+<section id="some-mathematical-terminology">
+<h2>Some Mathematical Terminology<a class="headerlink" href="#some-mathematical-terminology" title="Permalink to this headline"></a></h2>
+<p>Abstractly, we define a graph <span class="math notranslate nohighlight">\(G\)</span> as comprising two finite sets,
+<span class="math notranslate nohighlight">\(G = \{ V, E \} \)</span> is a set of entities of interest (‘’vertices’’ or <a href="#id3"><span class="problematic" id="id4">``</span></a>nodes’’) and <span class="math notranslate nohighlight">\(E\)</span>
+is a set of pairs of entities from <span class="math notranslate nohighlight">\(V\)</span> (‘’edges’’ or ‘’links’’).  Without loss of
+generality we label the entities in <span class="math notranslate nohighlight">\(V\)</span> as <span class="math notranslate nohighlight">\(v_i\)</span> so that <span class="math notranslate nohighlight">\(V = \{ v_0, v_1, \ldots
+v_{n-1} \}\)</span>.  The set of edges (also labeled) can be constructed using the labeled
+entities from <span class="math notranslate nohighlight">\(V\)</span> so that <span class="math notranslate nohighlight">\(E = \{ e_0, e_1, \ldots e_{m-1} \}\)</span>.  The edges may be
+ordered pairs, denoted as <span class="math notranslate nohighlight">\((v_i, v_j)\)</span>, which have equality defined such that
+<span class="math notranslate nohighlight">\((v_i,v_j) = (v_m,v_n) \leftrightarrow v_i = v_m \wedge v_j = v_n\)</span>. Or, the edges may
+be unordered sets, denoted as <span class="math notranslate nohighlight">\(\{v_i, v_j\}\)</span> which have equality defined as <span class="math notranslate nohighlight">\((v_i,v_j)
+= (v_m,v_n) \leftrightarrow\left( v_i = v_m \wedge v_j = v_n\right) \vee \left( v_i =
+v_n \wedge v_j = v_m\right)\)</span> .  If a graph is defined with ordered edges we say the
+graph is directed; if the graph is defined with unordered edgese say the graph is
+undirected.</p>
+<p>Below are
+two examples of modeling a problem using a graph.</p>
+<p>In the first case, two-terminal circuit elements connect to each other at given nodes.  We thus model circuit connection points (also the terminology used in circuit modeling) as graph nodes, and the connections between them as edges.  In the case of circuits, orientation of circuit elements matters and so we may choose (at least at this stage of the modeling process) to use directed edges in the graph.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 33%" />
+<col style="width: 19%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Electrical circuit consisting of nodes and circuit elements.</p></td>
+<td><p>Graphical representation of the electrical circuit.</p></td>
+<td><p>Set-theoretical (mathematical) representation.</p></td>
+</tr>
+<tr class="row-odd"><td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/circuit.pdf"><img alt="alternate text" src="userguide/_static/images/circuit.pdf" style="width: 400px;" /></a>
+</figure>
+</td>
+<td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/circuit-graph.pdf"><img alt="alternate text" src="userguide/_static/images/circuit-graph.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><div class="math notranslate nohighlight">
+\[\begin{split}\small\begin{array}[t]{rcl}
+G &amp; = &amp; \{ V, E \} \\
+V &amp; = &amp; \{ \textrm{0}, \textrm{Vdd}, \textrm{n0}, \textrm{n1}, \textrm{n2}, \textrm{Vout} \} \\
+E &amp; = &amp; \{
+( \textrm{n0}, \textrm{n1} ),
+( \textrm{Vdd}, \textrm{0} ), \\
+&amp;&amp;\:\:
+( \textrm{n0}, \textrm{Vdd} ),
+( \textrm{n2}, \textrm{Vdd} ), \\
+&amp;&amp;\:\:
+( \textrm{0}, \textrm{n2} ),
+( \textrm{n2}, \textrm{Vout} ), \\
+&amp;&amp;\:\:
+( \textrm{0}, \textrm{n0} ),
+( \textrm{n2}, \textrm{n1} ) \}
+\:&amp;\:\\
+\:&amp;\:\\
+\end{array}\end{split}\]</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In the second case, we begin with a table of airports and the distance in kilometers between pairs of them.  We model this situation as a graph by identifying graph nodes with airports and graph edges with pairs of cities that are given as pairs in the distance table.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 33%" />
+<col style="width: 19%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Table of airport codes and distance in km between the airports.</p></td>
+<td><p>Graphical representation of the tabular data.</p></td>
+<td><p>Set-theoretical (mathematical) representation.</p></td>
+</tr>
+<tr class="row-odd"><td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/airport-tables.pdf"><img alt="alternate text" src="userguide/_static/images/airport-tables.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/airport-graph.pdf"><img alt="alternate text" src="userguide/_static/images/airport-graph.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rcl}
+G &amp; = &amp; \{ V, E \} \\
+V &amp; = &amp; \{ \textrm{SEA}, \textrm{MSP}, \textrm{SLC}, \textrm{DTW}, \textrm{ATL}, \textrm{BOS} \} \\
+E &amp; = &amp; \{
+\{ \textrm{MSP}, \textrm{DTW} \},
+\{ \textrm{SLC}, \textrm{SEA} \}, \\
+&amp;&amp;\:\:
+\{ \textrm{MSP}, \textrm{SLC} \},
+\{ \textrm{BOS}, \textrm{SLC} \}, \\
+&amp;&amp;\:\:
+\{ \textrm{SEA}, \textrm{BOS} \},
+\{ \textrm{BOS}, \textrm{ATL} \}, \\
+&amp;&amp;\:\:
+\{ \textrm{SEA}, \textrm{MSP} \},
+\{ \textrm{BOS}, \textrm{DTW} \} \} \\
+\:&amp;\:\\
+\:&amp;\:\\
+\end{array}\end{split}\]</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="unipartite-graphs-and-bipartite-graphs">
+<h2>Unipartite Graphs and Bipartite Graphs<a class="headerlink" href="#unipartite-graphs-and-bipartite-graphs" title="Permalink to this headline"></a></h2>
+<p>We may also have the case of a graph representing relationships between
+two different kinds of entities. In that case we write
+<span class="math notranslate nohighlight">\(G\  = \ (U,\ V,\ E)\)</span>, where <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are distinct
+sets of different kinds of entities (and in general <span class="math notranslate nohighlight">\(U\)</span> and
+<span class="math notranslate nohighlight">\(V\)</span> will not have the same cardinality). The set <span class="math notranslate nohighlight">\(E\)</span> of
+edges consists of ordered pairs <span class="math notranslate nohighlight">\((u,v)\)</span>, with <span class="math notranslate nohighlight">\(u\)</span> coming
+from <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(v\)</span> coming from <span class="math notranslate nohighlight">\(V\)</span>. This kind of graph
+is known as a <em>bipartite</em> graph;
+a graph with just a single vertex set may also be referred to as
+a <em>unipartite</em> graph.</p>
+<p>An example of a bipartite graph is the relationship between actors and the films in which they appear.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 16%" />
+<col style="width: 56%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Table of movie titles and actors.</p></td>
+<td><p>Graphical representation of the tabular data.</p></td>
+<td><p>Set-theoretical (mathematical) representation.</p></td>
+</tr>
+<tr class="row-odd"><td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/title_principal.pdf"><img alt="alternate text" src="userguide/_static/images/title_principal.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/title_principal_graph.pdf"><img alt="alternate text" src="userguide/_static/images/title_principal_graph.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><div class="math notranslate nohighlight">
+\[\]</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/title_principal_set.pdf"><img alt="alternate text" src="userguide/_static/images/title_principal_set.pdf" style="width: 400px;" /></a>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="graph-traversal">
+<h2>Graph Traversal<a class="headerlink" href="#graph-traversal" title="Permalink to this headline"></a></h2>
+<p>To define algorithms on graphs and to be able to reason about those algorithms, we
+need to define some useful representations for graphs—as mentioned before, one can’t
+really do very much with abstract sets of vertices and edges.  And to do that we first
+define some terminology regarding representations. Various characteristics of these
+representations are what we use to express algorithms (still abstractly) but when
+those algorithms are implemented as generic library functions, those characteristics
+will in turn become the basis for the NW Graph function interface requirements (i.e.,
+concepts).</p>
+<p>One of the fundamental operations in graph algorithms is <em>traversal</em>.  That is, given
+a vertex <span class="math notranslate nohighlight">\(u\)</span>we would like to find the <em>neighbors</em> of <span class="math notranslate nohighlight">\(u\)</span>, i.e., all
+vertices <span class="math notranslate nohighlight">\(v\)</span>such that the edge <span class="math notranslate nohighlight">\((u,\ v)\)</span> is in the graph. Then, for each
+of those edges, we would like to find their neighbors, and so on. Different graph
+algorithms arise from the order in which we decide to visit those neighbors (e.g.,
+depth-first search or breadth-first search).  The representation that we define to
+make traversal efficient is an <em>adjacency list.</em> We note that calling this structure a
+“list” is standard terminology terminology for the abstract representation.  We aren’t
+going to require that an actual linked-list be used–or that any other actual type be
+used. Specific type requirements will be defined by the library concepts below.</p>
+<p>There is an important transition in going from a graph (as a collection of vertex
+objects and pairs of vertex objects) to an adjacency list.  Implied in using an
+adjacency list for traversal is that we would like to be able “find the neighbors”
+efficiently, i.e., in constant time, meaning we need to be able to take a vertex and
+do a constant time lookup to get all of the neighboring vertices. Then, with what we
+get back as the neighbors, we also need to use to look up more neighbors. In short,
+regardless of what we consider to be the vertices or edges in our graph <span class="math notranslate nohighlight">\(G\)</span>, an
+adjacency list is something that stores indices which can be used to index into
+itself.</p>
+<section id="index-graphs">
+<h3>Index Graphs<a class="headerlink" href="#index-graphs" title="Permalink to this headline"></a></h3>
+<p>Given a graph <span class="math notranslate nohighlight">\(G\ = \ (V,\ E)\)</span>, we can define an adjacency-list representation
+in the following way. Assign to each element of <span class="math notranslate nohighlight">\(V\)</span>a unique index from the
+range <span class="math notranslate nohighlight">\([ 0,\ |V|)\)</span> and denote the vertex identified with index <span class="math notranslate nohighlight">\(i\)</span> as
+<span class="math notranslate nohighlight">\(V[ i].\)</span> We can now define a new graph with the same structure as <span class="math notranslate nohighlight">\(G,\)</span> but
+in terms of the indices in <span class="math notranslate nohighlight">\([ 0,\ |V|)\)</span>. Let the <em>index graph</em> of <span class="math notranslate nohighlight">\(G\)</span> be
+the graph <span class="math notranslate nohighlight">\(= (,\ )\)</span>, where <span class="math notranslate nohighlight">\(= [ 0,\ |V|)\)</span>and :math:`` consists of
+<span class="math notranslate nohighlight">\(\left| E \right|\)</span>pairs of indices from :math:`` such that a pair
+<span class="math notranslate nohighlight">\((i,j)\)</span> is in :math:`` if and only if <span class="math notranslate nohighlight">\((V[ i],\ V[ j])\)</span> is in <span class="math notranslate nohighlight">\(E.\)</span>
+Which is all to say, the index graph of <span class="math notranslate nohighlight">\(G\)</span>is the graph we get by replacing
+all elements of <span class="math notranslate nohighlight">\(G\)</span> with their corresponding indices.</p>
+<p>This process is illustrated using the previous examples of a circuit and of airline routes.</p>
+<p>Of course, we don’t need an underlying graph to define what an index graph itself
+is. We can say that an index graph <span class="math notranslate nohighlight">\(G\)</span>= (V, E) is any graph with the property
+that the vertex set is a set of contiguous indices, with <span class="math notranslate nohighlight">\(V = [ 0,|V| -
+1)\)</span>. Since an index graph is just a graph, in cases where the context is clear, we may
+refer to an index graph simply as a graph. We note that an adjacency list can only be
+defined over an index graph.</p>
+</section>
+<section id="adjacency-lists">
+<h3>Adjacency Lists<a class="headerlink" href="#adjacency-lists" title="Permalink to this headline"></a></h3>
+<p>An adjacency list of an index graph <span class="math notranslate nohighlight">\(G = (V,E)\)</span> is an array
+<span class="math notranslate nohighlight">\(\text{Adj}\)</span> of size <span class="math notranslate nohighlight">\(|V|\)</span>(the array is indexed from 0 to
+<span class="math notranslate nohighlight">\(|V| - 1\)</span>). Each entry <span class="math notranslate nohighlight">\(Adj[ u]\)</span> in the array is
+a container of all the vertices <span class="math notranslate nohighlight">\(v\)</span>for which <span class="math notranslate nohighlight">\((u,v)\)</span>is
+contained in <span class="math notranslate nohighlight">\(\text{E.}\)</span> This structure (an adjacency list of an
+index graph, or an index adjacency list) is the fundamental structure
+used by almost all graph algorithms.</p>
+<p><strong>NB (1):</strong> Although the standard term for this kind of abstraction is “adjacency
+list”, and although it is often drawn (as we do here) with linked lists as elements,
+it is not necessary that this abstraction be implemented this way. What is important
+is that the items that are stored (vertex indices) can be used to index into the
+adjacency list to obtain other lists of neighbors.</p>
+<p><strong>NB (2):</strong> The index adjacency list does not store edges per se and
+therefore the index adjacency list is neither inherently directed nor
+undirected. Again, for a given vertex <span class="math notranslate nohighlight">\(u,\)</span>the container
+<span class="math notranslate nohighlight">\(Adj[ u]\)</span> contains the vertex <span class="math notranslate nohighlight">\(v\)</span>if the edge
+<span class="math notranslate nohighlight">\((u,\ v)\)</span> is contained in <span class="math notranslate nohighlight">\(\text{E.}\)</span> This means that for a
+directed graph with edge <span class="math notranslate nohighlight">\((u,v)\)</span> in <span class="math notranslate nohighlight">\(,\)</span>
+<span class="math notranslate nohighlight">\(EAdj[ u]\)</span> will contain <span class="math notranslate nohighlight">\(\text{v.}\)</span> For an
+undirected graph with edge <span class="math notranslate nohighlight">\((u,\ v)\)</span> is contained in <span class="math notranslate nohighlight">\(E,\)</span>
+<span class="math notranslate nohighlight">\(Adj[ u]\)</span> will contain <span class="math notranslate nohighlight">\(v\)</span><strong>and</strong>
+<span class="math notranslate nohighlight">\(Adj[ v]\)</span> will contain <span class="math notranslate nohighlight">\(\text{u.}\)</span> Directedness
+of the original graph is thus made manifest in the <em>values</em> stored in
+the index adjacency list. But there is nothing about the structure or
+semantic properties of the adjacency list itself that reflects the
+directedness (or undirectedness) of the original graph.</p>
+<p>Summarizing some points to note about computing with graphs, based on
+the preceding.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>The vertex set in an index graph is a contiguous range of identifiers</dt><dd><p><span class="math notranslate nohighlight">\([ 0,\ |V|)\)</span></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>There are no vertices per se in an index graph (we don’t materialize</dt><dd><p><span class="math notranslate nohighlight">\(V\)</span>).</p>
+</dd>
+</dl>
+</li>
+<li><p>Edges in an index graph are pairs of vertex identifiers.</p></li>
+<li><dl class="simple">
+<dt>An adjacency list does not store vertices. An adjacency list is a</dt><dd><p>structured organization of the relationship information contained
+in the edges.</p>
+</dd>
+</dl>
+</li>
+<li><p>An adjacency list does not store edges.</p></li>
+<li><dl class="simple">
+<dt>Vertex ids obtained from iterating neighbor lists can be used to</dt><dd><p>index back into the adjacency list.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>An adjacency is neither ordered nor unordered (but is over a graph</dt><dd><p>that may be ordered or unordered).</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>And, finally, a meta-point. Although graphs and graph algorithms are the
+central focus of a graph library, graphs in some sense are ephemeral.
+The thing that will be computed on by a graph algorithm is an organized
+collection of vertex identifiers that were generated to refer back to
+some real data. Graph texts will often use a phrase like “edges and
+vertices have properties” but a more correct statement would be
+“properties have edges and vertices.”</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

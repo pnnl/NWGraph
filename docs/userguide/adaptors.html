@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graph Range Adaptors &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model Data Structures" href="data-structures.html" />
+    <link rel="prev" title="NWGraph Algorithms" href="algorithms.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Graph Range Adaptors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/userguide/adaptors.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="graph-range-adaptors">
+<span id="sec-graph-range-adaptors"></span><h1>Graph Range Adaptors<a class="headerlink" href="#graph-range-adaptors" title="Permalink to this headline"></a></h1>
+<p>A key feature of the new C++ Ranges is the notion of <em>views</em>, which
+allow for different ways to access data in a range without changing the
+underlying range. Between a range and a range view sits a range adaptor,
+which takes the original range and presents it to the user as a view
+while hiding the underlying data manipulation details. We leverage range
+adaptors to simplify graph algorithms in NWGraph, by providing reusable
+data access patterns which eliminate the need for visitor objects.</p>
+<p>For example, consider again BFS traversal, a core graph algorithm
+kernel. Except perhaps for benchmarking, a standalone BFS traversal is
+rarely useful. Rather, other algorithms use a BFS traversal pattern to
+perform more useful computations, such as finding the distance to every
+vertex from the source, finding the parent list, etc. One approach to
+making BFS traversal to other types of computations would be to further
+parameterize <code class="docutils literal notranslate"><span class="pre">bfs</span></code> with additional functions. However, what to apply
+and where to apply it is not well defined – we don’t necessarily have
+well-defined concrete algorithms to lift.</p>
+<p>The Boost Graph Library provided extensibility to BFS through its
+<em>Visitor</em> mechanism, which was essentially a large structure with
+callbacks used at multiple select points in the BFS
+execution <span id="id1">[<a class="reference internal" href="references.html#id25" title="Jeremy G. Siek, Lie-Quan Lee, and Andrew Lumsdaine. The Boost Graph Library: User Guide and Reference Manual. Addison-Wesley, 2002.">SLL02</a>]</span>. The BFS Visitor
+has nine different possible callbacks, making actual extension of its
+BFS a complicated proposition.</p>
+<p>NWGraph takes a different approach. Rather than attempting to further
+lift a given algorithm for arbitrary (and not well-defined) concrete use
+cases, NWGraph provides range adaptors that allow the graph to be
+iterated over (either vertex by vertex or edge by edge) in a specified
+order. For example, NWGraph provides <code class="docutils literal notranslate"><span class="pre">bfs_range</span></code> for traversing the
+vertices of a graph in breadth-first order, and <code class="docutils literal notranslate"><span class="pre">bfs_edge_range</span></code> for
+travering the edges.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">bfs_range</span><span class="p">(</span><span class="n">G</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="cm">/* visit vertex u */</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">bfs_edge_range</span><span class="p">(</span><span class="n">G</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="cm">/* Visit edge u,v */</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>As views are concise and efficient ways of representing the same data in
+multiple ways, graph algorithms can be considered as operating on a
+range of elements of a graph with different requirements on how data is
+being viewed by the algorithm. In NWGraph, we provide three categories
+of view of the graph shown in :</p>
+<ul class="simple">
+<li><p><em>Original view of the graph:</em> These include edge range, neighbor
+range, plain range, random range and back-edge range.</p></li>
+<li><p><em>Modified view of the graph based on traversal criteria:</em> For
+example, BFS and DFS traversal-based algorithms consider vertices in
+a certain order. These alternative views include BFS edge range,
+filtered BFS range, DFS edge range, Directed Acyclic Graph (DAG)
+range and Reverse Path. More sophisticated range adaptor such as DAG
+range, for example, iterates over the vertices in a particular order,
+based on the predecessor-successor relationships, imposed by a
+heuristic (degree-based, largest-degree first, smallest-degree last
+etc.), and is needed for graph coloring algorithms.</p></li>
+<li><p><em>Subview of the graph for workload distribution in parallel
+execution:</em> These include splittable edge range and cyclic range.</p></li>
+</ul>
+<figure class="align-default" id="fig-range-adaptors">
+<img alt="Range adaptors in NWGraph." src="userguide/graphics/graph_adoptors_updated-crop.pdf" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Range adaptors in NWGraph.</span><a class="headerlink" href="#fig-range-adaptors" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="algorithms.html" class="btn btn-neutral float-left" title="NWGraph Algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data-structures.html" class="btn btn-neutral float-right" title="Model Data Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NWGraph Algorithms &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script>window.MathJax = {"TeX": {"Macros": {"RR": "{\\mathbb R}", "Real": "{\\mathbb R}", "Complex": "{\\mathbb C}", "mat": ["{\\mathbf{#1}}", 1], "vec": ["{\\mathbf{#1}}", 1], "bold": ["{\\bf #1}", 1], "Spc": ["\\mathbb{#1}", 1], "norm": ["|| #1 ||", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Graph Range Adaptors" href="adaptors.html" />
+    <link rel="prev" title="Generic Graph Algorithms" href="graph-concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NWGraph Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#parallelization">Parallelization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parallelization-with-std-execution-policies">Parallelization with std Execution Policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shortcomings-of-std-execution-policy-based-parallelization">Shortcomings of std Execution Policy-based Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallelization-with-intels-threading-building-blocks">Parallelization with Intel’s Threading Building Blocks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>NWGraph Algorithms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/userguide/algorithms.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nwgraph-algorithms">
+<span id="sec-algorithms"></span><h1>NWGraph Algorithms<a class="headerlink" href="#nwgraph-algorithms" title="Permalink to this headline"></a></h1>
+<p>Algorithms in NWGraph constitute the core of our library. NWGraph
+includes a broad classes of algorithms (sequential and parallel) for
+different graph problems, including graph traversal (BFS, SSSP),
+analytics (PageRank, Jaccard similarity, connected components), motif
+counting (triangle counting, betweenness centrality), network flow
+(maximum flow) etc. The problem definitions and graph algorithms for
+each of these graph problems implemented in NWGraph are tabulated below.</p>
+<table class="tight-table colwidths-given docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Algorithm</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Breadth-first search</p></td>
+<td><p>Traverses a graph in breadth-fist
+search order from a given source.
+Implementation includes: top-down,
+bottom-up and
+direction-optimized
+<span id="id1">[<a class="reference internal" href="references.html#id13" title="Scott Beamer, Krste Asanović, and David A. Patterson. Direction-optimizing breadth-first search. Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC), 2012.">BAsanovicP12</a>]</span>
+algorithms.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Depth-first search</p></td>
+<td><p>Traverses a graph in depth-first
+search order from a given source.</p></td>
+</tr>
+<tr class="row-even"><td><p>Single-source shortest paths</p></td>
+<td><p>Finds the shortest distance paths
+from a given source to all other
+vertices in a graph.
+<span class="math notranslate nohighlight">\(\Delta\)</span>-stepping
+algorithm:cite:<cite>MEYER2003114</cite> is
+implemented.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Connected component</p></td>
+<td><p>Finds connected components in a
+graph. Implementations include
+Afforest:cite:<cite>sutton2018optimizing</cite>,
+Shiloach-Vishkin
+<span id="id2">[<a class="reference internal" href="references.html#id17" title="Yossi Shiloach and Uzi Vishkin. An O(log n) parallel connectivity algorithm. Technical Report, Computer Science Department, Technion, 1980.">SV80</a>]</span>,
+BFS-based <span id="id3">[<a class="reference internal" href="references.html#id18" title="J. Shun, L. Dhulipala, and G. Blelloch. A simple and practical linear-work parallel algorithm for connectivity. In Proceedings of the 26th ACM Symposium on Parallelism in Algorithms and Architectures, SPAA '14, 143–153. ACM, 2014. URL: http://doi.acm.org/10.1145/2612669.2612692, doi:10.1145/2612669.2612692.">SDB14</a>]</span>
+and
+minimal label
+propagation
+<span id="id4">[<a class="reference internal" href="references.html#id19" title="S. M. Orzan. On Distributed Verification and Verified Distribution. Ph.D. thesis, VRIJE UNIVERSITEIT, November 2004. URL: http://dare.ubvu.vu.nl/handle/1871/10338.">Orz04</a>]</span>
+<span id="id5">[<a class="reference internal" href="references.html#id20" title="Da Yan, James Cheng, Kai Xing, Yi Lu, Wilfred Ng, and Yingyi Bu. Pregel algorithms for graph connectivity problems with performance guarantees. Proc. VLDB Endow., 7(14):1821–1832, 2014. URL: http://dx.doi.org/10.14778/2733085.2733089, doi:10.14778/2733085.2733089.">YCX+14</a>]</span>
+algorithms.</p></td>
+</tr>
+<tr class="row-even"><td><p>PageRank</p></td>
+<td><p>Compute the importance of each
+vertex in a graph. Implements the
+Gauss-Seidel
+algorithm
+<span id="id6">[<a class="reference internal" href="references.html#id21" title="Arvind Arasu, Jasmine Novak, Andrew Tomkins, and John Tomlin. PageRank computation and the structure of the web: Experiments and algorithms. In WWW, 107–117. 2002.">ANTT02</a>]</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Triangle counting</p></td>
+<td><p>Counts the number of triangles in a
+graph. Implements algorithms
+discussed in
+<span id="id7">[<a class="reference internal" href="references.html#id22" title="Andrew Lumsdaine, Luke Dalessandro, Kevin Deweese, Jesun Firoz, and Scott McMillan. Triangle counting with cyclic distributions. In 2020 IEEE High Performance Extreme Computing Conference (HPEC), volume, 1-8. 2020. doi:10.1109/HPEC43674.2020.9286220.">LumsdaineDalessandroDeweese+20</a>]</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Betweenness centrality</p></td>
+<td><p>Measures how many times each vertex
+lies on the shortest paths to other
+vertices. Brandes
+Algorithm <span id="id8">[<a class="reference internal" href="references.html#id23" title="Ulrik Brandes. A faster algorithm for betweenness centrality. The Journal of Mathematical Sociology, 25(2):163-177, 2001. URL: https://doi.org/10.1080/0022250X.2001.9990249, doi:10.1080/0022250X.2001.9990249.">Bra01</a>]</span> has
+been implemented.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum flow</p></td>
+<td><p>Given a source and a sink, find
+paths with available capacity and
+push flow through them until there
+are no more paths available.
+Implements Edmonds-Karp algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p>K-core</p></td>
+<td><p>Finds the subgraph induced by
+removing all vertices with degree
+less than k.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jaccard similarity</p></td>
+<td><p>Computes the Jaccard similarity
+coefficient of each pair of vertices
+in a graph.</p></td>
+</tr>
+<tr class="row-even"><td><p>Graph coloring</p></td>
+<td><p>Assign a color to each vertex in the
+graph so that no two neighboring
+vertices have the same color.
+Implements Jones-Plassmann
+algorithm
+<span id="id9">[<a class="reference internal" href="references.html#id24" title="Mark T Jones and Paul E Plassmann. A parallel graph coloring heuristic. SIAM Journal on Scientific Computing, 14(3):654–669, 1993.">JP93</a>]</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximal independent set</p></td>
+<td><p>Graph coloring with two colors.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="parallelization">
+<h2>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this headline"></a></h2>
+<p>NWGraph leverages existing parallelization support in the C++ standard
+library for implementing different parallel graph algorithms. However,
+to circumvent some of the limitations of the C++ standard library for
+parallelization, we alternatively consider Intel’s Threading Building
+Blocks (TBB) for performance.</p>
+<section id="parallelization-with-std-execution-policies">
+<h3>Parallelization with std Execution Policies<a class="headerlink" href="#parallelization-with-std-execution-policies" title="Permalink to this headline"></a></h3>
+<p>In NWGraph, parallel algorithms for different graph kernels described
+in  are implemented with <code class="docutils literal notranslate"><span class="pre">std::execution::par</span></code> (parallel policy) and
+<code class="docutils literal notranslate"><span class="pre">std::execution::par_unseq</span></code> (parallel unsequenced policy) provided to
+the <code class="docutils literal notranslate"><span class="pre">std::for_each</span></code> construct. Updating shared variables in an
+algorithm relies on the <code class="docutils literal notranslate"><span class="pre">std::atomic</span></code> operations library. For example,
+a parallel triangle counting algorithm using parallel <code class="docutils literal notranslate"><span class="pre">std::execution</span></code>
+policy is shown in .</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">adjacency_list_graph</span><span class="w"> </span><span class="n">Graph</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">OuterExecutionPolicy</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">execution</span><span class="o">::</span><span class="n">parallel_unsequenced_policy</span><span class="p">,</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">        </span><span class="k">class</span><span class="w"> </span><span class="nc">InnerExecutionPolicy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">execution</span><span class="o">::</span><span class="n">sequenced_policy</span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">triangle_count</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">OuterExecutionPolicy</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">outer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">        </span><span class="n">InnerExecutionPolicy</span><span class="w"> </span><span class="n">inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">total_triangles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">outer</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">triangles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">      </span><span class="n">triangles</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">intersection_size</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">)],</span><span class="w"> </span><span class="n">inner</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">    </span><span class="n">total_triangles</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">triangles</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">  </span><span class="p">});</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">total_triangles</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">15</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Alternatively, to explicitly manage concurrency and implement
+asynchronous task-based parallel triangle counting algorithm,
+<code class="docutils literal notranslate"><span class="pre">std::future</span></code> and <code class="docutils literal notranslate"><span class="pre">std::async</span></code> can be used together as shown in .</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">Op</span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">triangle_count_async</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">threads</span><span class="p">,</span><span class="w"> </span><span class="n">Op</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">op</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">future</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">futures</span><span class="p">(</span><span class="n">threads</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">tid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">tid</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">threads</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">tid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="n">futures</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">async</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">launch</span><span class="o">::</span><span class="n">async</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">tid</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="c1">// Reduce the outcome ...</span>
+<span class="linenos"> 8</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">RandomAccessIterator</span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos">10</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">triangle_count_v2</span><span class="p">(</span><span class="n">RandomAccessIterator</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">11</span><span class="w"> </span><span class="n">RandomAccessIterator</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">triangle_count_async</span><span class="p">(</span><span class="n">threads</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">tid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">triangles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tid</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">last</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">threads</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">).</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">).</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">end</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">      </span><span class="c1">//  ...</span>
+<span class="linenos">17</span><span class="p">}}</span><span class="w"> </span><span class="p">});}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="shortcomings-of-std-execution-policy-based-parallelization">
+<h3>Shortcomings of std Execution Policy-based Parallelization<a class="headerlink" href="#shortcomings-of-std-execution-policy-based-parallelization" title="Permalink to this headline"></a></h3>
+<p>The current <code class="docutils literal notranslate"><span class="pre">std::execution</span></code> policy and <code class="docutils literal notranslate"><span class="pre">std::threads</span></code> libraries
+however lack adequate support for implementing efficient parallel graph
+algorithms. Some of the most important limitations include:</p>
+<ul class="simple">
+<li><p>No programmer control over workload distribution and partitioning
+among threads.</p></li>
+<li><p>Lack of support for thread-safe data structures. Making the
+containers available in the standard library thread-safe with
+coarse-grained <code class="docutils literal notranslate"><span class="pre">lock</span></code> and <code class="docutils literal notranslate"><span class="pre">mutex</span></code> may severely limit the
+performance of parallel graph algorithms.</p></li>
+<li><p>Harder to manage concurrency granularity.</p></li>
+</ul>
+</section>
+<section id="parallelization-with-intels-threading-building-blocks">
+<h3>Parallelization with Intel’s Threading Building Blocks<a class="headerlink" href="#parallelization-with-intels-threading-building-blocks" title="Permalink to this headline"></a></h3>
+<p>To circumvent these shortcomings, NWGraph leverages Intel’s Threading
+Building Blocks (TBB) library. TBB provides a set of efficient
+concurrent containers (hashmap, vector, and queue) that are implemented
+based on fine-grained locking and lock-free techniques. For example, in
+NWGraph, TBB’s concurrent vector is used to maintain the frontier list
+of active vertices in each step of the <span class="math notranslate nohighlight">\(\Delta\)</span>-stepping
+algorithm <span id="id10">[<a class="reference internal" href="references.html#id14" title="Ulrich Meyer and Peter Sanders. Δ-stepping: a parallelizable shortest path algorithm. Journal of Algorithms, 49(1):114 - 152, 2003. 1998 European Symposium on Algorithms. URL: http://www.sciencedirect.com/science/article/pii/ S0196677403000762, doi:https://doi.org/10.1016/S0196-6774(03)00076-2.">MS03</a>]</span> for computing the
+single-source shortest paths.</p>
+<p>One of the determinants of performant parallel graph algorithms is the
+balanced workload distribution among threads. In particular, input
+graphs with skewed degree distribution (aka power-law graphs) can
+introduce severe workload imbalance in an algorithm. Without being able
+to provide hint to the underlying parallel runtime, workload-agnostic
+<code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> construct may distribute work associated with most of
+the high-degree vertices to a select few threads. Workload imbalance may
+introduce the straggler effect that can adversely affect the performance
+of a parallel graph algorithm. As we will demonstrate in , for some
+parallel algorithms, relabeling-by-degree (i.e. sorting vertices by
+their degrees and relabeling the vertices with IDs based on their
+degrees) and cyclic workload distribution techniques may significantly
+improve the performance of graph algorithms with skewed graph inputs.
+For providing better control for workload distribution among threads,
+TBB’s <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> construct accepts ranges (<code class="docutils literal notranslate"><span class="pre">blocked_range</span></code>,
+customized cyclic range, etc.). An example of using <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> in
+the <span class="math notranslate nohighlight">\(\Delta\)</span>-stepping algorithm is shown in . TBB also supports
+user-defined custom range such as cyclic range in the <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code>
+loop construct, so that better load balancing among the threads can be
+achieved. It is also possible to specify the granularity of work (chunk
+or block size) for each thread.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">distance_t</span><span class="p">,</span><span class="w"> </span><span class="n">adjacency_list_graph</span><span class="w"> </span><span class="n">Graph</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Id</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">auto</span><span class="w"> </span><span class="n">delta_stepping</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="n">tbb</span><span class="o">::</span><span class="n">queuing_mutex</span><span class="w">                                 </span><span class="n">lock</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="n">tbb</span><span class="o">::</span><span class="n">concurrent_vector</span><span class="o">&lt;</span><span class="n">tbb</span><span class="o">::</span><span class="n">concurrent_vector</span><span class="o">&lt;</span><span class="n">Id</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">bins</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="n">tbb</span><span class="o">::</span><span class="n">concurrent_vector</span><span class="o">&lt;</span><span class="n">Id</span><span class="o">&gt;</span><span class="w"> </span><span class="n">frontier</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="c1">// ...</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">top_bin</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">bins</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="n">frontier</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">frontier</span><span class="p">,</span><span class="w"> </span><span class="n">bins</span><span class="p">[</span><span class="n">top_bin</span><span class="p">]);</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="n">tbb</span><span class="o">::</span><span class="n">parallel_for_each</span><span class="p">(</span><span class="n">frontier</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tdist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">top_bin</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">        </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">parallel_for</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">wt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">            </span><span class="n">relax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">wt</span><span class="p">);</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<span class="linenos">15</span><span class="w"> </span><span class="c1">// ...</span>
+<span class="linenos">16</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">  </span><span class="c1">// ...</span>
+<span class="linenos">2</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">top_bin</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">bins</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">3</span><span class="w">    </span><span class="c1">// ...</span>
+<span class="linenos">4</span><span class="w">   </span><span class="n">tbb</span><span class="o">::</span><span class="n">parallel_for</span><span class="p">(</span><span class="n">tbb</span><span class="o">::</span><span class="n">blocked_range</span><span class="p">(</span><span class="mi">0ul</span><span class="p">,</span><span class="w"> </span><span class="n">frontier</span><span class="p">.</span><span class="n">size</span><span class="p">()),</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">){</span><span class="w"></span>
+<span class="linenos">5</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">6</span><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frontier</span><span class="p">[</span><span class="n">id</span><span class="p">];</span><span class="w"></span>
+<span class="linenos">7</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tdist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">top_bin</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">8</span><span class="w">        </span><span class="c1">// ...</span>
+<span class="linenos">9</span><span class="p">}}}});</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="graph-concepts.html" class="btn btn-neutral float-left" title="Generic Graph Algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="adaptors.html" class="btn btn-neutral float-right" title="Graph Range Adaptors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

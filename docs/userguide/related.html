@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Related Libraries and Toolkits &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References Cited" href="references.html" />
+    <link rel="prev" title="Performance Evaluation" href="performance.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Related Libraries and Toolkits</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/userguide/related.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="related-libraries-and-toolkits">
+<span id="sec-related"></span><h1>Related Libraries and Toolkits<a class="headerlink" href="#related-libraries-and-toolkits" title="Permalink to this headline"></a></h1>
+<p>This section explores the landscape of related graph libraries and
+frameworks. Each of the libraries or tools discussed in this section
+make different design tradeoffs regarding usability, extensibility, and
+performance. Though few of the tools in this section (with the exception
+of BGL) aimed to fill the role of an STL graph library, they all
+contribute to a greater understanding of graph library design.</p>
+<p><strong>Generic C++ Graph Libraries.</strong> The Boost Graph Library
+(BGL) <span id="id1">[<a class="reference internal" href="references.html#id25" title="Jeremy G. Siek, Lie-Quan Lee, and Andrew Lumsdaine. The Boost Graph Library: User Guide and Reference Manual. Addison-Wesley, 2002.">SLL02</a>]</span> and LEMON graph
+library <span id="id2">[<a class="reference internal" href="references.html#id35" title="Balázs Dezső, Alpár Jüttner, and Péter Kovács. Lemon–an open source c++ graph template library. Electronic Notes in Theoretical Computer Science, 264(5):23–45, 2011.">DezsHoJuttnerKovacs11</a>]</span> both contributed to the
+development of generic graph algorithms in C++. BGL proposed algorithm
+templates that could be used on a variety of graph types (which could be
+generated using BGL’s graph type generator), e.g., vector of vectors,
+vector of lists, etc. Vertices and edges were allowed to be arbitrary
+types accessed via property maps which could be stored internally or
+externally to the graph. The default graph algorithms could be
+customized using visitor objects, which allowed users to use existing
+data access patterns to do additional work, for instance recording the
+timestamp a vertex is touched in a BFS search. The LEMON graph library
+shared many of these features. Both libraries advertise algorithms that
+work with user defined graphs, so long as they conform to a certain
+interface.</p>
+<p>Some of these features had shortcomings that limited their use. The
+visitor objects are difficult to use, both from a programming and
+algorithmic design perspective. Property maps are a powerful programming
+abstraction, but in addition to being difficult to use, could lead to
+performance issues. The type of LEMON’s graph adaptors are different
+from the original graph type being adapted, and their use as graphs is
+only supported in limited ways. As mentioned in the previous section, a
+major shortcoming of these designs is the difficulty of using custom
+data structures. In order to adapt an existing user-defined data
+structure, the BGL interface requires overloading several global free
+functions. These mostly include accessors, mutators, and iterators for
+edges and vertices. An assumption is placed on the graph container type
+being adapted that it will have much of the same behavior as the built
+in BGL container types. Furthermore both libraries lack newer features
+in C++ such as constexpr, variadic templates, automatic type deduction,
+execution policies, etc.</p>
+<p><strong>HPC Graph Frameworks</strong> There are several graph frameworks designed to
+maximize performance in distributed memory or shared memory, such graph
+frameworks include Parallel Boost Graph Library
+(PBGL) <span id="id3">[<a class="reference internal" href="references.html#id41" title="Douglas Gregor and Andrew Lumsdaine. Lifting sequential graph algorithms for distributed-memory parallel computation. In Proceedings of the 20th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications, OOPSLA '05, 423–437. New York, NY, USA, 2005. Association for Computing Machinery. URL: https://doi.org/10.1145/1094811.1094844, doi:10.1145/1094811.1094844.">GL05</a>]</span>,
+Galois <span id="id4">[<a class="reference internal" href="references.html#id32" title="Milind Kulkarni, Keshav Pingali, Bruce Walter, Ganesh Ramanarayanan, Kavita Bala, and L. Paul Chew. Optimistic parallelism requires abstractions. In PLDI, 211–222. ACM, 2007. URL: https://doi.org/10.1145/1250734.1250759, doi:10.1145/1250734.1250759.">KPW+07</a>]</span>,
+Ligra <span id="id5">[<a class="reference internal" href="references.html#id42" title="Julian Shun and Guy E. Blelloch. Ligra: a lightweight graph processing framework for shared memory. In Proceedings of the 18th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming, PPoPP ’13, 135–146. New York, NY, USA, 2013. Association for Computing Machinery. URL: https://doi.org/10.1145/2442516.2442530, doi:10.1145/2442516.2442530.">SB13</a>]</span>,
+Giraph <span id="id6">[<a class="reference internal" href="references.html#id43" title="Roman Shaposhnik, Claudio Martella, and Dionysios Logothetis. Practical Graph Analytics with Apache Giraph. Apress, New York, 1st ed. edition edition, October 2015. ISBN 978-1-4842-1252-3.">SML15</a>]</span>,
+Gunrock <span id="id7">[<a class="reference internal" href="references.html#id44" title="Yangzihao Wang, Andrew Davidson, Yuechao Pan, Yuduo Wu, Andy Riffel, and John D. Owens. Gunrock: A high-performance graph processing library on the GPU. In PPoPP. 2016.">WDP+16</a>]</span>,
+GraphIt <span id="id8">[<a class="reference internal" href="references.html#id45" title="Yunming Zhang, Ajay Brahmakshatriya, Xinyi Chen, Laxman Dhulipala, Shoaib Kamil, Saman Amarasinghe, and Julian Shun. Optimizing ordered graph algorithms with GraphIt. In CGO, 158–170. ACM, 2020. URL: https://doi.org/10.1145/3368826.3377909, doi:10.1145/3368826.3377909.">ZBC+20</a>]</span>, etc. The contributions of these
+frameworks are typically a computational model for parallel processing
+of graphs, with less emphasis on the usability or extensibility of graph
+algorithms or containers. A thorough evaluation of several well-known
+parallel graph frameworks can be found
+in <span id="id9">[<a class="reference internal" href="references.html#id46" title="Ariful Azad, Mohsen Mahmoudi Aznaveh, Scott Beamer, Mark Blanco, Jinhao Chen, Luke D'Alessandro, Roshan Dathathri, Tim Davis, Kevin Deweese, Jesun Firoz, and others. Evaluation of graph analytics frameworks using the gap benchmark suite. In 2020 IEEE International Symposium on Workload Characterization (IISWC), 216–227. IEEE, 2020.">AAB+20</a>]</span>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="performance.html" class="btn btn-neutral float-left" title="Performance Evaluation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="references.html" class="btn btn-neutral float-right" title="References Cited" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quickstart &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NWGraph: The Northwest Graph Library" href="introduction.html" />
+    <link rel="prev" title="Welcome to the Documentation for NW Graph!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-organization">Project Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-compile">How to Compile</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useful-things-to-know">Useful things to know</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-code-in-nwgraph">Running code in NWGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-graph-file-format">Supported graph file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-benchmarks">Running benchmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#breadth-first-search">Breadth-first Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connected-component-decomposition">Connected Component Decomposition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#page-rank">Page Rank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-source-shortest-path">Single Source Shortest Path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#triangle-counting">Triangle Counting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#betweenness-centrality">Betweenness Centrality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-useful-things">Other useful things</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#relabel-by-degree">Relabel-by-degree</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#upper-triangular-order">Upper Triangular Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verifier">Verifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-threading">Multi-threading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarking-with-gap-datasets">Benchmarking with GAP Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarking-abstraction-penalties">Benchmarking abstraction penalties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-abstraction-penalty">What is abstraction penalty?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-abstraction-penalty-experiments">Running abstraction penalty experiments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Quickstart</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/userguide/getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><img alt="Build with gcc-11" src="https://github.com/NWmath/NWgr/workflows/Build%20with%20gcc-11/badge.svg" /> <img alt="image1" src="https://github.com/NWmath/NWgr/workflows/Build%20with%20gcc-11/badge.svg?branch=sc_release" /> <img alt="image2" src="https://github.com/NWmath/NWgr/workflows/Build%20with%20gcc-11%20(Mac)/badge.svg?branch=sc_release" /> <a class="reference external" href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NWmath/NWgr&amp;utm_campaign=Badge_Grade"><img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/0788903a1d134b47b351e6a346123875" /></a></p>
+<section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline"></a></h1>
+<p>NWGraph is a high-performance header-only generic C++ graph library,
+based on C++20 <code class="docutils literal notranslate"><span class="pre">concept</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code> language feature. It consists
+of multiple graph algorithms for well-known graph kernels and supporting
+data structures. Both sequential and parallel algorithms are available.</p>
+<section id="project-organization">
+<h2>Project Organization<a class="headerlink" href="#project-organization" title="Permalink to this headline"></a></h2>
+<p>The organization of our library is shown as follow:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$NWGraph_HOME/
+├── README.md
+├── CMakeLists.txt
+├── apb/
+├── bench/
+├── examples/
+│   └── imdb/
+├── include/
+│   └── nwgraph/
+│       ├── adaptors/
+│       ├── algorithms/
+│       ├── containers/
+│       ├── experimental/
+│       │   └── algorithms/
+│       ├── graphs/
+│       ├── io/
+│       ├── util/
+│       ├── graph_concepts.hpp
+│       └── ...
+├── test/
+└── ...
+</pre></div>
+</div>
+<p>The genericity of different algorithms available in the NWGraph library
+stems from a taxonomy of graph concepts. The definition of these
+concepts can be found in the <code class="docutils literal notranslate"><span class="pre">include/nwgraph/graph_concepts.hpp</span></code>
+file. The header files containing various sequential and parallel graph
+algorithms for well-known graph kernels can be found under the
+<code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/include/nwgraph/algorithms/</span></code> directory (some of the
+experimental algorithms are located in
+the<code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/include/nwgraph/experimental/algorithms/</span></code>
+subdirectory). The header files for the range adaptors are under
+<code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/include/nwgraph/adaptors/</span></code> directory. The code for the
+applications is located in the <code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/bench/</span></code> diretory. The
+abstraction penalty benchmark for benchmarking different containers and
+a variety of different ways to iterate through a graph (including the
+use of graphadaptors) are under the <code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/apb/</span></code> directory.
+Various examples of how to use NWGraph can be found in the
+<code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/example/imdb/</span></code> directory.</p>
+</section>
+<section id="how-to-compile">
+<h2>How to Compile<a class="headerlink" href="#how-to-compile" title="Permalink to this headline"></a></h2>
+<p>NWGraph uses <a class="reference external" href="https://github.com/oneapi-src/oneTBB">Intel OneTBB</a> as
+the parallel backend.</p>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>CMake &gt;= 3.20</p></li>
+<li><p>g++ &gt;= 11 with support for OneTBB as parallel backend</p></li>
+<li><p>oneTBB &gt;= 2021</p></li>
+</ul>
+<p>You should be able to install cmake and g++ with your system’s package
+manager (e.g., apt or homebrew). oneTBB appears to be available on
+homebrew for MacOS 11.6 and later (and perhaps earlier).</p>
+<p>Instructions for installing oneTBB with various Linux package managers
+can be found here:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="nl">https</span><span class="p">:</span><span class="c1">//www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html</span>
+</pre></div>
+</div>
+<p>Installation packages for oneAPI for Linux are available on intel.com:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="nl">https</span><span class="p">:</span><span class="c1">//www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#onetbb</span>
+</pre></div>
+</div>
+</section>
+<section id="compilation">
+<h3>Compilation<a class="headerlink" href="#compilation" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir build<span class="p">;</span> <span class="nb">cd</span> build
+$ cmake ..
+$ make -j4
+</pre></div>
+</div>
+<p>Once compiled, the drivers of the graph benchmarks can be found under
+the <code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/build/bench/</span></code> folder. The binary files of the
+abstraction penalty benchmarks are under the
+<code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/build/abp/</span></code> folder. The binaries of the IMDB examples
+are under the <code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/build/examples/</span></code> folder. The binary files
+of the examples to show case the features of NWGraph library are under
+the <code class="docutils literal notranslate"><span class="pre">$NWGraph_HOME/build/test/</span></code> folder.</p>
+</section>
+<section id="useful-things-to-know">
+<h3>Useful things to know<a class="headerlink" href="#useful-things-to-know" title="Permalink to this headline"></a></h3>
+<p>To specify compiler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake .. -DCMAKE_CXX_COMPILER<span class="o">=</span>g++-11
+</pre></div>
+</div>
+<p>To specify build type as Release or Debug, default is Release:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake .. -DCMAKE_BUILD_TYPE<span class="o">=</span>Release <span class="o">(</span>or Debug<span class="o">)</span>
+</pre></div>
+</div>
+<p>To enable test cases and examples under build/test directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake .. -DNW_GRAPH_BUILD_TESTS<span class="o">=</span>ON <span class="o">(</span>or OFF<span class="o">)</span>
+</pre></div>
+</div>
+<p>To generate applications under build/bench/ directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake .. -DNW_GRAPH_BUILD_BENCH<span class="o">=</span>ON <span class="o">(</span>or OFF<span class="o">)</span>
+</pre></div>
+</div>
+<p>To generate abstraction penalty under build/abp/ directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake .. -DNW_GRAPH_BUILD_APBS<span class="o">=</span>OFF <span class="o">(</span>or ON<span class="o">)</span>
+</pre></div>
+</div>
+<p>To generate tools under build/example/ directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake .. -DNW_GRAPH_BUILD_EXAMPLES<span class="o">=</span>OFF <span class="o">(</span>or ON<span class="o">)</span>
+</pre></div>
+</div>
+<p>If cmake is not able to find TBB in its expected places, you may get an
+error during the cmake step. In this case, you need to set the
+<code class="docutils literal notranslate"><span class="pre">TBBROOT</span></code> environment variable to the location where oneTBB was
+installed. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">TBBROOT</span><span class="o">=</span>/opt/intel/oneapi/tbb/2021.5.1 cmake ..
+</pre></div>
+</div>
+<p>To see verbose information during compilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make <span class="nv">VERBOSE</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="running-code-in-nwgraph">
+<h2>Running code in NWGraph<a class="headerlink" href="#running-code-in-nwgraph" title="Permalink to this headline"></a></h2>
+<p>NWGraph uses command-line interface description language
+<a class="reference external" href="http://docopt.org/">DOCOPT</a> to define the interface of our
+command-line applications and abstraction penalty experiments.</p>
+<p>A typical interface of a benchmark driver looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bfs.exe: breadth first search benchmark driver.
+  Usage:
+      bfs.exe <span class="o">(</span>-h <span class="p">|</span> --help<span class="o">)</span>
+      bfs.exe -f FILE <span class="o">[</span>-r NODE <span class="p">|</span> -s FILE<span class="o">]</span> <span class="o">[</span>-i NUM<span class="o">]</span> <span class="o">[</span>-a NUM<span class="o">]</span> <span class="o">[</span>-b NUM<span class="o">]</span> <span class="o">[</span>-B NUM<span class="o">]</span> <span class="o">[</span>-n NUM<span class="o">]</span> <span class="o">[</span>--seed NUM<span class="o">]</span> <span class="o">[</span>--version ID...<span class="o">]</span> <span class="o">[</span>--log FILE<span class="o">]</span> <span class="o">[</span>--log-header<span class="o">]</span> <span class="o">[</span>-dvV<span class="o">]</span> <span class="o">[</span>THREADS<span class="o">]</span>...
+
+  Options:
+      -h, --help              show this screen
+      -f FILE                 input file path
+      -i NUM                  number of iteration <span class="o">[</span>default: <span class="m">1</span><span class="o">]</span>
+      -a NUM                  alpha parameter <span class="o">[</span>default: <span class="m">15</span><span class="o">]</span>
+      -b NUM                  beta parameter <span class="o">[</span>default: <span class="m">18</span><span class="o">]</span>
+      -B NUM                  number of bins <span class="o">[</span>default: <span class="m">32</span><span class="o">]</span>
+      -n NUM                  number of trials <span class="o">[</span>default: <span class="m">1</span><span class="o">]</span>
+      -r NODE                 start from node r <span class="o">(</span>default is random<span class="o">)</span>
+      -s, --sources FILE      sources file
+      --seed NUM              random seed <span class="o">[</span>default: <span class="m">27491095</span><span class="o">]</span>
+      --version ID            algorithm version to run <span class="o">[</span>default: <span class="m">0</span><span class="o">]</span>
+      --log FILE              log <span class="nb">times</span> to a file
+      --log-header            add a header to the log file
+      -d, --debug             run <span class="k">in</span> debug mode
+      -v, --verify            verify results
+      -V, --verbose           run <span class="k">in</span> verbose mode
+</pre></div>
+</div>
+<p>The applications takes options followed by the arguments of the options
+as inputs. A minimal example takes a graph as input is as follow:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bfs</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="supported-graph-file-format">
+<h2>Supported graph file format<a class="headerlink" href="#supported-graph-file-format" title="Permalink to this headline"></a></h2>
+<p>NWGraph recogonizes the following types of file format: * <a class="reference external" href="https://math.nist.gov/MatrixMarket/formats.html">Matrix
+Market Exchange
+Formats</a></p>
+</section>
+<section id="running-benchmarks">
+<h2>Running benchmarks<a class="headerlink" href="#running-benchmarks" title="Permalink to this headline"></a></h2>
+<p>We have six main benchmarks: Breadth-first Search, Betweenness Centrality, Connected Component
+Decomposition, Page rank, Single Source Shortest Path, and Triangle
+Counting.</p>
+<section id="breadth-first-search">
+<h3>Breadth-first Search<a class="headerlink" href="#breadth-first-search" title="Permalink to this headline"></a></h3>
+<p>The default sequential version of BFS is version 0 (default). The
+fastest parallel version of BFS is version 11, the direction-optimizing
+BFS. As an alternative to specifying one seed at a time, one or more
+sources can be provided in a Matrix Market format file as an input of
+BFS driver. Also, number of trials can be specified with <code class="docutils literal notranslate"><span class="pre">-n</span></code>. In this
+way, if no seed or seed file is provided, each trial will generate one
+random number from 0 to |V|-1 as the random source for BFS as an input.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bench</span><span class="o">/</span><span class="n">bfs</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"> </span><span class="o">--</span><span class="n">seed</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">--</span><span class="n">version</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="connected-component-decomposition">
+<h3>Connected Component Decomposition<a class="headerlink" href="#connected-component-decomposition" title="Permalink to this headline"></a></h3>
+<p>The default sequential version of CC is version 0 (default). The fastest
+parallel version of CC is version 7, Afforest.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bench</span><span class="o">/</span><span class="n">cc</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"> </span><span class="o">--</span><span class="n">relabel</span><span class="w"> </span><span class="o">--</span><span class="n">direction</span><span class="w"> </span><span class="n">ascending</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="page-rank">
+<h3>Page Rank<a class="headerlink" href="#page-rank" title="Permalink to this headline"></a></h3>
+<p>The fastest parallel version of PR is version 11 (default). The max
+iterations can be set with <code class="docutils literal notranslate"><span class="pre">-i</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bench</span><span class="o">/</span><span class="n">pr</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="mi">1000</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="single-source-shortest-path">
+<h3>Single Source Shortest Path<a class="headerlink" href="#single-source-shortest-path" title="Permalink to this headline"></a></h3>
+<p>The default sequential version of CC SSSP version 0 (default). The
+fastest parallel version of SSSP is version 12, Delta-stepping. As an
+alternative to specifying one seed at a time, one or more sources can be
+provided in a Matrix Market format file as an input of SSSP driver.
+Also, number of trials can be specified with <code class="docutils literal notranslate"><span class="pre">-n</span></code>. In this way, if no
+seed or seed file is provided, each trial will generate one random
+number from 0 to |V|-1 as the random source for SSSP as an input.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bench</span><span class="o">/</span><span class="n">sssp</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"> </span><span class="o">--</span><span class="n">seed</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="triangle-counting">
+<h3>Triangle Counting<a class="headerlink" href="#triangle-counting" title="Permalink to this headline"></a></h3>
+<p>The default sequential version of TC is version 0 (default). The fastest
+parallel version of TC is version 4.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bench</span><span class="o">/</span><span class="n">tc</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"> </span><span class="o">--</span><span class="n">version</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">--</span><span class="n">relabel</span><span class="w"> </span><span class="o">--</span><span class="n">upper</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="betweenness-centrality">
+<h3>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline"></a></h3>
+<p>The default sequential version of BC is version 0 (default). The fastest
+parallel version of BC is version 5. As an alternative to specifying one
+seed at a time, one or more sources can be provided in a Matrix Market
+format file as an input of BC driver.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bench</span><span class="o">/</span><span class="n">bc</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"> </span><span class="o">--</span><span class="n">version</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">--</span><span class="n">seed</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="other-useful-things">
+<h3>Other useful things<a class="headerlink" href="#other-useful-things" title="Permalink to this headline"></a></h3>
+<p>Note that the following features may or may be available to every
+benchmark.</p>
+<section id="relabel-by-degree">
+<h4>Relabel-by-degree<a class="headerlink" href="#relabel-by-degree" title="Permalink to this headline"></a></h4>
+<p>Relabel vertex by degree (also known as column/row permutation in
+matrix-matrix multiplication) may speed up the performance of the graph
+algorithm. It can improve the workload distribution and memory access
+pattern of the algorithm itself. To enable relabel-by-degree and relabel
+the degree of vertices in ascending order:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">bench</span><span class="o">/</span><span class="n">cc</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">karate</span><span class="p">.</span><span class="n">mtx</span><span class="w"> </span><span class="o">--</span><span class="n">relabel</span><span class="w"> </span><span class="o">--</span><span class="n">direction</span><span class="w"> </span><span class="n">ascending</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="upper-triangular-order">
+<h3>Upper Triangular Order<a class="headerlink" href="#upper-triangular-order" title="Permalink to this headline"></a></h3>
+<p>In triangle counting, it allows to relabel the graph in upper/lower
+triangular order. This will greatly improve the performance of the
+algorithm. To enable relabel-by-degree and relabel the degree of
+vertices in upper triangular order:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bench/tc.exe -f karate.mtx --relabel --upper
+</pre></div>
+</div>
+</section>
+<section id="verifier">
+<h3>Verifier<a class="headerlink" href="#verifier" title="Permalink to this headline"></a></h3>
+<p>We implement a verifier in each benchmark to verify the correctness of
+the algorithms. To enable the verification of the algorithm:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bench/cc.exe -f karate.mtx -v
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bench/cc.exe -f karate.mtx --verify
+</pre></div>
+</div>
+</section>
+<section id="multi-threading">
+<h3>Multi-threading<a class="headerlink" href="#multi-threading" title="Permalink to this headline"></a></h3>
+<p>Each algorithm/benchmark has both sequential version and parallel
+version. When a parallel algorithm is selected, multi-threading is
+enable by default. The number of threads is set to be the maximum
+available core on the machine. To enable multi-threading with different
+thread number, such as 128 threads:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bench/cc.exe -f karate.mtx <span class="m">128</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="benchmarking-with-gap-datasets">
+<h2>Benchmarking with GAP Datasets<a class="headerlink" href="#benchmarking-with-gap-datasets" title="Permalink to this headline"></a></h2>
+<p>To obtain the performance results reported in the PVLDB paper for
+NWGraph, “NWGraph: A Library of Generic Graph Algorithms and
+DataStructures in C++20”, please follow the following steps.</p>
+<ul class="simple">
+<li><p>Download the GAP datasets from <a class="reference external" href="https://sparse.tamu.edu/GAP/">Suitesparse Matrix
+Collection</a> in Matrix Market format</p></li>
+<li><p>Run different graph benchmarks with the GAP datasets</p></li>
+</ul>
+<p>Note that BFS and SSSP are run with 64 sources provided in a Matrix
+Market file, and BC are run with 4 sources. For PR, the max iterations
+has been set to 1000.</p>
+</section>
+<section id="benchmarking-abstraction-penalties">
+<h2>Benchmarking abstraction penalties<a class="headerlink" href="#benchmarking-abstraction-penalties" title="Permalink to this headline"></a></h2>
+<section id="what-is-abstraction-penalty">
+<h3>What is abstraction penalty?<a class="headerlink" href="#what-is-abstraction-penalty" title="Permalink to this headline"></a></h3>
+<p>There are two types of abstraction penalties here. Using a range-based
+interface introduces a variety of different ways to iterate through a
+graph (including the use of graph adaptors). While ranges and range
+based for loops are useful programming abstractions, it is important to
+consider any performance abstraction penalties associated with their
+use. We benchmark these penalties to ensure they will not significantly
+limit performance compared to a raw for loop implementation.</p>
+<p>We also evaluated the abstraction penalty incurred for storing a graph
+in different containers. In particular, we have selected
+<code class="docutils literal notranslate"><span class="pre">struct_of_array</span></code>, <code class="docutils literal notranslate"><span class="pre">vector_of_vector</span></code>, <code class="docutils literal notranslate"><span class="pre">vector_of_list</span></code>,
+<code class="docutils literal notranslate"><span class="pre">vector_of_forward_list</span></code> containers.</p>
+</section>
+<section id="running-abstraction-penalty-experiments">
+<h3>Running abstraction penalty experiments<a class="headerlink" href="#running-abstraction-penalty-experiments" title="Permalink to this headline"></a></h3>
+<p>For example let us consider the sparse matrix-dense vector
+multiplication (SpMV) kernel used in page rank, which multiplies the
+adjacency matrix representation of a graph by a dense vector x and
+stores the result in another vector y. To experimentally evaluate the
+abstraction penalty of different ways to iterate through a graph:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ apb/spmv.exe -f karate.mtx
+</pre></div>
+</div>
+<p>To experimentally evaluate the abstraction penalty of different
+containers for storing a graph:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ apb/containers -f karate.mtx --format CSR --format VOV --format VOL --format VOF
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to the Documentation for NW Graph!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="NWGraph: The Northwest Graph Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

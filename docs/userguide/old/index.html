@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practical Graph Theory &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script>window.MathJax = {"TeX": {"Macros": {"RR": "{\\mathbb R}", "Real": "{\\mathbb R}", "Complex": "{\\mathbb C}", "mat": ["{\\mathbf{#1}}", 1], "vec": ["{\\mathbf{#1}}", 1], "bold": ["{\\bf #1}", 1], "Spc": ["\\mathbb{#1}", 1], "norm": ["|| #1 ||", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Practical Graph Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/userguide/old/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="practical-graph-theory">
+<h1>Practical Graph Theory<a class="headerlink" href="#practical-graph-theory" title="Permalink to this headline"></a></h1>
+<p>Graphs are powerful abstractions for reasoning about entities in relationship.  Yet
+graph algorithms require more than just graph models of problems domains – they
+require data structures over which they can operate (even more so for implementations
+of graph algorithms in software).</p>
+<p>By this we mean the following.  You will often see definitions like the following
+(which we in fact use below): A graph is a set <span class="math notranslate nohighlight">\(G = \{ V, E \},\)</span>
+where <span class="math notranslate nohighlight">\(V\)</span>
+is a finite set of vertices and <span class="math notranslate nohighlight">\(E\)</span> is a finite set of edges, etc.  This is
+fine, but one can’t build algorithms or software with finite sets of things.  One
+needs a more useful organization of these entities, such as an adjacency list.
+Unfortunately, these more useful structures are also referred to as <a href="#id1"><span class="problematic" id="id2">``</span></a>graphs’’.
+Moreover, the terminology used in theoretical presentations of algorithms, e.g., an
+adjacncy list, may not be at all what is actually used in a software implementation.</p>
+<p>In this section, we briefly go through the terminology used in graph theory, but from
+the point of view of ones knowing that we will ultimately be building a software
+library for graph computing.
+We start with the basic definition of a graph as a pair of finite
+sets and then build up the particular organization structures that are needed to
+describe graph algorithms and which we will reify in software to implement those
+algorithms.  We then provide a high-level overview of the realization of those
+structures in NW Graph.</p>
+<section id="some-mathematical-terminology">
+<h2>Some Mathematical Terminology<a class="headerlink" href="#some-mathematical-terminology" title="Permalink to this headline"></a></h2>
+<p>Abstractly, we define a graph <span class="math notranslate nohighlight">\(G\)</span> as comprising two finite sets,
+<span class="math notranslate nohighlight">\(G = \{ V, E \},\)</span>
+where the set <span class="math notranslate nohighlight">\(V\)</span> is a set of entities of interest (‘’vertices’’ or <a href="#id3"><span class="problematic" id="id4">``</span></a>nodes’’) and <span class="math notranslate nohighlight">\(E\)</span>
+is a set of pairs of entities from <span class="math notranslate nohighlight">\(V\)</span> (‘’edges’’ or ‘’links’’).  Without loss of
+generality we label the entities in <span class="math notranslate nohighlight">\(V\)</span> as <span class="math notranslate nohighlight">\(v_i\)</span> so that <span class="math notranslate nohighlight">\(V = \{ v_0, v_1, \ldots
+v_{n-1} \}\)</span>.  The set of edges (also labeled) can be constructed using the labeled
+entities from <span class="math notranslate nohighlight">\(V\)</span> so that <span class="math notranslate nohighlight">\(E = \{ e_0, e_1, \ldots e_{m-1} \}\)</span>.  The edges may be
+ordered pairs, denoted as <span class="math notranslate nohighlight">\((v_i, v_j)\)</span>, which have equality defined such that
+<span class="math notranslate nohighlight">\((v_i,v_j) = (v_m,v_n) \leftrightarrow v_i = v_m \wedge v_j = v_n\)</span>. Or, the edges may
+be unordered sets, denoted as <span class="math notranslate nohighlight">\(\{v_i, v_j\}\)</span> which have equality defined as <span class="math notranslate nohighlight">\((v_i,v_j)
+= (v_m,v_n) \leftrightarrow\left( v_i = v_m \wedge v_j = v_n\right) \vee \left( v_i =
+v_n \wedge v_j = v_m\right)\)</span> .  If a graph is defined with ordered edges we say the
+graph is directed; if the graph is defined with unordered edgese say the graph is
+undirected.</p>
+<p>Below are
+two examples of modeling a problem using a graph.</p>
+<p>In the first case, two-terminal circuit elements connect to each other at given nodes.  We thus model circuit connection points (also the terminology used in circuit modeling) as graph nodes, and the connections between them as edges.  In the case of circuits, orientation of circuit elements matters and so we may choose (at least at this stage of the modeling process) to use directed edges in the graph.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 33%" />
+<col style="width: 19%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Electrical circuit consisting of nodes and circuit elements.</p></td>
+<td><p>Graphical representation of the electrical circuit.</p></td>
+<td><p>Set-theoretical (mathematical) representation.</p></td>
+</tr>
+<tr class="row-odd"><td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/circuit.pdf"><img alt="alternate text" src="userguide/_static/images/circuit.pdf" style="width: 400px;" /></a>
+</figure>
+</td>
+<td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/circuit-graph.pdf"><img alt="alternate text" src="userguide/_static/images/circuit-graph.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><div class="math notranslate nohighlight">
+\[\begin{split}\small\begin{array}[t]{rcl}
+G &amp; = &amp; \{ V, E \} \\
+V &amp; = &amp; \{ \textrm{0}, \textrm{Vdd}, \textrm{n0}, \textrm{n1}, \textrm{n2}, \textrm{Vout} \} \\
+E &amp; = &amp; \{
+( \textrm{n0}, \textrm{n1} ),
+( \textrm{Vdd}, \textrm{0} ), \\
+&amp;&amp;\:\:
+( \textrm{n0}, \textrm{Vdd} ),
+( \textrm{n2}, \textrm{Vdd} ), \\
+&amp;&amp;\:\:
+( \textrm{0}, \textrm{n2} ),
+( \textrm{n2}, \textrm{Vout} ), \\
+&amp;&amp;\:\:
+( \textrm{0}, \textrm{n0} ),
+( \textrm{n2}, \textrm{n1} ) \}
+\:&amp;\:\\
+\:&amp;\:\\
+\end{array}\end{split}\]</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In the second case, we begin with a table of airports and the distance in kilometers between pairs of them.  We model this situation as a graph by identifying graph nodes with airports and graph edges with pairs of cities that are given as pairs in the distance table.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 33%" />
+<col style="width: 19%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Table of airport codes and distance in km between the airports.</p></td>
+<td><p>Graphical representation of the tabular data.</p></td>
+<td><p>Set-theoretical (mathematical) representation.</p></td>
+</tr>
+<tr class="row-odd"><td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/airport-tables.pdf"><img alt="alternate text" src="userguide/_static/images/airport-tables.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><figure class="align-center">
+<a class="reference internal image-reference" href="userguide/_static/images/airport-graph.pdf"><img alt="alternate text" src="userguide/_static/images/airport-graph.pdf" style="width: 200px;" /></a>
+</figure>
+</td>
+<td><div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rcl}
+G &amp; = &amp; \{ V, E \} \\
+V &amp; = &amp; \{ \textrm{SEA}, \textrm{MSP}, \textrm{SLC}, \textrm{DTW}, \textrm{ATL}, \textrm{BOS} \} \\
+E &amp; = &amp; \{
+\{ \textrm{MSP}, \textrm{DTW} \},
+\{ \textrm{SLC}, \textrm{SEA} \}, \\
+&amp;&amp;\:\:
+\{ \textrm{MSP}, \textrm{SLC} \},
+\{ \textrm{BOS}, \textrm{SLC} \}, \\
+&amp;&amp;\:\:
+\{ \textrm{SEA}, \textrm{BOS} \},
+\{ \textrm{BOS}, \textrm{ATL} \}, \\
+&amp;&amp;\:\:
+\{ \textrm{SEA}, \textrm{MSP} \},
+\{ \textrm{BOS}, \textrm{DTW} \} \} \\
+\:&amp;\:\\
+\:&amp;\:\\
+\end{array}\end{split}\]</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="from-graph-theory-to-programming-with-graphs">
+<h1>From Graph Theory to Programming with Graphs<a class="headerlink" href="#from-graph-theory-to-programming-with-graphs" title="Permalink to this headline"></a></h1>
+</section>
+<section id="programming-abstractions">
+<h1>Programming Abstractions<a class="headerlink" href="#programming-abstractions" title="Permalink to this headline"></a></h1>
+<section id="algorithms">
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline"></a></h2>
+</section>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline"></a></h2>
+</section>
+<section id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline"></a></h2>
+</section>
+<section id="some-functions">
+<h2>Some Functions<a class="headerlink" href="#some-functions" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

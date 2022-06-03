@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Six Degrees of Separation &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script>window.MathJax = {"TeX": {"Macros": {"RR": "{\\mathbb R}", "Real": "{\\mathbb R}", "Complex": "{\\mathbb C}", "mat": ["{\\mathbf{#1}}", 1], "vec": ["{\\mathbf{#1}}", 1], "bold": ["{\\bf #1}", 1], "Spc": ["\\mathbb{#1}", 1], "norm": ["|| #1 ||", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Boost Graph Library Examples (Rewritten for NW Graph)" href="../bglbook/index.html" />
+    <link rel="prev" title="Examples" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bglbook/index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Examples</a> &raquo;</li>
+      <li>Six Degrees of Separation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/degrees/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="six-degrees-of-separation">
+<h1>Six Degrees of Separation<a class="headerlink" href="#six-degrees-of-separation" title="Permalink to this headline"></a></h1>
+<p>To illustrate the effectiveness of NWGraph’s “there is no graph” design
+philosophy, this section walks through an example that ingests a
+database table and uses graph algorithms for some basic knowledge
+discovery. The desired goal is to the find the popularized Bacon number,
+which is the degree of separation of various Hollywood actors from the
+actor Kevin Bacon. The starting point of this example is an Oracle web
+crawl of Wikipedia which is then parsed by an open source script to
+create a Wikipedia movie database, with several entries of the following
+form.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Movie Title&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;cast&quot;</span><span class="o">:</span> <span class="s2">&quot;Actor1&quot;</span><span class="p">,</span><span class="s2">&quot;Actor2&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;directors&quot;</span><span class="o">:</span> <span class="s2">&quot;Director&quot;</span><span class="p">,</span>
+  <span class="p">...</span>
+  <span class="s2">&quot;year&quot;</span><span class="o">:</span> <span class="nx">year</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is not a graph; it is a relational database that we wish to query
+with graph algorithms. After reading into a vector of json entries, we
+will populate an NWGraph edge list with directed edges from movie titles
+to actors. We will also keep a map from movie titles to movie ids, and
+from actor names to actor ids.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">json</span><span class="o">&gt;</span><span class="w"> </span><span class="n">jsons</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// Populate jsons vector</span>
+
+<span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">titles_map</span><span class="p">,</span><span class="w"> </span><span class="n">names_map</span><span class="p">;</span><span class="w"></span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w">      </span><span class="n">titles</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="o">:</span><span class="w"> </span><span class="n">jsons</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">titles_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">titles_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Add title to title map if it</span>
+<span class="w">    </span><span class="c1">// doesn&#39;t exist</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Movie has multiple cast members</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">j</span><span class="p">[</span><span class="s">&quot;cast&quot;</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">delink</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">names_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">names_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Add actor to actor map if</span>
+<span class="w">      </span><span class="c1">// it doesn&#39;t exist</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Add title-&gt;actor edge to edge list</span>
+<span class="w">    </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">titles_map</span><span class="p">[</span><span class="n">title</span><span class="p">],</span><span class="w"> </span><span class="n">names_map</span><span class="p">[</span><span class="n">name</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>It will be useful to have adjacency access to both the actors involved
+in a movie <span class="math notranslate nohighlight">\(Adj[movie]\)</span> and the movies and actor is involved in
+<span class="math notranslate nohighlight">\(Adj[actor]\)</span>, so we create adjacency structures for both sets.
+Note that since these sets to not overlap, we really have a bipartite
+graph.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Adj[movie]</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">edges</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Adj[actor]</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">H</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">edges</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Two actors share a common movie if there is a length two path between
+them in this bipartite graph. To make this a direct relationship, we
+construct an S overlap edge list which connects actors if this
+relationship exists. We will need adjacency lookup into this graph, so
+we then compress it to the final costar adjacency structure.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">undirected</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s_overlap</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">H</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">s_overlap</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">costar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">s_overlap</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now we can perform a breadth first search from Kevin Bacon to find the
+Bacon number of every actor. This makes use of the bfs_edge_range
+adaptor to provide a lightweight view of the BFS traversal.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w"> </span><span class="n">bacon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">names_map</span><span class="p">[</span><span class="s">&quot;Kevin Bacon&quot;</span><span class="p">];</span><span class="w"></span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bacon_number</span><span class="p">(</span><span class="n">costar</span><span class="p">.</span><span class="n">size</span><span class="p">());</span><span class="w"></span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">parents</span><span class="p">(</span><span class="n">costar</span><span class="p">.</span><span class="n">size</span><span class="p">());</span><span class="w"></span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">together_in</span><span class="p">(</span><span class="n">costar</span><span class="p">.</span><span class="n">size</span><span class="p">());</span><span class="w"></span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">bfs_edge_range</span><span class="p">(</span><span class="n">costar</span><span class="p">,</span><span class="w"> </span><span class="n">bacon</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">bacon_number</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bacon_number</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">parents</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">together_in</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After writing a path_to_bacon helper function to traverse the parent tree, we can
+query the Bacon number of various actors to find their relationship to Kevin Bacon.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Kevin Bacon&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Kyra Sedgwick&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;David Suchet&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Julie Kavner&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Samuel L. Jackson&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;William Shatner&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Oona O&#39;Neill&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>Kevin Bacon has a Bacon number of 0
+Kyra Sedgwick has a Bacon number of 1
+  Kyra Sedgwick starred with Kevin Bacon in Murder in the First (film)
+David Suchet has a Bacon number of 2
+  David Suchet starred with Lori Singer in The Falcon and the Snowman
+  Lori Singer starred with Kevin Bacon in Footloose (1984 film)
+Julie Kavner has a Bacon number of 2
+  Julie Kavner starred with Dianne Wiest in Radio Days
+  Dianne Wiest starred with Kevin Bacon in Footloose (1984 film)
+Samuel L. Jackson has a Bacon number of 2
+  Samuel L. Jackson starred with Chris Penn in True Romance
+  Chris Penn starred with Kevin Bacon in Footloose (1984 film)
+William Shatner has a Bacon number of 2
+  William Shatner starred with Sarah Jessica Parker in Escape from Planet Earth
+  Sarah Jessica Parker starred with Kevin Bacon in Footloose (1984 film)
+Oona O&#39;Neill has a Bacon number of 3
+  Oona O&#39;Neill starred with Beverly Ross in Broken English (1981 film)
+  Beverly Ross starred with Vittorio Gassman in A Wedding
+  Vittorio Gassman starred with Kevin Bacon in Sleepers
+</pre></div>
+</div>
+<p>We can also check the Bacon numbers
+of the actors that have played Batman, and find that none of them have a
+number greater than two.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Adam West&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Michael Keaton&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Val Kilmer&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;George Clooney&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Christian Bale&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Ben Affleck&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Robert Pattinson&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>Adam West has a Bacon number of 2
+  Adam West with Frank Welker
+  in Aloha, Scooby-Doo!
+  Frank Welker with Kevin Bacon
+  in Balto (film)
+Michael Keaton has a Bacon number of 1
+  Michael Keaton with Kevin Bacon
+  in She&#39;s Having a Baby
+Val Kilmer has a Bacon number of 2
+  Val Kilmer with Brad Renfro
+  in 10th &amp; Wolf
+  Brad Renfro with Kevin Bacon
+  in Sleepers
+George Clooney has a Bacon number of 2
+  George Clooney with Minnie Driver
+  in South Park: Bigger, Longer &amp; Uncut
+  Minnie Driver with Kevin Bacon
+  in Sleepers
+Christian Bale has a Bacon number of 2
+  Christian Bale with Brad Pitt
+  in The Big Short (film)
+  Brad Pitt with Kevin Bacon
+  in Sleepers
+Ben Affleck has a Bacon number of 2
+  Ben Affleck with Minnie Driver
+  in Good Will Hunting
+  Minnie Driver with Kevin Bacon
+  in Sleepers
+Robert Pattinson has a Bacon number of 2
+  Robert Pattinson with Jennifer Jason Leigh
+  in Good Time (film)
+  Jennifer Jason Leigh with Kevin Bacon
+  in In the Cut (film)
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../bglbook/index.html" class="btn btn-neutral float-right" title="Boost Graph Library Examples (Rewritten for NW Graph)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
