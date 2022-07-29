@@ -8,8 +8,8 @@
  *
  * @authors
  *   Andrew Lumsdaine
- *   Kevin Deweese	
- *   Luke D'Alessandro	
+ *   Kevin Deweese
+ *   Luke D'Alessandro
  *   Tony Liu
  *
  */
@@ -41,6 +41,7 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+#include "nwgraph/util/print_types.hpp"
 
 #include "nwgraph/util/arrow_proxy.hpp"
 #include "nwgraph/util/util.hpp"
@@ -139,10 +140,18 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
       return i - n;
     }
 
+      template <typename Arg, typename... Args>
+      void doPrint(std::ostream& out, Arg&& arg, Args&&... args)
+      {
+          out << std::forward<Arg>(arg);
+          ((out << ',' << std::forward<Args>(args)), ...);
+      }
 
     reference operator*() const {
-      return std::apply(
-          [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
+        //print_types(*soa_);
+        std::apply([&](auto&... vs) {  ((std::cout << "\n*X* " << i_ << "," << vs[i_]), ...); }, *soa_);
+        return std::apply(
+            [this]<class... Vectors>(Vectors && ... v) { return const_reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
     }
 
     reference operator[](std::ptrdiff_t n) const {
@@ -240,12 +249,21 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     std::apply([&](const std::vector<Attributes>&... attr) { copy(attr...); }, attrs);
   }
 
-  void push_back(Attributes... attrs) {
-    std::apply([&](auto&... vs) { (vs.push_back(attrs), ...); }, *this);
+    template <typename Arg, typename... Args>
+    void doPrint(std::ostream& out, Arg&& arg, Args&&... args)
+    {
+        out << std::forward<Arg>(arg);
+        ((out << "::" << std::forward<Args>(args)), ...);
+    }
+
+  void push_back(const Attributes&... attrs) {
+      //doPrint(std::cout, attrs...);
+      std::apply([&](auto&... vs) {  (vs.push_back(attrs), ...); }, *this);
+      //std::apply([&](auto&... vs) {  ((std::cout << "\n*** " << vs.back()), ...); }, *this);
   }
 
-  void push_back(std::tuple<Attributes...> attrs) {
-    std::apply([&](Attributes... attr) { push_back(attr...); }, attrs);
+  void push_back(std::tuple<Attributes...> &attrs) {
+    std::apply([&](Attributes&... attr) { push_back(attr...); }, attrs);
   }
 
   void push_at(std::size_t i, Attributes... attrs) {

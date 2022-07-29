@@ -188,14 +188,14 @@ void fill_helper_tmp(edge_list_t& el, adjacency_t& cs, std::index_sequence<Is...
 /**
  * @brief This function fills an adjacency list graph structure from edges contained in a directed edge list.
  *
- * If edge (u,v) is the edge list, the edge (u,v) will be inserted into the adjacency list -- that is, 
+ * If edge (u,v) is the edge list, the edge (u,v) will be inserted into the adjacency list -- that is,
  * v will be inserted into the neighborhood of u.
  *
  * If the edges in the edge list have properties, those properties will be copied to the adjacency list.
- * 
+ *
  * The adjacency list graph can either be a unipartite or bipartite graph.
  *
- * 
+ *
  * @tparam idx Which end point to fill in the edge list.
  * @tparam edge_list_t The type of the edge list.
  * @tparam adjacency_t The type of the adjacency list.
@@ -226,7 +226,7 @@ void fill_directed(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& po
 
   std::copy(policy, std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
 	    std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).end(), std::get<0>(cs.to_be_indexed_).begin());
-  
+
   // Copy properties
   if constexpr (std::tuple_size<typename edge_list_t::attributes_t>::value > 0) {
     fill_helper(el, cs, std::make_integer_sequence<size_t, std::tuple_size<typename edge_list_t::attributes_t>::value>(), policy);
@@ -543,7 +543,7 @@ auto perm_by_degree(edge_list_t& el, const Vector& degree, std::string direction
 
 /**
  * @brief This function relabels edge list of unipartite graph. It will relabel both endpoints.
- * 
+ *
  * @tparam edge_list_t, edge list type
  * @tparam Vector, permutation array type
  * @tparam ExecutionPolicy, execution polity type
@@ -572,7 +572,7 @@ requires(true == is_unipartite<typename edge_list_t::unipartite_graph_base>::val
 
 /**
  * @brief This function relabels edge list of bipartite graph. It only relabels one endpoint.
- * 
+ *
  * @tparam idx, which end point to relabel
  * @tparam edge_list_t, edge list type
  * @tparam Vector, permutation array type
@@ -599,7 +599,7 @@ requires(false == is_unipartite<typename edge_list_t::bipartite_graph_base>::val
 
 /**
  * @brief This relabel function for edge list handles unipartite graph. It will relabel both endpoints.
- * 
+ *
  * @tparam edge_list_t, edge list type
  * @tparam Vector, degree array type
  * @param el, edge list
@@ -619,7 +619,7 @@ requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value) void
 
 /**
  * @brief This function relabels edge list of either unipartite graph or bipartite graph.
- * 
+ *
  * @tparam idx, which end point to relabel. Unipartite graph will ignore idx.
  * @tparam edge_list_t, edge list type
  * @tparam Vector, degree array type
@@ -708,7 +708,7 @@ auto make_index_edges(M& map, const E& edges) {
   return index_edges;
 }
 
-/**  
+/**
  *  Make a plain graph from data, e.g., vector<vector<index>>
  */
 template <std::ranges::random_access_range V, std::ranges::random_access_range E, adjacency_list_graph Graph = std::vector<std::vector<size_t>>>
@@ -722,7 +722,7 @@ auto make_plain_graph(const V& vertices, const E& edges, bool directed = true, s
   return G;
 }
 
-/**  
+/**
  *  Make an index graph from data, e.g., vector<vector<tuple<index, index>>>
  */
 template <std::ranges::random_access_range V, std::ranges::random_access_range E,
@@ -738,7 +738,7 @@ auto make_index_graph(const V& vertices, const E& edges, bool directed = true, s
 
   return G;
 }
-/**  
+/**
  *  Make a property graph from data, e.g., vector<vector<tuple<index, properties...>>>
  */
 template <std::ranges::random_access_range V, std::ranges::forward_range E,
@@ -755,7 +755,7 @@ auto make_property_graph(const V& vertices, const E& edges, bool directed = true
   return G;
 }
 
-/**  
+/**
  *  Functions for building bipartite graphs
  */
 template <class I = std::vector<std::tuple<size_t, size_t>>, std::ranges::random_access_range V, std::ranges::random_access_range E>
