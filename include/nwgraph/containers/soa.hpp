@@ -32,6 +32,7 @@
 
 #include "nwgraph/util/arrow_proxy.hpp"
 #include "nwgraph/util/util.hpp"
+#include "nwgraph/util/traits.hpp"
 
 #if defined(CL_SYCL_LANGUAGE_VERSION)
 #include <dpstd/algorithm>
@@ -44,15 +45,6 @@
 namespace nw {
 namespace graph {
 
-/**
- * A helper type selector to properly handle references to `std::vector<bool>`
- */
-template <typename Iter>
-using select_access_type = std::conditional_t<
-  (std::is_same_v<Iter, std::vector<bool>::iterator> ||
-  std::is_same_v<Iter, std::vector<bool>::const_iterator>),
-  typename std::iterator_traits<Iter>::value_type,
-  typename std::iterator_traits<Iter>::reference>;
 
 /**
  * Bare-bones variadic structure of arrays class.
@@ -166,12 +158,12 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
       return i - n;
     }
 
-    reference operator*() {
+    decltype(auto) operator*() const {
         return std::apply(
             [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
     }
 
-    reference operator[](std::ptrdiff_t n) const {
+    decltype(auto) operator[](std::ptrdiff_t n) const {
       return std::apply(
           [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *soa_);
     }

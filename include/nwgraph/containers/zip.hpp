@@ -32,6 +32,7 @@
 
 #include "nwgraph/util/arrow_proxy.hpp"
 #include "nwgraph/util/util.hpp"
+#include "nwgraph/util/traits.hpp"
 
 #if defined(CL_SYCL_LANGUAGE_VERSION)
 #include <dpstd/algorithm>
@@ -58,8 +59,10 @@ struct zipped : std::tuple<Ranges&...> {
 
   using attributes_t       = std::tuple<std::ranges::range_value_t<Ranges>...>;
   using const_attributes_t = std::tuple<const std::ranges::range_value_t<Ranges>...>;
-  using attributes_r       = std::tuple<std::ranges::range_reference_t<Ranges>...>;
-  using const_attributes_r = std::tuple<const std::ranges::range_reference_t<Ranges>...>;
+  //  using attributes_r       = std::tuple<std::ranges::range_reference_t<Ranges>...>;
+  //  using const_attributes_r = std::tuple<const std::ranges::range_reference_t<Ranges>...>;
+  using attributes_r       = std::tuple<select_range_access_type<Ranges>...>;
+  using const_attributes_r = std::tuple<select_range_access_type<Ranges>...>;
 
 
   template <bool is_const = false>
