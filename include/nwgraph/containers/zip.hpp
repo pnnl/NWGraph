@@ -62,7 +62,7 @@ struct zipped : std::tuple<Ranges&...> {
   //  using attributes_r       = std::tuple<std::ranges::range_reference_t<Ranges>...>;
   //  using const_attributes_r = std::tuple<const std::ranges::range_reference_t<Ranges>...>;
   using attributes_r       = std::tuple<select_range_access_type<Ranges>...>;
-  using const_attributes_r = std::tuple<select_range_access_type<Ranges>...>;
+  using const_attributes_r = std::tuple<const select_range_access_type<Ranges>...>;
 
 
   template <bool is_const = false>
