@@ -57,6 +57,13 @@
 namespace nw {
 namespace graph {
 
+template <typename Iter>
+using select_access_type_for = std::conditional_t<
+  (std::is_same_v<Iter, std::vector<bool>::iterator> ||
+  std::is_same_v<Iter, std::vector<bool>::const_iterator>),
+  typename std::iterator_traits<Iter>::value_type,
+  typename std::iterator_traits<Iter>::reference>;
+
 // Bare bones struct of arrays (tuple of vectors)
 template <class... Attributes>
 struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
@@ -73,11 +80,17 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     soa_t*      soa_;
 
   public:
-    using value_type        = std::conditional_t<is_const, std::tuple<const Attributes...>, std::tuple<Attributes...>>;
+    //    using value_type        = std::conditional_t<is_const, typename base::const_iterator::value_type,
+    //      typename base::iterator::value_type>;
+    using value_type        = std::conditional_t<is_const, std::tuple<const typename std::vector<Attributes>::value_type...>,
+						 std::tuple<typename std::vector<Attributes>::value_type...>>;
     using difference_type   = std::ptrdiff_t;
-    using reference         = std::conditional_t<is_const, std::tuple<const Attributes&...>, std::tuple<Attributes&...>>;
+    using reference        = std::conditional_t<is_const, std::tuple<select_access_type_for<typename std::vector<Attributes>::const_iterator>...>,
+      std::tuple<select_access_type_for<typename std::vector<Attributes>::iterator>...>>;
     using pointer           = arrow_proxy<reference>;
     using iterator_category = std::random_access_iterator_tag;
+
+
 
     soa_iterator() = default;
 
