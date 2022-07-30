@@ -8,23 +8,11 @@
  *
  * @authors
  *   Andrew Lumsdaine
- *   Kevin Deweese	
- *   Luke D'Alessandro	
+ *   Kevin Deweese
+ *   Luke D'Alessandro
  *   Tony Liu
- *
+ *   Scott McMillan
  */
-
-//
-// This file is part of NW Graph (aka GraphPack)
-// (c) Pacific Northwest National Laboratory 2018-2021
-// (c) University of Washington 2018-2021
-//
-// Licensed under terms of include LICENSE file
-//
-// Authors:
-//     Andrew Lumsdaine
-//     Xu Tony Liu
-//
 
 #ifndef NW_GRAPH_SOA_HPP
 #define NW_GRAPH_SOA_HPP
@@ -44,6 +32,7 @@
 
 #include "nwgraph/util/arrow_proxy.hpp"
 #include "nwgraph/util/util.hpp"
+#include "nwgraph/util/traits.hpp"
 
 #if defined(CL_SYCL_LANGUAGE_VERSION)
 #include <dpstd/algorithm>
@@ -56,12 +45,34 @@
 namespace nw {
 namespace graph {
 
-// Bare bones struct of arrays (tuple of vectors)
+
+/**
+ * Bare-bones variadic structure of arrays class.
+ *
+ * @tparam Attributes Parameter pack of types.  The `struct_of_arrays` will have one
+ * component vector for each type in `Attributes`.  The order of the vectors will be
+ * the same as the order of the types in `Attributes`.  The `struct_of_arrays` is a
+ * random-access range and provides an iterator that returns a tuple of referenes to
+ * the underlying vectors, with each component of the tuple corresponding to one
+ * underlying vector (again, in the order given by `Attributes`.
+ */
 template <class... Attributes>
 struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   using storage_type = std::tuple<std::vector<Attributes>...>;
   using base         = std::tuple<std::vector<Attributes>...>;
 
+  /**
+   * Member class defining the iterator for `struct_of_arrays`.  We use a template
+   * parameter `is_const` to allow us to define both the iterator type and the
+   * const_iterator type.
+   *
+   * Rather than maintaining a tuple of iterators (one for each underlying vector), we
+   * maintain a pointer to the `struct_of_arrays` and maintain a cursor in the
+   * iterator to indicate our current location.  We use this approach for efficiency.
+   * Rather than incrementing a set of iterators when we advance the
+   * `struct_or_arrays` iterator, we only need to advance the cursor.  This only works
+   * for the random access case, which we have for `struct_of_arrays`.
+   */
   template <bool is_const = false>
   class soa_iterator {
     friend class soa_iterator<!is_const>;
@@ -72,9 +83,11 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     soa_t*      soa_;
 
   public:
-    using value_type        = std::conditional_t<is_const, std::tuple<const Attributes...>, std::tuple<Attributes...>>;
+    using value_type        = std::conditional_t<is_const, std::tuple<const typename std::vector<Attributes>::value_type...>,
+						 std::tuple<typename std::vector<Attributes>::value_type...>>;
     using difference_type   = std::ptrdiff_t;
-    using reference         = std::conditional_t<is_const, std::tuple<const Attributes&...>, std::tuple<Attributes&...>>;
+    using reference        = std::conditional_t<is_const, std::tuple<select_access_type<typename std::vector<Attributes>::const_iterator>...>,
+      std::tuple<select_access_type<typename std::vector<Attributes>::iterator>...>>;
     using pointer           = arrow_proxy<reference>;
     using iterator_category = std::random_access_iterator_tag;
 
@@ -100,6 +113,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     soa_iterator operator++(int) {
       return soa_iterator(i_++, soa_);
     }
+
     soa_iterator operator--(int) {
       return soa_iterator(i_--, soa_);
     }
@@ -108,14 +122,17 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
       ++i_;
       return *this;
     }
+
     soa_iterator& operator--() {
       --i_;
       return *this;
     }
+
     soa_iterator& operator+=(std::ptrdiff_t n) {
       i_ += n;
       return *this;
     }
+
     soa_iterator& operator-=(std::ptrdiff_t n) {
       i_ -= n;
       return *this;
@@ -124,6 +141,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     soa_iterator operator+(std::ptrdiff_t n) const {
       return soa_iterator(soa_, i_ + n);
     }
+
     soa_iterator operator-(std::ptrdiff_t n) const {
       return soa_iterator(soa_, i_ - n);
     }
@@ -135,17 +153,17 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     friend soa_iterator operator+(std::ptrdiff_t n, soa_iterator i) {
       return i + n;
     }
+
     friend soa_iterator operator-(std::ptrdiff_t n, soa_iterator i) {
       return i - n;
     }
 
-
-    reference operator*() const {
-      return std::apply(
-          [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
+    decltype(auto) operator*() const {
+        return std::apply(
+            [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
     }
 
-    reference operator[](std::ptrdiff_t n) const {
+    decltype(auto) operator[](std::ptrdiff_t n) const {
       return std::apply(
           [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *soa_);
     }
@@ -153,6 +171,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     pointer operator->() const {
       return {**this};
     }
+
     pointer operator->() {
       return {**this};
     }
@@ -174,16 +193,22 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
   struct_of_arrays() = default;
+
   struct_of_arrays(size_t M) : base(std::vector<Attributes>(M)...) {
   }
+
   explicit struct_of_arrays(std::vector<Attributes>&&... l) : base(std::move(l)...) {
   }
+
   explicit struct_of_arrays(const std::vector<Attributes>&... l) : base(l...) {
   }
+
   struct_of_arrays(std::tuple<std::vector<Attributes>...>&& l) : base(std::move(l)) {
   }
+
   struct_of_arrays(const std::tuple<std::vector<Attributes>...>& l) : base(l) {
   }
+
   struct_of_arrays(std::initializer_list<value_type> l) {
     for_each(l.begin(), l.end(), [&](value_type x) { push_back(x); });
   }
@@ -191,9 +216,11 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   iterator begin() {
     return iterator(this);
   }
+
   const_iterator begin() const {
     return const_iterator(this);
   }
+
   const_iterator cbegin() const {
     return const_iterator(this);
   }
@@ -201,9 +228,11 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   iterator end() {
     return begin() + size();
   }
+
   const_iterator end() const {
     return begin() + size();
   }
+
   const_iterator cend() const {
     return begin() + size();
   }
@@ -240,12 +269,16 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     std::apply([&](const std::vector<Attributes>&... attr) { copy(attr...); }, attrs);
   }
 
-  void push_back(Attributes... attrs) {
+  void push_back(const Attributes&... attrs) {
     std::apply([&](auto&... vs) { (vs.push_back(attrs), ...); }, *this);
   }
 
-  void push_back(std::tuple<Attributes...> attrs) {
-    std::apply([&](Attributes... attr) { push_back(attr...); }, attrs);
+  //  void push_back(Attributes&... attrs) {
+  //std::apply([&](auto&... vs) { (vs.push_back(attrs), ...); }, *this);
+  //  }
+
+  void push_back(const std::tuple<Attributes...>& attrs) {
+    std::apply([&](auto&... attr) { push_back(attr...); }, attrs);
   }
 
   void push_at(std::size_t i, Attributes... attrs) {
