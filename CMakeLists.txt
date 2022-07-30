@@ -129,7 +129,8 @@ FetchContent_MakeAvailable(oneTBB)
 
 else()
 
-add_subdirectory(external/oneTBB)
+# add_subdirectory(external/oneTBB)
+find_package(TBB REQUIRED)
 
 endif()
 
