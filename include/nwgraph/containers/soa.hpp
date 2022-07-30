@@ -270,11 +270,15 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   }
 
   void push_back(const Attributes&... attrs) {
-      std::apply([&](auto&... vs) {  (vs.push_back(attrs), ...); }, *this);
+    std::apply([&](auto&... vs) { (vs.push_back(attrs), ...); }, *this);
   }
 
-  void push_back(std::tuple<Attributes...> &attrs) {
-    std::apply([&](Attributes&... attr) { push_back(attr...); }, attrs);
+  //  void push_back(Attributes&... attrs) {
+  //std::apply([&](auto&... vs) { (vs.push_back(attrs), ...); }, *this);
+  //  }
+
+  void push_back(const std::tuple<Attributes...>& attrs) {
+    std::apply([&](auto&... attr) { push_back(attr...); }, attrs);
   }
 
   void push_at(std::size_t i, Attributes... attrs) {
