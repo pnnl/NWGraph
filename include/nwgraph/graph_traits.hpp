@@ -34,7 +34,12 @@ struct graph_traits {
 };
 
 template <typename G>
-using vertex_id_t = typename graph_traits<G>::vertex_id_type;
+using vertex_id_t = typename graph_traits<std::remove_cvref_t<G>>::vertex_id_type;
+
+template <typename G>
+concept has_vertex_id = requires {
+    typename graph_traits<std::remove_cvref_t<G>>;
+};
 
 // template <typename G>
 // using vertex_size_t = typename graph_traits<G>::vertex_size_type;
