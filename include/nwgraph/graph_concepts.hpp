@@ -324,6 +324,7 @@ auto& tag_invoke(const source_tag, const T& graph, const U& e) {
   return std::get<0>(e);
 }
 
+// @todo: implement properly for `min_idx_edge_list`
 //template <min_idx_edge_list T, class U>
 //auto& tag_invoke(const source_tag, const T& graph, const U& e) {
 //  return std::get<0>(e);
@@ -335,6 +336,7 @@ auto& tag_invoke(const target_tag, const T& graph, const U& e) {
   return std::get<1>(e);
 }
 
+// @todo: implement properly for `min_idx_edge_list`
 //template <min_idx_edge_list T, class U>
 //auto& tag_invoke(const target_tag, const T& graph, const U& e) {
 //  return std::get<1>(e);

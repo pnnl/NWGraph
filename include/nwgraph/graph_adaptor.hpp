@@ -135,7 +135,7 @@ public:
     graph_base::is_open = true;
   }
   void close_for_push_back() {
-    graph_base::is_open = true;
+    graph_base::is_open = false;
   }
 
   template <class... Attributes>
@@ -151,7 +151,7 @@ public:
   auto num_vertices() const {
     return num_vertices_;
   }
-  auto num_edgees() const {
+  auto num_edges() const {
     return base::size();
   }
 
