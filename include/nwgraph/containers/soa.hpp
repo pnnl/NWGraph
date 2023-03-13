@@ -42,8 +42,7 @@
 #include <execution>
 #endif
 
-namespace nw {
-namespace graph {
+namespace nw::graph {
 
 
 /**
@@ -79,8 +78,8 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
 
     using soa_t = std::conditional_t<is_const, const struct_of_arrays, struct_of_arrays>;
 
-    std::size_t i_;
-    soa_t*      soa_;
+    std::size_t i_{0};
+    soa_t*      soa_{nullptr};
 
   public:
     using value_type        = std::conditional_t<is_const, std::tuple<const typename std::vector<Attributes>::value_type...>,
@@ -97,11 +96,12 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     }
 
     soa_iterator(const soa_iterator&) = default;
-    soa_iterator(const soa_iterator<false>& b) requires(is_const) : i_(b.i_), soa_(b.soa_) {
+    explicit soa_iterator(const soa_iterator<false>& b) requires(is_const) : i_(b.i_), soa_(b.soa_) {
     }
 
     soa_iterator& operator=(const soa_iterator&) = default;
-    soa_iterator& operator                       =(const soa_iterator<false>& b) requires(is_const) {
+
+    soa_iterator& operator=(const soa_iterator<false>& b) requires(is_const) {
       i_   = b.i_;
       soa_ = b.soa_;
       return *this;
@@ -111,11 +111,11 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     auto operator<=>(const soa_iterator&) const = default;
 
     soa_iterator operator++(int) {
-      return soa_iterator(i_++, soa_);
+      return soa_iterator{i_++, soa_};
     }
 
     soa_iterator operator--(int) {
-      return soa_iterator(i_--, soa_);
+      return soa_iterator{i_--, soa_};
     }
 
     soa_iterator& operator++() {
@@ -194,7 +194,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
 
   struct_of_arrays() = default;
 
-  struct_of_arrays(size_t M) : base(std::vector<Attributes>(M)...) {
+  explicit struct_of_arrays(size_t M) : base(std::vector<Attributes>(M)...) {
   }
 
   explicit struct_of_arrays(std::vector<Attributes>&&... l) : base(std::move(l)...) {
@@ -203,10 +203,10 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   explicit struct_of_arrays(const std::vector<Attributes>&... l) : base(l...) {
   }
 
-  struct_of_arrays(std::tuple<std::vector<Attributes>...>&& l) : base(std::move(l)) {
+  explicit struct_of_arrays(std::tuple<std::vector<Attributes>...>&& l) : base(std::move(l)) {
   }
 
-  struct_of_arrays(const std::tuple<std::vector<Attributes>...>& l) : base(l) {
+  explicit struct_of_arrays(const std::tuple<std::vector<Attributes>...>& l) : base(l) {
   }
 
   struct_of_arrays(std::initializer_list<value_type> l) {
@@ -362,7 +362,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     std::apply([&](auto&... vs) { (permute(indices, new_indices, perm, vs), ...); }, *this);
   }
 
-  size_t size() const {
+  [[ nodiscard ]] size_t size() const {
     return std::get<0>(*this).size();
   }
 
@@ -375,8 +375,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   }
 };
 
-}    // namespace graph
-}    // namespace nw
+}    // namespace nw::graph
 
 
 namespace std {
