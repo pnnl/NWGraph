@@ -30,6 +30,17 @@ struct is_swappable<T> : std::true_type { };
 template <class... Ts>
 struct is_swappable<std::tuple<Ts...>> : std::conjunction<is_swappable<Ts>...> {};
 
+
+template <class... Ts> requires (nw::graph::is_swappable<Ts>::value && ...)
+void swap(std::tuple<Ts...>&& x, std::tuple<Ts...>&& y) 
+{
+    using std::swap;
+    using std::get;
+    [&]<std::size_t... i>(std::index_sequence<i...>) {
+      (swap(get<i>(x), get<i>(y)), ...);
+    } (std::make_index_sequence<sizeof...(Ts)>());
+}
+
 } // namespace nw::graph
 
 namespace std {
@@ -41,8 +52,8 @@ void swap(std::tuple<Ts...>&& x, std::tuple<Ts...>&& y)
     using std::swap;
     using std::get;
     [&]<std::size_t... i>(std::index_sequence<i...>) {
-        (swap(get<i>(x), get<i>(y)), ...);
-    }(std::make_index_sequence<sizeof...(Ts)>());
+      (swap(get<i>(x), get<i>(y)), ...);
+    } (std::make_index_sequence<sizeof...(Ts)>());
 }
 #else
 template <class... Ts, std::size_t... Is>

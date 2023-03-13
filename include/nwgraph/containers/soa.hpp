@@ -159,7 +159,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     }
 
     decltype(auto) operator*() const {
-        return std::apply(
+      return std::apply(
             [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
     }
 
@@ -237,13 +237,38 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     return begin() + size();
   }
 
-  reference operator[](std::size_t i) {
+#if 0
+
+  // reference 
+  decltype(auto)
+  operator[](std::ptrdiff_t i) {
     return std::apply([&](auto&... r) { return std::forward_as_tuple(std::forward<decltype(r)>(r)[i]...); }, *this);
   }
 
-  const_reference operator[](std::size_t i) const {
+  // const_reference 
+  decltype(auto)
+  operator[](std::ptrdiff_t i) const {
     return std::apply([&](auto&... r) { return std::forward_as_tuple(std::forward<decltype(r)>(r)[i]...); }, *this);
   }
+
+#else
+
+  // reference 
+  decltype(auto) 
+  operator[](std::ptrdiff_t n) {
+      return std::apply(
+          [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[n]...); }, *this);
+    }
+
+
+  // const_reference
+  decltype(auto) 
+  operator[](std::ptrdiff_t n) const {
+      return std::apply(
+          [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[n]...); }, *this);
+  }
+
+#endif
 
   constexpr pointer data() noexcept {
     return std::apply([&](auto&... p) { return std::forward_as_tuple(std::forward<decltype(p)>(p).data()...); }, *this);

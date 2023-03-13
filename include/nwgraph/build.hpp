@@ -38,6 +38,9 @@
 #include "nwgraph/containers/zip.hpp"
 
 
+#include "nwgraph/util/print_types.hpp"
+
+
 namespace nw {
 namespace graph {
 
@@ -259,6 +262,9 @@ void fill_directed(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& po
   //	    std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).end(), tmp.begin());
 
   auto a = make_zipped(tmp, cs.to_be_indexed_);
+
+  print_types(a, a.begin(), *(a.begin()));
+
   std::sort(policy, a.begin(), a.end(), [](auto&& a, auto&& b) { return std::get<0>(a) < std::get<0>(b); });
 
 #endif

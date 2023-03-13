@@ -59,6 +59,7 @@ struct zipped : std::tuple<Ranges&...> {
 
   using attributes_t       = std::tuple<std::ranges::range_value_t<Ranges>...>;
   using const_attributes_t = std::tuple<const std::ranges::range_value_t<Ranges>...>;
+
   //  using attributes_r       = std::tuple<std::ranges::range_reference_t<Ranges>...>;
   //  using const_attributes_r = std::tuple<const std::ranges::range_reference_t<Ranges>...>;
   using attributes_r       = std::tuple<select_range_access_type<Ranges>...>;
@@ -66,13 +67,13 @@ struct zipped : std::tuple<Ranges&...> {
 
 
   template <bool is_const = false>
-  class soa_iterator {
-    friend class soa_iterator<!is_const>;
+  class zip_iterator {
+    friend class zip_iterator<!is_const>;
 
-    using soa_t = std::conditional_t<is_const, const zipped, zipped>;
+    using zip_t = std::conditional_t<is_const, const zipped, zipped>;
 
     std::size_t i_;
-    soa_t*      soa_;
+    zip_t*      zip_;
 
   public:
     using value_type        = std::conditional_t<is_const, const_attributes_t, attributes_t>;
@@ -81,79 +82,79 @@ struct zipped : std::tuple<Ranges&...> {
     using pointer           = arrow_proxy<reference>;
     using iterator_category = std::random_access_iterator_tag;
 
-    soa_iterator() = default;
+    zip_iterator() = default;
 
-    explicit soa_iterator(soa_t* soa, std::size_t i = 0) : i_(i), soa_(soa) {
+    explicit zip_iterator(zip_t* soa, std::size_t i = 0) : i_(i), zip_(soa) {
     }
 
-    soa_iterator(soa_iterator&&)      = default;
-    soa_iterator(const soa_iterator&) = default;
+    zip_iterator(zip_iterator&&)      = default;
+    zip_iterator(const zip_iterator&) = default;
 
-    soa_iterator(const soa_iterator<false>& b) requires(is_const) : i_(b.i_), soa_(b.soa_) {
+    zip_iterator(const zip_iterator<false>& b) requires(is_const) : i_(b.i_), zip_(b.zip_) {
     }
 
-    soa_iterator& operator=(const soa_iterator&) = default;
-    soa_iterator& operator=(soa_iterator&&) = default;
+    zip_iterator& operator=(const zip_iterator&) = default;
+    zip_iterator& operator=(zip_iterator&&) = default;
 
-    soa_iterator& operator=(const soa_iterator<false>& b) requires(is_const) {
+    zip_iterator& operator=(const zip_iterator<false>& b) requires(is_const) {
       i_   = b.i_;
-      soa_ = b.soa_;
+      zip_ = b.zip_;
       return *this;
     }
 
-    bool operator==(const soa_iterator&) const  = default;
-    auto operator<=>(const soa_iterator&) const = default;
+    bool operator==(const zip_iterator&) const  = default;
+    auto operator<=>(const zip_iterator&) const = default;
 
-    soa_iterator operator++(int) {
-      return soa_iterator(i_++, soa_);
+    zip_iterator operator++(int) {
+      return zip_iterator(i_++, zip_);
     }
-    soa_iterator operator--(int) {
-      return soa_iterator(i_--, soa_);
+    zip_iterator operator--(int) {
+      return zip_iterator(i_--, zip_);
     }
 
-    soa_iterator& operator++() {
+    zip_iterator& operator++() {
       ++i_;
       return *this;
     }
-    soa_iterator& operator--() {
+    zip_iterator& operator--() {
       --i_;
       return *this;
     }
-    soa_iterator& operator+=(std::ptrdiff_t n) {
+    zip_iterator& operator+=(std::ptrdiff_t n) {
       i_ += n;
       return *this;
     }
-    soa_iterator& operator-=(std::ptrdiff_t n) {
+    zip_iterator& operator-=(std::ptrdiff_t n) {
       i_ -= n;
       return *this;
     }
 
-    soa_iterator operator+(std::ptrdiff_t n) const {
-      return soa_iterator(soa_, i_ + n);
+    zip_iterator operator+(std::ptrdiff_t n) const {
+      return zip_iterator(zip_, i_ + n);
     }
-    soa_iterator operator-(std::ptrdiff_t n) const {
-      return soa_iterator(soa_, i_ - n);
+    zip_iterator operator-(std::ptrdiff_t n) const {
+      return zip_iterator(zip_, i_ - n);
     }
 
-    friend soa_iterator operator+(std::ptrdiff_t n, soa_iterator i) {
+    friend zip_iterator operator+(std::ptrdiff_t n, zip_iterator i) {
       return i + n;
     }
-    friend soa_iterator operator-(std::ptrdiff_t n, soa_iterator i) {
+    friend zip_iterator operator-(std::ptrdiff_t n, zip_iterator i) {
       return i - n;
     }
 
-    std::ptrdiff_t operator-(const soa_iterator& b) const {
+    std::ptrdiff_t operator-(const zip_iterator& b) const {
       return i_ - b.i_;
     }
 
     reference operator*() const {
       return std::apply(
-          [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
+          [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *zip_);
     }
 
     reference operator[](std::ptrdiff_t n) const {
       return std::apply(
-          [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *soa_);
+          [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *zip_);
     }
 
     pointer operator->() const {
@@ -164,7 +165,7 @@ struct zipped : std::tuple<Ranges&...> {
     }
   };
 
-  using iterator = soa_iterator<false>;
+  using iterator = zip_iterator<false>;
 
   using value_type      = typename iterator::value_type;
   using reference       = typename iterator::reference;
@@ -172,7 +173,7 @@ struct zipped : std::tuple<Ranges&...> {
   using difference_type = typename iterator::difference_type;
   using pointer         = typename iterator::pointer;
 
-  using const_iterator  = soa_iterator<true>;
+  using const_iterator  = zip_iterator<true>;
   using const_reference = typename const_iterator::reference;
   using const_pointer   = typename const_iterator::pointer;
 
@@ -328,7 +329,7 @@ namespace std {
 
 #if 0
 template <std::ranges::random_access_range... Ranges>
-auto iter_swap(typename nw::graph::zipped<Ranges...>::soa_iterator<false> a, typename nw::graph::zipped<Ranges...>::soa_iterator<false> b) {
+auto iter_swap(typename nw::graph::zipped<Ranges...>::zip_iterator<false> a, typename nw::graph::zipped<Ranges...>::zip_iterator<false> b) {
   auto tmp = *a;
   *a = *b;
   *b = *tmp;
