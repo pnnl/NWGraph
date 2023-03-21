@@ -29,7 +29,7 @@ namespace nw {
   namespace graph {
 
 template <std::ranges::forward_range... Ranges>
-auto iter_swap(typename nw::graph::zipped<Ranges...>::soa_iterator<false> a, typename nw::graph::zipped<Ranges...>::soa_iterator<false> b) {
+auto iter_swap(typename nw::graph::zipped<Ranges...>::template soa_iterator<false> a, typename nw::graph::zipped<Ranges...>:: template soa_iterator<false> b) {
   auto tmp = *a;
   *a = *b;
   *b = tmp;

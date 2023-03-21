@@ -74,7 +74,7 @@ public:
   using vertex_id_type = vertex_id;
   using base           = struct_of_arrays<vertex_id_type, vertex_id_type, Attributes...>;
   using element        = std::tuple<vertex_id_type, vertex_id_type, Attributes...>;
-  using reference      = base::reference;
+  using reference      = typename base::reference;
 
 
   static const directedness edge_directedness = direct;

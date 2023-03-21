@@ -103,6 +103,8 @@ function(tbb_extract_real_library library real_library)
   endif()
 endfunction()
 
+message(STATUS, "line 106")
+
 #===============================================
 # Do the final processing for the package find.
 #===============================================
@@ -148,6 +150,8 @@ macro(findpkg_finish PREFIX TARGET_NAME)
                    ${PREFIX}_LIBRARY_RELEASE)
 endmacro()
 
+message(STATUS, "line 153")
+
 #===============================================
 # Generate debug names from given release names
 #===============================================
@@ -181,6 +185,7 @@ macro(make_library_set PREFIX)
   endif ()
 endmacro()
 
+message(STATUS, "line 188")
 
 #=============================================================================
 #  Now to actually find TBB
@@ -189,6 +194,7 @@ endmacro()
 # Get path, convert backslashes as ${ENV_${var}}
 getenv_path(TBBROOT)
 
+message(STATUS, "line 197")
 
 # initialize search paths
 set(TBB_PREFIX_PATH ${TBBROOT} ${ENV_TBBROOT})
@@ -209,6 +215,7 @@ if (TBB_BUILD_PREFIX AND ENV_TBBROOT)
     ${ENV_TBB_BUILD_DIR}/${TBB_BUILD_PREFIX}_debug)
 endif ()
 
+message(STATUS, "line 218")
 
 # For Windows, let's assume that the user might be using the precompiled
 # TBB packages from the main website. These use a rather awkward directory
@@ -250,6 +257,8 @@ if (WIN32 AND MSVC)
   endforeach ()
 endif ()
 
+message(STATUS, "line 260")
+
 # For OS X binary distribution, choose libc++ based libraries for Mavericks (10.9)
 # and above and AppleClang
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND
@@ -276,6 +285,9 @@ endif ()
 
 # check compiler ABI
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+
+message(STATUS, "line 289")	   
+
   set(COMPILER_PREFIX)
   if (NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.7)
     list(APPEND COMPILER_PREFIX "gcc4.7")
@@ -300,6 +312,8 @@ else() # Assume compatibility with 4.4 for other compilers
   list(APPEND COMPILER_PREFIX "gcc4.4")
 endif ()
 
+message(STATUS, "line 315  ${COMPILER_PREFIX}")
+
 # if platform architecture is explicitly specified
 set(TBB_ARCH_PLATFORM $ENV{TBB_ARCH_PLATFORM})
 if (TBB_ARCH_PLATFORM)
@@ -308,6 +322,8 @@ if (TBB_ARCH_PLATFORM)
     list(APPEND TBB_LIB_SEARCH_PATH ${dir}/lib/${TBB_ARCH_PLATFORM})
   endforeach ()
 endif ()
+
+message(STATUS, "line 321 ${TBB_PREFIX_PATH} ${TBB_LIB_SEARCH_PATH}")
 
 foreach (dir IN LISTS TBB_PREFIX_PATH)
   foreach (prefix IN LISTS COMPILER_PREFIX)
@@ -348,12 +364,16 @@ find_library(TBB_LIBRARY_DEBUG
              PATHS ${TBB_LIB_SEARCH_PATH})
 make_library_set(TBB_LIBRARY)
 
+message(STATUS, "line 362")
+
 findpkg_finish(TBB tbb)
 
 #if we haven't found TBB no point on going any further
 if (NOT TBB_FOUND)
   return()
 endif ()
+
+message(STATUS, "line 371")
 
 #=============================================================================
 # Look for TBB's malloc package
@@ -374,6 +394,8 @@ make_library_set(TBB_MALLOC_LIBRARY)
 
 findpkg_finish(TBB_MALLOC tbbmalloc)
 
+message(STATUS, "line 390")
+
 #=============================================================================
 # Look for TBB's malloc proxy package
 set(TBB_MALLOC_PROXY_LIBRARY_NAMES tbbmalloc_proxy)
@@ -392,6 +414,8 @@ find_library(TBB_MALLOC_PROXY_LIBRARY_DEBUG
 make_library_set(TBB_MALLOC_PROXY_LIBRARY)
 
 findpkg_finish(TBB_MALLOC_PROXY tbbmalloc_proxy)
+
+message(STATUS, "line 411")
 
 
 #=============================================================================
