@@ -114,7 +114,7 @@ option(TBBMALLOC_BUILD "Enable tbbmalloc build" OFF)
 
 if(NWGRAPH_FETCH_TBB)
 
-include(FetchContent)
+# include(FetchContent)
 
 # Use fetch content rather than as a submodule
 include(FetchContent)

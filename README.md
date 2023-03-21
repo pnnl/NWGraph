@@ -92,19 +92,19 @@ $ cmake .. -DCMAKE_BUILD_TYPE=Release (or Debug)
 ```
 To enable test cases and examples under build/test directory:
 ```bash
-$ cmake .. -DNW_GRAPH_BUILD_TESTS=ON (or OFF)
+$ cmake .. -DNWGRAPH_BUILD_TESTS=ON (or OFF)
 ```
 To generate applications under build/bench/ directory:
 ```bash
-$ cmake .. -DNW_GRAPH_BUILD_BENCH=ON (or OFF)
+$ cmake .. -DNWGRAPH_BUILD_BENCH=ON (or OFF)
 ```
 To generate abstraction penalty under build/abp/ directory:
 ```bash
-$ cmake .. -DNW_GRAPH_BUILD_APBS=OFF (or ON)
+$ cmake .. -DNWGRAPH_BUILD_APBS=OFF (or ON)
 ```
 To generate tools under build/example/ directory:
 ```bash
-$ cmake .. -DNW_GRAPH_BUILD_EXAMPLES=OFF (or ON)
+$ cmake .. -DNWGRAPH_BUILD_EXAMPLES=OFF (or ON)
 ```
  
 If cmake is not able to find TBB in its expected places, you may get an error during the cmake step.  In this case, you need to set the `TBBROOT` environment variable to the location where oneTBB was installed.  For example:

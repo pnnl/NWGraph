@@ -27,7 +27,7 @@ private:
 public:
     using iterator_category = std::random_access_iterator_tag;
     using value_type        = T;
-    using difference_type   = std::make_signed<T>::type;
+    using difference_type   = std::make_signed_t<T>;
     using reference         = value_type&;
     using pointer           = value_type*;
 
