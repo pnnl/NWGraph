@@ -19,13 +19,14 @@
 
 #include <algorithm>
 #include <cassert>
+#include <functional>
+#include <limits>
 #include <queue>
 #include <tuple>
 #include <vector>
-#include <limits>
 
-#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/adaptors/bfs_edge_range.hpp"
+#include "nwgraph/graph_concepts.hpp"
 
 namespace nw {
 namespace graph {
@@ -57,7 +58,7 @@ std::vector<Distance> dijkstra_er(const Graph& graph, vertex_id_t<Graph> source)
   for (auto&& [u, v, w] : bfs_edge_range2(graph, Q)) {
     if (distance[u] + w < distance[v]) {
       distance[v] = distance[u] + w;
-      Q.push({v, distance[v]});
+      Q.push({ v, distance[v] });
     }
   }
 
@@ -95,7 +96,7 @@ auto dijkstra(
 
   std::priority_queue<weighted_vertex, std::vector<weighted_vertex>, std::greater<weighted_vertex>> Q;
 
-  Q.push({source, distance[source]});
+  Q.push({ source, distance[source] });
 
   while (!Q.empty()) {
 
@@ -107,7 +108,7 @@ auto dijkstra(
       auto w = weight(e);
       if (distance[u] + w < distance[v]) {
         distance[v] = distance[u] + w;
-        Q.push({v, distance[v]});
+        Q.push({ v, distance[v] });
       }
     });
   }

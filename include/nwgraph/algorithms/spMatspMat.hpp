@@ -49,25 +49,25 @@ namespace graph {
  * @param B Input matrix B
  * @return edge_list<directedness::directed, ScalarT> a weighted edge list 
  */
-template <typename ScalarT, adjacency_list_graph LGraphT, adjacency_list_graph RGraphT, 
-	  typename MapOpT = std::multiplies<ScalarT>, typename ReduceOpT = std::plus<ScalarT>>
+template <typename ScalarT, adjacency_list_graph LGraphT, adjacency_list_graph RGraphT, typename MapOpT = std::multiplies<ScalarT>,
+          typename ReduceOpT = std::plus<ScalarT>>
 edge_list<directedness::directed, ScalarT> spMatspMat(const LGraphT& A, const RGraphT& B) {
   edge_list<directedness::directed, ScalarT> edges(0);
   edges.open_for_push_back();
 
   using vertex_id_type = vertex_id_t<LGraphT>;
 
-  for (vertex_id_type i = 0; i < num_vertices(A); ++i)  {
+  for (vertex_id_type i = 0; i < num_vertices(A); ++i) {
 
     std::map<size_t, ScalarT> Ci_tmp;
 
-    for (auto && [k, a_ik] : A[i]) {
-      for (auto && [j, b_kj] : B[k]) {
-	
+    for (auto&& [k, a_ik] : A[i]) {
+      for (auto&& [j, b_kj] : B[k]) {
+
         // TODO: Do we really want semiring support.  If so,
         // what is best way to deal with additive identity?
         ScalarT tmp = MapOpT()(a_ik, b_kj);    // C_ij partial product
-	
+
         if (Ci_tmp.find(j) != Ci_tmp.end()) {
           Ci_tmp[j] = ReduceOpT()(Ci_tmp[j], tmp);
         } else {
@@ -77,7 +77,7 @@ edge_list<directedness::directed, ScalarT> spMatspMat(const LGraphT& A, const RG
     }
 
     // extract from the map and put in edge_list
-    for (auto const elt : Ci_tmp) {
+    for (auto const& elt : Ci_tmp) {
       edges.push_back(i, elt.first, elt.second);
     }
   }

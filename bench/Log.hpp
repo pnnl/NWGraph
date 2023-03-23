@@ -170,7 +170,7 @@ struct Log {
       for (auto&& sample : samples) {
         std::apply(
             [&, file = file, id = id, threads = threads](auto&&... values) {
-              (*this)(algorithm, "v" + std::to_string(id), threads, file, std::forward<decltype(values)>(values)...);
+              (*this)(algorithm, std::string("v") + std::to_string(id), threads, file, std::forward<decltype(values)>(values)...);
             },
             sample);
       }
