@@ -7,10 +7,6 @@ on:
     branches: [ master, sc_release ]
   workflow_dispatch: 
 
-#  pull_request:
-#    branches:
-#      - '*'
-
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
@@ -30,15 +26,13 @@ jobs:
     - name: prep
       run: |
         brew update
-        brew install tbb
 
     - name: cmake
       run: |
         cd NWgr
         mkdir build
         cd build
-        export TBBROOT=/opt/intel/oneapi/tbb/latest
-        cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=g++-11 -DNW_GRAPH_BUILD_DOCS=OFF -DNW_GRAPH_BUILD_TESTS=ON
+        cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=g++-11 -DNWGRAPH_BUILD_DOCS=OFF -DNWGRAPH_BUILD_TESTS=ON -DNWGRAPH_BUILD_BENCH=ON -DNWGRAPH_BUILD_EXAMPLES=ON -DNWGRAPH_BUILD_APBS=ON -DNWGRAPH_FETCH_TBB=ON
 
     - name: make
       run: |

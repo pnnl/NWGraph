@@ -288,12 +288,14 @@ auto tag_invoke(const num_vertices_tag, const index_edge_list<vertex_id, graph_b
 }
 
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto& tag_invoke(const source_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) { 
+auto& tag_invoke(const source_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&,
+                 const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
   return std::get<0>(e);
 }
 
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto& tag_invoke(const target_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
+auto& tag_invoke(const target_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&,
+                 const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
   return std::get<1>(e);
 }
 
