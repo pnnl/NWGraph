@@ -254,3 +254,6 @@ To experimentally evaluate the abstraction penalty of different containers for s
 ```bash
 $ apb/containers -f karate.mtx --format CSR --format VOV --format VOL --format VOF
 ```
+## References
+
+Lumsdaine, Andrew, Luke D’Alessandro, Kevin Deweese, Jesun Firoz, Xu Tony Liu, Scott McMillan, John Phillip Ratzloff, and Marcin Zalewski. "NWGraph: A Library of Generic Graph Algorithms and Data Structures in C++ 20." In 36th European Conference on Object-Oriented Programming (ECOOP) 2022.
