@@ -107,7 +107,7 @@ auto delta_stepping_m1(
  * @param weight Function to compute weight of an edge.
  */
 template <class distance_t, adjacency_list_graph Graph, class T, class Weight>
-auto delta_stepping(
+inline auto delta_stepping(
     const Graph& graph, vertex_id_t<Graph> source, T delta, Weight weight = [](auto& e) -> auto& { return std::get<1>(e); }) {
   using Id = vertex_id_t<Graph>;
   std::vector<distance_t>      tdist(num_vertices(graph), std::numeric_limits<distance_t>::max());
@@ -170,7 +170,7 @@ auto delta_stepping(
  * @param delta The delta parameter for the algorithm.
  */
 template <class distance_t, adjacency_list_graph Graph, class T>
-auto delta_stepping(const Graph& graph, vertex_id_t<Graph> source, T delta) {
+inline auto delta_stepping(const Graph& graph, vertex_id_t<Graph> source, T delta) {
   using Id = vertex_id_t<Graph>;
   tbb::queuing_mutex                                 lock;
   std::atomic<std::size_t>                           size = 1;

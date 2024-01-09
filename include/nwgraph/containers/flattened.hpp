@@ -158,7 +158,7 @@ public:
 
 /// Get a tbb split-able edge range with the passed cutoff.
 template <std::size_t... Attrs>
-flat_range<Attrs...> edges(std::ptrdiff_t cutoff = std::numeric_limits<std::ptrdiff_t>::max()) {
+inline flat_range<Attrs...> edges(std::ptrdiff_t cutoff = std::numeric_limits<std::ptrdiff_t>::max()) {
   flat_iterator<Attrs...> begin = {source(), to_be_indexed_.begin(), indices_.begin(), size(), 0, 0};
   flat_iterator<Attrs...> end   = {source(), to_be_indexed_.begin(),       indices_.begin(),
                                  size(),   index_t(indices_.size() - 1), index_t(to_be_indexed_.size())};
@@ -166,7 +166,7 @@ flat_range<Attrs...> edges(std::ptrdiff_t cutoff = std::numeric_limits<std::ptrd
 }
 
 template <std::size_t... Attrs>
-const_flat_range<Attrs...> edges(std::ptrdiff_t cutoff = std::numeric_limits<std::ptrdiff_t>::max()) const {
+inline const_flat_range<Attrs...> edges(std::ptrdiff_t cutoff = std::numeric_limits<std::ptrdiff_t>::max()) const {
   const_flat_iterator<Attrs...> begin = {source(), to_be_indexed_.begin(), indices_.begin(), size(), 0, 0};
   const_flat_iterator<Attrs...> end   = {source(), to_be_indexed_.begin(),       indices_.begin(),
                                        size(),   index_t(indices_.size() - 1), index_t(to_be_indexed_.size())};

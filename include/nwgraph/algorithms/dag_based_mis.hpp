@@ -34,7 +34,7 @@ namespace graph {
  * @param mis (out) Boolean vector indicating whether corresponding vertex is in the maximal independent set.
  */
 template <adjacency_list_graph Graph>
-void dag_based_mis(Graph& A, std::vector<bool>& mis) {
+inline void dag_based_mis(Graph& A, std::vector<bool>& mis) {
   size_t N = A.size();
 #ifdef PRINT_DEBUG
   std::cout << "size: " << N << std::endl;

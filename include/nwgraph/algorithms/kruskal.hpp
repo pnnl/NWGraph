@@ -36,7 +36,7 @@ namespace graph {
  * @return EdgeListT output edge list of the minimum spanning tree
  */
 template <edge_list_graph EdgeListT>
-EdgeListT kruskal(EdgeListT& E) {
+inline EdgeListT kruskal(EdgeListT& E) {
   return kruskal(E, [](auto t1, auto t2) { return std::get<2>(t1) < std::get<2>(t2); });
 }
 /**
@@ -49,7 +49,7 @@ EdgeListT kruskal(EdgeListT& E) {
  * @return EdgeListT output edge list of the minimum spanning tree
  */
 template <edge_list_graph EdgeListT, typename Compare>
-EdgeListT kruskal(EdgeListT& E, Compare comp) {
+inline EdgeListT kruskal(EdgeListT& E, Compare comp) {
   size_t    n_vtx = E.size();
   EdgeListT T(n_vtx);
   std::sort(E.begin(), E.end(), comp);

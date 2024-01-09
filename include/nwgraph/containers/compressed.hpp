@@ -50,12 +50,12 @@
 namespace nw {
 namespace graph {
 
-bool g_debug_compressed = false;
-bool g_time_compressed  = false;
+inline bool g_debug_compressed = false;
+inline bool g_time_compressed  = false;
 
-void debug_compressed(bool flag = true) { g_debug_compressed = flag; }
+inline void debug_compressed(bool flag = true) { g_debug_compressed = flag; }
 
-void time_compressed(bool flag = true) { g_time_compressed = flag; }
+inline void time_compressed(bool flag = true) { g_time_compressed = flag; }
 
 template <typename index_t, typename... Attributes>
 class indexed_struct_of_arrays {
@@ -305,10 +305,10 @@ public:    // fixme
     size_t st_size = indices_.size();
 
     outfile.write(reinterpret_cast<const char*>(magic_), sizeof(magic_));
-    outfile.write(reinterpret_cast<char*>(&N_), sizeof(size_t));
+    outfile.write(reinterpret_cast<char*>(&N_), sizeof(N_));
 
-    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     outfile.write(reinterpret_cast<char*>(indices_.data()), st_size * el_size);
     to_be_indexed_.serialize(outfile);
   }
@@ -324,10 +324,10 @@ public:    // fixme
     size_t st_size = -1;
 
     infile.read(reinterpret_cast<char*>(spell), sizeof(magic_));
-    infile.read(reinterpret_cast<char*>(&N_), sizeof(size_t));
+    infile.read(reinterpret_cast<char*>(&N_), sizeof(N_));
 
-    infile.read(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    infile.read(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    infile.read(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    infile.read(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     indices_.resize(st_size);
     infile.read(reinterpret_cast<char*>(indices_.data()), st_size * el_size);
     to_be_indexed_.deserialize(infile);
@@ -549,13 +549,13 @@ public:    // fixme
 };
 
 template <typename index_t, typename... Attributes>
-auto operator+(typename std::iter_difference_t<typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator> n,
-               const typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator&                           i) {
+inline auto operator+(typename std::iter_difference_t<typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator> n,
+                      const typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator&                           i) {
   return i + n;
 }
 
 template <std::signed_integral T, typename I>
-I operator+(T n, const I i) {
+inline I operator+(T n, const I i) {
   return i + n;
 }
 

@@ -58,7 +58,7 @@ constexpr auto trace = [](auto iter, auto error, auto time, auto max) {
  * @return auto a tuple of time duration and the result of the op (optional)
  */
 template <class Op>
-auto time_op(Op&& op) {
+inline auto time_op(Op&& op) {
   if constexpr (std::is_void_v<decltype(op())>) {
     auto start = std::chrono::high_resolution_clock::now();
     op();
@@ -87,8 +87,8 @@ auto time_op(Op&& op) {
  * @param num_threads number of threads
  */
 template <adjacency_list_graph Graph, typename Real>
-[[gnu::noinline]] void page_rank(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& degrees,
-                                     std::vector<Real>& page_rank, Real damping_factor, Real threshold, size_t max_iters, size_t num_threads) {
+[[gnu::noinline]] static void page_rank(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& degrees,
+                                        std::vector<Real>& page_rank, Real damping_factor, Real threshold, size_t max_iters, size_t num_threads) {
   std::size_t N          = graph.size();
   Real        init_score = 1.0 / N;
   Real        base_score = (1.0 - damping_factor) / N;

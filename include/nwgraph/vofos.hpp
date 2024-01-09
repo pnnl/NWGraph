@@ -118,7 +118,7 @@ auto tag_invoke(const num_vertices_tag, index_adj_flist<idx, vertex_id, Attribut
 #if 0
 
 template <typename... Attributes>
-graph_traits<std::vector<std::forward_list<std::tuple<Attributes...>>>>::num_vertices_type
+inline graph_traits<std::vector<std::forward_list<std::tuple<Attributes...>>>>::num_vertices_type
 num_vertices(const typename std::vector<std::forward_list<std::tuple<Attributes...>>>& g) {
   return { g.size() };
 }

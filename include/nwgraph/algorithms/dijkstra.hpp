@@ -41,7 +41,7 @@ namespace graph {
  * @return Vector of distances from the starting node for each vertex in the graph.
  */
 template <typename Distance, adjacency_list_graph Graph>
-std::vector<Distance> dijkstra_er(const Graph& graph, vertex_id_t<Graph> source) {
+inline std::vector<Distance> dijkstra_er(const Graph& graph, vertex_id_t<Graph> source) {
   using vertex_id_type = vertex_id_t<Graph>;
 
   size_t N(graph.end() - graph.begin());
@@ -80,7 +80,7 @@ std::vector<Distance> dijkstra_er(const Graph& graph, vertex_id_t<Graph> source)
 template <
     typename Distance, adjacency_list_graph Graph,
     std::invocable<inner_value_t<Graph>> Weight = std::function<std::tuple_element_t<1, inner_value_t<Graph>>(const inner_value_t<Graph>&)>>
-auto dijkstra(
+inline auto dijkstra(
     const Graph& graph, vertex_id_t<Graph> source, Weight weight = [](auto& e) { return std::get<1>(e); }) {
   using vertex_id_type = vertex_id_t<Graph>;
 

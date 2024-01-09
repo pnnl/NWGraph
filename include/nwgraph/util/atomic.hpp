@@ -23,7 +23,7 @@ namespace nw {
 namespace graph {
 /// @returns            The loaded value.
 template <std::memory_order order, class T>
-constexpr auto load(T&& t) {
+inline constexpr auto load(T&& t) {
   if constexpr (is_atomic_v<std::decay_t<T>>) {
     return std::forward<T>(t).load(order);
   } else {
@@ -43,7 +43,7 @@ constexpr auto load(T&& t) {
 /// @param            t The variable to store to.
 /// @param            u The value to store.
 template <std::memory_order order, class T, class U>
-constexpr void store(T&& t, U&& u) {
+inline constexpr void store(T&& t, U&& u) {
   if constexpr (is_atomic_v<std::decay_t<T>>) {
     std::forward<T>(t).store(std::forward<U>(u), order);
   } else {
@@ -72,7 +72,7 @@ constexpr void store(T&& t, U&& u) {
 ///                false Otherwise (`u` is updated)
 template <std::memory_order success = std::memory_order_acq_rel, std::memory_order failure = std::memory_order_acquire, class T, class U,
           class V>
-constexpr bool cas(T&& t, U&& u, V&& v) {
+inline constexpr bool cas(T&& t, U&& u, V&& v) {
   if constexpr (is_atomic_v<std::decay_t<T>>) {
     return std::forward<T>(t).compare_exchange_strong(std::forward<U>(u), std::forward<V>(v), success, failure);
   } else {
@@ -88,12 +88,12 @@ constexpr bool cas(T&& t, U&& u, V&& v) {
 ///
 /// @return             The loaded value.
 template <class T>
-constexpr auto acquire(T&& t) {
+inline constexpr auto acquire(T&& t) {
   return load<std::memory_order_acquire>(std::forward<T>(t));
 }
 
 template <class T>
-constexpr auto relaxed(T&& t) {
+inline constexpr auto relaxed(T&& t) {
   return load<std::memory_order_relaxed>(std::forward<T>(t));
 }
 
@@ -105,12 +105,12 @@ constexpr auto relaxed(T&& t) {
 /// @param            t The variable to store to.
 /// @param            u The value to store.
 template <class T, class U>
-constexpr void release(T&& t, U&& u) {
+inline constexpr void release(T&& t, U&& u) {
   store<std::memory_order_release>(std::forward<T>(t), std::forward<U>(u));
 }
 
 template <class T, class U>
-constexpr void relaxed(T&& t, U&& u) {
+inline constexpr void relaxed(T&& t, U&& u) {
   store<std::memory_order_relaxed>(std::forward<T>(t), std::forward<U>(u));
 }
 
@@ -129,7 +129,7 @@ constexpr void relaxed(T&& t, U&& u) {
 ///
 /// @returns            The value of the variable prior to the add operation.
 template <std::memory_order order = std::memory_order_acq_rel, class T, class U>
-constexpr auto fetch_add(T&& t, U&& u) {
+inline constexpr auto fetch_add(T&& t, U&& u) {
   if constexpr (is_atomic_v<std::decay_t<T>>) {
     if constexpr (std::is_floating_point_v<remove_atomic_t<std::decay_t<T>>>) {
       auto&& e = acquire(t);
@@ -153,7 +153,7 @@ constexpr auto fetch_add(T&& t, U&& u) {
 }
 
 template <std::memory_order order = std::memory_order_acq_rel, class T, class U>
-constexpr auto fetch_or(T&& t, U&& u) {
+inline constexpr auto fetch_or(T&& t, U&& u) {
   static_assert(!std::is_floating_point_v<std::decay_t<T>>, "Logical fetch_or invalid for floating point types.");
   if constexpr (is_atomic_v<std::decay_t<T>>) {
     return std::forward<T>(t).fetch_or(std::forward<U>(u), order);

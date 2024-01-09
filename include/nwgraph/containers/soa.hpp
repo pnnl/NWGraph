@@ -305,8 +305,8 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   void serialize(std::ostream& outfile, const T& vs) const {
     size_t st_size = vs.size();
     size_t el_size = sizeof(vs[0]);
-    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     outfile.write(reinterpret_cast<const char*>(vs.data()), st_size * el_size);
   }
 
@@ -314,16 +314,16 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   void deserialize(std::istream& infile, T& vs) {
     size_t st_size = -1;
     size_t el_size = -1;
-    infile.read(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    infile.read(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    infile.read(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    infile.read(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     infile.read(reinterpret_cast<char*>(vs.data()), st_size * el_size);
   }
 
   void serialize(std::ostream& outfile) const {
     size_t st_size = std::get<0>(*this).size();
     size_t el_size = std::tuple_size<storage_type>::value;
-    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     std::apply([&](auto&... vs) { (serialize(outfile, vs), ...); }, *this);
   }
 
@@ -335,8 +335,8 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
   void deserialize(std::istream& infile) {
     size_t st_size = -1;
     size_t el_size = -1;
-    infile.read(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    infile.read(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    infile.read(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    infile.read(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     resize(st_size);
     std::apply([&](auto&... vs) { (deserialize(infile, vs), ...); }, *this);
   }

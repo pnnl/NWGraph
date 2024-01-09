@@ -42,7 +42,7 @@ namespace graph {
  * @return size_t the number of triangles
  */
 template <adjacency_list_graph GraphT>
-size_t triangle_count(const GraphT& A) {
+inline size_t triangle_count(const GraphT& A) {
   size_t triangles = 0;
   auto   first     = A.begin();
   auto   last      = A.end();
@@ -68,7 +68,7 @@ size_t triangle_count(const GraphT& A) {
 ///
 /// @return             The += reduced total of counted triangles.
 template <class Op>
-std::size_t triangle_count_async(std::size_t threads, Op&& op) {
+inline std::size_t triangle_count_async(std::size_t threads, Op&& op) {
   // Launch the workers.
   std::vector<std::future<size_t>> futures(threads);
   for (std::size_t tid = 0; tid < threads; ++tid) {
@@ -94,7 +94,7 @@ std::size_t triangle_count_async(std::size_t threads, Op&& op) {
  * @return std::size_t number of triangles
  */
 template <adjacency_list_graph Graph>
-[[gnu::noinline]] std::size_t triangle_count(const Graph& G, std::size_t threads) {
+[[gnu::noinline]] static std::size_t triangle_count(const Graph& G, std::size_t threads) {
   auto first = G.begin();
   auto last = G.end();
   return triangle_count_async(threads, [&](std::size_t tid) {

@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# Temporary files
+.cache
+.idea
+
 # Compiled Object files
 *.slo
 *.lo

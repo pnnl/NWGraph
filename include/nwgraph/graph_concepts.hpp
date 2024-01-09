@@ -88,13 +88,13 @@ using inner_reference_t = std::ranges::range_reference_t<inner_range_t<G>>;
 
 
 template <size_t N, typename... Ts>
-auto nth_cdr(std::tuple<Ts...> t) {
+inline auto nth_cdr(std::tuple<Ts...> t) {
   return [&]<std::size_t... Ns>(std::index_sequence<Ns...>) { return std::tuple{std::get<Ns + N>(t)...}; }
   (std::make_index_sequence<sizeof...(Ts) - N>());
 }
 
 template <typename... Ts>
-auto props(std::tuple<Ts...> t) {
+inline auto props(std::tuple<Ts...> t) {
   return nth_cdr<2>(t);
 }
 
@@ -285,23 +285,23 @@ struct graph_traits<G> {
 
 // target CPO
 template <idx_adjacency_list T, class U>
-auto& tag_invoke(const target_tag, const T& graph, const U& e) {
+inline auto& tag_invoke(const target_tag, const T& graph, const U& e) {
   return std::get<0>(e);
 }
 
 template <min_idx_adjacency_list T, class U>
-auto& tag_invoke(const target_tag, const T& graph, const U& e) {
+inline auto& tag_invoke(const target_tag, const T& graph, const U& e) {
   return e;
 }
 
 // num_vertices CPO
 template <idx_adjacency_list T>
-auto tag_invoke(const num_vertices_tag, const T& graph) {
+inline auto tag_invoke(const num_vertices_tag, const T& graph) {
   return (vertex_id_t<T>) graph.size();
 }
 
 template <min_idx_adjacency_list T>
-auto tag_invoke(const num_vertices_tag, const T& graph) {
+inline auto tag_invoke(const num_vertices_tag, const T& graph) {
   return (vertex_id_t<T>) graph.size();
 }
 

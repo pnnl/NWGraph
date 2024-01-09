@@ -34,7 +34,7 @@ namespace util {
 //}
 
 template <typename ThingToSort, typename Comparator, typename IntT, class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
-void proxysort(const ThingToSort& x, std::vector<IntT>& perm, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
+inline void proxysort(const ThingToSort& x, std::vector<IntT>& perm, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
   assert(perm.size() == x.size());
 
 #if 0
@@ -58,7 +58,7 @@ void proxysort(const ThingToSort& x, std::vector<IntT>& perm, Comparator comp = 
 }
 
 template <typename IntT = uint32_t, typename Comparator, typename ThingToSort, class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
-auto proxysort(const ThingToSort& x, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
+inline auto proxysort(const ThingToSort& x, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
   std::vector<IntT> perm(x.size());
   proxysort(x, perm, comp, policy);
   return perm;

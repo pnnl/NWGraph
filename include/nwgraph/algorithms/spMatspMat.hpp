@@ -51,7 +51,7 @@ namespace graph {
  */
 template <typename ScalarT, adjacency_list_graph LGraphT, adjacency_list_graph RGraphT, typename MapOpT = std::multiplies<ScalarT>,
           typename ReduceOpT = std::plus<ScalarT>>
-edge_list<directedness::directed, ScalarT> spMatspMat(const LGraphT& A, const RGraphT& B) {
+inline edge_list<directedness::directed, ScalarT> spMatspMat(const LGraphT& A, const RGraphT& B) {
   edge_list<directedness::directed, ScalarT> edges(0);
   edges.open_for_push_back();
 
@@ -103,7 +103,7 @@ edge_list<directedness::directed, ScalarT> spMatspMat(const LGraphT& A, const RG
  * @param map map operation
  */
 template <class InputIt1, class InputIt2, class Output, class Compare, class Map>
-void set_ewise_intersection(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Output& container, Compare comp, Map map) {
+inline void set_ewise_intersection(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Output& container, Compare comp, Map map) {
   while (first1 != last1 && first2 != last2) {
     if (comp(*first1, *first2)) {
       ++first1;
@@ -134,7 +134,7 @@ void set_ewise_intersection(InputIt1 first1, InputIt1 last1, InputIt2 first2, In
  */
 template <typename ScalarT, adjacency_list_graph LGraphT, adjacency_list_graph RGraphT, typename MapOpT = std::multiplies<ScalarT>,
           typename ReduceOpT = std::plus<ScalarT>>
-edge_list<directedness::directed, ScalarT> spMatspMatT(LGraphT& A, RGraphT& BT) {
+inline edge_list<directedness::directed, ScalarT> spMatspMatT(LGraphT& A, RGraphT& BT) {
   std::vector<ScalarT> products;
 
   using vertex_id_type = vertex_id_t<LGraphT>;
