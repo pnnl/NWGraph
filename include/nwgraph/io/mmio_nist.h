@@ -41,7 +41,7 @@ typedef char MM_typecode[4];
 #define mm_is_skew(typecode)	((typecode)[3]=='K')
 #define mm_is_hermitian(typecode)((typecode)[3]=='H')
 
-int mm_is_valid(MM_typecode matcode)
+inline int mm_is_valid(MM_typecode matcode)
 {
     if (!mm_is_matrix(matcode)) return 0;
     if (mm_is_dense(matcode) && mm_is_pattern(matcode)) return 0;
@@ -104,29 +104,29 @@ int mm_is_valid(MM_typecode matcode)
 
  ***********************************************************************/
 
-char MM_MTX_STR[]        = "matrix";
-char MM_ARRAY_STR[]      = "array";
-char MM_DENSE_STR[]      = "array";
-char MM_COORDINATE_STR[] = "coordinate"; 
-char MM_SPARSE_STR[]     = "coordinate";
-char MM_COMPLEX_STR[]    = "complex";
-char MM_REAL_STR[]       = "real";
-char MM_INT_STR[]        = "integer";
-char MM_GENERAL_STR[]    = "general";
-char MM_SYMM_STR[]       = "symmetric";
-char MM_HERM_STR[]       = "hermitian";
-char MM_SKEW_STR[]       = "skew-symmetric";
-char MM_PATTERN_STR[]    = "pattern";
+inline char MM_MTX_STR[]        = "matrix";
+inline char MM_ARRAY_STR[]      = "array";
+inline char MM_DENSE_STR[]      = "array";
+inline char MM_COORDINATE_STR[] = "coordinate"; 
+inline char MM_SPARSE_STR[]     = "coordinate";
+inline char MM_COMPLEX_STR[]    = "complex";
+inline char MM_REAL_STR[]       = "real";
+inline char MM_INT_STR[]        = "integer";
+inline char MM_GENERAL_STR[]    = "general";
+inline char MM_SYMM_STR[]       = "symmetric";
+inline char MM_HERM_STR[]       = "hermitian";
+inline char MM_SKEW_STR[]       = "skew-symmetric";
+inline char MM_PATTERN_STR[]    = "pattern";
 
 
-char *mm_strdup(const char *s)
+inline char *mm_strdup(const char *s)
 {
 	int len = strlen(s);
 	char *s2 = (char *) malloc((len+1)*sizeof(char));
 	return strcpy(s2, s);
 }
 
-char *mm_typecode_to_str(MM_typecode matcode)
+inline char *mm_typecode_to_str(MM_typecode matcode)
 {
     char buffer[MM_MAX_LINE_LENGTH];
     char *types[4];
@@ -181,7 +181,7 @@ char *mm_typecode_to_str(MM_typecode matcode)
 
 }
 
-int mm_read_banner(FILE *f, MM_typecode *matcode)
+inline int mm_read_banner(FILE *f, MM_typecode *matcode)
 {
     char line[MM_MAX_LINE_LENGTH];
     char banner[MM_MAX_TOKEN_LENGTH];
@@ -266,7 +266,7 @@ int mm_read_banner(FILE *f, MM_typecode *matcode)
     return 0;
 }
 
-int mm_read_mtx_crd_size(FILE *f, int *M, int *N, int *nz )
+inline int mm_read_mtx_crd_size(FILE *f, int *M, int *N, int *nz )
 {
     char line[MM_MAX_LINE_LENGTH];
     int num_items_read;
@@ -296,7 +296,7 @@ int mm_read_mtx_crd_size(FILE *f, int *M, int *N, int *nz )
     return 0;
 }
 
-int mm_read_mtx_array_size(FILE *f, int *M, int *N)
+inline int mm_read_mtx_array_size(FILE *f, int *M, int *N)
 {
     char line[MM_MAX_LINE_LENGTH];
     int num_items_read;

@@ -36,7 +36,7 @@ namespace std {
 
 #if 1
 template <class... Ts> requires (nw::graph::is_swappable<Ts>::value && ...)
-void swap(std::tuple<Ts...>&& x, std::tuple<Ts...>&& y) 
+inline void swap(std::tuple<Ts...>&& x, std::tuple<Ts...>&& y) 
 {
     using std::swap;
     using std::get;
@@ -46,13 +46,13 @@ void swap(std::tuple<Ts...>&& x, std::tuple<Ts...>&& y)
 }
 #else
 template <class... Ts, std::size_t... Is>
-void swap(std::tuple<Ts&...>&& x, std::tuple<Ts&...>&& y, std::index_sequence<Is...>) {
+inline void swap(std::tuple<Ts&...>&& x, std::tuple<Ts&...>&& y, std::index_sequence<Is...>) {
 
   (std::swap(std::get<Is>(x), std::get<Is>(y)), ...);
 }
 
 template <class... Ts>
-void swap(std::tuple<Ts&...>&& x, std::tuple<Ts&...>&& y) {
+inline void swap(std::tuple<Ts&...>&& x, std::tuple<Ts&...>&& y) {
   
   swap(std::move(x), std::move(y), std::make_index_sequence<sizeof...(Ts)>());
 }

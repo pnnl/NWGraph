@@ -48,7 +48,7 @@ namespace graph {
 ///
 /// @returns            The size of the intersected set.
 template <class A, class B, class C, class D, class ExecutionPolicy>
-std::size_t intersection_size(A i, B&& ie, C j, D&& je, ExecutionPolicy&& ep) {
+inline std::size_t intersection_size(A i, B&& ie, C j, D&& je, ExecutionPolicy&& ep) {
   // Custom comparator because we know our iterator operator* produces tuples
   // and we only care about the first value.
   static constexpr auto lt = [](auto&& x, auto&& y) { return std::get<0>(x) < std::get<0>(y); };
@@ -97,7 +97,7 @@ std::size_t intersection_size(A i, B&& ie, C j, D&& je, ExecutionPolicy&& ep) {
 /// @returns            The size of the intersected set.
 template <class R, class S, class ExecutionPolicy,
           std::enable_if_t<std::is_execution_policy_v<std::decay_t<ExecutionPolicy>>, void**> = nullptr>
-std::size_t intersection_size(R&& i, S&& j, ExecutionPolicy&& ep) {
+inline std::size_t intersection_size(R&& i, S&& j, ExecutionPolicy&& ep) {
   return intersection_size(i.begin(), i.end(), j.begin(), j.end(), std::forward<ExecutionPolicy>(ep));
 }
 
@@ -120,7 +120,7 @@ std::size_t intersection_size(R&& i, S&& j, ExecutionPolicy&& ep) {
 /// @returns            The size of the intersected set.
 template <class A, class B, class Range, class ExecutionPolicy,
           std::enable_if_t<std::is_execution_policy_v<std::decay_t<ExecutionPolicy>>, void**> = nullptr>
-std::size_t intersection_size(A&& i, B&& ie, Range&& j, ExecutionPolicy&& ep) {
+inline std::size_t intersection_size(A&& i, B&& ie, Range&& j, ExecutionPolicy&& ep) {
   return intersection_size(std::forward<A>(i), std::forward<B>(ie), j.begin(), j.end(), std::forward<ExecutionPolicy>(ep));
 }
 
@@ -142,7 +142,7 @@ std::size_t intersection_size(A&& i, B&& ie, Range&& j, ExecutionPolicy&& ep) {
 ///
 /// @returns            The size of the intersected set.
 template <class A, class B, class C, class D, std::enable_if_t<!std::is_execution_policy_v<std::decay_t<D>>, void**> = nullptr>
-std::size_t intersection_size(A&& i, B&& ie, C&& j, D&& je) {
+inline std::size_t intersection_size(A&& i, B&& ie, C&& j, D&& je) {
   return intersection_size(std::forward<A>(i), std::forward<B>(ie), std::forward<C>(j), std::forward<D>(je), std::execution::seq);
 }
 
@@ -159,7 +159,7 @@ std::size_t intersection_size(A&& i, B&& ie, C&& j, D&& je) {
 ///
 /// @returns            The size of the intersected set.
 template <class R, class S>
-std::size_t intersection_size(R&& i, S&& j) {
+inline std::size_t intersection_size(R&& i, S&& j) {
   return intersection_size(i.begin(), i.end(), j.begin(), j.end(), std::execution::seq);
 }
 
@@ -180,7 +180,7 @@ std::size_t intersection_size(R&& i, S&& j) {
 ///
 /// @returns            The size of the intersected set.
 template <class A, class B, class Range, std::enable_if_t<!std::is_execution_policy_v<std::decay_t<Range>>, void**> = nullptr>
-std::size_t intersection_size(A&& i, B&& ie, Range&& j) {
+inline std::size_t intersection_size(A&& i, B&& ie, Range&& j) {
   return intersection_size(std::forward<A>(i), std::forward<B>(ie), j.begin(), j.end(), std::execution::seq);
 }
 }    // namespace graph

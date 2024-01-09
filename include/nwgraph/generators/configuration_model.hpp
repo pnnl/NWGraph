@@ -27,7 +27,7 @@ namespace graph {
 * dist_min - Minimum value of distribution.  
 * dist_max - Maximum value of distribution.
 */
-std::size_t power_gen (double dist_min, double dist_max) {
+inline std::size_t power_gen (double dist_min, double dist_max) {
   /* Inverse square.  */
   double exponent = -2;
 
@@ -50,7 +50,7 @@ static double standard_exponential_unlikely(bitgen_t *bitgen_state,
     return random_standard_exponential(bitgen_state);
   }
 }
-double random_standard_exponential(bitgen_t *bitgen_state) {
+inline double random_standard_exponential(bitgen_t *bitgen_state) {
   uint64_t ri;
   uint8_t idx;
   double x;
@@ -65,11 +65,12 @@ double random_standard_exponential(bitgen_t *bitgen_state) {
   return standard_exponential_unlikely(bitgen_state, idx, x);
 }
 
-double random_power(bitgen_t *bitgen_state, double a) {
+inline double random_power(bitgen_t *bitgen_state, double a) {
   return pow(1 - exp(-random_standard_exponential(bitgen_state)), 1. / a);
 }
 
-std::vector<std::size_t> power_law_gen(double std::size_t samples)
+// todo: The following line seems problematic
+// std::vector<std::size_t> power_law_gen(double std::size_t samples)
 /*
 * Return a random undirected bipartite graph (in edge_list) from two given degree sequences.
 * The bipartite graph is composed of two partitions. 
@@ -83,7 +84,7 @@ std::vector<std::size_t> power_law_gen(double std::size_t samples)
 * 
 */
 template<class T>
-nw::graph::edge_list<nw::graph::undirected> 
+inline nw::graph::edge_list<nw::graph::undirected> 
 configuration_model(std::vector<T>& deg_seqa, std::vector<T>& deg_seqb, bool contiguous_id_space = false) {
     //validate degree sequences such that their summation are equivalent
     nw::graph::edge_list<nw::graph::undirected> el;

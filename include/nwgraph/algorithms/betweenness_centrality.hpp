@@ -57,8 +57,8 @@ namespace nw {
 namespace graph {
 
 template <class score_t, class accum_t, adjacency_list_graph Graph>
-bool BCVerifier(const Graph& g, std::vector<typename graph_traits<Graph>::vertex_id_type>& trial_sources,
-                std::vector<score_t>& scores_to_test, bool normalize = true) {
+inline bool BCVerifier(const Graph& g, std::vector<typename graph_traits<Graph>::vertex_id_type>& trial_sources,
+                       std::vector<score_t>& scores_to_test, bool normalize = true) {
   using vertex_id_type = typename graph_traits<Graph>::vertex_id_type;
 
   std::vector<score_t> scores(num_vertices(g), 0);
@@ -139,7 +139,7 @@ bool BCVerifier(const Graph& g, std::vector<typename graph_traits<Graph>::vertex
  * @return Vector of centrality for each vertex.
  */
 template <adjacency_list_graph Graph, typename score_t = float, typename accum_t = size_t>
-std::vector<score_t> brandes_bc(const Graph& G, bool normalize = true) {
+inline std::vector<score_t> brandes_bc(const Graph& G, bool normalize = true) {
   using vertex_id_type = typename Graph::vertex_id_type;
 
   size_t               n_vtx = num_vertices(G);
@@ -217,8 +217,8 @@ std::vector<score_t> brandes_bc(const Graph& G, bool normalize = true) {
  */
 template <class score_t, class accum_t, adjacency_list_graph Graph, class OuterExecutionPolicy = std::execution::parallel_unsequenced_policy,
           class InnerExecutionPolicy = std::execution::parallel_unsequenced_policy>
-auto brandes_bc(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& sources, int threads,
-                OuterExecutionPolicy&& outer_policy = {}, InnerExecutionPolicy&& inner_policy = {}, bool normalize = true) {
+inline auto brandes_bc(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& sources, int threads,
+                       OuterExecutionPolicy&& outer_policy = {}, InnerExecutionPolicy&& inner_policy = {}, bool normalize = true) {
   using vertex_id_type = typename Graph::vertex_id_type;
 
   vertex_id_type       N     = num_vertices(graph);
@@ -345,8 +345,8 @@ auto brandes_bc(const Graph& graph, const std::vector<typename Graph::vertex_id_
  */
 template <class score_t, class accum_t, adjacency_list_graph Graph, class OuterExecutionPolicy = std::execution::parallel_unsequenced_policy,
           class InnerExecutionPolicy = std::execution::parallel_unsequenced_policy>
-auto exact_brandes_bc(const Graph& graph, int threads,
-                OuterExecutionPolicy&& outer_policy = {}, InnerExecutionPolicy&& inner_policy = {}, bool normalize = true) {
+inline auto exact_brandes_bc(const Graph& graph, int threads,
+                             OuterExecutionPolicy&& outer_policy = {}, InnerExecutionPolicy&& inner_policy = {}, bool normalize = true) {
   using vertex_id_type = typename Graph::vertex_id_type;
   vertex_id_type       N     = num_vertices(graph);
   std::vector<vertex_id_type> sources(N);

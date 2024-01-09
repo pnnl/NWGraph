@@ -18,7 +18,7 @@ template <class... Ts>
 struct print_types_t;
 
 template <class... Ts>
-constexpr auto print_types(Ts...) {
+inline constexpr auto print_types(Ts...) {
   return print_types_t<Ts...>{};
 }
 

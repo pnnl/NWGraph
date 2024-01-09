@@ -43,7 +43,7 @@ namespace graph {
  * @return size_t Jaccard similarity score.
  */
 template <adjacency_list_graph GraphT, typename Weight>
-size_t jaccard_similarity(GraphT& G, Weight weight) {
+inline size_t jaccard_similarity(GraphT& G, Weight weight) {
   size_t ctr = 0;
 
   for (size_t u = 0; u < num_vertices(G); ++u) {

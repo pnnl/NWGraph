@@ -23,7 +23,7 @@ namespace graph {
 /// @returns            A `std::priority_queue` instantiated with the proper
 ///                     types.
 template <class T, class Container, class Compare>
-constexpr auto make_priority_queue(Compare&& compare) {
+inline constexpr auto make_priority_queue(Compare&& compare) {
   using PQ = std::priority_queue<T, Container, std::decay_t<Compare>>;
   return PQ{std::forward<Compare>(compare)};
 }
@@ -42,7 +42,7 @@ constexpr auto make_priority_queue(Compare&& compare) {
 /// @returns            A `std::priority_queue` wrapping a `std::vector<T>` that
 ///                     uses the passed `compare` operation.
 template <class T, class Compare>
-constexpr auto make_priority_queue(Compare&& compare) {
+inline constexpr auto make_priority_queue(Compare&& compare) {
   return make_priority_queue<T, std::vector<T>>(std::forward<Compare>(compare));
 }
 }    // namespace graph

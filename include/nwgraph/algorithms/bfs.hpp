@@ -42,7 +42,7 @@ namespace nw {
 namespace graph {
   
 template <adjacency_list_graph Graph, adjacency_list_graph GraphT>
-bool BFSVerifier(const Graph& g, GraphT& g_t, vertex_id_t<Graph> source, std::vector<vertex_id_t<Graph>>& parent) {
+inline bool BFSVerifier(const Graph& g, GraphT& g_t, vertex_id_t<Graph> source, std::vector<vertex_id_t<Graph>>& parent) {
   using vertex_id_type = vertex_id_t<Graph>;
 
   std::vector<vertex_id_type> depth(num_vertices(g), std::numeric_limits<vertex_id_type>::max());
@@ -108,7 +108,7 @@ bool BFSVerifier(const Graph& g, GraphT& g_t, vertex_id_t<Graph> source, std::ve
    * @return The parent list.
    */
 template <adjacency_list_graph Graph>
-auto bfs(const Graph& graph, vertex_id_t<Graph> root) {
+inline auto bfs(const Graph& graph, vertex_id_t<Graph> root) {
   using vertex_id_type = vertex_id_t<Graph>;
 
   std::deque<vertex_id_type>  q1, q2;
@@ -158,8 +158,8 @@ auto bfs(const Graph& graph, vertex_id_t<Graph> root) {
  * @return The parent list.
  */
 template <adjacency_list_graph OutGraph, adjacency_list_graph InGraph>
-[[gnu::noinline]] auto bfs(const OutGraph& out_graph, const InGraph& in_graph, vertex_id_t<OutGraph> root, int num_bins = 32, int alpha = 15,
-                           int beta = 18) {
+[[gnu::noinline]] static auto bfs(const OutGraph& out_graph, const InGraph& in_graph, vertex_id_t<OutGraph> root,
+                                  int num_bins = 32, int alpha = 15, int beta = 18) {
 
   using vertex_id_type = vertex_id_t<OutGraph>;
 

@@ -147,7 +147,7 @@ struct counter    // : public std::iterator<std::output_iterator_tag, std::ptrdi
 ///
 /// @returns            A tuple composed of the proper elements from `t`.
 template <std::size_t... Is, class Tuple, class = std::enable_if_t<is_tuple_v<std::decay_t<Tuple>>>>
-constexpr auto select(Tuple&& t) -> std::tuple<std::tuple_element_t<Is, std::decay_t<Tuple>>...> {
+inline constexpr auto select(Tuple&& t) -> std::tuple<std::tuple_element_t<Is, std::decay_t<Tuple>>...> {
   static_assert(((Is < std::tuple_size_v<std::decay_t<Tuple>>)&&...), "tuple index out of range during select");
   return {std::forward<std::tuple_element_t<Is, std::decay_t<Tuple>>>(std::get<Is>(std::forward<Tuple>(t)))...};
 }
@@ -168,39 +168,39 @@ inline constexpr auto null_vertex_v() {
 
 template <typename InputIterator, typename RandomAccessIterator,
           typename = std::enable_if_t<nw::graph::is_tuple_v<typename InputIterator::value_type>>>
-void histogram(InputIterator first, InputIterator last, RandomAccessIterator o_first, RandomAccessIterator o_last, size_t idx = 0) {
+inline void histogram(InputIterator first, InputIterator last, RandomAccessIterator o_first, RandomAccessIterator o_last, size_t idx = 0) {
   std::fill(o_first, o_last, 0);
   std::for_each(first, last, [&](auto& i) { o_first[std::get<idx>(i)]++; });
 };
 
 template <typename InputIterator, typename RandomAccessIterator>
-void histogram(InputIterator first, InputIterator last, RandomAccessIterator o_first, RandomAccessIterator o_last) {
+inline void histogram(InputIterator first, InputIterator last, RandomAccessIterator o_first, RandomAccessIterator o_last) {
   std::fill(o_first, o_last, 0);
   std::for_each(first, last, [&](auto& i) { o_first[i]++; });
 };
 
 template <typename T>
-constexpr typename std::underlying_type<T>::type idx(T value) {
+inline constexpr typename std::underlying_type<T>::type idx(T value) {
   return static_cast<typename std::underlying_type<T>::type>(value);
 }
 
 template <typename OuterIter>
-auto get_source(OuterIter& outer) {
+inline auto get_source(OuterIter& outer) {
   return outer.get_index();
 };
 
 template <typename InnerIter>
-auto get_target(InnerIter& inner) {
+inline auto get_target(InnerIter& inner) {
   return std::get<0>(*inner);
 };
 
 template <size_t Idx, typename Iterator>
-auto property(Iterator& inner) {
+inline auto property(Iterator& inner) {
   return std::get<Idx>(*inner);
 }
 
 template <size_t Idx, typename Iterator>
-auto property_ptr(Iterator& inner) {
+inline auto property_ptr(Iterator& inner) {
   return &std::get<Idx>(*inner);
 }
 

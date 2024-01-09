@@ -32,7 +32,7 @@ namespace graph {
 ///       op(unpack(i)...) if `i` is a tuple type
 /// parallel_for_inner(*i) otherwise
 template <class Op, class It>
-auto parallel_for_inner(Op&& op, It&& i) {
+inline auto parallel_for_inner(Op&& op, It&& i) {
   if constexpr (is_tuple_v<std::decay_t<It>>) {
     return std::apply([&](auto&&... args) { return std::forward<Op>(op)(std::forward<decltype(args)>(args)...); }, std::forward<It>(i));
   } else if constexpr (std::is_integral_v<std::decay_t<It>>) {
@@ -54,7 +54,7 @@ auto parallel_for_inner(Op&& op, It&& i) {
 /// @param        range The range to process.
 /// @param           op The operator to evaluate.
 template <class Range, class Op>
-void parallel_for_sequential(Range&& range, Op&& op) {
+inline void parallel_for_sequential(Range&& range, Op&& op) {
   for (auto &&i = range.begin(), e = range.end(); i != e; ++i) {
     parallel_for_inner(op, i);
   }
@@ -75,7 +75,7 @@ void parallel_for_sequential(Range&& range, Op&& op) {
 /// @returns            The result of `reduce(op(i), ...)` for all `i` in
 ///                     `range`.
 template <class Range, class Op, class Reduce, class T>
-auto parallel_for_sequential(Range&& range, Op&& op, Reduce&& reduce, T init) {
+inline auto parallel_for_sequential(Range&& range, Op&& op, Reduce&& reduce, T init) {
   for (auto &&i = range.begin(), e = range.end(); i != e; ++i) {
     init = reduce(init, parallel_for_inner(op, i));
   }
@@ -95,7 +95,7 @@ auto parallel_for_sequential(Range&& range, Op&& op, Reduce&& reduce, T init) {
 /// @param        range The range to process.
 /// @param           op The operator to evaluate.
 template <class Range, class Op>
-void parallel_for(Range&& range, Op&& op) {
+inline void parallel_for(Range&& range, Op&& op) {
   if (range.is_divisible()) {
     tbb::parallel_for(std::forward<Range>(range),
                       [&](auto&& sub) { parallel_for_sequential(std::forward<decltype(sub)>(sub), std::forward<Op>(op)); });
@@ -123,7 +123,7 @@ void parallel_for(Range&& range, Op&& op) {
 /// @returns            The result of `reduce(op(i), ...)` for all `i` in
 ///                     `range`.
 template <class Range, class Op, class Reduce, class T>
-auto parallel_reduce(Range&& range, Op&& op, Reduce&& reduce, T init) {
+inline auto parallel_reduce(Range&& range, Op&& op, Reduce&& reduce, T init) {
   if (range.is_divisible()) {
     return tbb::parallel_reduce(
         std::forward<Range>(range), init,

@@ -50,10 +50,10 @@ public:
 
 
 template <class V>
-bool has_push_back_v = has::has_push_back<V>::value;
+constexpr bool has_push_back_v = has::has_push_back<V>::value;
 
 template <template <class> class V, class T>
-bool has_push_front_v = has::has_push_front<V, T>::value;
+constexpr bool has_push_front_v = has::has_push_front<V, T>::value;
 
 
 template <class T>
@@ -108,7 +108,7 @@ public:
 
 
 template <typename... Ts>
-auto graph_edge(std::tuple<Ts...> t) {
+inline auto graph_edge(std::tuple<Ts...> t) {
   return nth_cdr<1>(t);
 }
 
@@ -116,7 +116,7 @@ auto graph_edge(std::tuple<Ts...> t) {
  * Fill a plain graph from edge list
  */
 template <class EdgeList, class Adjacency>
-void push_back_plain_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
+inline void push_back_plain_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
   const size_t jdx = (idx + 1) % 2;
 
   for (auto&& e : edge_list) {
@@ -139,7 +139,7 @@ void push_back_plain_fill(const EdgeList& edge_list, Adjacency& adj, bool direct
  * Fill a non-plain graph from edge list
  */
 template <class EdgeList, class Adjacency>
-void push_back_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
+inline void push_back_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
   const size_t jdx = (idx + 1) % 2;
 
   for (auto&& e : edge_list) {
@@ -164,7 +164,7 @@ void push_back_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, si
  */
 //template <template <class> class I = std::vector, class M, std::ranges::random_access_range E>
 template <edge_list_graph EdgeList, class M, std::ranges::random_access_range E>
-auto make_plain_edges(M& map, const E& edges) {
+inline auto make_plain_edges(M& map, const E& edges) {
   EdgeList index_edges;
 
   for (auto&& e : edges) {
@@ -178,7 +178,7 @@ auto make_plain_edges(M& map, const E& edges) {
  * Make an edge list with properties copied from original data, e.g., vector<tuple<size_t, size_t, props...>>
  */
 template <edge_list_graph EdgeList, class M, std::ranges::random_access_range E>
-auto make_property_edges(M& map, const E& edges) {
+inline auto make_property_edges(M& map, const E& edges) {
   EdgeList index_edges;
 
   for (auto&& e : edges) {
@@ -193,7 +193,7 @@ auto make_property_edges(M& map, const E& edges) {
  *  Make a plain graph from data, e.g., vector<vector<index>>
  */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::random_access_range E>
-auto make_plain_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
+inline auto make_plain_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
   auto vertex_map  = make_index_map(vertices);
   auto index_edges = make_plain_edges(vertex_map, edges);
 
@@ -207,7 +207,7 @@ auto make_plain_graph(const V& vertices, const E& edges, bool directed = true, s
  *  Make an index graph from data, e.g., vector<vector<tuple<index, index>>>
  */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::random_access_range E>
-auto make_index_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
+inline auto make_index_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
 
   auto vertex_map  = make_index_map(vertices);
   auto index_edges = make_index_edges(vertex_map, edges);
@@ -223,7 +223,7 @@ auto make_index_graph(const V& vertices, const E& edges, bool directed = true, s
  *  Make a property graph from data, e.g., vector<vector<tuple<index, properties...>>>
  */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::forward_range E>
-auto make_property_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
+inline auto make_property_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
 
   auto vertex_map     = make_index_map(vertices);
   auto property_edges = make_property_edges(vertex_map, edges);
@@ -237,7 +237,7 @@ auto make_property_graph(const V& vertices, const E& edges, bool directed = true
 
 template <adjacency_list_graph Graph, std::ranges::random_access_range V1, std::ranges::random_access_range V2,
           std::ranges::random_access_range E>
-auto make_plain_bipartite_graph(const V1& left_vertices, const V2& right_vertices, const E& edges, size_t idx = 0) {
+inline auto make_plain_bipartite_graph(const V1& left_vertices, const V2& right_vertices, const E& edges, size_t idx = 0) {
 
   auto index_edges = data_to_graph_edge_list(left_vertices, right_vertices, edges);
   auto graph_size  = idx == 0 ? size(left_vertices) : size(right_vertices);
@@ -249,7 +249,7 @@ auto make_plain_bipartite_graph(const V1& left_vertices, const V2& right_vertice
 }
 
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::random_access_range E>
-auto make_bipartite_graphs(const V& left_vertices, const V& right_vertices, const E& edges) {
+inline auto make_bipartite_graphs(const V& left_vertices, const V& right_vertices, const E& edges) {
 
   auto index_edges = data_to_graph_edge_list<>(left_vertices, right_vertices, edges);
 

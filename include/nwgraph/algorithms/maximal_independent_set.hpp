@@ -30,7 +30,7 @@ namespace graph {
  * @param mis the vertices in the maximal independent set
  */
 template <adjacency_list_graph Graph>
-void maximal_independent_set(const Graph& A, std::vector<size_t>& mis) {
+inline void maximal_independent_set(const Graph& A, std::vector<size_t>& mis) {
   using vertex_id_type = vertex_id_t<Graph>;
   size_t            N = A.size();
   std::vector<bool> removedVertices(N);

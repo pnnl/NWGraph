@@ -35,7 +35,7 @@ namespace graph {
  * @return std::vector<vertex_id_t<Graph>>, the predecessor list (the MST).
  */
 template <adjacency_list_graph Graph, class Distance, class Weight>
-std::vector<vertex_id_t<Graph>> prim(const Graph& graph, vertex_id_t<Graph> source, Weight&& weight) {
+inline std::vector<vertex_id_t<Graph>> prim(const Graph& graph, vertex_id_t<Graph> source, Weight&& weight) {
 
   using vertex_id_type = vertex_id_t<Graph>;
 

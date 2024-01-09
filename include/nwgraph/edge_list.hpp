@@ -47,8 +47,8 @@ namespace graph {
 static bool g_debug_edge_list = false;
 static bool g_time_edge_list  = false;
 
-void debug_edge_list(bool flag = true) { g_debug_edge_list = flag; }
-void time_edge_list(bool flag = true) { g_time_edge_list = flag; }
+inline void debug_edge_list(bool flag = true) { g_debug_edge_list = flag; }
+inline void time_edge_list(bool flag = true) { g_time_edge_list = flag; }
 
 /**
  * Index edge list structure.  This variadic data structure stores edges with their
@@ -274,13 +274,13 @@ template <directedness edge_directedness = directedness::directed, typename... A
 using bi_edge_list = index_edge_list<default_vertex_id_type, bipartite_graph_base, edge_directedness, Attributes...>;
 
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto tag_invoke(const num_edges_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>& b) {
+inline auto tag_invoke(const num_edges_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>& b) {
   return b.num_edges();
 }
 
 // num_vertics CPO, works for both unipartite_graph_base and bipartite_graph_base
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto tag_invoke(const num_vertices_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>& b, int idx = 0) {
+inline auto tag_invoke(const num_vertices_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>& b, int idx = 0) {
   if constexpr (true == is_unipartite<graph_base_t>::value)
     return b.num_vertices()[0]; //for unipartite graph ignore idx value
   else 
@@ -288,12 +288,12 @@ auto tag_invoke(const num_vertices_tag, const index_edge_list<vertex_id, graph_b
 }
 
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto& tag_invoke(const source_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) { 
+inline auto& tag_invoke(const source_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) { 
   return std::get<0>(e);
 }
 
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto& tag_invoke(const target_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
+inline auto& tag_invoke(const target_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
   return std::get<1>(e);
 }
 

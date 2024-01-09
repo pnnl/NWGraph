@@ -177,13 +177,13 @@ template <int idx, typename... Attributes>
 using adjacency = index_adjacency<idx, default_index_t, default_vertex_id_type, Attributes...>;
 
 template <int idx, edge_list_graph edge_list_t>
-auto make_adjacency(edge_list_t& el) {
+inline auto make_adjacency(edge_list_t& el) {
   return adjacency<idx>(el);
 }
 
 
 template <int idx, edge_list_c edge_list_t, std::unsigned_integral u_integral, class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
-auto make_adjacency(edge_list_t& el, u_integral n, directedness edge_directedness = directedness::directed, ExecutionPolicy&& policy = {}) {
+inline auto make_adjacency(edge_list_t& el, u_integral n, directedness edge_directedness = directedness::directed, ExecutionPolicy&& policy = {}) {
   adjacency<idx> adj(n);
   fill<idx>(el, adj, edge_directedness, policy);
   return adj;
@@ -300,13 +300,13 @@ template <int idx, typename... Attributes>
 using biadjacency = index_biadjacency<idx, default_index_t, default_vertex_id_type, Attributes...>;
 
 template <int idx, edge_list_graph edge_list_t>
-auto make_biadjacency(edge_list_t& el) {
+inline auto make_biadjacency(edge_list_t& el) {
   return biadjacency<idx>(el);
 }
 
 
 template <int idx, edge_list_c edge_list_t, std::unsigned_integral u_integral, class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
-auto make_biadjacency(edge_list_t& el, u_integral n0, u_integral n1, directedness edge_directedness = directedness::directed, ExecutionPolicy&& policy = {}) {
+inline auto make_biadjacency(edge_list_t& el, u_integral n0, u_integral n1, directedness edge_directedness = directedness::directed, ExecutionPolicy&& policy = {}) {
   biadjacency<idx> adj(n0, n1);
   fill_biadjacency<idx>(el, adj, policy);
   return adj;
@@ -319,39 +319,39 @@ auto make_biadjacency(edge_list_t& el, u_integral n0, u_integral n1, directednes
 //}
 //index_adjacency num_vertices CPO
 template <int idx, std::unsigned_integral index_type, std::unsigned_integral vertex_id_type, typename... Attributes>
-auto tag_invoke(const num_vertices_tag, const index_adjacency<idx, index_type, vertex_id_type, Attributes...>& g) {
+inline auto tag_invoke(const num_vertices_tag, const index_adjacency<idx, index_type, vertex_id_type, Attributes...>& g) {
   return g.num_vertices()[0];
 }
 //index_adjacency degree CPO
 template <int idx, std::unsigned_integral index_type, std::unsigned_integral vertex_id_type, std::unsigned_integral lookup_type, typename... Attributes>
-auto tag_invoke(const degree_tag, const index_adjacency<idx, index_type, vertex_id_type, Attributes...>& g, lookup_type i) {
+inline auto tag_invoke(const degree_tag, const index_adjacency<idx, index_type, vertex_id_type, Attributes...>& g, lookup_type i) {
   return g[i].size();
 }
 //index_adjacency degree CPO
 template <int idx, std::unsigned_integral index_type, std::unsigned_integral vertex_id_type, typename... Attributes>
-auto tag_invoke(const degree_tag, const index_adjacency<idx, index_type, vertex_id_type, Attributes...>& g,
+inline auto tag_invoke(const degree_tag, const index_adjacency<idx, index_type, vertex_id_type, Attributes...>& g,
                 const typename index_adjacency<idx, index_type, vertex_id_type, Attributes...>::sub_view& v) {
   return v.size();
 }
 //index_biadjacency num_vertices CPO
 template <int idx, std::unsigned_integral index_type, std::unsigned_integral vertex_id_type, typename... Attributes>
-auto tag_invoke(const num_vertices_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>& g, int jdx = 0) {
+inline auto tag_invoke(const num_vertices_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>& g, int jdx = 0) {
   return g.num_vertices()[jdx];
 }
 //index_biadjacency degree CPO
 template <int idx, std::unsigned_integral index_type, std::unsigned_integral vertex_id_type, std::unsigned_integral lookup_type, typename... Attributes>
-auto tag_invoke(const degree_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>& g, lookup_type i) {
+inline auto tag_invoke(const degree_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>& g, lookup_type i) {
   return g[i].size();
 }
 //index_biadjacency degree CPO
 template <int idx, std::unsigned_integral index_type, std::unsigned_integral vertex_id_type, typename... Attributes>
-auto tag_invoke(const degree_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>& g,
+inline auto tag_invoke(const degree_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>& g,
                 const typename index_biadjacency<idx, index_type, vertex_id_type, Attributes...>::sub_view& v) {
   return v.size();
 }
 //degree CPO
 template <class Iterator>
-auto tag_invoke(const degree_tag, const splittable_range_adaptor<Iterator>& n) {
+inline auto tag_invoke(const degree_tag, const splittable_range_adaptor<Iterator>& n) {
   return n.size();
 }
 

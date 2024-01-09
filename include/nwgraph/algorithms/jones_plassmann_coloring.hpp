@@ -34,7 +34,7 @@ namespace graph {
  * @param colors The array of colors of each vertex.
  */
 template <adjacency_list_graph Graph>
-void jones_plassmann_coloring(Graph& A, std::vector<size_t>& colors) {
+inline void jones_plassmann_coloring(Graph& A, std::vector<size_t>& colors) {
   size_t N = num_vertices(A);
   //init every nodes' color to 0
   std::fill(colors.begin(), colors.end(), 0);

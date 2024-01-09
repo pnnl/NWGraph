@@ -37,7 +37,7 @@ namespace graph {
 
 using vertex_id_type = default_vertex_id_type;
 
-vertex_id_type disjoint_find(std::vector<std::pair<vertex_id_type, size_t>>& subsets, vertex_id_type vtx) {
+inline vertex_id_type disjoint_find(std::vector<std::pair<vertex_id_type, size_t>>& subsets, vertex_id_type vtx) {
   vertex_id_type parent = subsets[vtx].first;
   while (parent != subsets[parent].first) {
     parent = subsets[parent].first;
@@ -50,7 +50,7 @@ vertex_id_type disjoint_find(std::vector<std::pair<vertex_id_type, size_t>>& sub
   return parent;
 }
 
-void disjoint_union(std::vector<std::pair<vertex_id_type, size_t>>& subsets, vertex_id_type u, vertex_id_type v) {
+inline void disjoint_union(std::vector<std::pair<vertex_id_type, size_t>>& subsets, vertex_id_type u, vertex_id_type v) {
   vertex_id_type u_root = disjoint_find(subsets, u);
   vertex_id_type v_root = disjoint_find(subsets, v);
 
@@ -66,7 +66,7 @@ void disjoint_union(std::vector<std::pair<vertex_id_type, size_t>>& subsets, ver
   }
 }
 
-bool disjoint_union_find(std::vector<std::pair<vertex_id_type, size_t>>& subsets, vertex_id_type u, vertex_id_type v) {
+inline bool disjoint_union_find(std::vector<std::pair<vertex_id_type, size_t>>& subsets, vertex_id_type u, vertex_id_type v) {
   vertex_id_type u_root = disjoint_find(subsets, u);
   vertex_id_type v_root = disjoint_find(subsets, v);
 

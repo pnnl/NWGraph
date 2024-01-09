@@ -194,7 +194,7 @@ public:
 };
 
 template <typename... Vs>
-auto edges(const MatrixMarketFile& mm, int j, int k) {
+inline auto edges(const MatrixMarketFile& mm, int j, int k) {
   return Range(mm.template at<Vs...>(j), mm.template at<Vs...>(k));
 }
 }    // namespace mmio

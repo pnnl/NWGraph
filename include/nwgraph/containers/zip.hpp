@@ -310,12 +310,12 @@ struct zipped : std::tuple<Ranges&...> {
 
 
 template <std::ranges::random_access_range... Ranges>
-zipped<Ranges...> make_zipped(Ranges&... rs) {
+inline zipped<Ranges...> make_zipped(Ranges&... rs) {
   return zipped<Ranges...>(rs...);
 }
 
 template <std::ranges::random_access_range... Ranges>
-zipped<Ranges...> make_zipped(Ranges&&... rs) {
+inline zipped<Ranges...> make_zipped(Ranges&&... rs) {
   return zipped<Ranges...>(rs...);
 }
 
@@ -328,7 +328,7 @@ namespace std {
 
 #if 0
 template <std::ranges::random_access_range... Ranges>
-auto iter_swap(typename nw::graph::zipped<Ranges...>::soa_iterator<false> a, typename nw::graph::zipped<Ranges...>::soa_iterator<false> b) {
+inline auto iter_swap(typename nw::graph::zipped<Ranges...>::soa_iterator<false> a, typename nw::graph::zipped<Ranges...>::soa_iterator<false> b) {
   auto tmp = *a;
   *a = *b;
   *b = *tmp;
@@ -351,14 +351,14 @@ class tuple_size<nw::graph::zipped<Attributes...>> : public std::integral_consta
 namespace std {
 
 template <std::ranges::random_access_range... Ranges, std::size_t... Is>
-void swap(typename nw::graph::zipped<Ranges...>::iterator::reference&& x, typename nw::graph::zipped<Ranges...>::iterator::reference&& y, std::index_sequence<Is...>) {
+inline void swap(typename nw::graph::zipped<Ranges...>::iterator::reference&& x, typename nw::graph::zipped<Ranges...>::iterator::reference&& y, std::index_sequence<Is...>) {
   using std::swap;
   
   (swap(std::get<Is>(x), std::get<Is>(y)), ...);
 }
 
 template <std::ranges::random_access_range... Ranges>
-void swap(typename nw::graph::zipped<Ranges...>::iterator::reference&& x, typename nw::graph::zipped<Ranges...>::iterator::reference&& y) {
+inline void swap(typename nw::graph::zipped<Ranges...>::iterator::reference&& x, typename nw::graph::zipped<Ranges...>::iterator::reference&& y) {
   swap(std::move(x), std::move(y), std::make_index_sequence<sizeof...(Ranges)>());
 }
 

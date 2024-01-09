@@ -20,7 +20,7 @@
 namespace nw {
 namespace graph {
 template <class... Args>
-std::string demangle(Args&&... args) {
+inline std::string demangle(Args&&... args) {
   auto        cstr = abi::__cxa_demangle(std::forward<Args>(args)...);
   std::string str(cstr);
   free(cstr);

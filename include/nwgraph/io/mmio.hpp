@@ -38,7 +38,7 @@
 namespace nw {
 namespace graph {
 
-void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
   A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
   A.open_for_push_back();
   for (size_t i = 0; i < nNonzeros; ++i) {
@@ -58,7 +58,7 @@ void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed>& A,
 }
 
 template <typename T>
-void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
 
   A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
   A.open_for_push_back();
@@ -83,7 +83,7 @@ void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed, T>&
   A.close_for_push_back();
 }
 
-void mm_fill(std::istream& inputStream, edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
   A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
   A.open_for_push_back();
   for (size_t i = 0; i < nNonzeros; ++i) {
@@ -103,7 +103,7 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::directed>& A, si
 }
 
 template <typename T>
-void mm_fill(std::istream& inputStream, edge_list<directedness::directed, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, edge_list<directedness::directed, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
 
   A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
   A.open_for_push_back();
@@ -128,7 +128,7 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::directed, T>& A,
   A.close_for_push_back();
 }
 
-void mm_fill(std::istream& inputStream, edge_list<directedness::undirected>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, edge_list<directedness::undirected>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
 
   A.reserve(nNonzeros);
   A.open_for_push_back();
@@ -149,7 +149,7 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::undirected>& A, 
 }
 
 template <typename T>
-void mm_fill(std::istream& inputStream, edge_list<directedness::undirected, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, edge_list<directedness::undirected, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
   // assert(file_symmetry);
   A.reserve(nNonzeros);
   A.open_for_push_back();
@@ -169,7 +169,7 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::undirected, T>& 
 }
 
 template <directedness sym, typename... Attributes>
-edge_list<sym, Attributes...> read_mm(std::istream& inputStream) {
+inline edge_list<sym, Attributes...> read_mm(std::istream& inputStream) {
   std::string              string_input;
   bool                     file_symmetry = false;
   std::vector<std::string> header(5);
@@ -208,7 +208,7 @@ edge_list<sym, Attributes...> read_mm(std::istream& inputStream) {
 }
 
 template <directedness sym, typename... Attributes>
-edge_list<sym, Attributes...> read_mm(const std::string& filename) {
+inline edge_list<sym, Attributes...> read_mm(const std::string& filename) {
   std::ifstream inputFile(filename);
 
   edge_list<sym, Attributes...> A = read_mm<sym, Attributes...>(inputFile);
@@ -217,7 +217,7 @@ edge_list<sym, Attributes...> read_mm(const std::string& filename) {
 }
 
 template <directedness sym, typename... Attributes, edge_list_graph edge_list_t>
-edge_list_t read_mm(const std::string& filename) {
+inline edge_list_t read_mm(const std::string& filename) {
   std::ifstream            inputStream(filename);
   std::string              string_input;
   bool                     file_symmetry = false;
@@ -275,7 +275,7 @@ edge_list_t read_mm(const std::string& filename) {
 }
 
 template <typename T>
-auto read_mm_vector(std::istream& inputStream) {
+inline auto read_mm_vector(std::istream& inputStream) {
   std::string string_input;
   bool        file_symmetry = false;
   (void)file_symmetry;    // silence warnings
@@ -329,7 +329,7 @@ auto read_mm_vector(std::istream& inputStream) {
 }
 
 template <typename T>
-auto read_mm_vector(const std::string& filename) {
+inline auto read_mm_vector(const std::string& filename) {
   std::ifstream inputFile(filename);
 
   auto v = read_mm_vector<T>(inputFile);
@@ -337,7 +337,7 @@ auto read_mm_vector(const std::string& filename) {
   return v;
 }
 
-bool is_mm(const std::string& filename) {
+inline bool is_mm(const std::string& filename) {
   std::ifstream            input_stream(filename);
   std::vector<std::string> header(5);
 
@@ -351,7 +351,7 @@ bool is_mm(const std::string& filename) {
   return header[0] == "%%MatrixMarket";
 }
 
-directedness get_mm_symmetry(const std::string& filename) {
+inline directedness get_mm_symmetry(const std::string& filename) {
   std::ifstream            inputStream(filename);
   std::string              string_input;
   std::vector<std::string> header(5);
@@ -375,7 +375,7 @@ directedness get_mm_symmetry(const std::string& filename) {
 }
 
 template <size_t w_idx, directedness sym, typename... Attributes>
-void aos_stream(std::ofstream& outputStream, edge_list<sym, Attributes...> A, const std::string& file_symmetry, std::string& w_type) {
+inline void aos_stream(std::ofstream& outputStream, edge_list<sym, Attributes...> A, const std::string& file_symmetry, std::string& w_type) {
   outputStream << "%%MatrixMarket matrix coordinate " << w_type << " " << file_symmetry << "\n%%\n";
 
   if constexpr (is_unipartite<edge_list<sym, Attributes...>>::value) {
@@ -402,7 +402,7 @@ void aos_stream(std::ofstream& outputStream, edge_list<sym, Attributes...> A, co
 }
 
 template <size_t w_idx = 0, typename idxtype = void, directedness sym, typename... Attributes>
-void write_mm(const std::string& filename, edge_list<sym, Attributes...>& A, const std::string& file_symmetry = "general") {
+inline void write_mm(const std::string& filename, edge_list<sym, Attributes...>& A, const std::string& file_symmetry = "general") {
   if (file_symmetry == "symmetric" && sym == directedness::directed) {
     std::cerr << "cannot save directed matrix as symmetric matrix market" << std::endl;
   }
@@ -418,7 +418,7 @@ void write_mm(const std::string& filename, edge_list<sym, Attributes...>& A, con
 }
 
 template <size_t w_idx, int idx, typename... Attributes>
-void adjacency_stream(std::ofstream& outputStream, adjacency<idx, Attributes...>& A, const std::string& file_symmetry, std::string& w_type) {
+inline void adjacency_stream(std::ofstream& outputStream, adjacency<idx, Attributes...>& A, const std::string& file_symmetry, std::string& w_type) {
   outputStream << "%%MatrixMarket matrix coordinate " << w_type << " " << file_symmetry << "\n%%\n";
 
   outputStream << num_vertices(A) << " " << num_vertices(A) << " "
@@ -434,7 +434,7 @@ void adjacency_stream(std::ofstream& outputStream, adjacency<idx, Attributes...>
 }
 
 template <size_t w_idx = 0, typename idxtype = void, int idx, typename... Attributes>
-void write_mm(const std::string& filename, adjacency<idx, Attributes...>& A, const std::string& file_symmetry = "general") {
+inline void write_mm(const std::string& filename, adjacency<idx, Attributes...>& A, const std::string& file_symmetry = "general") {
   /*if (file_symmetry == "symmetric" && sym == directedness::directed) {
     std::cerr << "cannot save directed matrix as symmetric matrix market" << std::endl;
   }*/
@@ -450,7 +450,7 @@ void write_mm(const std::string& filename, adjacency<idx, Attributes...>& A, con
 }
 
 template <size_t w_idx, int idx, typename... Attributes>
-void adjacency_stream(std::ofstream& outputStream, biadjacency<idx, Attributes...>& A, const std::string& file_symmetry, std::string& w_type) {
+inline void adjacency_stream(std::ofstream& outputStream, biadjacency<idx, Attributes...>& A, const std::string& file_symmetry, std::string& w_type) {
   outputStream << "%%MatrixMarket matrix coordinate " << w_type << " " << file_symmetry << "\n%%\n";
 
   outputStream << num_vertices(A, 0) << " " << num_vertices(A, 1) << " "
@@ -466,7 +466,7 @@ void adjacency_stream(std::ofstream& outputStream, biadjacency<idx, Attributes..
 }
 
 template <size_t w_idx = 0, typename idxtype = void, int idx, typename... Attributes>
-void write_mm(const std::string& filename, biadjacency<idx, Attributes...>& A, const std::string& file_symmetry = "general") {
+inline void write_mm(const std::string& filename, biadjacency<idx, Attributes...>& A, const std::string& file_symmetry = "general") {
   /*if (file_symmetry == "symmetric" && sym == directedness::directed) {
     std::cerr << "cannot save directed matrix as symmetric matrix market" << std::endl;
   }*/
@@ -489,7 +489,7 @@ static size_t block_min(int thread, size_t M, int threads) {
 }
 
 template <typename T>
-std::tuple<size_t, std::array<vertex_id_type, 2>, std::array<vertex_id_type, 2>>
+inline std::tuple<size_t, std::array<vertex_id_type, 2>, std::array<vertex_id_type, 2>>
 par_load_mm(mmio::MatrixMarketFile& mmio, std::vector<std::vector<std::tuple<size_t, size_t, T>>>& sub_lists, std::vector<std::vector<std::tuple<size_t, size_t, T>>>& sub_loops, bool keep_loops, size_t threads) {
   //mmio::MatrixMarketFile mmio(filename);
   std::array<vertex_id_type, 2> Gi_min = {std::numeric_limits<vertex_id_type>::max(), std::numeric_limits<vertex_id_type>::max()};
@@ -552,7 +552,7 @@ par_load_mm(mmio::MatrixMarketFile& mmio, std::vector<std::vector<std::tuple<siz
   return std::tuple(entries, Gi_min, Gi_max);
 }
 
-std::tuple<size_t, std::array<vertex_id_type, 2>, std::array<vertex_id_type, 2>>
+inline std::tuple<size_t, std::array<vertex_id_type, 2>, std::array<vertex_id_type, 2>>
 par_load_mm(mmio::MatrixMarketFile& mmio, std::vector<std::vector<std::tuple<size_t, size_t>>>& sub_lists, std::vector<std::vector<std::tuple<size_t, size_t>>>& sub_loops, bool keep_loops, size_t threads) {
   std::array<vertex_id_type, 2> Gi_min = {std::numeric_limits<vertex_id_type>::max(), std::numeric_limits<vertex_id_type>::max()};
   std::array<vertex_id_type, 2> Gi_max = {0, 0};
@@ -607,7 +607,7 @@ par_load_mm(mmio::MatrixMarketFile& mmio, std::vector<std::vector<std::tuple<siz
 
 
 template <directedness sym, typename... Attributes>
-edge_list<sym, Attributes...> par_read_mm(const std::string& filename, bool keep_loops = true, size_t threads = (size_t) std::thread::hardware_concurrency()) {
+inline edge_list<sym, Attributes...> par_read_mm(const std::string& filename, bool keep_loops = true, size_t threads = (size_t) std::thread::hardware_concurrency()) {
   mmio::MatrixMarketFile mmio(filename);
   if(!mmio.isSymmetric() && sym == undirected) {
     std::cerr << "warning: requested undirected edge list, but mtx file is general" << std::endl;

@@ -96,16 +96,16 @@ concept edge_list_c = std::ranges::random_access_range<E>&& requires(E e) {
 #endif
 
 template <typename G>
-auto num_edges(const G& g) {
+inline auto num_edges(const G& g) {
   return g.num_edges();
 }
 
 template <typename G>
-auto begin(const G& g) {
+inline auto begin(const G& g) {
   return g.begin();
 }
 
 template <typename G>
-auto num_vertices(const G& g) {
+inline auto num_vertices(const G& g) {
   return g.num_vertices();
 }

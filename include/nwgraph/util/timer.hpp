@@ -45,9 +45,9 @@ protected:
 };
 
 
-using seconds_timer = timer<std::chrono::seconds>;
-using ms_timer = timer<std::chrono::milliseconds>;
-using us_timer = timer<std::chrono::microseconds>;
+using seconds_timer = timer<std::chrono::duration<double>>;
+using ms_timer = timer<std::chrono::duration<double, std::ratio<1, 1'000>>>;
+using us_timer = timer<std::chrono::duration<double, std::ratio<1, 1'000'000>>>;
 
 class empty_timer {
 public:
@@ -69,7 +69,7 @@ public:
   }
 };
 
-std::ostream& operator<<(std::ostream& os, const seconds_timer& t) {
+inline std::ostream& operator<<(std::ostream& os, const seconds_timer& t) {
   std::string name = t.name();
   if (t.name() != "") {
     os << "(" << t.name() << ") ";
@@ -78,7 +78,7 @@ std::ostream& operator<<(std::ostream& os, const seconds_timer& t) {
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const ms_timer& t) {
+inline std::ostream& operator<<(std::ostream& os, const ms_timer& t) {
   std::string name = t.name();
   if (t.name() != "") {
     os << "(" << t.name() << ") ";
@@ -88,7 +88,7 @@ std::ostream& operator<<(std::ostream& os, const ms_timer& t) {
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const us_timer& t) {
+inline std::ostream& operator<<(std::ostream& os, const us_timer& t) {
   std::string name = t.name();
   if (t.name() != "") {
     os << "(" << t.name() << ") ";
