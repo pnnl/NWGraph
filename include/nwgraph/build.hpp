@@ -15,6 +15,7 @@
 #ifndef NW_GRAPH_BUILD_HPP
 #define NW_GRAPH_BUILD_HPP
 
+#include "nwgraph/util/print_types.hpp"
 #include "nwgraph/util/proxysort.hpp"
 
 #include "nwgraph/graph_base.hpp"
@@ -104,6 +105,7 @@ void push_back_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, si
 
   for (auto&& e : edge_list) {
     if (0 == idx) {
+      //      std::apply([&](auto... properties) { adj[source(edge_list, e)].emplace_back(target(edge_list, e), properties...); }, props(e));
       std::apply([&](auto... properties) { adj[std::get<0>(e)].emplace_back(std::get<1>(e), properties...); }, props(e));
       if (!directed) {
         std::apply([&](auto... properties) { adj[std::get<1>(e)].emplace_back(std::get<0>(e), properties...); }, props(e));
