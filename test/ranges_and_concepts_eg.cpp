@@ -117,27 +117,24 @@ using index_t = nw::graph::vertex_id_type;
 
 template <typename T>
 concept Adjacence = requires(T graph, inner_value<T> vertex) {
-  { target(vertex) }
-  ->std::convertible_to<vertex_id_type<T>>;
+  { target(vertex) } -> std::convertible_to<vertex_id_type<T>>;
 };
 
 template <typename T>
 concept Incidence = requires(T graph, inner_value<T> edge) {
-  { source(edge) }
-  ->std::convertible_to<vertex_id_type<T>>;
-  { target(edge) }
-  ->std::convertible_to<vertex_id_type<T>>;
+  { source(edge) } -> std::convertible_to<vertex_id_type<T>>;
+  { target(edge) } -> std::convertible_to<vertex_id_type<T>>;
 };
 
 template <typename T>
 concept Graph =
-    std::ranges::random_access_range<T>&& std::ranges::forward_range<inner_range<T>>&& std::convertible_to<vertex_id_type<T>, index_t<T>>;
+    std::ranges::random_access_range<T> && std::ranges::forward_range<inner_range<T>> && std::convertible_to<vertex_id_type<T>, index_t<T>>;
 
 template <typename T>
-concept IncidenceGraph = Graph<T>&& Incidence<T>;
+concept IncidenceGraph = Graph<T> && Incidence<T>;
 
 template <typename T>
-concept AdjacenceGraph = Graph<T>&& Adjacence<T>;
+concept AdjacenceGraph = Graph<T> && Adjacence<T>;
 
 template <Graph GraphT>
 size_t triangle_count(const GraphT& A) {
@@ -155,7 +152,9 @@ size_t triangle_count(const GraphT& A) {
 }
 
 template <typename Graph_t>
-auto bfs(const Graph_t& graph, vertex_id_type<Graph_t> root) requires Graph<Graph_t> {
+auto bfs(const Graph_t& graph, vertex_id_type<Graph_t> root)
+  requires Graph<Graph_t>
+{
 
   std::deque<vertex_id_type<Graph_t>>  q1, q2;
   std::vector<vertex_id_type<Graph_t>> level(graph.size(), std::numeric_limits<vertex_id_type<Graph_t>>::max());
@@ -187,7 +186,9 @@ auto bfs(const Graph_t& graph, vertex_id_type<Graph_t> root) requires Graph<Grap
 }
 
 template <typename T>
-auto foo(const T& A) requires Graph<T> {
+auto foo(const T& A)
+  requires Graph<T>
+{
 
   auto _b = std::ranges::begin(A);
   auto _e = std::ranges::end(A);

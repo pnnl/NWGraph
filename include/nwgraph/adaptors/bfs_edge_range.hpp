@@ -16,7 +16,6 @@
 #define BFS_EDGE_RANGE_HPP
 
 
-
 #include "nwgraph/graph_traits.hpp"
 
 #include <cassert>
@@ -146,13 +145,15 @@ public:
 
   public:
     bfs_edge_range_iterator(bfs_edge_range<Graph, Queue>& range)
-        : the_range_(range), G(the_range_.the_graph_.begin()), v_(the_range_.Q_.front()), u_begin(G[v_].begin()), u_end(G[v_].end()) {}
+        : the_range_(range), G(the_range_.the_graph_.begin()), v_(the_range_.Q_.front()), u_begin(G[v_].begin()), u_end(G[v_].end()) {
+    }
 
     bfs_edge_range_iterator(const bfs_edge_range_iterator& ite)
-        : the_range_(ite.the_range_), G(ite.G), v_(ite.v_), u_begin(ite.u_begin), u_end(ite.u_end) {}
+        : the_range_(ite.the_range_), G(ite.G), v_(ite.v_), u_begin(ite.u_begin), u_end(ite.u_end) {
+    }
 
     bfs_edge_range_iterator& operator++() {
-      auto& Q      = the_range_.Q_;
+      auto& Q       = the_range_.Q_;
       auto& visited = the_range_.visited_;
 
 
@@ -182,29 +183,40 @@ public:
     }
 
     // Better to store v_ as a tuple?
-    auto operator*() { return std::tuple_cat(std::make_tuple(v_), *u_begin); }
+    auto operator*() {
+      return std::tuple_cat(std::make_tuple(v_), *u_begin);
+    }
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
   };
 
   typedef bfs_edge_range_iterator iterator;
 
-  auto begin() { return bfs_edge_range_iterator(*this); }
-  auto end() { return typename bfs_edge_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return bfs_edge_range_iterator(*this);
+  }
+  auto end() {
+    return typename bfs_edge_range_iterator::end_sentinel_type();
+  }
 
 private:
-  Graph&                    the_graph_;
-  Queue                     Q_;
+  Graph&            the_graph_;
+  Queue             Q_;
   std::vector<bool> visited_;
 };
 
-  #endif
+#endif
 //****************************************************************************
 // This range used by dijkstra
 template <typename Graph, typename PriorityQueue>
@@ -213,7 +225,7 @@ private:
   using vertex_id_type = typename Graph::vertex_id_type;
 
 public:
-  bfs_edge_range2(Graph& graph, PriorityQueue& Q, std::tuple<size_t, size_t> seed = {0, 0})
+  bfs_edge_range2(Graph& graph, PriorityQueue& Q, std::tuple<size_t, size_t> seed = { 0, 0 })
       : the_graph_(graph), Q_(Q), colors_(graph.end() - graph.begin(), white) {
     Q_.push(seed);
     colors_[std::get<0>(seed)] = grey;
@@ -222,7 +234,9 @@ public:
   bfs_edge_range2(const bfs_edge_range2&)  = delete;
   bfs_edge_range2(const bfs_edge_range2&&) = delete;
 
-  bool empty() { return Q_.empty(); }
+  bool empty() {
+    return Q_.empty();
+  }
 
   class bfs_edge_range2_iterator {
   private:
@@ -237,13 +251,14 @@ public:
   public:
     bfs_edge_range2_iterator(bfs_edge_range2<Graph, PriorityQueue>& range)
         : the_range_(range), G(the_range_.the_graph_.begin()), v_(std::get<0>(the_range_.Q_.top())), u_begin(G[v_].begin()),
-          u_end(G[v_].end()) {}
+          u_end(G[v_].end()) {
+    }
 
     bfs_edge_range2_iterator& operator++() {
       auto& Q      = the_range_.Q_;
       auto& colors = the_range_.colors_;
 
-      Q.push({std::get<0>(*u_begin), size_t(0xffffffffffffffffULL)});
+      Q.push({ std::get<0>(*u_begin), size_t(0xffffffffffffffffULL) });
       colors[std::get<0>(*u_begin)] = grey;
 
       ++u_begin;
@@ -271,21 +286,32 @@ public:
       return *this;
     }
 
-    auto operator*() { return std::tuple<vertex_id_type, vertex_id_type, size_t>(v_, std::get<0>(*u_begin), std::get<1>(*u_begin)); }
+    auto operator*() {
+      return std::tuple<vertex_id_type, vertex_id_type, size_t>(v_, std::get<0>(*u_begin), std::get<1>(*u_begin));
+    }
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
   };
 
   typedef bfs_edge_range2_iterator iterator;
 
-  auto begin() { return bfs_edge_range2_iterator(*this); }
-  auto end() { return typename bfs_edge_range2_iterator::end_sentinel_type(); }
+  auto begin() {
+    return bfs_edge_range2_iterator(*this);
+  }
+  auto end() {
+    return typename bfs_edge_range2_iterator::end_sentinel_type();
+  }
 
 private:
   Graph&                    the_graph_;
@@ -315,11 +341,14 @@ public:
   bfs_edge_range3(const bfs_edge_range3&)  = delete;
   bfs_edge_range3(const bfs_edge_range3&&) = delete;
 
-  bool empty() { return Q_[0].empty(); }
+  bool empty() {
+    return Q_[0].empty();
+  }
 
   class bfs_edge_range3_iterator {
   public:
-    bfs_edge_range3_iterator(bfs_edge_range3<Graph>& range) : the_range_(range) {}
+    bfs_edge_range3_iterator(bfs_edge_range3<Graph>& range) : the_range_(range) {
+    }
 
     bfs_edge_range3_iterator& operator++() {
       auto G       = the_range_.the_graph_.begin();
@@ -344,7 +373,7 @@ public:
               colors[u] = grey;
               Q[1].push(u);    //add all the white neighbors of v
             }
-          }                       //for
+          }    //for
           if (Q[1].empty()) {     //if parent vertex v has no white neighbors, then v has done all traverse
             Q[0].pop();           //pop it out
             colors[v] = black;    //be done with parent vertex v
@@ -371,11 +400,16 @@ public:
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
 
   private:
     bfs_edge_range3<Graph>& the_range_;
@@ -383,8 +417,12 @@ public:
 
   typedef bfs_edge_range3_iterator iterator;
 
-  auto begin() { return bfs_edge_range3_iterator(*this); }
-  auto end() { return typename bfs_edge_range3_iterator::end_sentinel_type(); }
+  auto begin() {
+    return bfs_edge_range3_iterator(*this);
+  }
+  auto end() {
+    return typename bfs_edge_range3_iterator::end_sentinel_type();
+  }
 
 private:
   Graph&                    the_graph_;

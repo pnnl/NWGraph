@@ -15,8 +15,8 @@
 
 #include <iostream>
 
-#include "nwgraph/edge_list.hpp"
 #include "karate.hpp"
+#include "nwgraph/edge_list.hpp"
 
 using namespace nw::graph;
 using namespace nw::util;
@@ -24,8 +24,15 @@ using namespace nw::util;
 int main() {
 
   {
-    edge_list<directedness::undirected> a{{0, 1}, {1, 2}};
-    edge_list<directedness::directed>   b{{0, 2}, {1, 0}, {0, 1}};
+    edge_list<directedness::undirected> a {
+      { 0, 1 },
+      { 1, 2 }
+    };
+    edge_list<directedness::directed> b {
+      { 0, 2 },
+      { 1, 0 },
+      { 0, 1 }
+    };
 
     a.stream_edges(std::cout);
     std::cout << std::endl;
@@ -34,8 +41,15 @@ int main() {
   }
 
   {
-    edge_list<directedness::undirected, double> a{{0, 1, 3.1}, {1, 2, 4.159}};
-    edge_list<directedness::directed, double>   b{{0, 2, 42.2}, {1, 0, 24.4}, {0, 1, 81.9}};
+    edge_list<directedness::undirected, double> a {
+      { 0, 1, 3.1   },
+      { 1, 2, 4.159 }
+    };
+    edge_list<directedness::directed, double> b {
+      { 0, 2, 42.2 },
+      { 1, 0, 24.4 },
+      { 0, 1, 81.9 }
+    };
 
 
     a.stream_edges(std::cout);

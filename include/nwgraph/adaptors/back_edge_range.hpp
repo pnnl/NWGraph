@@ -43,7 +43,7 @@ public:
         for (auto inner = (*outer_it).begin(); inner != (*outer_it).end(); ++inner) {
           vertex_id_type neighbor = std::get<0>(*inner);
           auto           back_it  = graph[neighbor].begin();
-          std::size_t end = outer_it - graph.begin();
+          std::size_t    end      = outer_it - graph.begin();
           if (back_address[end].find(neighbor) != back_address[end].end()) {
             continue;
           }
@@ -82,7 +82,8 @@ public:
   public:
     back_edge_range_iterator(back_edge_range<Graph>& range, vertex_id_type v)
         : G(range.the_graph_.begin()), v_(v), u_begin(G[v_].begin()), u_end(G[v_].end()), e_begin(range.address_extra[v_].begin()),
-          e_end(range.address_extra[v_].end()) {}
+          e_end(range.address_extra[v_].end()) {
+    }
 
     back_edge_range_iterator& operator++() {
       if (u_begin != u_end) {
@@ -103,22 +104,36 @@ public:
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return u_begin == u_end && e_begin == e_end; }
-    bool operator!=(const end_sentinel_type&) const { return u_begin != u_end || e_begin != e_end; }
-    auto operator==(const back_edge_range_iterator& b) const { return u_begin == b.u_begin && e_begin == b.e_begin; }
-    auto operator!=(const back_edge_range_iterator& b) const { return u_begin != b.u_begin || e_begin != b.e_begin; }
+    auto operator==(const end_sentinel_type&) const {
+      return u_begin == u_end && e_begin == e_end;
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return u_begin != u_end || e_begin != e_end;
+    }
+    auto operator==(const back_edge_range_iterator& b) const {
+      return u_begin == b.u_begin && e_begin == b.e_begin;
+    }
+    auto operator!=(const back_edge_range_iterator& b) const {
+      return u_begin != b.u_begin || e_begin != b.e_begin;
+    }
   };
 
 public:
   class sub_view {
   public:
-    sub_view(back_edge_range<Graph>& range, vertex_id_type v) : the_range_(range), v_(v) {}
+    sub_view(back_edge_range<Graph>& range, vertex_id_type v) : the_range_(range), v_(v) {
+    }
 
-    auto begin() { return back_edge_range_iterator(the_range_, v_); }
-    auto end() { return typename back_edge_range_iterator::end_sentinel_type(); }
+    auto begin() {
+      return back_edge_range_iterator(the_range_, v_);
+    }
+    auto end() {
+      return typename back_edge_range_iterator::end_sentinel_type();
+    }
 
   private:
     back_edge_range<Graph>& the_range_;
@@ -131,10 +146,11 @@ public:
     typename Graph::outer_iterator G;
 
   public:
-    outer_back_edge_range_iterator(back_edge_range<Graph>& range, typename Graph::outer_iterator outer) : the_range_(range), G(outer) {}
+    outer_back_edge_range_iterator(back_edge_range<Graph>& range, typename Graph::outer_iterator outer) : the_range_(range), G(outer) {
+    }
 
     auto& operator=(const outer_back_edge_range_iterator& b) {
-      G = b.G;
+      G          = b.G;
       the_range_ = b.the_range_;
       return *this;
     }
@@ -143,25 +159,46 @@ public:
       ++G;
       return *this;
     }
-    auto operator-(const outer_back_edge_range_iterator& b) const { return G - b.G; }
+    auto operator-(const outer_back_edge_range_iterator& b) const {
+      return G - b.G;
+    }
 
-    bool operator==(const outer_back_edge_range_iterator& b) const { return G == b.G; }
-    bool operator!=(const outer_back_edge_range_iterator& b) const { return G != b.G; }
-    bool operator<(const outer_back_edge_range_iterator& b) const { return G < b.G; }
+    bool operator==(const outer_back_edge_range_iterator& b) const {
+      return G == b.G;
+    }
+    bool operator!=(const outer_back_edge_range_iterator& b) const {
+      return G != b.G;
+    }
+    bool operator<(const outer_back_edge_range_iterator& b) const {
+      return G < b.G;
+    }
 
-    auto operator*() { return sub_view(the_range_, get_index()); }
+    auto operator*() {
+      return sub_view(the_range_, get_index());
+    }
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
-    auto operator==(const end_sentinel_type&) const { return G == the_range_.the_graph_.end(); }
-    bool operator!=(const end_sentinel_type&) const { return G != the_range_.the_graph_.end(); }
+    auto operator==(const end_sentinel_type&) const {
+      return G == the_range_.the_graph_.end();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return G != the_range_.the_graph_.end();
+    }
 
-    auto  operator[](size_t i) { return sub_view(the_range_, i); }
-    auto& operator[](size_t i) const { return sub_view(the_range_, i); }
+    auto operator[](size_t i) {
+      return sub_view(the_range_, i);
+    }
+    auto& operator[](size_t i) const {
+      return sub_view(the_range_, i);
+    }
 
-    auto get_index() { return G - the_range_.the_graph_.begin(); }
+    auto get_index() {
+      return G - the_range_.the_graph_.begin();
+    }
   };
 
   using reference = typename std::iterator_traits<typename Graph::inner_iterator>::reference;
@@ -214,9 +251,15 @@ public:
 
   using outer_iterator = outer_back_edge_range_iterator;
   using inner_iterator = back_edge_range_iterator;
-  auto begin() { return outer_back_edge_range_iterator(*this, the_graph_.begin()); }
-  auto end() { return outer_back_edge_range_iterator(*this, the_graph_.end()); }
-  auto size() { return the_graph_.size(); }
+  auto begin() {
+    return outer_back_edge_range_iterator(*this, the_graph_.begin());
+  }
+  auto end() {
+    return outer_back_edge_range_iterator(*this, the_graph_.end());
+  }
+  auto size() {
+    return the_graph_.size();
+  }
 
 private:
   Graph&                                   the_graph_;

@@ -45,16 +45,24 @@ class _priority_queue : public std::priority_queue<T, Container, Compare> {
   using base = std::priority_queue<T, Container, Compare>;
 
 public:
-  explicit _priority_queue(const Compare& compare = Compare(), const Container& cont = Container()) : base(compare, cont) {}
-  auto begin() { return base::c.begin(); }
-  auto end() { return base::c.begin(); }
-  auto begin() const { return base::c.begin(); }
-  auto end() const { return base::c.begin(); }
+  explicit _priority_queue(const Compare& compare = Compare(), const Container& cont = Container()) : base(compare, cont) {
+  }
+  auto begin() {
+    return base::c.begin();
+  }
+  auto end() {
+    return base::c.begin();
+  }
+  auto begin() const {
+    return base::c.begin();
+  }
+  auto end() const {
+    return base::c.begin();
+  }
 };
 
 template <class distance_t, adjacency_list_graph Graph, class Id, class Weight>
-auto delta_stepping_m1(
-    const Graph& graph, Id source, distance_t, Weight weight = [](auto& e) -> auto& { return std::get<1>(e); }) {
+auto delta_stepping_m1(const Graph& graph, Id source, distance_t, Weight weight = [](auto& e) -> auto& { return std::get<1>(e); }) {
   std::vector<distance_t> tdist(num_vertices(graph), std::numeric_limits<distance_t>::max());
   size_t                  top_bin = 0;
 
@@ -107,8 +115,7 @@ auto delta_stepping_m1(
  * @param weight Function to compute weight of an edge.
  */
 template <class distance_t, adjacency_list_graph Graph, class T, class Weight>
-auto delta_stepping(
-    const Graph& graph, vertex_id_t<Graph> source, T delta, Weight weight = [](auto& e) -> auto& { return std::get<1>(e); }) {
+auto delta_stepping(const Graph& graph, vertex_id_t<Graph> source, T delta, Weight weight = [](auto& e) -> auto& { return std::get<1>(e); }) {
   using Id = vertex_id_t<Graph>;
   std::vector<distance_t>      tdist(num_vertices(graph), std::numeric_limits<distance_t>::max());
   std::vector<std::vector<Id>> bins(1);

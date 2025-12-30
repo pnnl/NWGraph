@@ -45,9 +45,15 @@ public:
   filtered_bfs_edge_range(const filtered_bfs_edge_range&)  = delete;
   filtered_bfs_edge_range(const filtered_bfs_edge_range&&) = delete;
 
-  bool empty() { return Q_.empty(); }
-  bool found() { return colors_[target_] == grey; }
-  bool done() { return (found() || unreachable); }
+  bool empty() {
+    return Q_.empty();
+  }
+  bool found() {
+    return colors_[target_] == grey;
+  }
+  bool done() {
+    return (found() || unreachable);
+  }
   bool unreachable = false;
 
   class filtered_bfs_edge_range_iterator {
@@ -67,7 +73,8 @@ public:
     }
 
     filtered_bfs_edge_range_iterator(const filtered_bfs_edge_range_iterator& ite)
-        : the_range_(ite.the_range_), G(ite.G), v_(ite.v_), u_begin(ite.u_begin), filter_(ite.filter_) {}
+        : the_range_(ite.the_range_), G(ite.G), v_(ite.v_), u_begin(ite.u_begin), filter_(ite.filter_) {
+    }
 
     filtered_bfs_edge_range_iterator& operator++() {
       auto& Q      = the_range_.Q_;
@@ -110,18 +117,29 @@ public:
       return *this;
     }
 
-    auto operator*() { return *u_begin; }
+    auto operator*() {
+      return *u_begin;
+    }
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto get_index() { return v_; };
+    auto get_index() {
+      return v_;
+    };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.done(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.done(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.done();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.done();
+    }
 
-    bool found() { return the_range_.found(); }
+    bool found() {
+      return the_range_.found();
+    }
 
   private:
     filtered_bfs_edge_range<Graph, Queue, Filter>& the_range_;
@@ -134,8 +152,12 @@ public:
 
   typedef filtered_bfs_edge_range_iterator iterator;
 
-  auto begin() { return filtered_bfs_edge_range_iterator(*this); }
-  auto end() { return typename filtered_bfs_edge_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return filtered_bfs_edge_range_iterator(*this);
+  }
+  auto end() {
+    return typename filtered_bfs_edge_range_iterator::end_sentinel_type();
+  }
 
 private:
   Graph&                    the_graph_;

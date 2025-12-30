@@ -32,7 +32,7 @@ void print_n_ranks(const Vector& page_rank, size_t n) {
 
 int main() {
 
-  std::vector<float> x{3., 1., .14, .15, 9};
+  std::vector<float> x { 3., 1., .14, .15, 9 };
 
   auto perm = proxysort(x);
 

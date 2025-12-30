@@ -135,13 +135,17 @@ public:
     memcpy(this->sets_, other.sets_, sizeof(T) * other.maxid_);
   }
 
-  ~disjoint_set() { delete[] this->sets_; }
+  ~disjoint_set() {
+    delete[] this->sets_;
+  }
 
   /**
 		 * Assigns every element to -1.
 		 * Set id is equal to element id.
 		 */
-  void reset() { memset(this->sets_, -1, maxid_ * sizeof(T)); }
+  void reset() {
+    memset(this->sets_, -1, maxid_ * sizeof(T));
+  }
   /**
 		 * Assigns every element to -1.
 		 * Set id to element id.
@@ -208,7 +212,9 @@ public:
       return index;
     }
   }
-  static T find_with_pathcompression(disjoint_set<T>& s, T index) { return s.find_with_pathcompression(index); }
+  static T find_with_pathcompression(disjoint_set<T>& s, T index) {
+    return s.find_with_pathcompression(index);
+  }
   /**
 		 * find is a simple find for @u.
 		 * @param[in] index
@@ -237,7 +243,9 @@ public:
 		 * @param[in] index
 		 * @return representative of set containing @u
 		 */
-  static T find(disjoint_set<T>& s, T index) { return s.find(index); }
+  static T find(disjoint_set<T>& s, T index) {
+    return s.find(index);
+  }
   /**
 		 * directFind is a direct find for element at 'index'.
 		 * @param[in] index
@@ -329,7 +337,9 @@ public:
       --this->nsets_;
     }
   }
-  static void  unionBySize(disjoint_set<T>& s, T const& u, T const& v) { s.unionBySize(u, v); }
+  static void unionBySize(disjoint_set<T>& s, T const& u, T const& v) {
+    s.unionBySize(u, v);
+  }
   virtual void unionByHeight(T const& u, T const& v) {
     T rootu = find(u);
     T rootv = find(v);
@@ -452,7 +462,7 @@ public:
         u              = this->sets_[z];
       }
     }    //while
-  }      //UnionBySplicing
+  }    //UnionBySplicing
 
   std::vector<T> getRawSubsets() const {
     std::vector<T> sets(this->maxid_, 0);
@@ -525,13 +535,17 @@ public:
 		 *  Get the number of disjoint sets.
 		 *  @return the number of disjoint sets.
 		 */
-  size_t getSetNumber() const { return this->nsets_; }
+  size_t getSetNumber() const {
+    return this->nsets_;
+  }
   /**
 		 *  Given an element in a set, get the size of disjoint set containing this element.
 		 *  @ param[in] u, an element of the set to query
 		 *  @return the size of disjoint set.
 		 */
-  size_t getSetSize(const T u) const { return -find(u); }
+  size_t getSetSize(const T u) const {
+    return -find(u);
+  }
   /**
 		 * Overload operator<< for format output.
 		 * @param os, outstream pointer
@@ -559,10 +573,14 @@ public:
 		 *  Get the max id in this disjoint sets.
 		 *  @return max id
 		 */
-  T getMaxId() const { return this->maxid_; }
+  T getMaxId() const {
+    return this->maxid_;
+  }
 
 private:
-  inline bool compare_and_swap(T& x, T old_val, T new_val) { return __sync_bool_compare_and_swap(&x, *(&old_val), *(&new_val)); }
+  inline bool compare_and_swap(T& x, T old_val, T new_val) {
+    return __sync_bool_compare_and_swap(&x, *(&old_val), *(&new_val));
+  }
 
   inline bool writeMin(T& a, T b) {
     T    c;

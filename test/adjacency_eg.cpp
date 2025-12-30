@@ -28,10 +28,11 @@ using namespace nw::util;
 int main() {
   size_t n_vtx = 5;
 
-  edge_list<directedness::directed, double> A_list { { 0, 1, 1 }, 
-						     { 1, 2, 2 },
-						     { 2, 3, 3 },
-						     { 3, 4, 4 }
+  edge_list<directedness::directed, double> A_list {
+    { 0, 1, 1 },
+    { 1, 2, 2 },
+    { 2, 3, 3 },
+    { 3, 4, 4 }
   };
 
   adjacency<0, double> A(A_list);
@@ -62,10 +63,11 @@ int main() {
     std::cout << "edge " << u << " to " << v << " has weight " << w << std::endl;
   }
 
-  bi_edge_list<directedness::directed, double> C_list { { 0, 1, 1 }, 
-						     { 1, 2, 2 },
-						     { 2, 3, 3 },
-						     { 3, 4, 4 }
+  bi_edge_list<directedness::directed, double> C_list {
+    { 0, 1, 1 },
+    { 1, 2, 2 },
+    { 2, 3, 3 },
+    { 3, 4, 4 }
   };
   // num_vertices CPO
   assert(4 == num_vertices(C_list, 0));

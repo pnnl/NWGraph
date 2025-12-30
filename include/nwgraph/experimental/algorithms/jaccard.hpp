@@ -42,15 +42,15 @@ namespace graph {
  */
 template <typename GraphT>
 size_t jaccard_similarity_v1(const GraphT& A) {
-  size_t ctr = 0;
-  auto   first     = A.begin();
-  auto   last      = A.end();
+  size_t ctr   = 0;
+  auto   first = A.begin();
+  auto   last  = A.end();
 
   for (auto G = first; first != last; ++first) {
     for (auto v = (*first).begin(); v != (*first).end(); ++v) {
-      auto numer = nw::graph::intersection_size(v (*first).end(), G[std::get<0>(*v)]);
-      auto denom = degree(*first) + degree(G[std::get<0>(*v)]) - numer;
-      double rat   = ((double)numer) / ((double)denom);
+      auto   numer    = nw::graph::intersection_size(v(*first).end(), G[std::get<0>(*v)]);
+      auto   denom    = degree(*first) + degree(G[std::get<0>(*v)]) - numer;
+      double rat      = ((double)numer) / ((double)denom);
       std::get<2>(*v) = rat;
       ++ctr;
     }

@@ -44,10 +44,14 @@ public:
 
   // Constructs a directed graph with the mmio file
   // pointed by the file path DATA_FILE
-  auto generate_directed_aos() { return read_mm<nw::graph::directedness::directed>(DATA_FILE); }
+  auto generate_directed_aos() {
+    return read_mm<nw::graph::directedness::directed>(DATA_FILE);
+  }
 
   // Constructs directed graph with the given
   // mmio file path
-  auto generate_directed_aos(const std::string& mmiofile) { return read_mm<nw::graph::directedness::directed>(mmiofile); }
+  auto generate_directed_aos(const std::string& mmiofile) {
+    return read_mm<nw::graph::directedness::directed>(mmiofile);
+  }
 };
 #endif

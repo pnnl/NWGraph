@@ -33,13 +33,16 @@ std::string& rtrim(std::string& str, const std::string& chars = "\t\n\v\f\r ") {
   return str;
 }
 
-std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\r ") { return ltrim(rtrim(str, chars), chars); }
+std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\r ") {
+  return ltrim(rtrim(str, chars), chars);
+}
 
 class provenance {
 public:
   provenance(const provenance&) = default;
   provenance()                  = default;
-  explicit provenance(size_t n) : info(n) {}
+  explicit provenance(size_t n) : info(n) {
+  }
   void push_back(const std::string& fn, const std::string& str) {
     std::string f(fn), g(str);
     trim(f);

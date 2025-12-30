@@ -457,8 +457,10 @@ auto degrees(const Graph& graph, ExecutionPolicy&& policy = {}) {
 
 
 template <int d_idx = 0, edge_list_graph edge_list_t, class ExecutionPolicy = default_execution_policy>
-requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value) auto degrees(
-    edge_list_t& el, ExecutionPolicy&& policy = {}) requires(!degree_enumerable_graph<edge_list_t>) {
+  requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value)
+auto degrees(edge_list_t& el, ExecutionPolicy&& policy = {})
+  requires(!degree_enumerable_graph<edge_list_t>)
+{
 
   size_t d_size = 0;
   if constexpr (is_unipartite<typename edge_list_t::unipartite_graph_base>::value) {
@@ -493,8 +495,10 @@ requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value) auto
 
 //for bipartite graph
 template <int d_idx, edge_list_graph edge_list_t, class ExecutionPolicy = default_execution_policy>
-requires(false == is_unipartite<typename edge_list_t::bipartite_graph_base>::value) auto degrees(
-    edge_list_t& el, ExecutionPolicy&& policy = {}) requires(!degree_enumerable_graph<edge_list_t>) {
+  requires(false == is_unipartite<typename edge_list_t::bipartite_graph_base>::value)
+auto degrees(edge_list_t& el, ExecutionPolicy&& policy = {})
+  requires(!degree_enumerable_graph<edge_list_t>)
+{
 
   size_t d_size        = num_vertices(el, d_idx);
   using vertex_id_type = typename edge_list_t::vertex_id_type;
@@ -553,8 +557,8 @@ auto perm_by_degree(edge_list_t& el, const Vector& degree, std::string direction
  * @return the new IDs of the vertices after permutation
  */
 template <edge_list_graph edge_list_t, class Vector, class ExecutionPolicy = default_execution_policy>
-requires(true == is_unipartite<typename edge_list_t::unipartite_graph_base>::value) auto relabel(edge_list_t& el, const Vector& perm,
-                                                                                                 ExecutionPolicy&& policy = {}) {
+  requires(true == is_unipartite<typename edge_list_t::unipartite_graph_base>::value)
+auto relabel(edge_list_t& el, const Vector& perm, ExecutionPolicy&& policy = {}) {
   std::vector<typename edge_list_t::vertex_id_type> iperm(perm.size());
 
   tbb::parallel_for(tbb::blocked_range(0ul, iperm.size()), [&](auto&& r) {
@@ -583,8 +587,8 @@ requires(true == is_unipartite<typename edge_list_t::unipartite_graph_base>::val
  * @return the new IDs of the vertices after permutation
  */
 template <int idx, edge_list_graph edge_list_t, class Vector, class ExecutionPolicy = default_execution_policy>
-requires(false == is_unipartite<typename edge_list_t::bipartite_graph_base>::value) auto relabel(edge_list_t& el, const Vector& perm,
-                                                                                                 ExecutionPolicy&& policy = {}) {
+  requires(false == is_unipartite<typename edge_list_t::bipartite_graph_base>::value)
+auto relabel(edge_list_t& el, const Vector& perm, ExecutionPolicy&& policy = {}) {
   std::vector<typename edge_list_t::vertex_id_type> iperm(perm.size());
 
   tbb::parallel_for(tbb::blocked_range(0ul, iperm.size()), [&](auto&& r) {
@@ -607,9 +611,8 @@ requires(false == is_unipartite<typename edge_list_t::bipartite_graph_base>::val
  * @param degree, the degree array
  */
 template <edge_list_graph edge_list_t, class Vector = std::vector<int>>
-requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value) void relabel_by_degree(edge_list_t&  el,
-                                                                                                   std::string   direction = "ascending",
-                                                                                                   const Vector& degree = std::vector<int>(0)) {
+  requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value)
+void relabel_by_degree(edge_list_t& el, std::string direction = "ascending", const Vector& degree = std::vector<int>(0)) {
 
   std::vector<typename edge_list_t::vertex_id_type> perm =
       degree.size() == 0 ? perm_by_degree<0>(el, direction) : perm_by_degree<0>(el, degree, direction);
@@ -629,9 +632,8 @@ requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value) void
  * @return the new IDs of the vertices after permutation
  */
 template <int idx, edge_list_graph edge_list_t, class Vector = std::vector<int>>
-requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value) auto relabel_by_degree(edge_list_t&  el,
-                                                                                                   std::string   direction = "ascending",
-                                                                                                   const Vector& degree = std::vector<int>(0)) {
+  requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value)
+auto relabel_by_degree(edge_list_t& el, std::string direction = "ascending", const Vector& degree = std::vector<int>(0)) {
 
   std::vector<typename edge_list_t::vertex_id_type> perm =
       degree.size() == 0 ? perm_by_degree<idx>(el, direction) : perm_by_degree<idx>(el, degree, direction);
@@ -742,7 +744,7 @@ auto make_index_graph(const V& vertices, const E& edges, bool directed = true, s
  *  Make a property graph from data, e.g., vector<vector<tuple<index, properties...>>>
  */
 template <std::ranges::random_access_range V, std::ranges::forward_range E,
-          adjacency_list_graph Graph = std::vector<std::vector<decltype(std::tuple_cat(std::make_tuple(size_t{}), props(*(begin(E{})))))>>>
+          adjacency_list_graph Graph = std::vector<std::vector<decltype(std::tuple_cat(std::make_tuple(size_t {}), props(*(begin(E {})))))>>>
 auto make_property_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
 
   auto vertex_map     = make_index_map(vertices);
@@ -771,14 +773,14 @@ auto data_to_graph_edge_list(const V& left_vertices, const V& right_vertices, co
     auto left  = std::get<0>(edges[i]);
     auto right = std::get<1>(edges[i]);
 
-    index_edges.push_back({left_map[left], right_map[right]});
+    index_edges.push_back({ left_map[left], right_map[right] });
   }
 
   return index_edges;
 }
 
 template <std::ranges::random_access_range V1, std::ranges::random_access_range V2, std::ranges::random_access_range E,
-          adjacency_list_graph Graph = std::vector<std::vector<decltype(std::tuple_cat(std::make_tuple(size_t{}), props(*(begin(E{})))))>>>
+          adjacency_list_graph Graph = std::vector<std::vector<decltype(std::tuple_cat(std::make_tuple(size_t {}), props(*(begin(E {})))))>>>
 auto make_plain_bipartite_graph(const V1& left_vertices, const V2& right_vertices, const E& edges, size_t idx = 0) {
 
   auto index_edges = data_to_graph_edge_list(left_vertices, right_vertices, edges);
@@ -819,7 +821,7 @@ auto make_bipartite_graph(const V& left_vertices, const V& right_vertices, const
 }
 
 template <std::ranges::random_access_range V, std::ranges::random_access_range E,
-          adjacency_list_graph Graph = std::vector<std::vector<decltype(std::tuple_cat(std::make_tuple(size_t{}), props(*(begin(E{})))))>>>
+          adjacency_list_graph Graph = std::vector<std::vector<decltype(std::tuple_cat(std::make_tuple(size_t {}), props(*(begin(E {})))))>>>
 auto make_bipartite_graphs(const V& left_vertices, const V& right_vertices, const E& edges) {
 
   auto index_edges = data_to_graph_edge_list<>(left_vertices, right_vertices, edges);
@@ -842,7 +844,7 @@ auto join(const Graph1& G, const Graph2& H) {
     for (auto&& k : H[i]) {
       for (auto&& j : G[target(H, k)]) {
         if (target(G, j) != i) {
-          s_overlap.push_back({i, target(G, j), target(H, k)});
+          s_overlap.push_back({ i, target(G, j), target(H, k) });
         }
       }
     }

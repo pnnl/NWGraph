@@ -15,8 +15,8 @@
 
 #define EDGELIST_AOS
 
-#include "nwgraph/build.hpp"
 #include "common/test_header.hpp"
+#include "nwgraph/build.hpp"
 #include "nwgraph/edge_list.hpp"
 
 using namespace nw::graph;

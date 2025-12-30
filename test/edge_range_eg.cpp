@@ -30,7 +30,7 @@ using namespace nw::util;
 
 template <class Graph>
 void foo(const Graph& g) {
-  
+
   auto f = make_edge_range(g);
   for (auto&& [u, v] : f) {
     ;
@@ -39,13 +39,21 @@ void foo(const Graph& g) {
   for (auto&& [u, v] : make_edge_range(g)) {
     ;
   }
-
 }
 
 
 int main(int argc, char* argv[]) {
 
-  edge_list<nw::graph::directedness::directed> a{{0, 3}, {1, 1}, {2, 4}, {3, 1}, {4, 5}, {3, 9}, {2, 2}, {1, 7}};
+  edge_list<nw::graph::directedness::directed> a {
+    { 0, 3 },
+    { 1, 1 },
+    { 2, 4 },
+    { 3, 1 },
+    { 4, 5 },
+    { 3, 9 },
+    { 2, 2 },
+    { 1, 7 }
+  };
 
   auto adj = adjacency<0>(a);
 
@@ -65,8 +73,16 @@ int main(int argc, char* argv[]) {
     std::cout << "fail" << std::endl;
   }
 
-  edge_list<nw::graph::directedness::directed, double> c{{0, 3, 8.6}, {1, 1, 7.5}, {2, 4, 3.0}, {3, 1, 99},
-                                                         {4, 5, 3.1}, {3, 9, .04}, {2, 2, 1.5}, {1, 7, 9}};
+  edge_list<nw::graph::directedness::directed, double> c {
+    { 0, 3, 8.6 },
+    { 1, 1, 7.5 },
+    { 2, 4, 3.0 },
+    { 3, 1, 99  },
+    { 4, 5, 3.1 },
+    { 3, 9, .04 },
+    { 2, 2, 1.5 },
+    { 1, 7, 9   }
+  };
 
   auto d = adjacency<0, double>(c);
 
@@ -89,21 +105,21 @@ int main(int argc, char* argv[]) {
     ;
   }
 
-  for (auto&& [u, v] : make_edge_range(std::vector<std::vector<std::tuple<size_t>>>{})) {
+  for (auto&& [u, v] : make_edge_range(std::vector<std::vector<std::tuple<size_t>>> {})) {
     ;
   }
 
-  for (auto&& [u, v, w] : make_edge_range<0>(std::vector<std::vector<std::tuple<size_t, double>>>{})) {
+  for (auto&& [u, v, w] : make_edge_range<0>(std::vector<std::vector<std::tuple<size_t, double>>> {})) {
     ;
   }
 
-  for (auto&& [u, v, w] : make_edge_range<1>(std::vector<std::list<std::tuple<size_t, double, char>>>{})) {
+  for (auto&& [u, v, w] : make_edge_range<1>(std::vector<std::list<std::tuple<size_t, double, char>>> {})) {
     ;
   }
 
   foo(d);
 
-  foo(std::vector<std::vector<std::tuple<int, double>>>{});
+  foo(std::vector<std::vector<std::tuple<int, double>>> {});
 
   foo(nw::graph::vov<0, double>(0));
 

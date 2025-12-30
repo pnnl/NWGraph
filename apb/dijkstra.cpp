@@ -15,12 +15,12 @@
 #include <queue>
 #include <vector>
 
-#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/adaptors/bfs_edge_range.hpp"
 #include "nwgraph/adaptors/bfs_range.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
+#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/io/mmio.hpp"
 #include "nwgraph/util/tag_invoke.hpp"
 
@@ -72,7 +72,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
     t1.start();
 
     distance[source] = 0;
-    Q.push({source, distance[source]});
+    Q.push({ source, distance[source] });
 
     while (!Q.empty()) {
 
@@ -88,7 +88,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
         // relax
         if (distance[u] + w < distance[v]) {
           distance[v] = distance[u] + w;
-          Q.push({v, distance[v]});
+          Q.push({ v, distance[v] });
         }
       }
     }
@@ -108,7 +108,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
     t2.start();
 
     distance[source] = 0;
-    Q.push({source, distance[source]});
+    Q.push({ source, distance[source] });
 
     while (!Q.empty()) {
 
@@ -124,7 +124,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
         // relax
         if (distance[u] + w < distance[v]) {
           distance[v] = distance[u] + w;
-          Q.push({v, distance[v]});
+          Q.push({ v, distance[v] });
         }
       }
     }
@@ -143,7 +143,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
     t3.start();
 
     distance[source] = 0;
-    Q.push({source, distance[source]});
+    Q.push({ source, distance[source] });
 
     while (!Q.empty()) {
 
@@ -153,13 +153,13 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
       // for (auto&& [v, w] : g[u]) -- pretty but would only allow one property
 
       for (auto&& e : graph[u]) {
-        auto v = std::get<0>(e);         // target vertex (neighbor)
+        auto v = std::get<0>(e);    // target vertex (neighbor)
         auto w = std::get<1>(e);    // edge weight
 
         // relax
         if (distance[u] + w < distance[v]) {
           distance[v] = distance[u] + w;
-          Q.push({v, distance[v]});
+          Q.push({ v, distance[v] });
         }
       }
     }
@@ -178,7 +178,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
     t4.start();
 
     distance[source] = 0;
-    Q.push({source, distance[source]});
+    Q.push({ source, distance[source] });
 
     while (!Q.empty()) {
 
@@ -194,7 +194,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
         // relax
         if (distance[u] + w < distance[v]) {
           distance[v] = distance[u] + w;
-          Q.push({v, distance[v]});
+          Q.push({ v, distance[v] });
         }
       }
     }
@@ -212,7 +212,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
     t5.start();
 
     distance[source] = 0;
-    Q.push({source, distance[source]});
+    Q.push({ source, distance[source] });
 
     while (!Q.empty()) {
 
@@ -228,7 +228,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
         // relax
         if (distance[u] + w < distance[v]) {
           distance[v] = distance[u] + w;
-          Q.push({v, distance[v]});
+          Q.push({ v, distance[v] });
         }
       }
     }
@@ -247,7 +247,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
     t6.start();
 
     distance[source] = 0;
-    Q.push({source, distance[source]});
+    Q.push({ source, distance[source] });
 
     while (!Q.empty()) {
 
@@ -263,7 +263,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
         // relax
         if (distance[u] + w < distance[v]) {
           distance[v] = distance[u] + w;
-          Q.push({v, distance[v]});
+          Q.push({ v, distance[v] });
         }
       }
     }
@@ -274,7 +274,9 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed, F fun
   std::cout << t6.name() << " " << time / ntrial << " ms" << std::endl;
 }
 
-void usage(const std::string& msg = "") { std::cout << std::string("Usage: ") + msg + " " << std::endl; }
+void usage(const std::string& msg = "") {
+  std::cout << std::string("Usage: ") + msg + " " << std::endl;
+}
 
 int main(int argc, char* argv[]) {
   std::string edgelistFile             = "";

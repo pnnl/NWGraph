@@ -41,17 +41,22 @@ public:
   using value_type = typename iterator::value_type;
 
   template <class Range>
-  explicit splittable_range_adaptor(Range&& range) : splittable_range_adaptor(range.begin(), range.end()) {}
+  explicit splittable_range_adaptor(Range&& range) : splittable_range_adaptor(range.begin(), range.end()) {
+  }
 
   template <class Range>
-  splittable_range_adaptor(Range&& range, std::size_t cutoff) : splittable_range_adaptor(range.begin(), range.end(), cutoff) {}
+  splittable_range_adaptor(Range&& range, std::size_t cutoff) : splittable_range_adaptor(range.begin(), range.end(), cutoff) {
+  }
 
-  splittable_range_adaptor(Iterator begin, Iterator end) : begin_(begin > end ? end : begin), end_(end) {}
+  splittable_range_adaptor(Iterator begin, Iterator end) : begin_(begin > end ? end : begin), end_(end) {
+  }
 
-  splittable_range_adaptor(Iterator begin, Iterator end, std::size_t cutoff) : begin_(begin > end ? end : begin), end_(end), cutoff_(cutoff) {}
+  splittable_range_adaptor(Iterator begin, Iterator end, std::size_t cutoff) : begin_(begin > end ? end : begin), end_(end), cutoff_(cutoff) {
+  }
 
   splittable_range_adaptor(splittable_range_adaptor& rhs, tbb::split)
-      : begin_(rhs.begin_), end_(rhs.begin_ += rhs.size() / 2), cutoff_(rhs.cutoff_) {}
+      : begin_(rhs.begin_), end_(rhs.begin_ += rhs.size() / 2), cutoff_(rhs.cutoff_) {
+  }
 
   // We need the weird ref version to disambiguate the explicit range
   // initializer, which would otherwise get called incorrectly during a tbb
@@ -65,17 +70,27 @@ public:
 
   splittable_range_adaptor() = default;
 
-  decltype(auto) begin() const { return begin_; }
-  decltype(auto) end() const { return end_; }
+  decltype(auto) begin() const {
+    return begin_;
+  }
+  decltype(auto) end() const {
+    return end_;
+  }
 
   decltype(auto) cutoff(std::size_t cutoff) {
     cutoff_ = cutoff;
     return *this;
   }
 
-  size_t size() const { return end_ - begin_; }
-  bool   empty() const { return size() == 0; }
-  bool   is_divisible() const { return size() > cutoff_; }
+  size_t size() const {
+    return end_ - begin_;
+  }
+  bool empty() const {
+    return size() == 0;
+  }
+  bool is_divisible() const {
+    return size() > cutoff_;
+  }
 };
 
 template <class Range>

@@ -16,15 +16,15 @@
 #ifndef NW_GRAPH_BFS_HPP
 #define NW_GRAPH_BFS_HPP
 
+#include "nwgraph/adaptors/cyclic_range_adaptor.hpp"
+#include "nwgraph/adaptors/neighbor_range.hpp"
+#include "nwgraph/adaptors/vertex_range.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/graph_traits.hpp"
 #include "nwgraph/util/AtomicBitVector.hpp"
 #include "nwgraph/util/atomic.hpp"
 #include "nwgraph/util/parallel_for.hpp"
-#include "nwgraph/adaptors/neighbor_range.hpp"
-#include "nwgraph/adaptors/cyclic_range_adaptor.hpp"
-#include "nwgraph/adaptors/vertex_range.hpp"
 #include <queue>
 
 #include <tbb/concurrent_queue.h>
@@ -40,7 +40,7 @@
 
 namespace nw {
 namespace graph {
-  
+
 template <adjacency_list_graph Graph, adjacency_list_graph GraphT>
 bool BFSVerifier(const Graph& g, GraphT& g_t, vertex_id_t<Graph> source, std::vector<vertex_id_t<Graph>>& parent) {
   using vertex_id_type = vertex_id_t<Graph>;
@@ -225,7 +225,7 @@ template <adjacency_list_graph OutGraph, adjacency_list_graph InGraph>
               }
               return count;
             },
-            std::plus{});
+            std::plus {});
       } while ((awake_count >= old_awake_count) || (awake_count > N / beta));
 
       if (awake_count == 0) {
@@ -289,9 +289,9 @@ template <adjacency_list_graph OutGraph, adjacency_list_graph InGraph>
                   }
                   return count;
                 },
-                std::plus{}, 0ul);
+                std::plus {}, 0ul);
           },
-          std::plus{}, 0ul);
+          std::plus {}, 0ul);
     }
 
     done = true;

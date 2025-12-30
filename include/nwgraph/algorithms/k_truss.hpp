@@ -22,8 +22,8 @@
 
 #include "nwgraph/adaptors/edge_range.hpp"
 #include "nwgraph/util/intersection_size.hpp"
-#include "util/timer.hpp"
 #include "nwgraph/util/util.hpp"
+#include "util/timer.hpp"
 
 #include <tuple>
 #include <vector>

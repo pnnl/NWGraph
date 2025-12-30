@@ -16,9 +16,9 @@
 #include <tuple>
 #include <vector>
 
-#include "nwgraph/util/print_types.hpp"
-#include "nwgraph/edge_list.hpp"
 #include "nwgraph/containers/zip.hpp"
+#include "nwgraph/edge_list.hpp"
+#include "nwgraph/util/print_types.hpp"
 
 #include "nwgraph/graph_concepts.hpp"
 
@@ -26,17 +26,18 @@
 
 
 namespace nw {
-  namespace graph {
+namespace graph {
 
 template <std::ranges::forward_range... Ranges>
-auto iter_swap(typename nw::graph::zipped<Ranges...>::template soa_iterator<false> a, typename nw::graph::zipped<Ranges...>:: template soa_iterator<false> b) {
+auto iter_swap(typename nw::graph::zipped<Ranges...>::template soa_iterator<false> a,
+               typename nw::graph::zipped<Ranges...>::template soa_iterator<false> b) {
   auto tmp = *a;
-  *a = *b;
-  *b = tmp;
+  *a       = *b;
+  *b       = tmp;
 }
 
-  }
-}
+}    // namespace graph
+}    // namespace nw
 
 
 template <std::ranges::random_access_range... Ranges>
@@ -44,38 +45,39 @@ struct zipper : public std::tuple<Ranges&...> {
 
   using base = std::tuple<Ranges&...>;
 
-  using attributes_t = std::tuple<typename std::iterator_traits<typename Ranges::iterator>::value_type...> ;
+  using attributes_t = std::tuple<typename std::iterator_traits<typename Ranges::iterator>::value_type...>;
 
-  using value_type        =  attributes_t;
-  
-  zipper(Ranges&... rs) : base(std::forward_as_tuple(rs...)) { }
+  using value_type = attributes_t;
 
+  zipper(Ranges&... rs) : base(std::forward_as_tuple(rs...)) {
+  }
 };
-
-
-
 
 
 int main() {
 
-  
+
   static_assert(std::ranges::random_access_range<nw::graph::struct_of_arrays<int, float>>);
 
 
-  nw::graph::edge_list<nw::graph::directedness::directed> el = { { 8, 3}, { 6, 1 }, { 7, 4} };
+  nw::graph::edge_list<nw::graph::directedness::directed> el = {
+    { 8, 3 },
+    { 6, 1 },
+    { 7, 4 }
+  };
 
 
-  std::vector<int> a(10, 1), b(10, 2);
+  std::vector<int>   a(10, 1), b(10, 2);
   std::vector<float> c(10, 3), d(10, 4);
 
-  zipper f(a,b, c, d);
+  zipper f(a, b, c, d);
 
 
-  nw::graph::zipped g (a, b, c, d);
+  nw::graph::zipped g(a, b, c, d);
 
   static_assert(std::ranges::random_access_range<decltype(g)>);
 
-  
+
   auto e = nw::graph::make_zipped(a, b, c, d);
 
   static_assert(std::ranges::random_access_range<decltype(e)>);
@@ -90,10 +92,10 @@ int main() {
   std::reverse(c.begin(), c.end());
 
 
-
-  std::sort(i.begin(), i.end(), [](auto&&a, auto&&b) { 
+  std::sort(i.begin(), i.end(), [](auto&& a, auto&& b) {
     //    print_types(a, b);
-    return std::get<0>(a) < std::get<0>(b); } );
+    return std::get<0>(a) < std::get<0>(b);
+  });
 
   auto j = nw::graph::make_zipped(a, i);
 
@@ -101,8 +103,7 @@ int main() {
   j[0] = j[1];
 
 
-  std::sort(j.begin(), j.end(), [](auto&&a, auto&&b) { 
-    return std::get<0>(a) < std::get<0>(b); } );
+  std::sort(j.begin(), j.end(), [](auto&& a, auto&& b) { return std::get<0>(a) < std::get<0>(b); });
 
 
 #if 0
@@ -126,12 +127,9 @@ int main() {
   //  swap(h[0], h[1]);
 
   //using std::swap;
-  //  std::sort(h.begin(), h.end(), [](auto&&a, auto&&b) { 
-    // print_types(a, b);
-    //return std::get<1>(a) < std::get<1>(b); } );
-
-
-
+  //  std::sort(h.begin(), h.end(), [](auto&&a, auto&&b) {
+  // print_types(a, b);
+  //return std::get<1>(a) < std::get<1>(b); } );
 
 
   return 0;

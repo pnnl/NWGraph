@@ -18,8 +18,8 @@
 #include <queue>
 #include <vector>
 
-#include "nwgraph/util/util.hpp"
 #include "nwgraph/graph_traits.hpp"
+#include "nwgraph/util/util.hpp"
 
 namespace nw {
 namespace graph {
@@ -111,9 +111,9 @@ template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
 class topdown_bfs_range {
   using vertex_id_type = vertex_id_t<Graph>;
 
-  Graph&            graph_;     //!< underlying graph
+  Graph&            graph_;    //!< underlying graph
   std::vector<bool> visited_;
-  Queue             queue_;     //!< worklist
+  Queue             queue_;    //!< worklist
 
   /// Initialize the range with a vertex id.
   void init(vertex_id_type u) {
@@ -125,8 +125,7 @@ class topdown_bfs_range {
   void visit(vertex_id_type v) {
     //    for (auto&& e : graph_[v]) {
     // auto u = std::get<0>(e);
-    std::for_each(graph_[v].begin(), graph_[v].end(), [&] (auto&& e) {
-
+    std::for_each(graph_[v].begin(), graph_[v].end(), [&](auto&& e) {
       if (visited_[std::get<0>(e)] == false) {
         visited_[std::get<0>(e)] = true;
         queue_.push(std::get<0>(e));
@@ -145,7 +144,9 @@ class topdown_bfs_range {
   }
 
   /// Get the head vertex.
-  decltype(auto) head() { return queue_.front(); }
+  decltype(auto) head() {
+    return queue_.front();
+  }
 
 public:
   topdown_bfs_range(Graph& graph, vertex_id_type seed = 0) : graph_(graph), visited_(graph.size()), queue_() {
@@ -159,25 +160,38 @@ public:
 
   class iterator {
   public:
-    iterator(topdown_bfs_range& range) : range_(range) {}
+    iterator(topdown_bfs_range& range) : range_(range) {
+    }
 
     iterator& operator++() {
       range_.process();
       return *this;
     }
 
-    decltype(auto) operator*() { return range_.head(); }
+    decltype(auto) operator*() {
+      return range_.head();
+    }
 
-    bool operator==(const end_sentinel_type&) const { return range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !range_.empty(); }
+    bool operator==(const end_sentinel_type&) const {
+      return range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !range_.empty();
+    }
 
   private:
     topdown_bfs_range& range_;
   };
 
-  iterator          begin() { return {*this}; }
-  end_sentinel_type end() { return {}; }
-  bool              empty() { return queue_.empty(); }
+  iterator begin() {
+    return { *this };
+  }
+  end_sentinel_type end() {
+    return {};
+  }
+  bool empty() {
+    return queue_.empty();
+  }
 };    // class topdown_bfs_range
 
 
@@ -205,8 +219,7 @@ class bottomup_bfs_range {
     //test v has neighors or not
     if (0 == graph_[v_].size()) {
       parent_v_ = v_;
-    }
-    else {
+    } else {
       //if it has neighbor
       for (auto&& [u] : graph_[v_]) {
         if (colors_[u] == processed) {
@@ -215,7 +228,7 @@ class bottomup_bfs_range {
         }
       }    // for
     }
-/*
+    /*
     // if no valid parent_v, meaning we have travese to the leaf, we mark v
     // processed and be done with it
     if (v_ == parent_v_) {
@@ -225,7 +238,9 @@ class bottomup_bfs_range {
     */
   }
 
-  decltype(auto) next() { return std::tuple(v_, parent_v_); }
+  decltype(auto) next() {
+    return std::tuple(v_, parent_v_);
+  }
 
 public:
   //n_ should be 0, assume seed has been processed
@@ -245,26 +260,39 @@ public:
 
   class iterator {
   public:
-    iterator(bottomup_bfs_range& range) : range_(range) {}
+    iterator(bottomup_bfs_range& range) : range_(range) {
+    }
 
     iterator& operator++() {
       range_.advance();
       return *this;
     }
 
-    decltype(auto) operator*() { return range_.next(); }
+    decltype(auto) operator*() {
+      return range_.next();
+    }
 
-    bool operator==(const end_sentinel_type&) const { return range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !range_.empty(); }
+    bool operator==(const end_sentinel_type&) const {
+      return range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !range_.empty();
+    }
 
   private:
     bottomup_bfs_range& range_;
   };
 
-  iterator          begin() { return {*this}; }
-  end_sentinel_type end() { return {}; }
+  iterator begin() {
+    return { *this };
+  }
+  end_sentinel_type end() {
+    return {};
+  }
 
-  bool empty() { return n_ == graph_.size(); }
+  bool empty() {
+    return n_ == graph_.size();
+  }
 };    //class bottomup_bfs_range
 
 }    // namespace graph

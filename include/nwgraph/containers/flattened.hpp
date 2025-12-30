@@ -173,7 +173,6 @@ const_flat_range<Attrs...> edges(std::ptrdiff_t cutoff = std::numeric_limits<std
   return {begin, end, cutoff};
 }
 
-#endif 
+#endif
 
-#endif // NW_GRAPH_FLATTENED_HPP
-
+#endif    // NW_GRAPH_FLATTENED_HPP

@@ -165,7 +165,7 @@ static void compress(Execution& exec, Vector& comp) {
 template <typename Vector, typename T>
 static T sample_frequent_element(const Vector& comp, size_t num_samples = 1024) {
   std::unordered_map<T, int>       counts(32);
-  std::mt19937                                  gen;
+  std::mt19937                     gen;
   std::uniform_int_distribution<T> distribution(0, comp.size() - 1);
 
   for (size_t i = 0; i < num_samples; ++i) {

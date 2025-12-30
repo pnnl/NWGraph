@@ -46,7 +46,9 @@ public:
   dag_range(const dag_range&)  = delete;
   dag_range(const dag_range&&) = delete;
 
-  bool empty() { return Q_.empty(); }
+  bool empty() {
+    return Q_.empty();
+  }
 
   class dag_range_iterator {
   private:
@@ -101,13 +103,22 @@ public:
     }
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
   };
-  auto begin() { return dag_range_iterator(*this); }
-  auto end() { return typename dag_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return dag_range_iterator(*this);
+  }
+  auto end() {
+    return typename dag_range_iterator::end_sentinel_type();
+  }
 
 private:
   Graph&                the_graph_;

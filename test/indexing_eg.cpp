@@ -26,7 +26,11 @@ using namespace nw::util;
 template <directedness dir>
 void do_test_0() {
 
-  edge_list<dir> E_list{{3, 4}, {3, 6}, {4, 6}};
+  edge_list<dir> E_list {
+    { 3, 4 },
+    { 3, 6 },
+    { 4, 6 }
+  };
 
   std::cout << "E_list" << std::endl;
   for (auto y : E_list) {
@@ -62,7 +66,11 @@ void do_test_0() {
 template <directedness dir>
 void do_test_1() {
 
-  edge_list<dir, float> E_list{{3, 4, 8.6}, {3, 6, 7.5}, {4, 6, 3.09}};
+  edge_list<dir, float> E_list {
+    { 3, 4, 8.6  },
+    { 3, 6, 7.5  },
+    { 4, 6, 3.09 }
+  };
 
   std::cout << "E_list" << std::endl;
   for (auto y : E_list) {
@@ -121,7 +129,17 @@ int main() {
   std::cout << "Directed" << std::endl;
   do_test_1<directedness::directed>();
 
-  edge_list<directedness::undirected> E_list{{3, 4}, {3, 6}, {4, 6}, {2, 3}, {3, 0}, {4, 5}, {0, 2}, {1, 5}, {4, 1}};
+  edge_list<directedness::undirected> E_list {
+    { 3, 4 },
+    { 3, 6 },
+    { 4, 6 },
+    { 2, 3 },
+    { 3, 0 },
+    { 4, 5 },
+    { 0, 2 },
+    { 1, 5 },
+    { 4, 1 }
+  };
 
   std::cout << "E_list" << std::endl;
   for (auto y : E_list) {
@@ -137,7 +155,17 @@ int main() {
   }
 
   std::cout << (*(A.end())).begin() - (*(A.begin())).begin() << std::endl;
-  edge_list<directedness::directed> D_list{{3, 4}, {3, 6}, {4, 6}, {2, 3}, {3, 0}, {4, 5}, {0, 2}, {1, 5}, {4, 1}};
+  edge_list<directedness::directed> D_list {
+    { 3, 4 },
+    { 3, 6 },
+    { 4, 6 },
+    { 2, 3 },
+    { 3, 0 },
+    { 4, 5 },
+    { 0, 2 },
+    { 1, 5 },
+    { 4, 1 }
+  };
 
   adjacency<0> B(D_list);
   std::cout << (*(B.end())).begin() - (*(B.begin())).begin() << std::endl;

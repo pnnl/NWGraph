@@ -47,8 +47,12 @@ namespace graph {
 static bool g_debug_edge_list = false;
 static bool g_time_edge_list  = false;
 
-void debug_edge_list(bool flag = true) { g_debug_edge_list = flag; }
-void time_edge_list(bool flag = true) { g_time_edge_list = flag; }
+void debug_edge_list(bool flag = true) {
+  g_debug_edge_list = flag;
+}
+void time_edge_list(bool flag = true) {
+  g_time_edge_list = flag;
+}
 
 /**
  * Index edge list structure.  This variadic data structure stores edges with their
@@ -87,13 +91,19 @@ public:
   using undirected_type = index_edge_list<vertex_id_type, graph_base_t, directedness::undirected, Attributes...>;
 
 public:
-  constexpr index_edge_list(const index_edge_list&) = default;
+  constexpr index_edge_list(const index_edge_list&)            = default;
   constexpr index_edge_list& operator=(const index_edge_list&) = default;
   constexpr index_edge_list(index_edge_list&&)                 = default;
-  constexpr index_edge_list& operator=(index_edge_list&&) = default;
+  constexpr index_edge_list& operator=(index_edge_list&&)      = default;
 
-  index_edge_list(size_t N = 0) requires(std::is_same<graph_base, unipartite_graph_base>::value) : graph_base(N) { open_for_push_back(); }
-  index_edge_list(size_t M = 0, size_t N = 0) requires(std::is_same<graph_base, bipartite_graph_base>::value) : graph_base(M, N) {
+  index_edge_list(size_t N = 0)
+    requires(std::is_same<graph_base, unipartite_graph_base>::value)
+      : graph_base(N) {
+    open_for_push_back();
+  }
+  index_edge_list(size_t M = 0, size_t N = 0)
+    requires(std::is_same<graph_base, bipartite_graph_base>::value)
+      : graph_base(M, N) {
     open_for_push_back();
   }
 
@@ -121,8 +131,8 @@ public:
     }
   }
 
-  void open_for_push_back() { 
-    graph_base::is_open = true; 
+  void open_for_push_back() {
+    graph_base::is_open               = true;
     graph_base::vertex_cardinality[0] = graph_base::vertex_cardinality[0];
 
     if constexpr (false == is_unipartite<graph_base>::value) {
@@ -144,10 +154,10 @@ public:
     assert(graph_base::is_open == true);
 
     if constexpr (is_unipartite<graph_base>::value) {
-      graph_base::vertex_cardinality[0] = std::max<vertex_id_type>(std::max(i, j)+1, graph_base::vertex_cardinality[0]);
+      graph_base::vertex_cardinality[0] = std::max<vertex_id_type>(std::max(i, j) + 1, graph_base::vertex_cardinality[0]);
     } else {
-      graph_base::vertex_cardinality[0] = std::max<vertex_id_type>(i+1, graph_base::vertex_cardinality[0]);
-      graph_base::vertex_cardinality[1] = std::max<vertex_id_type>(j+1, graph_base::vertex_cardinality[1]);
+      graph_base::vertex_cardinality[0] = std::max<vertex_id_type>(i + 1, graph_base::vertex_cardinality[0]);
+      graph_base::vertex_cardinality[1] = std::max<vertex_id_type>(j + 1, graph_base::vertex_cardinality[1]);
     }
 
     base::push_back(i, j, attrs...);
@@ -158,7 +168,7 @@ public:
     vertex_id_type j = std::get<1>(elem);
 
     if constexpr (is_unipartite<graph_base>::value) {
-      graph_base::vertex_cardinality[0] = std::max<vertex_id_type>(std::max(i, j)+1, graph_base::vertex_cardinality[0]);
+      graph_base::vertex_cardinality[0] = std::max<vertex_id_type>(std::max(i, j) + 1, graph_base::vertex_cardinality[0]);
     } else {
       graph_base::vertex_cardinality[0] = std::max<vertex_id_type>(i + 1, graph_base::vertex_cardinality[0]);
       graph_base::vertex_cardinality[1] = std::max<vertex_id_type>(j + 1, graph_base::vertex_cardinality[1]);
@@ -167,7 +177,9 @@ public:
     base::push_back(elem);
   }
 
-  size_t size() const { return base::size(); }
+  size_t size() const {
+    return base::size();
+  }
   // size_t length() const { return base::size(); }
   // auto max() const { return graph_base::vertex_cardinality; }
 
@@ -251,13 +263,17 @@ public:
     });
   }
 
-  void stream(std::ostream& os = std::cout) { stream_edges(os); }
+  void stream(std::ostream& os = std::cout) {
+    stream_edges(os);
+  }
 
   bool operator==(index_edge_list<vertex_id_type, graph_base_t, edge_directedness, Attributes...>& e) {
     return graph_base::vertex_cardinality == e.graph_base::vertex_cardinality && base::operator==(e);    //*this == e;
   }
 
-  bool operator!=(index_edge_list<vertex_id_type, graph_base_t, edge_directedness, Attributes...>& e) { return !operator==(e); }
+  bool operator!=(index_edge_list<vertex_id_type, graph_base_t, edge_directedness, Attributes...>& e) {
+    return !operator==(e);
+  }
 };
 
 /**
@@ -282,18 +298,20 @@ auto tag_invoke(const num_edges_tag, const index_edge_list<vertex_id, graph_base
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
 auto tag_invoke(const num_vertices_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>& b, int idx = 0) {
   if constexpr (true == is_unipartite<graph_base_t>::value)
-    return b.num_vertices()[0]; //for unipartite graph ignore idx value
-  else 
+    return b.num_vertices()[0];    //for unipartite graph ignore idx value
+  else
     return b.num_vertices()[idx];
 }
 
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto& tag_invoke(const source_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) { 
+auto& tag_invoke(const source_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&,
+                 const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
   return std::get<0>(e);
 }
 
 template <std::unsigned_integral vertex_id, typename graph_base_t, directedness direct = directedness::undirected, typename... Attributes>
-auto& tag_invoke(const target_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
+auto& tag_invoke(const target_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&,
+                 const typename index_edge_list<vertex_id, graph_base_t, direct, Attributes...>::reference e) {
   return std::get<1>(e);
 }
 

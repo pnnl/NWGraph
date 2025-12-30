@@ -12,16 +12,16 @@
  */
 
 #include <deque>
-#include <tuple>
 #include <forward_list>
 #include <list>
+#include <tuple>
 #include <vector>
 
 #include "nwgraph/containers/zip.hpp"
 #include "nwgraph/graph_concepts.hpp"
+#include "nwgraph/graphs/imdb-graph.hpp"
 #include "nwgraph/graphs/karate-graph.hpp"
 #include "nwgraph/graphs/ospf-graph.hpp"
-#include "nwgraph/graphs/imdb-graph.hpp"
 
 
 template <nw::graph::adjacency_list_graph Graph>
@@ -60,13 +60,13 @@ int main() {
   static_assert(nw::graph::min_idx_adjacency_list<std::vector<std::vector<int>>>);
   static_assert(nw::graph::idx_adjacency_list<decltype(ospf_index_adjacency_list)>);
   static_assert(nw::graph::idx_adjacency_list<decltype(actor_actor_adjacency_list)>);
-  
+
   std::vector<std::tuple<int, int>> f;
   static_assert(nw::graph::edge_list_c<decltype(f)>);
-  
+
   auto g = nw::graph::make_zipped(std::vector<int>(), std::vector<int>());
   static_assert(nw::graph::edge_list_c<decltype(g)>);
-  
+
   bfs_vv(karate_directed_adjacency_list, 0);
   bfs_vv(karate_undirected_adjacency_list, 0);
 
@@ -75,6 +75,6 @@ int main() {
   bfs_vv(std::vector<std::vector<std::tuple<int, int, double>>>(), 0);
   bfs_vv(std::vector<std::vector<std::tuple<int, int, double, float, char>>>(), 0);
   bfs_vv(std::vector<std::vector<std::tuple<int, double>>>(), 0);
-  
+
   return 0;
 }

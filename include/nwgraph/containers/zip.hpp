@@ -31,8 +31,8 @@
 #include <vector>
 
 #include "nwgraph/util/arrow_proxy.hpp"
-#include "nwgraph/util/util.hpp"
 #include "nwgraph/util/traits.hpp"
+#include "nwgraph/util/util.hpp"
 
 #if defined(CL_SYCL_LANGUAGE_VERSION)
 #include <dpstd/algorithm>
@@ -89,13 +89,17 @@ struct zipped : std::tuple<Ranges&...> {
     soa_iterator(soa_iterator&&)      = default;
     soa_iterator(const soa_iterator&) = default;
 
-    soa_iterator(const soa_iterator<false>& b) requires(is_const) : i_(b.i_), soa_(b.soa_) {
+    soa_iterator(const soa_iterator<false>& b)
+      requires(is_const)
+        : i_(b.i_), soa_(b.soa_) {
     }
 
     soa_iterator& operator=(const soa_iterator&) = default;
-    soa_iterator& operator=(soa_iterator&&) = default;
+    soa_iterator& operator=(soa_iterator&&)      = default;
 
-    soa_iterator& operator=(const soa_iterator<false>& b) requires(is_const) {
+    soa_iterator& operator=(const soa_iterator<false>& b)
+      requires(is_const)
+    {
       i_   = b.i_;
       soa_ = b.soa_;
       return *this;
@@ -147,20 +151,18 @@ struct zipped : std::tuple<Ranges&...> {
     }
 
     reference operator*() const {
-      return std::apply(
-          [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
+      return std::apply([this]<class... Vectors>(Vectors&&... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
     }
 
     reference operator[](std::ptrdiff_t n) const {
-      return std::apply(
-          [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *soa_);
+      return std::apply([this, n]<class... Vectors>(Vectors&&... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *soa_);
     }
 
     pointer operator->() const {
-      return {**this};
+      return { **this };
     }
     pointer operator->() {
-      return {**this};
+      return { **this };
     }
   };
 
@@ -362,10 +364,8 @@ void swap(typename nw::graph::zipped<Ranges...>::iterator::reference&& x, typena
   swap(std::move(x), std::move(y), std::make_index_sequence<sizeof...(Ranges)>());
 }
 
-} 
+}
 #endif
-
-
 
 
 #endif    // NW_GRAPH_ZIP_HPP

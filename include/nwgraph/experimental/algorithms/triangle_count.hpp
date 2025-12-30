@@ -16,10 +16,10 @@
 #ifndef NW_GRAPH_TRIANGLE_COUNT_EXPERIMENTAL_HPP
 #define NW_GRAPH_TRIANGLE_COUNT_EXPERIMENTAL_HPP
 
-#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/adaptors/cyclic_range_adaptor.hpp"
-#include "nwgraph/adaptors/neighbor_range.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
+#include "nwgraph/adaptors/neighbor_range.hpp"
+#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/util/intersection_size.hpp"
 #include "nwgraph/util/parallel_for.hpp"
 #include "nwgraph/util/timer.hpp"
@@ -313,7 +313,7 @@ template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution:
         }
         return triangles;
       },
-      std::plus{}, 0.0);
+      std::plus {}, 0.0);
 }
 
 /// Two-dimensional triangle counting.
@@ -347,7 +347,7 @@ template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution:
         }
         return triangles;
       },
-      std::plus{}, 0.0);
+      std::plus {}, 0.0);
 }
 
 /// One-dimensional triangle counting.
@@ -372,7 +372,7 @@ template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution:
 template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_v14(const Graph& graph, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_reduce(
-      make_edge_range(graph), [&](auto&& u, auto&& v) { return nw::graph::intersection_size(graph[u], graph[v], set); }, std::plus{}, 0ul);
+      make_edge_range(graph), [&](auto&& u, auto&& v) { return nw::graph::intersection_size(graph[u], graph[v], set); }, std::plus {}, 0ul);
 }
 
 #ifdef ONE_DIMENSIONAL_EDGE
@@ -392,7 +392,7 @@ template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution:
 template <class Graph, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_edgerange(const Graph& graph, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_for(
-      graph.edges(nw::graph::pow2(20)), [&](auto&& u, auto&& v) { return nw::graph::intersection_size(graph[u], graph[v], set); }, std::plus{},
+      graph.edges(nw::graph::pow2(20)), [&](auto&& u, auto&& v) { return nw::graph::intersection_size(graph[u], graph[v], set); }, std::plus {},
       0ul);
 }
 
@@ -415,7 +415,7 @@ template <class Graph, class SetExecutionPolicy = std::execution::sequenced_poli
 [[gnu::noinline]] std::size_t triangle_count_edgerange_cyclic(const Graph& graph, int stride, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_for(
       nw::graph::cyclic(graph.edges(), stride), [&](auto&& u, auto&& v) { return nw::graph::intersection_size(graph[u], graph[v], set); },
-      std::plus{}, 0ul);
+      std::plus {}, 0ul);
 }
 #endif
 

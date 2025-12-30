@@ -15,9 +15,9 @@
 #ifndef NW_GRAPH_PRIM_HPP
 #define NW_GRAPH_PRIM_HPP
 
+#include "nwgraph/edge_list.hpp"
 #include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/graph_traits.hpp"
-#include "nwgraph/edge_list.hpp"
 
 #include <vector>
 
@@ -44,7 +44,7 @@ std::vector<vertex_id_t<Graph>> prim(const Graph& graph, vertex_id_t<Graph> sour
 
   std::vector<Distance> distance(N, std::numeric_limits<Distance>::max());
   std::vector<Distance> predecessor(N, std::numeric_limits<Distance>::max());
-  std::vector<uint8_t> finished(N, false);
+  std::vector<uint8_t>  finished(N, false);
   distance[source] = 0;
 
   using weight_t        = Distance;
@@ -66,9 +66,9 @@ std::vector<vertex_id_t<Graph>> prim(const Graph& graph, vertex_id_t<Graph> sour
       auto w = weight(e);
 
       if (!finished[v] && distance[v] > w) {
-	distance[v] = w;
-	Q.push({ v, distance[v] });
-	predecessor[v] = u;
+        distance[v] = w;
+        Q.push({ v, distance[v] });
+        predecessor[v] = u;
       }
     });
   }

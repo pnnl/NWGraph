@@ -13,9 +13,9 @@
  */
 
 
-#include "nwgraph/csr.hpp"
-#include "nwgraph/csc.hpp"
 #include "nwgraph/coo.hpp"
+#include "nwgraph/csc.hpp"
+#include "nwgraph/csr.hpp"
 
 using namespace nw::graph;
 
@@ -26,9 +26,9 @@ int main() {
   csr_graph B(N);
   coo_graph C(N);
 
-  csc_matrix<> D(N);
-  csr_matrix<> E(N);
-  coo_matrix<double> F(N);  // coo_matrix F(N) causes internal compiler error gcc 10.2.0
+  csc_matrix<>       D(N);
+  csr_matrix<>       E(N);
+  coo_matrix<double> F(N);    // coo_matrix F(N) causes internal compiler error gcc 10.2.0
 
   csc_matrix<float> G(N);
   csr_matrix<float> H(N);

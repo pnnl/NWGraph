@@ -161,14 +161,16 @@ auto config_log() {
     }
   }
 
-  json config = {{"Host", host_},
-                 {"Date", date_},
-                 {"git_branch", git_branch_},
-                 {"git_version", git_version_},
-                 {"Build", BUILD_TYPE},
-                 {"CXX_COMPILER", CXX_COMPILER},
-                 {"CXX_COMPILER_ID", CXX_COMPILER_ID},
-                 {"CXX_VERSION", CXX_VERSION}};
+  json config = {
+    { "Host",            host_           },
+    { "Date",            date_           },
+    { "git_branch",      git_branch_     },
+    { "git_version",     git_version_    },
+    { "Build",           BUILD_TYPE      },
+    { "CXX_COMPILER",    CXX_COMPILER    },
+    { "CXX_COMPILER_ID", CXX_COMPILER_ID },
+    { "CXX_VERSION",     CXX_VERSION     }
+  };
 
   return config;
 }
@@ -180,7 +182,7 @@ auto args_log(const Args& args) {
   for (auto&& arg : args) {
     std::stringstream buf;
     buf << std::get<1>(arg);
-    arg_log.push_back({std::get<0>(arg), buf.str()});
+    arg_log.push_back({ std::get<0>(arg), buf.str() });
   }
   return arg_log;
 }
@@ -208,7 +210,7 @@ void run_bench(int argc, char* argv[]) {
   std::vector ids     = parse_ids(args["--version"].asStringList());
   std::vector threads = parse_n_threads(args["THREADS"].asStringList());
 
-  json file_log = {};
+  json   file_log = {};
   size_t file_ctr = 0;
   for (auto&& file : files) {
     std::cout << "processing " << file << "\n";
@@ -261,9 +263,9 @@ void run_bench(int argc, char* argv[]) {
       size_t id_ctr = 0;
       for (auto&& id : ids) {
 
-	json   run_log = {};
-	size_t run_ctr = 0;
-	
+        json   run_log = {};
+        size_t run_ctr = 0;
+
         for (int j = 0; j < trials; ++j) {
           if (verbose) {
             std::cout << "running version:" << id << " threads:" << thread << "\n";
@@ -319,12 +321,14 @@ void run_bench(int argc, char* argv[]) {
             }
           });
 
-          run_log[run_ctr++] = {{"id", id},
-                            {"num_threads", thread},
-                            {"trial", j},
-                            {"elapsed", time},
-                            {"elapsed+relabel", time + relabel_time},
-                            {"triangles", triangles}};
+          run_log[run_ctr++] = {
+            { "id",              id                  },
+            { "num_threads",     thread              },
+            { "trial",           j                   },
+            { "elapsed",         time                },
+            { "elapsed+relabel", time + relabel_time },
+            { "triangles",       triangles           }
+          };
 
           if (verify && triangles != v_triangles) {
             std::cerr << "Inconsistent results: v" << id << " failed verification for " << file << " using " << thread << " threads (reported "
@@ -332,19 +336,35 @@ void run_bench(int argc, char* argv[]) {
           }
         }    // for j in trials
 
-        id_log[id_ctr++] = {{"id", id}, {"runs", std::move(run_log)}};
+        id_log[id_ctr++] = {
+          { "id",   id                 },
+          { "runs", std::move(run_log) }
+        };
       }    // for id in ids
 
-      thread_log[thread_ctr++] = {{"num_thread", thread}, {"runs", std::move(id_log)}};
+      thread_log[thread_ctr++] = {
+        { "num_thread", thread            },
+        { "runs",       std::move(id_log) }
+      };
     }    // for thread in threads
 
-    file_log[file_ctr++] = {{"File", file},           {"Relabel_time", relabel_time}, {"Clean_time", clean_time},
-                            {"Relabeled", relabeled}, {"Num_trials", trials},         {"Runs", std::move(thread_log)}};
+    file_log[file_ctr++] = {
+      { "File",         file                  },
+      { "Relabel_time", relabel_time          },
+      { "Clean_time",   clean_time            },
+      { "Relabeled",    relabeled             },
+      { "Num_trials",   trials                },
+      { "Runs",         std::move(thread_log) }
+    };
 
   }    // for each file
   if (args["--log"]) {
 
-    json log_log = {{"Config", config_log()}, {"Args", args_log(args)}, {"Files", std::move(file_log)}};
+    json log_log = {
+      { "Config", config_log()        },
+      { "Args",   args_log(args)      },
+      { "Files",  std::move(file_log) }
+    };
 
     if (args["--log"].asString() == "-") {
       std::cout << log_log << std::endl;

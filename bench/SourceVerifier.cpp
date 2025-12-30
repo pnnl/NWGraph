@@ -40,7 +40,7 @@ using namespace nw::graph;
 using namespace nw::util;
 
 int main(int argc, char* const argv[]) {
-  std::vector strings = std::vector<std::string>{argv + 1, argv + argc};
+  std::vector strings = std::vector<std::string> { argv + 1, argv + argc };
   std::map    args    = docopt::docopt(USAGE, strings, true);
 
   int64_t iterations = args["-i"].asLong();

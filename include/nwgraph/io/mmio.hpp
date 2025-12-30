@@ -48,10 +48,10 @@ void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed>& A,
     std::getline(inputStream, buffer);
     std::stringstream(buffer) >> d0 >> d1;
 
-    A.push_back(d0-1, d1-1);
+    A.push_back(d0 - 1, d1 - 1);
 
     if (file_symmetry && (d0 != d1)) {
-      A.push_back(d1-1, d0-1);
+      A.push_back(d1 - 1, d0 - 1);
     }
   }
   A.close_for_push_back();
@@ -74,10 +74,10 @@ void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed, T>&
       std::stringstream(buffer) >> d0 >> d1 >> v;
     }
 
-    A.push_back(d0-1, d1-1, v);
+    A.push_back(d0 - 1, d1 - 1, v);
 
     if (file_symmetry && (d0 != d1)) {
-      A.push_back(d1-1, d0-1, v);
+      A.push_back(d1 - 1, d0 - 1, v);
     }
   }
   A.close_for_push_back();
@@ -93,10 +93,10 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::directed>& A, si
     std::getline(inputStream, buffer);
     std::stringstream(buffer) >> d0 >> d1;
 
-    A.push_back(d0-1, d1-1);
+    A.push_back(d0 - 1, d1 - 1);
 
     if (file_symmetry && (d0 != d1)) {
-      A.push_back(d1-1, d0-1);
+      A.push_back(d1 - 1, d0 - 1);
     }
   }
   A.close_for_push_back();
@@ -119,10 +119,10 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::directed, T>& A,
       std::stringstream(buffer) >> d0 >> d1 >> v;
     }
 
-    A.push_back(d0-1, d1-1, v);
+    A.push_back(d0 - 1, d1 - 1, v);
 
     if (file_symmetry && (d0 != d1)) {
-      A.push_back(d1-1, d0-1, v);
+      A.push_back(d1 - 1, d0 - 1, v);
     }
   }
   A.close_for_push_back();
@@ -143,7 +143,7 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::undirected>& A, 
       inputStream >> d0 >> d1 >> d2;
     }
 
-    A.push_back(d0-1, d1-1);
+    A.push_back(d0 - 1, d1 - 1);
   }
   A.close_for_push_back();
 }
@@ -163,7 +163,7 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::undirected, T>& 
     } else {
       std::stringstream(buffer) >> d0 >> d1 >> v;
     }
-    A.push_back(d0-1, d1-1, v);
+    A.push_back(d0 - 1, d1 - 1, v);
   }
   A.close_for_push_back();
 }
@@ -256,8 +256,7 @@ edge_list_t read_mm(const std::string& filename) {
     //return A;
     std::cerr << "Can not populate unipartite graph with symmetric matrix" << std::endl;
     throw;
-  }
-  else if (n0 != n1 && false == is_unipartite<edge_list_t>::value){
+  } else if (n0 != n1 && false == is_unipartite<edge_list_t>::value) {
     //bipartite edge list
     if (file_symmetry) {
       std::cerr << "Can not populate bipartite graph with symmetric matrix" << std::endl;
@@ -267,10 +266,9 @@ edge_list_t read_mm(const std::string& filename) {
     mm_fill(inputStream, A, nNonzeros, file_symmetry, (header[3] == "pattern"));
 
     return A;
-  }
-  else {
+  } else {
     std::cerr << "Mismatch edge list type with matrix symmetry" << std::endl;
-    throw;    
+    throw;
   }
 }
 

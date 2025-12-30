@@ -237,7 +237,7 @@ std::tuple<double, std::vector<tree_mem>> bk_maxflow(const Graph& A, std::vector
       orphans.pop();
 
       tree_mem                     t = tree_id[p];
-      vertex_id_type               min_pred{null_vertex_v};
+      vertex_id_type               min_pred { null_vertex_v };
       size_t                       d_min = INFINITE_D;
       std::tuple<double*, double*> min_edge;
 

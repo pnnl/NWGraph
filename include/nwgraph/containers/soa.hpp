@@ -31,8 +31,8 @@
 #include <vector>
 
 #include "nwgraph/util/arrow_proxy.hpp"
-#include "nwgraph/util/util.hpp"
 #include "nwgraph/util/traits.hpp"
+#include "nwgraph/util/util.hpp"
 
 #if defined(CL_SYCL_LANGUAGE_VERSION)
 #include <dpstd/algorithm>
@@ -78,15 +78,15 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
 
     using soa_t = std::conditional_t<is_const, const struct_of_arrays, struct_of_arrays>;
 
-    std::size_t i_{0};
-    soa_t*      soa_{nullptr};
+    std::size_t i_ { 0 };
+    soa_t*      soa_ { nullptr };
 
   public:
     using value_type        = std::conditional_t<is_const, std::tuple<const typename std::vector<Attributes>::value_type...>,
-						 std::tuple<typename std::vector<Attributes>::value_type...>>;
+                                                 std::tuple<typename std::vector<Attributes>::value_type...>>;
     using difference_type   = std::ptrdiff_t;
-    using reference        = std::conditional_t<is_const, std::tuple<select_access_type<typename std::vector<Attributes>::const_iterator>...>,
-      std::tuple<select_access_type<typename std::vector<Attributes>::iterator>...>>;
+    using reference         = std::conditional_t<is_const, std::tuple<select_access_type<typename std::vector<Attributes>::const_iterator>...>,
+                                                 std::tuple<select_access_type<typename std::vector<Attributes>::iterator>...>>;
     using pointer           = arrow_proxy<reference>;
     using iterator_category = std::random_access_iterator_tag;
 
@@ -96,12 +96,16 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     }
 
     soa_iterator(const soa_iterator&) = default;
-    explicit soa_iterator(const soa_iterator<false>& b) requires(is_const) : i_(b.i_), soa_(b.soa_) {
+    explicit soa_iterator(const soa_iterator<false>& b)
+      requires(is_const)
+        : i_(b.i_), soa_(b.soa_) {
     }
 
     soa_iterator& operator=(const soa_iterator&) = default;
 
-    soa_iterator& operator=(const soa_iterator<false>& b) requires(is_const) {
+    soa_iterator& operator=(const soa_iterator<false>& b)
+      requires(is_const)
+    {
       i_   = b.i_;
       soa_ = b.soa_;
       return *this;
@@ -111,11 +115,11 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     auto operator<=>(const soa_iterator&) const = default;
 
     soa_iterator operator++(int) {
-      return soa_iterator{i_++, soa_};
+      return soa_iterator { i_++, soa_ };
     }
 
     soa_iterator operator--(int) {
-      return soa_iterator{i_--, soa_};
+      return soa_iterator { i_--, soa_ };
     }
 
     soa_iterator& operator++() {
@@ -159,21 +163,19 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     }
 
     decltype(auto) operator*() const {
-        return std::apply(
-            [this]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
+      return std::apply([this]<class... Vectors>(Vectors&&... v) { return reference(std::forward<Vectors>(v)[i_]...); }, *soa_);
     }
 
     decltype(auto) operator[](std::ptrdiff_t n) const {
-      return std::apply(
-          [this, n]<class... Vectors>(Vectors && ... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *soa_);
+      return std::apply([this, n]<class... Vectors>(Vectors&&... v) { return reference(std::forward<Vectors>(v)[i_ + n]...); }, *soa_);
     }
 
     pointer operator->() const {
-      return {**this};
+      return { **this };
     }
 
     pointer operator->() {
-      return {**this};
+      return { **this };
     }
   };
 
@@ -362,7 +364,7 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     std::apply([&](auto&... vs) { (permute(indices, new_indices, perm, vs), ...); }, *this);
   }
 
-  [[ nodiscard ]] size_t size() const {
+  [[nodiscard]] size_t size() const {
     return std::get<0>(*this).size();
   }
 
@@ -388,9 +390,6 @@ class tuple_size<nw::graph::struct_of_arrays<Attributes...>> : public std::integ
 /// struct_of_array iterator type, but I can't figure out how to do this.
 
 #include "nwgraph/util/tuple_hack.hpp"
-
-
-
 
 
 #endif    // NW_GRAPH_SOA_HPP

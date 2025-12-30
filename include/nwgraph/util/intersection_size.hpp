@@ -76,7 +76,7 @@ std::size_t intersection_size(A i, B&& ie, C j, D&& je, ExecutionPolicy&& ep) {
     (void)ep;
   } else {
     return std::set_intersection(std::forward<ExecutionPolicy>(ep), std::forward<A>(i), std::forward<B>(ie), std::forward<C>(j),
-                                 std::forward<D>(je), nw::graph::counter{}, lt);
+                                 std::forward<D>(je), nw::graph::counter {}, lt);
   }
 }
 

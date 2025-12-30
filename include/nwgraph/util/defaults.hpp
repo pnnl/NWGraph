@@ -23,7 +23,7 @@ namespace graph {
 using default_vertex_id_type = uint32_t;
 using default_index_t        = uint32_t;
 
- }
-}
+}    // namespace graph
+}    // namespace nw
 
 #endif    // NW_GRAPH_DEFAULTS_HPP

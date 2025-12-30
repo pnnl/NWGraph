@@ -24,7 +24,8 @@ namespace graph {
 template <typename path_edge, std::integral vertex_id>
 class reverse_path {
 public:
-  reverse_path(std::vector<path_edge>& path, vertex_id start, vertex_id stop) : path_(path), start_(start), stop_(stop) {}
+  reverse_path(std::vector<path_edge>& path, vertex_id start, vertex_id stop) : path_(path), start_(start), stop_(stop) {
+  }
 
   using vertex_id_type = vertex_id;
   std::vector<path_edge> path_;
@@ -32,7 +33,9 @@ public:
   vertex_id_type         start_, stop_;
   bool                   done = false;
 
-  bool found(vertex_id_type current) { return current == stop_; }
+  bool found(vertex_id_type current) {
+    return current == stop_;
+  }
 
   class reverse_iterator {
   private:
@@ -40,7 +43,8 @@ public:
     vertex_id_type curr_;
 
   public:
-    reverse_iterator(reverse_path& rev) : rev_(rev), curr_(rev.start_) {}
+    reverse_iterator(reverse_path& rev) : rev_(rev), curr_(rev.start_) {
+    }
 
     reverse_iterator& operator++() {
       curr_ = rev_.path_[curr_].predecessor;
@@ -51,19 +55,30 @@ public:
       return *this;
     }
 
-    auto operator*() { return std::tuple<vertex_id_type>(curr_); }
+    auto operator*() {
+      return std::tuple<vertex_id_type>(curr_);
+    }
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return rev_.done; }
-    bool operator!=(const end_sentinel_type&) const { return !rev_.done; }
+    auto operator==(const end_sentinel_type&) const {
+      return rev_.done;
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !rev_.done;
+    }
   };
 
-  auto begin() { return reverse_iterator(*this); }
-  auto end() { return typename reverse_iterator::end_sentinel_type(); }
+  auto begin() {
+    return reverse_iterator(*this);
+  }
+  auto end() {
+    return typename reverse_iterator::end_sentinel_type();
+  }
 };
 
 }    // namespace graph

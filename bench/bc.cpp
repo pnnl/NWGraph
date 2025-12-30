@@ -39,9 +39,9 @@ static constexpr const char USAGE[] =
 #include "nwgraph/edge_list.hpp"
 
 #include "Log.hpp"
+#include "common.hpp"
 #include "nwgraph/algorithms/betweenness_centrality.hpp"
 #include "nwgraph/experimental/algorithms/betweenness_centrality.hpp"
-#include "common.hpp"
 #include <docopt.h>
 
 using namespace nw::graph::bench;

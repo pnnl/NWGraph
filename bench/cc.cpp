@@ -37,13 +37,13 @@ static constexpr const char USAGE[] =
 )";
 
 #include "Log.hpp"
+#include "common.hpp"
 #include "nwgraph/adaptors/plain_range.hpp"
 #include "nwgraph/adaptors/vertex_range.hpp"
-#include "nwgraph/algorithms/connected_components.hpp"
-#include "nwgraph/experimental/algorithms/connected_components.hpp"
-#include "common.hpp"
 #include "nwgraph/adjacency.hpp"
+#include "nwgraph/algorithms/connected_components.hpp"
 #include "nwgraph/edge_list.hpp"
+#include "nwgraph/experimental/algorithms/connected_components.hpp"
 #include "nwgraph/util/atomic.hpp"
 #include "nwgraph/util/traits.hpp"
 #include <docopt.h>
@@ -225,11 +225,11 @@ int main(int argc, char* argv[]) {
             case 9:
               record([&] { return sv_v9<Graph, vertex_id_type>(graph); });    //sv
               break;
-            case 10: 
-              record([&] { return lpcc(std::execution::par_unseq, graph, thread); }); //lp
+            case 10:
+              record([&] { return lpcc(std::execution::par_unseq, graph, thread); });    //lp
               break;
-           case 11: 
-              record([&] { return lpcc_cyclic(std::execution::par_unseq, graph, thread); }); //lp
+            case 11:
+              record([&] { return lpcc_cyclic(std::execution::par_unseq, graph, thread); });    //lp
               break;
             default:
               std::cout << "Unknown version v" << id << "\n";

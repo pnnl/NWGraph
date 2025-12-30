@@ -17,14 +17,14 @@
 #include "nwgraph/edge_list.hpp"
 
 namespace nw {
-  namespace graph {
+namespace graph {
 
 using coo_graph = edge_list<directedness::directed>;
 
 template <typename T = double>
 using coo_matrix = edge_list<directedness::directed, T>;
 
-  }
-}
+}    // namespace graph
+}    // namespace nw
 
-#endif // NW_GRAPH_COO_HPP
+#endif    // NW_GRAPH_COO_HPP

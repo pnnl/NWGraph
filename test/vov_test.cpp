@@ -18,8 +18,8 @@
 #include "nwgraph/adaptors/edge_range.hpp"
 #include "nwgraph/adaptors/plain_range.hpp"
 #include "nwgraph/edge_list.hpp"
-#include "nwgraph/vovos.hpp"
 #include "nwgraph/util/print_types.hpp"
+#include "nwgraph/vovos.hpp"
 
 #include "common/test_header.hpp"
 
@@ -27,7 +27,9 @@ using namespace nw::graph;
 using namespace nw::util;
 
 TEST_CASE("vector of vector of structures", "[vector_of_vector_of_structs]") {
-  SECTION("construct") { vector_of_vector_of_structs A(5); }
+  SECTION("construct") {
+    vector_of_vector_of_structs A(5);
+  }
 }
 
 TEST_CASE("vector of vectors", "[vov]") {
@@ -37,13 +39,18 @@ TEST_CASE("vector of vectors", "[vov]") {
     vov<0, double> B(5);
     B.push_back(3, 1, 4.159);
     vov<0, double, std::complex<float>> C(5);
-    C.push_back(3, 1, 4.159, {86.7, 5.309});
+    C.push_back(3, 1, 4.159, { 86.7, 5.309 });
     vov<1, double, std::complex<float>> D(5);
-    D.push_back(3, 1, 4.159, {86.7, 5.309});
+    D.push_back(3, 1, 4.159, { 86.7, 5.309 });
   }
   SECTION("edge_list") {
-    edge_list<nw::graph::directedness::directed, double> A{{0, 0, 8.0}, {0, 1, 6.7}, {1, 2, 5.3}, {3, 0, 0.9}};
-    vov<0, double>                                       B(A);
+    edge_list<nw::graph::directedness::directed, double> A {
+      { 0, 0, 8.0 },
+      { 0, 1, 6.7 },
+      { 1, 2, 5.3 },
+      { 3, 0, 0.9 }
+    };
+    vov<0, double> B(A);
     std::cout << "edgelist ->vov" << std::endl;
     //    for (auto&& [i, j, v] : make_edge_range<0>(B)) {
     //std::cout << i << " " << j << " " << v << std::endl;

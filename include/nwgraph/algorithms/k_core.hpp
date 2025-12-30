@@ -33,8 +33,8 @@ namespace graph {
 struct pair_hash {
   std::size_t operator()(const std::pair<size_t, size_t>& p) const {
 
-    auto h1 = std::hash<default_vertex_id_type>{}(p.first);
-    auto h2 = std::hash<default_vertex_id_type>{}(p.second);
+    auto h1 = std::hash<default_vertex_id_type> {}(p.first);
+    auto h2 = std::hash<default_vertex_id_type> {}(p.second);
 
     return h1 ^ h2;
   }
@@ -88,7 +88,7 @@ std::tuple<Unordered_map, size_t> k_core(const Graph& A, int k) {
       if (--degree[w] == 0) n_vtx--;
       if (--degree[v] == 0) n_vtx--;
 
-      filter.insert({edge, true});
+      filter.insert({ edge, true });
     }
   }
 

@@ -39,11 +39,11 @@ auto read_imdb(const std::string& path, std::map<std::string, vertex_index_t>& a
   while (getline(datastream, buffer)) {
     auto&& [actor_one, movie_name, actor_two] = parse_buffer(buffer);
 
-    auto&& [key_val_one, inserted_one] = actor_id_map.insert({actor_one, actor_vertex_counter});
+    auto&& [key_val_one, inserted_one] = actor_id_map.insert({ actor_one, actor_vertex_counter });
     if (inserted_one) ++actor_vertex_counter;
     auto&& [dummy_one, index_one] = *key_val_one;
 
-    auto&& [key_val_two, inserted_two] = actor_id_map.insert({actor_two, actor_vertex_counter});
+    auto&& [key_val_two, inserted_two] = actor_id_map.insert({ actor_two, actor_vertex_counter });
     if (inserted_two) ++actor_vertex_counter;
     auto&& [dummy_two, index_two] = *key_val_two;
 

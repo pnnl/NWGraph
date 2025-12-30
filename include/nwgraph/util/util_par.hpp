@@ -28,18 +28,27 @@ std::mutex mtx;
 
 class par_counting_output_iterator : public std::iterator<std::random_access_iterator_tag, size_t> {
 public:
-  par_counting_output_iterator(size_t& count) : count{count} {}
-  void                          operator++() {}
-  void                          operator++(int) {}
-  par_counting_output_iterator& operator*() { return *this; }
-  par_counting_output_iterator& operator[](size_t) { return *this; }
+  par_counting_output_iterator(size_t& count) : count { count } {
+  }
+  void operator++() {
+  }
+  void operator++(int) {
+  }
+  par_counting_output_iterator& operator*() {
+    return *this;
+  }
+  par_counting_output_iterator& operator[](size_t) {
+    return *this;
+  }
 
   template <typename T>
   void operator=(T) {
     std::lock_guard<std::mutex> lock(mtx);
     count++;
   }
-  size_t get_count() { return count; }
+  size_t get_count() {
+    return count;
+  }
 
 private:
   size_t& count;
@@ -47,17 +56,26 @@ private:
 
 class atomic_counting_output_iterator : public std::iterator<std::random_access_iterator_tag, size_t> {
 public:
-  explicit atomic_counting_output_iterator(std::atomic<size_t>& count) : count{count} {}
-  void                             operator++() {}
-  void                             operator++(int) {}
-  atomic_counting_output_iterator& operator*() { return *this; }
-  atomic_counting_output_iterator& operator[](size_t) { return *this; }
+  explicit atomic_counting_output_iterator(std::atomic<size_t>& count) : count { count } {
+  }
+  void operator++() {
+  }
+  void operator++(int) {
+  }
+  atomic_counting_output_iterator& operator*() {
+    return *this;
+  }
+  atomic_counting_output_iterator& operator[](size_t) {
+    return *this;
+  }
 
   template <typename T>
   void operator=(T) {
     count++;
   }
-  size_t get_count() { return count; }
+  size_t get_count() {
+    return count;
+  }
 
 private:
   std::atomic<size_t>& count;

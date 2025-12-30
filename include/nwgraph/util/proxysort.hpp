@@ -19,10 +19,10 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
+#include <execution>
 #include <functional>
 #include <numeric>
 #include <vector>
-#include <execution>
 
 namespace nw {
 namespace util {
@@ -44,20 +44,21 @@ void proxysort(const ThingToSort& x, std::vector<IntT>& perm, Comparator comp = 
     }
   });
 #else
-  std::iota(perm.begin(), perm.end(), 0);  // Parallelize Me!!
+  std::iota(perm.begin(), perm.end(), 0);    // Parallelize Me!!
 #endif
 
   assert(perm.begin() != perm.end());
 
-  std::sort(/*policy,*/ perm.begin(), perm.end(), [&](auto a, auto b) { 
+  std::sort(/*policy,*/ perm.begin(), perm.end(), [&](auto a, auto b) {
     assert(perm.size() == x.size());
     assert(a < x.size());
     assert(b < x.size());
-    return comp(x[a], x[b]); 
+    return comp(x[a], x[b]);
   });
 }
 
-template <typename IntT = uint32_t, typename Comparator, typename ThingToSort, class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+template <typename IntT         = uint32_t, typename Comparator, typename ThingToSort,
+          class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
 auto proxysort(const ThingToSort& x, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
   std::vector<IntT> perm(x.size());
   proxysort(x, perm, comp, policy);

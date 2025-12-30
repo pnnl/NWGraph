@@ -20,19 +20,22 @@
 #include "nwgraph/adjacency.hpp"
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/graph_concepts.hpp"
-#include "nwgraph/vovos.hpp"
+#include "nwgraph/graphs/imdb-graph.hpp"
 #include "nwgraph/graphs/karate-graph.hpp"
 #include "nwgraph/graphs/ospf-graph.hpp"
-#include "nwgraph/graphs/imdb-graph.hpp"
+#include "nwgraph/vovos.hpp"
 
 template <nw::graph::edge_list_c edge_list_t>
-auto foo(edge_list_t el) {}
+auto foo(edge_list_t el) {
+}
 
 template <nw::graph::edge_list_c edge_list_t>
-auto bar(const edge_list_t& el) {}
+auto bar(const edge_list_t& el) {
+}
 
 template <nw::graph::edge_list_c edge_list_t>
-auto baz(edge_list_t&& el) {}
+auto baz(edge_list_t&& el) {
+}
 
 template <nw::graph::adjacency_list_graph Graph>
 auto bfs_vv(const Graph& graph, typename nw::graph::graph_traits<Graph>::vertex_id_type root) {
@@ -71,28 +74,33 @@ int main() {
   static_assert(nw::graph::idx_adjacency_list<decltype(ospf_index_adjacency_list)>);
   static_assert(nw::graph::idx_adjacency_list<decltype(actor_actor_adjacency_list)>);
 
-  nw::graph::edge_list<nw::graph::directedness::directed> e{{0, 0}, {0, 4}, {4, 4}, {4, 0}};
+  nw::graph::edge_list<nw::graph::directedness::directed> e {
+    { 0, 0 },
+    { 0, 4 },
+    { 4, 4 },
+    { 4, 0 }
+  };
   static_assert(nw::graph::edge_list_c<decltype(e)>);
   static_assert(nw::graph::edge_list_graph<decltype(e)>);
-  
+
   std::vector<std::tuple<int, int>> f;
   static_assert(nw::graph::edge_list_c<decltype(f)>);
-  
+
   auto g = nw::graph::make_zipped(std::vector<int>(), std::vector<int>());
   static_assert(nw::graph::edge_list_c<decltype(g)>);
-  
+
   auto h = nw::graph::make_adjacency<0>(e);
   static_assert(nw::graph::adjacency_list_graph<decltype(h)>);
   static_assert(nw::graph::edge_list_c<decltype(h[0])>);
-  
+
   auto i = nw::graph::make_adjacency<1>(e);
   static_assert(nw::graph::adjacency_list_graph<decltype(h)>);
   static_assert(nw::graph::edge_list_c<decltype(i[0])>);
-  
+
   bfs_vv(h, 0);
-  
+
   bfs_vv(karate_directed_adjacency_list, 0);
   bfs_vv(karate_undirected_adjacency_list, 0);
-  
+
   return 0;
 }

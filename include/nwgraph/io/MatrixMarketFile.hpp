@@ -35,9 +35,14 @@ class Range {
   It end_;
 
 public:
-  Range(It begin, It end) : begin_(begin), end_(end) {}
-  It begin() const { return begin_; }
-  It end() const { return end_; }
+  Range(It begin, It end) : begin_(begin), end_(end) {
+  }
+  It begin() const {
+    return begin_;
+  }
+  It end() const {
+    return end_;
+  }
 };
 
 class MatrixMarketFile final {
@@ -98,7 +103,9 @@ public:
     std::terminate();
   };
 
-  ~MatrixMarketFile() { release(); };
+  ~MatrixMarketFile() {
+    release();
+  };
 
   /// Release the memory mapping and file descriptor early.
   void release() {
@@ -114,17 +121,29 @@ public:
   };
 
   /// ADL
-  friend void release(MatrixMarketFile& mm) { mm.release(); }
+  friend void release(MatrixMarketFile& mm) {
+    mm.release();
+  }
 
-  int getNRows() const { return n_; }
+  int getNRows() const {
+    return n_;
+  }
 
-  int getNCols() const { return m_; }
+  int getNCols() const {
+    return m_;
+  }
 
-  int getNEdges() const { return nnz_; }
+  int getNEdges() const {
+    return nnz_;
+  }
 
-  bool isPattern() const { return mm_is_pattern(type_); }
+  bool isPattern() const {
+    return mm_is_pattern(type_);
+  }
 
-  bool isSymmetric() const { return mm_is_symmetric(type_); }
+  bool isSymmetric() const {
+    return mm_is_symmetric(type_);
+  }
 
   // Iterator over edges in the file.
   template <typename... Vs>
@@ -149,7 +168,8 @@ public:
     }
 
   public:
-    iterator(const char* i) : i_(i) {}
+    iterator(const char* i) : i_(i) {
+    }
 
     std::tuple<int, int, Vs...> operator*() const {
       const char* i = i_;
@@ -163,17 +183,19 @@ public:
       return *this;
     }
 
-    bool operator!=(const iterator& b) const { return i_ != b.i_; }
+    bool operator!=(const iterator& b) const {
+      return i_ != b.i_;
+    }
   };
 
   template <typename... Vs>
   iterator<Vs...> begin() const {
-    return {base_ + i_};
+    return { base_ + i_ };
   }
 
   template <typename... Vs>
   iterator<Vs...> end() const {
-    return {base_ + e_};
+    return { base_ + e_ };
   }
 
   template <typename... Vs>
@@ -189,7 +211,7 @@ public:
       --approx;
     }
     ++approx;
-    return {base_ + approx};
+    return { base_ + approx };
   }
 };
 
@@ -199,4 +221,4 @@ auto edges(const MatrixMarketFile& mm, int j, int k) {
 }
 }    // namespace mmio
 
-#endif // NW_GRAPH_MATRIXMARKETFILE_HPP
+#endif    // NW_GRAPH_MATRIXMARKETFILE_HPP

@@ -84,7 +84,7 @@ edge_list<Directedness, Attributes...> load_graph(std::string file) {
   std::ifstream in(file);
   std::string   type;
   in >> type;
-  
+
   if (type == "NW") {
     nw::util::life_timer                   _("deserialize");
     edge_list<Directedness, Attributes...> aos_a(0);
@@ -101,9 +101,10 @@ edge_list<Directedness, Attributes...> load_graph(std::string file) {
 }
 
 template <int Adj, class ExecutionPolicy = std::execution::parallel_unsequenced_policy, directedness Directedness, class... Attributes>
-adjacency<Adj, Attributes...> build_adjacency(edge_list<Directedness, Attributes...>& graph, bool sort_adjacency = false, ExecutionPolicy&& policy = {}) {
+adjacency<Adj, Attributes...> build_adjacency(edge_list<Directedness, Attributes...>& graph, bool sort_adjacency = false,
+                                              ExecutionPolicy&& policy = {}) {
   nw::util::life_timer _("build adjacency");
-  return {graph, sort_adjacency, policy};
+  return { graph, sort_adjacency, policy };
 }
 
 template <class Graph>
@@ -157,12 +158,12 @@ auto time_op(Op&& op) {
     auto start = std::chrono::high_resolution_clock::now();
     op();
     std::chrono::duration<double> end = std::chrono::high_resolution_clock::now() - start;
-    return std::tuple{end.count()};
+    return std::tuple { end.count() };
   } else {
     auto                          start = std::chrono::high_resolution_clock::now();
     auto                          e     = op();
     std::chrono::duration<double> end   = std::chrono::high_resolution_clock::now() - start;
-    return std::tuple{end.count(), std::move(e)};
+    return std::tuple { end.count(), std::move(e) };
   }
 }
 
@@ -178,15 +179,19 @@ class Times {
   std::map<std::tuple<std::string, long, long>, std::vector<Sample>> times_ = {};
 
 public:
-  decltype(auto) begin() const { return times_.begin(); }
-  decltype(auto) end() const { return times_.end(); }
+  decltype(auto) begin() const {
+    return times_.begin();
+  }
+  decltype(auto) end() const {
+    return times_.end();
+  }
 
   template <class Op>
   auto record(const std::string& file, long id, long thread, Op&& op, Extra... extra) {
     return std::apply(
         [&](auto time, auto&&... rest) {
           append(file, id, thread, time, extra...);
-          return std::tuple{std::forward<decltype(rest)>(rest)...};
+          return std::tuple { std::forward<decltype(rest)>(rest)... };
         },
         time_op(std::forward<Op>(op)));
   }

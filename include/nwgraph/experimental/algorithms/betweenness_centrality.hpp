@@ -63,7 +63,9 @@ public:
     }
   }
 
-  void unlock() { flag.clear(std::memory_order_release); }
+  void unlock() {
+    flag.clear(std::memory_order_release);
+  }
 };
 
 template <adjacency_list_graph Graph, typename score_t = float, typename accum_t = size_t>
@@ -518,7 +520,7 @@ std::vector<score_t> approx_betweenness_worklist(const Graph& A, std::vector<typ
           apply_spfu(u, v, udata, vdata);
           // unlock u,v
 
-          for (auto inner =A[v].begin(); inner !=A[v].end(); ++inner) {
+          for (auto inner = A[v].begin(); inner != A[v].end(); ++inner) {
             size_t priority = (vdata->l + 1) / DELTA;
             // worklist.push_back(std::pair(v, std::get<0>(*inner)));
             worklist.push_back(std::pair(v, std::get<0>(*inner)), priority);
@@ -534,7 +536,7 @@ std::vector<score_t> approx_betweenness_worklist(const Graph& A, std::vector<typ
           // unlock u,v
           // should this include all neighbors of v?
           if (vdata->succs.begin() != vdata->succs.end()) {
-            for (auto inner =A[v].begin(); inner !=A[v].end(); ++inner) {
+            for (auto inner = A[v].begin(); inner != A[v].end(); ++inner) {
               size_t priority = (vdata->l + 1) / DELTA;
               worklist.push_back(std::pair(v, std::get<0>(*inner)), priority);
             }
@@ -749,7 +751,7 @@ std::vector<score_t> approx_betweenness_worklist_noabstraction(const Graph& A, s
             vector_spinlocks[u].unlock();
             vector_spinlocks[v].unlock();
           }
-          for (auto inner =A[v].begin(); inner !=A[v].end(); ++inner) {
+          for (auto inner = A[v].begin(); inner != A[v].end(); ++inner) {
             size_t priority = (vdata->l + 1) / DELTA;
             // if (priority > maxbucket) {
             if (priority + 1 > num_buckets) {
@@ -787,7 +789,7 @@ std::vector<score_t> approx_betweenness_worklist_noabstraction(const Graph& A, s
           }
           // should this only be succ of v?
           if (vdata->succs.begin() != vdata->succs.end()) {
-            for (auto inner =A[v].begin(); inner !=A[v].end(); ++inner) {
+            for (auto inner = A[v].begin(); inner != A[v].end(); ++inner) {
               size_t priority = (vdata->l + 1) / DELTA;
               // if (priority > maxbucket) {
               if (priority + 1 > num_buckets) {
@@ -1287,8 +1289,8 @@ auto bc2_v0(const Graph& graph, const std::vector<typename Graph::vertex_id_type
   }
   if (normalize) {
     score_t biggest_score = *max_element(bc.begin(), bc.end());
-    for (auto &j : bc)
-      j = j / biggest_score; 
+    for (auto& j : bc)
+      j = j / biggest_score;
   }
 
   return bc;
@@ -1355,8 +1357,8 @@ auto bc2_v1(const Graph& graph, const std::vector<typename Graph::vertex_id_type
 
   if (normalize) {
     score_t biggest_score = *max_element(bc.begin(), bc.end());
-    for (auto &j : bc)
-      j = j / biggest_score; 
+    for (auto& j : bc)
+      j = j / biggest_score;
   }
 
   return bc;
@@ -1364,7 +1366,8 @@ auto bc2_v1(const Graph& graph, const std::vector<typename Graph::vertex_id_type
 
 template <adjacency_list_graph Graph, typename score_t = float, typename accum_t = size_t,
           class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
-auto bc2_v2(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& sources, ExecutionPolicy&& policy = {}, bool normalize = true) {
+auto bc2_v2(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& sources, ExecutionPolicy&& policy = {},
+            bool normalize = true) {
   using vertex_id_type = typename Graph::vertex_id_type;
 
   auto                 g = graph.begin();
@@ -1575,7 +1578,7 @@ auto bc2_v4(const Graph& graph, const std::vector<typename Graph::vertex_id_type
       std::for_each(outer_policy, q1.begin(), q1.end(), [&](auto&& q) {
         std::for_each(inner_policy, q.begin(), q.end(), [&](auto&& u) {
           for (auto&& elt : graph[u]) {
-            auto&& v = target(graph, elt);
+            auto&& v       = target(graph, elt);
             auto&& neg_one = std::numeric_limits<vertex_id_type>::max();
             if (nw::graph::acquire(levels[v]) == neg_one && nw::graph::cas(levels[v], neg_one, lvl)) {
               q2[u & bin_mask].push_back(v);

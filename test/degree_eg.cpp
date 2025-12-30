@@ -12,8 +12,8 @@
  */
 
 
-#include "nwgraph/adjacency.hpp"
 #include "karate.hpp"
+#include "nwgraph/adjacency.hpp"
 #include "nwgraph/util/print_types.hpp"
 
 
@@ -42,11 +42,10 @@ int main() {
   }
 
   for (auto&& j : A) {
-    std::cout << nw::graph::degree(j) << std::endl;    
+    std::cout << nw::graph::degree(j) << std::endl;
   }
 
   for (auto&& j : A) {
-    std::cout << nw::graph::degree(A, j) << std::endl;    
+    std::cout << nw::graph::degree(A, j) << std::endl;
   }
-
 }

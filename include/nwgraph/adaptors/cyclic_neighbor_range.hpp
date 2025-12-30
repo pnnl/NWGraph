@@ -54,31 +54,39 @@ private:
 public:
   template <class Range, class Cutoff>
   cyclic_neighbor_range(Range&& range, Cutoff cutoff)
-      : begin_(range.begin()), end_(range.end()), cutoff_(nw::graph::pow2(nw::graph::ceil_log2(cutoff))) {}
+      : begin_(range.begin()), end_(range.end()), cutoff_(nw::graph::pow2(nw::graph::ceil_log2(cutoff))) {
+  }
 
   cyclic_neighbor_range(const cyclic_neighbor_range&) = default;
   cyclic_neighbor_range(cyclic_neighbor_range&&)      = default;
 
   cyclic_neighbor_range(cyclic_neighbor_range& rhs, tbb::split)
-      : begin_(rhs.begin_), end_(rhs.end_), cutoff_(rhs.cutoff_), cycle_(rhs.cycle_ + rhs.stride_), stride_(rhs.stride_ *= 2) {}
+      : begin_(rhs.begin_), end_(rhs.end_), cutoff_(rhs.cutoff_), cycle_(rhs.cycle_ + rhs.stride_), stride_(rhs.stride_ *= 2) {
+  }
 
   struct iterator {
     Iterator        begin_;
     Iterator        i_;
     difference_type stride_;
 
-    decltype(auto) operator*() { return std::make_tuple(static_cast<std::size_t>(i_ - begin_), *i_); }
-    
+    decltype(auto) operator*() {
+      return std::make_tuple(static_cast<std::size_t>(i_ - begin_), *i_);
+    }
+
     iterator& operator++() {
       i_ += stride_;
       return *this;
     }
 
-    bool operator!=(const iterator& rhs) const { return i_ != rhs.i_; }
+    bool operator!=(const iterator& rhs) const {
+      return i_ != rhs.i_;
+    }
   };
 
   /// Return an iterator that points to the start of the cycle.
-  iterator begin() const { return {begin_, begin_ + cycle_, stride_}; }
+  iterator begin() const {
+    return { begin_, begin_ + cycle_, stride_ };
+  }
 
   /// Return an iterator that points to the end of the cycle.
   ///
@@ -90,7 +98,7 @@ public:
     difference_type n = end_ - begin_ - cycle_;     // shifted span for cycle
     difference_type r = n % stride_;                // remainder in last stride
     difference_type e = (stride_ - r) % stride_;    // amount past `end_` we'll go
-    return {begin_, end_ + e, stride_};
+    return { begin_, end_ + e, stride_ };
   }
 
   difference_type size() const {
@@ -100,17 +108,21 @@ public:
     return n / stride_ + ((cycle_ < n % stride_) ? 1 : 0);
   }
 
-  bool empty() const { return size() == 0; }
+  bool empty() const {
+    return size() == 0;
+  }
 
   /// Runtime check to see if the range is divisible.
   ///
   /// The range can be subdivided if its stride can be increased relative to the
   /// cutoff.
-  bool is_divisible() const { return stride_ <= cutoff_; }
+  bool is_divisible() const {
+    return stride_ <= cutoff_;
+  }
 };
 
 template <class Range, class Cutoff>
 cyclic_neighbor_range(Range range, Cutoff) -> cyclic_neighbor_range<decltype(range.begin())>;
 }    // namespace graph
 }    // namespace nw
-#endif // NW_GRAPH_CYCLIC_NEIGHBOR_RANGE_HPP
+#endif    // NW_GRAPH_CYCLIC_NEIGHBOR_RANGE_HPP

@@ -50,7 +50,8 @@ static inline constexpr edges_t edges{};
       return tag_invoke(*this, std::forward<decltype(args)>(args)...);                                                      \
     }                                                                                                                       \
   };                                                                                                                        \
-  static inline constexpr str##_t str {}
+  static inline constexpr str##_t str {                                                                                     \
+  }
 
 #endif
 
@@ -59,20 +60,36 @@ DECL_TAG_INVOKE(vertices);
 DECL_TAG_INVOKE(num_vertices);
 
 struct foo {
-  void one(const std::string& msg) const { std::cout << "This is foo one: " << msg << std::endl; }
-  void two() const { std::cout << "This is foo two" << std::endl; }
+  void one(const std::string& msg) const {
+    std::cout << "This is foo one: " << msg << std::endl;
+  }
+  void two() const {
+    std::cout << "This is foo two" << std::endl;
+  }
 };
 
 struct bar {
-  void one(const std::string& msg) const { std::cout << "This is bar one: " << msg << std::endl; }
-  void three() const { std::cout << "This is bar three" << std::endl; }
+  void one(const std::string& msg) const {
+    std::cout << "This is bar one: " << msg << std::endl;
+  }
+  void three() const {
+    std::cout << "This is bar three" << std::endl;
+  }
 };
 
-auto tag_invoke(const edges_tag, const bar& b, const std::string& msg) { b.one(msg); }
-auto tag_invoke(const edges_tag, const foo& f, const std::string& msg) { f.one(msg); }
+auto tag_invoke(const edges_tag, const bar& b, const std::string& msg) {
+  b.one(msg);
+}
+auto tag_invoke(const edges_tag, const foo& f, const std::string& msg) {
+  f.one(msg);
+}
 
-auto tag_invoke(const vertices_tag, const foo& f) { f.two(); }
-auto tag_invoke(const vertices_tag, const bar& b) { b.three(); }
+auto tag_invoke(const vertices_tag, const foo& f) {
+  f.two();
+}
+auto tag_invoke(const vertices_tag, const bar& b) {
+  b.three();
+}
 
 //template <typename T>
 //auto tag_invoke(const num_vertices_t, const std::vector<T>& b) {

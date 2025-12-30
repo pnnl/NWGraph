@@ -40,7 +40,9 @@ public:
   dfs_range(const dfs_range&)  = delete;
   dfs_range(const dfs_range&&) = delete;
 
-  bool empty() { return Q_.empty(); }
+  bool empty() {
+    return Q_.empty();
+  }
 
 private:
   template <typename GraphRange>
@@ -67,7 +69,8 @@ private:
 public:
   class dfs_range_iterator {
   public:
-    dfs_range_iterator(dfs_range<Graph>& range) : the_range_(range), cursor_(0) {}
+    dfs_range_iterator(dfs_range<Graph>& range) : the_range_(range), cursor_(0) {
+    }
 
     dfs_range_iterator& operator++() {
       auto  G      = the_range_.the_graph_.begin();
@@ -92,16 +95,23 @@ public:
       return *this;
     }
 
-    auto operator*() { return the_range_.Q_.top(); }
+    auto operator*() {
+      return the_range_.Q_.top();
+    }
     // auto operator*() { return active_; }
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
 
   private:
     dfs_range<Graph>& the_range_;
@@ -110,8 +120,12 @@ public:
 
   typedef dfs_range_iterator iterator;
 
-  auto begin() { return dfs_range_iterator(*this); }
-  auto end() { return typename dfs_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return dfs_range_iterator(*this);
+  }
+  auto end() {
+    return typename dfs_range_iterator::end_sentinel_type();
+  }
 
 private:
   Graph&                    the_graph_;
@@ -131,7 +145,9 @@ public:
   dfs_edge_range(const dfs_edge_range&)  = delete;
   dfs_edge_range(const dfs_edge_range&&) = delete;
 
-  bool empty() { return Q_.empty(); }
+  bool empty() {
+    return Q_.empty();
+  }
 
   class dfs_edge_range_iterator {
   private:
@@ -142,7 +158,8 @@ public:
 
   public:
     dfs_edge_range_iterator(dfs_edge_range<Graph, Stack>& range)
-        : the_range_(range), G(the_range_.the_graph_.begin()), v_(the_range_.Q_.top()), u_begin(G[v_].begin()), u_end(G[v_].end()) {}
+        : the_range_(range), G(the_range_.the_graph_.begin()), v_(the_range_.Q_.top()), u_begin(G[v_].begin()), u_end(G[v_].end()) {
+    }
 
     dfs_edge_range_iterator& operator++() {
       auto& Q      = the_range_.Q_;
@@ -178,21 +195,32 @@ public:
       return *this;
     }
 
-    auto operator*() { return std::tuple_cat(std::make_tuple(v_), *u_begin); }
+    auto operator*() {
+      return std::tuple_cat(std::make_tuple(v_), *u_begin);
+    }
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
   };
 
   typedef dfs_edge_range_iterator iterator;
 
-  auto begin() { return dfs_edge_range_iterator(*this); }
-  auto end() { return typename dfs_edge_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return dfs_edge_range_iterator(*this);
+  }
+  auto end() {
+    return typename dfs_edge_range_iterator::end_sentinel_type();
+  }
 
 private:
   Graph&                    the_graph_;

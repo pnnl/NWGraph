@@ -20,7 +20,7 @@ namespace graph {
 template <typename G>
 struct graph_traits {
 
-  using vertex_id_type    = typename G::vertex_id_type;
+  using vertex_id_type = typename G::vertex_id_type;
 
   // using vertex_size_type  = typename G::vertex_id_type;
   // using num_vertices_type = typename G::num_vertices_type;

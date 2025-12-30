@@ -16,10 +16,10 @@
 #ifndef NW_GRAPH_TRIANGLE_COUNT_HPP
 #define NW_GRAPH_TRIANGLE_COUNT_HPP
 
-#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/adaptors/cyclic_range_adaptor.hpp"
-#include "nwgraph/adaptors/neighbor_range.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
+#include "nwgraph/adaptors/neighbor_range.hpp"
+#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/util/intersection_size.hpp"
 #include "nwgraph/util/parallel_for.hpp"
 #include "nwgraph/util/timer.hpp"
@@ -96,7 +96,7 @@ std::size_t triangle_count_async(std::size_t threads, Op&& op) {
 template <adjacency_list_graph Graph>
 [[gnu::noinline]] std::size_t triangle_count(const Graph& G, std::size_t threads) {
   auto first = G.begin();
-  auto last = G.end();
+  auto last  = G.end();
   return triangle_count_async(threads, [&](std::size_t tid) {
     std::size_t triangles = 0;
     for (auto i = first + tid; i < last; i += threads) {

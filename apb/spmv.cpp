@@ -17,8 +17,8 @@
 #include <iostream>
 #include <vector>
 
-#include "nwgraph/adaptors/neighbor_range.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
+#include "nwgraph/adaptors/neighbor_range.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/io/mmio.hpp"
@@ -103,12 +103,12 @@ auto apb_adj(Adjacency& graph, size_t ntrial) {
 
       vertex_id_type k = 0;
       std::for_each(graph.begin(), graph.end(), [&](auto&& nbhd) {
-	  std::for_each(nbhd.begin(), nbhd.end(), [&] (auto&& elt) {
-	    auto&& [j, v] = elt;
-	    y[k] += x[j] * v;
-	  });
-	  ++k;
-	});
+        std::for_each(nbhd.begin(), nbhd.end(), [&](auto&& elt) {
+          auto&& [j, v] = elt;
+          y[k] += x[j] * v;
+        });
+        ++k;
+      });
       ta.stop();
       time += ta.elapsed();
     }
@@ -124,7 +124,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial) {
       vertex_id_type k = 0;
 
       for (auto&& [k, u_neighbors] : make_neighbor_range(graph)) {
-        for (auto &&[j, v] : u_neighbors) {
+        for (auto&& [j, v] : u_neighbors) {
           y[k] += x[j] * v;
         }
       }
@@ -340,7 +340,9 @@ auto apb_adj(Adjacency& graph, size_t ntrial) {
   }
 }
 
-void usage(const std::string& msg = "") { std::cout << std::string("Usage: ") + msg + " " << std::endl; }
+void usage(const std::string& msg = "") {
+  std::cout << std::string("Usage: ") + msg + " " << std::endl;
+}
 
 int main(int argc, char* argv[]) {
   std::string edgelistFile             = "";

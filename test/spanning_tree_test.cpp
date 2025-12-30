@@ -23,7 +23,7 @@ using namespace nw::graph;
 using namespace nw::util;
 
 TEST_CASE("max/min weight spanning tree", "[mst]") {
-  auto                                        A_list = read_mm<directedness::undirected, double>(DATA_DIR "msttest.mtx");
+  auto A_list = read_mm<directedness::undirected, double>(DATA_DIR "msttest.mtx");
   //edge_list<directedness::undirected, double> A_list(aos_a.size());
   //for (auto y : aos_a) {
   //  A_list.push_back(std::get<0>(y), std::get<1>(y), std::get<2>(y));

@@ -38,16 +38,21 @@ private:
 
 public:
   template <class Index>
-  permutation_iterator(Iterator base, Index i, Permutation perm) : base_(base), perm_(perm), i_(i) {}
+  permutation_iterator(Iterator base, Index i, Permutation perm) : base_(base), perm_(perm), i_(i) {
+  }
 
-  constexpr decltype(auto) operator*() { return *(base_ + perm_(i_)); }
+  constexpr decltype(auto) operator*() {
+    return *(base_ + perm_(i_));
+  }
 
   permutation_iterator& operator++() {
     ++i_;
     return *this;
   }
 
-  constexpr bool operator!=(const permutation_iterator& rhs) { return (i_ != rhs.i_ || base_ != rhs.base_); }
+  constexpr bool operator!=(const permutation_iterator& rhs) {
+    return (i_ != rhs.i_ || base_ != rhs.base_);
+  }
 };
 }    // namespace graph
 }    // namespace nw

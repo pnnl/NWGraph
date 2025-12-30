@@ -167,7 +167,9 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed) {
   std::cout << t5.name() << " " << time / ntrial << " ms" << std::endl;
 }
 
-void usage(const std::string& msg = "") { std::cout << std::string("Usage: ") + msg + " " << std::endl; }
+void usage(const std::string& msg = "") {
+  std::cout << std::string("Usage: ") + msg + " " << std::endl;
+}
 
 int main(int argc, char* argv[]) {
   std::string edgelistFile             = "";

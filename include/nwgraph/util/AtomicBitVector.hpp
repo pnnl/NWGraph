@@ -62,10 +62,13 @@ public:
   }
 
   /// Delete the bitmap.
-  ~AtomicBitVector() { delete[] data_; }
+  ~AtomicBitVector() {
+    delete[] data_;
+  }
 
   /// The move constructor needs to be explicit.
-  AtomicBitVector(AtomicBitVector&& rhs) : bits_(std::exchange(rhs.bits_, 0)), data_(std::exchange(rhs.data_, nullptr)) {}
+  AtomicBitVector(AtomicBitVector&& rhs) : bits_(std::exchange(rhs.bits_, 0)), data_(std::exchange(rhs.data_, nullptr)) {
+  }
 
   /// The move assignment operator needs to be explicit.
   AtomicBitVector& operator=(AtomicBitVector&& rhs) {
@@ -75,7 +78,9 @@ public:
   }
 
   /// Clear the bitmap.
-  void clear() { std::fill(std::execution::par_unseq, data_, data_ + words(bits_), Word(0)); }
+  void clear() {
+    std::fill(std::execution::par_unseq, data_, data_ + words(bits_), Word(0));
+  }
 
   /// Get a bit from the vector.
   ///
@@ -132,7 +137,9 @@ public:
   /// @param          i The bit to set.
   ///
   /// @returns          The masked value of the word containing the bit.
-  Word atomic_get(std::size_t i) const { return get<std::memory_order_acquire>(i); }
+  Word atomic_get(std::size_t i) const {
+    return get<std::memory_order_acquire>(i);
+  }
 
   /// Set a bit in the vector.
   ///
@@ -143,7 +150,9 @@ public:
   ///
   /// @returns          The masked value of the word containing the bit prior to
   ///                   the set operation.
-  Word atomic_set(std::size_t i) { return set<std::memory_order_acq_rel>(i); }
+  Word atomic_set(std::size_t i) {
+    return set<std::memory_order_acq_rel>(i);
+  }
 
   class non_zero_iterator {
     Word*       data_;       //!< Base data array
@@ -158,9 +167,13 @@ public:
     using pointer           = void;
     using iterator_category = std::input_iterator_tag;
 
-    non_zero_iterator(Word* data, std::size_t n, std::size_t word) : data_(data), n_(n), word_(word) { search_next(); }
+    non_zero_iterator(Word* data, std::size_t n, std::size_t word) : data_(data), n_(n), word_(word) {
+      search_next();
+    }
 
-    reference operator*() { return word_ * BITS + bit_; }
+    reference operator*() {
+      return word_ * BITS + bit_;
+    }
 
     // auto operator->() {
     //   // what should this do?
@@ -187,9 +200,13 @@ public:
       return i;
     }
 
-    bool operator!=(const non_zero_iterator& b) const { return (word_ != b.word_ || bit_ != b.bit_ || data_ != b.data_); }
+    bool operator!=(const non_zero_iterator& b) const {
+      return (word_ != b.word_ || bit_ != b.bit_ || data_ != b.data_);
+    }
 
-    bool operator==(const non_zero_iterator& b) const { return !operator!=(b); }
+    bool operator==(const non_zero_iterator& b) const {
+      return !operator!=(b);
+    }
 
   private:
     non_zero_iterator& search_next() {
@@ -208,8 +225,12 @@ public:
     }
   };
 
-  non_zero_iterator begin() { return {data_, words(bits_), 0}; }
-  non_zero_iterator end() { return {data_, words(bits_), words(bits_)}; }
+  non_zero_iterator begin() {
+    return { data_, words(bits_), 0 };
+  }
+  non_zero_iterator end() {
+    return { data_, words(bits_), words(bits_) };
+  }
 
   // Our non_zero_iterators are basically input iterators and thus can't be
   // split using the splittable range adapter, which only handles random-access
@@ -223,33 +244,49 @@ public:
 
   public:
     non_zero_range(Word* data, std::size_t n, std::size_t begin, std::size_t end, std::size_t cutoff)
-        : data_(data), n_(n), begin_(begin), end_(end), cutoff_(cutoff) {}
+        : data_(data), n_(n), begin_(begin), end_(end), cutoff_(cutoff) {
+    }
 
     non_zero_range(const non_zero_range&) = default;
     non_zero_range(non_zero_range&&)      = default;
 
     non_zero_range(non_zero_range& a, tbb::split)
-        : data_(a.data_), n_(a.n_), begin_(a.begin_), end_(a.begin_ += a.size() / 2), cutoff_(a.cutoff_) {}
+        : data_(a.data_), n_(a.n_), begin_(a.begin_), end_(a.begin_ += a.size() / 2), cutoff_(a.cutoff_) {
+    }
 
-    non_zero_iterator begin() { return {data_, n_, begin_}; }
-    non_zero_iterator end() { return {data_, n_, end_}; }
+    non_zero_iterator begin() {
+      return { data_, n_, begin_ };
+    }
+    non_zero_iterator end() {
+      return { data_, n_, end_ };
+    }
 
-    std::size_t size() const { return end_ - begin_; }
-    bool        empty() const { return size() == 0; }
-    bool        is_divisible() const { return size() > cutoff_; }
+    std::size_t size() const {
+      return end_ - begin_;
+    }
+    bool empty() const {
+      return size() == 0;
+    }
+    bool is_divisible() const {
+      return size() > cutoff_;
+    }
   };
 
-  non_zero_range non_zeros(std::size_t cutoff) { return {data_, words(bits_), 0, words(bits_), cutoff}; }
+  non_zero_range non_zeros(std::size_t cutoff) {
+    return { data_, words(bits_), 0, words(bits_), cutoff };
+  }
 
 private:
   static constexpr std::tuple<std::size_t, Word> split(std::size_t i) {
     std::size_t word   = i / BITS;
     std::size_t offset = i % BITS;
     Word        mask   = Word(1) << offset;
-    return {word, mask};
+    return { word, mask };
   }
 
-  static constexpr std::size_t words(std::size_t n) { return n / BITS + ((n % BITS) ? 1 : 0); }
+  static constexpr std::size_t words(std::size_t n) {
+    return n / BITS + ((n % BITS) ? 1 : 0);
+  }
 };
 }    // namespace graph
 }    // namespace nw

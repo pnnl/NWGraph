@@ -23,7 +23,9 @@ using namespace nw::graph;
 using namespace nw::util;
 
 TEST_CASE("array of list of structures", "[array_of_list_of_structs]") {
-  SECTION("construct") { vector_of_list_of_structs A(5); }
+  SECTION("construct") {
+    vector_of_list_of_structs A(5);
+  }
 }
 
 TEST_CASE("adjacency list", "[adj_list]") {
@@ -33,7 +35,7 @@ TEST_CASE("adjacency list", "[adj_list]") {
     adj_list<0, double> B(5);
     B.push_back(3, 1, 4.159);
     adj_list<0, double, std::complex<float>> C(5);
-    C.push_back(3, 1, 4.159, {86.7, 5.309});
+    C.push_back(3, 1, 4.159, { 86.7, 5.309 });
   }
 
   SECTION("traverse") {

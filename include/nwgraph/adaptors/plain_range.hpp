@@ -46,9 +46,11 @@ class plain_range {
   graph_iterator outer_end_;
 
 public:
-  plain_range(Graph& g, std::size_t offset) : outer_base_(g.begin()), outer_begin_(g.begin() + offset), outer_end_(g.end()) {}
+  plain_range(Graph& g, std::size_t offset) : outer_base_(g.begin()), outer_begin_(g.begin() + offset), outer_end_(g.end()) {
+  }
 
-  plain_range(Graph& g) : plain_range(g, 0) {}
+  plain_range(Graph& g) : plain_range(g, 0) {
+  }
 
   // Split a range.
   plain_range(plain_range& b, tbb::split) : plain_range(b) {
@@ -57,7 +59,7 @@ public:
     b.outer_end_ = b.outer_begin_ + i;
   }
 
-  plain_range(const plain_range&) = default;
+  plain_range(const plain_range&)            = default;
   plain_range& operator=(const plain_range&) = default;
 
   template <bool is_const = false>
@@ -74,16 +76,20 @@ public:
     graph_iterator first_;    //!<
     graph_iterator last_;     //!<
 
-    my_iterator(const my_iterator& b, unsigned long step) : my_iterator(b) { first_ += step; }
+    my_iterator(const my_iterator& b, unsigned long step) : my_iterator(b) {
+      first_ += step;
+    }
 
   public:
-    my_iterator(graph_iterator base, graph_iterator begin, graph_iterator end) : base_(base), first_(begin), last_(end) {}
+    my_iterator(graph_iterator base, graph_iterator begin, graph_iterator end) : base_(base), first_(begin), last_(end) {
+    }
 
-    my_iterator(const my_iterator&) = default;
+    my_iterator(const my_iterator&)              = default;
     my_iterator& operator=(const my_iterator& b) = default;
 
     template <bool was_const, class = std::enable_if_t<is_const && !was_const>>
-    my_iterator(const my_iterator<was_const>& rhs) : base_(rhs.base_), first_(rhs.first_), last_(rhs.last_) {}
+    my_iterator(const my_iterator<was_const>& rhs) : base_(rhs.base_), first_(rhs.first_), last_(rhs.last_) {
+    }
 
     template <bool was_const, class = std::enable_if_t<is_const && !was_const>>
     my_iterator& operator=(const my_iterator<was_const>& rhs) {
@@ -98,46 +104,75 @@ public:
       return *this;
     }
 
-    auto operator*() { return std::tuple(first_ - base_); }
+    auto operator*() {
+      return std::tuple(first_ - base_);
+    }
 
-    auto operator*() const { return std::tuple(first_ - base_); }
+    auto operator*() const {
+      return std::tuple(first_ - base_);
+    }
 
-    bool operator==(const my_iterator& b) const { return first_ == b.first_; }
-    bool operator!=(const my_iterator& b) const { return first_ != b.first_; }
-    bool operator<(const my_iterator& b) const { return first_ < b.first_; }
+    bool operator==(const my_iterator& b) const {
+      return first_ == b.first_;
+    }
+    bool operator!=(const my_iterator& b) const {
+      return first_ != b.first_;
+    }
+    bool operator<(const my_iterator& b) const {
+      return first_ < b.first_;
+    }
 
-    difference_type operator-(const my_iterator& b) const { return first_ - b.first_; }
-    my_iterator     operator+(difference_type step) const { return my_iterator(*this, step); }
+    difference_type operator-(const my_iterator& b) const {
+      return first_ - b.first_;
+    }
+    my_iterator operator+(difference_type step) const {
+      return my_iterator(*this, step);
+    }
   };
 
   using iterator       = my_iterator<false>;
   using const_iterator = my_iterator<true>;
 
-  iterator       begin() { return {outer_base_, outer_begin_, outer_end_}; }
-  const_iterator begin() const { return {outer_base_, outer_begin_, outer_end_}; }
+  iterator begin() {
+    return { outer_base_, outer_begin_, outer_end_ };
+  }
+  const_iterator begin() const {
+    return { outer_base_, outer_begin_, outer_end_ };
+  }
 
-  iterator       end() { return {outer_base_, outer_end_, outer_end_}; }
-  const_iterator end() const { return {outer_base_, outer_end_, outer_end_}; }
+  iterator end() {
+    return { outer_base_, outer_end_, outer_end_ };
+  }
+  const_iterator end() const {
+    return { outer_base_, outer_end_, outer_end_ };
+  }
 
-  std::size_t size() const { return outer_end_ - outer_begin_; }
-  bool        empty() const { return begin() == end(); }
-  bool        is_divisible() const { return size() > cutoff_; }
+  std::size_t size() const {
+    return outer_end_ - outer_begin_;
+  }
+  bool empty() const {
+    return begin() == end();
+  }
+  bool is_divisible() const {
+    return size() > cutoff_;
+  }
 };
 
 template <class Graph, std::size_t... Is>
 static inline plain_range<Graph, Is...> make_plain_range(Graph& g, std::size_t offset) {
-  return {g, offset};
+  return { g, offset };
 }
 
 template <class Graph, std::size_t... Is>
 static inline plain_range<Graph, Is...> make_plain_range(Graph& g) {
-  return {g};
+  return { g };
 }
 
 template <typename Graph>
 class plain_degree_range {
 public:
-  plain_degree_range(Graph& g) : the_graph_(g) {}
+  plain_degree_range(Graph& g) : the_graph_(g) {
+  }
 
   class iterator {
     typename Graph::iterator base_;
@@ -146,7 +181,8 @@ public:
 
   public:
     iterator(typename Graph::iterator base, typename Graph::iterator first, typename Graph::iterator last)
-        : base_(base), first_(first), last_(last) {}
+        : base_(base), first_(first), last_(last) {
+    }
 
     iterator(const iterator& b) = default;
 
@@ -155,16 +191,28 @@ public:
       return *this;
     }
 
-    auto operator*() { return std::tuple(first_ - base_, (*first_).size()); }
+    auto operator*() {
+      return std::tuple(first_ - base_, (*first_).size());
+    }
 
-    bool operator==(const iterator& b) const { return first_ == b.first_; }
-    bool operator!=(const iterator& b) const { return first_ != b.first_; }
+    bool operator==(const iterator& b) const {
+      return first_ == b.first_;
+    }
+    bool operator!=(const iterator& b) const {
+      return first_ != b.first_;
+    }
   };
 
-  std::size_t size() const { return the_graph_.size(); }
+  std::size_t size() const {
+    return the_graph_.size();
+  }
 
-  iterator begin() { return {the_graph_.begin(), the_graph_.begin(), the_graph_.end()}; }
-  iterator end() { return {the_graph_.begin(), the_graph_.end(), the_graph_.end()}; }
+  iterator begin() {
+    return { the_graph_.begin(), the_graph_.begin(), the_graph_.end() };
+  }
+  iterator end() {
+    return { the_graph_.begin(), the_graph_.end(), the_graph_.end() };
+  }
 
 private:
   Graph& the_graph_;

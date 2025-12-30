@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(git -C /Users/lums/NWGraph log:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(git -C /Users/lums/NWGraph status)",
+      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && head -30 {} | grep -E \"\"^  |^\\\\t|^    \"\" | head -5')",
+      "Bash(git -C /Users/lums/NWGraph diff --stat)",
+      "Bash(xargs clang-format:*)",
+      "Bash(git -C /Users/lums/NWGraph status --short)"
+    ]
+  }
+}

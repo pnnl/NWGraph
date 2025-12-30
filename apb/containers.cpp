@@ -26,18 +26,18 @@ static constexpr const char USAGE[] =
       -V, --verbose         run in verbose mode
 )";
 
-#include <iostream>
 #include <docopt.h>
+#include <iostream>
 
-#include "nwgraph/build.hpp"
 #include "nwgraph/adjacency.hpp"
+#include "nwgraph/build.hpp"
 #include "nwgraph/edge_list.hpp"
+#include "nwgraph/vofos.hpp"
 #include "nwgraph/volos.hpp"
 #include "nwgraph/vovos.hpp"
-#include "nwgraph/vofos.hpp"
 
-#include "nwgraph/adaptors/neighbor_range.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
+#include "nwgraph/adaptors/neighbor_range.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/io/mmio.hpp"
@@ -94,7 +94,7 @@ void run_bench(int argc, char* argv[], EdgeList& el_a) {
   std::vector<float> x(N), y(N);
   std::iota(x.begin(), x.end(), 0);
   {
-    double               time = 0;
+    double   time = 0;
     ms_timer t2("iterator based for loop with iterator based for loop");
     for (long t = 0; t < ntrial; ++t) {
       std::fill(y.begin(), y.end(), 0);
@@ -138,12 +138,12 @@ void run_bench(int argc, char* argv[], EdgeList& el_a) {
 
       vertex_id_type k = 0;
       std::for_each(graph.begin(), graph.end(), [&](auto&& nbhd) {
-	  std::for_each(nbhd.begin(), nbhd.end(), [&] (auto&& elt) {
-	    auto&& [j, v] = elt;
-	    y[k] += x[j] * v;
-	  });
-	  ++k;
-	});
+        std::for_each(nbhd.begin(), nbhd.end(), [&](auto&& elt) {
+          auto&& [j, v] = elt;
+          y[k] += x[j] * v;
+        });
+        ++k;
+      });
       ta.stop();
       time += ta.elapsed();
     }
@@ -159,7 +159,7 @@ void run_bench(int argc, char* argv[], EdgeList& el_a) {
       vertex_id_type k = 0;
 
       for (auto&& [k, u_neighbors] : make_neighbor_range(graph)) {
-        for (auto &&[j, v] : u_neighbors) {
+        for (auto&& [j, v] : u_neighbors) {
           y[k] += x[j] * v;
         }
       }
@@ -168,7 +168,6 @@ void run_bench(int argc, char* argv[], EdgeList& el_a) {
       time += tb.elapsed();
     }
     std::cout << tb.name() << " " << time / ntrial << " ms" << std::endl;
-
   }
 }
 

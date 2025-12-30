@@ -28,24 +28,29 @@
 #include "nwgraph/vovos.hpp"
 
 
+template <nw::graph::edge_list_graph edge_list_t>
+auto t0(edge_list_t el) {
+}
 
 template <nw::graph::edge_list_graph edge_list_t>
-auto t0(edge_list_t el) {}
+auto t1(const edge_list_t& el) {
+}
 
 template <nw::graph::edge_list_graph edge_list_t>
-auto t1(const edge_list_t& el) {}
-
-template <nw::graph::edge_list_graph edge_list_t>
-auto t2(edge_list_t&& el) {}
+auto t2(edge_list_t&& el) {
+}
 
 template <nw::graph::adjacency_list_graph adjacency_t>
-auto t3(adjacency_t el) {}
+auto t3(adjacency_t el) {
+}
 
 template <nw::graph::adjacency_list_graph adjacency_t>
-auto t4(const adjacency_t& el) {}
+auto t4(const adjacency_t& el) {
+}
 
 template <nw::graph::adjacency_list_graph adjacency_t>
-auto t5(adjacency_t&& el) {}
+auto t5(adjacency_t&& el) {
+}
 
 template <nw::graph::adjacency_list_graph Graph>
 // template <typename Graph>
@@ -123,7 +128,12 @@ int main() {
 
   //  nw::graph::edge_list a { {0, 0}, {0, 4} };  // compiler dumps core
 
-  nw::graph::edge_list<nw::graph::directedness::directed> e{{0, 0}, {0, 4}, {4, 4}, {4, 0}};
+  nw::graph::edge_list<nw::graph::directedness::directed> e {
+    { 0, 0 },
+    { 0, 4 },
+    { 4, 4 },
+    { 4, 0 }
+  };
 
   static_assert(std::is_constructible_v<decltype(e)>);
   static_assert(std::ranges::forward_range<nw::graph::edge_list<nw::graph::directedness::directed>>);
@@ -151,17 +161,38 @@ int main() {
 
   bfs_vv(std::vector<std::forward_list<std::tuple<int, int, double>>>(), 0);
 
-  std::vector<std::forward_list<std::tuple<int>>> ckt = {{1, 5}, {2, 3}, {0}, {}, {}, {2, 4, 3}};
+  std::vector<std::forward_list<std::tuple<int>>> ckt = {
+    { 1, 5 },
+    { 2, 3 },
+    { 0 },
+    {},
+    {},
+    { 2, 4, 3 }
+  };
 
   nw::graph::num_vertices(ckt);
 
   bfs_vv(ckt, 0);
 
-  std::vector<std::forward_list<std::tuple<unsigned char>>> ff = {{2, 1, 5}, {2, 0, 3}, {0, 1, 5}, {1, 5}, {5}, {2, 3, 4, 0}};
+  std::vector<std::forward_list<std::tuple<unsigned char>>> ff = {
+    { 2, 1, 5 },
+    { 2, 0, 3 },
+    { 0, 1, 5 },
+    { 1, 5 },
+    { 5 },
+    { 2, 3, 4, 0 }
+  };
 
   bfs_vv(ff, 0);
 
-  std::vector<std::vector<std::tuple<short>>> gg = {{2, 1, 5}, {2, 0, 3}, {0, 1, 5}, {1, 5}, {5}, {2, 3, 4, 0}};
+  std::vector<std::vector<std::tuple<short>>> gg = {
+    { 2, 1, 5 },
+    { 2, 0, 3 },
+    { 0, 1, 5 },
+    { 1, 5 },
+    { 5 },
+    { 2, 3, 4, 0 }
+  };
 
   bfs_vv(gg, 0);
 

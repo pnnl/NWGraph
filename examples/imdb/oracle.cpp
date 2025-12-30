@@ -28,9 +28,9 @@
 using json = nlohmann::json;
 
 #include "nwgraph/adaptors/bfs_edge_range.hpp"
+#include "nwgraph/adjacency.hpp"
 #include "nwgraph/algorithms/betweenness_centrality.hpp"
 #include "nwgraph/algorithms/page_rank.hpp"
-#include "nwgraph/adjacency.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/util/proxysort.hpp"

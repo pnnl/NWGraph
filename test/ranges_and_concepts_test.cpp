@@ -18,8 +18,8 @@
 #include "containers/aolos.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
-#include "nwgraph/vovos.hpp"
 #include "nwgraph/graph_concepts.hpp"
+#include "nwgraph/vovos.hpp"
 
 #include "common/abstract_test.hpp"
 

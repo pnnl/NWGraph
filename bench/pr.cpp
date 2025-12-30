@@ -34,9 +34,9 @@ static constexpr const char USAGE[] =
 )";
 
 #include "Log.hpp"
+#include "common.hpp"
 #include "nwgraph/algorithms/page_rank.hpp"
 #include "nwgraph/experimental/algorithms/page_rank.hpp"
-#include "common.hpp"
 #include <docopt.h>
 
 using namespace nw::graph::bench;

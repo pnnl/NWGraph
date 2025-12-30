@@ -72,18 +72,14 @@ inline constexpr bool is_iterator_v = is_iterator<T>::value;
  * A helper type selector to properly handle references to `std::vector<bool>`
  */
 template <class Iter>
-using select_access_type = std::conditional_t<
-  (std::is_same_v<Iter, std::vector<bool>::iterator> ||
-  std::is_same_v<Iter, std::vector<bool>::const_iterator>),
-  typename std::iterator_traits<Iter>::value_type,
-  typename std::iterator_traits<Iter>::reference>;
+using select_access_type =
+    std::conditional_t<(std::is_same_v<Iter, std::vector<bool>::iterator> || std::is_same_v<Iter, std::vector<bool>::const_iterator>),
+                       typename std::iterator_traits<Iter>::value_type, typename std::iterator_traits<Iter>::reference>;
 
 template <class Range>
-using select_range_access_type = std::conditional_t<
-  (std::is_same_v<Range, std::vector<bool>> ||
-   std::is_same_v<Range, const std::vector<bool>>),
-  std::ranges::range_value_t<Range>, 
-  std::ranges::range_reference_t<Range>>;
+using select_range_access_type =
+    std::conditional_t<(std::is_same_v<Range, std::vector<bool>> || std::is_same_v<Range, const std::vector<bool>>),
+                       std::ranges::range_value_t<Range>, std::ranges::range_reference_t<Range>>;
 
 
 }    // namespace graph

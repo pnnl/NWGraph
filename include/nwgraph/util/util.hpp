@@ -148,8 +148,8 @@ struct counter    // : public std::iterator<std::output_iterator_tag, std::ptrdi
 /// @returns            A tuple composed of the proper elements from `t`.
 template <std::size_t... Is, class Tuple, class = std::enable_if_t<is_tuple_v<std::decay_t<Tuple>>>>
 constexpr auto select(Tuple&& t) -> std::tuple<std::tuple_element_t<Is, std::decay_t<Tuple>>...> {
-  static_assert(((Is < std::tuple_size_v<std::decay_t<Tuple>>)&&...), "tuple index out of range during select");
-  return {std::forward<std::tuple_element_t<Is, std::decay_t<Tuple>>>(std::get<Is>(std::forward<Tuple>(t)))...};
+  static_assert(((Is < std::tuple_size_v<std::decay_t<Tuple>>) && ...), "tuple index out of range during select");
+  return { std::forward<std::tuple_element_t<Is, std::decay_t<Tuple>>>(std::get<Is>(std::forward<Tuple>(t)))... };
 }
 
 /// Meta-function to get the type of a tuple after selection (see `select`).

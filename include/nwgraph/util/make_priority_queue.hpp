@@ -25,7 +25,7 @@ namespace graph {
 template <class T, class Container, class Compare>
 constexpr auto make_priority_queue(Compare&& compare) {
   using PQ = std::priority_queue<T, Container, std::decay_t<Compare>>;
-  return PQ{std::forward<Compare>(compare)};
+  return PQ { std::forward<Compare>(compare) };
 }
 
 /// Create a priority queue adapter for a `std::vector<T>`.

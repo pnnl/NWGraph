@@ -50,10 +50,10 @@ size_t jaccard_similarity(GraphT& G, Weight weight) {
     for (auto&& e : G[u]) {
       auto v = target(G, e);
       if (u < v) {
-        auto numer = nw::graph::intersection_size(G[u], G[v]);
-        auto denom = degree(G[u]) + degree(G[v]) - numer;
-        double rat = ((double)numer) / ((double)denom);
-        weight(e) = rat;
+        auto   numer = nw::graph::intersection_size(G[u], G[v]);
+        auto   denom = degree(G[u]) + degree(G[v]) - numer;
+        double rat   = ((double)numer) / ((double)denom);
+        weight(e)    = rat;
         ++ctr;
       }
     }

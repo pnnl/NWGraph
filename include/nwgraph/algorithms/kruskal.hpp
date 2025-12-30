@@ -17,10 +17,10 @@
 #include <algorithm>
 #include <tuple>
 
+#include "nwgraph/edge_list.hpp"
 #include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/util/disjoint_set.hpp"
 #include "nwgraph/util/util.hpp"
-#include "nwgraph/edge_list.hpp"
 
 #include "nwgraph/util/print_types.hpp"
 

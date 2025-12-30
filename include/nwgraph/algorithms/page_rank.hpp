@@ -24,12 +24,12 @@
 #include <tuple>
 #include <vector>
 
-#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
+#include "nwgraph/adaptors/vertex_range.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
+#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/util/parallel_for.hpp"
-#include "nwgraph/adaptors/vertex_range.hpp"
 
 namespace nw {
 namespace graph {
@@ -63,12 +63,12 @@ auto time_op(Op&& op) {
     auto start = std::chrono::high_resolution_clock::now();
     op();
     std::chrono::duration<double> end = std::chrono::high_resolution_clock::now() - start;
-    return std::tuple{end.count()};
+    return std::tuple { end.count() };
   } else {
     auto                          start = std::chrono::high_resolution_clock::now();
     auto                          e     = op();
     std::chrono::duration<double> end   = std::chrono::high_resolution_clock::now() - start;
-    return std::tuple{end.count(), e};
+    return std::tuple { end.count(), e };
   }
 }
 }    // namespace pagerank
@@ -87,8 +87,8 @@ auto time_op(Op&& op) {
  * @param num_threads number of threads
  */
 template <adjacency_list_graph Graph, typename Real>
-[[gnu::noinline]] void page_rank(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& degrees,
-                                     std::vector<Real>& page_rank, Real damping_factor, Real threshold, size_t max_iters, size_t num_threads) {
+[[gnu::noinline]] void page_rank(const Graph& graph, const std::vector<typename Graph::vertex_id_type>& degrees, std::vector<Real>& page_rank,
+                                 Real damping_factor, Real threshold, size_t max_iters, size_t num_threads) {
   std::size_t N          = graph.size();
   Real        init_score = 1.0 / N;
   Real        base_score = (1.0 - damping_factor) / N;
@@ -136,7 +136,7 @@ template <adjacency_list_graph Graph, typename Real>
             }
             return partial_sum;
           },
-          std::plus{});
+          std::plus {});
     });
 
     pagerank::trace(iter, error, time, 0);

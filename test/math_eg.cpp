@@ -13,17 +13,17 @@
  */
 
 
+#include "linalg.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
-#include "linalg.hpp"
 
 using namespace nw::graph;
 using namespace nw::util;
 
 template <typename Mat, typename EdgeList>
 void run_test(EdgeList&& E) {
-  std::vector<double> x = {3.1, -1.4, 1.59};
-  std::vector<double> y = {1.0, 0.0, -1.0};
+  std::vector<double> x = { 3.1, -1.4, 1.59 };
+  std::vector<double> y = { 1.0, 0.0, -1.0 };
 
   Mat B(E);
   matvec(B, x, y);
@@ -36,9 +36,19 @@ void run_test(EdgeList&& E) {
 
 int main() {
 
-  run_test<compressed_sparse<0, directed, double>>(edge_list<directedness::directed, double>({{0, 0, 1}, {1, 1, 1}, {2, 2, 1}, {0, 1, -3.7}}));
+  run_test<compressed_sparse<0, directed, double>>(edge_list<directedness::directed, double>({
+      { 0, 0, 1    },
+      { 1, 1, 1    },
+      { 2, 2, 1    },
+      { 0, 1, -3.7 }
+  }));
 
-  edge_list<directedness::directed, double> E({{0, 0, 1}, {1, 1, 1}, {2, 2, 1}, {0, 1, -3.7}});
+  edge_list<directedness::directed, double> E({
+      { 0, 0, 1    },
+      { 1, 1, 1    },
+      { 2, 2, 1    },
+      { 0, 1, -3.7 }
+  });
 
   compressed_sparse<0, directed, double> A(E);
 

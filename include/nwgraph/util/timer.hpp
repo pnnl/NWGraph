@@ -27,15 +27,27 @@ private:
   typedef std::chrono::time_point<std::chrono::system_clock> time_t;
 
 public:
-  explicit timer(const std::string& msg = "") : start_time(std::chrono::system_clock::now()), stop_time(start_time), msg_(msg) { }
+  explicit timer(const std::string& msg = "") : start_time(std::chrono::system_clock::now()), stop_time(start_time), msg_(msg) {
+  }
 
-  time_t start()         { return (start_time = std::chrono::system_clock::now()); }
-  time_t stop()          { return (stop_time  = std::chrono::system_clock::now()); }
-  double elapsed() const { return std::chrono::duration_cast<D>(stop_time - start_time).count(); }
-  double lap()           { stop(); return std::chrono::duration_cast<D>(stop_time - start_time).count(); }
+  time_t start() {
+    return (start_time = std::chrono::system_clock::now());
+  }
+  time_t stop() {
+    return (stop_time = std::chrono::system_clock::now());
+  }
+  double elapsed() const {
+    return std::chrono::duration_cast<D>(stop_time - start_time).count();
+  }
+  double lap() {
+    stop();
+    return std::chrono::duration_cast<D>(stop_time - start_time).count();
+  }
 
 
-  std::string name() const { return msg_; }
+  std::string name() const {
+    return msg_;
+  }
 
 private:
   time_t start_time, stop_time;
@@ -46,19 +58,22 @@ protected:
 
 
 using seconds_timer = timer<std::chrono::seconds>;
-using ms_timer = timer<std::chrono::milliseconds>;
-using us_timer = timer<std::chrono::microseconds>;
+using ms_timer      = timer<std::chrono::milliseconds>;
+using us_timer      = timer<std::chrono::microseconds>;
 
 class empty_timer {
 public:
-  empty_timer(const std::string& msg = "") {}
-  ~empty_timer() {}
+  empty_timer(const std::string& msg = "") {
+  }
+  ~empty_timer() {
+  }
 };
 
-class life_timer :  public empty_timer, public ms_timer {
+class life_timer : public empty_timer, public ms_timer {
 
 public:
-  explicit life_timer(const std::string& msg = "") : ms_timer(msg) {}
+  explicit life_timer(const std::string& msg = "") : ms_timer(msg) {
+  }
 
   ~life_timer() {
     stop();
@@ -97,9 +112,8 @@ std::ostream& operator<<(std::ostream& os, const us_timer& t) {
   return os;
 }
 
-}         // namespace util
-}         // namespace nw
-
+}    // namespace util
+}    // namespace nw
 
 
 #endif    // NW_UTIL_TIMER_HPP

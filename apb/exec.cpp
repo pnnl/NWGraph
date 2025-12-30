@@ -108,7 +108,9 @@ auto apb_adj(Adjacency& graph, size_t ntrial, Exec1 exec1 = std::execution::seq,
   std::cout << t4.name() << " " << time / ntrial << " ms" << std::endl;
 }
 
-void usage(const std::string& msg = "") { std::cout << std::string("Usage: ") + msg + " " << std::endl; }
+void usage(const std::string& msg = "") {
+  std::cout << std::string("Usage: ") + msg + " " << std::endl;
+}
 
 int main(int argc, char* argv[]) {
   std::string edgelistFile             = "";

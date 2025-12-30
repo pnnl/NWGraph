@@ -18,9 +18,9 @@
 #include <queue>
 #include <vector>
 
-#include "nwgraph/adaptors/edge_range.hpp"
-#include "nwgraph/adaptors/bfs_range.hpp"
 #include "nwgraph/adaptors/bfs_edge_range.hpp"
+#include "nwgraph/adaptors/bfs_range.hpp"
+#include "nwgraph/adaptors/edge_range.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/io/mmio.hpp"
@@ -239,7 +239,7 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed) {
       vertex_id_type vtx = Q.front();
       Q.pop();
       for (auto&& t : tgraph[vtx]) {
-	auto n = std::get<0>(t);
+        auto n = std::get<0>(t);
         if (!visited[n]) {
           visited[n] = true;
           Q.push(n);
@@ -281,7 +281,8 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed) {
     std::fill(visited.begin(), visited.end(), false);
     t10.start();
 
-    for (auto&& j : topdown_bfs_range(graph)) ;
+    for (auto&& j : topdown_bfs_range(graph))
+      ;
 
     t10.stop();
     time += t10.elapsed();
@@ -294,7 +295,8 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed) {
     std::fill(visited.begin(), visited.end(), false);
     t11.start();
 
-    for (auto&& j : bfs_edge_range(graph)) ;
+    for (auto&& j : bfs_edge_range(graph))
+      ;
 
     t11.stop();
     time += t11.elapsed();
@@ -302,14 +304,14 @@ auto apb_adj(Adjacency& graph, size_t ntrial, vertex_id_t<Adjacency> seed) {
   std::cout << t11.name() << " " << time / ntrial << " ms" << std::endl;
 
 
-
   // Add version with adjacent_vertices (ranges::elements<0>)
   // Add version with std::vector<std::vector<int>>
   // Add version with std::vector<std::vector<std::tuple<int>>>
-
 }
 
-void usage(const std::string& msg = "") { std::cout << std::string("Usage: ") + msg + " " << std::endl; }
+void usage(const std::string& msg = "") {
+  std::cout << std::string("Usage: ") + msg + " " << std::endl;
+}
 
 int main(int argc, char* argv[]) {
   std::string edgelistFile             = "";

@@ -74,12 +74,22 @@ public:
 
 #endif
 
-  void push_back(const std::tuple<Attributes...>& attrs) { base::push_back(attrs); }
-  void push_back(const std::tuple<Attributes&...>& attrs) { base::push_back(attrs); }
-  void push_back(const Attributes&... attrs) { base::push_back({attrs...}); }
+  void push_back(const std::tuple<Attributes...>& attrs) {
+    base::push_back(attrs);
+  }
+  void push_back(const std::tuple<Attributes&...>& attrs) {
+    base::push_back(attrs);
+  }
+  void push_back(const Attributes&... attrs) {
+    base::push_back({ attrs... });
+  }
 
-  bool operator==(array_of_structs& a) { return std::equal(std::execution::par, base::begin(), base::end(), a.begin()); }
-  bool operator!=(const storage_type& a) { return !operator==(a); }
+  bool operator==(array_of_structs& a) {
+    return std::equal(std::execution::par, base::begin(), base::end(), a.begin());
+  }
+  bool operator!=(const storage_type& a) {
+    return !operator==(a);
+  }
 
   template <size_t... Is>
   void print_helper(std::ostream& output_stream, std::tuple<Attributes...> attrs, std::index_sequence<Is...>) {
@@ -95,7 +105,9 @@ public:
     }
   }
 
-  void stream(const std::string& msg = "") { stream(std::cout, msg); }
+  void stream(const std::string& msg = "") {
+    stream(std::cout, msg);
+  }
 
   // size (number of elements)
   // sizeof data elements

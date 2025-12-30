@@ -42,30 +42,38 @@ private:
 public:
   template <class Range, class Cutoff>
   cyclic_range_adaptor(Range&& range, Cutoff cutoff)
-      : begin_(range.begin()), end_(range.end()), cutoff_(nw::graph::pow2(nw::graph::ceil_log2(cutoff))) {}
+      : begin_(range.begin()), end_(range.end()), cutoff_(nw::graph::pow2(nw::graph::ceil_log2(cutoff))) {
+  }
 
   cyclic_range_adaptor(const cyclic_range_adaptor&) = default;
   cyclic_range_adaptor(cyclic_range_adaptor&&)      = default;
 
   cyclic_range_adaptor(cyclic_range_adaptor& rhs, tbb::split)
-      : begin_(rhs.begin_), end_(rhs.end_), cutoff_(rhs.cutoff_), cycle_(rhs.cycle_ + rhs.stride_), stride_(rhs.stride_ *= 2) {}
+      : begin_(rhs.begin_), end_(rhs.end_), cutoff_(rhs.cutoff_), cycle_(rhs.cycle_ + rhs.stride_), stride_(rhs.stride_ *= 2) {
+  }
 
   struct iterator {
     Iterator        i_;
     difference_type stride_;
 
-    decltype(auto) operator*() { return *i_; }
-    
+    decltype(auto) operator*() {
+      return *i_;
+    }
+
     iterator& operator++() {
       i_ += stride_;
       return *this;
     }
 
-    bool operator!=(const iterator& rhs) const { return i_ != rhs.i_; }
+    bool operator!=(const iterator& rhs) const {
+      return i_ != rhs.i_;
+    }
   };
 
   /// Return an iterator that points to the start of the cycle.
-  iterator begin() const { return {begin_ + cycle_, stride_}; }
+  iterator begin() const {
+    return { begin_ + cycle_, stride_ };
+  }
 
   /// Return an iterator that points to the end of the cycle.
   ///
@@ -77,7 +85,7 @@ public:
     difference_type n = end_ - begin_ - cycle_;     // shifted span for cycle
     difference_type r = n % stride_;                // remainder in last stride
     difference_type e = (stride_ - r) % stride_;    // amount past `end_` we'll go
-    return {end_ + e, stride_};
+    return { end_ + e, stride_ };
   }
 
   difference_type size() const {
@@ -87,13 +95,17 @@ public:
     return n / stride_ + ((cycle_ < n % stride_) ? 1 : 0);
   }
 
-  bool empty() const { return size() == 0; }
+  bool empty() const {
+    return size() == 0;
+  }
 
   /// Runtime check to see if the range is divisible.
   ///
   /// The range can be subdivided if its stride can be increased relative to the
   /// cutoff.
-  bool is_divisible() const { return stride_ <= cutoff_; }
+  bool is_divisible() const {
+    return stride_ <= cutoff_;
+  }
 };
 
 template <class Range, class Cutoff>
@@ -101,7 +113,7 @@ cyclic_range_adaptor(Range&& range, Cutoff) -> cyclic_range_adaptor<decltype(ran
 
 template <class Range, class Cutoff>
 constexpr decltype(auto) cyclic(Range&& range, Cutoff cutoff) {
-  return cyclic_range_adaptor{std::forward<Range>(range), cutoff};
+  return cyclic_range_adaptor { std::forward<Range>(range), cutoff };
 }
 }    // namespace graph
 }    // namespace nw

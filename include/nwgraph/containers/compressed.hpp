@@ -53,9 +53,13 @@ namespace graph {
 bool g_debug_compressed = false;
 bool g_time_compressed  = false;
 
-void debug_compressed(bool flag = true) { g_debug_compressed = flag; }
+void debug_compressed(bool flag = true) {
+  g_debug_compressed = flag;
+}
 
-void time_compressed(bool flag = true) { g_time_compressed = flag; }
+void time_compressed(bool flag = true) {
+  g_time_compressed = flag;
+}
 
 template <typename index_t, typename... Attributes>
 class indexed_struct_of_arrays {
@@ -73,20 +77,28 @@ public:    // fixme
   using sub_view             = nw::graph::splittable_range_adaptor<inner_iterator>;
   using const_sub_view       = nw::graph::splittable_range_adaptor<const_inner_iterator>;
 
-  static constexpr std::size_t getNAttr() { return sizeof...(Attributes); }
+  static constexpr std::size_t getNAttr() {
+    return sizeof...(Attributes);
+  }
 
-  explicit indexed_struct_of_arrays(size_t N) : N_(N), indices_(N + 1) {}
-  indexed_struct_of_arrays(size_t N, size_t M) : N_(N), indices_(N + 1), to_be_indexed_(M) {}
+  explicit indexed_struct_of_arrays(size_t N) : N_(N), indices_(N + 1) {
+  }
+  indexed_struct_of_arrays(size_t N, size_t M) : N_(N), indices_(N + 1), to_be_indexed_(M) {
+  }
   //move constructor, assume indices_[N_] == to_be_indexed_.size()
   indexed_struct_of_arrays(std::vector<index_t>&& indices, std::vector<Attributes>&&... to_be_indexed)
-  : N_(indices.size() - 1), indices_(std::move(indices)), to_be_indexed_(std::move(to_be_indexed)...) {}
+      : N_(indices.size() - 1), indices_(std::move(indices)), to_be_indexed_(std::move(to_be_indexed)...) {
+  }
   indexed_struct_of_arrays(std::vector<index_t>&& indices, std::tuple<std::vector<Attributes>...>&& to_be_indexed)
-  : N_(indices.size() - 1), indices_(std::move(indices)), to_be_indexed_(std::move(to_be_indexed)) {}
+      : N_(indices.size() - 1), indices_(std::move(indices)), to_be_indexed_(std::move(to_be_indexed)) {
+  }
   //copy constructor, assume indices_[N_] == to_be_indexed_.size()
   indexed_struct_of_arrays(const std::vector<index_t>& indices, const std::vector<Attributes>&... to_be_indexed)
-  : N_(indices.size() - 1), indices_(indices), to_be_indexed_(to_be_indexed...) {}
+      : N_(indices.size() - 1), indices_(indices), to_be_indexed_(to_be_indexed...) {
+  }
   indexed_struct_of_arrays(const std::vector<index_t>& indices, const std::tuple<std::vector<Attributes>...>& to_be_indexed)
-  : N_(indices.size() - 1), indices_(indices), to_be_indexed_(to_be_indexed) {}
+      : N_(indices.size() - 1), indices_(indices), to_be_indexed_(to_be_indexed) {
+  }
 
   template <bool is_const = false>
   class my_outer_iterator {
@@ -114,16 +126,24 @@ public:    // fixme
 
     my_outer_iterator() = default;
 
-    my_outer_iterator(index_iterator_t indices, indexed_iterator_t indexed, index_t i) requires(is_const)
-        : indices_(indices), indexed_(indexed), i_(i) {}
+    my_outer_iterator(index_iterator_t indices, indexed_iterator_t indexed, index_t i)
+      requires(is_const)
+        : indices_(indices), indexed_(indexed), i_(i) {
+    }
 
-    my_outer_iterator(index_it_t indices, indexed_it_t indexed, index_t i) : indices_(indices), indexed_(indexed), i_(i) {}
+    my_outer_iterator(index_it_t indices, indexed_it_t indexed, index_t i) : indices_(indices), indexed_(indexed), i_(i) {
+    }
 
     my_outer_iterator(const my_outer_iterator&) = default;
-    my_outer_iterator(const my_outer_iterator<false>& rhs) requires(is_const) : indices_(rhs.indices_), indexed_(rhs.indexed_), i_(rhs.i_) {}
+    my_outer_iterator(const my_outer_iterator<false>& rhs)
+      requires(is_const)
+        : indices_(rhs.indices_), indexed_(rhs.indexed_), i_(rhs.i_) {
+    }
 
     my_outer_iterator& operator=(const my_outer_iterator&) = default;
-    my_outer_iterator& operator                            =(const my_outer_iterator<false>& rhs) requires(is_const) {
+    my_outer_iterator& operator=(const my_outer_iterator<false>& rhs)
+      requires(is_const)
+    {
       indices_ = rhs.indices_;
       indexed_ = rhs.indexed_;
       i_       = rhs.i_;
@@ -163,27 +183,57 @@ public:    // fixme
       return *this;
     }
 
-    my_outer_iterator operator+(difference_type n) const { return {indices_, indexed_, i_ + n}; }
+    my_outer_iterator operator+(difference_type n) const {
+      return { indices_, indexed_, i_ + n };
+    }
 
-    my_outer_iterator operator-(difference_type n) const { return {indices_, indexed_, i_ - n}; }
+    my_outer_iterator operator-(difference_type n) const {
+      return { indices_, indexed_, i_ - n };
+    }
 
-    difference_type operator-(const my_outer_iterator& b) const { return i_ - b.i_; }
+    difference_type operator-(const my_outer_iterator& b) const {
+      return i_ - b.i_;
+    }
 
-    bool operator==(const my_outer_iterator& b) const { return i_ == b.i_; }
-    bool operator!=(const my_outer_iterator& b) const { return i_ != b.i_; }
-    bool operator<(const my_outer_iterator& b) const { return i_ < b.i_; }
-    bool operator>(const my_outer_iterator& b) const { return i_ > b.i_; }
-    bool operator<=(const my_outer_iterator& b) const { return i_ <= b.i_; }
-    bool operator>=(const my_outer_iterator& b) const { return i_ >= b.i_; }
+    bool operator==(const my_outer_iterator& b) const {
+      return i_ == b.i_;
+    }
+    bool operator!=(const my_outer_iterator& b) const {
+      return i_ != b.i_;
+    }
+    bool operator<(const my_outer_iterator& b) const {
+      return i_ < b.i_;
+    }
+    bool operator>(const my_outer_iterator& b) const {
+      return i_ > b.i_;
+    }
+    bool operator<=(const my_outer_iterator& b) const {
+      return i_ <= b.i_;
+    }
+    bool operator>=(const my_outer_iterator& b) const {
+      return i_ >= b.i_;
+    }
 
-    reference operator*() { return {indexed_ + indices_[i_], indexed_ + indices_[i_ + 1]}; }
-    reference operator*() const { return {indexed_ + indices_[i_], indexed_ + indices_[i_ + 1]}; }
+    reference operator*() {
+      return { indexed_ + indices_[i_], indexed_ + indices_[i_ + 1] };
+    }
+    reference operator*() const {
+      return { indexed_ + indices_[i_], indexed_ + indices_[i_ + 1] };
+    }
 
-    pointer operator->() { return {**this}; }
-    pointer operator->() const { return {**this}; }
+    pointer operator->() {
+      return { **this };
+    }
+    pointer operator->() const {
+      return { **this };
+    }
 
-    reference operator[](index_t n) { return {indexed_ + indices_[i_ + n], indexed_ + indices_[i_ + n + 1]}; }
-    reference operator[](index_t n) const { return {indexed_ + indices_[i_ + n], indexed_ + indices_[i_ + n + 1]}; }
+    reference operator[](index_t n) {
+      return { indexed_ + indices_[i_ + n], indexed_ + indices_[i_ + n + 1] };
+    }
+    reference operator[](index_t n) const {
+      return { indexed_ + indices_[i_ + n], indexed_ + indices_[i_ + n + 1] };
+    }
   };
 
   using const_outer_iterator = my_outer_iterator<true>;
@@ -204,21 +254,45 @@ public:    // fixme
   using reverse_iterator       = std::reverse_iterator<iterator>;
   using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
-  iterator       begin()        { return {indices_.begin(), to_be_indexed_.begin(), 0}; }
-  const_iterator begin()  const { return {indices_.begin(), to_be_indexed_.begin(), 0}; }
-  const_iterator cbegin() const { return {indices_.begin(), to_be_indexed_.begin(), 0}; }
-  iterator       end()        { return {indices_.begin(), to_be_indexed_.begin(), N_}; }
-  const_iterator end()  const { return {indices_.begin(), to_be_indexed_.begin(), N_}; }
-  const_iterator cend() const { return {indices_.begin(), to_be_indexed_.begin(), N_}; }
+  iterator begin() {
+    return { indices_.begin(), to_be_indexed_.begin(), 0 };
+  }
+  const_iterator begin() const {
+    return { indices_.begin(), to_be_indexed_.begin(), 0 };
+  }
+  const_iterator cbegin() const {
+    return { indices_.begin(), to_be_indexed_.begin(), 0 };
+  }
+  iterator end() {
+    return { indices_.begin(), to_be_indexed_.begin(), N_ };
+  }
+  const_iterator end() const {
+    return { indices_.begin(), to_be_indexed_.begin(), N_ };
+  }
+  const_iterator cend() const {
+    return { indices_.begin(), to_be_indexed_.begin(), N_ };
+  }
 
   /// Random access to the outer range.
-  sub_view       operator[](index_t i) { return begin()[i]; }
-  const_sub_view operator[](index_t i) const { return begin()[i]; }
+  sub_view operator[](index_t i) {
+    return begin()[i];
+  }
+  const_sub_view operator[](index_t i) const {
+    return begin()[i];
+  }
 
-  index_t size() const { return indices_.size() - 1; }
-  index_t max() const { return indices_.size() - 2; }
-  auto get_indices() const { return indices_; }
-  auto get_to_be_indexed() const {return to_be_indexed_; }
+  index_t size() const {
+    return indices_.size() - 1;
+  }
+  index_t max() const {
+    return indices_.size() - 2;
+  }
+  auto get_indices() const {
+    return indices_;
+  }
+  auto get_to_be_indexed() const {
+    return to_be_indexed_;
+  }
 
   index_t source(difference_type edge) const {
     auto i = std::upper_bound(indices_.begin(), indices_.end(), edge);
@@ -248,16 +322,16 @@ public:    // fixme
     assert(indices_.back() == to_be_indexed_.size());
     is_open_ = false;
   }
-  
+
   void move(std::vector<index_t>&& indices, std::vector<Attributes>&&... to_be_indexed) {
-    indices_.swap(indices); //equivalent to 
-    //indices_ = std::move(indices); 
+    indices_.swap(indices);    //equivalent to
+    //indices_ = std::move(indices);
     to_be_indexed_.move(std::move(to_be_indexed)...);
     assert(indices_.back() == to_be_indexed_.size());
   }
   void move(std::vector<index_t>&& indices, std::tuple<std::vector<Attributes>...>&& to_be_indexed) {
-    indices_.swap(indices); //equivalent to 
-    //indices_ = std::move(indices); 
+    indices_.swap(indices);    //equivalent to
+    //indices_ = std::move(indices);
     to_be_indexed_.move(std::move(to_be_indexed));
     assert(indices_.back() == to_be_indexed_.size());
   }
@@ -338,8 +412,8 @@ public:    // fixme
     deserialize(infile);
   }
 
-  template <typename Comparator = decltype(std::less<index_t>{})>
-  void triangularize_(Comparator comp = std::less<index_t>{}) {
+  template <typename Comparator = decltype(std::less<index_t> {})>
+  void triangularize_(Comparator comp = std::less<index_t> {}) {
     std::vector<index_t>            new_indices_(indices_.size());
     struct_of_arrays<Attributes...> new_to_be_indexed_(0);
     new_to_be_indexed_.reserve(to_be_indexed_.size());
@@ -365,9 +439,9 @@ public:    // fixme
   template <succession cessor>
   void triangularize() {
     if constexpr (cessor == succession::predecessor) {
-      triangularize_(std::less<index_t>{});
+      triangularize_(std::less<index_t> {});
     } else if constexpr (cessor == succession::successor) {
-      triangularize_(std::greater<index_t>{});
+      triangularize_(std::greater<index_t> {});
     } else {
     }
     if (g_debug_compressed) {
@@ -384,10 +458,10 @@ public:    // fixme
   std::vector<index_t> degrees() const {
     std::vector<index_t> degs(indices_.size());
     std::adjacent_difference(indices_.begin(), indices_.end(), degs.begin());
-    degs.erase( degs.begin() );
+    degs.erase(degs.begin());
 
     if (g_debug_compressed) {
-      for (size_t i = 0, e = indices_.size() - 1; i < e; ++i) 
+      for (size_t i = 0, e = indices_.size() - 1; i < e; ++i)
         assert(degs[i] == indices_[i + 1] - indices_[i]);
     }
     return degs;
@@ -405,7 +479,7 @@ public:    // fixme
       }
     });
     if (g_debug_compressed) {
-      for (size_t i = 0, e = indices_.size() - 1; i < e; ++i) 
+      for (size_t i = 0, e = indices_.size() - 1; i < e; ++i)
         assert(degs[i] == indices_[i + 1] - indices_[i]);
     }
     return degs;
@@ -426,7 +500,7 @@ public:    // fixme
       stream_indices(std::cout);
     }
   }
-  
+
   /*
   * Based on the new_id_perm of the vertices, relabel each vertex i into new_id_perm[i]
   * and then sort each neighbor list.
@@ -436,12 +510,12 @@ public:    // fixme
     auto s = std::get<0>(to_be_indexed_).begin();
     tbb::parallel_for(tbb::blocked_range(0ul, std::get<0>(to_be_indexed_).size()), [&](auto&& r) {
       for (auto i = r.begin(), e = r.end(); i != e; ++i) {
-          s[i] = new_id_perm[s[i]];
+        s[i] = new_id_perm[s[i]];
       }
     });
     sort_to_be_indexed(ex_policy);
   }
-  
+
   /*
   * This function permutes the indices of the adjacency and to_be_indexed
   * but does NOT relabel the ids in the to_be_indexed.
@@ -449,8 +523,8 @@ public:    // fixme
   template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
   std::vector<index_t> permute_by_degree(const std::string& direction = "descending", ExecutionPolicy&& ex_policy = {}) {
     //1. get the degrees of all the vertices
-    size_t                   n = indices_.size() - 1;
-    std::vector              degs = degrees<ExecutionPolicy>(ex_policy);
+    size_t      n    = indices_.size() - 1;
+    std::vector degs = degrees<ExecutionPolicy>(ex_policy);
     //2. populate permutation with vertex id
     std::vector<index_t> perm(n);
     tbb::parallel_for(tbb::blocked_range(0ul, n), [&](auto&& r) {
@@ -469,15 +543,15 @@ public:    // fixme
     } else {
       std::cout << "Unknown direction: " << direction << std::endl;
       //return an empty perm array if unknown direction
-      return std::vector<index_t>{};
+      return std::vector<index_t> {};
     }
 
     //4. allocate a vector for new_indices
     std::vector<index_t> new_indices(indices_);
-    auto                     new_tmp = new_indices.begin() + 1;
+    auto                 new_tmp = new_indices.begin() + 1;
     std::vector<index_t> new_id_perm(n);
 
-    //5. permutate the old indices based on the degree of the new_id 
+    //5. permutate the old indices based on the degree of the new_id
     // to get the new_id_perm
     tbb::parallel_for(tbb::blocked_range(0ul, n), [&](auto&& r) {
       for (auto old_id = r.begin(), e = r.end(); old_id != e; ++old_id) {
@@ -486,7 +560,7 @@ public:    // fixme
         new_id_perm[new_id] = old_id;
       }
     });
-    
+
     //6. Computes an inclusive prefix sum operation for the new_indices
     // before the computation, new_indices stores the degree of each vertex (with new id)
     std::inclusive_scan(ex_policy, new_indices.begin(), new_indices.end(), new_indices.begin());
@@ -507,7 +581,7 @@ public:    // fixme
     }
     return new_id_perm;
   }
-  
+
   /*
   * Permute the adjacency based on the degree of each vertex
   * There are two major steps: 1. permute the indices_ and the to_be_indexed_

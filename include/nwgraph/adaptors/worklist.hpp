@@ -34,16 +34,20 @@ namespace graph {
 template <typename Graph, typename Workitem = typename Graph::vertex_id_type, typename Queue = std::queue<Workitem>>
 class worklist_range {
 public:
-  worklist_range(Graph& graph) : the_graph_(graph) {}
+  worklist_range(Graph& graph) : the_graph_(graph) {
+  }
 
   worklist_range(const worklist_range&)  = delete;
   worklist_range(const worklist_range&&) = delete;
 
-  bool empty() { return Q_.empty(); }
+  bool empty() {
+    return Q_.empty();
+  }
 
   class worklist_range_iterator {
   public:
-    worklist_range_iterator(worklist_range<Graph, Workitem>& range) : the_range_(range) {}
+    worklist_range_iterator(worklist_range<Graph, Workitem>& range) : the_range_(range) {
+    }
 
     worklist_range_iterator& operator++() {
       the_range_.Q_.pop();
@@ -59,11 +63,16 @@ public:
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
 
   private:
     worklist_range<Graph, Workitem>& the_range_;
@@ -71,10 +80,16 @@ public:
 
   typedef worklist_range_iterator iterator;
 
-  auto begin() { return worklist_range_iterator(*this); }
-  auto end() { return typename worklist_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return worklist_range_iterator(*this);
+  }
+  auto end() {
+    return typename worklist_range_iterator::end_sentinel_type();
+  }
 
-  void push_back(Workitem work) { Q_.push(work); }
+  void push_back(Workitem work) {
+    Q_.push(work);
+  }
 
 private:
   Graph& the_graph_;
@@ -85,12 +100,15 @@ private:
 template <typename Graph, typename Workitem = typename Graph::vertex_id_type, typename Queue = tbb::concurrent_queue<Workitem>>
 class tbbworklist_range {
 public:
-  tbbworklist_range(Graph& graph) : the_graph_(graph) {}
+  tbbworklist_range(Graph& graph) : the_graph_(graph) {
+  }
 
   tbbworklist_range(const tbbworklist_range&)  = delete;
   tbbworklist_range(const tbbworklist_range&&) = delete;
 
-  bool empty() { return Q_.unsafe_size() == 0; }
+  bool empty() {
+    return Q_.unsafe_size() == 0;
+  }
 
   class tbbworklist_range_iterator {
   public:
@@ -121,11 +139,16 @@ public:
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
 
   private:
     tbbworklist_range<Graph, Workitem, Queue>& the_range_;
@@ -134,11 +157,19 @@ public:
 
   typedef tbbworklist_range_iterator iterator;
 
-  auto begin() { return tbbworklist_range_iterator(*this); }
-  auto end() { return typename tbbworklist_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return tbbworklist_range_iterator(*this);
+  }
+  auto end() {
+    return typename tbbworklist_range_iterator::end_sentinel_type();
+  }
 
-  void push_back(Workitem work) { Q_.push(work); }
-  void set_dummy(Workitem dummy) { dummy_ = dummy; }
+  void push_back(Workitem work) {
+    Q_.push(work);
+  }
+  void set_dummy(Workitem dummy) {
+    dummy_ = dummy;
+  }
 
 private:
   Graph&   the_graph_;
@@ -150,7 +181,8 @@ private:
 template <typename Graph, typename Workitem = typename Graph::vertex_id_type, typename Queue = tbb::concurrent_queue<Workitem>>
 class tbbworklist_range2 {
 public:
-  tbbworklist_range2(Graph& graph) : the_graph_(graph), buckets_(10000) {}
+  tbbworklist_range2(Graph& graph) : the_graph_(graph), buckets_(10000) {
+  }
 
   tbbworklist_range2(const tbbworklist_range2&)  = delete;
   tbbworklist_range2(const tbbworklist_range2&&) = delete;
@@ -212,11 +244,16 @@ public:
 
     class end_sentinel_type {
     public:
-      end_sentinel_type() {}
+      end_sentinel_type() {
+      }
     };
 
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
+    auto operator==(const end_sentinel_type&) const {
+      return the_range_.empty();
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return !the_range_.empty();
+    }
 
   private:
     tbbworklist_range2<Graph, Workitem, Queue>& the_range_;
@@ -226,8 +263,12 @@ public:
 
   typedef tbbworklist_range_iterator2 iterator;
 
-  auto begin() { return tbbworklist_range_iterator2(*this); }
-  auto end() { return typename tbbworklist_range_iterator2::end_sentinel_type(); }
+  auto begin() {
+    return tbbworklist_range_iterator2(*this);
+  }
+  auto end() {
+    return typename tbbworklist_range_iterator2::end_sentinel_type();
+  }
 
   void push_back(Workitem work, size_t level) {
     if (level + 1 > buckets_.size()) {
@@ -240,7 +281,9 @@ public:
     //std::cout << "pushed" << std::endl;
     //counter++;
   }
-  void set_dummy(Workitem dummy) { dummy_ = dummy; }
+  void set_dummy(Workitem dummy) {
+    dummy_ = dummy;
+  }
 
 private:
   Graph&                        the_graph_;

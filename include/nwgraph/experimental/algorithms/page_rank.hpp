@@ -24,13 +24,13 @@
 #include <tuple>
 #include <vector>
 
-#include "nwgraph/graph_concepts.hpp"
-#include "nwgraph/algorithms/page_rank.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
+#include "nwgraph/adaptors/vertex_range.hpp"
+#include "nwgraph/algorithms/page_rank.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
+#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/util/parallel_for.hpp"
-#include "nwgraph/adaptors/vertex_range.hpp"
 
 namespace nw {
 namespace graph {
@@ -395,7 +395,7 @@ void page_rank_v8(const Graph& graph, const std::vector<typename Graph::vertex_i
 
                               [&](auto i) {
                                 Real z        = std::transform_reduce(std::execution::par_unseq, graph[i].begin(), graph[i].end(), Real(0.0),
-                                                               std::plus<Real>(), [&](auto&& j) { return outgoing_contrib[std::get<0>(j)]; });
+                                                                      std::plus<Real>(), [&](auto&& j) { return outgoing_contrib[std::get<0>(j)]; });
                                 auto old_rank = page_rank[i];
                                 page_rank[i]  = base_score + damping_factor * z;
                                 return fabs(page_rank[i] - old_rank);
@@ -428,7 +428,7 @@ template <adjacency_list_graph Graph, typename Real>
 
     auto&& [time, error] = pagerank::time_op([&] {
       return std::transform_reduce(std::execution::par_unseq, counting_iterator<vertex_id_type>(0), counting_iterator<vertex_id_type>(N),
-                                   Real(0.0), std::plus{}, [&](auto&& i) {
+                                   Real(0.0), std::plus {}, [&](auto&& i) {
                                      Real z = 0.0;
                                      for (auto&& j : graph[i]) {
                                        z += outgoing_contrib[std::get<0>(j)];
@@ -493,7 +493,7 @@ template <adjacency_list_graph Graph, typename Real>
             }
             return partial_sum;
           },
-          std::plus{});
+          std::plus {});
     });
 
     pagerank::trace(iter, error, time, outgoing);
@@ -552,7 +552,7 @@ template <adjacency_list_graph Graph, typename Real>
             }
             return partial_sum;
           },
-          std::plus{});
+          std::plus {});
     });
 
     pagerank::trace(iter, error, time, 0);
@@ -568,9 +568,9 @@ template <adjacency_list_graph Graph, typename Real>
                                     std::vector<Real>& page_rank, Real damping_factor, Real threshold, size_t max_iters) {
   using vertex_id_type = typename Graph::vertex_id_type;
 
-  std::size_t N          = graph.size();
+  std::size_t N = graph.size();
   // Real        init_score = 1.0 / N;
-  Real        base_score = (1.0 - damping_factor) / N;
+  Real base_score = (1.0 - damping_factor) / N;
 
   std::vector<Real> delta(N);
   std::vector<Real> residual(N);
@@ -725,7 +725,7 @@ template <adjacency_list_graph Graph, typename Real>
           outgoing_contrib[u] = page_rank[u] / degrees[u];
           return fabs(page_rank[u] - old_rank);
         },
-        std::plus{}, 0.0);
+        std::plus {}, 0.0);
 
     if (error < threshold) {
       return iter;

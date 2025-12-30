@@ -29,7 +29,9 @@ using compressed = indexed_struct_of_arrays<unsigned, unsigned, Attributes...>;
 const size_t N = 5;
 
 TEST_CASE("indexed_struct_of_arrays construct", "[construct]") {
-  SECTION("construct") { compressed<> A(N); }
+  SECTION("construct") {
+    compressed<> A(N);
+  }
 
   SECTION("push_back diagonal") {
     compressed<> A(N);
@@ -60,7 +62,9 @@ TEST_CASE("indexed_struct_of_arrays construct", "[construct]") {
 }
 
 TEST_CASE("indexed_struct_of_arrays<double> construct", "[construct<double>]") {
-  SECTION("construct") { compressed<double> A(N); }
+  SECTION("construct") {
+    compressed<double> A(N);
+  }
   SECTION("push_back diagonal") {
     compressed<double> A(N);
     A.open_for_push_back();
@@ -132,7 +136,8 @@ TEST_CASE("indexed_struct_of_arrays inner iteration", "[inner]") {
 }
 
 TEST_CASE("indexed_struct_of_arrays flat iteration", "[flat]") {
-  SECTION("") {}
+  SECTION("") {
+  }
 }
 
 template <typename SOA>

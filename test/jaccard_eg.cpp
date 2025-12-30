@@ -15,8 +15,8 @@
 #include <iostream>
 #include <queue>
 
-#include "nwgraph/build.hpp"
 #include "nwgraph/algorithms/jaccard.hpp"
+#include "nwgraph/build.hpp"
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/io/mmio.hpp"
@@ -36,12 +36,10 @@ int main(int argc, char* argv[]) {
   }
 
   edge_list<directedness::directed, size_t> aos_a = read_mm<directedness::directed, size_t>(argv[1]);
-  adjacency<0, size_t> A(aos_a.num_vertices()[0]);
-  push_back_fill(aos_a, A);  // from build.hpp
+  adjacency<0, size_t>                      A(aos_a.num_vertices()[0]);
+  push_back_fill(aos_a, A);    // from build.hpp
 
-  auto Weight = [](auto& e) -> auto& {
-    return std::get<1>(e);
-  };
+  auto   Weight   = [](auto& e) -> auto& { return std::get<1>(e); };
   size_t js_score = jaccard_similarity<>(A, Weight);
 
   return 0;

@@ -50,7 +50,7 @@ static void eval(std::string input, std::string output) {
 }
 
 int main(int argc, char* const argv[]) {
-  std::vector strings = std::vector<std::string>{argv + 1, argv + argc};
+  std::vector strings = std::vector<std::string> { argv + 1, argv + argc };
   std::map    args    = docopt::docopt(USAGE, strings, true);
   std::string input   = args["<input>"].asString();
 

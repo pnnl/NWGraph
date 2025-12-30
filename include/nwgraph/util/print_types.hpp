@@ -19,7 +19,7 @@ struct print_types_t;
 
 template <class... Ts>
 constexpr auto print_types(Ts...) {
-  return print_types_t<Ts...>{};
+  return print_types_t<Ts...> {};
 }
 
-#endif // PRINT_TYPES_HPP
+#endif    // PRINT_TYPES_HPP

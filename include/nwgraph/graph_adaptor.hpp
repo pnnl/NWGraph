@@ -13,13 +13,15 @@ template <class U>
 class has_push_back {
 
   template <class W>
-  requires(requires(W v, typename W::value_type t) { v.push_back(t); } == true) static constexpr bool test() {
+    requires(requires(W v, typename W::value_type t) { v.push_back(t); } == true)
+  static constexpr bool test() {
     return true;
   }
 
 
   template <class W>
-  requires(requires(W v, typename W::value_type t) { v.push_back(t); } == false) static constexpr bool test() {
+    requires(requires(W v, typename W::value_type t) { v.push_back(t); } == false)
+  static constexpr bool test() {
     return false;
   }
 
@@ -32,13 +34,15 @@ template <template <class> class W, class U>
 class has_push_front {
 
   template <template <class> class V, class T>
-  requires(requires(V<T> v, T t) { v.push_front(t); } == true) static constexpr bool test() {
+    requires(requires(V<T> v, T t) { v.push_front(t); } == true)
+  static constexpr bool test() {
     return true;
   }
 
 
   template <template <class> class V, class T>
-  requires(requires(V<T> v, T t) { v.push_front(t); } == false) static constexpr bool test() {
+    requires(requires(V<T> v, T t) { v.push_front(t); } == false)
+  static constexpr bool test() {
     return false;
   }
 
@@ -57,12 +61,13 @@ bool has_push_front_v = has::has_push_front<V, T>::value;
 
 
 template <class T>
-requires(min_idx_adjacency_list<T> || idx_adjacency_list<T>) class graph_adaptor : public unipartite_graph_base, public T {
+  requires(min_idx_adjacency_list<T> || idx_adjacency_list<T>)
+class graph_adaptor : public unipartite_graph_base, public T {
 
   using base       = T;
   using graph_base = unipartite_graph_base;
 
-  size_t num_edges_{0};
+  size_t num_edges_ { 0 };
 
 public:
   explicit graph_adaptor(size_t N = 0) : base(N) {

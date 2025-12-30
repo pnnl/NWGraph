@@ -20,8 +20,8 @@
 #include <tuple>
 #include <vector>
 
-#include "nwgraph/build.hpp"
 #include "edge_list.hpp"
+#include "nwgraph/build.hpp"
 #include "nwgraph/graph_base.hpp"
 #include "nwgraph/graph_traits.hpp"
 
@@ -41,7 +41,8 @@ public:
   using inner_iterator       = typename inner::iterator;
   using const_inner_iterator = typename inner::const_iterator;
 
-  vector_of_flist_of_structs(size_t N) : base(N) {}
+  vector_of_flist_of_structs(size_t N) : base(N) {
+  }
 };
 
 template <int idx, std::unsigned_integral vertex_id, typename... Attributes>
@@ -53,11 +54,16 @@ public:
   using num_vertices_type = std::array<typename base::size_type, 1>;
   using num_edges_type    = typename base::size_type;
 
-  index_adj_flist(size_t N = 0) : base(N) {}
+  index_adj_flist(size_t N = 0) : base(N) {
+  }
 
-  index_adj_flist(edge_list<directedness::directed, Attributes...>& A) : base(A.num_vertices()[0]) { num_edges_ = fill_adj_flist(A, *this); }
+  index_adj_flist(edge_list<directedness::directed, Attributes...>& A) : base(A.num_vertices()[0]) {
+    num_edges_ = fill_adj_flist(A, *this);
+  }
 
-  index_adj_flist(edge_list<directedness::undirected, Attributes...>& A) : base(A.num_vertices()[0]) { num_edges_ = fill_adj_flist(A, *this); }
+  index_adj_flist(edge_list<directedness::undirected, Attributes...>& A) : base(A.num_vertices()[0]) {
+    num_edges_ = fill_adj_flist(A, *this);
+  }
 
   using iterator = typename base::outer_iterator;
 
@@ -67,10 +73,16 @@ public:
   using const_inner_iterator = typename base::const_inner_iterator;
 
   using attributes_t = std::tuple<Attributes...>;
-  static constexpr std::size_t getNAttr() { return sizeof...(Attributes); }
+  static constexpr std::size_t getNAttr() {
+    return sizeof...(Attributes);
+  }
 
-  void open_for_push_back() { graph_base::is_open = true; }
-  void close_for_push_back() { graph_base::is_open = false; }
+  void open_for_push_back() {
+    graph_base::is_open = true;
+  }
+  void close_for_push_back() {
+    graph_base::is_open = false;
+  }
   void push_back(size_t i, size_t j, Attributes... attrs) {
     if (i >= base::size()) {
       for (size_t k = base::size(); k <= i; ++k) {
@@ -80,8 +92,12 @@ public:
     base::operator[](i).emplace_front(j, attrs...);
   }
 
-  num_vertices_type num_vertices() const { return {base::size()}; };
-  num_edges_type    num_edges() const { return num_edges_; }
+  num_vertices_type num_vertices() const {
+    return { base::size() };
+  };
+  num_edges_type num_edges() const {
+    return num_edges_;
+  }
 
 private:
   num_edges_type num_edges_;

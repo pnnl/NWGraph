@@ -28,7 +28,8 @@ class random_range {
 public:
   random_range(Graph& g, size_t length = size_t(0xffffffffffffffffULL), vertex_id_t<Graph> first = 0, unsigned seed = 2049)
       : the_graph_(g), starting_vertex(first), length_(length), distribution(0, 1.0), generator(seed),
-        dice(std::bind(distribution, generator)) {}
+        dice(std::bind(distribution, generator)) {
+  }
 
   class edge_range_iterator {
   private:
@@ -41,7 +42,8 @@ public:
 
   public:
     edge_range_iterator(random_range<Graph>& range)
-        : the_range_(range), G(the_range_.the_graph_.begin()), current_vertex(the_range_.starting_vertex), length_(the_range_.length_) {}
+        : the_range_(range), G(the_range_.the_graph_.begin()), current_vertex(the_range_.starting_vertex), length_(the_range_.length_) {
+    }
 
     edge_range_iterator& operator++() {
       --length_;
@@ -55,18 +57,28 @@ public:
       return *this;
     }
 
-    auto operator*() const { return current_vertex; }
+    auto operator*() const {
+      return current_vertex;
+    }
 
     struct end_sentinel_type {};
 
-    auto operator==(const end_sentinel_type&) const { return length_ == 0; }
-    bool operator!=(const end_sentinel_type&) const { return length_ != 0; }
+    auto operator==(const end_sentinel_type&) const {
+      return length_ == 0;
+    }
+    bool operator!=(const end_sentinel_type&) const {
+      return length_ != 0;
+    }
   };
 
   typedef edge_range_iterator iterator;
 
-  auto begin() { return edge_range_iterator(*this); }
-  auto end() { return typename edge_range_iterator::end_sentinel_type(); }
+  auto begin() {
+    return edge_range_iterator(*this);
+  }
+  auto end() {
+    return typename edge_range_iterator::end_sentinel_type();
+  }
 
 private:
   Graph& the_graph_;

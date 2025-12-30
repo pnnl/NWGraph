@@ -17,14 +17,14 @@
 #include "nwgraph/adjacency.hpp"
 
 namespace nw {
-  namespace graph {
+namespace graph {
 
 using csr_graph = adjacency<0>;
 
 template <typename T = double>
 using csr_matrix = adjacency<0, T>;
 
-  }
-}
+}    // namespace graph
+}    // namespace nw
 
-#endif // NW_GRAPH_CSR_HPP
+#endif    // NW_GRAPH_CSR_HPP

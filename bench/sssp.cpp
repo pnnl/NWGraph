@@ -53,20 +53,17 @@ using distance_t = std::uint64_t;
 
 /// Basic sequential sssp (Dijkstra) copied from GAP benchmark suite.
 template <adjacency_list_graph Graph, class Weight>
-static auto dijkstra(const Graph& graph, vertex_id_t<Graph> source,
-  Weight weight = [](auto& e) -> auto& { return std::get<1>(e); }) {
+static auto dijkstra(const Graph& graph, vertex_id_t<Graph> source, Weight weight = [](auto& e) -> auto& { return std::get<1>(e); }) {
   using vertex_id_type = vertex_id_t<Graph>;
 
 
   // Distances
-  std::vector<distance_t> dist(num_vertices(graph), std::numeric_limits<distance_t>::max()/4);
+  std::vector<distance_t> dist(num_vertices(graph), std::numeric_limits<distance_t>::max() / 4);
 
   // Workqueue
   //  using WN = std::tuple<vertex_id_type, distance_t>;
   //  auto mq  = nw::graph::make_priority_queue<WN>([](const WN& a, const WN& b) { return std::get<1>(a) > std::get<1>(b); });
-  auto mq  = nw::graph::make_priority_queue<vertex_id_type>([&dist](const vertex_id_type& a, vertex_id_type& b) { 
-							      return dist[a] > dist[b]; 
-							    });
+  auto mq = nw::graph::make_priority_queue<vertex_id_type>([&dist](const vertex_id_type& a, vertex_id_type& b) { return dist[a] > dist[b]; });
   mq.emplace(source);
   dist[source] = 0;
 
@@ -80,8 +77,8 @@ static auto dijkstra(const Graph& graph, vertex_id_t<Graph> source,
       //assert(td < td + w);
       auto tw = dist[u] + w;
       if (tw < dist[v]) {
-	dist[v] = tw;
-	mq.emplace(v);
+        dist[v] = tw;
+        mq.emplace(v);
       }
     }
   }
@@ -89,8 +86,7 @@ static auto dijkstra(const Graph& graph, vertex_id_t<Graph> source,
 }
 
 template <adjacency_list_graph Graph, class Dist, class Weight>
-static bool SSSPVerifier(const Graph& graph, vertex_id_t<Graph> source, Dist&& dist, bool verbose,
-Weight weight) {
+static bool SSSPVerifier(const Graph& graph, vertex_id_t<Graph> source, Dist&& dist, bool verbose, Weight weight) {
 
   auto oracle = dijkstra(graph, source, weight);
   if (std::equal(dist.begin(), dist.end(), oracle.begin())) {
@@ -166,7 +162,7 @@ int main(int argc, char* argv[]) {
     aos_a.stream_stats();
   }
 
-  auto graph = build_adjacency<0>(aos_a);
+  auto graph  = build_adjacency<0>(aos_a);
   auto weight = [](auto& e) -> auto& { return std::get<1>(e); };
 
   if (verbose) {

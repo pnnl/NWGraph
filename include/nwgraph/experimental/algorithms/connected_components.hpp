@@ -17,10 +17,10 @@
 #define CONNECTED_COMPONENT_EXPERIMENTAL_HPP
 
 #include "nwgraph/adaptors/bfs_edge_range.hpp"
+#include "nwgraph/adaptors/cyclic_neighbor_range.hpp"
 #include "nwgraph/adaptors/edge_range.hpp"
 #include "nwgraph/adaptors/vertex_range.hpp"
 #include "nwgraph/util/AtomicBitVector.hpp"
-#include "nwgraph/adaptors/cyclic_neighbor_range.hpp"
 #include <atomic>
 #include <iostream>
 #include <random>
@@ -37,7 +37,7 @@
 namespace nw {
 namespace graph {
 
-template<class T>
+template <class T>
 inline bool writeMin(T& old, T& next) {
   T    prev;
   bool success = false;
@@ -55,11 +55,14 @@ template <typename T>
 struct atomwrapper {
   std::atomic<T> _a;
 
-  atomwrapper() : _a() {}
+  atomwrapper() : _a() {
+  }
 
-  explicit atomwrapper(const std::atomic<T>& a) : _a(a.load()) {}
+  explicit atomwrapper(const std::atomic<T>& a) : _a(a.load()) {
+  }
 
-  atomwrapper(const atomwrapper& other) : _a(other._a.load()) {}
+  atomwrapper(const atomwrapper& other) : _a(other._a.load()) {
+  }
 
   atomwrapper& operator=(const atomwrapper& other) {
     _a.store(other._a.load());
@@ -159,15 +162,15 @@ bool pull(const Graph& g, const T u, std::vector<T>& comp) {
   T min_compid = comp[u];
   T v;
   for (auto j = g[u].begin(); j != g[u].end(); ++j) {
-    v          = target(g, *j);
+    v = target(g, *j);
     //v          = std::get<0>(*j);
     min_compid = std::min(min_compid, comp[v]);
   }
   bool change = false;
   T    p1     = comp[u];
   T    p2     = min_compid;
-  T    high = comp[u];
-  T    low = min_compid;
+  T    high   = comp[u];
+  T    low    = min_compid;
   while (p1 != p2) {
     high              = std::max(p1, p2);
     low               = p1 + p2 - high;
@@ -303,41 +306,42 @@ std::vector<T> ccv1(const Graph& g) {
   return comp;
 }
 
-template<typename Execution, adjacency_list_graph Graph, typename T = vertex_id_t<Graph>>
+template <typename Execution, adjacency_list_graph Graph, typename T = vertex_id_t<Graph>>
 std::vector<T> lpcc(Execution& exec, Graph& g, int num_bins = 32) {
   //nw::util::life_timer _(__func__);
-  size_t     num_nodes = g.size();
-  std::vector<T> comp(num_nodes);
-  nw::graph::AtomicBitVector   visited(num_nodes);
-  std::vector<T> cur(num_nodes), next;
-  std::for_each(exec,
-  counting_iterator<T>(0), counting_iterator<T>(num_nodes), [&](auto n) { 
+  size_t                     num_nodes = g.size();
+  std::vector<T>             comp(num_nodes);
+  nw::graph::AtomicBitVector visited(num_nodes);
+  std::vector<T>             cur(num_nodes), next;
+  std::for_each(exec, counting_iterator<T>(0), counting_iterator<T>(num_nodes), [&](auto n) {
     comp[n] = n;
-    cur[n] = n;
+    cur[n]  = n;
   });
 
   std::vector<T> frontier[num_bins];
-  auto propagate = [&](auto& g, auto& cur, auto& bitmap, auto& labels) {
-    tbb::parallel_for(tbb::blocked_range<T>(0ul, cur.size()), [&](tbb::blocked_range<T>& r) {
-      int worker_index = tbb::this_task_arena::current_thread_index();
-      for (auto i = r.begin(), e = r.end(); i < e; ++i) {
-        auto x = cur[i];
-        auto labelx = labels[x];
-        //all neighbors of hyperedges are hypernode, vice versa
-        std::for_each(g[x].begin(), g[x].end(), [&](auto &&j) {
-          auto y = std::get<0>(j);
-          if (labelx < labels[y]) {
-            if (writeMin(labels[y], labelx)) {
-              if (0 == bitmap.atomic_get(y) && 0 == bitmap.atomic_set(y))
-                frontier[worker_index].push_back(y);
-            }
-          }
-        });
-      } //for
-    }, tbb::auto_partitioner());
+  auto           propagate = [&](auto& g, auto& cur, auto& bitmap, auto& labels) {
+    tbb::parallel_for(
+        tbb::blocked_range<T>(0ul, cur.size()),
+        [&](tbb::blocked_range<T>& r) {
+          int worker_index = tbb::this_task_arena::current_thread_index();
+          for (auto i = r.begin(), e = r.end(); i < e; ++i) {
+            auto x      = cur[i];
+            auto labelx = labels[x];
+            //all neighbors of hyperedges are hypernode, vice versa
+            std::for_each(g[x].begin(), g[x].end(), [&](auto&& j) {
+              auto y = std::get<0>(j);
+              if (labelx < labels[y]) {
+                if (writeMin(labels[y], labelx)) {
+                  if (0 == bitmap.atomic_get(y) && 0 == bitmap.atomic_set(y)) frontier[worker_index].push_back(y);
+                }
+              }
+            });
+          }    //for
+        },
+        tbb::auto_partitioner());
   };
   std::vector<size_t> size_array(num_bins);
-  auto curtonext = [&](auto& next) {
+  auto                curtonext = [&](auto& next) {
     size_t size = 0;
     for (int i = 0; i < num_bins; ++i) {
       //calculate the size of each thread-local frontier
@@ -346,7 +350,7 @@ std::vector<T> lpcc(Execution& exec, Graph& g, int num_bins = 32) {
       size += frontier[i].size();
     }
     //resize next frontier
-    next.resize(size); 
+    next.resize(size);
     std::for_each(exec, counting_iterator(0), counting_iterator(num_bins), [&](auto i) {
       //copy each thread-local frontier to next frontier based on their size offset
       auto begin = std::next(next.begin(), size_array[i]);
@@ -360,46 +364,47 @@ std::vector<T> lpcc(Execution& exec, Graph& g, int num_bins = 32) {
     visited.clear();
     cur.clear();
     cur.swap(next);
-  } //while
+  }    //while
 
   return comp;
 }
 
 
-template<typename Execution, adjacency_list_graph Graph, typename T = vertex_id_t<Graph>>
+template <typename Execution, adjacency_list_graph Graph, typename T = vertex_id_t<Graph>>
 std::vector<T> lpcc_cyclic(Execution& exec, Graph& g, int num_bins = 32) {
   //nw::util::life_timer _(__func__);
-  size_t     num_nodes = g.size();
-  std::vector<T> comp(num_nodes);
-  nw::graph::AtomicBitVector   visited(num_nodes);
-  std::vector<T> cur(num_nodes), next;
-  std::for_each(exec,
-  counting_iterator<T>(0), counting_iterator<T>(num_nodes), [&](auto n) { 
+  size_t                     num_nodes = g.size();
+  std::vector<T>             comp(num_nodes);
+  nw::graph::AtomicBitVector visited(num_nodes);
+  std::vector<T>             cur(num_nodes), next;
+  std::for_each(exec, counting_iterator<T>(0), counting_iterator<T>(num_nodes), [&](auto n) {
     comp[n] = n;
-    cur[n] = n;
+    cur[n]  = n;
   });
 
   std::vector<T> frontier[num_bins];
-  auto propagate = [&](auto& g, auto& cur, auto& bitmap, auto& labels) {
-    tbb::parallel_for(cyclic_neighbor_range(g, num_bins), [&](auto& i) {
-      int worker_index = tbb::this_task_arena::current_thread_index();
-      for (auto&& j = i.begin(); j != i.end(); ++j) {
-        auto&& [x, x_ngh] = *j;
-        auto labelx = labels[x];
-        //all neighbors of hyperedges are hypernode, vice versa
-        for (auto &&[y] : x_ngh) {
-          if (labelx < labels[y]) {
-            if (writeMin(labels[y], labelx)) {
-              if (0 == bitmap.atomic_get(y) && 0 == bitmap.atomic_set(y))
-                frontier[worker_index].push_back(y);
-            }
-          }
-        }//for each neighbor
-      } //for
-    }, tbb::auto_partitioner());
+  auto           propagate = [&](auto& g, auto& cur, auto& bitmap, auto& labels) {
+    tbb::parallel_for(
+        cyclic_neighbor_range(g, num_bins),
+        [&](auto& i) {
+          int worker_index = tbb::this_task_arena::current_thread_index();
+          for (auto&& j = i.begin(); j != i.end(); ++j) {
+            auto&& [x, x_ngh] = *j;
+            auto labelx       = labels[x];
+            //all neighbors of hyperedges are hypernode, vice versa
+            for (auto&& [y] : x_ngh) {
+              if (labelx < labels[y]) {
+                if (writeMin(labels[y], labelx)) {
+                  if (0 == bitmap.atomic_get(y) && 0 == bitmap.atomic_set(y)) frontier[worker_index].push_back(y);
+                }
+              }
+            }    //for each neighbor
+          }    //for
+        },
+        tbb::auto_partitioner());
   };
   std::vector<size_t> size_array(num_bins);
-  auto curtonext = [&](auto& next) {
+  auto                curtonext = [&](auto& next) {
     size_t size = 0;
     for (int i = 0; i < num_bins; ++i) {
       //calculate the size of each thread-local frontier
@@ -408,7 +413,7 @@ std::vector<T> lpcc_cyclic(Execution& exec, Graph& g, int num_bins = 32) {
       size += frontier[i].size();
     }
     //resize next frontier
-    next.resize(size); 
+    next.resize(size);
     std::for_each(exec, counting_iterator(0), counting_iterator(num_bins), [&](auto i) {
       //copy each thread-local frontier to next frontier based on their size offset
       auto begin = std::next(next.begin(), size_array[i]);
@@ -422,7 +427,7 @@ std::vector<T> lpcc_cyclic(Execution& exec, Graph& g, int num_bins = 32) {
     visited.clear();
     cur.clear();
     cur.swap(next);
-  } //while
+  }    //while
 
   return comp;
 }
@@ -469,7 +474,7 @@ std::vector<T> ccv5(const Graph& g) {
   return comp;
 }
 
-template <adjacency_list_graph Graph, typename T= vertex_id_t<Graph>>
+template <adjacency_list_graph Graph, typename T = vertex_id_t<Graph>>
 auto sv_v6(const Graph& g) {
   std::vector<T> comp(g.size());
 
@@ -489,9 +494,9 @@ auto sv_v6(const Graph& g) {
 
     std::for_each(std::execution::par_unseq, counting_iterator<T>(0), counting_iterator<T>(g.size()), [&](auto u) {
       for (auto&& elt : G[u]) {
-        auto v = target(g, elt);
-        T comp_u = comp[u];
-        T comp_v = comp[v];
+        auto v      = target(g, elt);
+        T    comp_u = comp[u];
+        T    comp_v = comp[v];
         if (comp_u == comp_v) continue;
         T high_comp = comp_u > comp_v ? comp_u : comp_v;
         T low_comp  = comp_u + (comp_v - high_comp);
@@ -533,9 +538,9 @@ auto sv_v8(Graph& g) {
       auto Gu = G[u];
       // tbb::parallel_for(G[u], [&] (auto& Gu) {
       for (auto&& elt : Gu) {
-        auto v = target(g, elt);
-        T comp_u = comp[u];
-        T comp_v = comp[v];
+        auto v      = target(g, elt);
+        T    comp_u = comp[u];
+        T    comp_v = comp[v];
         if (comp_u == comp_v) continue;
         T high_comp = std::max(comp_u, comp_v);
 

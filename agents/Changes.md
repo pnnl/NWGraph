@@ -19,6 +19,38 @@ This document tracks cleanup changes made to the NWGraph codebase.
 - Confirmed no includes or dependencies from other source files
 - Files were not part of the nwgraph library target
 
+### 2024-12-30: Code Formatting and Cleanup
+
+**Applied clang-format to entire codebase:**
+- 88 header files in `include/nwgraph/`
+- All test files in `test/`
+- All benchmark files in `bench/` and `apb/`
+- All example files in `examples/`
+
+**Formatting standards applied:**
+- 2-space indentation
+- 144 character line limit
+- Attached braces (Allman style)
+- No namespace indentation
+- Aligned consecutive assignments and declarations
+- Sorted includes
+
+**Added include guards to graph data headers:**
+
+| File | Guard Added |
+|------|-------------|
+| `include/nwgraph/graphs/karate-graph.hpp` | `NW_GRAPH_KARATE_GRAPH_HPP` |
+| `include/nwgraph/graphs/imdb-graph.hpp` | `NW_GRAPH_IMDB_GRAPH_HPP` |
+| `include/nwgraph/graphs/ospf-graph.hpp` | `NW_GRAPH_OSPF_GRAPH_HPP` |
+
+**Removed deprecated headers:**
+
+| File | Reason |
+|------|--------|
+| `include/nwgraph/access.hpp` | Deprecated, empty (only contained `#warning`), no users |
+| `include/nwgraph/compat.hpp` | Deprecated, all code inside `#if 0`, no functional content |
+| `test/compat_eg.cpp` | Test file for removed `compat.hpp` |
+
 ---
 
 ## Planned Changes
@@ -26,8 +58,8 @@ This document tracks cleanup changes made to the NWGraph codebase.
 ### Priority 1: Critical Cleanup
 
 #### Remove Deprecated Headers
-- [ ] `include/nwgraph/access.hpp` - Marked deprecated, appears unused
-- [ ] `include/nwgraph/compat.hpp` - Marked deprecated, used only by `test/compat_eg.cpp`
+- [x] `include/nwgraph/access.hpp` - DONE (removed)
+- [x] `include/nwgraph/compat.hpp` - DONE (removed)
 
 #### Fix Buggy Experimental Code
 - [ ] `include/nwgraph/experimental/algorithms/jones_plassmann_coloring.hpp`
@@ -35,9 +67,9 @@ This document tracks cleanup changes made to the NWGraph codebase.
   - Either fix or clearly document limitations
 
 #### Add Include Guards to Graph Headers
-- [ ] `include/nwgraph/graphs/karate-graph.hpp` - Missing guards
-- [ ] `include/nwgraph/graphs/imdb-graph.hpp` - Missing guards
-- [ ] `include/nwgraph/graphs/ospf-graph.hpp` - Missing guards
+- [x] `include/nwgraph/graphs/karate-graph.hpp` - DONE
+- [x] `include/nwgraph/graphs/imdb-graph.hpp` - DONE
+- [x] `include/nwgraph/graphs/ospf-graph.hpp` - DONE
 
 ### Priority 2: Code Quality
 

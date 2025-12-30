@@ -22,9 +22,9 @@ void tag_invoke();
 
 struct _fn {
   template <typename CPO, typename... Args>
-  constexpr auto operator()(CPO cpo, Args&&... args) const noexcept(noexcept(tag_invoke((CPO &&) cpo, (Args &&) args...)))
-      -> decltype(tag_invoke((CPO &&) cpo, (Args &&) args...)) {
-    return tag_invoke((CPO &&) cpo, (Args &&) args...);
+  constexpr auto operator()(CPO cpo, Args&&... args) const noexcept(noexcept(tag_invoke((CPO&&)cpo, (Args&&)args...)))
+      -> decltype(tag_invoke((CPO&&)cpo, (Args&&)args...)) {
+    return tag_invoke((CPO&&)cpo, (Args&&)args...);
   }
 };
 
@@ -37,7 +37,7 @@ using no_type  = char (&)[2];
 template <typename CPO, typename... Args>
 auto try_tag_invoke(int)    //
     noexcept(noexcept(tag_invoke(std::declval<CPO>(), std::declval<Args>()...)))
-        -> decltype(static_cast<void>(tag_invoke(std::declval<CPO>(), std::declval<Args>()...)), yes_type{});
+        -> decltype(static_cast<void>(tag_invoke(std::declval<CPO>(), std::declval<Args>()...)), yes_type {});
 
 template <typename CPO, typename... Args>
 no_type try_tag_invoke(...) noexcept(false);
@@ -51,7 +51,7 @@ struct empty {};
 }    // namespace _tag_invoke
 
 namespace _tag_invoke_cpo {
-inline constexpr _tag_invoke::_fn tag_invoke{};
+inline constexpr _tag_invoke::_fn tag_invoke {};
 }
 using namespace _tag_invoke_cpo;
 
@@ -86,6 +86,7 @@ concept tag_invocable = (sizeof(_tag_invoke::try_tag_invoke<CPO, Args...>(0)) ==
       return tag_invoke(*this, std::forward<decltype(args)>(args)...);                                                        \
     }                                                                                                                         \
   };                                                                                                                          \
-  static inline constexpr str##_tag str {}
+  static inline constexpr str##_tag str {                                                                                     \
+  }
 
 #endif    // NW_GRAPH_TAG_INVOKE_HPP

@@ -20,10 +20,12 @@ namespace nw::graph {
 template <class Reference>
 struct arrow_proxy {
   Reference  r;
-  Reference* operator->() { return &r; }
+  Reference* operator->() {
+    return &r;
+  }
 };
 
 }    // namespace nw::graph
 
 
-#endif // NW_GRAPH_UTIL_ARROW_PROXY_HPP
+#endif    // NW_GRAPH_UTIL_ARROW_PROXY_HPP

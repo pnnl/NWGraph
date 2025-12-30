@@ -15,9 +15,9 @@
 #include <tuple>
 #include <vector>
 
-#include "nwgraph/graph_concepts.hpp"
-#include "nwgraph/adaptors/edge_range.hpp"
 #include "common/test_header.hpp"
+#include "nwgraph/adaptors/edge_range.hpp"
+#include "nwgraph/graph_concepts.hpp"
 
 #include "nwgraph/algorithms/spMatspMat.hpp"
 
@@ -29,7 +29,7 @@ TEST_CASE("Row times Row", "[row-row") {
   //     (e.g., convert A, B to dense
   // Compute C = A * B with spMatspMat
   // Compare C with known correct answer
-    
+
   /* 
      [ 3, 1, 4 ]   [ 8, 6, 7 ]     [  65, 21, 57 ]
      [ 1, 5, 9 ]   [ 5, 3, 0 ]  =  [ 114, 21, 88 ]
@@ -49,7 +49,7 @@ TEST_CASE("Row times Row", "[row-row") {
     { { 0, 9 }, { 1, 0 }, { 2, 9 } },
   };
   SparseMatrix C {
-    { { 0,  65 }, { 1, 21 }, { 2, 57 } },
+    { { 0, 65 },  { 1, 21 }, { 2, 57 } },
     { { 0, 114 }, { 1, 21 }, { 2, 88 } },
     { { 0, 109 }, { 1, 30 }, { 2, 77 } },
   };

@@ -17,13 +17,13 @@
 #ifndef BETWEENNESS_CENTRALITY_HPP
 #define BETWEENNESS_CENTRALITY_HPP
 
-#include "nwgraph/graph_concepts.hpp"
+#include "nwgraph/adaptors/vertex_range.hpp"
 #include "nwgraph/adaptors/worklist.hpp"
+#include "nwgraph/graph_concepts.hpp"
 #include "nwgraph/util/AtomicBitVector.hpp"
 #include "nwgraph/util/atomic.hpp"
 #include "nwgraph/util/parallel_for.hpp"
 #include "nwgraph/util/util.hpp"
-#include "nwgraph/adaptors/vertex_range.hpp"
 
 #include <algorithm>
 
@@ -57,8 +57,8 @@ namespace nw {
 namespace graph {
 
 template <class score_t, class accum_t, adjacency_list_graph Graph>
-bool BCVerifier(const Graph& g, std::vector<typename graph_traits<Graph>::vertex_id_type>& trial_sources,
-                std::vector<score_t>& scores_to_test, bool normalize = true) {
+bool BCVerifier(const Graph& g, std::vector<typename graph_traits<Graph>::vertex_id_type>& trial_sources, std::vector<score_t>& scores_to_test,
+                bool normalize = true) {
   using vertex_id_type = typename graph_traits<Graph>::vertex_id_type;
 
   std::vector<score_t> scores(num_vertices(g), 0);
@@ -107,7 +107,7 @@ bool BCVerifier(const Graph& g, std::vector<typename graph_traits<Graph>::vertex
       }
     }
   }
-  if (normalize){
+  if (normalize) {
     score_t biggest_score = *std::max_element(scores.begin(), scores.end());
     for (size_t i = 0; i < num_vertices(g); ++i) {
       scores[i] = scores[i] / biggest_score;
@@ -256,7 +256,7 @@ auto brandes_bc(const Graph& graph, const std::vector<typename Graph::vertex_id_
             std::for_each(outer_policy, q1.begin(), q1.end(), [&](auto&& q) {
               std::for_each(inner_policy, q.begin(), q.end(), [&](auto&& u) {
                 for (auto&& elt : graph[u]) {
-                  auto&&   v        = target(graph, elt);
+                  auto&& v        = target(graph, elt);
                   auto&& infinity = std::numeric_limits<vertex_id_type>::max();
                   auto&& lvl_v    = nw::graph::acquire(levels[v]);
 
@@ -319,7 +319,7 @@ auto brandes_bc(const Graph& graph, const std::vector<typename Graph::vertex_id_
   }
 
   if (normalize) {
-    auto max = std::reduce(outer_policy, bc.begin(), bc.end(), 0.0f, nw::graph::max{});
+    auto max = std::reduce(outer_policy, bc.begin(), bc.end(), 0.0f, nw::graph::max {});
     std::for_each(outer_policy, bc.begin(), bc.end(), [&](auto&& j) { j /= max; });
   }
   return bc;
@@ -345,20 +345,15 @@ auto brandes_bc(const Graph& graph, const std::vector<typename Graph::vertex_id_
  */
 template <class score_t, class accum_t, adjacency_list_graph Graph, class OuterExecutionPolicy = std::execution::parallel_unsequenced_policy,
           class InnerExecutionPolicy = std::execution::parallel_unsequenced_policy>
-auto exact_brandes_bc(const Graph& graph, int threads,
-                OuterExecutionPolicy&& outer_policy = {}, InnerExecutionPolicy&& inner_policy = {}, bool normalize = true) {
-  using vertex_id_type = typename Graph::vertex_id_type;
-  vertex_id_type       N     = num_vertices(graph);
+auto exact_brandes_bc(const Graph& graph, int threads, OuterExecutionPolicy&& outer_policy = {}, InnerExecutionPolicy&& inner_policy = {},
+                      bool normalize = true) {
+  using vertex_id_type          = typename Graph::vertex_id_type;
+  vertex_id_type              N = num_vertices(graph);
   std::vector<vertex_id_type> sources(N);
-  auto&& r = vertex_range<Graph>(N);
-  std::for_each(outer_policy, r.begin(), r.end(), [&](const auto& i) {
-    sources[i] = i;
-  });
-  return brandes_bc<score_t, 
-  accum_t, 
-  Graph, 
-  OuterExecutionPolicy, 
-  InnerExecutionPolicy>(graph, sources, threads, std::forward<OuterExecutionPolicy>(outer_policy), std::forward<InnerExecutionPolicy>(inner_policy), normalize);
+  auto&&                      r = vertex_range<Graph>(N);
+  std::for_each(outer_policy, r.begin(), r.end(), [&](const auto& i) { sources[i] = i; });
+  return brandes_bc<score_t, accum_t, Graph, OuterExecutionPolicy, InnerExecutionPolicy>(
+      graph, sources, threads, std::forward<OuterExecutionPolicy>(outer_policy), std::forward<InnerExecutionPolicy>(inner_policy), normalize);
 }
 
 }    // namespace graph

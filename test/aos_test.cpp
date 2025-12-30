@@ -43,7 +43,7 @@ TEST_CASE("array of structures", "[aos]") {
 
     A.push_back(8675309);
     B.push_back(867, 5309);
-    B.push_back({867, 5309});
+    B.push_back({ 867, 5309 });
     C.push_back(867, 5309, 3.14159);
     D.push_back(95141.3, 867, 5309, 3.14159);
   }

@@ -35,7 +35,8 @@ class vector_of_vector_of_structs : public std::vector<std::vector<std::tuple<At
 public:
   using base = std::vector<std::vector<std::tuple<Attributes...>>>;
 
-  vector_of_vector_of_structs(size_t N) : base(N) {}
+  vector_of_vector_of_structs(size_t N) : base(N) {
+  }
 
   // using inner_iterator       = typename std::vector<std::tuple<Attributes...>>::iterator;
   // using const_inner_iterator = typename std::vector<std::tuple<Attributes...>>::const_iterator;
@@ -43,9 +44,11 @@ public:
   // using outer_iterator       = typename std::vector<std::vector<std::tuple<Attributes...>>>::iterator;
   // using const_outer_iterator = typename std::vector<std::vector<std::tuple<Attributes...>>>::const_iterator;
 
-  void open_for_push_back() {}
-  void close_for_push_back() {}
-  void push_back(size_t i, Attributes... attrs) { 
+  void open_for_push_back() {
+  }
+  void close_for_push_back() {
+  }
+  void push_back(size_t i, Attributes... attrs) {
     if (i >= base::size()) {
       for (size_t j = base::size(); j <= i; ++j) {
         base::emplace_back();
@@ -54,7 +57,9 @@ public:
     base::operator[](i).emplace_back(attrs...);
   }
 
-  auto size() const { return base::size(); }
+  auto size() const {
+    return base::size();
+  }
 };
 
 
@@ -70,13 +75,20 @@ public:
 
   using attributes_t = std::tuple<Attributes...>;
 
-  static constexpr std::size_t getNAttr() { return sizeof...(Attributes); }
+  static constexpr std::size_t getNAttr() {
+    return sizeof...(Attributes);
+  }
 
-  index_vov(size_t N = 0) : base(N) {}
+  index_vov(size_t N = 0) : base(N) {
+  }
 
-  index_vov(edge_list<directedness::directed, Attributes...>& A) : base(num_vertices(A)) { num_edges_ = fill_adj_list(A, *this); }
+  index_vov(edge_list<directedness::directed, Attributes...>& A) : base(num_vertices(A)) {
+    num_edges_ = fill_adj_list(A, *this);
+  }
 
-  index_vov(edge_list<directedness::undirected, Attributes...>& A) : base(num_vertices(A)) { num_edges_ = fill_adj_list(A, *this); }
+  index_vov(edge_list<directedness::undirected, Attributes...>& A) : base(num_vertices(A)) {
+    num_edges_ = fill_adj_list(A, *this);
+  }
 
 private:
   num_edges_type num_edges_;

@@ -19,8 +19,8 @@
 
 #include "nwgraph/containers/compressed.hpp"
 #include "nwgraph/edge_list.hpp"
-#include "nwgraph/volos.hpp"
 #include "nwgraph/io/mmio.hpp"
+#include "nwgraph/volos.hpp"
 
 #include "common/test_header.hpp"
 
