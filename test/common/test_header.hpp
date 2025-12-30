@@ -26,4 +26,6 @@
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/io/mmio.hpp"
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/catch_approx.hpp>
+using Catch::Approx;

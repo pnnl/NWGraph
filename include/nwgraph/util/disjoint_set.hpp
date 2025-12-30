@@ -164,7 +164,7 @@ public:
   void allToSingletons(ExecutionPolicy&& policy = {}) {
     size_t i = 0;
     std::for_each(policy, this->sets_, this->sets_ + this->maxid_, [&i, this]() {
-      this->sets[i] = i;
+      this->sets_[i] = i;
       ++i;
     });
   }

@@ -89,60 +89,117 @@ TEST_CASE("sort", "[edge_list]") {
   }
 }
 
-#if 0
+TEST_CASE("edge_list directedness", "[edge_list]") {
+  SECTION("directed edge list") {
+    edge_list<nw::graph::directedness::directed> A(10);
+    A.push_back(0, 1);
+    A.push_back(1, 2);
 
-  array_of_structs<size_t> A;
-  array_of_structs<size_t, size_t> B;
-  array_of_structs<size_t, size_t, double> C;
-  array_of_structs<double, size_t, size_t, double> D;
+    REQUIRE(A.size() == 2);
+    REQUIRE(num_vertices(A) == 10);
+  }
 
-  A.push_back(8675309);
-  B.push_back(867, 5309);
-  C.push_back(867, 5309, 3.14159);
-  D.push_back(95141.3, 867, 5309, 3.14159);
+  SECTION("undirected edge list") {
+    edge_list<nw::graph::directedness::undirected> A(10);
+    A.push_back(0, 1);
+    A.push_back(1, 2);
 
+    REQUIRE(A.size() == 2);
+  }
+}
 
-  struct_of_arrays<size_t> E;
-  struct_of_arrays<size_t, size_t> F;
-  struct_of_arrays<size_t, size_t, double> G;
-  struct_of_arrays<double, size_t, size_t, double> H;
+TEST_CASE("edge_list iteration", "[edge_list]") {
+  edge_list<nw::graph::directedness::directed, double> A(N);
+  A.push_back(0, 1, 1.0);
+  A.push_back(1, 2, 2.0);
+  A.push_back(2, 3, 3.0);
 
-  E.push_back(8675309);
-  F.push_back(867, 5309);
-  G.push_back(867, 5309, 3.14159);
-  H.push_back(95141.3, 867, 5309, 3.14159);
+  SECTION("range-based for loop") {
+    size_t count = 0;
+    double total_weight = 0.0;
+    for (auto&& [u, v, w] : A) {
+      count++;
+      total_weight += w;
+    }
+    REQUIRE(count == 3);
+    REQUIRE(total_weight == Approx(6.0));
+  }
 
-  H.clear();
-  D.clear();
+  SECTION("iterator access") {
+    auto it = A.begin();
+    REQUIRE(std::get<0>(*it) == 0);
+    REQUIRE(std::get<1>(*it) == 1);
+    ++it;
+    REQUIRE(std::get<0>(*it) == 1);
+    REQUIRE(std::get<1>(*it) == 2);
+  }
+}
 
+TEST_CASE("edge_list empty", "[edge_list]") {
+  edge_list<nw::graph::directedness::directed> A(0);
 
+  REQUIRE(A.size() == 0);
+  REQUIRE(A.begin() == A.end());
+}
 
-  sparse_aos<directedness::undirected> A(N, N);
+TEST_CASE("edge_list open_close_push_back", "[edge_list]") {
+  edge_list<nw::graph::directedness::directed> A(5);
+
+  A.open_for_push_back();
+  A.push_back(0, 1);
   A.push_back(1, 2);
+  A.push_back(2, 3);
+  A.close_for_push_back();
 
-  sparse_aos<directedness::undirected, double> B(N, N);
-  B.push_back(1, 2, 3.14);
+  REQUIRE(A.size() == 3);
 
-  sparse_aos<directedness::undirected, double, size_t> C(N, N);
-  C.push_back(1, 2, 3.14, 159);
-  C.push_back(3, 3, 3.141, 59);
-  C.push_back(2, 1, 3.1415, 9);
+  // Verify edges are stored correctly
+  size_t idx = 0;
+  for (auto&& [u, v] : A) {
+    REQUIRE(u == idx);
+    REQUIRE(v == idx + 1);
+    idx++;
+  }
+}
 
-  std::cout << std::get<0>(C[0]) << " "<< std::get<1>(C[0]) << " " << std::get<2>(C[0]) << " " << std::get<3>(C[0]) << std::endl;
-  std::cout << std::get<0>(C[1]) << " "<< std::get<1>(C[1]) << " " << std::get<2>(C[1]) << " " << std::get<3>(C[1]) << std::endl;
-  std::cout << std::get<0>(C[2]) << " "<< std::get<1>(C[2]) << " " << std::get<2>(C[2]) << " " << std::get<3>(C[2]) << std::endl;
+TEST_CASE("edge_list lexical_sort", "[edge_list]") {
+  edge_list<nw::graph::directedness::directed> A(5);
+  A.push_back(2, 1);
+  A.push_back(0, 2);
+  A.push_back(1, 0);
+  A.push_back(0, 1);
 
-  C.sort_by<0>();
+  lexical_sort_by<0>(A);
 
-  std::cout << std::endl;
-  std::cout << std::get<0>(C[0]) << " "<< std::get<1>(C[0]) << " " << std::get<2>(C[0]) << " " << std::get<3>(C[0]) << std::endl;
-  std::cout << std::get<0>(C[1]) << " "<< std::get<1>(C[1]) << " " << std::get<2>(C[1]) << " " << std::get<3>(C[1]) << std::endl;
-  std::cout << std::get<0>(C[2]) << " "<< std::get<1>(C[2]) << " " << std::get<2>(C[2]) << " " << std::get<3>(C[2]) << std::endl;
+  // After sorting by column 0, edges should be ordered by source
+  REQUIRE(std::get<0>(A[0]) == 0);
+  REQUIRE(std::get<0>(A[1]) == 0);
+  REQUIRE(std::get<0>(A[2]) == 1);
+  REQUIRE(std::get<0>(A[3]) == 2);
+}
 
-  C.sort_by<1>();
+TEST_CASE("edge_list uniq", "[edge_list]") {
+  edge_list<nw::graph::directedness::directed> A(5);
+  A.push_back(0, 1);
+  A.push_back(0, 1);  // duplicate
+  A.push_back(1, 2);
+  A.push_back(1, 2);  // duplicate
+  A.push_back(2, 3);
 
-  std::cout << std::endl;
-  std::cout << std::get<0>(C[0]) << " "<< std::get<1>(C[0]) << " " << std::get<2>(C[0]) << " " << std::get<3>(C[0]) << std::endl;
-  std::cout << std::get<0>(C[1]) << " "<< std::get<1>(C[1]) << " " << std::get<2>(C[1]) << " " << std::get<3>(C[1]) << std::endl;
-  std::cout << std::get<0>(C[2]) << " "<< std::get<1>(C[2]) << " " << std::get<2>(C[2]) << " " << std::get<3>(C[2]) << std::endl;
-#endif
+  lexical_sort_by<0>(A);
+  uniq(A);
+
+  REQUIRE(A.size() == 3);
+}
+
+TEST_CASE("edge_list num_vertices", "[edge_list]") {
+  SECTION("returns construction size") {
+    edge_list<nw::graph::directedness::directed> A(100);
+    REQUIRE(num_vertices(A) == 100);
+  }
+
+  SECTION("zero vertices") {
+    edge_list<nw::graph::directedness::directed> A(0);
+    REQUIRE(num_vertices(A) == 0);
+  }
+}

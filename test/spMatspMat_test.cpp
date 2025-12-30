@@ -21,7 +21,7 @@
 
 #include "nwgraph/algorithms/spMatspMat.hpp"
 
-TEST_CASE("Row times Row", "[row-row") {
+TEST_CASE("Row times Row", "[row-row]") {
 
   // Create A, B and known correct answer
   //   By hand

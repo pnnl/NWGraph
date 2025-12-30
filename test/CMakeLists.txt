@@ -1,7 +1,8 @@
 
 
 include(Catch2)
-# message("Supported features = ${CMAKE_CXX_COMPILE_FEATURES}")
+include(CTest)
+include(Catch)
 
 macro (nwgraph_add_exe EXENAME)
   add_executable(${EXENAME}.exe ${EXENAME}.cpp)
@@ -10,36 +11,65 @@ endmacro (nwgraph_add_exe)
 
 macro (nwgraph_add_test TESTNAME)
   add_executable(${TESTNAME}.exe ${TESTNAME}.cpp)
-  target_link_libraries(${TESTNAME}.exe nwgraph Catch2::Catch2 catch_main)
+  target_link_libraries(${TESTNAME}.exe nwgraph Catch2::Catch2WithMain)
   target_compile_definitions(${TESTNAME}.exe PRIVATE DATA_DIR="${CMAKE_SOURCE_DIR}/data/")
   target_compile_definitions(${TESTNAME}.exe PRIVATE DATA_FILE="${CMAKE_SOURCE_DIR}/data/karate.mtx")
-  add_test(NAME ${TESTNAME}_test COMMAND ${TESTNAME}.exe)
-  #  catch_discover_tests(${TESTNAME})
+  catch_discover_tests(${TESTNAME}.exe)
 endmacro (nwgraph_add_test)
 
-add_library(catch_main STATIC catch_main.cpp)
-target_link_libraries(catch_main Catch2::Catch2)
+# =============================================================================
+# Catch2 Unit Tests
+# =============================================================================
+# Tests are organized by category for clarity and maintainability.
 
-# Add Catch2 tests
+# -----------------------------------------------------------------------------
+# Container Tests
+# -----------------------------------------------------------------------------
 nwgraph_add_test(aos_test)
-nwgraph_add_test(back_edge_test)
+nwgraph_add_test(compressed_test)
+nwgraph_add_test(edge_list_test)
+nwgraph_add_test(soa_test)
+nwgraph_add_test(volos_test)
+nwgraph_add_test(vov_test)
+
+# -----------------------------------------------------------------------------
+# Graph Concept and Traits Tests
+# -----------------------------------------------------------------------------
+nwgraph_add_test(graph_concepts_test)
+nwgraph_add_test(size_test)
+
+# -----------------------------------------------------------------------------
+# Algorithm Tests
+# -----------------------------------------------------------------------------
 nwgraph_add_test(bfs_test_0)
 nwgraph_add_test(bfs_test_1)
-nwgraph_add_test(compressed_test)
 nwgraph_add_test(connected_component_test)
-nwgraph_add_test(edge_list_test)
+nwgraph_add_test(dijkstra_test)
 nwgraph_add_test(jp_coloring_test)
+nwgraph_add_test(kruskal_test)
 nwgraph_add_test(mis_test)
-nwgraph_add_test(mmio_test)
 nwgraph_add_test(new_dfs_test)
 nwgraph_add_test(page_rank_test)
-nwgraph_add_test(size_test)
-nwgraph_add_test(soa_test)
 nwgraph_add_test(spanning_tree_test)
 nwgraph_add_test(spMatspMat_test)
 nwgraph_add_test(tc_test)
-nwgraph_add_test(volos_test)
-nwgraph_add_test(vov_test)
+
+# -----------------------------------------------------------------------------
+# Adaptor Tests
+# -----------------------------------------------------------------------------
+nwgraph_add_test(back_edge_test)
+nwgraph_add_test(vertex_range_test)
+
+# -----------------------------------------------------------------------------
+# I/O Tests
+# -----------------------------------------------------------------------------
+nwgraph_add_test(mmio_test)
+
+# -----------------------------------------------------------------------------
+# Utility Tests
+# -----------------------------------------------------------------------------
+nwgraph_add_test(disjoint_set_test)
+nwgraph_add_test(timer_test)
 
 
 # nwgraph_add_test(bk_test)
@@ -54,7 +84,6 @@ nwgraph_add_test(vov_test)
 
 # Example programs (not catch2)
 nwgraph_add_exe(adjacency_eg)
-nwgraph_add_exe(compat_eg)
 nwgraph_add_exe(concepts_eg)
 nwgraph_add_exe(containers_eg)
 nwgraph_add_exe(cstar_eg)
