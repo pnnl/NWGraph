@@ -37,15 +37,7 @@ template <typename ThingToSort, typename Comparator, typename IntT, class Execut
 void proxysort(const ThingToSort& x, std::vector<IntT>& perm, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
   assert(perm.size() == x.size());
 
-#if 0
-  tbb::parallel_for(tbb::blocked_range(0ul, perm.size()), [&](auto&& r) {
-    for (auto i = r.begin(), e = r.end(); i != e; ++i) {
-      perm[i] = i;
-    }
-  });
-#else
-  std::iota(perm.begin(), perm.end(), 0);    // Parallelize Me!!
-#endif
+  std::iota(perm.begin(), perm.end(), 0);
 
   assert(perm.begin() != perm.end());
 

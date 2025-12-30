@@ -29,94 +29,6 @@ namespace graph {
 
 enum three_colors { black, white, grey };
 
-#if 0
-template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
-class bfs_edge_range {
-private:
-  using vertex_id_type = vertex_id_t<Graph>;
-
-public:
-  bfs_edge_range(Graph& graph, vertex_id_type seed = 0) : the_graph_(graph), colors_(graph.size(), white) {
-    Q_.push(seed);
-    colors_[seed] = grey;
-  }
-
-  bfs_edge_range(const bfs_edge_range&)  = delete;
-  bfs_edge_range(const bfs_edge_range&&) = delete;
-
-  bool empty() {
-    bool b = Q_.empty();
-    return b;
-  }
-
-  class bfs_edge_range_iterator {
-  private:
-    bfs_edge_range<Graph, Queue>&  the_range_;
-    typename Graph::outer_iterator G;
-    vertex_id_type                 v_;
-    typename Graph::inner_iterator u_begin, u_end;
-
-  public:
-    bfs_edge_range_iterator(bfs_edge_range<Graph, Queue>& range)
-        : the_range_(range), G(the_range_.the_graph_.begin()), v_(the_range_.Q_.front()), u_begin(G[v_].begin()), u_end(G[v_].end()) {}
-
-    bfs_edge_range_iterator(const bfs_edge_range_iterator& ite)
-        : the_range_(ite.the_range_), G(ite.G), v_(ite.v_), u_begin(u_begin), u_end(u_end) {}
-
-    bfs_edge_range_iterator& operator++() {
-      auto& Q      = the_range_.Q_;
-      auto& colors = the_range_.colors_;
-
-      Q.push(std::get<0>(*u_begin));
-      colors[std::get<0>(*u_begin)] = grey;
-
-      ++u_begin;
-      while (u_begin != u_end && colors[std::get<0>(*u_begin)] != white) {
-        ++u_begin;
-      }
-
-      while (u_begin == u_end) {
-        colors[v_] = black;
-        Q.pop();
-        if (Q.empty()) break;
-
-        v_ = Q.front();
-        assert(colors[v_] == grey);
-        u_begin = G[v_].begin();
-        u_end   = G[v_].end();
-
-        while (u_begin != u_end && colors[std::get<0>(*u_begin)] != white) {
-          ++u_begin;
-        }
-      }
-
-      return *this;
-    }
-
-    auto operator*() { return std::tuple_cat(std::make_tuple(v_), *u_begin); }
-
-    class end_sentinel_type {
-    public:
-      end_sentinel_type() {}
-    };
-
-    auto operator==(const end_sentinel_type&) const { return the_range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !the_range_.empty(); }
-  };
-
-  typedef bfs_edge_range_iterator iterator;
-
-  auto begin() { return bfs_edge_range_iterator(*this); }
-  auto end() { return typename bfs_edge_range_iterator::end_sentinel_type(); }
-
-private:
-  Graph&                    the_graph_;
-  Queue                     Q_;
-  std::vector<three_colors> colors_;
-};
-
-#else
-
 template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
 class bfs_edge_range {
 private:
@@ -216,7 +128,6 @@ private:
   std::vector<bool> visited_;
 };
 
-#endif
 //****************************************************************************
 // This range used by dijkstra
 template <typename Graph, typename PriorityQueue>

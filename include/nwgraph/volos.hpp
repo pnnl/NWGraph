@@ -131,15 +131,6 @@ auto tag_invoke(const num_vertices_tag, index_adj_list<idx, vertex_id, Attribute
   return b.num_vertices()[0];
 }
 
-#if 0
-
-template <typename... Attributes>
-graph_traits<std::vector<std::list<std::tuple<Attributes...>>>>::num_vertices_type
-num_vertices(const typename std::vector<std::list<std::tuple<Attributes...>>>& g) {
-  return { g.size() };
-}
-#endif
-
 }    // namespace graph
 }    // namespace nw
 

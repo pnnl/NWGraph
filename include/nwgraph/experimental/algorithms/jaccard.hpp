@@ -58,24 +58,6 @@ size_t jaccard_similarity_v1(const GraphT& A) {
   return ctr;
 }
 
-#if 0
-template <typename GraphT>
-auto jaccard_similarity_v2(GraphT& graph) {
-
-  size_t ctr = 0;
-  auto deg = degrees(graph);
-  for (auto&& [u, v, w] : make_edge_range<0, 1, 2>(graph)) {
-    auto   numer = intersection_size(graph[u], graph[v]);
-    auto   denom = deg[u] + deg[v] - numer;
-    double rat   = ((double)numer) / ((double)denom);
-    w            = rat;
-    ++ctr;
-  }
-  return ctr;
-}
-#endif
-
-
 }    // namespace graph
 }    // namespace nw
 

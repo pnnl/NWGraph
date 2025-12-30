@@ -215,25 +215,6 @@ struct zipped : std::tuple<Ranges&...> {
     return std::apply([&](auto&&... r) { return std::forward_as_tuple(std::forward<decltype(r)>(r)[i]...); }, *this);
   }
 
-
-#if 0
-  void push_back(Attributes... attrs) {
-    std::apply([&](auto&... vs) { (vs.push_back(attrs), ...); }, *this);
-  }
-
-  void push_back(std::tuple<Attributes...> attrs) {
-    std::apply([&](Attributes... attr) { push_back(attr...); }, attrs);
-  }
-
-  void push_at(std::size_t i, Attributes... attrs) {
-    std::apply([&](auto&... vs) { ((vs[i] = attrs), ...); }, *this);
-  }
-
-  void push_at(std::size_t i, std::tuple<Attributes...> attrs) {
-    std::apply([&](Attributes... attr) { push_at(i, attr...); }, attrs);
-  }
-#endif
-
   void clear() {
     std::apply([&](auto&... vs) { (vs.clear(), ...); }, *this);
   }
@@ -327,17 +308,6 @@ zipped<Ranges...> make_zipped(Ranges&&... rs) {
 
 namespace std {
 
-
-#if 0
-template <std::ranges::random_access_range... Ranges>
-auto iter_swap(typename nw::graph::zipped<Ranges...>::soa_iterator<false> a, typename nw::graph::zipped<Ranges...>::soa_iterator<false> b) {
-  auto tmp = *a;
-  *a = *b;
-  *b = *tmp;
-}
-#endif
-
-
 template <class... Attributes>
 class tuple_size<nw::graph::zipped<Attributes...>> : public std::integral_constant<std::size_t, sizeof...(Attributes)> {};
 
@@ -347,25 +317,6 @@ class tuple_size<nw::graph::zipped<Attributes...>> : public std::integral_consta
 /// NB: technically we're supposed to be using `iter_swap` here on the
 /// zipped iterator type, but I can't figure out how to do this.
 #include "nwgraph/util/tuple_hack.hpp"
-
-
-#if 0
-namespace std {
-
-template <std::ranges::random_access_range... Ranges, std::size_t... Is>
-void swap(typename nw::graph::zipped<Ranges...>::iterator::reference&& x, typename nw::graph::zipped<Ranges...>::iterator::reference&& y, std::index_sequence<Is...>) {
-  using std::swap;
-  
-  (swap(std::get<Is>(x), std::get<Is>(y)), ...);
-}
-
-template <std::ranges::random_access_range... Ranges>
-void swap(typename nw::graph::zipped<Ranges...>::iterator::reference&& x, typename nw::graph::zipped<Ranges...>::iterator::reference&& y) {
-  swap(std::move(x), std::move(y), std::make_index_sequence<sizeof...(Ranges)>());
-}
-
-}
-#endif
 
 
 #endif    // NW_GRAPH_ZIP_HPP

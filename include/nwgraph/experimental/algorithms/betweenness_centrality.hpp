@@ -504,7 +504,6 @@ std::vector<score_t> approx_betweenness_worklist(const Graph& A, std::vector<typ
       if (*work != dummy1) {
         auto u = std::get<0>(*work);
         auto v = std::get<1>(*work);
-        std::cout << u << " " << v << std::endl;
         nodeinfo* vdata = &vertices[v];
         nodeinfo* udata = &vertices[u];
 
@@ -552,7 +551,6 @@ std::vector<score_t> approx_betweenness_worklist(const Graph& A, std::vector<typ
       }
     }
 
-    std::cout << "back" << std::endl;
     tbbworklist_range<decltype(A), vertex_id_type> worklist_back(A);
 
     std::vector<size_t> succs_ct(n_vtx);
@@ -1127,109 +1125,6 @@ std::vector<score_t> approx_betweenness_worklist_noabstraction(const Graph& A, s
   return centrality;
 }
 
-#if 0
-template <typename Graph, typename Vector1, typename BitMap1, typename Queue1, typename Queue2>
-void PBFS(const Graph &graph, vertex_id_type root, Vector1 &path_counts,
-    BitMap1 &succ, Queue1 &depth_index, Queue2 &q1, Queue2 &q2) {
-
-  std::vector<vertex_id_type> level(graph.num_nodes(), std::numeric_limits<vertex_id_type>::max());
-
-  q1[0].push_back(root);
-  level[root] = 0;
-  path_counts[root] = 1;
-
-  queue.push_back(root);
-  depth_index.push_back(queue.begin());
-  queue.slide_window();
-
-  auto g_out_start = graph.out_neigh(0).begin();
-
-  {
-    vertex_id_type depth = 0;
-    QueueBuffer<vertex_id_type> lqueue(queue);
-
-    while (!queue.empty()) {
-
-      depth_index.push_back(queue.begin());
-      ++depth;
-
-      for (auto q_iter = queue.begin(); q_iter < queue.end(); q_iter++) {
-        auto u = *q_iter;
-        vertex_id_type neg_one = -1;
-        for (vertex_id_type &v : graph.out_neigh(u)) {
-          if ((level[v] == -1) &&
-              level[v].compare_exchange_strong, neg_one, depth)) {
-            lqueue.push_back(v);
-          }
-          if (level[v] == depth) {
-            succ.store(&v - g_out_start);
-            path_counts[v].fetch_add(path_counts[u]);
-          }
-        }
-      }
-      lqueue.flush();
-      queue.slide_window();
-    }
-  }
-
-  depth_index.push_back(queue.begin());
-}
-
-
-std::vector<score_t> Brandes(const Graph &g, const std::vector<vertex_id_type> sources) {
-
-  std::vector<score_t> scores(g.num_nodes(), 0);
-  std::vector<score_t> path_counts(g.num_nodes());
-  std::vector<std::atomic<bool>> succ(g.num_edges_directed());
-
-  std::vector<SlidingQueue<vertex_id_type>::iterator> depth_index;
-  SlidingQueue<vertex_id_type> queue(g.num_nodes());
-
-
-  const vertex_id_type* g_out_start = g.out_neigh(0).begin();
-
-
-  for (vertex_id_type iter=0; iter < num_iters; iter++) {
-    vertex_id_type source = sp.PickNext();
-    cout << "source: " << source << endl;
-    t.Start();
-    path_counts.fill(0);
-    depth_index.resize(0);
-    queue.reset();
-    succ.reset();
-
-    PBFS(g, source, path_counts, succ, depth_index, queue);
-
-    std::vector<score_t> deltas(g.num_nodes(), 0);
-
-    for (int d = depth_index.size()-2; d >= 0; d--) {
-
-      for (auto it = depth_index[d]; it < depth_index[d+1]; it++) {
-        vertex_id_type u = *it;
-        score_t delta_u = 0;
-        for (vertex_id_type &v : g.out_neigh(u)) {
-          if (succ.get_bit(&v - g_out_start)) {
-            delta_u += path_counts[u] / path_counts[v] * (1 + deltas[v]);
-          }
-        }
-        deltas[u] = delta_u;
-        scores[u] += delta_u;
-      }
-    }
-  }
-
-  score_t biggest_score = 0;
-
-  for (vertex_id_type n=0; n < g.num_nodes(); n++)
-    biggest_score = max(biggest_score, scores[n]);
-
-  for (vertex_id_type n=0; n < g.num_nodes(); n++)
-    scores[n] = scores[n] / biggest_score;
-
-  return scores;
-}
-#endif
-
 template <adjacency_list_graph Graph, typename score_t = float, typename accum_t = size_t>
 auto bc2_v0(const Graph& graph, const std::vector<typename Graph::vertex_id_type> sources, bool normalize = true) {
   using vertex_id_type = typename Graph::vertex_id_type;
@@ -1419,8 +1314,6 @@ auto bc2_v2(const Graph& graph, const std::vector<typename Graph::vertex_id_type
       ++depth;
     }
 
-    std::cout << "depth phase = " << depth << " " << phase << std::endl;
-
     std::vector<std::atomic<score_t>> delta(N);
 
     while (--phase > 0) {
@@ -1457,8 +1350,6 @@ auto bc2_v3(const Graph& graph, const std::vector<typename Graph::vertex_id_type
   const vertex_id_type bin_mask = 0x1F;
 
   for (vertex_id_type root : sources) {
-    std::cout << "source: " << root << std::endl;
-
     std::vector<std::atomic<vertex_id_type>> levels(N);
     std::vector<std::atomic<bool>>           succ(M);    // use tbb:: bit map ?
 

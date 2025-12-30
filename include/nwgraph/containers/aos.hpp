@@ -59,21 +59,6 @@ public:
   //  storage_type storage_;
 
 public:
-#if 0
-
-  void clear() { storage_.clear(); }
-  void resize(size_t n) { storage_.resize(n); }
-  void reserve(size_t n) { storage_.reserve(n); }
-
-  auto begin() { return storage_.begin(); }
-  auto end() { return storage_.end(); }
-
-  template <typename It>
-  void erase(It b, It e) { storage_.erase(b, e); }
-  size_t size() const { return base::size(); }
-
-#endif
-
   void push_back(const std::tuple<Attributes...>& attrs) {
     base::push_back(attrs);
   }

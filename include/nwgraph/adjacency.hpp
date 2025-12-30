@@ -31,27 +31,6 @@
 namespace nw {
 namespace graph {
 
-#if 0
-template <std::unsigned_integral index_type, std::unsigned_integral vertex_id_type, typename... Attributes>
-class index_compressed : public unipartite_graph_base, public indexed_struct_of_arrays<index_type, vertex_id_type, Attributes...> {
-  using base = indexed_struct_of_arrays<index_type, vertex_id_type, Attributes...>;
-
-public:
-  using index_t = index_type;
-  using vertex_id_type = vertex_id_type;
-
-  index_compressed(size_t N) : unipartite_graph_base(N), base(N) {}
-
-  void close_for_push_back() { base::close_for_push_back(); };
-
-  auto num_edges() { return base::to_be_indexed_.size(); }
-};
-
-
-template <typename... Attributes>
-using compressed = index_compressed<default_index_t, default_vertex_id_type, Attributes...>;
-#endif
-
 /**
  * @brief Index adjacency structure. This data structures stores unipartite graph in Compressed Sparse Row format.
  * The underlying data structure is a structure of arrays for storage.

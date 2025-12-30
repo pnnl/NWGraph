@@ -26,86 +26,6 @@ namespace graph {
 
 enum status { ready = 0, waiting, processed };
 
-#if 0
-//****************************************************************************
-template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
-class topdown_bfs_range {
-  using vertex_id_type = vertex_id_t<Graph>;
-
-  using Colors = std::vector<status>;
-
-  Graph& graph_;     //!< underlying graph
-  Colors colors_;    //!< auxiliary color state
-  Queue  queue_;     //!< worklist
-
-  /// Initialize the range with a vertex id.
-  void init(vertex_id_type u) {
-    queue_.push(u);
-    colors_[u] = waiting;
-  }
-
-  /// Visit a vertex by enumerating its ready neighbors.
-  void visit(vertex_id_type v) {
-    for (auto&& e : graph_[v]) {
-      auto u = std::get<0>(e);
-      if (colors_[u] == ready) {
-        colors_[u] = waiting;
-        queue_.push(u);
-      }
-    }
-  }
-
-  /// Process the next vertex by marking the head as processed, popping it, and
-  /// visiting the neighbors.
-  void process() {
-    if (empty()) return;
-
-    auto u     = queue_.front();
-    colors_[u] = processed;
-    queue_.pop();
-
-    auto v = queue_.front();
-    visit(v);
-  }
-
-  /// Get the head vertex.
-  decltype(auto) head() { return queue_.front(); }
-
-public:
-  topdown_bfs_range(Graph& graph, vertex_id_type seed = 0) : graph_(graph), colors_(graph.size()), queue_() {
-    init(seed);
-    visit(seed);
-  }
-
-  topdown_bfs_range(const topdown_bfs_range&) = delete;
-
-  struct end_sentinel_type {};
-
-  class iterator {
-  public:
-    iterator(topdown_bfs_range& range) : range_(range) {}
-
-    iterator& operator++() {
-      range_.process();
-      return *this;
-    }
-
-    decltype(auto) operator*() { return range_.head(); }
-
-    bool operator==(const end_sentinel_type&) const { return range_.empty(); }
-    bool operator!=(const end_sentinel_type&) const { return !range_.empty(); }
-
-  private:
-    topdown_bfs_range& range_;
-  };
-
-  iterator          begin() { return {*this}; }
-  end_sentinel_type end() { return {}; }
-  bool              empty() { return queue_.empty(); }
-};    // class topdown_bfs_range
-
-#else
-
 //****************************************************************************
 template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
 class topdown_bfs_range {
@@ -193,9 +113,6 @@ public:
     return queue_.empty();
   }
 };    // class topdown_bfs_range
-
-
-#endif
 
 
 template <typename Graph>

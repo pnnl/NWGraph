@@ -35,61 +35,6 @@
 namespace nw {
 namespace graph {
 
-#if 0
-//****************************************************************************
-template<typename GraphT, typename RealT = double>
-void page_rank_range_for(GraphT& graph, std::vector<RealT>& page_rank, RealT damping_factor = 0.85, RealT threshold = 1.e-4,
-                         size_t max_iters = std::numeric_limits<unsigned int>::max()) {
-  /// @todo assert page_rank.size() == graph.size();
-
-  RealT const scaled_teleport((1. - damping_factor) / (RealT)graph.size());
-
-  // degree-normalize the rows of the graph and scale by damping factor
-  std::vector<RealT> odegree(out_degree<GraphT, RealT>(graph));
-
-  edge_list<directed, RealT> edges(0);
-  edges.open_for_push_back();
-  for (auto [i, j, v] : make_edge_range<0>(graph)) {
-    edges.push_back(i, j, v * (damping_factor / odegree[i]));
-    //v *= (damping_factor/out_degree[i]);
-  }
-  edges.close_for_push_back();
-  adjacency<0, RealT> M(edges);
-
-  // initialize page rank to 1/N
-  std::vector<RealT> old_rank(graph.size(), 1. / (RealT)graph.size());
-
-  for (size_t iter_num = 0; iter_num < max_iters; ++iter_num) {
-    std::fill(page_rank.begin(), page_rank.end(), 0.0);
-
-    // compute new rank (transpose the graph): PR_i = M' * PR_i-1
-    for (auto&& [i, j, v] : make_edge_range<0>(M)) {
-      page_rank[i] += v * old_rank[j];
-    }
-
-    // add scaled teleport term: (1 - damping_factor)/N
-    for (auto& rank_val : page_rank) {
-      rank_val += scaled_teleport;
-    }
-
-    // Test for convergence, compute squared error
-    RealT squared_error(0.);
-    for (size_t idx = 0; idx < page_rank.size(); ++idx) {
-      RealT tmp = page_rank[idx] - old_rank[idx];
-      squared_error += tmp * tmp;
-    }
-
-    //std::cout << "Iteration " << iter_num << ": sq_err = "
-    //          << squared_error/((RealT)graph.size()) << std::endl;
-
-    if (squared_error / ((RealT)graph.size()) < threshold) break;
-
-    old_rank.swap(page_rank);
-  }
-}
-
-#endif
-
 template <adjacency_list_graph Graph, typename Real = double>
 void page_rank_vc(const Graph& graph, std::vector<Real>& page_rank, const Real damping_factor = 0.85, const Real threshold = 1.e-4,
                   const size_t max_iters = std::numeric_limits<unsigned int>::max()) {
@@ -281,23 +226,6 @@ template <adjacency_list_graph Graph, typename Real = double>
     std::transform(std::execution::par_unseq, page_rank.begin(), page_rank.end(), degrees.begin(), outgoing_contrib.begin(),
                    [&](auto&& x, auto&& y) { return x / (y + 0); });
 
-#if 0
-    double error = tbb::parallel_reduce(per, [&](auto&& r, Real init) {
-      Real z = std::transform_reduce(r.begin(), r.end(), Real(0.0), std::plus<Real>(),
-                                     [&] (auto&& j) { }
-                                     }, std::plus<Real>());
-
-      counting_iterator<vertex_id_type>(0), counting_iterator<vertex_id_type>(page_rank.size()), Real(0.0), std::plus<Real>(),
-
-      [&](auto i) {
-        Real z        = std::transform_reduce(std::execution::seq, G[i].begin(), G[i].end(), Real(0.0), std::plus<Real>(),
-                                              [&](auto&& j) { return outgoing_contrib[std::get<0>(j)]; });
-        auto old_rank = page_rank[i];
-        page_rank[i]  = base_score + damping_factor * z;
-        return fabs(page_rank[i] - old_rank);
-      });
-#else
-
     std::fill(std::execution::par_unseq, z.begin(), z.end(), Real(0));
 
     tbb::parallel_for(per, [&](auto&& x) {
@@ -312,7 +240,6 @@ template <adjacency_list_graph Graph, typename Real = double>
     std::transform(std::execution::par_unseq, z.begin(), z.end(), page_rank.begin(), [&](auto&& a) { return base_score + damping_factor * a; });
     double error = std::transform_reduce(std::execution::par_unseq, page_rank.begin(), page_rank.end(), old_rank.begin(), 0.0,
                                          std::plus<Real>(), [&](auto&& a, auto&& b) { return fabs(a - b); });
-#endif
     std::cout << iter << " " << error << std::endl;
     if (error < threshold) break;
   }

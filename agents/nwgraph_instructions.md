@@ -45,18 +45,27 @@ This document tracks cleanup tasks for the NWGraph codebase, including completed
 - Sorted includes
 
 ### Remove `#if 0` Disabled Code Blocks
-45 instances identified across:
-- [ ] `include/nwgraph/build.hpp`
-- [ ] `include/nwgraph/containers/zip.hpp`
-- [ ] `include/nwgraph/containers/aos.hpp`
-- [ ] `include/nwgraph/containers/flattened.hpp`
-- [ ] `include/nwgraph/adaptors/bfs_range.hpp`
-- [ ] `include/nwgraph/adaptors/bfs_edge_range.hpp`
-- [ ] Multiple test and benchmark files
+All `#if 0` blocks removed from library headers:
+- [x] `include/nwgraph/adjacency.hpp` - Old `index_compressed` class
+- [x] `include/nwgraph/build.hpp` - Kept active `#else` branch
+- [x] `include/nwgraph/containers/zip.hpp` - Unused member functions
+- [x] `include/nwgraph/containers/aos.hpp` - Unused member functions
+- [x] `include/nwgraph/containers/flattened.hpp` - **DELETED** (entirely dead code)
+- [x] `include/nwgraph/vofos.hpp` - Unused `num_vertices` function
+- [x] `include/nwgraph/volos.hpp` - Unused `num_vertices` function
+- [x] `include/nwgraph/util/proxysort.hpp` - TBB alternative (kept std::iota)
+- [x] `include/nwgraph/adaptors/bfs_range.hpp` - Old color-based implementation
+- [x] `include/nwgraph/adaptors/bfs_edge_range.hpp` - Old color-based implementation
+- [x] `include/nwgraph/io/mmio.hpp` - `par_read_mm`/`par_load_mm` functions
+- [x] `include/nwgraph/experimental/algorithms/jaccard.hpp` - `jaccard_similarity_v2`
+- [x] `include/nwgraph/experimental/algorithms/betweenness_centrality.hpp` - `PBFS`/`Brandes`
+- [x] `include/nwgraph/experimental/algorithms/page_rank.hpp` - `page_rank_range_for`
 
 ### Remove Debug Output from Library Headers
-- [ ] Remove `std::cout`/`std::cerr` statements from production headers
-- [ ] 10 files identified with debug output in library code
+- [x] Removed unconditional debug output from `experimental/algorithms/betweenness_centrality.hpp`
+- [ ] Wrap remaining debug output in `#ifdef PRINT_DEBUG` guards (follow pattern in `jones_plassmann_coloring.hpp`)
+- [ ] Review `std::cerr` statements in `io/mmio.hpp` (some are appropriate error messages)
+- [ ] Review `stream_stats()` and `stream_indices()` functions (intentional output APIs)
 
 ---
 

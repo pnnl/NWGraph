@@ -216,30 +216,6 @@ void fill_directed(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& po
   std::inclusive_scan(policy, degree.begin(), degree.end(), cs.indices_.begin() + 1);
   cs.to_be_indexed_.resize(el.size());
 
-#if 0
-
-  sort_by<idx>(el);  // Need to do this in a way that will let us have const el
-                     // If not, we should steal (move) the vectors rather than copy
-
-  // Copy kdx (the other index)
-  const int kdx = (idx + 1) % 2;
-
-  std::copy(policy, std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
-	    std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).end(), std::get<0>(cs.to_be_indexed_).begin());
-
-  // Copy properties
-  if constexpr (std::tuple_size<typename edge_list_t::attributes_t>::value > 0) {
-    fill_helper(el, cs, std::make_integer_sequence<size_t, std::tuple_size<typename edge_list_t::attributes_t>::value>(), policy);
-  }
-
-  // auto perm = proxysort(std::get<idx>(el));
-  // permute(cs.to_be_indexed_, perm, policy);
-
-#else
-  // Best: parallel insertion sort -- need concurrent container safe for push_at
-
-
-  // Better yet
   const int kdx = (idx + 1) % 2;
   std::copy(policy, std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
             std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).end(), std::get<0>(cs.to_be_indexed_).begin());
@@ -249,19 +225,10 @@ void fill_directed(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& po
     fill_helper(el, cs, std::make_integer_sequence<size_t, std::tuple_size<typename edge_list_t::attributes_t>::value>(), policy);
   }
 
-
-  // which is faster?
   std::vector<nw::graph::vertex_id_t<adjacency_t>> tmp(std::get<idx>(dynamic_cast<typename edge_list_t::base&>(el)));
-
-  // this dumps core for some reason
-  //std::vector<nw::graph::vertex_id_t<adjacency_t>> tmp(std::get<idx>(dynamic_cast<typename edge_list_t::base&>(el)).size());
-  //std::copy(policy, std::get<idx>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
-  //	    std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).end(), tmp.begin());
 
   auto a = make_zipped(tmp, cs.to_be_indexed_);
   std::sort(policy, a.begin(), a.end(), [](auto&& a, auto&& b) { return std::get<0>(a) < std::get<0>(b); });
-
-#endif
 }
 
 
