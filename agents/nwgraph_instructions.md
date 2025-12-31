@@ -138,9 +138,18 @@ Known TODO locations:
 ## Priority 7: Examples
 
 ### Organize and Expand Examples
-- [ ] **BGL Book Examples** (`examples/bgl-book/`)
-  - Include examples for each chapter from "The Boost Graph Library" by Siek, Lee, Lumsdaine
-  - Adapt examples to use NWGraph idioms
+- [x] **BGL Book Examples** (`examples/bgl-book/`) - Partially complete
+  - [x] ch3_toposort.cpp - Topological sort (File Dependencies)
+  - [x] ch4_kevin_bacon.cpp - BFS (Six Degrees of Kevin Bacon)
+  - [x] ch4_loop_detection.cpp - DFS cycle detection
+  - [x] ch5_dijkstra.cpp - Dijkstra's algorithm (OSPF routing)
+  - [x] ch6_kruskal.cpp - Kruskal's MST algorithm
+  - [x] ch6_prim.cpp - Prim's MST algorithm
+  - [x] ch7_connected.cpp - Connected components (BFS-based)
+  - [x] ch8_maxflow.cpp - Maximum flow (Edmonds-Karp)
+  - [ ] ch5_bellman_ford.cpp - Bellman-Ford (stub)
+  - [ ] ch7_strongly_connected.cpp - Strongly connected components (stub)
+  - [ ] ch9_knights_tour.cpp - Knight's tour (stub)
 - [ ] **IMDB Examples** (`examples/imdb/`)
   - Clean up existing IMDB examples
   - Ensure they build and run correctly
@@ -150,7 +159,7 @@ Known TODO locations:
 - [ ] **Separation of Concerns**
   - Examples should demonstrate usage patterns (not test correctness)
   - Unit tests should verify correctness (not demonstrate usage)
-- [ ] Verify all examples compile and run correctly
+- [x] Verify BGL book examples compile and run correctly (8 of 11 implemented)
 
 ---
 

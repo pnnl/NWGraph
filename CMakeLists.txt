@@ -169,7 +169,7 @@ endif()
 # endif()
 
 if (NWGRAPH_BUILD_EXAMPLES)
-  add_subdirectory(examples/imdb)
+  add_subdirectory(examples)
 endif()
 
 #Artifacts
