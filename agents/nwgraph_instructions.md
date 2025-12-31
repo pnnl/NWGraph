@@ -33,7 +33,7 @@ This document tracks cleanup tasks for the NWGraph codebase, including completed
 ### Apply Consistent Code Formatting
 - [x] Run clang-format on all 88 headers in `include/nwgraph/`
 - [x] Run clang-format on all test files in `test/`
-- [x] Run clang-format on all benchmark files in `bench/` and `apb/`
+- [x] Run clang-format on all benchmark files in `bench/` (gapbs and apb)
 - [x] Run clang-format on all example files in `examples/`
 
 **Formatting standards (defined in `.clang-format`):**
@@ -124,14 +124,14 @@ Known TODO locations:
 
 ---
 
-## Priority 6: Testing
+## Priority 6: Testing ✅
 
 ### Modernize Test Infrastructure
-- [ ] Upgrade to latest header-only Catch2 (v3.x)
-- [ ] Add Catch2 as a proper CMake dependency (FetchContent or find_package)
-- [ ] Create comprehensive unit tests corresponding to each header file
-- [ ] Organize tests to mirror the `include/nwgraph/` directory structure
-- [ ] Verify all tests pass with clean build
+- [x] Upgrade to latest header-only Catch2 (v3.x) - Updated to v3.5.2
+- [x] Add Catch2 as a proper CMake dependency (FetchContent)
+- [x] Create comprehensive unit tests corresponding to each header file
+- [x] Organize tests to mirror the `include/nwgraph/` directory structure
+- [x] Verify all tests pass with clean build - 171 tests passing
 
 ---
 
@@ -163,31 +163,40 @@ Known TODO locations:
 
 ---
 
-## Priority 8: Benchmarks
+## Priority 8: Benchmarks ✅
 
 ### Reorganize Benchmark Structure
-- [ ] Move all benchmarks under `bench/` with subdirectories:
+- [x] Move all benchmarks under `bench/` with subdirectories:
   ```
   bench/
-  ├── gapbs/          # GAP Benchmark Suite implementations
-  └── apb/            # Abstraction Penalty Benchmarks
+  ├── gapbs/           # NWGraph GAP Benchmark Suite implementations
+  ├── apb/             # Abstraction Penalty Benchmarks
+  └── gapbs-reference/ # Original GAP Benchmark Suite (submodule)
   ```
-- [ ] Update `CMakeLists.txt` to reflect new directory structure
+- [x] Update `CMakeLists.txt` to reflect new directory structure
+- [x] Add original GAP Benchmark Suite as submodule for comparison
 
 ### GAP Benchmark Suite (`bench/gapbs/`)
-- [ ] Move current `bench/*.cpp` files (bfs, cc, pr, sssp, tc, bc) to `bench/gapbs/`
-- [ ] Reference paper: [Beamer et al., IISWC 2020](https://scottbeamer.net/pubs/beamer-iiswc2020.pdf)
-- [ ] Standardize all benchmark files to follow the pattern in `bfs.cpp`:
+- [x] Move current `bench/*.cpp` files (bfs, cc, pr, sssp, tc, bc) to `bench/gapbs/`
+- [x] Reference paper: [Beamer et al., IISWC 2020](https://scottbeamer.net/pubs/beamer-iiswc2020.pdf)
+- [x] Standardize all benchmark files to follow the pattern in `bfs.cpp`:
   - Use `Log.hpp` for structured output
   - Use `common.hpp` for shared utilities
   - Remove any `nlohmann/json` (lohmann) dependencies
-- [ ] Remove lohmann JSON library usage from entire NWGraph codebase
+- [x] Remove lohmann JSON library usage from entire NWGraph codebase
+  - `tc.cpp` converted to use `Times` class and `Log.hpp`
+  - `js.cpp` disabled (commented out, needs conversion if re-enabled)
 
 ### Abstraction Penalty Benchmarks (`bench/apb/`)
-- [ ] Move current `apb/` contents to `bench/apb/`
-- [ ] Bring APB benchmarks to same quality level as GAP benchmarks
-- [ ] Ensure consistent logging and output format
-- [ ] Document what each APB measures (iteration overhead, container overhead, etc.)
+- [x] Move current `apb/` contents to `bench/apb/`
+- [x] Connect APB executables to `bench` target
+- [ ] Bring APB benchmarks to same quality level as GAP benchmarks (future)
+- [ ] Ensure consistent logging and output format (future)
+- [ ] Document what each APB measures (iteration overhead, container overhead, etc.) (future)
+
+### Build Options
+- `NWGRAPH_BUILD_BENCH=ON` - Build NWGraph benchmarks (gapbs + apb)
+- `NWGRAPH_BUILD_GAPBS_REFERENCE=ON` - Also build original GAP suite for comparison
 
 ---
 
