@@ -53,3 +53,10 @@ add_dependencies(bench dijkstra.exe)
 add_executable(dfs.exe dfs.cpp)
 target_link_libraries(dfs.exe nwgraph)
 add_dependencies(bench dfs.exe)
+
+# -----------------------------------------------------------------------------
+# Container abstraction penalty (requires docopt)
+# -----------------------------------------------------------------------------
+add_executable(containers.exe containers.cpp)
+target_link_libraries(containers.exe nwgraph docopt)
+add_dependencies(bench containers.exe)

@@ -33,7 +33,7 @@ This document tracks cleanup tasks for the NWGraph codebase, including completed
 ### Apply Consistent Code Formatting
 - [x] Run clang-format on all 88 headers in `include/nwgraph/`
 - [x] Run clang-format on all test files in `test/`
-- [x] Run clang-format on all benchmark files in `bench/` (gapbs and apb)
+- [x] Run clang-format on all benchmark files in `bench/` (gapbs and abstraction_penalty)
 - [x] Run clang-format on all example files in `examples/`
 
 **Formatting standards (defined in `.clang-format`):**
@@ -169,9 +169,9 @@ Known TODO locations:
 - [x] Move all benchmarks under `bench/` with subdirectories:
   ```
   bench/
-  ├── gapbs/           # NWGraph GAP Benchmark Suite implementations
-  ├── apb/             # Abstraction Penalty Benchmarks
-  └── gapbs-reference/ # Original GAP Benchmark Suite (submodule)
+  ├── gapbs/               # NWGraph GAP Benchmark Suite implementations
+  ├── abstraction_penalty/ # Abstraction Penalty Benchmarks
+  └── gapbs-reference/     # Original GAP Benchmark Suite (submodule)
   ```
 - [x] Update `CMakeLists.txt` to reflect new directory structure
 - [x] Add original GAP Benchmark Suite as submodule for comparison
@@ -187,12 +187,26 @@ Known TODO locations:
   - `tc.cpp` converted to use `Times` class and `Log.hpp`
   - `js.cpp` disabled (commented out, needs conversion if re-enabled)
 
-### Abstraction Penalty Benchmarks (`bench/apb/`)
-- [x] Move current `apb/` contents to `bench/apb/`
+### Abstraction Penalty Benchmarks (`bench/abstraction_penalty/`)
+- [x] Move current `apb/` contents to `bench/abstraction_penalty/`
 - [x] Connect APB executables to `bench` target
-- [ ] Bring APB benchmarks to same quality level as GAP benchmarks (future)
+- [x] Create shared infrastructure (`apb_common.hpp`):
+  - `bench()` function template to eliminate timing boilerplate
+  - `Args` struct for consistent CLI parsing
+  - `load_graph()` function for graph loading
+- [x] Refactor all APB benchmarks to use shared infrastructure:
+  - `bfs.cpp` - BFS traversal benchmarks (261 lines, was 419)
+  - `dfs.cpp` - DFS traversal benchmarks (170 lines, was 277)
+  - `spmv.cpp` - SpMV benchmarks (180 lines, was 444)
+  - `plain.cpp` - Plain range benchmarks (296 lines, was 596)
+  - `dijkstra.cpp` - Dijkstra property access (188 lines, was 384)
+  - `exec.cpp` - Execution policy benchmarks (121 lines, was 222)
+  - `tbb.cpp` - TBB parallelization benchmarks (176 lines, was 359)
+  - `containers.cpp` - Container comparison benchmarks (235 lines)
+- [x] Remove dead code (`#if 0` blocks, unused variables)
+- [x] Add descriptive file headers documenting what each benchmark measures
 - [ ] Ensure consistent logging and output format (future)
-- [ ] Document what each APB measures (iteration overhead, container overhead, etc.) (future)
+- [ ] Add structured output matching gapbs pattern (future)
 
 ### Build Options
 - `NWGRAPH_BUILD_BENCH=ON` - Build NWGraph benchmarks (gapbs + apb)

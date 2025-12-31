@@ -4,7 +4,7 @@
 # This directory contains benchmark implementations organized into subdirectories:
 #
 #   gapbs/           - NWGraph implementations of GAP Benchmark Suite
-#   apb/             - Abstraction Penalty Benchmarks
+#   abstraction_penalty/ - Abstraction Penalty Benchmarks
 #   gapbs-reference/ - Original GAP Benchmark Suite (submodule, optional)
 # =============================================================================
 
@@ -15,7 +15,7 @@ add_custom_target(bench)
 # Include subdirectories
 # -----------------------------------------------------------------------------
 add_subdirectory(gapbs)
-add_subdirectory(apb)
+add_subdirectory(abstraction_penalty)
 
 # -----------------------------------------------------------------------------
 # Original GAP Benchmark Suite (optional, for comparison)
