@@ -25,17 +25,23 @@ endmacro (nwgraph_add_test)
 # -----------------------------------------------------------------------------
 # Container Tests
 # -----------------------------------------------------------------------------
+nwgraph_add_test(adjacency_test)
 nwgraph_add_test(aos_test)
 nwgraph_add_test(compressed_test)
 nwgraph_add_test(edge_list_test)
 nwgraph_add_test(soa_test)
+nwgraph_add_test(vofos_test)
 nwgraph_add_test(volos_test)
 nwgraph_add_test(vov_test)
+nwgraph_add_test(zip_test)
 
 # -----------------------------------------------------------------------------
 # Graph Concept and Traits Tests
 # -----------------------------------------------------------------------------
+nwgraph_add_test(graph_adaptor_test)
+nwgraph_add_test(graph_base_test)
 nwgraph_add_test(graph_concepts_test)
+nwgraph_add_test(graph_traits_test)
 nwgraph_add_test(size_test)
 
 # -----------------------------------------------------------------------------
@@ -58,7 +64,14 @@ nwgraph_add_test(tc_test)
 # Adaptor Tests
 # -----------------------------------------------------------------------------
 nwgraph_add_test(back_edge_test)
+nwgraph_add_test(bfs_edge_range_test)
+nwgraph_add_test(dag_range_test)
+nwgraph_add_test(filtered_bfs_test)
+nwgraph_add_test(random_range_test)
+nwgraph_add_test(range_adaptors_test)
+nwgraph_add_test(reverse_test)
 nwgraph_add_test(vertex_range_test)
+nwgraph_add_test(worklist_test)
 
 # -----------------------------------------------------------------------------
 # I/O Tests
@@ -68,54 +81,33 @@ nwgraph_add_test(mmio_test)
 # -----------------------------------------------------------------------------
 # Utility Tests
 # -----------------------------------------------------------------------------
+nwgraph_add_test(atomic_test)
+nwgraph_add_test(atomic_bit_vector_test)
+nwgraph_add_test(build_test)
+nwgraph_add_test(demangle_test)
 nwgraph_add_test(disjoint_set_test)
+nwgraph_add_test(intersection_size_test)
+nwgraph_add_test(permutation_iterator_test)
+nwgraph_add_test(priority_queue_test)
+nwgraph_add_test(provenance_test)
+nwgraph_add_test(proxy_sort_test)
+nwgraph_add_test(tag_invoke_test)
 nwgraph_add_test(timer_test)
+nwgraph_add_test(util_test)
+
+# -----------------------------------------------------------------------------
+# Built-in Graph Tests
+# -----------------------------------------------------------------------------
+nwgraph_add_test(builtin_graphs_test)
 
 
+# Disabled tests (need investigation)
 # nwgraph_add_test(bk_test)
+# nwgraph_add_test(dfs_range_test)  # dfs_range.hpp has type errors (vertex_id_type undeclared)
 # nwgraph_add_test(kcore_test)
 # nwgraph_add_test(max_flow_test)
 # nwgraph_add_test(rcm_test)
 
-
-# expected failures for now
-# set_tests_properties(jp_coloring_test
-#  PROPERTIES WILL_FAIL TRUE)
-
-# Example programs (not catch2)
-nwgraph_add_exe(adjacency_eg)
-nwgraph_add_exe(concepts_eg)
-nwgraph_add_exe(containers_eg)
-nwgraph_add_exe(cstar_eg)
-nwgraph_add_exe(degree_eg)
-nwgraph_add_exe(dijkstra_eg)
-nwgraph_add_exe(edge_list_eg)
-nwgraph_add_exe(edge_range_eg)
-# nwgraph_add_exe(graph_adaptor_eg)
-nwgraph_add_exe(graph_traits_eg)
-nwgraph_add_exe(index_soa_eg)
-nwgraph_add_exe(indexing_eg)
-nwgraph_add_exe(init_eg)
-nwgraph_add_exe(jaccard_eg)
-nwgraph_add_exe(neighbor_range_eg)
-nwgraph_add_exe(plain_range_eg)
-nwgraph_add_exe(proxysort_eg)
-nwgraph_add_exe(random_eg)
-nwgraph_add_exe(spmm_eg)
-nwgraph_add_exe(stream_eg)
-nwgraph_add_exe(std_containers_eg)
-nwgraph_add_exe(tag_invoke_eg)
-nwgraph_add_exe(tbb_eg)
-nwgraph_add_exe(triangular_eg)
-# nwgraph_add_exe(vector_bool_eg)
-nwgraph_add_exe(vertex_range_eg)
-nwgraph_add_exe(volos_eg)
-nwgraph_add_exe(zip_eg)
-
-# nwgraph_add_exe(binio_eg)
-# nwgraph_add_exe(io_eg)
-# nwgraph_add_exe(math_eg)
-# nwgraph_add_exe(ranges_and_concepts_eg)
-# nwgraph_add_exe(symmetrize_eg)
-
+# Note: Legacy example programs (*_eg.cpp) have been moved to test/eg/
+# They are not built by default. Convert to proper tests as needed.
 

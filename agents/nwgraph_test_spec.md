@@ -2,340 +2,293 @@
 
 ## Overview
 
-NWGraph uses Catch2 as its primary testing framework. Tests are organized into unit tests (Catch2-based) and example programs demonstrating library usage.
+NWGraph uses Catch2 v3 as its testing framework. All tests are organized by category and linked against `Catch2::Catch2WithMain`.
 
 ## Test Framework
 
-- **Framework:** Catch2 (C++ Unit Testing Framework)
-- **Entry Point:** `test/catch_main.cpp` with `CATCH_CONFIG_MAIN`
-- **Header:** `#include <catch2/catch.hpp>`
-- **Assertions:** `REQUIRE()`, `REQUIRE(x == Approx(y).epsilon(...))`
-- **Test Definition:** `TEST_CASE()` and `SECTION()` macros
+- **Framework:** Catch2 v3.5.2 (fetched via CMake FetchContent)
+- **Header:** `#include <catch2/catch_test_macros.hpp>`
+- **Assertions:** `REQUIRE()`, `CHECK()`, `REQUIRE(x == Approx(y))`
+- **Test Definition:** `TEST_CASE("name", "[tag]")` and `SECTION("name")`
 
 ## Directory Structure
 
 ```
 test/
 ├── CMakeLists.txt              # Test build configuration
-├── catch_main.cpp              # Catch2 main entry point
-│
 ├── common/                     # Test utilities
-│   ├── abstract_test.hpp       # Graph generation utilities
-│   └── test_header.hpp         # Common includes
-│
-├── data/                       # Test data files (31 files)
-│   ├── karate.mtx              # Karate club network
-│   ├── football.mtx            # Football network
-│   ├── USAir97.mtx             # US Air transportation
-│   ├── delaunay_n10.mtx        # Delaunay triangulation
-│   └── ...                     # Additional test graphs
-│
-├── *_test.cpp                  # Catch2 unit tests (23 files)
-└── *_eg.cpp                    # Example programs (38 files)
+│   ├── test_header.hpp         # Common includes for all tests
+│   └── karate.hpp              # Karate graph data for tests
+└── *_test.cpp                  # Catch2 unit tests
 ```
 
-## Test Categories
+## Complete Header Coverage Matrix
 
-### Unit Tests (Catch2)
+This section maps every header file to its corresponding test(s).
 
-#### Data Structure Tests
+### Adaptors (`include/nwgraph/adaptors/`)
 
-| Test File | Description |
-|-----------|-------------|
-| `aos_test.cpp` | Array of Structures container |
-| `soa_test.cpp` | Struct of Arrays container |
-| `compressed_test.cpp` | Compressed sparse structures |
-| `edge_list_test.cpp` | Edge list construction/sorting |
-| `size_test.cpp` | Graph size and capacity |
-| `vov_test.cpp` | Vector of vectors container |
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `back_edge_range.hpp` | `back_edge_test.cpp` | ✅ Active |
+| `bfs_edge_range.hpp` | `bfs_edge_range_test.cpp` | ✅ Active |
+| `bfs_range.hpp` | `bfs_test_0.cpp`, `bfs_test_1.cpp` | ✅ Active |
+| `cyclic_neighbor_range.hpp` | - | ⚠️ TBB-specific, not tested |
+| `cyclic_range_adaptor.hpp` | - | ⚠️ TBB-specific, not tested |
+| `dag_range.hpp` | `dag_range_test.cpp` | ✅ Active |
+| `dfs_range.hpp` | `dfs_range_test.cpp` | ❌ Disabled (header has bugs) |
+| `edge_range.hpp` | `range_adaptors_test.cpp` | ✅ Active |
+| `filtered_bfs_range.hpp` | `filtered_bfs_test.cpp` | ✅ Active |
+| `neighbor_range.hpp` | `range_adaptors_test.cpp` | ✅ Active |
+| `new_dfs_range.hpp` | `new_dfs_test.cpp` | ✅ Active |
+| `plain_range.hpp` | `range_adaptors_test.cpp` | ✅ Active |
+| `random_range.hpp` | `random_range_test.cpp` | ✅ Active |
+| `reverse.hpp` | `reverse_test.cpp` | ✅ Active |
+| `splittable_range_adaptor.hpp` | - | ⚠️ TBB-specific, not tested |
+| `vertex_range.hpp` | `vertex_range_test.cpp` | ✅ Active |
+| `worklist.hpp` | `worklist_test.cpp` | ✅ Active |
 
-#### Algorithm Tests
+### Core Graph Types (`include/nwgraph/`)
 
-| Test File | Description |
-|-----------|-------------|
-| `bfs_test_0.cpp` | BFS with edge ranges |
-| `bfs_test_1.cpp` | BFS with level-based implementation |
-| `connected_component_test.cpp` | Connected components (v1, v2, v5, v6, v8) |
-| `tc_test.cpp` | Triangle counting (15 implementations) |
-| `page_rank_test.cpp` | PageRank validation |
-| `spanning_tree_test.cpp` | Minimum spanning tree |
-| `jp_coloring_test.cpp` | Graph coloring |
-| `mis_test.cpp` | Maximal independent set |
-| `back_edge_test.cpp` | Back edge detection |
-| `new_dfs_test.cpp` | Depth-first search |
-| `volos_test.cpp` | Volos algorithm tests |
-| `spMatspMat_test.cpp` | Sparse matrix multiplication |
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `adjacency.hpp` | `adjacency_test.cpp` | ✅ Active |
+| `build.hpp` | `build_test.cpp` | ✅ Active |
+| `coo.hpp` | - | ✅ Alias for edge_list (covered) |
+| `csc.hpp` | - | ✅ Alias for adjacency<1> (covered) |
+| `csr.hpp` | - | ✅ Alias for adjacency<0> (covered) |
+| `edge_list.hpp` | `edge_list_test.cpp` | ✅ Active |
+| `graph_adaptor.hpp` | `graph_adaptor_test.cpp` | ✅ Active |
+| `graph_base.hpp` | `graph_base_test.cpp` | ✅ Active |
+| `graph_concepts.hpp` | `graph_concepts_test.cpp` | ✅ Active |
+| `graph_traits.hpp` | `graph_traits_test.cpp` | ✅ Active |
+| `vofos.hpp` | `vofos_test.cpp` | ✅ Active |
+| `volos.hpp` | `volos_test.cpp` | ✅ Active |
+| `vovos.hpp` | `vov_test.cpp` | ✅ Active |
 
-#### Concept and Range Tests
+### Algorithms (`include/nwgraph/algorithms/`)
 
-| Test File | Description |
-|-----------|-------------|
-| `ranges_and_concepts_test.cpp` | Range and concept validation |
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `betweenness_centrality.hpp` | `bk_test.cpp` | ❌ Disabled |
+| `bfs.hpp` | `bfs_test_0.cpp`, `bfs_test_1.cpp` | ✅ Active |
+| `boykov_kolmogorov.hpp` | `max_flow_test.cpp` | ❌ Disabled |
+| `connected_components.hpp` | `connected_component_test.cpp` | ✅ Active |
+| `dag_based_mis.hpp` | `dag_mis_test.cpp` | ✅ Active |
+| `delta_stepping.hpp` | `delta_stepping_test.cpp` | ✅ Active |
+| `dijkstra.hpp` | `dijkstra_test.cpp` | ✅ Active |
+| `jaccard.hpp` | `jaccard_test.cpp` | ✅ Active |
+| `jones_plassmann_coloring.hpp` | `jp_coloring_test.cpp` | ✅ Active |
+| `k_core.hpp` | `kcore_test.cpp` | ❌ Disabled |
+| `k_truss.hpp` | - | ⚠️ Empty/incomplete header |
+| `kruskal.hpp` | `kruskal_test.cpp` | ✅ Active |
+| `max_flow.hpp` | `max_flow_test.cpp` | ❌ Disabled |
+| `maximal_independent_set.hpp` | `mis_test.cpp` | ✅ Active |
+| `page_rank.hpp` | `page_rank_test.cpp` | ✅ Active |
+| `prim.hpp` | - | ❌ Header has bugs |
+| `spMatspMat.hpp` | `spMatspMat_test.cpp` | ✅ Active |
+| `triangle_count.hpp` | `tc_test.cpp` | ✅ Active |
 
-#### I/O Tests
+### Containers (`include/nwgraph/containers/`)
 
-| Test File | Description |
-|-----------|-------------|
-| `mmio_test.cpp` | Matrix Market I/O |
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `aos.hpp` | `aos_test.cpp` | ✅ Active |
+| `compressed.hpp` | `compressed_test.cpp` | ✅ Active |
+| `soa.hpp` | `soa_test.cpp` | ✅ Active |
+| `zip.hpp` | `zip_test.cpp` | ✅ Active |
 
-### Disabled Tests
+### Generators (`include/nwgraph/generators/`)
 
-Tests available but currently disabled in CMakeLists.txt:
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `configuration_model.hpp` | - | ❌ Header has syntax errors |
 
-| Test File | Description |
-|-----------|-------------|
-| `bk_test.cpp` | Betweenness Centrality |
-| `kcore_test.cpp` | K-Core decomposition |
-| `max_flow_test.cpp` | Maximum flow algorithm |
-| `rcm_test.cpp` | Reverse Cuthill-McKee |
+### Built-in Graphs (`include/nwgraph/graphs/`)
 
-### Example Programs
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `imdb-graph.hpp` | `builtin_graphs_test.cpp` | ✅ Active |
+| `karate-graph.hpp` | `builtin_graphs_test.cpp` | ✅ Active |
+| `ospf-graph.hpp` | `builtin_graphs_test.cpp` | ✅ Active |
 
-Non-Catch2 executable demonstrations:
+### I/O (`include/nwgraph/io/`)
 
-| Example | Description |
-|---------|-------------|
-| `adjacency_eg.cpp` | Adjacency container usage |
-| `binio_eg.cpp` | Binary I/O |
-| `containers_eg.cpp` | Container operations |
-| `concepts_eg.cpp` | Concept demonstrations |
-| `dijkstra_eg.cpp` | Dijkstra algorithm |
-| `jaccard_eg.cpp` | Jaccard similarity |
-| `bfs_eg.cpp` | BFS demonstration |
-| `dfs_eg.cpp` | DFS demonstration |
-| `tbb_eg.cpp` | TBB integration |
-| `zip_eg.cpp` | Zip operations |
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `MatrixMarketFile.hpp` | `mmio_test.cpp` | ✅ Active |
+| `mmio.hpp` | `mmio_test.cpp` | ✅ Active |
 
-## Test Data
+### Utilities (`include/nwgraph/util/`)
 
-### Graph Files (31 total)
+| Header | Test File | Status |
+|--------|-----------|--------|
+| `arrow_proxy.hpp` | `util_test.cpp` | ✅ Active |
+| `atomic.hpp` | `atomic_test.cpp` | ✅ Active |
+| `AtomicBitVector.hpp` | `atomic_bit_vector_test.cpp` | ✅ Active |
+| `defaults.hpp` | - | ✅ Type definitions only |
+| `demangle.hpp` | `demangle_test.cpp` | ✅ Active |
+| `disjoint_set.hpp` | `disjoint_set_test.cpp` | ✅ Active |
+| `intersection_size.hpp` | `intersection_size_test.cpp` | ✅ Active |
+| `make_priority_queue.hpp` | `priority_queue_test.cpp` | ✅ Active |
+| `parallel_for.hpp` | - | ⚠️ TBB wrapper, not unit tested |
+| `permutation_iterator.hpp` | `permutation_iterator_test.cpp` | ✅ Active |
+| `print_types.hpp` | - | ✅ Debug utility only |
+| `provenance.hpp` | `provenance_test.cpp` | ✅ Active |
+| `proxysort.hpp` | `proxy_sort_test.cpp` | ✅ Active |
+| `tag_invoke.hpp` | `tag_invoke_test.cpp` | ✅ Active |
+| `timer.hpp` | `timer_test.cpp` | ✅ Active |
+| `traits.hpp` | `graph_traits_test.cpp` | ✅ Active |
+| `tuple_hack.hpp` | `util_test.cpp` | ✅ Active |
+| `util_par.hpp` | - | ⚠️ TBB utilities, not unit tested |
+| `util.hpp` | `util_test.cpp` | ✅ Active |
 
-#### Real-World Graphs
+### Experimental (`include/nwgraph/experimental/`)
 
-| File | Size | Description |
-|------|------|-------------|
-| `karate.mtx` | 1.6 KB | Karate club network (34 vertices) |
-| `football.mtx` | 7.5 KB | Football network |
-| `USAir97.mtx` | - | US Air transportation |
-| `Erdos981.mtx` | 11+ KB | Erdos collaboration |
-| `chesapeake.mtx` | 12 KB | Chesapeake Bay food web |
-| `spaceStation_1.mtx` | 15 KB | Space station network |
+Experimental parallel implementations - not unit tested as they mirror main algorithms.
 
-#### Synthetic Graphs
+## Test Categories in CMakeLists.txt
 
-| File | Size | Description |
-|------|------|-------------|
-| `delaunay_n10.mtx` | 33 KB | Delaunay triangulation |
-| `G1.mtx` | 149 KB | General test graph |
-| `G8.mtx` | 197 KB | General test graph |
-| `dwt___66.mtx` | 1.2 KB | Small test graph |
+### Container Tests
+- `adjacency_test`
+- `aos_test`
+- `compressed_test`
+- `edge_list_test`
+- `soa_test`
+- `vofos_test`
+- `volos_test`
+- `vov_test`
+- `zip_test`
 
-#### Algorithm-Specific Test Data
+### Graph Concept and Traits Tests
+- `graph_adaptor_test`
+- `graph_base_test`
+- `graph_concepts_test`
+- `graph_traits_test`
+- `size_test`
 
-| File | Purpose |
-|------|---------|
-| `coloringData.mmio` | Graph coloring tests |
-| `line.mmio`, `ring.mmio`, `tree.mmio` | Simple geometric graphs |
-| `bktest1.mtx`, `bktest2.mtx` | Betweenness centrality |
-| `flowtest.mtx` | Maximum flow |
-| `msttest.mtx` | Minimum spanning tree |
-| `spmatA.mmio`, `spmatB.mmio` | Sparse matrix tests |
+### Algorithm Tests
+- `bfs_test_0`
+- `bfs_test_1`
+- `connected_component_test`
+- `dag_mis_test`
+- `delta_stepping_test`
+- `dijkstra_test`
+- `jaccard_test`
+- `jp_coloring_test`
+- `kruskal_test`
+- `mis_test`
+- `new_dfs_test`
+- `page_rank_test`
+- `spanning_tree_test`
+- `spMatspMat_test`
+- `tc_test`
 
-### Data Path Configuration
+### Adaptor Tests
+- `back_edge_test`
+- `bfs_edge_range_test`
+- `dag_range_test`
+- `filtered_bfs_test`
+- `random_range_test`
+- `range_adaptors_test`
+- `reverse_test`
+- `vertex_range_test`
+- `worklist_test`
 
-Tests use compile-time definitions:
-- `DATA_DIR` - Directory containing test data
-- `DATA_FILE` - Default test file (typically `karate.mtx`)
+### I/O Tests
+- `mmio_test`
 
-## Test Utilities
+### Utility Tests
+- `atomic_test`
+- `atomic_bit_vector_test`
+- `build_test`
+- `demangle_test`
+- `disjoint_set_test`
+- `intersection_size_test`
+- `permutation_iterator_test`
+- `priority_queue_test`
+- `provenance_test`
+- `proxy_sort_test`
+- `tag_invoke_test`
+- `timer_test`
+- `util_test`
 
-### common/abstract_test.hpp
+### Built-in Graph Tests
+- `builtin_graphs_test`
 
-```cpp
-class test_util {
-  directed_csr_graph_t generate_directed_graph();
-  directed_csr_graph_t generate_directed_graph(const std::string& mmiofile);
-  auto generate_directed_aos();
-  auto generate_directed_aos(const std::string& mmiofile);
-};
-```
-
-### common/test_header.hpp
-
-Standard includes for most tests:
-```cpp
-#include "nwgraph/containers/compressed.hpp"
-#include "nwgraph/edge_list.hpp"
-#include "nwgraph/io/mmio.hpp"
-#include <catch2/catch.hpp>
-```
-
-## CMake Test Infrastructure
-
-### Test Macro
-
-```cmake
-nwgraph_add_test(TESTNAME)
-# Creates: ${TESTNAME}.exe from ${TESTNAME}.cpp
-# Links: nwgraph, Catch2::Catch2, catch_main
-# Defines: DATA_DIR, DATA_FILE
-# Registers: via add_test()
-```
-
-### Example Macro
-
-```cmake
-nwgraph_add_exe(EXENAME)
-# Creates: ${EXENAME}.exe from ${EXENAME}.cpp
-# Links: nwgraph library only
-```
+### Disabled Tests (need investigation)
+- `bk_test` - Betweenness centrality
+- `dfs_range_test` - Header has vertex_id_type bug
+- `kcore_test` - K-core decomposition
+- `max_flow_test` - Maximum flow
+- `rcm_test` - Reverse Cuthill-McKee
 
 ## Running Tests
 
-### Build Tests
+### Build and Run All Tests
 
 ```bash
-mkdir build && cd build
-cmake .. -DNWGRAPH_BUILD_TESTS=ON
-make -j4
-```
-
-### Run All Tests
-
-```bash
-ctest
-# or with verbose output
-ctest -V
+cd build
+cmake ..
+make -j$(nproc)
 ctest --output-on-failure
 ```
 
-### Run Specific Tests
+### Run Specific Test Categories
 
 ```bash
-cd build/test
-./tc_test.exe           # Triangle counting
-./page_rank_test.exe    # PageRank
-./bfs_test_0.exe        # BFS
+ctest -R "container"     # Container tests
+ctest -R "algorithm"     # Algorithm tests
+ctest -R "adaptor"       # Adaptor tests
+ctest -R "util"          # Utility tests
 ```
 
-### Run Tests by Pattern
+### Run Individual Tests
 
 ```bash
-ctest -R "bfs"    # All BFS tests
-ctest -R "aos"    # AOS container tests
-ctest -R "mmio"   # I/O tests
+./test/dijkstra_test.exe
+./test/bfs_test_0.exe
+./test/graph_concepts_test.exe
 ```
 
-### Test Executable Locations
+## Test Data
 
-- **Catch2 Tests:** `build/test/*_test.exe`
-- **Examples:** `build/test/*_eg.exe`
+Test data files are located in `data/` directory:
+- `karate.mtx` - Zachary's karate club (34 vertices, 78 edges)
+- `football.mtx` - Football network
+- Various other Matrix Market files
 
-## Test Patterns
+## Test Utilities
 
-### Validation Pattern (BFS)
+### common/test_header.hpp
 
+Standard includes for all tests:
 ```cpp
-bool validate(EdgeListT& aos, size_t seed,
-              std::vector<size_t> const& distance,
-              std::vector<size_t> const& predecessor) {
-  // Verify BFS properties:
-  // - Distance differences at most 1
-  // - Predecessor consistency
-  // - Root properties
-}
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/catch_approx.hpp>
+#include "nwgraph/adjacency.hpp"
+#include "nwgraph/edge_list.hpp"
+// ... other common includes
 ```
 
-### Template Testing Pattern (PageRank)
+### common/karate.hpp
 
-```cpp
-SECTION("adjacency") {
-  adjacency<1, RealT> graph(A);
-  REQUIRE(page_rank[idx] == Approx(answer[idx]).epsilon(tolerance));
-}
+In-memory karate graph for quick tests without file I/O.
 
-SECTION("adj_list") {
-  adj_list<0, RealT> graph(A);
-  REQUIRE(page_rank[idx] == Approx(answer[idx]).epsilon(tolerance));
-}
-```
+## Coverage Summary
 
-### Multiple Implementation Testing (Triangle Counting)
+| Category | Total Headers | Tested | Coverage |
+|----------|---------------|--------|----------|
+| Adaptors | 17 | 14 | 82% |
+| Core | 13 | 13 | 100% |
+| Algorithms | 18 | 14 | 78% |
+| Containers | 4 | 4 | 100% |
+| Graphs | 3 | 3 | 100% |
+| I/O | 2 | 2 | 100% |
+| Utilities | 18 | 15 | 83% |
+| **Total** | **75** | **65** | **87%** |
 
-```cpp
-SECTION("v0") {
-  size_t triangles = triangle_count(A);
-  REQUIRE(triangles == 45);
-}
-SECTION("v1") {
-  size_t triangles = triangle_count_v1(A);
-  REQUIRE(triangles == 45);
-}
-// ... v2, v3, v4, etc.
-```
-
-## Test Coverage
-
-| Category | Files | Test Cases |
-|----------|-------|------------|
-| Unit Tests | 23 | 128+ sections |
-| Examples | 38 | - |
-| Test Data | 31 | - |
-| Disabled | 4 | - |
-
-## Test Organization Strategies
-
-### By Abstraction Level
-1. Container tests (AOS, SOA, compressed)
-2. Algorithm tests (BFS, CC, PageRank, etc.)
-3. I/O tests (Matrix Market)
-4. Concept tests (C++20 concepts)
-
-### By Algorithm Category
-1. Traversal: BFS, DFS
-2. Components: Connected Components
-3. Centrality: PageRank, Triangle Counting, BC
-4. Coloring: Graph coloring
-5. Trees: MST
-6. Optimization: MIS, K-Core
-
-### Multiple Implementations
-- Triangle counting: 15 versions (v0-v15)
-- Connected components: 5 versions (v1, v2, v5, v6, v8)
-- PageRank: Multiple container types
-
-## Example Test Structure
-
-```cpp
-#include "common/abstract_test.hpp"
-#include "nwgraph/algorithms/triangle_count.hpp"
-
-TEST_CASE("triangle counting", "[tc]") {
-  // Load test graph
-  auto aos_a = read_mm<directedness::undirected>(DATA_DIR "karate.mtx");
-
-  // Prepare graph
-  swap_to_triangular<0>(aos_a, succession::successor);
-  lexical_sort_by<0>(aos_a);
-  adjacency<0> A(num_vertices(aos_a));
-  push_back_fill(aos_a, A);
-
-  // Test implementations
-  SECTION("v0") {
-    size_t triangles = triangle_count(A);
-    REQUIRE(triangles == 45);
-  }
-
-  SECTION("v1") {
-    size_t triangles = triangle_count_v1(A);
-    REQUIRE(triangles == 45);
-  }
-}
-```
-
-## Floating-Point Comparison
-
-```cpp
-double tolerance(0.005);
-REQUIRE(page_rank[idx] == Approx(answer[idx]).epsilon(tolerance));
-```
+Note: Some headers are not tested due to:
+- TBB-specific functionality (requires TBB for testing)
+- Broken headers (syntax errors or bugs)
+- Type definitions only (no testable behavior)
