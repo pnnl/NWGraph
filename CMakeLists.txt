@@ -87,8 +87,7 @@ if (NWGRAPH_SANITIZE)
   set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -fsanitize=${NWGRAPH_SANITIZE}")
 endif (NWGRAPH_SANITIZE)
 
-option(NWGRAPH_BUILD_APBS "Determines whether to build abstraction penalty benchmarks." OFF)
-option(NWGRAPH_BUILD_BENCH "Determines whether to build performance benchmarks." OFF)
+option(NWGRAPH_BUILD_BENCH "Determines whether to build benchmarks (GAP Suite and APB)." OFF)
 # option(NWGRAPH_BUILD_DOCS "Determines whether to build documentation." OFF)
 option(NWGRAPH_BUILD_EXAMPLES "Determines whether to build examples." OFF)
 option(NWGRAPH_BUILD_TESTS "Determines whether to build tests." ON)
@@ -155,10 +154,6 @@ include(Docopt)
 
 add_subdirectory(include)
   
-if (NWGRAPH_BUILD_APBS)
-  add_subdirectory(apb)
-endif()
-
 if (NWGRAPH_BUILD_BENCH)
   add_subdirectory(bench)
 endif()

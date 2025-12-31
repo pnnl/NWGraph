@@ -42,17 +42,12 @@ static constexpr const char USAGE[] =
 #include "nwgraph/volos.hpp"
 #include "nwgraph/vovos.hpp"
 
+#include "Log.hpp"
 #include "common.hpp"
 #include "nwgraph/algorithms/triangle_count.hpp"
 #include "nwgraph/experimental/algorithms/triangle_count.hpp"
 #include <docopt.h>
 #include <tuple>
-
-#include "config.h"
-#include <date/date.h>
-
-#include <nlohmann/json.hpp>
-using json = nlohmann::json;
 
 using namespace nw::graph::bench;
 using namespace nw::graph;
@@ -126,67 +121,6 @@ static std::size_t TCVerifier(Graph& graph) {
                    // like the GAP verifier normally would
 }
 
-auto config_log() {
-  std::string uuid_;
-  char        host_[16];
-  std::string date_;
-  std::string git_branch_;
-  std::string git_version_;
-  std::size_t uuid_size_ = 24;
-
-  auto seed = std::random_device();
-  auto gen  = std::mt19937(seed());
-  auto dis  = std::uniform_int_distribution<char>(97, 122);
-  uuid_.resize(uuid_size_);
-  std::generate(uuid_.begin(), uuid_.end(), [&] { return dis(gen); });
-
-  if (int e = gethostname(host_, sizeof(host_))) {
-    std::cerr << "truncated host name\n";
-    strncpy(host_, "ghost", 15);
-  }
-  {
-    std::stringstream    ss;
-    date::year_month_day date = date::floor<date::days>(std::chrono::system_clock::now());
-    ss << date;
-    date_ = ss.str();
-  }
-
-  if (!std::system("git rev-parse --abbrev-ref HEAD > git_branch.txt")) {
-    std::ifstream("git_branch.txt") >> git_branch_;
-  }
-  if (!std::system("git log --pretty=format:'%h' -n 1 > git_version.txt")) {
-    std::ifstream("git_version.txt") >> git_version_;
-    if (std::system("git diff --quiet --exit-code")) {
-      git_version_ += "+";
-    }
-  }
-
-  json config = {
-    { "Host",            host_           },
-    { "Date",            date_           },
-    { "git_branch",      git_branch_     },
-    { "git_version",     git_version_    },
-    { "Build",           BUILD_TYPE      },
-    { "CXX_COMPILER",    CXX_COMPILER    },
-    { "CXX_COMPILER_ID", CXX_COMPILER_ID },
-    { "CXX_VERSION",     CXX_VERSION     }
-  };
-
-  return config;
-}
-
-template <typename Args>
-auto args_log(const Args& args) {
-  json arg_log;
-
-  for (auto&& arg : args) {
-    std::stringstream buf;
-    buf << std::get<1>(arg);
-    arg_log.push_back({ std::get<0>(arg), buf.str() });
-  }
-  return arg_log;
-}
-
 template <typename Graph>
 void run_bench(int argc, char* argv[]) {
   std::vector<std::string> strings(argv + 1, argv + argc);
@@ -210,8 +144,8 @@ void run_bench(int argc, char* argv[]) {
   std::vector ids     = parse_ids(args["--version"].asStringList());
   std::vector threads = parse_n_threads(args["THREADS"].asStringList());
 
-  json   file_log = {};
-  size_t file_ctr = 0;
+  Times<size_t> times;
+
   for (auto&& file : files) {
     std::cout << "processing " << file << "\n";
 
@@ -235,15 +169,19 @@ void run_bench(int argc, char* argv[]) {
       relabel_time = 0.0;
     }
 
+    if (verbose && relabeled) {
+      std::cout << "relabel time: " << relabel_time << "\n";
+    }
+
     // Clean up the edgelist to deal with the normal issues related to
     // undirectedness.
     auto&& [clean_time] = time_op([&] { clean<0>(el_a, succession); });
 
-    auto cel_a = compress<Graph>(el_a);
+    if (verbose) {
+      std::cout << "clean time: " << clean_time << "\n";
+    }
 
-    //    if (debug) {
-    //cel_a.stream_indices();
-    //}
+    auto cel_a = compress<Graph>(el_a);
 
     // If we're verifying then compute the number of triangles once for this
     // graph.
@@ -253,19 +191,10 @@ void run_bench(int argc, char* argv[]) {
       std::cout << "verifier reports " << v_triangles << " triangles\n";
     }
 
-    json   thread_log = {};
-    size_t thread_ctr = 0;
-
     for (auto&& thread : threads) {
       auto _ = set_n_threads(thread);
 
-      json   id_log = {};
-      size_t id_ctr = 0;
       for (auto&& id : ids) {
-
-        json   run_log = {};
-        size_t run_ctr = 0;
-
         for (int j = 0; j < trials; ++j) {
           if (verbose) {
             std::cout << "running version:" << id << " threads:" << thread << "\n";
@@ -303,75 +232,29 @@ void run_bench(int argc, char* argv[]) {
                 return triangle_count_v13(cel_a, thread);
               case 14:
                 return triangle_count_v14(cel_a);
-#if 0
-	    case 15:
-	      return triangle_count_edgesplit(cel_a, thread);
-	    case 16:
-	      return triangle_count_edgesplit_upper(cel_a, thread);
-#ifdef ONE_DIMENSIONAL_EDGE
-	    case 17:
-	      return triangle_count_edgerange(cel_a);
-	    case 18:
-	      return triangle_count_edgerange_cyclic(cel_a, thread);
-#endif
-#endif
               default:
                 std::cerr << "Unknown version id " << id << "\n";
                 return 0ul;
             }
           });
 
-          run_log[run_ctr++] = {
-            { "id",              id                  },
-            { "num_threads",     thread              },
-            { "trial",           j                   },
-            { "elapsed",         time                },
-            { "elapsed+relabel", time + relabel_time },
-            { "triangles",       triangles           }
-          };
+          times.append(file, id, thread, time, triangles);
 
           if (verify && triangles != v_triangles) {
             std::cerr << "Inconsistent results: v" << id << " failed verification for " << file << " using " << thread << " threads (reported "
                       << triangles << ")\n";
           }
-        }    // for j in trials
-
-        id_log[id_ctr++] = {
-          { "id",   id                 },
-          { "runs", std::move(run_log) }
-        };
-      }    // for id in ids
-
-      thread_log[thread_ctr++] = {
-        { "num_thread", thread            },
-        { "runs",       std::move(id_log) }
-      };
-    }    // for thread in threads
-
-    file_log[file_ctr++] = {
-      { "File",         file                  },
-      { "Relabel_time", relabel_time          },
-      { "Clean_time",   clean_time            },
-      { "Relabeled",    relabeled             },
-      { "Num_trials",   trials                },
-      { "Runs",         std::move(thread_log) }
-    };
-
-  }    // for each file
-  if (args["--log"]) {
-
-    json log_log = {
-      { "Config", config_log()        },
-      { "Args",   args_log(args)      },
-      { "Files",  std::move(file_log) }
-    };
-
-    if (args["--log"].asString() == "-") {
-      std::cout << log_log << std::endl;
-    } else {
-      std::ofstream outfile(args["--log"].asString(), std::ios_base::app);
-      outfile << log_log << std::endl;
+        }
+      }
     }
+  }
+
+  times.print(std::cout);
+
+  if (args["--log"]) {
+    auto file   = args["--log"].asString();
+    bool header = args["--log-header"].asBool();
+    log("tc", file, times, header, "Time(s)", "Triangles");
   }
 }
 

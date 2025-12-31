@@ -1,94 +1,47 @@
-# -----------------------------------------------------------------------------
-# The date library from MIT provides C++20 std date functionality in C++17
-# -----------------------------------------------------------------------------
-include(Date)
+# =============================================================================
+# NWGraph Benchmarks
+# =============================================================================
+# This directory contains benchmark implementations organized into subdirectories:
+#
+#   gapbs/           - NWGraph implementations of GAP Benchmark Suite
+#   apb/             - Abstraction Penalty Benchmarks
+#   gapbs-reference/ - Original GAP Benchmark Suite (submodule, optional)
+# =============================================================================
 
-
-# -----------------------------------------------------------------------------
-# Generate the configuration files used for logging, and -I its built path.
-# -----------------------------------------------------------------------------
-get_filename_component(NWGRAPH_CXX_COMPILER ${CMAKE_CXX_COMPILER} NAME)
-configure_file(config.h.in config.h)
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-
-
-# -----------------------------------------------------------------------------
-# Create an interface library for the benchmarks to depend on.
-# -----------------------------------------------------------------------------
-add_library(bench_lib INTERFACE)
-target_sources(bench_lib INTERFACE
-  common.hpp
-  Log.hpp
-  #config.h
-  )
-target_include_directories(bench_lib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
-target_link_libraries(bench_lib INTERFACE nwgraph docopt nlohmann_json::nlohmann_json) 
-target_link_libraries(bench_lib INTERFACE date::date)
-
-find_package(nlohmann_json 3.2.0 QUIET)
-if (NOT nlohmann_json_FOUND)
-  message("Installed json not found -- fetching")
-  FetchContent_Declare(json
-    GIT_REPOSITORY https://github.com/nlohmann/json.git
-    GIT_TAG v3.7.3)
-
-  FetchContent_GetProperties(json)
-  if(NOT json_POPULATED)
-    FetchContent_Populate(json)
-    add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
-  endif()
-endif()
-
+# Create top-level benchmark target
 add_custom_target(bench)
 
+# -----------------------------------------------------------------------------
+# Include subdirectories
+# -----------------------------------------------------------------------------
+add_subdirectory(gapbs)
+add_subdirectory(apb)
 
 # -----------------------------------------------------------------------------
-# NWGRAPH driver to process edgelists.
+# Original GAP Benchmark Suite (optional, for comparison)
 # -----------------------------------------------------------------------------
-add_executable(process_edge_list ProcessEdgelist.cpp)
-target_link_libraries(process_edge_list nwgraph docopt)
-add_dependencies(bench process_edge_list)
-
-
+# Enable with: cmake -DNWGRAPH_BUILD_GAPBS_REFERENCE=ON ..
+# Requires: git submodule update --init bench/gapbs-reference
 # -----------------------------------------------------------------------------
-# NWGRAPH driver to verify that we're correctly generating source lists.
-# -----------------------------------------------------------------------------
-# Set policy to suppress warnings
-cmake_policy(SET CMP0115 NEW)
+option(NWGRAPH_BUILD_GAPBS_REFERENCE "Build original GAP Benchmark Suite for comparison" OFF)
 
-add_executable(sources SourceVerifier.cpp)
-target_link_libraries(sources bench_lib)
-add_dependencies(bench sources)
+if (NWGRAPH_BUILD_GAPBS_REFERENCE)
+  if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/gapbs-reference/Makefile")
+    # Build using the original Makefile
+    add_custom_target(gapbs-reference
+      COMMAND $(MAKE) CXX=${CMAKE_CXX_COMPILER}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/gapbs-reference
+      COMMENT "Building original GAP Benchmark Suite"
+    )
+    add_dependencies(bench gapbs-reference)
 
-
-# -----------------------------------------------------------------------------
-# NWGRAPH benchmark drivers
-# -----------------------------------------------------------------------------
-
-add_executable(bc.exe bc.cpp)
-target_link_libraries(bc.exe bench_lib)
-add_dependencies(bench bc.exe)
-
-add_executable(bfs.exe bfs.cpp)
-target_link_libraries(bfs.exe bench_lib)
-add_dependencies(bench bfs.exe)
-
-add_executable(cc.exe cc.cpp) 
-target_link_libraries(cc.exe bench_lib) 
-add_dependencies(bench cc.exe)
-
-# add_executable(js.exe js.cpp)
-# target_link_libraries(js.exe bench_lib)
-# add_dependencies(bench js.exe)
-
-add_executable(pr.exe pr.cpp)
-target_link_libraries(pr.exe bench_lib)
-add_dependencies(bench pr.exe)
-
-add_executable(sssp.exe sssp.cpp)
-target_link_libraries(sssp.exe bench_lib) 
-add_dependencies(bench sssp.exe)
-
-add_executable(tc.exe tc.cpp)
-target_link_libraries(tc.exe bench_lib nlohmann_json::nlohmann_json)
-add_dependencies(bench tc.exe)
+    # Clean target
+    add_custom_target(gapbs-reference-clean
+      COMMAND $(MAKE) clean
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/gapbs-reference
+      COMMENT "Cleaning original GAP Benchmark Suite"
+    )
+  else()
+    message(WARNING "gapbs-reference submodule not initialized. Run: git submodule update --init bench/gapbs-reference")
+  endif()
+endif()
