@@ -16,6 +16,9 @@ target_link_libraries(ch4_loop_detection.exe nwgraph)
 add_executable(ch5_dijkstra.exe ch5_dijkstra.cpp)
 target_link_libraries(ch5_dijkstra.exe nwgraph)
 
+add_executable(ch5_bellman_ford.exe ch5_bellman_ford.cpp)
+target_link_libraries(ch5_bellman_ford.exe nwgraph)
+
 # Chapter 6: Minimum Spanning Tree
 add_executable(ch6_kruskal.exe ch6_kruskal.cpp)
 target_link_libraries(ch6_kruskal.exe nwgraph)
@@ -27,6 +30,13 @@ target_link_libraries(ch6_prim.exe nwgraph)
 add_executable(ch7_connected.exe ch7_connected.cpp)
 target_link_libraries(ch7_connected.exe nwgraph)
 
+add_executable(ch7_strongly_connected.exe ch7_strongly_connected.cpp)
+target_link_libraries(ch7_strongly_connected.exe nwgraph)
+
 # Chapter 8: Maximum Flow
 add_executable(ch8_maxflow.exe ch8_maxflow.cpp)
 target_link_libraries(ch8_maxflow.exe nwgraph)
+
+# Chapter 9: Implicit Graphs (Knight's Tour)
+add_executable(ch9_knights_tour.exe ch9_knights_tour.cpp)
+target_link_libraries(ch9_knights_tour.exe nwgraph)

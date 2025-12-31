@@ -138,18 +138,18 @@ Known TODO locations:
 ## Priority 7: Examples
 
 ### Organize and Expand Examples
-- [x] **BGL Book Examples** (`examples/bgl-book/`) - Partially complete
+- [x] **BGL Book Examples** (`examples/bgl-book/`) - Complete
   - [x] ch3_toposort.cpp - Topological sort (File Dependencies)
   - [x] ch4_kevin_bacon.cpp - BFS (Six Degrees of Kevin Bacon)
   - [x] ch4_loop_detection.cpp - DFS cycle detection
   - [x] ch5_dijkstra.cpp - Dijkstra's algorithm (OSPF routing)
+  - [x] ch5_bellman_ford.cpp - Bellman-Ford algorithm (distance vector routing)
   - [x] ch6_kruskal.cpp - Kruskal's MST algorithm
   - [x] ch6_prim.cpp - Prim's MST algorithm
   - [x] ch7_connected.cpp - Connected components (BFS-based)
+  - [x] ch7_strongly_connected.cpp - Strongly connected components (Tarjan's)
   - [x] ch8_maxflow.cpp - Maximum flow (Edmonds-Karp)
-  - [ ] ch5_bellman_ford.cpp - Bellman-Ford (stub)
-  - [ ] ch7_strongly_connected.cpp - Strongly connected components (stub)
-  - [ ] ch9_knights_tour.cpp - Knight's tour (stub)
+  - [x] ch9_knights_tour.cpp - Knight's tour (implicit graph, Warnsdorff's heuristic)
 - [ ] **IMDB Examples** (`examples/imdb/`)
   - Clean up existing IMDB examples
   - Ensure they build and run correctly
@@ -159,7 +159,7 @@ Known TODO locations:
 - [ ] **Separation of Concerns**
   - Examples should demonstrate usage patterns (not test correctness)
   - Unit tests should verify correctness (not demonstrate usage)
-- [x] Verify BGL book examples compile and run correctly (8 of 11 implemented)
+- [x] Verify BGL book examples compile and run correctly (11 of 11 implemented)
 
 ---
 

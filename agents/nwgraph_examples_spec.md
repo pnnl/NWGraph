@@ -61,13 +61,13 @@ Examples adapted from "The Boost Graph Library" by Jeremy G. Siek, Lie-Quan Lee,
 | `ch4_kevin_bacon.cpp` | Implemented | BFS for computing "Bacon numbers" |
 | `ch4_loop_detection.cpp` | Implemented | DFS cycle detection (back edge finding) |
 | `ch5_dijkstra.cpp` | Implemented | Dijkstra's SSSP using OSPF network data |
-| `ch5_bellman_ford.cpp` | Stub only | Bellman-Ford algorithm |
+| `ch5_bellman_ford.cpp` | Implemented | Bellman-Ford SSSP with negative cycle detection |
 | `ch6_kruskal.cpp` | Implemented | Kruskal's MST algorithm |
 | `ch6_prim.cpp` | Implemented | Prim's MST algorithm |
 | `ch7_connected.cpp` | Implemented | BFS-based connected components |
-| `ch7_strongly_connected.cpp` | Stub only | Strongly connected components |
+| `ch7_strongly_connected.cpp` | Implemented | Tarjan's SCC algorithm for web page analysis |
 | `ch8_maxflow.cpp` | Implemented | Edmonds-Karp maximum flow algorithm |
-| `ch9_knights_tour.cpp` | Stub only | Knight's tour (backtracking DFS) |
+| `ch9_knights_tour.cpp` | Implemented | Implicit graph with Warnsdorff's heuristic |
 
 ### Implementation Requirements
 
