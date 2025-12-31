@@ -55,3 +55,6 @@ dblp.json
 oracle.json
 
 checks.json
+
+# Claude Code local settings
+.claude/settings.local.json
