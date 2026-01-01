@@ -69,7 +69,7 @@ suppress_warnings = [
 ]
 
 highlight_language = 'c++'
-pygments_style = 'emacs'
+pygments_style = 'friendly'
 
 # Enable numref
 numfig = True
