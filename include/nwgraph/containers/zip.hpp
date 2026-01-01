@@ -1,5 +1,10 @@
 /**
  * @file zip.hpp
+ * @brief Zip adaptor for combining multiple ranges into tuple iteration.
+ *
+ * Provides the zipped class, which combines multiple random-access ranges
+ * into a single range that yields tuples of references. Unlike struct_of_arrays
+ * which owns its storage, zipped is a view over existing ranges.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -8,8 +13,8 @@
  *
  * @authors
  *   Andrew Lumsdaine
- *   Kevin Deweese	
- *   Luke D'Alessandro	
+ *   Kevin Deweese
+ *   Luke D'Alessandro
  *   Tony Liu
  *
  */
@@ -50,8 +55,14 @@ namespace nw {
 namespace graph {
 
 
-// Bare bones zipper of ranges
-
+/**
+ * @brief View adaptor that zips multiple ranges into tuple iteration.
+ * @tparam Ranges Parameter pack of random_access_range types.
+ *
+ * Combines multiple random-access ranges into a single iterable that
+ * yields tuples of references to corresponding elements from each range.
+ * All ranges must have the same size.
+ */
 template <std::ranges::random_access_range... Ranges>
 struct zipped : std::tuple<Ranges&...> {
   using storage_type = std::tuple<Ranges&...>;

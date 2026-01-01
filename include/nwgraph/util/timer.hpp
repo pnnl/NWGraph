@@ -1,5 +1,11 @@
 /**
  * @file timer.hpp
+ * @brief Simple timer utilities for benchmarking and profiling.
+ *
+ * Provides timer classes for measuring execution time:
+ * - timer: Basic start/stop/elapsed timer with configurable duration type
+ * - life_timer: RAII timer that prints elapsed time on destruction
+ * - Type aliases: seconds_timer, ms_timer, us_timer
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -21,12 +27,22 @@ namespace nw {
 namespace util {
 
 
+/**
+ * @brief Basic timer for measuring elapsed time.
+ * @tparam D Duration type (default: std::chrono::microseconds).
+ *
+ * Provides start(), stop(), elapsed(), and lap() methods for timing code.
+ */
 template <class D = std::chrono::microseconds>
 class timer {
 private:
   typedef std::chrono::time_point<std::chrono::system_clock> time_t;
 
 public:
+  /**
+   * @brief Construct a timer, optionally with a name.
+   * @param msg Optional name for the timer (used in output).
+   */
   explicit timer(const std::string& msg = "") : start_time(std::chrono::system_clock::now()), stop_time(start_time), msg_(msg) {
   }
 

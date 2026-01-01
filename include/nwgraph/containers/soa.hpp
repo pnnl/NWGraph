@@ -1,5 +1,11 @@
 /**
  * @file soa.hpp
+ * @brief Structure-of-arrays container for cache-efficient tuple storage.
+ *
+ * Provides struct_of_arrays, a container that stores tuples as separate
+ * contiguous arrays (SoA layout) rather than an array of tuples (AoS).
+ * This layout improves cache performance when accessing single fields
+ * across many elements, which is common in graph algorithms.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington

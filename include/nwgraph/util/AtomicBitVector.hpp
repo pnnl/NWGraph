@@ -1,5 +1,11 @@
 /**
  * @file AtomicBitVector.hpp
+ * @brief Thread-safe bitmap for concurrent vertex visited tracking.
+ *
+ * Provides AtomicBitVector, a concurrent bitmap for use in parallel
+ * graph algorithms. Supports atomic get/set operations with configurable
+ * memory ordering. Commonly used for visited arrays in BFS and similar
+ * traversal algorithms.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
