@@ -62,6 +62,11 @@ exclude_patterns = [
     '_build', 'Thumbs.db', '.DS_Store', 'attic', '_hyde', '_tests', 'libref/attic', '_bpi', # '_api',
 ]
 
+# Suppress certain warnings
+# Note: Breathe's doxygenfunction overload warnings are not suppressible via this mechanism
+suppress_warnings = [
+    'toc.not_included',      # Auto-generated API files not in toctree
+]
 
 highlight_language = 'c++'
 pygments_style = 'emacs'

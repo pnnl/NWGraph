@@ -145,10 +145,7 @@ Single-Source Shortest Paths
 .. doxygenfunction:: nw::graph::dijkstra
 
 
-.. doxygenfunction:: nw::graph::delta_stepping(const Graph& graph, vertex_id_t<Graph> source, T delta, Weight weight = [](auto& e) -> auto& { return std::get<1>(e); })
-
-
-.. doxygenfunction:: nw::graph::delta_stepping(const Graph& graph, vertex_id_t<Graph> source, T delta)
+.. Note:: ``delta_stepping`` has multiple template overloads. See the auto-generated API reference for complete documentation.
 
 
 --------------------------------
@@ -220,17 +217,9 @@ Graph Construction
 
 .. doxygenfunction:: nw::graph::fill(edge_list_t& el, adjacency_t& cs, directedness dir, bool sort_adjacency = false, ExecutionPolicy&& policy = {})
 
-.. doxygenfunction:: nw::graph::relabel_by_degree< edge_list_graph edge_list_t, class Vector >
-
-.. doxygenfunction:: nw::graph::relabel_by_degree
-
-.. doxygenfunction:: nw::graph::make_plain_graph
-
-.. doxygenfunction:: nw::graph::make_index_graph
-
-.. doxygenfunction:: nw::graph::make_property_graph
-
-.. doxygenfunction:: nw::graph::join
+.. Note:: The following graph construction functions have multiple template overloads.
+   See the auto-generated API reference for complete documentation:
+   ``relabel_by_degree``, ``make_plain_graph``, ``make_index_graph``, ``make_property_graph``, ``join``.
 
 --------------------------------
 --------------------------------
@@ -281,11 +270,8 @@ Graph Generators
 Graph I/O
 ---------
 
-.. doxygenfunction:: read_mm(const std::string &filename)
-
-.. doxygenfunction:: read_mm(const std::string_& filename2)
-
-.. doxygenfunction:: read_mm(std::istream &inputStream)
+.. Note:: ``read_mm`` has multiple template overloads for reading Matrix Market files.
+   See the auto-generated API reference for complete documentation.
 
 .. doxygenfunction:: write_mm(const std::string& filename, edge_list<sym, Attributes...>& A, const std::string& file_symmetry)
 
@@ -323,7 +309,8 @@ Utilities
 
 .. doxygenfunction:: nw::util::proxysort(const ThingToSort& x, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {})
 
-.. doxygenfunction:: nw::graph::intersection_size
+.. Note:: ``intersection_size`` has multiple overloads with different iterator/range signatures.
+   See the auto-generated API reference for complete documentation.
 
 --------------------------------
 --------------------------------

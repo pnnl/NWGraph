@@ -98,6 +98,9 @@ All `#if 0` blocks removed from library headers:
 - [x] Renamed `doc-src/sphinx/userguide/old/` → `archive/` (pedagogical content with figures)
 - [x] `doc-src/PowerPoint/` - Directory does not exist (already removed)
 
+### Beautification
+- [ ] Use a better syntax highlighting scheme that reflects common practice for C++
+
 ---
 
 ## Priority 4: Clarification

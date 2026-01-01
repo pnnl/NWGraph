@@ -197,6 +197,7 @@ class ExhaleNode(object):
             self.return_type = None # string (void, int, etc)
             self.parameters = [] # list of strings: ["int", "int"] for foo(int x, int y)
             self.template = None # list of strings
+            self.has_parameter_collision = False # set True when overloads have same params
 
         if self.kind == "concept":
             self.template = None # list of strings
@@ -270,7 +271,11 @@ class ExhaleNode(object):
                 particular the signature must be included to distinguish overloads.
         """
         if self.kind == "function":
-            # TODO: breathe bug with templates and overloads, don't know what to do...
+            # For functions with parameter collisions (overloads that have same params
+            # but different templates), just return the name so Breathe shows ALL overloads
+            if getattr(self, 'has_parameter_collision', False):
+                return self.name
+            # Otherwise include parameters to disambiguate
             return "{name}({parameters})".format(
                 name=self.name,
                 parameters=", ".join(self.parameters)
@@ -2583,51 +2588,76 @@ class ExhaleRoot(object):
                 else:
                     parameter_warning_map[parameters_str] = [func]
 
-            # Inform user when specified breathe directive will create problems
+            # Mark functions with parameter collisions so breathe_identifier() can handle them
             for parameters_str in parameter_warning_map:
                 warn_functions = parameter_warning_map[parameters_str]
                 if len(warn_functions) > 1:
-                    sys.stderr.write(utils.critical(
-                        textwrap.dedent('''
-                            Current limitations in .. doxygenfunction:: directive affect your code!
-
-                            Right now there are {num} functions that will all be generating the
-                            *SAME* directive on different pages:
-
-                                .. doxygenfunction:: {breathe_identifier}
-
-                            This will result in all {num} pages documenting the same function, however
-                            which function is not known (possibly dependent upon order of Doxygen's
-                            index.xml?).  We hope to resolve this issue soon, and appreciate your
-                            understanding.
-
-                            The full function signatures as parsed by Exhale that will point to the
-                            same function:
-                        '''.format(
-                            num=len(warn_functions), breathe_identifier=warn_functions[0].breathe_identifier()
-                        ))                                                                        + \
-                        "".join(["\n- {0}".format(wf.full_signature()) for wf in warn_functions]) + \
-                        textwrap.dedent('''
-
-                            Unfortunately, there are no known workarounds at this time.  Your only options
-
-                            1. Ignore it, hopefully this will be resolved sooner rather than later.
-                            2. Only let Doxygen document *ONE* of these functions, e.g., by doing
-
-                                   #if !defined(DOXYGEN_SHOULD_SKIP_THIS)
-                                       // function declaration and/or implementation
-                                   #endif // DOXYGEN_SHOULD_SKIP_THIS
-
-                               Making sure that your Doxygen configuration has
-
-                                   PREDEFINED += DOXYGEN_SHOULD_SKIP_THIS
-
-                               (added by default when using "exhaleDoxygenStdin").
-
-                            Sorry :(
-
-                        ''')
+                    # Mark all functions in this collision group
+                    for func in warn_functions:
+                        func.has_parameter_collision = True
+                    # Note: These functions will get a simplified documentation page
+                    sys.stderr.write(utils.info(
+                        "Functions with parameter collision (simplified page): {0}\n".format(
+                            warn_functions[0].name
+                        )
                     ))
+
+    def _generateOverloadedFunctionPage(self, node):
+        '''
+        Creates a simplified reStructuredText document for overloaded functions.
+
+        Since Breathe's doxygenfunction directive cannot handle multiple overloads,
+        we generate a page that shows the signature and links to the source file.
+        '''
+        try:
+            with codecs.open(node.file_name, "w", "utf-8") as gen_file:
+                # generate a link label
+                link_declaration = ".. _{0}:".format(node.link_name)
+
+                # where is this defined
+                if node.def_in_file:
+                    defined_in = "Defined in :ref:`{where}`".format(where=node.def_in_file.link_name)
+                else:
+                    defined_in = ""
+
+                # Add the metadata if requested
+                if configs.pageLevelConfigMeta:
+                    gen_file.write("{0}\n\n".format(configs.pageLevelConfigMeta))
+
+                # Write header with full signature
+                gen_file.write(textwrap.dedent('''\
+                    {link}
+
+                    {heading}
+                    {heading_mark}
+
+                    {defined_in}
+
+                    .. rubric:: Signature
+
+                    .. code-block:: cpp
+
+                        {signature}
+
+                    .. note::
+
+                        This function has multiple template overloads. The Doxygen/Breathe toolchain
+                        cannot resolve which overload to display. See the source file for full documentation.
+
+                '''.format(
+                    link=link_declaration,
+                    heading=node.title,
+                    heading_mark=utils.heading_mark(
+                        node.title,
+                        configs.SECTION_HEADING_CHAR
+                    ),
+                    defined_in=defined_in,
+                    signature=node.full_signature()
+                )))
+        except:
+            utils.fancyError(
+                "Critical error while generating overloaded function file for [{0}].".format(node.file_name)
+            )
 
     def generateSingleNodeRST(self, node):
         '''
@@ -2644,6 +2674,12 @@ class ExhaleRoot(object):
         try:
             if (node.kind == 'concept'):
                 print("**** found concept")
+
+            # For functions with parameter collisions, generate a simpler page
+            # that doesn't use doxygenfunction (which can't handle overloads)
+            if node.kind == "function" and getattr(node, 'has_parameter_collision', False):
+                self._generateOverloadedFunctionPage(node)
+                return
 
 
             with codecs.open(node.file_name, "w", "utf-8") as gen_file:
