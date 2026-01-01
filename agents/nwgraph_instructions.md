@@ -76,7 +76,10 @@ All `#if 0` blocks removed from library headers:
   - Updated all packages with version pins using `~=` for patch compatibility
 - [x] Update `doc-src/sphinx/conf.py` if needed for new package versions
   - No changes needed - already using modern sphinxcontrib-bibtex API
-- [ ] Test documentation build with updated packages
+- [x] Test documentation build with updated packages
+  - Build succeeds with 444 warnings (mostly Doxygen @param mismatches)
+  - Requires: `python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
+  - Added `.venv/` to `.gitignore`
 
 **Updated package versions:**
 
