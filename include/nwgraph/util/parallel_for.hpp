@@ -22,15 +22,17 @@
 
 namespace nw {
 namespace graph {
-/// @tparam          Op The type of the operator.
-/// @tparam          It The type of the iterator.
-///
-/// @param           op The operator to evaluate.
-/// @param            i The iterator to evaluate.
-///
-/// @returns         op(i) if `i` is an integral type
-///       op(unpack(i)...) if `i` is a tuple type
-/// parallel_for_inner(*i) otherwise
+/**
+ * Inner evaluation function for parallel_for.
+ *
+ * @tparam Op The type of the operator.
+ * @tparam It The type of the iterator.
+ * @param op The operator to evaluate.
+ * @param i The iterator to evaluate.
+ * @return op(i) if `i` is an integral type,
+ *         op(unpack(i)...) if `i` is a tuple type,
+ *         parallel_for_inner(*i) otherwise.
+ */
 template <class Op, class It>
 auto parallel_for_inner(Op&& op, It&& i) {
   if constexpr (is_tuple_v<std::decay_t<It>>) {
@@ -46,13 +48,14 @@ auto parallel_for_inner(Op&& op, It&& i) {
   }
 }
 
-/// Apply an operator to a range sequentially.
-///
-/// @tparam       Range The type of the range.
-/// @tparam          Op The type of the operator.
-///
-/// @param        range The range to process.
-/// @param           op The operator to evaluate.
+/**
+ * Apply an operator to a range sequentially.
+ *
+ * @tparam Range The type of the range.
+ * @tparam Op The type of the operator.
+ * @param range The range to process.
+ * @param op The operator to evaluate.
+ */
 template <class Range, class Op>
 void parallel_for_sequential(Range&& range, Op&& op) {
   for (auto &&i = range.begin(), e = range.end(); i != e; ++i) {
@@ -60,20 +63,19 @@ void parallel_for_sequential(Range&& range, Op&& op) {
   }
 }
 
-/// Apply an operator to a range sequentially, reducing the result.
-///
-/// @tparam       Range The type of the range.
-/// @tparam          Op The type of the operator.
-/// @tparam      Reduce The type of the reduction.
-/// @tparam           T The reduced type.
-///
-/// @param        range The range to process.
-/// @param           op The operator to evaluate.
-/// @param       reduce The reduction.
-/// @param         init The initial value for the reduction.
-///
-/// @returns            The result of `reduce(op(i), ...)` for all `i` in
-///                     `range`.
+/**
+ * Apply an operator to a range sequentially, reducing the result.
+ *
+ * @tparam Range The type of the range.
+ * @tparam Op The type of the operator.
+ * @tparam Reduce The type of the reduction.
+ * @tparam T The reduced type.
+ * @param range The range to process.
+ * @param op The operator to evaluate.
+ * @param reduce The reduction.
+ * @param init The initial value for the reduction.
+ * @return The result of `reduce(op(i), ...)` for all `i` in `range`.
+ */
 template <class Range, class Op, class Reduce, class T>
 auto parallel_for_sequential(Range&& range, Op&& op, Reduce&& reduce, T init) {
   for (auto &&i = range.begin(), e = range.end(); i != e; ++i) {
@@ -82,18 +84,19 @@ auto parallel_for_sequential(Range&& range, Op&& op, Reduce&& reduce, T init) {
   return init;
 }
 
-/// BGL's parallel_for wrapper.
-///
-/// This performs a dynamic check on `range.is_divisible()` before calling into
-/// the parallel library, which we have found to be important for
-/// performance. If not `range.is_divisible()` then it will perform a
-/// synchronous for loop.
-///
-/// @tparam       Range The type of the range.
-/// @tparam          Op The type of the operator.
-///
-/// @param        range The range to process.
-/// @param           op The operator to evaluate.
+/**
+ * BGL's parallel_for wrapper.
+ *
+ * This performs a dynamic check on `range.is_divisible()` before calling into
+ * the parallel library, which we have found to be important for
+ * performance. If not `range.is_divisible()` then it will perform a
+ * synchronous for loop.
+ *
+ * @tparam Range The type of the range.
+ * @tparam Op The type of the operator.
+ * @param range The range to process.
+ * @param op The operator to evaluate.
+ */
 template <class Range, class Op>
 void parallel_for(Range&& range, Op&& op) {
   if (range.is_divisible()) {
@@ -104,24 +107,23 @@ void parallel_for(Range&& range, Op&& op) {
   }
 }
 
-/// BGL's parallel_for wrapper that supports reductions.
-///
-/// This performs the designated reduction over the range. It will perform the
-/// reduction in parallel if `range.is_divisible()`, otherwise it will perform a
-/// synchronous sequential reduction.
-///
-/// @tparam       Range The type of the range.
-/// @tparam          Op The type of the operator.
-/// @tparam      Reduce The type of the reduction.
-/// @tparam           T The reduced type.
-///
-/// @param        range The range to process.
-/// @param           op The operator to evaluate.
-/// @param       reduce The reduction.
-/// @param         init The initial value for the reduction.
-///
-/// @returns            The result of `reduce(op(i), ...)` for all `i` in
-///                     `range`.
+/**
+ * BGL's parallel_for wrapper that supports reductions.
+ *
+ * This performs the designated reduction over the range. It will perform the
+ * reduction in parallel if `range.is_divisible()`, otherwise it will perform a
+ * synchronous sequential reduction.
+ *
+ * @tparam Range The type of the range.
+ * @tparam Op The type of the operator.
+ * @tparam Reduce The type of the reduction.
+ * @tparam T The reduced type.
+ * @param range The range to process.
+ * @param op The operator to evaluate.
+ * @param reduce The reduction.
+ * @param init The initial value for the reduction.
+ * @return The result of `reduce(op(i), ...)` for all `i` in `range`.
+ */
 template <class Range, class Op, class Reduce, class T>
 auto parallel_reduce(Range&& range, Op&& op, Reduce&& reduce, T init) {
   if (range.is_divisible()) {

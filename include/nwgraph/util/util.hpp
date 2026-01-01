@@ -74,9 +74,11 @@ private:
   T& count;
 };
 
-/// Trivial function object to forward to std::max.
-///
-/// This is mainly useful in BGL as a convenience in reductions.
+/**
+ * Trivial function object to forward to std::max.
+ *
+ * This is mainly useful in BGL as a convenience in reductions.
+ */
 struct max {
   template <class U, class V>
   constexpr auto operator()(U&& lhs, V&& rhs) const {
@@ -84,9 +86,11 @@ struct max {
   }
 };
 
-/// Trivial function object to forward to std::min.
-///
-/// This is mainly useful in BGL as a convenience in reductions.
+/**
+ * Trivial function object to forward to std::min.
+ *
+ * This is mainly useful in BGL as a convenience in reductions.
+ */
 struct min {
   template <class U, class V>
   constexpr auto operator()(U&& lhs, V&& rhs) const {
@@ -94,13 +98,15 @@ struct min {
   }
 };
 
-/// This simple counter can be used as an output iterator.
-///
-/// It differs from the counting output iterator above as it provides an inline
-/// value for the count, which can simplify the point of use relative to the
-/// counting_output_iterator.
-///
-/// @tparam           T The underlying type of the counter.
+/**
+ * This simple counter can be used as an output iterator.
+ *
+ * It differs from the counting output iterator above as it provides an inline
+ * value for the count, which can simplify the point of use relative to the
+ * counting_output_iterator.
+ *
+ * @tparam T The underlying type of the counter.
+ */
 template <class T = std::size_t>
 struct counter    // : public std::iterator<std::output_iterator_tag, std::ptrdiff_t>
 {
@@ -137,22 +143,22 @@ struct counter    // : public std::iterator<std::output_iterator_tag, std::ptrdi
   }
 };
 
-/// Get and permute a subset of indices of a tuple (like get<0, 2, ...>(t))
-///
-/// @tparam       Is... The indices to select (can repeat).
-/// @tparam       Tuple The tuple type from which to select.
-/// @tparam          _2 Concept constraint that Tuple is a tuple.
-///
-/// @param            t The tuple from which to select.
-///
-/// @returns            A tuple composed of the proper elements from `t`.
+/**
+ * Get and permute a subset of indices of a tuple (like get<0, 2, ...>(t)).
+ *
+ * @tparam Is The indices to select (can repeat).
+ * @tparam Tuple The tuple type from which to select.
+ * @tparam _2 Concept constraint that Tuple is a tuple.
+ * @param t The tuple from which to select.
+ * @return A tuple composed of the proper elements from `t`.
+ */
 template <std::size_t... Is, class Tuple, class = std::enable_if_t<is_tuple_v<std::decay_t<Tuple>>>>
 constexpr auto select(Tuple&& t) -> std::tuple<std::tuple_element_t<Is, std::decay_t<Tuple>>...> {
   static_assert(((Is < std::tuple_size_v<std::decay_t<Tuple>>) && ...), "tuple index out of range during select");
   return { std::forward<std::tuple_element_t<Is, std::decay_t<Tuple>>>(std::get<Is>(std::forward<Tuple>(t)))... };
 }
 
-/// Meta-function to get the type of a tuple after selection (see `select`).
+/** Meta-function to get the type of a tuple after selection (see `select`). */
 template <class Tuple, std::size_t... Is>
 using select_t = decltype(select<Is...>(std::declval<Tuple>()));
 
@@ -204,14 +210,16 @@ auto property_ptr(Iterator& inner) {
   return &std::get<Idx>(*inner);
 }
 
-/// The log_2 of an integer is the inverse of pow2... essentially the number of
-/// left shift bits we need to shift out of the value to get to 0.
+/**
+ * The log_2 of an integer is the inverse of pow2... essentially the number of
+ * left shift bits we need to shift out of the value to get to 0.
+ */
 static inline constexpr int log2(uint64_t val) {
   assert(val);
   return ((sizeof(val) * 8 - 1) - __builtin_clzl(val));
 }
 
-/// http://stackoverflow.com/questions/3272424/compute-fast-log-base-2-ceiling
+/** http://stackoverflow.com/questions/3272424/compute-fast-log-base-2-ceiling */
 static inline constexpr int ceil_log2(uint32_t val) {
   assert(val);
   return ((sizeof(val) * 8 - 1) - __builtin_clz(val)) + (!!(val & (val - 1)));
@@ -222,13 +230,13 @@ static inline constexpr int ceil_log2(int32_t val) {
   return ceil_log2(uint32_t(val));
 }
 
-/// http://stackoverflow.com/questions/3272424/compute-fast-log-base-2-ceiling
+/** http://stackoverflow.com/questions/3272424/compute-fast-log-base-2-ceiling */
 static inline constexpr int ceil_log2(uint64_t val) {
   assert(val);
   return ((sizeof(val) * 8 - 1) - __builtin_clzl(val)) + (!!(val & (val - 1)));
 }
 
-/// Raise 2^exp, when exp is an integer.
+/** Raise 2^exp, when exp is an integer. */
 template <class T = uint64_t>
 static constexpr T pow2(int exp) {
   static_assert(std::is_integral_v<T>, "pow2 only returns integer types");
@@ -236,10 +244,12 @@ static constexpr T pow2(int exp) {
   return (T(1) << exp);
 }
 
-/// Create a blocked range pair.
-///
-/// Given a number N, and a number of blocks n, and an id, create a block range
-/// for this id.
+/**
+ * Create a blocked range pair.
+ *
+ * Given a number N, and a number of blocks n, and an id, create a block range
+ * for this id.
+ */
 template <class T, class U, class V>
 static constexpr std::pair<T, T> block(T N, U n, V id) {
   auto r     = N % n;                                 // remainder for block size

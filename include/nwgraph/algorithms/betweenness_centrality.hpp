@@ -207,12 +207,12 @@ std::vector<score_t> brandes_bc(const Graph& G, bool normalize = true) {
  * @tparam accum_t Type of path counts.
  * @tparam OuterExecutionPolicy Parallel execution policy type for outer loop of algorithm.  Default: std::execution::parallel_unsequenced_policy
  * @tparam InnerExecutionPolicy Parallel execution policy type for inner loop of algorithm.  Default: std::execution::parallel_unsequenced_policy
- * @param G Input graph.
- * @param normalize Flag indicating whether to normalize centrality scores relative to largest score.
+ * @param graph Input graph.
  * @param sources Vector of starting sources.
+ * @param threads Number of threads being used in computation. Used to compute number of bins in computation.
  * @param outer_policy Outer loop parallel execution policy.
  * @param inner_policy Inner loop parallel execution policy.
- * @param threads Number of threads being used in computation.  Used to compute number of bins in computation.
+ * @param normalize Flag indicating whether to normalize centrality scores relative to largest score.
  * @return Vector of centrality for each vertex.
  */
 template <class score_t, class accum_t, adjacency_list_graph Graph, class OuterExecutionPolicy = std::execution::parallel_unsequenced_policy,
@@ -336,11 +336,11 @@ auto brandes_bc(const Graph& graph, const std::vector<typename Graph::vertex_id_
  * @tparam accum_t Type of path counts.
  * @tparam OuterExecutionPolicy Parallel execution policy type for outer loop of algorithm.  Default: std::execution::parallel_unsequenced_policy
  * @tparam InnerExecutionPolicy Parallel execution policy type for inner loop of algorithm.  Default: std::execution::parallel_unsequenced_policy
- * @param G Input graph.
- * @param normalize Flag indicating whether to normalize centrality scores relative to largest score.
+ * @param graph Input graph.
+ * @param threads Number of threads being used in computation. Used to compute number of bins in computation.
  * @param outer_policy Outer loop parallel execution policy.
  * @param inner_policy Inner loop parallel execution policy.
- * @param threads Number of threads being used in computation.  Used to compute number of bins in computation.
+ * @param normalize Flag indicating whether to normalize centrality scores relative to largest score.
  * @return Vector of centrality for each vertex.
  */
 template <class score_t, class accum_t, adjacency_list_graph Graph, class OuterExecutionPolicy = std::execution::parallel_unsequenced_policy,

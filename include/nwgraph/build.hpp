@@ -544,14 +544,14 @@ auto relabel(edge_list_t& el, const Vector& perm, ExecutionPolicy&& policy = {})
 /**
  * @brief This function relabels edge list of bipartite graph. It only relabels one endpoint.
  *
- * @tparam idx, which end point to relabel
- * @tparam edge_list_t, edge list type
- * @tparam Vector, permutation array type
- * @tparam ExecutionPolicy, execution polity type
- * @param el, edge list
- * @param perm, permutation array of the IDs of vertices
- * @param policy, excution policy
- * @return the new IDs of the vertices after permutation
+ * @tparam idx Which end point to relabel.
+ * @tparam edge_list_t Edge list type.
+ * @tparam Vector Permutation array type.
+ * @tparam ExecutionPolicy Execution policy type.
+ * @param el Edge list.
+ * @param perm Permutation array of the IDs of vertices.
+ * @param policy Execution policy.
+ * @return The new IDs of the vertices after permutation.
  */
 template <int idx, edge_list_graph edge_list_t, class Vector, class ExecutionPolicy = default_execution_policy>
   requires(false == is_unipartite<typename edge_list_t::bipartite_graph_base>::value)
@@ -571,11 +571,11 @@ auto relabel(edge_list_t& el, const Vector& perm, ExecutionPolicy&& policy = {})
 /**
  * @brief This relabel function for edge list handles unipartite graph. It will relabel both endpoints.
  *
- * @tparam edge_list_t, edge list type
- * @tparam Vector, degree array type
- * @param el, edge list
- * @param direction, sort the degrees of vertices in which direction
- * @param degree, the degree array
+ * @tparam edge_list_t Edge list type.
+ * @tparam Vector Degree array type.
+ * @param el Edge list.
+ * @param direction Sort the degrees of vertices in which direction.
+ * @param degree The degree array.
  */
 template <edge_list_graph edge_list_t, class Vector = std::vector<int>>
   requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value)
@@ -590,13 +590,13 @@ void relabel_by_degree(edge_list_t& el, std::string direction = "ascending", con
 /**
  * @brief This function relabels edge list of either unipartite graph or bipartite graph.
  *
- * @tparam idx, which end point to relabel. Unipartite graph will ignore idx.
- * @tparam edge_list_t, edge list type
- * @tparam Vector, degree array type
- * @param el, edge list
- * @param direction, sort the degrees of vertices in which direction
- * @param degree, the degree array
- * @return the new IDs of the vertices after permutation
+ * @tparam idx Which end point to relabel. Unipartite graph will ignore idx.
+ * @tparam edge_list_t Edge list type.
+ * @tparam Vector Degree array type.
+ * @param el Edge list.
+ * @param direction Sort the degrees of vertices in which direction.
+ * @param degree The degree array.
+ * @return The new IDs of the vertices after permutation.
  */
 template <int idx, edge_list_graph edge_list_t, class Vector = std::vector<int>>
   requires(is_unipartite<typename edge_list_t::unipartite_graph_base>::value)

@@ -35,9 +35,9 @@ namespace graph {
 /**
  * @brief A sequential jaccard similarity algorithm using set intersection.
  * This version assumes each edge is a std::tuple<size_t, size_t, double>.
- * 
- * @tparam GraphT Type of graph.  Must meet the requirements of adjacency_list_graph concept.
- * @param G Input graph.
+ *
+ * @tparam GraphT Type of graph. Must meet the requirements of adjacency_list_graph concept.
+ * @param A Input graph.
  * @return size_t Jaccard similarity score.
  */
 template <typename GraphT>

@@ -32,6 +32,7 @@ namespace graph {
  * @tparam Weight A weight function for a given edge, returns a Distance.
  * @param graph Input graph.
  * @param source Starting vertex.
+ * @param weight Weight function that returns the edge weight.
  * @return std::vector<vertex_id_t<Graph>>, the predecessor list (the MST).
  */
 template <adjacency_list_graph Graph, class Distance, class Weight>

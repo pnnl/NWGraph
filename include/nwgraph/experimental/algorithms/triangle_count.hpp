@@ -133,19 +133,19 @@ size_t triangle_count_v3(const Graph& A) {
   }
   return triangles;
 }
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two-dimensional and is
-/// optimized (and only correct for) an upper-triangular graph. It uses explicit
-/// async threads to perform the parallelization.
-///
-/// @tparam RandomAccessIterator A random access BGL17 iterator type.
-///
-/// @param        first The beginning of the outer range.
-/// @param         last The end of the outer range.
-/// @param      threads The number of threads to use in the parallelization.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two-dimensional and is
+ * optimized (and only correct for) an upper-triangular graph. It uses explicit
+ * async threads to perform the parallelization.
+ *
+ * @tparam RandomAccessIterator A random access BGL17 iterator type.
+ * @param first The beginning of the outer range.
+ * @param last The end of the outer range.
+ * @param threads The number of threads to use in the parallelization.
+ * @return The number of triangles in the graph.
+ */
 template <typename RandomAccessIterator>
 [[gnu::noinline]] std::size_t triangle_count_v4(RandomAccessIterator first, RandomAccessIterator last, std::size_t threads = 1) {
   return triangle_count_async(threads, [&](std::size_t tid) {
@@ -160,20 +160,20 @@ template <typename RandomAccessIterator>
   });
 }
 
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two-dimensional and is
-/// optimized (and only correct for) an upper-triangular graph. It uses a
-/// blocked work distribution and uses explicit async threads for
-/// parallelization.
-///
-/// @tparam RandomAccessIterator A random access iterator type.
-///
-/// @param        first The beginning of the outer range.
-/// @param         last The end of the outer range.
-/// @param      threads The number of threads to use in the parallelization.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two-dimensional and is
+ * optimized (and only correct for) an upper-triangular graph. It uses a
+ * blocked work distribution and uses explicit async threads for
+ * parallelization.
+ *
+ * @tparam RandomAccessIterator A random access iterator type.
+ * @param first The beginning of the outer range.
+ * @param last The end of the outer range.
+ * @param threads The number of threads to use in the parallelization.
+ * @return The number of triangles in the graph.
+ */
 template <typename RandomAccessIterator>
 [[gnu::noinline]] std::size_t triangle_count_v5(RandomAccessIterator first, RandomAccessIterator last, std::size_t threads = 1) {
   return triangle_count_async(threads, [&](std::size_t tid) {
@@ -188,19 +188,19 @@ template <typename RandomAccessIterator>
   });
 }
 
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two-dimensional. It works on
-/// graphs that are either upper or lower triangular. It uses explicit async
-/// threads to perform the parallelization.
-///
-/// @tparam RandomAccessIterator A random access BGL17 iterator type.
-///
-/// @param        first The beginning of the outer range.
-/// @param         last The end of the outer range.
-/// @param      threads The number of threads to use in the parallelization.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two-dimensional. It works on
+ * graphs that are either upper or lower triangular. It uses explicit async
+ * threads to perform the parallelization.
+ *
+ * @tparam RandomAccessIterator A random access BGL17 iterator type.
+ * @param first The beginning of the outer range.
+ * @param last The end of the outer range.
+ * @param threads The number of threads to use in the parallelization.
+ * @return The number of triangles in the graph.
+ */
 template <typename RandomAccessIterator>
 [[gnu::noinline]] std::size_t triangle_count_v6(RandomAccessIterator first, RandomAccessIterator last, std::size_t threads = 1) {
   return triangle_count_async(threads, [&](std::size_t tid) {
@@ -214,28 +214,28 @@ template <typename RandomAccessIterator>
   });
 }
 
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two-dimensional. It works on
-/// graphs that are upper triangular, and uses a `std::for_each` for the outer
-/// loop decomposition.
-///
-/// This version takes an outer and inner execution policy. The outer policy is
-/// used to parallelize the `std::for_each` while the inner policy is used to
-/// parallelize the `std::set_intersection`. By default the `std::for_each` is
-/// parallel while the `std::set_intersection` is sequential.
-///
-/// @tparam       Graph The graph type (random-access range of ranges).
-/// @tparam OuterExecutionPolicy The parallel execution policy for the
-///                     `std::for_each` [default: `parallel_unsequenced_policy`]
-/// @tparam InnerExecutionPolicy The parallel execution policy for the
-///                     `std::set_intersection` [default: `sequenced_policy`].
-///
-/// @param            A The graph *(must be upper triangular)*.
-/// @param        outer The outer execution policy.
-/// @param        inner The inner execution policy.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two-dimensional. It works on
+ * graphs that are upper triangular, and uses a `std::for_each` for the outer
+ * loop decomposition.
+ *
+ * This version takes an outer and inner execution policy. The outer policy is
+ * used to parallelize the `std::for_each` while the inner policy is used to
+ * parallelize the `std::set_intersection`. By default the `std::for_each` is
+ * parallel while the `std::set_intersection` is sequential.
+ *
+ * @tparam Graph The graph type (random-access range of ranges).
+ * @tparam OuterExecutionPolicy The parallel execution policy for the
+ *         `std::for_each` [default: `parallel_unsequenced_policy`].
+ * @tparam InnerExecutionPolicy The parallel execution policy for the
+ *         `std::set_intersection` [default: `sequenced_policy`].
+ * @param A The graph *(must be upper triangular)*.
+ * @param outer The outer execution policy.
+ * @param inner The inner execution policy.
+ * @return The number of triangles in the graph.
+ */
 template <adjacency_list_graph Graph, class OuterExecutionPolicy = std::execution::parallel_unsequenced_policy,
           class InnerExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_v7(const Graph& A, OuterExecutionPolicy&& outer = {}, InnerExecutionPolicy inner = {}) {
@@ -250,27 +250,27 @@ template <adjacency_list_graph Graph, class OuterExecutionPolicy = std::executio
   return total_triangles;
 }
 
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two dimensional, uses basic
-/// `std::for_each` loop parallelism for the two loops, and supports a parallel
-/// inner set intersection. It works on either upper or lower triangular
-/// graphs.
-///
-/// @tparam       Graph The graph type (random-access range of ranges).
-/// @tparam OuterExecutionPolicy The parallel execution policy for the outer
-///                     `std::for_each` [default: `parallel_unsequenced_policy`]
-/// @tparam InnerExecutionPolicy The parallel execution policy for the inner
-///                     `std::for_each` [default: `parallel_policy`]
-/// @tparam SetExecutionPolicy The parallel execution policy for the
-///                     `std::set_intersection` [default: `sequenced_policy`].
-///
-/// @param            A The graph *(must be upper triangular)*.
-/// @param        outer The outer execution policy.
-/// @param        inner The inner execution policy.
-/// @param          set The set intersection execution policy.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two dimensional, uses basic
+ * `std::for_each` loop parallelism for the two loops, and supports a parallel
+ * inner set intersection. It works on either upper or lower triangular
+ * graphs.
+ *
+ * @tparam Graph The graph type (random-access range of ranges).
+ * @tparam OuterExecutionPolicy The parallel execution policy for the outer
+ *         `std::for_each` [default: `parallel_unsequenced_policy`].
+ * @tparam InnerExecutionPolicy The parallel execution policy for the inner
+ *         `std::for_each` [default: `parallel_policy`].
+ * @tparam SetExecutionPolicy The parallel execution policy for the
+ *         `std::set_intersection` [default: `sequenced_policy`].
+ * @param A The graph *(must be upper triangular)*.
+ * @param outer The outer execution policy.
+ * @param inner The inner execution policy.
+ * @param set The set intersection execution policy.
+ * @return The number of triangles in the graph.
+ */
 template <adjacency_list_graph Graph, class OuterExecutionPolicy = std::execution::parallel_unsequenced_policy,
           class InnerExecutionPolicy = std::execution::parallel_policy, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_v10(const Graph& A, OuterExecutionPolicy&& outer = {}, InnerExecutionPolicy&& inner = {},
@@ -284,24 +284,23 @@ template <adjacency_list_graph Graph, class OuterExecutionPolicy = std::executio
   return total_triangles;
 }
 
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two dimensional, is
-/// optimized (and only correct for) an upper-triangular graph, and uses the
-/// cyclic range adapter and a `parallel for` to process the outer dimension.
-///
-/// @precondition       The graph must be upper-triangular for this to work
-///                     properly.
-///
-/// @tparam       Graph The graph type (a random-access range of ranges).
-/// @tparam SetExecutionPolicy The parallel execution policy for the
-///                     `std::set_intersection` [default: `sequenced_policy`].
-///
-/// @param        graph The graph *(must be upper-triangular)*.
-/// @param       stride The maximum stride for the cyclic outer loop.
-/// @param          set The execution policy for the set intersection.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two dimensional, is
+ * optimized (and only correct for) an upper-triangular graph, and uses the
+ * cyclic range adapter and a `parallel for` to process the outer dimension.
+ *
+ * @pre The graph must be upper-triangular for this to work properly.
+ *
+ * @tparam Graph The graph type (a random-access range of ranges).
+ * @tparam SetExecutionPolicy The parallel execution policy for the
+ *         `std::set_intersection` [default: `sequenced_policy`].
+ * @param graph The graph *(must be upper-triangular)*.
+ * @param stride The maximum stride for the cyclic outer loop.
+ * @param set The execution policy for the set intersection.
+ * @return The number of triangles in the graph.
+ */
 template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_v12(const Graph& graph, int stride, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_reduce(
@@ -316,25 +315,25 @@ template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution:
       std::plus {}, 0.0);
 }
 
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two dimensional and uses the
-/// cyclic range adapter and a `parallel for` to process the outer dimension.
-///
-/// @note               This implementation is safe for both upper and lower
-///                     triangular matrices, but should be more efficient for
-///                     lower triangular matrices as the inner intersections
-///                     will be smaller.
-///
-/// @tparam       Graph The graph type (a random-access range of ranges).
-/// @tparam SetExecutionPolicy The parallel execution policy for the
-///                     `std::set_intersection` [default: `sequenced_policy`].
-///
-/// @param        graph The graph.
-/// @param       stride The maximum stride for the cyclic outer loop.
-/// @param          set The execution policy for the set intersection.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two dimensional and uses the
+ * cyclic range adapter and a `parallel for` to process the outer dimension.
+ *
+ * @note This implementation is safe for both upper and lower
+ *       triangular matrices, but should be more efficient for
+ *       lower triangular matrices as the inner intersections
+ *       will be smaller.
+ *
+ * @tparam Graph The graph type (a random-access range of ranges).
+ * @tparam SetExecutionPolicy The parallel execution policy for the
+ *         `std::set_intersection` [default: `sequenced_policy`].
+ * @param graph The graph.
+ * @param stride The maximum stride for the cyclic outer loop.
+ * @param set The execution policy for the set intersection.
+ * @return The number of triangles in the graph.
+ */
 template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_v13(const Graph& graph, int stride, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_reduce(
@@ -350,25 +349,25 @@ template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution:
       std::plus {}, 0.0);
 }
 
-/// One-dimensional triangle counting.
-///
-/// This version of triangle counting uses a one dimensional parallel-for loop
-/// over the edge range. This is identical to the the GAP verification code, but
-/// in parallel.
-///
-/// @note               This version produces the correct result for both upper
-///                     and lower triangular matrices, but should be somewhat
-///                     more efficient for lower triangular orders as the
-///                     set intersections should be more efficient.
-///
-/// @tparam       Graph The graph type (a random-access range of ranges).
-/// @tparam SetExecutionPolicy The parallel execution policy for the
-///                     `std::set_intersection` [default: `sequenced_policy`].
-///
-/// @param        graph The graph.
-/// @param          set The execution policy for the set intersection.
-///
-/// @return             The number of triangles in the graph.
+/**
+ * One-dimensional triangle counting.
+ *
+ * This version of triangle counting uses a one dimensional parallel-for loop
+ * over the edge range. This is identical to the the GAP verification code, but
+ * in parallel.
+ *
+ * @note This version produces the correct result for both upper
+ *       and lower triangular matrices, but should be somewhat
+ *       more efficient for lower triangular orders as the
+ *       set intersections should be more efficient.
+ *
+ * @tparam Graph The graph type (a random-access range of ranges).
+ * @tparam SetExecutionPolicy The parallel execution policy for the
+ *         `std::set_intersection` [default: `sequenced_policy`].
+ * @param graph The graph.
+ * @param set The execution policy for the set intersection.
+ * @return The number of triangles in the graph.
+ */
 template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_v14(const Graph& graph, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_reduce(
@@ -376,19 +375,19 @@ template <adjacency_list_graph Graph, class SetExecutionPolicy = std::execution:
 }
 
 #ifdef ONE_DIMENSIONAL_EDGE
-/// One dimensional triangle counting with an edge range.
-///
-/// This version of triangle counting assumes that the graph supports direct
-/// edge enumeration with an edge range that supports tbb's split interface.
-///
-/// @tparam       Graph The graph type (a random-access range of ranges).
-/// @tparam SetExecutionPolicy The parallel execution policy for the
-///                     `std::set_intersection` [default: `sequenced_policy`].
-///
-/// @param        graph The graph.
-/// @param          set The execution policy for the set intersection.
-///
-/// @return             The number of triangles in the graph.
+/**
+ * One dimensional triangle counting with an edge range.
+ *
+ * This version of triangle counting assumes that the graph supports direct
+ * edge enumeration with an edge range that supports tbb's split interface.
+ *
+ * @tparam Graph The graph type (a random-access range of ranges).
+ * @tparam SetExecutionPolicy The parallel execution policy for the
+ *         `std::set_intersection` [default: `sequenced_policy`].
+ * @param graph The graph.
+ * @param set The execution policy for the set intersection.
+ * @return The number of triangles in the graph.
+ */
 template <class Graph, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_edgerange(const Graph& graph, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_for(
@@ -396,21 +395,21 @@ template <class Graph, class SetExecutionPolicy = std::execution::sequenced_poli
       0ul);
 }
 
-/// One dimensional triangle counting with a cyclic edge range.
-///
-/// This version of triangle counting assumes that the graph supports direct
-/// edge enumeration with an edge range that has random-access iterators and
-/// supports tbb's split interface.
-///
-/// @tparam       Graph The graph type (a random-access range of ranges).
-/// @tparam SetExecutionPolicy The parallel execution policy for the
-///                     `std::set_intersection` [default: `sequenced_policy`].
-///
-/// @param        graph The graph.
-/// @param       stride The maximum stride for the cyclic outer loop.
-/// @param          set The execution policy for the set intersection.
-///
-/// @return             The number of triangles in the graph.
+/**
+ * One dimensional triangle counting with a cyclic edge range.
+ *
+ * This version of triangle counting assumes that the graph supports direct
+ * edge enumeration with an edge range that has random-access iterators and
+ * supports tbb's split interface.
+ *
+ * @tparam Graph The graph type (a random-access range of ranges).
+ * @tparam SetExecutionPolicy The parallel execution policy for the
+ *         `std::set_intersection` [default: `sequenced_policy`].
+ * @param graph The graph.
+ * @param stride The maximum stride for the cyclic outer loop.
+ * @param set The execution policy for the set intersection.
+ * @return The number of triangles in the graph.
+ */
 template <class Graph, class SetExecutionPolicy = std::execution::sequenced_policy>
 [[gnu::noinline]] std::size_t triangle_count_edgerange_cyclic(const Graph& graph, int stride, SetExecutionPolicy&& set = {}) {
   return nw::graph::parallel_for(
@@ -419,22 +418,22 @@ template <class Graph, class SetExecutionPolicy = std::execution::sequenced_poli
 }
 #endif
 
-/// Two-dimensional triangle counting.
-///
-/// This version of triangle counting is explicitly two-dimensional and is
-/// optimized (and only correct for) an upper-triangular graph. It uses explicit
-/// async threads to perform the parallelization.
-///
-/// This parallelization uses a blocked decomposition combined with a uniform
-/// edgesplit policy, where each block is assigned about the same number of
-/// edges.
-///
-/// @tparam       Graph The graph type (a random-access range of ranges);
-///
-/// @param        graph The graph.
-/// @param      threads The number of threads to use in the parallelization.
-///
-/// @returns            The number of triangles in the graph.
+/**
+ * Two-dimensional triangle counting.
+ *
+ * This version of triangle counting is explicitly two-dimensional and is
+ * optimized (and only correct for) an upper-triangular graph. It uses explicit
+ * async threads to perform the parallelization.
+ *
+ * This parallelization uses a blocked decomposition combined with a uniform
+ * edgesplit policy, where each block is assigned about the same number of
+ * edges.
+ *
+ * @tparam Graph The graph type (a random-access range of ranges).
+ * @param graph The graph.
+ * @param threads The number of threads to use in the parallelization.
+ * @return The number of triangles in the graph.
+ */
 template <adjacency_list_graph Graph>
 [[gnu::noinline]] std::size_t triangle_count_edgesplit_upper(const Graph& graph, std::size_t threads = 1) {
   return triangle_count_async(threads, [&](std::size_t tid) {

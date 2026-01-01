@@ -122,9 +122,9 @@ public:
     memset(this->sets_, -1, maxid_ * sizeof(T));
   }
   /**
-		 * Copy constructor.
-		 * @param[in] other, the other set
-		 */
+   * Copy constructor.
+   * @param other The other set to copy from.
+   */
   explicit disjoint_set(const disjoint_set<T>& other) : nsets_(other.nsets_), maxid_(other.maxid_) {
     if (std::is_unsigned<T>::value) {
       std::cerr << "only support signed number" << std::endl;
@@ -179,10 +179,10 @@ public:
       arr[i] = i;
   }
   /**
-		 * find_with_pathcompression is find with path compression.
-		 * @param u element
-		 * @return representative of set containing @u
-		 */
+   * Find with path compression.
+   * @param index Element to find.
+   * @return Representative of set containing the element.
+   */
   virtual T find_with_pathcompression(T index) {
     //element must be between 0 to size()
     if (index > this->maxid_ || index < 0) {
@@ -238,11 +238,11 @@ public:
     return t;
   }
   /**
-		 * Static wrapper for find.
-		 * @param[in] s, disjoint_set
-		 * @param[in] index
-		 * @return representative of set containing @u
-		 */
+   * Static wrapper for find.
+   * @param s The disjoint set.
+   * @param index Element to find.
+   * @return Representative of set containing the element.
+   */
   static T find(disjoint_set<T>& s, T index) {
     return s.find(index);
   }
@@ -547,11 +547,11 @@ public:
     return -find(u);
   }
   /**
-		 * Overload operator<< for format output.
-		 * @param os, outstream pointer
-		 * @param e, the edge to print
-		 * @return os, outstream pointer
-		 */
+   * Overload operator<< for formatted output.
+   * @param os Output stream.
+   * @param s The disjoint set to print.
+   * @return Output stream reference.
+   */
   friend inline std::ostream& operator<<(std::ostream& os, disjoint_set<T> const& s) {
     s.printDisjSets(os);
     return os;

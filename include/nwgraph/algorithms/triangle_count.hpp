@@ -55,18 +55,19 @@ size_t triangle_count(const GraphT& A) {
   return triangles;
 }
 
-/// Parallel triangle counting using `std::async`.
-///
-/// This version of triangle counting uses `threads` `std::async` launches to
-/// evaluate the passed `op` in parallel. The `op` will be provided the thread
-/// id, but should capture any other information required to perform the
-/// decomposed work.
-///
-/// @tparam          Op The type of the decomposed work.
-///
-/// @param           op The decomposed work for each `std::async`.
-///
-/// @return             The += reduced total of counted triangles.
+/**
+ * @brief Parallel triangle counting using `std::async`.
+ *
+ * This version of triangle counting uses `threads` `std::async` launches to
+ * evaluate the passed `op` in parallel. The `op` will be provided the thread
+ * id, but should capture any other information required to perform the
+ * decomposed work.
+ *
+ * @tparam Op The type of the decomposed work.
+ * @param threads Number of threads to use for parallel execution.
+ * @param op The decomposed work for each `std::async`.
+ * @return The += reduced total of counted triangles.
+ */
 template <class Op>
 std::size_t triangle_count_async(std::size_t threads, Op&& op) {
   // Launch the workers.

@@ -19,24 +19,26 @@
 
 namespace nw {
 namespace graph {
-/// The cyclic neighbor range adapter.
-///
-/// This adapter takes an underlying random access range and provides the
-/// ability to split the range into cycles for TBB. A cycle is a subset of the
-/// range such that each subsequent element is some stride from the previous
-/// element.
-///
-/// The cyclic range adapter is implemented recursively, that is that each time
-/// the range is split it simply returns two ranges that cover the previous
-/// range, each with twice the cycle and one offset by one element.
-///
-/// Key to the adapter is the _cutoff_, which is defined in terms of the maximum
-/// stride rather than in terms of the number of elements. A _cutoff_ of `1`
-/// implies that the range can't be split, while a `_cutoff_` of `n` means that
-/// the range can be split into up to `n` cycles.
-///
-/// @tparam    Iterator The type of the underlying range iterator (must be at
-///                     least random access).
+/**
+ * The cyclic neighbor range adapter.
+ *
+ * This adapter takes an underlying random access range and provides the
+ * ability to split the range into cycles for TBB. A cycle is a subset of the
+ * range such that each subsequent element is some stride from the previous
+ * element.
+ *
+ * The cyclic range adapter is implemented recursively, that is that each time
+ * the range is split it simply returns two ranges that cover the previous
+ * range, each with twice the cycle and one offset by one element.
+ *
+ * Key to the adapter is the _cutoff_, which is defined in terms of the maximum
+ * stride rather than in terms of the number of elements. A _cutoff_ of `1`
+ * implies that the range can't be split, while a `_cutoff_` of `n` means that
+ * the range can be split into up to `n` cycles.
+ *
+ * @tparam Iterator The type of the underlying range iterator (must be at
+ *         least random access).
+ */
 template <class Iterator>
 class cyclic_neighbor_range {
   static_assert(std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>);
@@ -83,17 +85,19 @@ public:
     }
   };
 
-  /// Return an iterator that points to the start of the cycle.
+  /** Return an iterator that points to the start of the cycle. */
   iterator begin() const {
     return { begin_, begin_ + cycle_, stride_ };
   }
 
-  /// Return an iterator that points to the end of the cycle.
-  ///
-  /// The end of the cycle is the first iterator in the cycle that is greater
-  /// than or equal to the end_ iterator in the underlying range. End iterators
-  /// for different cycles will be different even if the underlying range and
-  /// strides match, so tests should not be performed across cycles.
+  /**
+   * Return an iterator that points to the end of the cycle.
+   *
+   * The end of the cycle is the first iterator in the cycle that is greater
+   * than or equal to the end_ iterator in the underlying range. End iterators
+   * for different cycles will be different even if the underlying range and
+   * strides match, so tests should not be performed across cycles.
+   */
   iterator end() const {
     difference_type n = end_ - begin_ - cycle_;     // shifted span for cycle
     difference_type r = n % stride_;                // remainder in last stride
@@ -112,10 +116,12 @@ public:
     return size() == 0;
   }
 
-  /// Runtime check to see if the range is divisible.
-  ///
-  /// The range can be subdivided if its stride can be increased relative to the
-  /// cutoff.
+  /**
+   * Runtime check to see if the range is divisible.
+   *
+   * The range can be subdivided if its stride can be increased relative to the
+   * cutoff.
+   */
   bool is_divisible() const {
     return stride_ <= cutoff_;
   }
