@@ -26,8 +26,9 @@ namespace graph {
 
 enum three_colors { black, white, grey };
 
-template <typename Graph, typename Stack = std::stack<vertex_id_type>>
+template <typename Graph, typename Stack = std::stack<vertex_id_t<Graph>>>
 class dfs_range {
+  using vertex_id_type = vertex_id_t<Graph>;
 
 public:
   dfs_range(Graph& graph, vertex_id_type seed = 0) : the_graph_(graph), colors_(graph.end() - graph.begin(), white) {
@@ -133,8 +134,9 @@ private:
   std::vector<three_colors> colors_;
 };
 
-template <typename Graph, typename Stack = std::stack<vertex_id_type>>
+template <typename Graph, typename Stack = std::stack<vertex_id_t<Graph>>>
 class dfs_edge_range {
+  using vertex_id_type = vertex_id_t<Graph>;
 
 public:
   dfs_edge_range(Graph& graph, vertex_id_type seed = 0) : the_graph_(graph), colors_(graph.end() - graph.begin(), white) {

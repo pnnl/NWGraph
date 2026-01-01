@@ -99,7 +99,8 @@ All `#if 0` blocks removed from library headers:
 - [x] `doc-src/PowerPoint/` - Directory does not exist (already removed)
 
 ### Beautification
-- [ ] Use a better syntax highlighting scheme that reflects common practice for C++
+- [x] Use a better syntax highlighting scheme that reflects common practice for C++
+  - Changed from `emacs` to `friendly` Pygments style
 
 ---
 
