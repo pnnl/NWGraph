@@ -301,9 +301,103 @@ option(NWGRAPH_BUILD_EXAMPLES "Build example programs" OFF)
 ## Documentation Integration
 
 Examples should be referenced in:
-1. **Sphinx documentation**: Include examples in user guide
+1. **Sphinx documentation**: Include examples in user guide with full narrative
 2. **Doxygen**: Reference examples in API documentation
 3. **README.md**: Quick-start examples
+
+### Directory Structure for Documentation
+
+The `doc-src/sphinx/examples/` directory structure must mirror `examples/`:
+
+```
+doc-src/sphinx/examples/
+├── index.rst                  # Main examples index
+├── bgl-book/                  # BGL Book examples documentation
+│   ├── index.rst              # BGL Book chapter overview
+│   ├── ch3_toposort.rst       # Individual example pages
+│   ├── ch4_kevin_bacon.rst
+│   ├── ch4_loop_detection.rst
+│   ├── ch5_dijkstra.rst
+│   ├── ch5_bellman_ford.rst
+│   ├── ch6_kruskal.rst
+│   ├── ch6_prim.rst
+│   ├── ch7_connected.rst
+│   ├── ch7_strongly_connected.rst
+│   ├── ch8_maxflow.rst
+│   └── ch9_knights_tour.rst
+├── imdb/                      # IMDB examples documentation
+│   └── index.rst
+└── degrees/                   # Existing Six Degrees example
+    └── index.rst
+```
+
+### RST Page Structure for Each Example
+
+Each example documentation page should follow this structure:
+
+```rst
+.. SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
+.. SPDX-FileCopyrightText: 2022 University of Washington
+..
+.. SPDX-License-Identifier: BSD-3-Clause
+
+==================================
+Title (matching BGL Book Chapter)
+==================================
+
+Overview
+--------
+Brief description of the problem being solved and its applications.
+
+Algorithm Description
+--------------------
+Explanation of the algorithm, matching or paraphrasing the BGL book text.
+
+NWGraph Implementation
+---------------------
+How NWGraph implements this algorithm using modern C++20 idioms.
+
+Code Walkthrough
+---------------
+Key code sections with explanations using literalinclude.
+
+Running the Example
+------------------
+Instructions for building and running.
+
+Sample Output
+------------
+Expected output from running the example.
+
+Key NWGraph Features Demonstrated
+--------------------------------
+- Feature 1: description
+- Feature 2: description
+```
+
+### BGL Book Narrative Guidelines
+
+For BGL book examples, the documentation should:
+
+1. **Use BGL Book Text**: Reference or paraphrase the original explanations
+2. **Include Original Figures**: Use equivalent figures from the book where applicable
+3. **Maintain Pedagogical Order**: Present concepts in the same order as the book
+4. **Show Modern Implementation**: Demonstrate how NWGraph's C++20 idioms simplify BGL patterns
+5. **Credit the Source**: Include attribution to "The Boost Graph Library" book
+
+### Automatic Code Inclusion
+
+Use Sphinx's `literalinclude` directive to include code directly from source files:
+
+```rst
+.. literalinclude:: ../../../examples/bgl-book/ch5_dijkstra.cpp
+   :language: cpp
+   :linenos:
+   :lines: 1-30
+   :caption: File header and includes
+```
+
+This ensures documentation stays in sync with the actual code.
 
 ### Example Documentation Comments
 
