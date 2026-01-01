@@ -2,17 +2,25 @@
     white-space: normal !important;
 }
 
+/* C++ declaration styling - matches Pygments 'friendly' theme */
 .sig.sig-object.cpp {
-    background: #f2f2f2 !important;
-    color: #555555 !important;
-    border-top: 3px solid #777777 !important;
+    background: #f8f8f8 !important;
+    color: #333333 !important;
+    border-top: 3px solid #6aab73 !important;
 }
 
-.sig.sig-object.cpp .k .pre { color: #AA22FF; font-weight: bold; font-style: normal } /* Keyword */
-.kt { color: #00A000; font-weight: bold } /* Keyword.Type */
-.p { color: #666666 } /* Operator */
-.sig.sig-object.cpp .n .pre { color: #444444; }
-.sig.sig-object.cpp .sig-name.descname .n .pre { color: #0000FF; } 
-.sig.sig-object.cpp .sig-prename.descclassname .n .pre {  color: #0000FF;}
+/* Keywords (template, typename, const, etc.) - friendly green */
+.sig.sig-object.cpp .k .pre { color: #007020; font-weight: bold; }
 
+/* Types - friendly brown/rust */
+.sig.sig-object.cpp .kt { color: #902000; font-weight: bold; }
 
+/* Operators and punctuation */
+.sig.sig-object.cpp .p { color: #666666; }
+
+/* General names */
+.sig.sig-object.cpp .n .pre { color: #333333; }
+
+/* Function/class names - friendly blue */
+.sig.sig-object.cpp .sig-name.descname .n .pre { color: #0060B0; font-weight: bold; }
+.sig.sig-object.cpp .sig-prename.descclassname .n .pre { color: #0060B0; }
