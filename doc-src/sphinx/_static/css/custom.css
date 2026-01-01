@@ -2,25 +2,36 @@
     white-space: normal !important;
 }
 
-/* C++ declaration styling - matches Pygments 'friendly' theme */
-.sig.sig-object.cpp {
-    background: #f8f8f8 !important;
-    color: #333333 !important;
-    border-top: 3px solid #6aab73 !important;
+/* Inline code - dark royal blue to stand out */
+code.docutils.literal.notranslate,
+.docutils.literal,
+code.literal {
+    color: #1a3a6e !important;
+    background-color: #f5f5f5 !important;
+    border: 1px solid #d0d8e8 !important;
+    padding: 1px 4px !important;
+    font-size: 90%;
 }
 
-/* Keywords (template, typename, const, etc.) - friendly green */
-.sig.sig-object.cpp .k .pre { color: #007020; font-weight: bold; }
+/* C++ declaration styling - Doxygen/Eigen-style */
+.sig.sig-object.cpp {
+    background: #f5f5f5 !important;
+    color: #253555 !important;
+    border-top: 3px solid #5373b4 !important;
+}
 
-/* Types - friendly brown/rust */
-.sig.sig-object.cpp .kt { color: #902000; font-weight: bold; }
+/* Keywords (template, typename, const, etc.) - Doxygen keyword green */
+.sig.sig-object.cpp .k .pre { color: #008000; font-weight: normal; }
+
+/* Types - Doxygen type color */
+.sig.sig-object.cpp .kt { color: #604020; }
 
 /* Operators and punctuation */
-.sig.sig-object.cpp .p { color: #666666; }
+.sig.sig-object.cpp .p { color: #253555; }
 
-/* General names */
-.sig.sig-object.cpp .n .pre { color: #333333; }
+/* General names - Doxygen dark blue */
+.sig.sig-object.cpp .n .pre { color: #253555; }
 
-/* Function/class names - friendly blue */
-.sig.sig-object.cpp .sig-name.descname .n .pre { color: #0060B0; font-weight: bold; }
-.sig.sig-object.cpp .sig-prename.descclassname .n .pre { color: #0060B0; }
+/* Function/class names - Doxygen member name style */
+.sig.sig-object.cpp .sig-name.descname .n .pre { color: #253555; font-weight: bold; }
+.sig.sig-object.cpp .sig-prename.descclassname .n .pre { color: #253555; }
