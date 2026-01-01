@@ -1,5 +1,10 @@
 /**
  * @file reverse.hpp
+ * @brief Range adaptor for traversing paths in reverse order.
+ *
+ * Provides a range-based interface for iterating over a shortest path
+ * from destination back to source, following predecessor pointers.
+ * Useful for reconstructing paths after running Dijkstra or BFS.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -21,9 +26,23 @@
 namespace nw {
 namespace graph {
 
+/**
+ * @brief Range adaptor for reverse path traversal.
+ * @tparam path_edge The edge type stored in the path (must have predecessor field).
+ * @tparam vertex_id The vertex identifier type.
+ *
+ * Given a predecessor array from shortest path computation, iterates from
+ * a start vertex back to a stop vertex following predecessor pointers.
+ */
 template <typename path_edge, std::integral vertex_id>
 class reverse_path {
 public:
+  /**
+   * @brief Construct a reverse path iterator.
+   * @param path The predecessor array from shortest path computation.
+   * @param start The starting vertex (destination of original path).
+   * @param stop The ending vertex (source of original path).
+   */
   reverse_path(std::vector<path_edge>& path, vertex_id start, vertex_id stop) : path_(path), start_(start), stop_(stop) {
   }
 

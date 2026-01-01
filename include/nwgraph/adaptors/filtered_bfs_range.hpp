@@ -1,5 +1,12 @@
 /**
  * @file filtered_bfs_range.hpp
+ * @brief Filtered BFS range adaptor for target-directed search.
+ *
+ * Provides a BFS traversal that can skip edges based on a filter predicate
+ * and terminates early when a target vertex is found. Useful for:
+ * - Constrained shortest path problems
+ * - Reachability queries with edge restrictions
+ * - Max-flow augmenting path search
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -26,14 +33,31 @@ namespace nw {
 namespace graph {
 namespace filtered_bfs {
 
+/// @brief Vertex coloring for filtered BFS traversal.
 enum three_colors { black, white, grey };
 
+/**
+ * @brief Filtered BFS edge range with early termination.
+ * @tparam Graph The graph type.
+ * @tparam Queue The queue type for BFS frontier.
+ * @tparam Filter Predicate type for edge filtering.
+ *
+ * Performs BFS from source to target, skipping edges where filter returns true.
+ * Iteration stops when target is found or determined unreachable.
+ */
 template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>, typename Filter = std::function<bool()>>
 class filtered_bfs_edge_range {
 
 public:
   using vertex_id_type = vertex_id_t<Graph>;
 
+  /**
+   * @brief Construct a filtered BFS range.
+   * @param graph The graph to search.
+   * @param source Starting vertex.
+   * @param target Goal vertex (search terminates when found).
+   * @param filter Predicate returning true for edges to skip.
+   */
   filtered_bfs_edge_range(
       Graph& graph, vertex_id_type source, vertex_id_type target,
       Filter filter = [](vertex_id_type v, typename Graph::inner_iterator iter) { return false; })

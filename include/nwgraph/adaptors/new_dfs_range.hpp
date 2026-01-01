@@ -1,5 +1,13 @@
 /**
  * @file new_dfs_range.hpp
+ * @brief Alternative DFS range implementation with edge classification.
+ *
+ * Provides DFS range adaptors with additional features:
+ * - dfs_range: Vertex iteration in DFS order
+ * - dfs_edge_range: Edge iteration with tree/back edge classification
+ *
+ * The edge range yields tuples (is_tree_edge, source, target, ...) allowing
+ * algorithms to distinguish between tree edges and back edges.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington

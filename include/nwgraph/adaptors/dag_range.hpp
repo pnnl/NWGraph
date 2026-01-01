@@ -1,5 +1,11 @@
 /**
  * @file dag_range.hpp
+ * @brief Range adaptor for traversing directed acyclic graphs (DAGs).
+ *
+ * Provides a range-based interface for processing vertices in a DAG
+ * respecting dependency order. Vertices are yielded only when all their
+ * predecessors have been processed, making this ideal for task scheduling
+ * and parallel execution of dependent tasks.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -22,8 +28,19 @@
 namespace nw {
 namespace graph {
 
+/// @brief Flag indicating whether a vertex is ready for processing.
 enum ready_to_process { yes, no };
 
+/**
+ * @brief Range adaptor for DAG traversal with dependency tracking.
+ * @tparam Graph The graph type to traverse.
+ * @tparam Queue The queue type for ready vertices (default: std::queue).
+ *
+ * Traverses a DAG in topological order, yielding edges with a flag
+ * indicating whether the target vertex is ready (all predecessors done).
+ *
+ * @note Requires predecessor and successor lists to be precomputed.
+ */
 template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
 class dag_range {
 

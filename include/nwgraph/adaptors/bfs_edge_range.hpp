@@ -1,5 +1,11 @@
 /**
  * @file bfs_edge_range.hpp
+ * @brief Range adaptors for BFS edge traversal.
+ *
+ * Provides range-based interfaces for iterating over edges in BFS order:
+ * - bfs_edge_range: Basic BFS edge iteration yielding (source, target, ...)
+ * - bfs_edge_range2: Priority queue-based for Dijkstra-style traversal
+ * - bfs_edge_range3: Two-queue version for level-synchronized BFS
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -27,14 +33,28 @@ namespace nw {
 namespace graph {
 
 
+/// @brief Vertex coloring for BFS traversal.
 enum three_colors { black, white, grey };
 
+/**
+ * @brief Range adaptor for BFS edge traversal.
+ * @tparam Graph The graph type.
+ * @tparam Queue The queue type for BFS frontier.
+ *
+ * Iterates over tree edges in BFS order, yielding tuples of
+ * (source, target, edge_properties...).
+ */
 template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
 class bfs_edge_range {
 private:
   using vertex_id_type = vertex_id_t<Graph>;
 
 public:
+  /**
+   * @brief Construct a BFS edge range.
+   * @param graph The graph to traverse.
+   * @param seed Starting vertex (default: 0).
+   */
   bfs_edge_range(Graph& graph, vertex_id_type seed = 0) : the_graph_(graph), visited_(graph.size(), false) {
     visited_[seed] = true;
     Q_.push(seed);

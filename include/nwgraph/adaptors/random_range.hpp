@@ -1,5 +1,12 @@
 /**
  * @file random_range.hpp
+ * @brief Range adaptor for random walk traversal.
+ *
+ * Provides a range-based interface for performing random walks on a graph.
+ * At each step, a random neighbor is chosen uniformly. Useful for:
+ * - Graph sampling
+ * - Monte Carlo methods
+ * - PageRank approximation
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -23,9 +30,23 @@
 namespace nw {
 namespace graph {
 
+/**
+ * @brief Range adaptor for random walk on a graph.
+ * @tparam Graph The graph type.
+ *
+ * Generates a random walk starting from a seed vertex, selecting
+ * neighbors uniformly at random at each step.
+ */
 template <typename Graph>
 class random_range {
 public:
+  /**
+   * @brief Construct a random walk range.
+   * @param g The graph to walk on.
+   * @param length Maximum walk length (default: unlimited).
+   * @param first Starting vertex (default: 0).
+   * @param seed Random seed (default: 2049).
+   */
   random_range(Graph& g, size_t length = size_t(0xffffffffffffffffULL), vertex_id_t<Graph> first = 0, unsigned seed = 2049)
       : the_graph_(g), starting_vertex(first), length_(length), distribution(0, 1.0), generator(seed),
         dice(std::bind(distribution, generator)) {

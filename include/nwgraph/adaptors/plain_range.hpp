@@ -1,5 +1,12 @@
 /**
  * @file plain_range.hpp
+ * @brief Range adaptors for iterating over graph vertices.
+ *
+ * Provides range-based interfaces for vertex iteration:
+ * - plain_range: Iterate over vertex indices with TBB splittable support
+ * - plain_degree_range: Iterate over (vertex, degree) pairs
+ *
+ * These ranges support parallel execution with TBB.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -33,6 +40,14 @@
 namespace nw {
 namespace graph {
 
+/**
+ * @brief TBB-splittable range for parallel vertex iteration.
+ * @tparam Graph The graph type.
+ * @tparam Is Index sequence for tuple projection.
+ *
+ * Provides a range over vertex indices that can be split for parallel
+ * execution using TBB's parallel algorithms.
+ */
 template <class Graph, std::size_t... Is>
 class plain_range {
   static constexpr size_t cutoff_ = 16;
@@ -168,9 +183,20 @@ static inline plain_range<Graph, Is...> make_plain_range(Graph& g) {
   return { g };
 }
 
+/**
+ * @brief Range adaptor for iterating over vertices with their degrees.
+ * @tparam Graph The graph type.
+ *
+ * Provides iteration over (vertex_id, degree) pairs, useful for
+ * degree-based algorithms and analysis.
+ */
 template <typename Graph>
 class plain_degree_range {
 public:
+  /**
+   * @brief Construct a degree range over the given graph.
+   * @param g The graph to iterate over.
+   */
   plain_degree_range(Graph& g) : the_graph_(g) {
   }
 

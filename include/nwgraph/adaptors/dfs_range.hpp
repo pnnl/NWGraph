@@ -1,5 +1,21 @@
 /**
  * @file dfs_range.hpp
+ * @brief Range adaptors for depth-first search traversal.
+ *
+ * This file provides range-based interfaces for DFS traversal over graphs:
+ * - dfs_range: Iterates over vertices in DFS order
+ * - dfs_edge_range: Iterates over edges (as (source, target) pairs) in DFS order
+ *
+ * These adaptors allow DFS traversal using C++ range-based for loops:
+ * @code
+ * for (auto v : dfs_range(graph, start_vertex)) {
+ *     // Process vertex v in DFS order
+ * }
+ *
+ * for (auto [u, v] : dfs_edge_range(graph, start_vertex)) {
+ *     // Process tree edge (u, v) discovered during DFS
+ * }
+ * @endcode
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -24,13 +40,29 @@
 namespace nw {
 namespace graph {
 
+/// @brief Vertex coloring for DFS traversal (white=unvisited, grey=visiting, black=finished).
 enum three_colors { black, white, grey };
 
+/**
+ * @brief Range adaptor for depth-first search vertex traversal.
+ * @tparam Graph The graph type to traverse.
+ * @tparam Stack The stack type for DFS (default: std::stack).
+ *
+ * Provides a range-based interface for visiting vertices in DFS order.
+ * The traversal continues to unvisited components if the graph is disconnected.
+ *
+ * @note The range can only be traversed once (single-pass).
+ */
 template <typename Graph, typename Stack = std::stack<vertex_id_t<Graph>>>
 class dfs_range {
   using vertex_id_type = vertex_id_t<Graph>;
 
 public:
+  /**
+   * @brief Construct a DFS range starting from a seed vertex.
+   * @param graph The graph to traverse.
+   * @param seed Starting vertex for DFS (default: 0).
+   */
   dfs_range(Graph& graph, vertex_id_type seed = 0) : the_graph_(graph), colors_(graph.end() - graph.begin(), white) {
     Q_.push(seed);
     colors_[seed] = grey;
@@ -134,11 +166,26 @@ private:
   std::vector<three_colors> colors_;
 };
 
+/**
+ * @brief Range adaptor for depth-first search edge traversal.
+ * @tparam Graph The graph type to traverse.
+ * @tparam Stack The stack type for DFS (default: std::stack).
+ *
+ * Provides a range-based interface for visiting tree edges in DFS order.
+ * Each iteration yields a tuple representing the edge (source, target, ...).
+ *
+ * @note The range can only be traversed once (single-pass).
+ */
 template <typename Graph, typename Stack = std::stack<vertex_id_t<Graph>>>
 class dfs_edge_range {
   using vertex_id_type = vertex_id_t<Graph>;
 
 public:
+  /**
+   * @brief Construct a DFS edge range starting from a seed vertex.
+   * @param graph The graph to traverse.
+   * @param seed Starting vertex for DFS (default: 0).
+   */
   dfs_edge_range(Graph& graph, vertex_id_type seed = 0) : the_graph_(graph), colors_(graph.end() - graph.begin(), white) {
     Q_.push(seed);
     colors_[seed] = grey;

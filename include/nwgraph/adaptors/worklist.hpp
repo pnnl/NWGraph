@@ -1,5 +1,12 @@
 /**
  * @file worklist.hpp
+ * @brief Worklist range adaptors for iterative graph algorithms.
+ *
+ * Provides worklist-based range adaptors for algorithms that process
+ * vertices dynamically (e.g., label propagation, iterative refinement):
+ * - worklist_range: Sequential worklist with std::queue
+ * - tbbworklist_range: Concurrent worklist with TBB concurrent_queue
+ * - tbbworklist_range2: Bucketed concurrent worklist for priority-based processing
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -29,11 +36,19 @@
 namespace nw {
 namespace graph {
 
-//****************************************************************************
-//template<typename Graph, typename Workitem = vertex_id_type, typename Queue = tbb::concurrent_queue<Workitem> >
+/**
+ * @brief Sequential worklist range for iterative graph algorithms.
+ * @tparam Graph The graph type.
+ * @tparam Workitem The work item type (default: vertex_id_type).
+ * @tparam Queue The queue type (default: std::queue).
+ *
+ * Provides a range-based interface for processing work items from a queue.
+ * New work items can be added during iteration with push_back().
+ */
 template <typename Graph, typename Workitem = typename Graph::vertex_id_type, typename Queue = std::queue<Workitem>>
 class worklist_range {
 public:
+  /// @brief Construct a worklist range for the given graph.
   worklist_range(Graph& graph) : the_graph_(graph) {
   }
 
@@ -96,10 +111,19 @@ private:
   Queue  Q_;
 };
 
-//****************************************************************************
+/**
+ * @brief Concurrent worklist range using TBB concurrent_queue.
+ * @tparam Graph The graph type.
+ * @tparam Workitem The work item type (default: vertex_id_type).
+ * @tparam Queue The concurrent queue type (default: tbb::concurrent_queue).
+ *
+ * Thread-safe worklist for parallel iterative algorithms.
+ * Supports concurrent push_back() from multiple threads.
+ */
 template <typename Graph, typename Workitem = typename Graph::vertex_id_type, typename Queue = tbb::concurrent_queue<Workitem>>
 class tbbworklist_range {
 public:
+  /// @brief Construct a concurrent worklist range for the given graph.
   tbbworklist_range(Graph& graph) : the_graph_(graph) {
   }
 
@@ -177,10 +201,20 @@ private:
   Workitem dummy_;
 };
 
-//****************************************************************************
+/**
+ * @brief Bucketed concurrent worklist for priority-based processing.
+ * @tparam Graph The graph type.
+ * @tparam Workitem The work item type (default: vertex_id_type).
+ * @tparam Queue The concurrent queue type (default: tbb::concurrent_queue).
+ *
+ * Uses multiple buckets to provide approximate priority ordering.
+ * Work items are added to buckets by level, enabling delta-stepping-like
+ * behavior where lower-level items are processed first.
+ */
 template <typename Graph, typename Workitem = typename Graph::vertex_id_type, typename Queue = tbb::concurrent_queue<Workitem>>
 class tbbworklist_range2 {
 public:
+  /// @brief Construct a bucketed worklist range for the given graph.
   tbbworklist_range2(Graph& graph) : the_graph_(graph), buckets_(10000) {
   }
 

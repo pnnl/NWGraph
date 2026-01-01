@@ -1,5 +1,13 @@
 /**
  * @file back_edge_range.hpp
+ * @brief Range adaptor providing back-edge access for undirected graphs.
+ *
+ * For undirected graphs stored as directed adjacency lists, this adaptor
+ * provides efficient access to reverse (back) edges. Given edge (u,v),
+ * get_back_edge returns a reference to the corresponding edge (v,u).
+ *
+ * This is particularly useful for algorithms that need to update both
+ * directions of an undirected edge, such as max-flow or min-cut algorithms.
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -26,6 +34,13 @@
 namespace nw {
 namespace graph {
 
+/**
+ * @brief Range adaptor providing back-edge lookup for undirected graphs.
+ * @tparam Graph The graph type (must be an adjacency list).
+ *
+ * Wraps a directed adjacency list and provides efficient O(1) lookup
+ * of back edges after an initial O(E) preprocessing step.
+ */
 template <typename Graph>
 class back_edge_range {
   /// Transform a reference to a tuple to a tuple of references.

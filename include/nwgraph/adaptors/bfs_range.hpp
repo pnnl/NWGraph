@@ -1,5 +1,17 @@
 /**
  * @file bfs_range.hpp
+ * @brief Range adaptors for breadth-first search traversal.
+ *
+ * This file provides range-based interfaces for BFS traversal over graphs:
+ * - topdown_bfs_range: Traditional top-down BFS from a seed vertex
+ * - bottomup_bfs_range: Bottom-up BFS traversal
+ *
+ * These adaptors allow BFS traversal using C++ range-based for loops:
+ * @code
+ * for (auto v : topdown_bfs_range(graph, start_vertex)) {
+ *     // Process vertex v in BFS order
+ * }
+ * @endcode
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -24,9 +36,19 @@
 namespace nw {
 namespace graph {
 
+/// @brief Vertex processing status for BFS traversal.
 enum status { ready = 0, waiting, processed };
 
-//****************************************************************************
+/**
+ * @brief Range adaptor for top-down breadth-first search traversal.
+ * @tparam Graph The graph type to traverse.
+ * @tparam Queue The queue type for the BFS frontier (default: std::queue).
+ *
+ * Provides a range-based interface for traversing vertices in BFS order,
+ * starting from a seed vertex. Vertices are visited level by level.
+ *
+ * @note The range can only be traversed once (single-pass).
+ */
 template <typename Graph, typename Queue = std::queue<vertex_id_t<Graph>>>
 class topdown_bfs_range {
   using vertex_id_type = vertex_id_t<Graph>;
@@ -69,6 +91,11 @@ class topdown_bfs_range {
   }
 
 public:
+  /**
+   * @brief Construct a BFS range starting from a seed vertex.
+   * @param graph The graph to traverse.
+   * @param seed Starting vertex for BFS (default: 0).
+   */
   topdown_bfs_range(Graph& graph, vertex_id_type seed = 0) : graph_(graph), visited_(graph.size()), queue_() {
     init(seed);
     visit(seed);
@@ -115,6 +142,16 @@ public:
 };    // class topdown_bfs_range
 
 
+/**
+ * @brief Range adaptor for bottom-up breadth-first search traversal.
+ * @tparam Graph The graph type to traverse.
+ *
+ * Bottom-up BFS visits vertices by scanning all unvisited vertices and
+ * checking if they have a visited neighbor. This approach can be more
+ * efficient than top-down BFS for graphs with high average degree.
+ *
+ * @note The range can only be traversed once (single-pass).
+ */
 template <typename Graph>
 class bottomup_bfs_range {
   using vertex_id_type = vertex_id_t<Graph>;

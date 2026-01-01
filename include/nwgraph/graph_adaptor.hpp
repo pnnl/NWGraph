@@ -1,3 +1,14 @@
+/**
+ * @file graph_adaptor.hpp
+ * @brief Graph adaptor classes and utilities for building graphs from data.
+ *
+ * This file provides:
+ * - Type traits for detecting container capabilities (push_back, push_front)
+ * - The graph_adaptor class template for wrapping adjacency lists
+ * - Utility functions for constructing graphs from vertex and edge data
+ *
+ * @see graph_concepts.hpp for the concepts used to constrain graph types
+ */
 
 #include "nwgraph/graph_base.hpp"
 #include "nwgraph/graph_concepts.hpp"
@@ -9,6 +20,14 @@ namespace nw::graph {
 
 
 namespace has {
+
+/**
+ * @brief Type trait to detect if a container supports push_back.
+ * @tparam U The container type to check.
+ *
+ * This trait checks whether the expression v.push_back(t) is valid
+ * for a container of type U with its value_type.
+ */
 template <class U>
 class has_push_back {
 
@@ -30,6 +49,14 @@ public:
 };
 
 
+/**
+ * @brief Type trait to detect if a container supports push_front.
+ * @tparam W A template template parameter for the container type.
+ * @tparam U The element type of the container.
+ *
+ * This trait checks whether the expression v.push_front(t) is valid
+ * for a container of type W<U>.
+ */
 template <template <class> class W, class U>
 class has_push_front {
 
@@ -53,13 +80,26 @@ public:
 }    // namespace has
 
 
+/// @brief Variable template for has_push_back trait.
 template <class V>
 bool has_push_back_v = has::has_push_back<V>::value;
 
+/// @brief Variable template for has_push_front trait.
 template <template <class> class V, class T>
 bool has_push_front_v = has::has_push_front<V, T>::value;
 
 
+/**
+ * @brief Adaptor class that wraps an adjacency list to provide graph operations.
+ * @tparam T The underlying adjacency list type (must satisfy min_idx_adjacency_list or idx_adjacency_list).
+ *
+ * graph_adaptor provides a uniform interface for building and querying graphs
+ * backed by different container types. It supports dynamic edge insertion
+ * via push_back and push_front operations.
+ *
+ * @note The underlying type T must satisfy either min_idx_adjacency_list or
+ *       idx_adjacency_list concepts.
+ */
 template <class T>
   requires(min_idx_adjacency_list<T> || idx_adjacency_list<T>)
 class graph_adaptor : public unipartite_graph_base, public T {
@@ -70,16 +110,31 @@ class graph_adaptor : public unipartite_graph_base, public T {
   size_t num_edges_ { 0 };
 
 public:
+  /**
+   * @brief Construct a graph adaptor with N vertices.
+   * @param N The number of vertices (default: 0).
+   */
   explicit graph_adaptor(size_t N = 0) : base(N) {
   }
 
+  /// @brief Open the graph for edge insertion via push_back.
   void open_for_push_back() {
     graph_base::is_open = true;
   }
+
+  /// @brief Close the graph after edge insertion.
   void close_for_push_back() {
     graph_base::is_open = true;
   }
 
+  /**
+   * @brief Add an edge to vertex i with the given attributes.
+   * @tparam Attributes Types of edge attributes.
+   * @param i Source vertex index.
+   * @param attrs Edge attributes (target vertex, weights, etc.).
+   *
+   * If vertex i doesn't exist, the graph is automatically expanded.
+   */
   template <class... Attributes>
   void push_back(size_t i, Attributes... attrs) {
     if (i >= base::size()) {
@@ -90,6 +145,14 @@ public:
     base::operator[](i).emplace_back(attrs...);
   }
 
+  /**
+   * @brief Add an edge to the front of vertex i's adjacency list.
+   * @tparam Attributes Types of edge attributes.
+   * @param i Source vertex index.
+   * @param attrs Edge attributes (target vertex, weights, etc.).
+   *
+   * If vertex i doesn't exist, the graph is automatically expanded.
+   */
   template <class... Attributes>
   void push_front(size_t i, Attributes... attrs) {
     if (i >= base::size()) {
@@ -100,25 +163,42 @@ public:
     base::operator[](i).emplace_back(attrs...);
   }
 
+  /// @brief Return the number of vertices in the graph.
   auto size() const {
     return base::size();
   }
+
+  /// @brief Return the number of vertices in the graph.
   auto num_vertices() const {
     return base::size();
   }
+
+  /// @brief Return the number of edges in the graph.
   auto num_edgees() const {
     return num_edges_;
   }
 };
 
 
+/**
+ * @brief Extract edge properties from a tuple, skipping the first element.
+ * @tparam Ts Tuple element types.
+ * @param t Edge tuple (source, target, properties...).
+ * @return Tuple containing elements starting from index 1.
+ */
 template <typename... Ts>
 auto graph_edge(std::tuple<Ts...> t) {
   return nth_cdr<1>(t);
 }
 
 /**
- * Fill a plain graph from edge list
+ * @brief Fill a plain graph (no edge properties) from an edge list.
+ * @tparam EdgeList Type of the edge list container.
+ * @tparam Adjacency Type of the adjacency list to fill.
+ * @param edge_list The source edge list.
+ * @param adj The adjacency list to populate.
+ * @param directed If false, adds reverse edges for undirected graphs.
+ * @param idx Index direction: 0 for forward (u->v), 1 for reverse (v->u).
  */
 template <class EdgeList, class Adjacency>
 void push_back_plain_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
@@ -141,7 +221,13 @@ void push_back_plain_fill(const EdgeList& edge_list, Adjacency& adj, bool direct
 }
 
 /**
- * Fill a non-plain graph from edge list
+ * @brief Fill a graph with edge properties from an edge list.
+ * @tparam EdgeList Type of the edge list container.
+ * @tparam Adjacency Type of the adjacency list to fill.
+ * @param edge_list The source edge list with properties.
+ * @param adj The adjacency list to populate.
+ * @param directed If false, adds reverse edges for undirected graphs.
+ * @param idx Index direction: 0 for forward (u->v), 1 for reverse (v->u).
  */
 template <class EdgeList, class Adjacency>
 void push_back_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, size_t idx) {
@@ -165,9 +251,14 @@ void push_back_fill(const EdgeList& edge_list, Adjacency& adj, bool directed, si
 
 
 /**
- * Make an edge list with properties copied from original data, e.g., vector<tuple<size_t, size_t, props...>>
+ * @brief Create a plain edge list (no properties) by mapping vertex keys to indices.
+ * @tparam EdgeList The type of edge list to create.
+ * @tparam M Map type for vertex key to index mapping.
+ * @tparam E Range type of the input edges.
+ * @param map Vertex key to index mapping.
+ * @param edges Input edges with vertex keys.
+ * @return Edge list with vertex indices instead of keys.
  */
-//template <template <class> class I = std::vector, class M, std::ranges::random_access_range E>
 template <edge_list_graph EdgeList, class M, std::ranges::random_access_range E>
 auto make_plain_edges(M& map, const E& edges) {
   EdgeList index_edges;
@@ -180,7 +271,13 @@ auto make_plain_edges(M& map, const E& edges) {
 }
 
 /**
- * Make an edge list with properties copied from original data, e.g., vector<tuple<size_t, size_t, props...>>
+ * @brief Create an edge list with properties by mapping vertex keys to indices.
+ * @tparam EdgeList The type of edge list to create.
+ * @tparam M Map type for vertex key to index mapping.
+ * @tparam E Range type of the input edges.
+ * @param map Vertex key to index mapping.
+ * @param edges Input edges with vertex keys and properties.
+ * @return Edge list with vertex indices and copied properties.
  */
 template <edge_list_graph EdgeList, class M, std::ranges::random_access_range E>
 auto make_property_edges(M& map, const E& edges) {
@@ -194,8 +291,16 @@ auto make_property_edges(M& map, const E& edges) {
 }
 
 
-/**  
- *  Make a plain graph from data, e.g., vector<vector<index>>
+/**
+ * @brief Create a plain adjacency list graph from vertex and edge data.
+ * @tparam Graph The adjacency list graph type to create.
+ * @tparam V Range type for vertices.
+ * @tparam E Range type for edges.
+ * @param vertices The vertex collection (used to determine graph size).
+ * @param edges Edge list as pairs of vertex keys.
+ * @param directed If false, adds reverse edges for undirected graphs.
+ * @param idx Index direction: 0 for forward, 1 for reverse.
+ * @return A graph of type Graph populated from the edge data.
  */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::random_access_range E>
 auto make_plain_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
@@ -208,8 +313,16 @@ auto make_plain_graph(const V& vertices, const E& edges, bool directed = true, s
   return G;
 }
 
-/**  
- *  Make an index graph from data, e.g., vector<vector<tuple<index, index>>>
+/**
+ * @brief Create an index-based adjacency list graph from vertex and edge data.
+ * @tparam Graph The adjacency list graph type to create.
+ * @tparam V Range type for vertices.
+ * @tparam E Range type for edges.
+ * @param vertices The vertex collection.
+ * @param edges Edge list as pairs of vertex keys with index properties.
+ * @param directed If false, adds reverse edges for undirected graphs.
+ * @param idx Index direction: 0 for forward, 1 for reverse.
+ * @return A graph of type Graph populated from the edge data.
  */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::random_access_range E>
 auto make_index_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
@@ -224,8 +337,16 @@ auto make_index_graph(const V& vertices, const E& edges, bool directed = true, s
   return G;
 }
 
-/**  
- *  Make a property graph from data, e.g., vector<vector<tuple<index, properties...>>>
+/**
+ * @brief Create a property graph from vertex and edge data.
+ * @tparam Graph The adjacency list graph type to create.
+ * @tparam V Range type for vertices.
+ * @tparam E Range type for edges with properties.
+ * @param vertices The vertex collection.
+ * @param edges Edge list with vertex keys and edge properties.
+ * @param directed If false, adds reverse edges for undirected graphs.
+ * @param idx Index direction: 0 for forward, 1 for reverse.
+ * @return A graph of type Graph populated from the edge data with properties.
  */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::forward_range E>
 auto make_property_graph(const V& vertices, const E& edges, bool directed = true, size_t idx = 0) {
@@ -240,6 +361,18 @@ auto make_property_graph(const V& vertices, const E& edges, bool directed = true
   return G;
 }
 
+/**
+ * @brief Create a plain bipartite graph from two vertex sets and edges.
+ * @tparam Graph The adjacency list graph type to create.
+ * @tparam V1 Range type for left partition vertices.
+ * @tparam V2 Range type for right partition vertices.
+ * @tparam E Range type for edges.
+ * @param left_vertices Vertices in the left partition.
+ * @param right_vertices Vertices in the right partition.
+ * @param edges Edge list connecting left and right vertices.
+ * @param idx Index direction: 0 for left-to-right, 1 for right-to-left.
+ * @return A graph of type Graph representing one side of the bipartite structure.
+ */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V1, std::ranges::random_access_range V2,
           std::ranges::random_access_range E>
 auto make_plain_bipartite_graph(const V1& left_vertices, const V2& right_vertices, const E& edges, size_t idx = 0) {
@@ -253,6 +386,16 @@ auto make_plain_bipartite_graph(const V1& left_vertices, const V2& right_vertice
   return G;
 }
 
+/**
+ * @brief Create both adjacency structures for a bipartite graph.
+ * @tparam Graph The adjacency list graph type to create.
+ * @tparam V Range type for vertices.
+ * @tparam E Range type for edges.
+ * @param left_vertices Vertices in the left partition.
+ * @param right_vertices Vertices in the right partition.
+ * @param edges Edge list connecting left and right vertices.
+ * @return A tuple (G, H) where G is left-to-right and H is right-to-left.
+ */
 template <adjacency_list_graph Graph, std::ranges::random_access_range V, std::ranges::random_access_range E>
 auto make_bipartite_graphs(const V& left_vertices, const V& right_vertices, const E& edges) {
 
