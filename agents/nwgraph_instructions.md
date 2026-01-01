@@ -69,31 +69,31 @@ All `#if 0` blocks removed from library headers:
 
 ---
 
-## Priority 3: Documentation
+## Priority 3: Documentation ✅
 
 ### Update Sphinx and Documentation Dependencies
-- [ ] Update `doc-src/sphinx/requirements.txt` with current package versions
-  - `sphinxcontrib-bibtex<2.0.0` is outdated (current ~2.6)
-  - Add version pins to all packages for reproducibility
-- [ ] Update `doc-src/sphinx/conf.py` if needed for new package versions
+- [x] Update `doc-src/sphinx/requirements.txt` with current package versions
+  - Updated all packages with version pins using `~=` for patch compatibility
+- [x] Update `doc-src/sphinx/conf.py` if needed for new package versions
+  - No changes needed - already using modern sphinxcontrib-bibtex API
 - [ ] Test documentation build with updated packages
 
-**Packages needing version updates:**
+**Updated package versions:**
 
-| Package | Current | Issue |
+| Package | Version | Notes |
 |---------|---------|-------|
-| `sphinxcontrib-bibtex` | <2.0.0 | Very outdated (current ~2.6) |
-| `breathe` | unpinned | No version pin |
-| `exhale` | unpinned | No version pin |
-| `sphinx-rtd-theme` | unpinned | No version pin |
-| `sphinx-book-theme` | unpinned | No version pin |
-| `myst_parser` | unpinned | No version pin |
-| `jinja2-highlight` | unpinned | No version pin |
-| `sphinx_copybutton` | unpinned | No version pin |
+| `sphinxcontrib-bibtex` | ~=2.6.0 | Updated from <2.0.0 |
+| `breathe` | ~=4.36.0 | Added version pin |
+| `exhale` | ~=0.3.7 | Added version pin |
+| `sphinx-rtd-theme` | ~=3.0.0 | Added version pin |
+| `sphinx-book-theme` | ~=1.1.0 | Added version pin |
+| `myst-parser` | ~=4.0.0 | Added version pin |
+| `jinja2-highlight` | ~=0.6.0 | Added version pin |
+| `sphinx-copybutton` | ~=0.5.0 | Added version pin |
 
 ### Clean Up Old Documentation
-- [ ] Remove or archive `doc-src/sphinx/userguide/old/` (deprecated documentation)
-- [ ] Remove `doc-src/PowerPoint/top_down_nwgraph.pptx` (binary file in git)
+- [x] Renamed `doc-src/sphinx/userguide/old/` → `archive/` (pedagogical content with figures)
+- [x] `doc-src/PowerPoint/` - Directory does not exist (already removed)
 
 ---
 

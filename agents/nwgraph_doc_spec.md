@@ -54,7 +54,8 @@ doc-src/sphinx/
 │   ├── references.rst         # Bibliography
 │   ├── conclusion.rst         # Concluding remarks
 │   ├── footnote.rst           # Footnotes
-│   └── old/                   # Archived documentation
+│   ├── refs.bib               # Bibliography references
+│   └── archive/               # Archived docs with pedagogical figures
 │
 ├── examples/                  # Example code documentation
 │   ├── index.rst              # Examples index
@@ -173,14 +174,15 @@ Located in `examples/`:
 ### Prerequisites
 
 ```
-sphinxcontrib-bibtex<2.0.0
-jinja2-highlight
-myst_parser
-sphinx_copybutton
-breathe
-exhale
-sphinx-book-theme
-sphinx-rtd-theme
+# See doc-src/sphinx/requirements.txt for pinned versions
+sphinxcontrib-bibtex~=2.6.0
+breathe~=4.36.0
+exhale~=0.3.7
+sphinx-rtd-theme~=3.0.0
+sphinx-book-theme~=1.1.0
+myst-parser~=4.0.0
+jinja2-highlight~=0.6.0
+sphinx-copybutton~=0.5.0
 ```
 
 ### Build Commands
@@ -246,9 +248,8 @@ docker run -it -v ${NWMATH_ROOT}:/home/nwmath/NWmath amath583/pages
 
 ### Maintenance Issues
 
-1. **Old Documentation**: `userguide/old/` contains deprecated content
-2. **Stale Version Numbers**: `conf.py` may have outdated version
-3. **Broken References**: Some cross-references may be invalid
+1. **Stale Version Numbers**: `conf.py` may have outdated version
+2. **Broken References**: Some cross-references may be invalid
 
 ## Custom Extensions
 

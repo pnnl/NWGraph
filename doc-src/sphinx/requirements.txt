@@ -1,8 +1,22 @@
-sphinxcontrib-bibtex<2.0.0
-jinja2-highlight
-myst_parser
-sphinx_copybutton
-breathe
-exhale
-sphinx-book-theme
-sphinx-rtd-theme
+# Sphinx documentation dependencies
+# Pin versions for reproducible builds
+
+# BibTeX citations support
+sphinxcontrib-bibtex~=2.6.0
+
+# Doxygen integration
+breathe~=4.36.0
+exhale~=0.3.7
+
+# Themes
+sphinx-rtd-theme~=3.0.0
+sphinx-book-theme~=1.1.0
+
+# Markdown support
+myst-parser~=4.0.0
+
+# Syntax highlighting in Jinja2 templates
+jinja2-highlight~=0.6.0
+
+# Copy button for code blocks
+sphinx-copybutton~=0.5.0
