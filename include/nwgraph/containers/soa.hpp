@@ -7,6 +7,26 @@
  * This layout improves cache performance when accessing single fields
  * across many elements, which is common in graph algorithms.
  *
+ * Example usage:
+ * @code
+ * #include <nwgraph/containers/soa.hpp>
+ *
+ * // Create a struct-of-arrays with vertex ID and weight
+ * nw::graph::struct_of_arrays<size_t, double> edges;
+ * edges.push_back(1, 0.5);
+ * edges.push_back(2, 1.5);
+ * edges.push_back(3, 2.0);
+ *
+ * // Access as tuples
+ * for (auto&& [target, weight] : edges) {
+ *     std::cout << "-> " << target << " (weight: " << weight << ")" << std::endl;
+ * }
+ *
+ * // Access individual arrays (cache-efficient for single-field traversal)
+ * auto& targets = std::get<0>(edges);
+ * auto& weights = std::get<1>(edges);
+ * @endcode
+ *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
  *

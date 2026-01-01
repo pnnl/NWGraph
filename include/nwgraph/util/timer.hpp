@@ -7,6 +7,38 @@
  * - life_timer: RAII timer that prints elapsed time on destruction
  * - Type aliases: seconds_timer, ms_timer, us_timer
  *
+ * Example usage:
+ * @code
+ * #include <nwgraph/util/timer.hpp>
+ *
+ * // Basic timer usage
+ * nw::util::ms_timer timer;
+ * timer.start();
+ * // ... work to measure ...
+ * timer.stop();
+ * std::cout << "Elapsed: " << timer.elapsed() << " ms" << std::endl;
+ *
+ * // Lap timer (stop and get elapsed in one call)
+ * timer.start();
+ * // ... first phase ...
+ * double phase1 = timer.lap();
+ * // ... second phase ...
+ * double phase2 = timer.lap();
+ *
+ * // RAII timer - prints elapsed time when it goes out of scope
+ * {
+ *     nw::util::life_timer lt("BFS traversal");
+ *     // ... BFS code ...
+ * }  // Prints: "# [ BFS traversal ]: 123.45 ms"
+ *
+ * // Using ostream operator
+ * nw::util::ms_timer named_timer("Dijkstra");
+ * named_timer.start();
+ * // ... work ...
+ * named_timer.stop();
+ * std::cout << named_timer << std::endl;  // "(Dijkstra) 45.2 ms"
+ * @endcode
+ *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
  *

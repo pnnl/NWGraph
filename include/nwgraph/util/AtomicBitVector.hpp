@@ -7,6 +7,34 @@
  * memory ordering. Commonly used for visited arrays in BFS and similar
  * traversal algorithms.
  *
+ * Example usage:
+ * @code
+ * #include <nwgraph/util/AtomicBitVector.hpp>
+ *
+ * // Create a visited array for 1000 vertices
+ * nw::graph::AtomicBitVector<> visited(1000);
+ *
+ * // Thread-safe check-and-set pattern for BFS
+ * size_t vertex = 42;
+ * if (!visited.atomic_set(vertex)) {
+ *     // First thread to mark this vertex - process it
+ *     process_vertex(vertex);
+ * }
+ *
+ * // Check if a vertex was visited (relaxed ordering for read-only)
+ * if (visited.get(vertex)) {
+ *     // Already visited
+ * }
+ *
+ * // Iterate over all set bits (non-zero vertices)
+ * for (auto v : visited) {
+ *     std::cout << "Visited: " << v << std::endl;
+ * }
+ *
+ * // Clear all bits for reuse
+ * visited.clear();
+ * @endcode
+ *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
  *

@@ -1,5 +1,46 @@
 /**
  * @file adjacency.hpp
+ * @brief Compressed Sparse Row (CSR) graph representations.
+ *
+ * This file provides the primary graph container types for NWGraph:
+ * - adjacency<idx, Attributes...>: CSR representation for unipartite graphs
+ * - biadjacency<idx, Attributes...>: CSR representation for bipartite graphs
+ *
+ * The idx template parameter (0 or 1) controls the edge direction for
+ * construction from edge lists. Use idx=0 for outgoing edges, idx=1 for incoming.
+ *
+ * Example usage:
+ * @code
+ * #include <nwgraph/adjacency.hpp>
+ * #include <nwgraph/edge_list.hpp>
+ *
+ * // Create an edge list with 6 vertices
+ * nw::graph::edge_list<nw::graph::directedness::directed> edges(6);
+ * edges.push_back(0, 1);
+ * edges.push_back(0, 2);
+ * edges.push_back(1, 3);
+ * edges.push_back(2, 3);
+ * edges.close();
+ *
+ * // Build CSR adjacency from edge list (idx=0 for forward direction)
+ * nw::graph::adjacency<0> graph(edges);
+ *
+ * // Iterate over neighbors of vertex 0
+ * for (auto&& [neighbor] : graph[0]) {
+ *     std::cout << "0 -> " << neighbor << std::endl;
+ * }
+ *
+ * // Weighted graph example
+ * nw::graph::edge_list<nw::graph::directedness::directed, double> weighted_edges(6);
+ * weighted_edges.push_back(0, 1, 1.5);
+ * weighted_edges.push_back(0, 2, 2.0);
+ * weighted_edges.close();
+ *
+ * nw::graph::adjacency<0, double> weighted_graph(weighted_edges);
+ * for (auto&& [neighbor, weight] : weighted_graph[0]) {
+ *     std::cout << "0 -> " << neighbor << " (weight: " << weight << ")" << std::endl;
+ * }
+ * @endcode
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington

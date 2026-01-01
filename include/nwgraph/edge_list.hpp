@@ -1,5 +1,40 @@
 /**
  * @file edge_list.hpp
+ * @brief Edge list container for graph input and construction.
+ *
+ * Provides the index_edge_list class template and its convenience aliases
+ * for storing edges before converting to adjacency format. Edge lists are
+ * the primary input format for building CSR graphs.
+ *
+ * Example usage:
+ * @code
+ * #include <nwgraph/edge_list.hpp>
+ * #include <nwgraph/adjacency.hpp>
+ *
+ * // Create a directed edge list with 5 vertices
+ * nw::graph::edge_list<nw::graph::directedness::directed> edges(5);
+ * edges.push_back(0, 1);
+ * edges.push_back(0, 2);
+ * edges.push_back(1, 2);
+ * edges.push_back(2, 3);
+ * edges.push_back(3, 4);
+ * edges.close();  // Finalize the edge list
+ *
+ * // Create a weighted edge list
+ * nw::graph::edge_list<nw::graph::directedness::undirected, double> weighted(5);
+ * weighted.push_back(0, 1, 1.5);
+ * weighted.push_back(1, 2, 2.0);
+ * weighted.push_back(2, 3, 0.5);
+ * weighted.close();
+ *
+ * // Iterate over edges
+ * for (auto&& [u, v] : edges) {
+ *     std::cout << u << " -> " << v << std::endl;
+ * }
+ *
+ * // Convert to adjacency list
+ * nw::graph::adjacency<0> graph(edges);
+ * @endcode
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington

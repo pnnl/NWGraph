@@ -7,7 +7,47 @@
  * - The graph_adaptor class template for wrapping adjacency lists
  * - Utility functions for constructing graphs from vertex and edge data
  *
+ * Example usage:
+ * @code
+ * #include <nwgraph/graph_adaptor.hpp>
+ * #include <nwgraph/vovos.hpp>
+ * #include <vector>
+ * #include <string>
+ *
+ * // Build a graph from vertex labels and edge data
+ * std::vector<std::string> vertices = {"A", "B", "C", "D"};
+ * std::vector<std::tuple<std::string, std::string>> edges = {
+ *     {"A", "B"}, {"A", "C"}, {"B", "D"}, {"C", "D"}
+ * };
+ *
+ * // Create plain graph (no edge properties) from labeled data
+ * auto graph = nw::graph::make_plain_graph<nw::graph::vov<>>(vertices, edges);
+ *
+ * // Or with edge weights
+ * std::vector<std::tuple<std::string, std::string, double>> weighted_edges = {
+ *     {"A", "B", 1.5}, {"A", "C", 2.0}, {"B", "D", 1.0}
+ * };
+ * auto wgraph = nw::graph::make_property_graph<nw::graph::vov<double>>(
+ *     vertices, weighted_edges);
+ *
+ * // Use graph_adaptor for dynamic edge insertion
+ * nw::graph::graph_adaptor<nw::graph::vov<>> dyn_graph(4);
+ * dyn_graph.open_for_push_back();
+ * dyn_graph.push_back(0, 1);  // Add edge 0 -> 1
+ * dyn_graph.push_back(0, 2);  // Add edge 0 -> 2
+ * dyn_graph.close_for_push_back();
+ * @endcode
+ *
  * @see graph_concepts.hpp for the concepts used to constrain graph types
+ *
+ * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
+ * @copyright SPDX-FileCopyrightText: 2022 University of Washington
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * @authors
+ *   Andrew Lumsdaine
+ *
  */
 
 #include "nwgraph/graph_base.hpp"

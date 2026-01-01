@@ -1,5 +1,40 @@
 /**
  * @file vovos.hpp
+ * @brief Vector-of-vectors graph representation using struct-of-arrays edges.
+ *
+ * Provides vov (vector_of_vector_of_structs), a dynamic adjacency list
+ * representation where each vertex has a vector of neighbors stored as
+ * tuples. This format supports O(1) edge insertion but has slower traversal
+ * than CSR formats.
+ *
+ * Example usage:
+ * @code
+ * #include <nwgraph/vovos.hpp>
+ *
+ * // Create an unweighted graph with 5 vertices
+ * nw::graph::vov<> graph(5);
+ * graph.open_for_push_back();
+ * graph.push_back(0, 1);  // edge 0 -> 1
+ * graph.push_back(0, 2);  // edge 0 -> 2
+ * graph.push_back(1, 3);  // edge 1 -> 3
+ * graph.close_for_push_back();
+ *
+ * // Iterate over neighbors
+ * for (auto&& [neighbor] : graph[0]) {
+ *     std::cout << "0 -> " << neighbor << std::endl;
+ * }
+ *
+ * // Create a weighted graph
+ * nw::graph::vov<double> weighted(5);
+ * weighted.open_for_push_back();
+ * weighted.push_back(0, 1, 1.5);  // edge 0 -> 1 with weight 1.5
+ * weighted.push_back(0, 2, 2.0);  // edge 0 -> 2 with weight 2.0
+ * weighted.close_for_push_back();
+ *
+ * for (auto&& [neighbor, weight] : weighted[0]) {
+ *     std::cout << "0 -> " << neighbor << " (w=" << weight << ")" << std::endl;
+ * }
+ * @endcode
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
