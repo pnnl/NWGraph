@@ -43,8 +43,8 @@ std::vector<vertex_id_t<Graph>> prim(const Graph& graph, vertex_id_t<Graph> sour
   size_t N { num_vertices(graph) };
   assert(source < N);
 
-  std::vector<Distance> distance(N, std::numeric_limits<Distance>::max());
-  std::vector<Distance> predecessor(N, std::numeric_limits<Distance>::max());
+  std::vector<Distance>       distance(N, std::numeric_limits<Distance>::max());
+  std::vector<vertex_id_type> predecessor(N, std::numeric_limits<vertex_id_type>::max());
   std::vector<uint8_t>  finished(N, false);
   distance[source] = 0;
 
@@ -52,6 +52,8 @@ std::vector<vertex_id_t<Graph>> prim(const Graph& graph, vertex_id_t<Graph> sour
   using weighted_vertex = std::tuple<vertex_id_type, weight_t>;
 
   std::priority_queue<weighted_vertex, std::vector<weighted_vertex>, std::greater<weighted_vertex>> Q;
+
+  Q.push({source, 0});
 
   while (!Q.empty()) {
 
@@ -61,8 +63,9 @@ std::vector<vertex_id_t<Graph>> prim(const Graph& graph, vertex_id_t<Graph> sour
     if (finished[u]) {
       continue;
     }
+    finished[u] = true;
 
-    std::for_each(g[u].begin(), g[u].end(), [&](auto&& e) {
+    std::for_each(graph[u].begin(), graph[u].end(), [&](auto&& e) {
       auto v = target(graph, e);
       auto w = weight(e);
 

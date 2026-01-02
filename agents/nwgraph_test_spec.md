@@ -70,11 +70,11 @@ This section maps every header file to its corresponding test(s).
 
 | Header | Test File | Status |
 |--------|-----------|--------|
-| `betweenness_centrality.hpp` | `bk_test.cpp` | ❌ Disabled |
+| `betweenness_centrality.hpp` | `betweenness_centrality_test.cpp` | ✅ Active |
 | `bfs.hpp` | `bfs_test_0.cpp`, `bfs_test_1.cpp` | ✅ Active |
 | `boykov_kolmogorov.hpp` | `max_flow_test.cpp` | ❌ Disabled |
 | `connected_components.hpp` | `connected_component_test.cpp` | ✅ Active |
-| `dag_based_mis.hpp` | `dag_mis_test.cpp` | ✅ Active |
+| `dag_based_mis.hpp` | `mis_test.cpp` | ✅ Active |
 | `delta_stepping.hpp` | `delta_stepping_test.cpp` | ✅ Active |
 | `dijkstra.hpp` | `dijkstra_test.cpp` | ✅ Active |
 | `jaccard.hpp` | `jaccard_test.cpp` | ✅ Active |
@@ -85,7 +85,7 @@ This section maps every header file to its corresponding test(s).
 | `max_flow.hpp` | `max_flow_test.cpp` | ❌ Disabled |
 | `maximal_independent_set.hpp` | `mis_test.cpp` | ✅ Active |
 | `page_rank.hpp` | `page_rank_test.cpp` | ✅ Active |
-| `prim.hpp` | - | ❌ Header has bugs |
+| `prim.hpp` | `prim_test.cpp` | ✅ Active |
 | `spMatspMat.hpp` | `spMatspMat_test.cpp` | ✅ Active |
 | `triangle_count.hpp` | `tc_test.cpp` | ✅ Active |
 
@@ -168,10 +168,10 @@ Experimental parallel implementations - not unit tested as they mirror main algo
 - `size_test`
 
 ### Algorithm Tests
+- `betweenness_centrality_test`
 - `bfs_test_0`
 - `bfs_test_1`
 - `connected_component_test`
-- `dag_mis_test`
 - `delta_stepping_test`
 - `dijkstra_test`
 - `jaccard_test`
@@ -180,6 +180,7 @@ Experimental parallel implementations - not unit tested as they mirror main algo
 - `mis_test`
 - `new_dfs_test`
 - `page_rank_test`
+- `prim_test`
 - `spanning_tree_test`
 - `spMatspMat_test`
 - `tc_test`
@@ -281,14 +282,15 @@ In-memory karate graph for quick tests without file I/O.
 |----------|---------------|--------|----------|
 | Adaptors | 17 | 14 | 82% |
 | Core | 13 | 13 | 100% |
-| Algorithms | 18 | 14 | 78% |
+| Algorithms | 18 | 16 | 89% |
 | Containers | 4 | 4 | 100% |
 | Graphs | 3 | 3 | 100% |
 | I/O | 2 | 2 | 100% |
 | Utilities | 18 | 15 | 83% |
-| **Total** | **75** | **65** | **87%** |
+| **Total** | **75** | **67** | **89%** |
 
 Note: Some headers are not tested due to:
 - TBB-specific functionality (requires TBB for testing)
 - Broken headers (syntax errors or bugs)
 - Type definitions only (no testable behavior)
+- Empty/stub implementations (k_truss.hpp)
