@@ -41,7 +41,10 @@ EdgeListT kruskal(EdgeListT& E) {
 }
 /**
  * @brief A sequential Kruskal's algorithm to find a minimum spanning tree of an undirected edge-weighted graph.
- * 
+ *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 21.2: Kruskal's and Prim's Algorithms
+ *
  * @tparam EdgeListT the edge_list_graph graph type
  * @tparam Compare the comparison function type
  * @param E input edge list

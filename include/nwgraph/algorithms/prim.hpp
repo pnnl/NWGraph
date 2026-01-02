@@ -27,6 +27,10 @@ namespace graph {
 /**
  * @brief Prim's minimum spanning tree algorithm
  * A greedy algorithm for a weighted undirected graph
+ *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 21.2: Kruskal's and Prim's Algorithms
+ *
  * @tparam Graph Graph type.  Must meet requirements of adjacency_list_graph.
  * @tparam Distance Type of edge weight.
  * @tparam Weight A weight function for a given edge, returns a Distance.

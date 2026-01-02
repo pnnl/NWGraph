@@ -35,6 +35,9 @@
  * @file bfs.hpp
  *
  * Breadth-first search algorithms
+ *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 20.2: Breadth-First Search
  */
 
 

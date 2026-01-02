@@ -1,5 +1,12 @@
 /**
  * @file disjoint_set.hpp
+ * @brief Disjoint-set (union-find) data structure.
+ *
+ * Implements the disjoint-set data structure with union by rank and path compression
+ * optimizations. Used by Kruskal's MST algorithm and connected components.
+ *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 19: Data Structures for Disjoint Sets
  *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
@@ -9,7 +16,7 @@
  * @authors
  *   Andrew Lumsdaine
  *   Tony Liu
- *   Kevin Deweese	
+ *   Kevin Deweese
  *
  */
 

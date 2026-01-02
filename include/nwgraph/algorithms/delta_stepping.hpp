@@ -104,7 +104,12 @@ auto delta_stepping_m1(const Graph& graph, Id source, distance_t, Weight weight 
  *
  * Sequential implementation of delta-stepping single-source shortest-paths
  *
- * @verbatim embed:rst:inline :cite:`MEYER2003114`.@endverbatim 
+ * @verbatim embed:rst:inline :cite:`MEYER2003114`.@endverbatim
+ *
+ * @see Related: Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 22: Single-Source Shortest Paths
+ *      (Delta-stepping is a parallel variant related to Dijkstra and Bellman-Ford)
+ *
  * @tparam distance_t Type of distance measure.
  * @tparam Graph Type of input graph.  Must meet the requirements of adjacency_list_graph.
  * @tparam T Type of delta parameter.

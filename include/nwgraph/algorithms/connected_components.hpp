@@ -40,7 +40,11 @@ namespace graph {
  * Asserts search does not reach a vertex with a different component label.
  * If the graph is directed, it performs the search as if it was undirected.
  * Asserts every vertex is visited (degree-0 vertex should have own label).
- * 
+ *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 20.3: Depth-First Search (connected components)
+ *      and Chapter 20.5: Strongly Connected Components
+ *
  * @tparam Graph Type of graph. Must meet the requirements of adjacency_list_graph concept.
  * @tparam Graph Type of transpose graph. Must meet the requirements of adjacency_list_graph concept.
  * @tparam Vector Container type for CC labelings.

@@ -42,8 +42,11 @@ auto backedge_property(Edge edge) {
 }
 
 /**
- * @brief A sequetial algorithm to compute the max flow within a graph.
- * 
+ * @brief A sequential algorithm to compute the max flow within a graph.
+ *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 24: Maximum Flow
+ *
  * @tparam Dict the dictionary type for max flow
  * @tparam flowtype the type for flow value
  * @tparam Graph adjacency_list_graph graph type

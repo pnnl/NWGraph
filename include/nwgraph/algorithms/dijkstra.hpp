@@ -34,6 +34,9 @@ namespace graph {
 /**
  * Basic Dijkstra's single-source shortest-paths algorithm, based on bfs_edge_range adaptor.
  *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 22.3: Dijkstra's Algorithm
+ *
  * @tparam Type of the edge weights (distances).
  * @tparam Graph Type of the input graph.  Must meet the requirements of the adjacency_list_graph concept.
  * @param graph The input graph.

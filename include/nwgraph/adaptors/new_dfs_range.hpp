@@ -9,6 +9,9 @@
  * The edge range yields tuples (is_tree_edge, source, target, ...) allowing
  * algorithms to distinguish between tree edges and back edges.
  *
+ * @see Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms",
+ *      4th Edition (2022), Chapter 20.3: Depth-First Search
+ *
  * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute
  * @copyright SPDX-FileCopyrightText: 2022 University of Washington
  *
