@@ -1,0 +1,14 @@
+.. _exhale_function_util_8hpp_1aed9db4727268583745627d02a95eac42:
+
+Template Function nw::graph::get_target
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::get_target(InnerIter&)
+   :project: NWgraph

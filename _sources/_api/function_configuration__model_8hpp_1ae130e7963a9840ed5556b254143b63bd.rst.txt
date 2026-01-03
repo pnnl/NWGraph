@@ -1,0 +1,14 @@
+.. _exhale_function_configuration__model_8hpp_1ae130e7963a9840ed5556b254143b63bd:
+
+Function nw::graph::power_law_gen
+=================================
+
+- Defined in :ref:`file_include_nwgraph_generators_configuration_model.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::power_law_gen(double std::size_t)
+   :project: NWgraph

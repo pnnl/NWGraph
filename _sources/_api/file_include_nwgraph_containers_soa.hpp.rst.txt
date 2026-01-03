@@ -1,0 +1,138 @@
+
+.. _file_include_nwgraph_containers_soa.hpp:
+
+File soa.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_containers>` (``include/nwgraph/containers``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Structure-of-arrays container for cache-efficient tuple storage. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/containers/soa.hpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_containers_soa.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides struct_of_arrays, a container that stores tuples as separate contiguous arrays (SoA layout) rather than an array of tuples (AoS). This layout improves cache performance when accessing single fields across many elements, which is common in graph algorithms.
+
+Example usage: #include<:ref:`file_include_nwgraph_containers_soa.hpp`>
+
+//Createastruct-of-arrayswithvertexIDandweight
+:ref:`exhale_struct_structnw_1_1graph_1_1struct__of__arrays`edges;
+edges.push_back(1,0.5);
+edges.push_back(2,1.5);
+edges.push_back(3,2.0);
+
+//Accessastuples
+for(auto&&[target,weight]:edges){
+std::cout<<"->"<<target<<"(weight:"<<weight<<")"<<std::endl;
+}
+
+//Accessindividualarrays(cache-efficientforsingle-fieldtraversal)
+auto&targets=std::get<0>(edges);
+auto&weights=std::get<1>(edges);
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Kevin Deweese Luke D'Alessandro Tony Liu Scott McMillan 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``cassert``
+
+- ``execution``
+
+- ``fstream``
+
+- ``functional``
+
+- ``initializer_list``
+
+- ``iostream``
+
+- ``istream``
+
+- ``iterator`` (:ref:`file_include_nwgraph_util_permutation_iterator.hpp`)
+
+- ``nwgraph/util/arrow_proxy.hpp`` (:ref:`file_include_nwgraph_util_arrow_proxy.hpp`)
+
+- ``nwgraph/util/traits.hpp`` (:ref:`file_include_nwgraph_util_traits.hpp`)
+
+- ``nwgraph/util/tuple_hack.hpp`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``ostream``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``utility``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+- :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+- :ref:`namespace_std`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1struct__of__arrays`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator`
+
+- :ref:`exhale_class_classstd_1_1tuple__size_3_01nw_1_1graph_1_1struct__of__arrays_3_01Attributes_8_8_8_01_4_01_4`
+

@@ -1,0 +1,14 @@
+.. _exhale_enum_boykov__kolmogorov_8hpp_1a24b71fbce3e7347201413c06d7e79ccc:
+
+Enum tree_mem
+=============
+
+- Defined in :ref:`file_include_nwgraph_algorithms_boykov_kolmogorov.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::tree_mem
+   :project: NWgraph

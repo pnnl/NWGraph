@@ -1,0 +1,14 @@
+.. _exhale_variable_imdb-graph_8hpp_1a20b8125337af9bd0a0cb09b5b259c67c:
+
+Variable movie_movie_adjacency_list
+===================================
+
+- Defined in :ref:`file_include_nwgraph_graphs_imdb-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: movie_movie_adjacency_list
+   :project: NWgraph

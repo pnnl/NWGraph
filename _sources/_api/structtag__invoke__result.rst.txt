@@ -1,0 +1,26 @@
+.. _exhale_struct_structtag__invoke__result:
+
+Template Struct tag_invoke_result
+=================================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::conditional_t< is_tag_invocable_v< CPO, Args... >, _tag_invoke::defer< tag_invoke_result_t, CPO, Args... >, _tag_invoke::empty >``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: tag_invoke_result
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

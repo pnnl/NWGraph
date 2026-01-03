@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2bfs_8hpp_1a60116d33801a4bcdfe5612ccb9e63cd8:
+
+Template Function nw::graph::bfs_v6
+===================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::bfs_v6(const Graph&, typename graph_traits<Graph>::vertex_id_type)
+   :project: NWgraph

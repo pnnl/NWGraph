@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1graph__adaptor:
+
+Template Class graph_adaptor
+============================
+
+- Defined in :ref:`file_include_nwgraph_graph_adaptor.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public nw::graph::unipartite_graph_base``
+- ``public T``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::graph_adaptor
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

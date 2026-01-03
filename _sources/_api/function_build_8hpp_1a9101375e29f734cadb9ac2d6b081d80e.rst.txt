@@ -1,0 +1,18 @@
+.. _exhale_function_build_8hpp_1a9101375e29f734cadb9ac2d6b081d80e:
+
+Template Function nw::graph::relabel(edge_list_t&, const Vector&, ExecutionPolicy&&)
+====================================================================================
+
+Defined in :ref:`file_include_nwgraph_build.hpp`
+
+.. rubric:: Signature
+
+.. code-block:: cpp
+
+    template <int, edge_list_graph, class Vector, class ExecutionPolicy> auto nw::graph::relabel(edge_list_t&, const Vector&, ExecutionPolicy&&)
+
+.. note::
+
+    This function has multiple template overloads. The Doxygen/Breathe toolchain
+    cannot resolve which overload to display. See the source file for full documentation.
+

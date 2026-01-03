@@ -1,0 +1,36 @@
+.. _dir_include_nwgraph_adaptors:
+
+
+Directory adaptors
+==================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph/adaptors``
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_adaptors_back_edge_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_bfs_edge_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_bfs_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_cyclic_neighbor_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp`
+- :ref:`file_include_nwgraph_adaptors_dag_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_dfs_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_edge_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_filtered_bfs_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_new_dfs_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_plain_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_random_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_reverse.hpp`
+- :ref:`file_include_nwgraph_adaptors_splittable_range_adaptor.hpp`
+- :ref:`file_include_nwgraph_adaptors_vertex_range.hpp`
+- :ref:`file_include_nwgraph_adaptors_worklist.hpp`
+
+

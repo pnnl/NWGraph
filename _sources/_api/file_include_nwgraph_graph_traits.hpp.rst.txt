@@ -1,0 +1,110 @@
+
+.. _file_include_nwgraph_graph_traits.hpp:
+
+File graph_traits.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/graph_traits.hpp``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_graph_traits.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adaptors_back_edge_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_bfs_edge_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_bfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_dag_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_dfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_filtered_bfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_new_dfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_plain_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_random_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_vertex_range.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_prim.hpp`
+
+- :ref:`file_include_nwgraph_build.hpp`
+
+- :ref:`file_include_nwgraph_edge_list.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+- :ref:`file_include_nwgraph_vofos.hpp`
+
+- :ref:`file_include_nwgraph_volos.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1graph__traits`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_graph__traits_8hpp_1a1ef12b1270e442b62aa03d3ce92cd4f5`
+

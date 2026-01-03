@@ -1,0 +1,14 @@
+.. _exhale_function_namespacestd_1aeafccf9f5bf5c6fc7d8def89bcc88614:
+
+Template Function std::swap
+===========================
+
+- Defined in :ref:`file_include_nwgraph_util_tuple_hack.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: std::swap(std::tuple<Ts...>&&, std::tuple<Ts...>&&)
+   :project: NWgraph

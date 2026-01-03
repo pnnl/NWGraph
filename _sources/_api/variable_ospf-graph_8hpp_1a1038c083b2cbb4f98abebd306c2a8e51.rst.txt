@@ -1,0 +1,14 @@
+.. _exhale_variable_ospf-graph_8hpp_1a1038c083b2cbb4f98abebd306c2a8e51:
+
+Variable ospf_index_edge_list
+=============================
+
+- Defined in :ref:`file_include_nwgraph_graphs_ospf-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ospf_index_edge_list
+   :project: NWgraph

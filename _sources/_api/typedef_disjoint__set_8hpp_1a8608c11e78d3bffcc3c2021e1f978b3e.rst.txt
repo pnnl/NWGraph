@@ -1,0 +1,14 @@
+.. _exhale_typedef_disjoint__set_8hpp_1a8608c11e78d3bffcc3c2021e1f978b3e:
+
+Typedef nw::graph::vertex_id_type
+=================================
+
+- Defined in :ref:`file_include_nwgraph_util_disjoint_set.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::vertex_id_type
+   :project: NWgraph

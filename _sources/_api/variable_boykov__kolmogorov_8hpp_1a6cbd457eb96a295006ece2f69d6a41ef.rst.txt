@@ -1,0 +1,14 @@
+.. _exhale_variable_boykov__kolmogorov_8hpp_1a6cbd457eb96a295006ece2f69d6a41ef:
+
+Variable nw::graph::INFINITE_D
+==============================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_boykov_kolmogorov.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::INFINITE_D
+   :project: NWgraph

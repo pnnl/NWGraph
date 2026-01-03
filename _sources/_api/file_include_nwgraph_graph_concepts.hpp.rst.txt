@@ -1,0 +1,188 @@
+
+.. _file_include_nwgraph_graph_concepts.hpp:
+
+File graph_concepts.hpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/graph_concepts.hpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_graph_concepts.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``array``
+
+- ``concepts`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``iterator`` (:ref:`file_include_nwgraph_util_permutation_iterator.hpp`)
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/tag_invoke.hpp`` (:ref:`file_include_nwgraph_util_tag_invoke.hpp`)
+
+- ``ranges``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adaptors_edge_range.hpp`
+
+- :ref:`file_include_nwgraph_adjacency.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_dijkstra.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_kruskal.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_maximal_independent_set.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_prim.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+- :ref:`file_include_nwgraph_build.hpp`
+
+- :ref:`file_include_nwgraph_edge_list.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+- :ref:`file_include_nwgraph_graph_adaptor.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Concepts
+--------
+
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1adjacency__list__graph`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1degree__enumerable__graph`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1edge__list__c`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1edge__list__graph`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1graph`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1idx__adjacency__list`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1min__idx__adjacency__list`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1property__edge__list__c`
+
+- :ref:`exhale_concept_conceptnw_1_1graph_1_1vertex__list__c`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1graph__traits_3_01G_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1graph__traits_3_01Outer_3_01Inner_3_01Index_01_4_01_4_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1graph__traits_3_01Outer_3_01Inner_3_01std_1_1tuple_3_01Index_00_01Attributes_8_8_8_01_4_01_4_01_4_01_4`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_graph__concepts_8hpp_1aed80825060c859f5b33c22b3d16fcee1`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1a5fa81ae322acdbdc86c6487cd2c1d34f`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1a8a5c0fcf9e9dea5327101c0f19084114`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1a81445035e7a2792a74aad0364149064b`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1aa618a115e1934ae5346a47e09173c5d3`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1aa3940a134507f8eb097bec103f4d4964`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1a1aa3de3ee23d400c5adfbf0b69052e4d`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1a59ee2c16a5b381a01c7bb67fc85c3769`
+
+- :ref:`exhale_function_graph__concepts_8hpp_1acccaa3b00991e891bb8a97290f2ad91f`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1ac3ceab8ce00af99a388de8188208ec36`
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1a9643d7168d066d5ef64f922cb4f71645`
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1a631084a919981e6fab7f3f9aa87ddafa`
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1a34d86d1f46fb80fa71d243ae82423ed3`
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1a82fba6d5e63a665eb001794542df9142`
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1abf8966021cb7c95c5aab179fd3cbf2a4`
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1ad2869b2f8b629c22701be6bca243361c`
+
+- :ref:`exhale_typedef_graph__concepts_8hpp_1a22841535e0eeb0afd67ac37de39d2207`
+

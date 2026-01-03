@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a338442ee1967d47ab7f2e4c3cccf75dd:
+
+Define MM_MAX_LINE_LENGTH
+=========================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_MAX_LINE_LENGTH
+   :project: NWgraph

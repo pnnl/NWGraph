@@ -1,0 +1,143 @@
+
+.. _file_include_nwgraph_graph_adaptor.hpp:
+
+File graph_adaptor.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Graph adaptor classes and utilities for building graphs from data. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/graph_adaptor.hpp``)
+--------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_graph_adaptor.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+This file provides:
+
+- Type traits for detecting container capabilities (push_back, push_front)
+
+- The graph_adaptor class template for wrapping adjacency lists
+
+- Utility functions for constructing graphs from vertex and edge data
+
+
+
+Example usage: #include<:ref:`file_include_nwgraph_graph_adaptor.hpp`>
+#include<:ref:`file_include_nwgraph_vovos.hpp`>
+#include<vector>
+#include<string>
+
+//Buildagraphfromvertexlabelsandedgedata
+std::vector<std::string>vertices={"A","B","C","D"};
+std::vector<std::tuple<std::string,std::string>>edges={
+{"A","B"},{"A","C"},{"B","D"},{"C","D"}
+};
+
+//Createplaingraph(noedgeproperties)fromlabeleddata
+autograph=nw::graph::make_plain_graph<nw::graph::vov<>>(vertices,edges);
+
+//Orwithedgeweights
+std::vector<std::tuple<std::string,std::string,double>>weighted_edges={
+{"A","B",1.5},{"A","C",2.0},{"B","D",1.0}
+};
+autowgraph=nw::graph::make_property_graph<nw::graph::vov<double>>(
+vertices,weighted_edges);
+
+//Usegraph_adaptorfordynamicedgeinsertion
+:ref:`exhale_class_classnw_1_1graph_1_1graph__adaptor`>dyn_graph(4);
+dyn_graph.open_for_push_back();
+dyn_graph.push_back(0,1);//Addedge0->1
+dyn_graph.push_back(0,2);//Addedge0->2
+dyn_graph.close_for_push_back();
+
+
+:ref:`file_include_nwgraph_graph_concepts.hpp` for the concepts used to constrain graph types
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``nwgraph/graph_base.hpp`` (:ref:`file_include_nwgraph_graph_base.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+- :ref:`namespace_nw__graph__has`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1graph__adaptor`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1has_1_1has__push__back`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1has_1_1has__push__front`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_graph__adaptor_8hpp_1ad76565691061e061d147b34c6be2bc43`
+
+- :ref:`exhale_function_graph__adaptor_8hpp_1aac516c4664aac069c58a24d692bc720a`
+
+- :ref:`exhale_function_graph__adaptor_8hpp_1a4a0a65115dffebbc71d63a4ae7f13801`
+
+- :ref:`exhale_function_graph__adaptor_8hpp_1a0dea042932802f2ea9c45647a752bcb0`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_graph__adaptor_8hpp_1ae7aa2f21acac901de62aecbdd02126bb`
+
+- :ref:`exhale_variable_graph__adaptor_8hpp_1ad37bc02c6c7bae294d3f1518a420737c`
+

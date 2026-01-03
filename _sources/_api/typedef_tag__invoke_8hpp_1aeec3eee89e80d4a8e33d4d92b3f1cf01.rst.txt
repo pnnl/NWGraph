@@ -1,0 +1,14 @@
+.. _exhale_typedef_tag__invoke_8hpp_1aeec3eee89e80d4a8e33d4d92b3f1cf01:
+
+Typedef _tag_invoke::tag_invoke_result_t
+========================================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: _tag_invoke::tag_invoke_result_t
+   :project: NWgraph

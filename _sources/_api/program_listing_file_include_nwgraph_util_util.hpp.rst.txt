@@ -1,0 +1,223 @@
+
+.. _program_listing_file_include_nwgraph_util_util.hpp:
+
+Program Listing for File util.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_util_util.hpp>` (``include/nwgraph/util/util.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_UTIL_HPP
+   #define NW_GRAPH_UTIL_HPP
+   
+   #include <algorithm>
+   #include <atomic>
+   #include <cassert>
+   #include <cstddef>
+   #include <functional>
+   #include <iterator>
+   #include <numeric>
+   #include <tuple>
+   #include <type_traits>
+   
+   #include "nwgraph/util/traits.hpp"
+   
+   namespace nw {
+   namespace graph {
+   
+   template <typename T = std::size_t>
+   
+   class counting_output_iterator    // : public std::iterator<std::output_iterator_tag, std::ptrdiff_t>
+   {
+   public:
+     using iterator_category = std::output_iterator_tag;
+     using value_type        = void;
+     using difference_type   = void;
+     using pointer           = void;
+     using reference         = void;
+   
+     counting_output_iterator(T& count) : count { count } {
+     }
+   
+     counting_output_iterator& operator++() {
+       return *this;
+     }
+     counting_output_iterator& operator++(int) {
+       return *this;
+     }
+     counting_output_iterator& operator*() {
+       return *this;
+     }
+     counting_output_iterator& operator[](std::ptrdiff_t) {
+       return *this;
+     }
+   
+     // counting_output_iterator& operator=(const counting_output_iterator&) = delete;
+     // counting_output_iterator& operator=(counting_output_iterator&&) = delete;
+   
+     template <typename U>
+     auto& operator=(U) {
+       count++;
+       return *this;
+     }
+   
+     auto get_count() {
+       return count;
+     }
+   
+   private:
+     T& count;
+   };
+   
+   struct max {
+     template <class U, class V>
+     constexpr auto operator()(U&& lhs, V&& rhs) const {
+       return std::max(std::forward<U>(lhs), std::forward<V>(rhs));
+     }
+   };
+   
+   struct min {
+     template <class U, class V>
+     constexpr auto operator()(U&& lhs, V&& rhs) const {
+       return std::min(std::forward<U>(lhs), std::forward<V>(rhs));
+     }
+   };
+   
+   template <class T = std::size_t>
+   struct counter    // : public std::iterator<std::output_iterator_tag, std::ptrdiff_t>
+   {
+     using iterator_category = std::output_iterator_tag;
+     using value_type        = void;
+     using difference_type   = void;
+     using pointer           = void;
+     using reference         = void;
+   
+   
+     T count;
+   
+     counter(T init = {}) : count(init) {
+     }
+   
+     constexpr operator T() const {
+       return count;
+     }
+   
+     counter& operator++() {
+       return *this;
+     }
+     counter& operator++(int) {
+       return *this;
+     }
+     counter& operator*() {
+       return *this;
+     }
+   
+     template <class U>
+     decltype(auto) operator=(U) {
+       ++count;
+       return *this;
+     }
+   };
+   
+   template <std::size_t... Is, class Tuple, class = std::enable_if_t<is_tuple_v<std::decay_t<Tuple>>>>
+   constexpr auto select(Tuple&& t) -> std::tuple<std::tuple_element_t<Is, std::decay_t<Tuple>>...> {
+     static_assert(((Is < std::tuple_size_v<std::decay_t<Tuple>>) && ...), "tuple index out of range during select");
+     return { std::forward<std::tuple_element_t<Is, std::decay_t<Tuple>>>(std::get<Is>(std::forward<Tuple>(t)))... };
+   }
+   
+   template <class Tuple, std::size_t... Is>
+   using select_t = decltype(select<Is...>(std::declval<Tuple>()));
+   
+   template <typename vertex_id_type>
+   struct null_vertex_s {
+     constexpr static vertex_id_type value = std::numeric_limits<vertex_id_type>::max();
+   };
+   
+   template <typename vertex_id_type>
+   inline constexpr auto null_vertex_v() {
+     return null_vertex_s<vertex_id_type>::value;
+   }
+   
+   template <typename InputIterator, typename RandomAccessIterator,
+             typename = std::enable_if_t<nw::graph::is_tuple_v<typename InputIterator::value_type>>>
+   void histogram(InputIterator first, InputIterator last, RandomAccessIterator o_first, RandomAccessIterator o_last, size_t idx = 0) {
+     std::fill(o_first, o_last, 0);
+     std::for_each(first, last, [&](auto& i) { o_first[std::get<idx>(i)]++; });
+   };
+   
+   template <typename InputIterator, typename RandomAccessIterator>
+   void histogram(InputIterator first, InputIterator last, RandomAccessIterator o_first, RandomAccessIterator o_last) {
+     std::fill(o_first, o_last, 0);
+     std::for_each(first, last, [&](auto& i) { o_first[i]++; });
+   };
+   
+   template <typename T>
+   constexpr typename std::underlying_type<T>::type idx(T value) {
+     return static_cast<typename std::underlying_type<T>::type>(value);
+   }
+   
+   template <typename OuterIter>
+   auto get_source(OuterIter& outer) {
+     return outer.get_index();
+   };
+   
+   template <typename InnerIter>
+   auto get_target(InnerIter& inner) {
+     return std::get<0>(*inner);
+   };
+   
+   template <size_t Idx, typename Iterator>
+   auto property(Iterator& inner) {
+     return std::get<Idx>(*inner);
+   }
+   
+   template <size_t Idx, typename Iterator>
+   auto property_ptr(Iterator& inner) {
+     return &std::get<Idx>(*inner);
+   }
+   
+   static inline constexpr int log2(uint64_t val) {
+     assert(val);
+     return ((sizeof(val) * 8 - 1) - __builtin_clzl(val));
+   }
+   
+   static inline constexpr int ceil_log2(uint32_t val) {
+     assert(val);
+     return ((sizeof(val) * 8 - 1) - __builtin_clz(val)) + (!!(val & (val - 1)));
+   }
+   
+   static inline constexpr int ceil_log2(int32_t val) {
+     assert(0 < val);
+     return ceil_log2(uint32_t(val));
+   }
+   
+   static inline constexpr int ceil_log2(uint64_t val) {
+     assert(val);
+     return ((sizeof(val) * 8 - 1) - __builtin_clzl(val)) + (!!(val & (val - 1)));
+   }
+   
+   template <class T = uint64_t>
+   static constexpr T pow2(int exp) {
+     static_assert(std::is_integral_v<T>, "pow2 only returns integer types");
+     assert(0 <= exp and exp < (int)(8 * sizeof(T) - 1));
+     return (T(1) << exp);
+   }
+   
+   template <class T, class U, class V>
+   static constexpr std::pair<T, T> block(T N, U n, V id) {
+     auto r     = N % n;                                 // remainder for block size
+     auto b     = N / n;                                 // basic block size
+     auto begin = id * b + std::min(id, r);              // block min
+     auto end   = (id + 1) * b + std::min(id + 1, r);    // block max
+     assert(id != 0 || begin == 0);                      // first range should start at 0
+     assert(id != (N - 1) || end == N);                  // last range should end at N
+     return std::pair(begin, end);
+   }
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_UTIL_HPP

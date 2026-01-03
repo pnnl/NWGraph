@@ -1,0 +1,14 @@
+.. _exhale_typedef_edge__list_8hpp_1ad8567a913059ce72983671e887093f58:
+
+Typedef nw::graph::edge_list
+============================
+
+- Defined in :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::edge_list
+   :project: NWgraph

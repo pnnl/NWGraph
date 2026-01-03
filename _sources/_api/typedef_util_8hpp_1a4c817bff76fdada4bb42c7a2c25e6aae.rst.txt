@@ -1,0 +1,14 @@
+.. _exhale_typedef_util_8hpp_1a4c817bff76fdada4bb42c7a2c25e6aae:
+
+Typedef nw::graph::select_t
+===========================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::select_t
+   :project: NWgraph

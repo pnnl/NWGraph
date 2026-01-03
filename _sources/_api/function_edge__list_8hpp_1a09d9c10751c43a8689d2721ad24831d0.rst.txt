@@ -1,0 +1,14 @@
+.. _exhale_function_edge__list_8hpp_1a09d9c10751c43a8689d2721ad24831d0:
+
+Function nw::graph::debug_edge_list
+===================================
+
+- Defined in :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::debug_edge_list(bool)
+   :project: NWgraph

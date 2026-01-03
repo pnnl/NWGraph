@@ -1,0 +1,14 @@
+.. _exhale_function_tag__invoke_8hpp_1a9189b4b289ef505be81fa00bb253b509:
+
+Template Function _tag_invoke::try_tag_invoke(...)
+==================================================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: _tag_invoke::try_tag_invoke(...)
+   :project: NWgraph

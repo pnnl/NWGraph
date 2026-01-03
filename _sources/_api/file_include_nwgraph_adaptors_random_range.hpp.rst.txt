@@ -1,0 +1,94 @@
+
+.. _file_include_nwgraph_adaptors_random_range.hpp:
+
+File random_range.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Range adaptor for random walk traversal. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/random_range.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_random_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides a range-based interface for performing random walks on a graph. At each step, a random neighbor is chosen uniformly. Useful for:
+
+- Graph sampling
+
+- Monte Carlo methods
+
+- PageRank approximation
+
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cmath``
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``random`` (:ref:`file_include_nwgraph_adaptors_random_range.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1random__range_1_1edge__range__iterator_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1random__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1random__range_1_1edge__range__iterator`
+

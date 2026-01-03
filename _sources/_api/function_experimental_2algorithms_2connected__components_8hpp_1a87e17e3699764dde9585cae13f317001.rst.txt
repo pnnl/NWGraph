@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a87e17e3699764dde9585cae13f317001:
+
+Template Function nw::graph::push
+=================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::push(const Graph&, const T, std::vector<T>&)
+   :project: NWgraph

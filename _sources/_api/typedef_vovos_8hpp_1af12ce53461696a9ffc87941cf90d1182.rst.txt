@@ -1,0 +1,14 @@
+.. _exhale_typedef_vovos_8hpp_1af12ce53461696a9ffc87941cf90d1182:
+
+Typedef nw::graph::vov
+======================
+
+- Defined in :ref:`file_include_nwgraph_vovos.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::vov
+   :project: NWgraph

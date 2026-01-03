@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a20b0880fc6e5e9d835505c0e55b0cd9e:
+
+Template Function nw::graph::compare_and_swap
+=============================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::compare_and_swap(T&, T, T)
+   :project: NWgraph

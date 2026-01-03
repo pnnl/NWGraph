@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2delta__stepping_8hpp_1a0e7efb91b8cc5e970d41fb1b308defa4:
+
+Template Function nw::graph::delta_stepping_v9
+==============================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::delta_stepping_v9(const Graph&, Id, T, Weight)
+   :project: NWgraph

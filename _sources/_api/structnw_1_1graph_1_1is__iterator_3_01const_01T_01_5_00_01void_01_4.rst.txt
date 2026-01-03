@@ -1,0 +1,26 @@
+.. _exhale_struct_structnw_1_1graph_1_1is__iterator_3_01const_01T_01_5_00_01void_01_4:
+
+Template Struct is_iterator< const T \*, void >
+===============================================
+
+- Defined in :ref:`file_include_nwgraph_util_traits.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::true_type``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::is_iterator< const T *, void >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,17 @@
+.. _exhale_struct_structprint__types__t:
+
+Template Struct print_types_t
+=============================
+
+- Defined in :ref:`file_include_nwgraph_util_print_types.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: print_types_t
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

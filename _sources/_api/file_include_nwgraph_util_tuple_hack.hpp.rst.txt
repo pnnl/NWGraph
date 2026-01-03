@@ -1,0 +1,92 @@
+
+.. _file_include_nwgraph_util_tuple_hack.hpp:
+
+File tuple_hack.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/tuple_hack.hpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_tuple_hack.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstddef``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``utility``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_containers_soa.hpp`
+
+- :ref:`file_include_nwgraph_containers_zip.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+- :ref:`namespace_std`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__swappable`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__swappable_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__swappable_3_01T_01_4`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacestd_1aeafccf9f5bf5c6fc7d8def89bcc88614`
+

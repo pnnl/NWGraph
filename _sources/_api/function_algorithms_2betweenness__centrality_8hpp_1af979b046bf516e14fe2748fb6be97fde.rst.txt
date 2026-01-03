@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2betweenness__centrality_8hpp_1af979b046bf516e14fe2748fb6be97fde:
+
+Template Function nw::graph::BCVerifier
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::BCVerifier(const Graph&, std::vector<typename graph_traits<Graph>::vertex_id_type>&, std::vector<score_t>&, bool)
+   :project: NWgraph

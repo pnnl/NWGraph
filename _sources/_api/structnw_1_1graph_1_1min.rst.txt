@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1min:
+
+Struct min
+==========
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::min
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

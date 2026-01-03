@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator:
+
+Template Class struct_of_arrays::soa_iterator
+=============================================
+
+- Defined in :ref:`file_include_nwgraph_containers_soa.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_struct_structnw_1_1graph_1_1struct__of__arrays`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::struct_of_arrays::soa_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,61 @@
+
+.. _file_include_nwgraph_algorithms_maximal_independent_set.hpp:
+
+File maximal_independent_set.hpp
+================================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_algorithms>` (``include/nwgraph/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/algorithms/maximal_independent_set.hpp``)
+-----------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_algorithms_maximal_independent_set.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``nwgraph/adaptors/bfs_range.hpp`` (:ref:`file_include_nwgraph_adaptors_bfs_range.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_jones_plassmann_coloring.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_maximal__independent__set_8hpp_1ae761e1bf5e0b17f3f55524d6a0bcaf3a`
+

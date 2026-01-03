@@ -1,0 +1,14 @@
+.. _exhale_function_mmio_8hpp_1a43cfea7c007178c44c06ce6e262020ce:
+
+Template Function nw::graph::read_mm_vector(const std::string&)
+===============================================================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::read_mm_vector(const std::string&)
+   :project: NWgraph

@@ -1,0 +1,30 @@
+
+.. _program_listing_file_include_nwgraph_csr.hpp:
+
+Program Listing for File csr.hpp
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_csr.hpp>` (``include/nwgraph/csr.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_CSR_HPP
+   #define NW_GRAPH_CSR_HPP
+   
+   #include "nwgraph/adjacency.hpp"
+   
+   namespace nw {
+   namespace graph {
+   
+   using csr_graph = adjacency<0>;
+   
+   template <typename T = double>
+   using csr_matrix = adjacency<0, T>;
+   
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_CSR_HPP

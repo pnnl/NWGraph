@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a07096af7dfe6b680cc741f1c599a2e0f:
+
+Template Function nw::graph::triangle_count_edgesplit_upper
+===========================================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::triangle_count_edgesplit_upper(const Graph&, std::size_t)
+   :project: NWgraph

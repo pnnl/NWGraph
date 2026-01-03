@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2betweenness__centrality_8hpp_1ad34da72778420dc86fe8412d26c85b79:
+
+Template Function nw::graph::brandes_bc(const Graph&, bool)
+===========================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::brandes_bc(const Graph&, bool)
+   :project: NWgraph

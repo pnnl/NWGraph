@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a4ba1f1a6c89f5d39e2201a8ef9f72029:
+
+Template Function nw::graph::permute
+====================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::permute(const Vector1&, Vector2&, const Perm&)
+   :project: NWgraph

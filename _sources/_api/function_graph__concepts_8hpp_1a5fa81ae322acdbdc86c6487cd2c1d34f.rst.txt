@@ -1,0 +1,14 @@
+.. _exhale_function_graph__concepts_8hpp_1a5fa81ae322acdbdc86c6487cd2c1d34f:
+
+Function nw::graph::DECL_TAG_INVOKE(num_edges)
+==============================================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::DECL_TAG_INVOKE(num_edges)
+   :project: NWgraph

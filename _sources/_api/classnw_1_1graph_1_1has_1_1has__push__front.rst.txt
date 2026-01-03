@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1has_1_1has__push__front:
+
+Template Class has_push_front
+=============================
+
+- Defined in :ref:`file_include_nwgraph_graph_adaptor.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::has::has_push_front
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

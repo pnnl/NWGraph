@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1a97edd2dc69a833462d08c7ff0232700d:
+
+Template Function nw::graph::load
+=================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::load(T&&)
+   :project: NWgraph

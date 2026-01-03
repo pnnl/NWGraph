@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1ab72f1718c76dc8616b5441b739b8766b:
+
+Template Function nw::graph::acquire
+====================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::acquire(T&&)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_compressed_8hpp_1a3e08385a0fd2d5ec0e81aac8ad2f1514:
+
+Template Function nw::graph::operator+(T, const I)
+==================================================
+
+- Defined in :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::operator+(T, const I)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_enum_filtered__bfs__range_8hpp_1a26dbd25690d96e73a76c593f7bfdd5da:
+
+Enum three_colors
+=================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_filtered_bfs_range.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::filtered_bfs::three_colors
+   :project: NWgraph

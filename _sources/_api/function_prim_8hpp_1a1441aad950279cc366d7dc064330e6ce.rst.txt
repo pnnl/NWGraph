@@ -1,0 +1,14 @@
+.. _exhale_function_prim_8hpp_1a1441aad950279cc366d7dc064330e6ce:
+
+Template Function nw::graph::prim
+=================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_prim.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::prim(const Graph&, vertex_id_t<Graph>, Weight&&)
+   :project: NWgraph

@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1counting__iterator:
+
+Template Class counting_iterator
+================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_vertex_range.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::counting_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

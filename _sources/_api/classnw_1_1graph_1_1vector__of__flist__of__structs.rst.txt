@@ -1,0 +1,32 @@
+.. _exhale_class_classnw_1_1graph_1_1vector__of__flist__of__structs:
+
+Template Class vector_of_flist_of_structs
+=========================================
+
+- Defined in :ref:`file_include_nwgraph_vofos.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::vector< std::forward_list< std::tuple< Attributes... > > >``
+
+
+Derived Type
+************
+
+- ``public nw::graph::index_adj_flist< idx, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__adj__flist`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::vector_of_flist_of_structs
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

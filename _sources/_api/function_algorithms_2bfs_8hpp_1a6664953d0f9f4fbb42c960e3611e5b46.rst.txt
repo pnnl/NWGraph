@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2bfs_8hpp_1a6664953d0f9f4fbb42c960e3611e5b46:
+
+Template Function nw::graph::BFSVerifier
+========================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::BFSVerifier(const Graph&, GraphT&, vertex_id_t<Graph>, std::vector<vertex_id_t<Graph>>&)
+   :project: NWgraph

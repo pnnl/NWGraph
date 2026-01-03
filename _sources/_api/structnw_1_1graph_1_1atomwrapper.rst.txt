@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1atomwrapper:
+
+Template Struct atomwrapper
+===========================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::atomwrapper
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,130 @@
+
+.. _file_include_nwgraph_util_AtomicBitVector.hpp:
+
+File AtomicBitVector.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Thread-safe bitmap for concurrent vertex visited tracking. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/AtomicBitVector.hpp``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_AtomicBitVector.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides AtomicBitVector, a concurrent bitmap for use in parallel graph algorithms. Supports atomic get/set operations with configurable memory ordering. Commonly used for visited arrays in BFS and similar traversal algorithms.
+
+Example usage: #include<:ref:`file_include_nwgraph_util_AtomicBitVector.hpp`>
+
+//Createavisitedarrayfor1000vertices
+:ref:`exhale_class_classnw_1_1graph_1_1AtomicBitVector`visited(1000);
+
+//Thread-safecheck-and-setpatternforBFS
+size_tvertex=42;
+if(!visited.atomic_set(vertex)){
+//Firstthreadtomarkthisvertex-processit
+process_vertex(vertex);
+}
+
+//Checkifavertexwasvisited(relaxedorderingforread-only)
+if(visited.get(vertex)){
+//Alreadyvisited
+}
+
+//Iterateoverallsetbits(non-zerovertices)
+for(autov:visited){
+std::cout<<"Visited:"<<v<<std::endl;
+}
+
+//Clearallbitsforreuse
+visited.clear();
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Eric Silk Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``cstddef``
+
+- ``cstdint``
+
+- ``execution``
+
+- ``memory``
+
+- ``nwgraph/util/atomic.hpp`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1AtomicBitVector`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range`
+

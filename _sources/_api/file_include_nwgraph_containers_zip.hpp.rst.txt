@@ -1,0 +1,129 @@
+
+.. _file_include_nwgraph_containers_zip.hpp:
+
+File zip.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_containers>` (``include/nwgraph/containers``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Zip adaptor for combining multiple ranges into tuple iteration. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/containers/zip.hpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_containers_zip.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides the zipped class, which combines multiple random-access ranges into a single range that yields tuples of references. Unlike struct_of_arrays which owns its storage, zipped is a view over existing ranges.
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Kevin Deweese Luke D'Alessandro Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``cassert``
+
+- ``execution``
+
+- ``fstream``
+
+- ``functional``
+
+- ``initializer_list``
+
+- ``iostream``
+
+- ``istream``
+
+- ``iterator`` (:ref:`file_include_nwgraph_util_permutation_iterator.hpp`)
+
+- ``nwgraph/util/arrow_proxy.hpp`` (:ref:`file_include_nwgraph_util_arrow_proxy.hpp`)
+
+- ``nwgraph/util/traits.hpp`` (:ref:`file_include_nwgraph_util_traits.hpp`)
+
+- ``nwgraph/util/tuple_hack.hpp`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``ostream``
+
+- ``ranges``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``utility``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_build.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+- :ref:`namespace_std`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1zipped`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1zipped_1_1soa__iterator`
+
+- :ref:`exhale_class_classstd_1_1tuple__size_3_01nw_1_1graph_1_1zipped_3_01Attributes_8_8_8_01_4_01_4`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_zip_8hpp_1ae0b5aa931e05b427d2f9aff09fd1cc46`
+
+- :ref:`exhale_function_zip_8hpp_1a67ce2aebc5cddab74a699a3a4f90d4d7`
+

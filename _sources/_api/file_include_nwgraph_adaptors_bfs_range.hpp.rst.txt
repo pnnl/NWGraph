@@ -1,0 +1,118 @@
+
+.. _file_include_nwgraph_adaptors_bfs_range.hpp:
+
+File bfs_range.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Range adaptors for breadth-first search traversal. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/bfs_range.hpp``)
+-------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_bfs_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+This file provides range-based interfaces for BFS traversal over graphs:
+
+- topdown_bfs_range: Traditional top-down BFS from a seed vertex
+
+- bottomup_bfs_range: Bottom-up BFS traversal
+
+
+
+These adaptors allow BFS traversal using C++ range-based for loops: for(autov:topdown_bfs_range(graph,start_vertex)){
+//ProcessvertexvinBFSorder
+}
+
+
+Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms", 4th Edition (2022), Chapter 20.2: Breadth-First Search
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``queue`` (:ref:`file_include_nwgraph_util_make_priority_queue.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_maximal_independent_set.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1bottomup__bfs__range_1_1end__sentinel__type`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1topdown__bfs__range_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bottomup__bfs__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bottomup__bfs__range_1_1iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1topdown__bfs__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1topdown__bfs__range_1_1iterator`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_bfs__range_8hpp_1a36a213314f0c21d5fa114649ab38efa0`
+

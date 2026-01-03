@@ -1,0 +1,14 @@
+.. _exhale_typedef_defaults_8hpp_1a2769b786e30a1599704a0d758cdd72b2:
+
+Typedef nw::graph::default_vertex_id_type
+=========================================
+
+- Defined in :ref:`file_include_nwgraph_util_defaults.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::default_vertex_id_type
+   :project: NWgraph

@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1graph__traits_3_01G_01_4:
+
+Template Struct graph_traits< G >
+=================================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::graph_traits< G >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

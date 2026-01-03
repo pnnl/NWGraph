@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1a3c48b0bfdedd93ec53f7a86fe67d777f:
+
+Template Function nw::graph::fetch_add
+======================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::fetch_add(T&&, U&&)
+   :project: NWgraph
