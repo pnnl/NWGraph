@@ -182,7 +182,7 @@ Kron (GAP-kron)
 
 :Source: Generated using Graph 500 Kronecker generator
 :Parameters: Scale 27, edge factor 16 (``-g27 -k16``)
-:Format: Generated directly to binary
+:Format: Edge list or serialized binary
 :Type: Undirected, unweighted
 :Characteristics:
    - Scale-free degree distribution
@@ -190,18 +190,25 @@ Kron (GAP-kron)
    - Self-similar structure
    - Synthetic but realistic
 
-Generate with the GAPBS converter:
+Generate using the GAPBS reference ``converter`` tool (included in
+``bench/gapbs-reference/``):
 
 .. code-block:: bash
 
-   ./converter -g27 -k16 -b kron.sg
+   # Generate Kronecker graph as edge list (for NWGraph)
+   ./bench/gapbs-reference/converter -g27 -k16 -e kron.el
+
+   # Or generate as GAPBS serialized format
+   ./bench/gapbs-reference/converter -g27 -k16 -b kron.sg
+
+For smaller test graphs, use a lower scale (e.g., ``-g20`` for ~1M vertices).
 
 Urand (GAP-urand)
 ~~~~~~~~~~~~~~~~~
 
 :Source: Generated using Erdos-Renyi random generator
 :Parameters: 2^27 vertices, degree 16 (``-u27 -k16``)
-:Format: Generated directly to binary
+:Format: Edge list or serialized binary
 :Type: Undirected, unweighted
 :Characteristics:
    - Uniform random edge placement
@@ -209,11 +216,17 @@ Urand (GAP-urand)
    - No clustering structure
    - Binomial degree distribution around 16
 
-Generate with the GAPBS converter:
+Generate using the GAPBS reference ``converter`` tool:
 
 .. code-block:: bash
 
-   ./converter -u27 -k16 -b urand.sg
+   # Generate uniform random graph as edge list (for NWGraph)
+   ./bench/gapbs-reference/converter -u27 -k16 -e urand.el
+
+   # Or generate as GAPBS serialized format
+   ./bench/gapbs-reference/converter -u27 -k16 -b urand.sg
+
+For smaller test graphs, use a lower scale (e.g., ``-u20`` for ~1M vertices).
 
 Downloading Graphs
 ==================

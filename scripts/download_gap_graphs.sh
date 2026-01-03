@@ -307,8 +307,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         kron|urand)
             warn "Synthetic graph '$1' must be generated, not downloaded."
-            warn "Use: ./converter -g27 -k16 -b kron.sg (for kron)"
-            warn "Use: ./converter -u27 -k16 -b urand.sg (for urand)"
+            warn "Use the GAPBS reference converter tool:"
+            warn "  ./bench/gapbs-reference/converter -g27 -k16 -e kron.el   (for kron)"
+            warn "  ./bench/gapbs-reference/converter -u27 -k16 -e urand.el  (for urand)"
+            warn "For smaller graphs, use lower scale (e.g., -g20 for ~1M vertices)"
             shift
             ;;
         *)
