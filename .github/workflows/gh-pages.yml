@@ -2,60 +2,54 @@ name: gh-pages
 
 on:
   push:
-  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: build
-    container: amath583/gh-pages
+    name: Build and deploy documentation
+
     steps:
-      - name: 'Some testing of environment'
-        run: |
-          echo "Hello World"
-          /bin/ls -la /usr/local/bin
-          /bin/pwd
-          /bin/hostname
-          echo "'uname -s' is:"
-          echo "uname: " $(uname)
-          echo "uname -m: " $(uname -m)
-          echo "uname -r:" $(uname -r)
-          echo "uname -s: " $(uname -s)
-          echo "uname -v: " $(uname -v)
-      - name: 'Checkout NWgraph'
-        uses: actions/checkout@master
+      - name: Checkout NWgraph
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0 #
-      - name: 'Build compile_commands.json'
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+          pip install sphinx sphinx_rtd_theme breathe exhale sphinxcontrib-bibtex
+
+      - name: Install TBB
+        run: |
+          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+          rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+          sudo add-apt-repository "deb https://apt.repos.intel.com/oneapi all main"
+          sudo apt-get update
+          sudo apt-get install -y intel-oneapi-tbb-devel
+
+      - name: Build compile_commands.json
         run: |
           mkdir -p build
-          cd build ; TBBROOT=/opt/intel/oneapi/tbb/2021.5.1 cmake .. -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-      - name: 'Build documentation'
+          cd build
+          export TBBROOT=/opt/intel/oneapi/tbb/latest
+          cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DNWGRAPH_BUILD_DOCS=OFF
+
+      - name: Build documentation
         run: |
-          /bin/pwd
-          /bin/ls -la
-          pushd doc-src/sphinx ; make pages ; popd
-          touch docs/.nojekyll
-        shell: bash
-      - name: Commit local changes
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add ./docs
-          git commit -am "Build documentation"
-      - name: Prep for force push
-        run: |
-          git config --global --add safe.directory /github/workspace
-      - name: Force push to destination branch
-        uses: ad-m/github-push-action@v0.5.0
+          cd doc-src/sphinx
+          make html
+          mkdir -p ../../docs
+          cp -r _build/html/* ../../docs/
+          touch ../../docs/.nojekyll
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/master'
         with:
-          # Token for the repo
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Destination branch to push changes
-          branch: gh-pages
-          # Use force push to fully overwrite the destination branch
-          force: true
-          # We have to push from the folder where files were generated.
-          # Same where the new repo was initialized in the previous step
-          # directory: ./doc-src/sphinx/_build/html
-          directory: ./docs
+          publish_dir: ./docs
+          force_orphan: true
