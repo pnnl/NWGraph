@@ -69,17 +69,25 @@ easy to compute shortest path distances.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch4_kevin_bacon kevin-bacon.dat
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch4_kevin_bacon
 
-The program reads an actor-movie database and computes the Bacon number for each actor.
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch4_kevin_bacon
+
+The program uses built-in sample data and computes the Bacon number for each actor.
 
 Sample Output
 ------------

@@ -78,15 +78,23 @@ queue to efficiently select the minimum weight edge.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch6_prim
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch6_prim
+
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch6_prim
 
 The program computes the MST starting from an arbitrary vertex and outputs the
 predecessor map representing the tree.

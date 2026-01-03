@@ -21,6 +21,7 @@ User Guide
    :maxdepth: 2
 
    userguide/getting_started.rst
+   userguide/benchmarking.rst
    userguide/introduction.rst
    userguide/graph-background-ii.rst
    userguide/generic-programming.rst

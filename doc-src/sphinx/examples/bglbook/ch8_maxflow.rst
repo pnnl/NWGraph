@@ -71,17 +71,25 @@ NWGraph provides maximum flow algorithms including the Edmonds-Karp algorithm.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch8_maxflow
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch8_maxflow
 
-The program computes the maximum flow through a network and identifies the minimum cut.
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch8_maxflow
+
+The program computes the maximum flow through a sample network and identifies the minimum cut.
 
 Sample Output
 ------------

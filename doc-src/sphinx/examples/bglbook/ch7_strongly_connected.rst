@@ -71,17 +71,25 @@ NWGraph provides a ``strong_components`` function that implements Tarjan's algor
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch7_strongly_connected
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch7_strongly_connected
 
-The program reads a graph of web pages connected by URL links and identifies the
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch7_strongly_connected
+
+The program uses a sample graph of web pages connected by URL links and identifies the
 strongly connected components.
 
 Sample Output

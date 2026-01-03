@@ -70,15 +70,23 @@ modern C++20 features.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch5_dijkstra
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch5_dijkstra
+
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch5_dijkstra
 
 The program computes shortest paths from a source router to all other routers in an
 OSPF-style network, demonstrating how link-state routing protocols work.

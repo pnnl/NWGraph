@@ -74,15 +74,23 @@ traversal, making it easy to detect cycles and find loops.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch4_loop_detection
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch4_loop_detection
+
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch4_loop_detection
 
 The program constructs a control-flow graph and identifies all back edges (loops) in
 the graph.

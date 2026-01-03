@@ -139,11 +139,37 @@ The BGL book examples are built as part of the NWGraph examples:
 
 .. code-block:: bash
 
-   mkdir build && cd build
+   # From the NWGraph root directory
+   mkdir -p build && cd build
    cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
-   make
+   make -j8
 
-Executables will be in ``build/examples/bgl-book/``.
+   # Or build individual examples
+   make ch3_toposort ch4_kevin_bacon ch5_dijkstra -j8
+
+Executables are placed in ``build/examples/bgl-book/``.
+
+Running the Examples
+--------------------
+
+Each example can be run directly from the build directory:
+
+.. code-block:: bash
+
+   # Run topological sort example
+   ./examples/bgl-book/ch3_toposort
+
+   # Run Kevin Bacon example
+   ./examples/bgl-book/ch4_kevin_bacon
+
+   # Run Dijkstra shortest paths example
+   ./examples/bgl-book/ch5_dijkstra
+
+   # Run Kruskal MST example
+   ./examples/bgl-book/ch6_kruskal
+
+Most examples use built-in test data and do not require external input files.
+See individual example pages for specific usage details.
 
 Reference
 ---------

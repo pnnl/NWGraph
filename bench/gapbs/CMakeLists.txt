@@ -50,36 +50,36 @@ add_dependencies(bench sources)
 # -----------------------------------------------------------------------------
 
 # Betweenness Centrality
-add_executable(bc.exe bc.cpp)
-target_link_libraries(bc.exe gapbs_lib)
-add_dependencies(bench bc.exe)
+add_executable(bc bc.cpp)
+target_link_libraries(bc gapbs_lib)
+add_dependencies(bench bc)
 
 # Breadth-First Search
-add_executable(bfs.exe bfs.cpp)
-target_link_libraries(bfs.exe gapbs_lib)
-add_dependencies(bench bfs.exe)
+add_executable(bfs bfs.cpp)
+target_link_libraries(bfs gapbs_lib)
+add_dependencies(bench bfs)
 
 # Connected Components
-add_executable(cc.exe cc.cpp)
-target_link_libraries(cc.exe gapbs_lib)
-add_dependencies(bench cc.exe)
+add_executable(cc cc.cpp)
+target_link_libraries(cc gapbs_lib)
+add_dependencies(bench cc)
 
 # PageRank
-add_executable(pr.exe pr.cpp)
-target_link_libraries(pr.exe gapbs_lib)
-add_dependencies(bench pr.exe)
+add_executable(pr pr.cpp)
+target_link_libraries(pr gapbs_lib)
+add_dependencies(bench pr)
 
 # Single-Source Shortest Path
-add_executable(sssp.exe sssp.cpp)
-target_link_libraries(sssp.exe gapbs_lib)
-add_dependencies(bench sssp.exe)
+add_executable(sssp sssp.cpp)
+target_link_libraries(sssp gapbs_lib)
+add_dependencies(bench sssp)
 
 # Triangle Counting
-add_executable(tc.exe tc.cpp)
-target_link_libraries(tc.exe gapbs_lib)
-add_dependencies(bench tc.exe)
+add_executable(tc tc.cpp)
+target_link_libraries(tc gapbs_lib)
+add_dependencies(bench tc)
 
 # Jaccard Similarity (disabled - uses nlohmann_json, needs conversion to Log.hpp)
-# add_executable(js.exe js.cpp)
-# target_link_libraries(js.exe gapbs_lib)
-# add_dependencies(bench js.exe)
+# add_executable(js js.cpp)
+# target_link_libraries(js gapbs_lib)
+# add_dependencies(bench js)

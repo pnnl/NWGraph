@@ -5,16 +5,16 @@ include(CTest)
 include(Catch)
 
 macro (nwgraph_add_exe EXENAME)
-  add_executable(${EXENAME}.exe ${EXENAME}.cpp)
-  target_link_libraries(${EXENAME}.exe nwgraph)
+  add_executable(${EXENAME} ${EXENAME}.cpp)
+  target_link_libraries(${EXENAME} nwgraph)
 endmacro (nwgraph_add_exe)
 
 macro (nwgraph_add_test TESTNAME)
-  add_executable(${TESTNAME}.exe ${TESTNAME}.cpp)
-  target_link_libraries(${TESTNAME}.exe nwgraph Catch2::Catch2WithMain)
-  target_compile_definitions(${TESTNAME}.exe PRIVATE DATA_DIR="${CMAKE_SOURCE_DIR}/test/data/")
-  target_compile_definitions(${TESTNAME}.exe PRIVATE DATA_FILE="${CMAKE_SOURCE_DIR}/test/data/karate.mtx")
-  catch_discover_tests(${TESTNAME}.exe)
+  add_executable(${TESTNAME} ${TESTNAME}.cpp)
+  target_link_libraries(${TESTNAME} nwgraph Catch2::Catch2WithMain)
+  target_compile_definitions(${TESTNAME} PRIVATE DATA_DIR="${CMAKE_SOURCE_DIR}/test/data/")
+  target_compile_definitions(${TESTNAME} PRIVATE DATA_FILE="${CMAKE_SOURCE_DIR}/test/data/karate.mtx")
+  catch_discover_tests(${TESTNAME})
 endmacro (nwgraph_add_test)
 
 # =============================================================================

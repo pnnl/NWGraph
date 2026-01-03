@@ -60,15 +60,23 @@ from the BGL approach by using range adaptors instead of visitors.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch3_toposort
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch3_toposort
+
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch3_toposort
 
 The program reads a makefile dependency graph from a file and outputs the compilation order
 (files listed in order such that each file appears before any files that depend on it).

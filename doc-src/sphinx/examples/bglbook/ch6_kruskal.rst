@@ -81,17 +81,25 @@ disjoint-set data structure.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch6_kruskal
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch6_kruskal
 
-The program reads a road network and computes the minimum spanning tree, which represents
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch6_kruskal
+
+The program uses a sample road network and computes the minimum spanning tree, which represents
 the optimal layout for telephone lines.
 
 Sample Output

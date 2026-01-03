@@ -70,17 +70,25 @@ components using DFS.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch7_connected
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch7_connected
 
-The program reads a network of Internet routers and identifies the connected components,
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch7_connected
+
+The program uses a sample network of Internet routers and identifies the connected components,
 showing which groups of routers can reach each other.
 
 Sample Output

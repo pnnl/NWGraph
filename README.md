@@ -10,250 +10,246 @@ SPDX-License-Identifier: BSD-3-Clause
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0788903a1d134b47b351e6a346123875)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NWmath/NWgr&amp;utm_campaign=Badge_Grade)
 
 # NWGraph: Northwest Graph Library
-NWGraph is a high-performance header-only generic C++ graph library, based on C++20 `concept` and `range` language feature. It consists of multiple graph algorithms for well-known graph kernels and supporting data structures. Both sequential and parallel algorithms are available.
 
+NWGraph is a high-performance header-only generic C++ graph library, based on C++20 `concept` and `range` language features. It consists of multiple graph algorithms for well-known graph kernels and supporting data structures. Both sequential and parallel algorithms are available.
+
+## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/pnnl/nwgraph.git
+cd nwgraph
+
+# Build (tests only)
+mkdir build && cd build
+cmake ..
+make -j8
+
+# Run tests
+ctest
+```
+
+## Requirements
+
+| Requirement | Minimum Version | Notes |
+|-------------|-----------------|-------|
+| CMake | 3.20+ | Build system |
+| C++ Compiler | GCC 11+ or Clang 14+ | C++20 support required |
+| oneTBB | 2021+ | Parallel backend |
+
+### Installing Dependencies
+
+**macOS (Homebrew):**
+```bash
+brew install cmake gcc tbb
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install cmake g++-11 libtbb-dev
+```
+
+**Intel oneAPI (all platforms):**
+```bash
+# Download from:
+# https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#onetbb
+```
+
+## Building NWGraph
+
+### Basic Build
+
+```bash
+mkdir build && cd build
+cmake ..
+make -j8
+```
+
+### Build Everything
+
+```bash
+cmake .. -DNWGRAPH_BUILD_TESTS=ON \
+         -DNWGRAPH_BUILD_EXAMPLES=ON \
+         -DNWGRAPH_BUILD_BENCH=ON
+make -j8
+```
+
+### CMake Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `NWGRAPH_BUILD_TESTS` | ON | Build unit tests |
+| `NWGRAPH_BUILD_EXAMPLES` | OFF | Build BGL book examples |
+| `NWGRAPH_BUILD_BENCH` | OFF | Build GAP benchmarks |
+| `NWGRAPH_BUILD_DOCS` | OFF | Build documentation |
+| `CMAKE_BUILD_TYPE` | Release | Build type (Release/Debug) |
+
+### Build Output
+
+```
+build/
+├── test/                    # Unit tests
+├── examples/bgl-book/       # BGL book examples
+└── bench/
+    ├── gapbs/               # GAP Benchmark Suite (bfs, cc, pr, sssp, bc, tc)
+    └── abstraction_penalty/ # Abstraction penalty benchmarks
+```
+
+### Compiler Selection
+
+```bash
+cmake .. -DCMAKE_CXX_COMPILER=g++-11
+```
+
+### TBB Configuration
+
+If CMake cannot find TBB:
+```bash
+TBBROOT=/opt/intel/oneapi/tbb/2021.5.1 cmake ..
+```
+
+## Building Documentation
+
+NWGraph documentation is built using Sphinx with Doxygen integration.
+
+### Documentation Dependencies
+
+```bash
+# Install Python dependencies
+pip install sphinx sphinx_rtd_theme breathe exhale sphinxcontrib-bibtex
+
+# Install Doxygen
+brew install doxygen      # macOS
+sudo apt install doxygen  # Ubuntu
+```
+
+### Build Documentation
+
+**Option 1: Via CMake (recommended)**
+```bash
+cmake .. -DNWGRAPH_BUILD_DOCS=ON
+make docs
+```
+
+**Option 2: Direct Sphinx build**
+```bash
+cd doc-src/sphinx
+pip install -r requirements.txt
+make html
+```
+
+### Documentation Targets
+
+| Target | Description |
+|--------|-------------|
+| `make docs` | Build complete documentation (Doxygen + Sphinx) |
+| `make docs-html` | Build HTML only (faster, uses cached Doxygen) |
+| `make docs-clean` | Clean built documentation |
+| `make docs-open` | Build and open in browser (macOS/Linux) |
+
+Documentation output: `doc-src/sphinx/_build/html/index.html`
+
+## Running Benchmarks
+
+### Build Benchmarks
+
+```bash
+cmake .. -DNWGRAPH_BUILD_BENCH=ON
+make bench -j8
+```
+
+### Quick Test
+
+```bash
+./bench/gapbs/bfs -f ../test/data/karate.mtx -n 3 --verify
+./bench/gapbs/cc -f ../test/data/karate.mtx --verify
+```
+
+### GAP Benchmark Suite
+
+| Kernel | Description | Best Version |
+|--------|-------------|--------------|
+| bfs | Breadth-First Search | `--version 11` |
+| sssp | Single-Source Shortest Path | `--version 12` |
+| pr | PageRank | `--version 11` |
+| cc | Connected Components | `--version 7` |
+| bc | Betweenness Centrality | `--version 5` |
+| tc | Triangle Counting | `--version 4` |
+
+### Download GAP Graphs
+
+```bash
+# List available graphs
+./scripts/download_gap_graphs.sh --list
+
+# Download road network (smallest, ~1GB)
+./scripts/download_gap_graphs.sh road
+
+# Download all real-world graphs
+./scripts/download_gap_graphs.sh all
+```
+
+### Example Benchmark Commands
+
+```bash
+# BFS with direction-optimizing algorithm
+./bench/gapbs/bfs -f data/graphs/road.gr --version 11 -n 64
+
+# PageRank with 1000 iterations
+./bench/gapbs/pr -f data/graphs/web.mtx -i 1000
+
+# Triangle counting with relabeling
+./bench/gapbs/tc -f data/graphs/twitter.el --relabel --upper --version 4
+```
+
+## Running Examples
+
+### Build Examples
+
+```bash
+cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+make -j8
+```
+
+### Run BGL Book Examples
+
+```bash
+./examples/bgl-book/ch3_toposort      # Topological sort
+./examples/bgl-book/ch4_kevin_bacon   # Six degrees of Kevin Bacon
+./examples/bgl-book/ch5_dijkstra      # Dijkstra's algorithm
+./examples/bgl-book/ch6_kruskal       # Kruskal's MST
+```
 
 ## Project Organization
 
-
-The organization of our library is shown as follow:
-```text
-$NWGraph_HOME/
-├── README.md
-├── CMakeLists.txt
-├── apb/
+```
+NWGraph/
+├── include/nwgraph/           # Header-only library
+│   ├── adaptors/              # Range adaptors (bfs_range, dfs_range, etc.)
+│   ├── algorithms/            # Graph algorithms
+│   ├── containers/            # Graph containers
+│   ├── io/                    # I/O utilities
+│   └── graph_concepts.hpp     # C++20 concepts
+├── test/                      # Unit tests (Catch2)
+├── examples/bgl-book/         # BGL book examples
 ├── bench/
-├── examples/
-│   └── imdb/
-├── include/
-│   └── nwgraph/
-│       ├── adaptors/
-│       ├── algorithms/
-│       ├── containers/
-│       ├── experimental/
-│       │   └── algorithms/
-│       ├── graphs/
-│       ├── io/
-│       ├── util/
-│       ├── graph_concepts.hpp
-│       └── ...
-├── test/
-└── ...
-```
-The genericity of different algorithms available in the NWGraph library stems from a taxonomy of graph concepts. The definition of these concepts can be found in the `include/nwgraph/graph_concepts.hpp` file. The header files containing various sequential and parallel graph algorithms for well-known graph kernels can be found under the `$NWGraph_HOME/include/nwgraph/algorithms/` directory (some of the experimental algorithms are located in the`$NWGraph_HOME/include/nwgraph/experimental/algorithms/` subdirectory). The header files for the range adaptors are under `$NWGraph_HOME/include/nwgraph/adaptors/` directory. The code for the applications is located in the `$NWGraph_HOME/bench/` diretory. The abstraction penalty benchmark for benchmarking different containers and a variety of different ways to iterate through a graph (including the use of graphadaptors) are under the `$NWGraph_HOME/apb/` directory. Various examples of how to use NWGraph can be found in the `$NWGraph_HOME/example/imdb/` directory.
-
-## How to Compile
-
-NWGraph uses [Intel OneTBB](https://github.com/oneapi-src/oneTBB) as the parallel backend.   
-
-### Requirements
-
-* CMake &gt;= 3.20
-* g++ &gt;= 11 with support for OneTBB as parallel backend
-* oneTBB &gt;= 2021
- 
-You should be able to install cmake and g++ with your system's package manager (e.g., apt or homebrew).
-oneTBB appears to be available on homebrew for MacOS 11.6 and later (and perhaps earlier).
-
-Instructions for installing oneTBB with various Linux package managers can be found here:
-
-```
-https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html
+│   ├── gapbs/                 # GAP Benchmark Suite
+│   └── abstraction_penalty/   # Abstraction penalty benchmarks
+├── doc-src/sphinx/            # Documentation source
+└── scripts/                   # Utility scripts
 ```
 
+## Supported File Formats
 
-Installation packages for oneAPI for Linux are available on intel.com:
+- **Matrix Market (.mtx)** - Standard sparse matrix format
+- **Edge List (.el)** - Simple edge pairs
+- **DIMACS (.gr)** - 9th DIMACS Challenge format
+- **NWGraph Binary (.nw)** - Fast native format
 
-```
-https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#onetbb
-```
-
-
-
-
-### Compilation
-
-```bash
-$ mkdir build; cd build
-$ cmake ..
-$ make -j4
-```
-
-Once compiled, the drivers of the graph benchmarks can be found under the `$NWGraph_HOME/build/bench/` folder. The binary files of the abstraction penalty benchmarks are under the `$NWGraph_HOME/build/abp/` folder. The binaries of the IMDB examples are under the `$NWGraph_HOME/build/examples/` folder. The binary files of the examples to show case the features of NWGraph library are under the `$NWGraph_HOME/build/test/` folder.
-
-### Useful things to know 
-To specify compiler:
-```bash
-$ cmake .. -DCMAKE_CXX_COMPILER=g++-11
-```
-To specify build type as Release or Debug, default is Release:
-```bash
-$ cmake .. -DCMAKE_BUILD_TYPE=Release (or Debug)
-```
-To enable test cases and examples under build/test directory:
-```bash
-$ cmake .. -DNWGRAPH_BUILD_TESTS=ON (or OFF)
-```
-To generate applications under build/bench/ directory:
-```bash
-$ cmake .. -DNWGRAPH_BUILD_BENCH=ON (or OFF)
-```
-To generate abstraction penalty under build/abp/ directory:
-```bash
-$ cmake .. -DNWGRAPH_BUILD_APBS=OFF (or ON)
-```
-To generate tools under build/example/ directory:
-```bash
-$ cmake .. -DNWGRAPH_BUILD_EXAMPLES=OFF (or ON)
-```
- 
-If cmake is not able to find TBB in its expected places, you may get an error during the cmake step.  In this case, you need to set the `TBBROOT` environment variable to the location where oneTBB was installed.  For example:
-```bash
-$ TBBROOT=/opt/intel/oneapi/tbb/2021.5.1 cmake .. 
-```
-
-To see verbose information during compilation:
-```bash
-$ make VERBOSE=1
-```
-
-## Running code in NWGraph
-
-NWGraph uses command-line interface description language [DOCOPT](http://docopt.org/) to define the interface of our command-line applications and abstraction penalty experiments.
-
-A typical interface of a benchmark driver looks like this:
-```bash
-bfs.exe: breadth first search benchmark driver.
-  Usage:
-      bfs.exe (-h | --help)
-      bfs.exe -f FILE [-r NODE | -s FILE] [-i NUM] [-a NUM] [-b NUM] [-B NUM] [-n NUM] [--seed NUM] [--version ID...] [--log FILE] [--log-header] [-dvV] [THREADS]...
-
-  Options:
-      -h, --help              show this screen
-      -f FILE                 input file path
-      -i NUM                  number of iteration [default: 1]
-      -a NUM                  alpha parameter [default: 15]
-      -b NUM                  beta parameter [default: 18]
-      -B NUM                  number of bins [default: 32]
-      -n NUM                  number of trials [default: 1]
-      -r NODE                 start from node r (default is random)
-      -s, --sources FILE      sources file
-      --seed NUM              random seed [default: 27491095]
-      --version ID            algorithm version to run [default: 0]
-      --log FILE              log times to a file
-      --log-header            add a header to the log file
-      -d, --debug             run in debug mode
-      -v, --verify            verify results
-      -V, --verbose           run in verbose mode
-```
-
-The applications takes options followed by the arguments of the options as inputs. A minimal example takes a graph as input is as follow:
-```
-$ bfs.exe -f karate.mtx
-```
-
-
-## Supported graph file format
-
-NWGraph recogonizes the following types of file format:
-* [Matrix Market Exchange Formats](https://math.nist.gov/MatrixMarket/formats.html)
-
-
-## Running benchmarks
-
-We have five main benchmarks: Breadth-first Search, Connected Component Decomposition, Page rank, Single Source Shortest Path, and Triangle Counting. 
-
-### Breadth-first Search
-The default sequential version of BFS is version 0 (default). The fastest parallel version of BFS is version 11, the direction-optimizing BFS. As an alternative to specifying one seed at a time, one or more sources can be provided in a Matrix Market format file as an input of BFS driver. Also, number of trials can be specified with `-n`. In this way, if no seed or seed file is provided, each trial will generate one random number from 0 to |V|-1 as the random source for BFS as an input.
-```
-$ bench/bfs.exe -f karate.mtx --seed 0 --version 11 -n 3
-```
-### Connected Component Decomposition
-The default sequential version of CC is version 0 (default). The fastest parallel version of CC is version 7, Afforest.
-```
-$ bench/cc.exe -f karate.mtx --relabel --direction ascending
-```
-### Page Rank
-The fastest parallel version of PR is version 11 (default). The max iterations can be set with `-i`.
-```
-$ bench/pr.exe -f karate.mtx -i 1000
-```
-### Single Source Shortest Path
-The default sequential version of CC SSSP version 0 (default). The fastest parallel version of SSSP is version 12, Delta-stepping. As an alternative to specifying one seed at a time, one or more sources can be provided in a Matrix Market format file as an input of SSSP driver. Also, number of trials can be specified with `-n`. In this way, if no seed or seed file is provided, each trial will generate one random number from 0 to |V|-1 as the random source for SSSP as an input.
-```
-$ bench/sssp.exe -f karate.mtx --seed 0 -n 3
-```
-### Triangle Counting
-The default sequential version of TC is version 0 (default). The fastest parallel version of TC is version 4.
-```
-$ bench/tc.exe -f karate.mtx --version 4 --relabel --upper
-```
-### Betweenness Centrality
-The default sequential version of BC is version 0 (default). The fastest parallel version of BC is version 5. As an alternative to specifying one seed at a time, one or more sources can be provided in a Matrix Market format file as an input of BC driver. 
-```
-$ bench/bc.exe -f karate.mtx --version 5 --seed 0
-```
-
-### Other useful things
-
-Note that the following features may or may be available to every benchmark.
-
-#### Relabel-by-degree
-Relabel vertex by degree (also known as column/row permutation in matrix-matrix multiplication) may speed up the performance of the graph algorithm. It can improve the workload distribution and memory access pattern of the algorithm itself. To enable relabel-by-degree and relabel the degree of vertices in ascending order:
-```
-$ bench/cc.exe -f karate.mtx --relabel --direction ascending
-```
-### Upper Triangular Order
-In triangle counting, it allows to relabel the graph in upper/lower triangular order. This will greatly improve the performance of the algorithm. To enable relabel-by-degree and relabel the degree of vertices in upper triangular order:
-```bash
-$ bench/tc.exe -f karate.mtx --relabel --upper
-```
-### Verifier
-We implement a verifier in each benchmark to verify the correctness of the algorithms. To enable the verification of the algorithm:
-```bash
-$ bench/cc.exe -f karate.mtx -v
-```
-or
-```bash
-$ bench/cc.exe -f karate.mtx --verify
-```
-### Multi-threading
-Each algorithm/benchmark has both sequential version and parallel version. When a parallel algorithm is selected, multi-threading is enable by default. The number of threads is set to be the maximum available core on the machine. To enable multi-threading with different thread number, such as 128 threads:
-```bash
-$ bench/cc.exe -f karate.mtx 128
-```
-
-## Benchmarking with GAP Datasets
-
-To obtain the performance results reported in the PVLDB paper for NWGraph, "NWGraph: A Library of Generic Graph Algorithms and DataStructures in C++20", please follow the following steps.
-
-* Download the GAP datasets from [Suitesparse Matrix Collection](https://sparse.tamu.edu/GAP/) in Matrix Market format
-* Run different graph benchmarks with the GAP datasets
-
-Note that BFS and SSSP are run with 64 sources provided in a Matrix Market file, and BC are run with 4 sources. For PR, the max iterations has been set to 1000.
-
-## Benchmarking abstraction penalties
-
-### What is abstraction penalty?
-
-There are two types of abstraction penalties here.
-Using a range-based interface introduces a variety of different ways to iterate through a graph (including the use of graph adaptors).
-While ranges and range based for loops are useful programming abstractions, it is important to consider any performance abstraction penalties associated with their use. We benchmark these penalties to ensure they will not significantly limit performance compared to a raw for loop implementation.
-
-We also evaluated the abstraction penalty incurred for storing a graph in different containers. In particular, we have selected `struct_of_array`, `vector_of_vector`, `vector_of_list`, `vector_of_forward_list` containers.
-
-### Running abstraction penalty experiments
-
-For example let us consider the sparse matrix-dense vector multiplication (SpMV) kernel used in page rank, which multiplies the adjacency matrix representation of a graph by a dense vector x and stores the result in another vector y.
-To experimentally evaluate the abstraction penalty of different ways to iterate through a graph:
-```bash
-$ apb/spmv.exe -f karate.mtx
-```
-
-To experimentally evaluate the abstraction penalty of different containers for storing a graph:
-```bash
-$ apb/containers -f karate.mtx --format CSR --format VOV --format VOL --format VOF
-```
 ## References
 
-Lumsdaine, Andrew, Luke D’Alessandro, Kevin Deweese, Jesun Firoz, Xu Tony Liu, Scott McMillan, John Phillip Ratzloff, and Marcin Zalewski. "NWGraph: A Library of Generic Graph Algorithms and Data Structures in C++ 20." In 36th European Conference on Object-Oriented Programming (ECOOP) 2022.
+Lumsdaine, Andrew, et al. "NWGraph: A Library of Generic Graph Algorithms and Data Structures in C++ 20." In 36th European Conference on Object-Oriented Programming (ECOOP) 2022.
+
+## License
+
+BSD-3-Clause

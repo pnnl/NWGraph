@@ -78,15 +78,23 @@ structure that provides the required interface.
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch9_knights_tour
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch9_knights_tour
+
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch9_knights_tour
 
 The program finds a knight's tour on an 8x8 chessboard (or reports if none exists for
 smaller boards).

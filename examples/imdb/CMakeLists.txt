@@ -63,18 +63,17 @@ endif()
 
 # set(CMAKE_CXX_CLANG_TIDY clang-tidy -checks=-*,readability-*)
 
-add_executable(imdb.exe imdb.cpp)
-target_link_libraries(imdb.exe nwgraph xtensor)
+add_executable(imdb imdb.cpp)
+target_link_libraries(imdb nwgraph xtensor)
 
-add_executable(dns.exe dns.cpp)
-target_link_libraries(dns.exe nwgraph xtensor)
+add_executable(dns dns.cpp)
+target_link_libraries(dns nwgraph xtensor)
 
-add_executable(oracle.exe oracle.cpp)
-target_link_libraries(oracle.exe nwgraph nlohmann_json::nlohmann_json)
+add_executable(oracle oracle.cpp)
+target_link_libraries(oracle nwgraph nlohmann_json::nlohmann_json)
 
-add_executable(dblp.exe dblp.cpp)
-target_link_libraries(dblp.exe nwgraph nlohmann_json::nlohmann_json)
+add_executable(dblp dblp.cpp)
+target_link_libraries(dblp nwgraph nlohmann_json::nlohmann_json)
 
-add_executable(oracle+dblp.exe oracle+dblp.cpp)
-target_link_libraries(oracle+dblp.exe nwgraph nlohmann_json::nlohmann_json)
-
+add_executable(oracle+dblp oracle+dblp.cpp)
+target_link_libraries(oracle+dblp nwgraph nlohmann_json::nlohmann_json)

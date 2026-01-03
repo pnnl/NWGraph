@@ -92,22 +92,73 @@ Installation packages for oneAPI for Linux are available on intel.com:
 Compilation
 ~~~~~~~~~~~
 
+Basic build (tests only):
+
 .. code:: bash
 
-   $ mkdir build; cd build
+   $ mkdir -p build && cd build
    $ cmake ..
-   $ make -j4
+   $ make -j8
 
-Once compiled, the drivers of the graph benchmarks can be found under
-the ``$NWGraph_HOME/build/bench/`` folder. The binary files of the
-abstraction penalty benchmarks are under the
-``$NWGraph_HOME/build/abp/`` folder. The binaries of the IMDB examples
-are under the ``$NWGraph_HOME/build/examples/`` folder. The binary files
-of the examples to show case the features of NWGraph library are under
-the ``$NWGraph_HOME/build/test/`` folder.
+Building Everything
+~~~~~~~~~~~~~~~~~~~
 
-Useful things to know
-~~~~~~~~~~~~~~~~~~~~~
+To build tests, examples, and benchmarks together:
+
+.. code:: bash
+
+   $ cmake .. -DNWGRAPH_BUILD_TESTS=ON \
+              -DNWGRAPH_BUILD_EXAMPLES=ON \
+              -DNWGRAPH_BUILD_BENCH=ON
+   $ make -j8
+
+Building Specific Components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: bash
+
+   # Build all benchmarks (GAP Benchmark Suite + abstraction penalty)
+   $ make bench -j8
+
+   # Build individual benchmark executables
+   $ make bfs cc pr sssp bc tc -j8
+
+   # Build BGL book examples
+   $ make ch3_toposort ch4_kevin_bacon ch5_dijkstra ch6_kruskal -j8
+
+Build Output Locations
+~~~~~~~~~~~~~~~~~~~~~~
+
+After building, executables are located in:
+
+.. code:: text
+
+   build/
+   ├── test/                        # Unit tests (Catch2)
+   │   ├── adjacency_test
+   │   ├── bfs_test_0
+   │   └── ...
+   ├── examples/
+   │   └── bgl-book/                # BGL Book examples
+   │       ├── ch3_toposort
+   │       ├── ch4_kevin_bacon
+   │       ├── ch5_dijkstra
+   │       └── ...
+   └── bench/
+       ├── gapbs/                   # GAP Benchmark Suite
+       │   ├── bfs
+       │   ├── sssp
+       │   ├── pr
+       │   ├── cc
+       │   ├── bc
+       │   └── tc
+       └── abstraction_penalty/     # Abstraction penalty benchmarks
+           ├── plain
+           ├── spmv
+           └── ...
+
+CMake Options
+~~~~~~~~~~~~~
 
 To specify compiler:
 
@@ -115,35 +166,24 @@ To specify compiler:
 
    $ cmake .. -DCMAKE_CXX_COMPILER=g++-11
 
-To specify build type as Release or Debug, default is Release:
+To specify build type as Release or Debug (default is Release):
 
 .. code:: bash
 
-   $ cmake .. -DCMAKE_BUILD_TYPE=Release (or Debug)
+   $ cmake .. -DCMAKE_BUILD_TYPE=Release
 
-To enable test cases and examples under build/test directory:
-
-.. code:: bash
-
-   $ cmake .. -DNW_GRAPH_BUILD_TESTS=ON (or OFF)
-
-To generate applications under build/bench/ directory:
+To enable/disable components:
 
 .. code:: bash
 
-   $ cmake .. -DNW_GRAPH_BUILD_BENCH=ON (or OFF)
+   # Unit tests (ON by default)
+   $ cmake .. -DNWGRAPH_BUILD_TESTS=ON
 
-To generate abstraction penalty under build/abp/ directory:
+   # GAP benchmarks and abstraction penalty benchmarks
+   $ cmake .. -DNWGRAPH_BUILD_BENCH=ON
 
-.. code:: bash
-
-   $ cmake .. -DNW_GRAPH_BUILD_APBS=OFF (or ON)
-
-To generate tools under build/example/ directory:
-
-.. code:: bash
-
-   $ cmake .. -DNW_GRAPH_BUILD_EXAMPLES=OFF (or ON)
+   # BGL book examples and IMDB examples
+   $ cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
 
 If cmake is not able to find TBB in its expected places, you may get an
 error during the cmake step. In this case, you need to set the
@@ -152,13 +192,81 @@ installed. For example:
 
 .. code:: bash
 
-   $ TBBROOT=/opt/intel/oneapi/tbb/2021.5.1 cmake .. 
+   $ TBBROOT=/opt/intel/oneapi/tbb/2021.5.1 cmake ..
 
 To see verbose information during compilation:
 
 .. code:: bash
 
    $ make VERBOSE=1
+
+Building Documentation
+----------------------
+
+NWGraph documentation is built using Sphinx with Doxygen integration via
+Breathe and Exhale.
+
+Documentation Dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Install Python dependencies:
+
+.. code:: bash
+
+   $ pip install sphinx sphinx_rtd_theme breathe exhale sphinxcontrib-bibtex
+
+Install Doxygen:
+
+.. code:: bash
+
+   # macOS
+   $ brew install doxygen
+
+   # Ubuntu/Debian
+   $ sudo apt install doxygen
+
+Building via CMake
+~~~~~~~~~~~~~~~~~~
+
+The recommended way to build documentation:
+
+.. code:: bash
+
+   $ cmake .. -DNWGRAPH_BUILD_DOCS=ON
+   $ make docs
+
+This runs Doxygen to extract API documentation and Sphinx to build the HTML pages.
+
+Documentation Targets
+~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Target
+     - Description
+   * - ``make docs``
+     - Build complete documentation (Doxygen + Sphinx)
+   * - ``make docs-html``
+     - Build HTML only (faster, uses cached Doxygen output)
+   * - ``make docs-clean``
+     - Clean all built documentation
+   * - ``make docs-open``
+     - Build and open in browser (macOS/Linux)
+
+Building Directly with Sphinx
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Alternatively, build directly from the sphinx directory:
+
+.. code:: bash
+
+   $ cd doc-src/sphinx
+   $ pip install -r requirements.txt
+   $ make html
+
+The built documentation is located at ``doc-src/sphinx/_build/html/index.html``.
 
 Running code in NWGraph
 -----------------------
@@ -171,10 +279,10 @@ A typical interface of a benchmark driver looks like this:
 
 .. code:: bash
 
-   bfs.exe: breadth first search benchmark driver.
+   bfs: breadth first search benchmark driver.
      Usage:
-         bfs.exe (-h | --help)
-         bfs.exe -f FILE [-r NODE | -s FILE] [-i NUM] [-a NUM] [-b NUM] [-B NUM] [-n NUM] [--seed NUM] [--version ID...] [--log FILE] [--log-header] [-dvV] [THREADS]...
+         bfs (-h | --help)
+         bfs -f FILE [-r NODE | -s FILE] [-i NUM] [-a NUM] [-b NUM] [-B NUM] [-n NUM] [--seed NUM] [--version ID...] [--log FILE] [--log-header] [-dvV] [THREADS]...
 
      Options:
          -h, --help              show this screen
@@ -197,9 +305,9 @@ A typical interface of a benchmark driver looks like this:
 The applications takes options followed by the arguments of the options
 as inputs. A minimal example takes a graph as input is as follow:
 
-::
+.. code:: bash
 
-   $ bfs.exe -f karate.mtx
+   $ ./build/bench/gapbs/bfs -f test/data/karate.mtx
 
 Supported graph file format
 ---------------------------
@@ -211,9 +319,17 @@ Formats <https://math.nist.gov/MatrixMarket/formats.html>`__
 Running benchmarks
 ------------------
 
-We have six main benchmarks: Breadth-first Search, Betweenness Centrality, Connected Component
-Decomposition, Page rank, Single Source Shortest Path, and Triangle
-Counting.
+We have six main benchmarks: Breadth-first Search, Betweenness Centrality,
+Connected Component Decomposition, PageRank, Single Source Shortest Path,
+and Triangle Counting.
+
+First, build the benchmarks:
+
+.. code:: bash
+
+   $ cd build
+   $ cmake .. -DNWGRAPH_BUILD_BENCH=ON
+   $ make bench -j8
 
 Breadth-first Search
 ~~~~~~~~~~~~~~~~~~~~
@@ -226,9 +342,9 @@ BFS driver. Also, number of trials can be specified with ``-n``. In this
 way, if no seed or seed file is provided, each trial will generate one
 random number from 0 to \|V|-1 as the random source for BFS as an input.
 
-::
+.. code:: bash
 
-   $ bench/bfs.exe -f karate.mtx --seed 0 --version 11 -n 3
+   $ ./bench/gapbs/bfs -f ../test/data/karate.mtx --seed 0 --version 11 -n 3
 
 Connected Component Decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,24 +352,24 @@ Connected Component Decomposition
 The default sequential version of CC is version 0 (default). The fastest
 parallel version of CC is version 7, Afforest.
 
-::
+.. code:: bash
 
-   $ bench/cc.exe -f karate.mtx --relabel --direction ascending
+   $ ./bench/gapbs/cc -f ../test/data/karate.mtx --relabel --direction ascending
 
-Page Rank
-~~~~~~~~~
+PageRank
+~~~~~~~~
 
 The fastest parallel version of PR is version 11 (default). The max
 iterations can be set with ``-i``.
 
-::
+.. code:: bash
 
-   $ bench/pr.exe -f karate.mtx -i 1000
+   $ ./bench/gapbs/pr -f ../test/data/karate.mtx -i 1000
 
 Single Source Shortest Path
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The default sequential version of CC SSSP version 0 (default). The
+The default sequential version of SSSP is version 0 (default). The
 fastest parallel version of SSSP is version 12, Delta-stepping. As an
 alternative to specifying one seed at a time, one or more sources can be
 provided in a Matrix Market format file as an input of SSSP driver.
@@ -261,9 +377,9 @@ Also, number of trials can be specified with ``-n``. In this way, if no
 seed or seed file is provided, each trial will generate one random
 number from 0 to \|V|-1 as the random source for SSSP as an input.
 
-::
+.. code:: bash
 
-   $ bench/sssp.exe -f karate.mtx --seed 0 -n 3
+   $ ./bench/gapbs/sssp -f ../test/data/karate.mtx --seed 0 -n 3
 
 Triangle Counting
 ~~~~~~~~~~~~~~~~~
@@ -271,9 +387,9 @@ Triangle Counting
 The default sequential version of TC is version 0 (default). The fastest
 parallel version of TC is version 4.
 
-::
+.. code:: bash
 
-   $ bench/tc.exe -f karate.mtx --version 4 --relabel --upper
+   $ ./bench/gapbs/tc -f ../test/data/karate.mtx --version 4 --relabel --upper
 
 Betweenness Centrality
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -283,14 +399,14 @@ parallel version of BC is version 5. As an alternative to specifying one
 seed at a time, one or more sources can be provided in a Matrix Market
 format file as an input of BC driver.
 
-::
+.. code:: bash
 
-   $ bench/bc.exe -f karate.mtx --version 5 --seed 0
+   $ ./bench/gapbs/bc -f ../test/data/karate.mtx --version 5 --seed 0
 
 Other useful things
 ~~~~~~~~~~~~~~~~~~~
 
-Note that the following features may or may be available to every
+Note that the following features may or may not be available for every
 benchmark.
 
 Relabel-by-degree
@@ -302,12 +418,12 @@ algorithm. It can improve the workload distribution and memory access
 pattern of the algorithm itself. To enable relabel-by-degree and relabel
 the degree of vertices in ascending order:
 
-::
+.. code:: bash
 
-   $ bench/cc.exe -f karate.mtx --relabel --direction ascending
+   $ ./bench/gapbs/cc -f ../test/data/karate.mtx --relabel --direction ascending
 
 Upper Triangular Order
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 In triangle counting, it allows to relabel the graph in upper/lower
 triangular order. This will greatly improve the performance of the
@@ -316,26 +432,26 @@ vertices in upper triangular order:
 
 .. code:: bash
 
-   $ bench/tc.exe -f karate.mtx --relabel --upper
+   $ ./bench/gapbs/tc -f ../test/data/karate.mtx --relabel --upper
 
 Verifier
-~~~~~~~~
+^^^^^^^^
 
 We implement a verifier in each benchmark to verify the correctness of
 the algorithms. To enable the verification of the algorithm:
 
 .. code:: bash
 
-   $ bench/cc.exe -f karate.mtx -v
+   $ ./bench/gapbs/cc -f ../test/data/karate.mtx -v
 
 or
 
 .. code:: bash
 
-   $ bench/cc.exe -f karate.mtx --verify
+   $ ./bench/gapbs/cc -f ../test/data/karate.mtx --verify
 
 Multi-threading
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 Each algorithm/benchmark has both sequential version and parallel
 version. When a parallel algorithm is selected, multi-threading is
@@ -345,22 +461,29 @@ thread number, such as 128 threads:
 
 .. code:: bash
 
-   $ bench/cc.exe -f karate.mtx 128
+   $ ./bench/gapbs/cc -f ../test/data/karate.mtx 128
 
 Benchmarking with GAP Datasets
 ------------------------------
 
-To obtain the performance results reported in the PVLDB paper for
-NWGraph, “NWGraph: A Library of Generic Graph Algorithms and
-DataStructures in C++20”, please follow the following steps.
+For detailed information about the GAP Benchmark Suite datasets, see
+:doc:`benchmarking`.
 
--  Download the GAP datasets from `Suitesparse Matrix
-   Collection <https://sparse.tamu.edu/GAP/>`__ in Matrix Market format
--  Run different graph benchmarks with the GAP datasets
+To download the GAP graphs:
 
-Note that BFS and SSSP are run with 64 sources provided in a Matrix
-Market file, and BC are run with 4 sources. For PR, the max iterations
-has been set to 1000.
+.. code:: bash
+
+   # Show available graphs
+   $ ./scripts/download_gap_graphs.sh --list
+
+   # Download the road network (smallest, good for testing)
+   $ ./scripts/download_gap_graphs.sh road
+
+   # Download all real-world graphs
+   $ ./scripts/download_gap_graphs.sh all
+
+Then run benchmarks with the downloaded graphs. Note that BFS and SSSP
+are run with 64 sources, BC with 4 sources, and PR with 1000 iterations.
 
 Benchmarking abstraction penalties
 ----------------------------------
@@ -384,6 +507,13 @@ in different containers. In particular, we have selected
 Running abstraction penalty experiments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+First, build the abstraction penalty benchmarks:
+
+.. code:: bash
+
+   $ cmake .. -DNWGRAPH_BUILD_BENCH=ON
+   $ make bench -j8
+
 For example let us consider the sparse matrix-dense vector
 multiplication (SpMV) kernel used in page rank, which multiplies the
 adjacency matrix representation of a graph by a dense vector x and
@@ -392,14 +522,14 @@ abstraction penalty of different ways to iterate through a graph:
 
 .. code:: bash
 
-   $ apb/spmv.exe -f karate.mtx
+   $ ./bench/abstraction_penalty/spmv -f ../test/data/karate.mtx
 
 To experimentally evaluate the abstraction penalty of different
 containers for storing a graph:
 
 .. code:: bash
 
-   $ apb/containers -f karate.mtx --format CSR --format VOV --format VOL --format VOF
+   $ ./bench/abstraction_penalty/containers -f ../test/data/karate.mtx --format CSR --format VOV --format VOL --format VOF
 
 .. |Build with gcc-11| image:: https://github.com/NWmath/NWgr/workflows/Build%20with%20gcc-11/badge.svg
 .. |image1| image:: https://github.com/NWmath/NWgr/workflows/Build%20with%20gcc-11/badge.svg?branch=sc_release

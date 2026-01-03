@@ -88,17 +88,25 @@ NWGraph provides a ``bellman_ford`` function that implements the Bellman-Ford al
    :linenos:
    :caption: Complete source code
 
-Running the Example
-------------------
+Building and Running the Example
+--------------------------------
 
-Build and run the example:
+First, configure and build the example:
 
 .. code-block:: bash
 
-   cd build/examples/bgl-book
-   ./ch5_bellman_ford
+   # From the NWGraph root directory
+   mkdir -p build && cd build
+   cmake .. -DNWGRAPH_BUILD_EXAMPLES=ON
+   make ch5_bellman_ford
 
-The program reads a router network and computes shortest paths using the Bellman-Ford
+Then run the example:
+
+.. code-block:: bash
+
+   ./examples/bgl-book/ch5_bellman_ford
+
+The program uses a sample router network and computes shortest paths using the Bellman-Ford
 algorithm, demonstrating how distance-vector routing protocols work.
 
 Sample Output

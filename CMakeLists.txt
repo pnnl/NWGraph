@@ -88,7 +88,7 @@ if (NWGRAPH_SANITIZE)
 endif (NWGRAPH_SANITIZE)
 
 option(NWGRAPH_BUILD_BENCH "Determines whether to build benchmarks (GAP Suite and APB)." OFF)
-# option(NWGRAPH_BUILD_DOCS "Determines whether to build documentation." OFF)
+option(NWGRAPH_BUILD_DOCS "Determines whether to build documentation (requires Sphinx, Doxygen)." OFF)
 option(NWGRAPH_BUILD_EXAMPLES "Determines whether to build examples." OFF)
 option(NWGRAPH_BUILD_TESTS "Determines whether to build tests." ON)
 option(NWGRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
@@ -158,10 +158,10 @@ if (NWGRAPH_BUILD_BENCH)
   add_subdirectory(bench)
 endif()
 
-# Documentation is built specially in CI for now
-# if (NWGRAPH_BUILD_DOCS)
-#   add_subdirectory(doc-src)
-# endif()
+# Documentation build targets
+if (NWGRAPH_BUILD_DOCS)
+  add_subdirectory(doc-src)
+endif()
 
 if (NWGRAPH_BUILD_EXAMPLES)
   add_subdirectory(examples)
