@@ -1,18 +1,18 @@
-# Workflow to configure with cmake and build with gcc-10
+# Workflow to configure with cmake and build with gcc
 
-name: Build with gcc-11 (Mac)
+name: Build with gcc (Mac)
 
 on:
-  push: 
+  push:
     branches: [ master, sc_release ]
-  workflow_dispatch: 
+  workflow_dispatch:
 
 #  pull_request:
 #    branches:
 #      - '*'
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
@@ -22,23 +22,27 @@ jobs:
     steps:
 
     - name: Checkout NWgr
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: NWgr
 
-# The macos image evidently has gcc-11 and cmake 3.22 pre-installed
-    - name: prep
+    - name: Install dependencies
       run: |
         brew update
-        brew install tbb
+        brew install gcc tbb
 
     - name: cmake
       run: |
         cd NWgr
         mkdir build
         cd build
-        export TBBROOT=/opt/intel/oneapi/tbb/latest
-        cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=g++-11 -DNWGRAPH_BUILD_DOCS=OFF -DNWGRAPH_BUILD_TESTS=ON
+        # Find the highest gcc version installed by homebrew
+        GCC_VERSION=$(ls /opt/homebrew/bin/g++-* 2>/dev/null | grep -o '[0-9]*$' | sort -n | tail -1)
+        if [ -z "$GCC_VERSION" ]; then
+          GCC_VERSION=$(ls /usr/local/bin/g++-* 2>/dev/null | grep -o '[0-9]*$' | sort -n | tail -1)
+        fi
+        echo "Using g++-$GCC_VERSION"
+        cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=g++-$GCC_VERSION -DNWGRAPH_BUILD_DOCS=OFF -DNWGRAPH_BUILD_TESTS=ON
 
     - name: make
       run: |
