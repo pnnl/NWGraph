@@ -47,7 +47,8 @@ jobs:
     - name: make
       run: |
         cd NWgr/build
-        make -j -k
+        # Limit parallelism to avoid potential OOM issues
+        make -j4 -k
 
     - name: run_test
       run: |
