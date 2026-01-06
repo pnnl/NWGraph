@@ -1,0 +1,14 @@
+.. _exhale_typedef_csr_8hpp_1a58e1567c9e515ad9ad8ce15ea9151c19:
+
+Typedef nw::graph::csr_graph
+============================
+
+- Defined in :ref:`file_include_nwgraph_csr.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::csr_graph
+   :project: NWgraph

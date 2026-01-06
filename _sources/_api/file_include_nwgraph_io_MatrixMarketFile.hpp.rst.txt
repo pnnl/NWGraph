@@ -1,0 +1,100 @@
+
+.. _file_include_nwgraph_io_MatrixMarketFile.hpp:
+
+File MatrixMarketFile.hpp
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_io>` (``include/nwgraph/io``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/io/MatrixMarketFile.hpp``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_io_MatrixMarketFile.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdio``
+
+- ``cstring``
+
+- ``fcntl.h``
+
+- ``filesystem``
+
+- ``mmio_nist.h`` (:ref:`file_include_nwgraph_io_mmio_nist.h`)
+
+- ``sys/mman.h``
+
+- ``sys/stat.h``
+
+- ``sys/types.h``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``unistd.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_mmio`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classmmio_1_1MatrixMarketFile`
+
+- :ref:`exhale_class_classmmio_1_1MatrixMarketFile_1_1iterator`
+
+- :ref:`exhale_class_classmmio_1_1Range`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_MatrixMarketFile_8hpp_1a2de279ea27f5edf08da1cc2c025cd755`
+

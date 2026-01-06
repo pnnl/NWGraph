@@ -1,0 +1,14 @@
+.. _exhale_variable_algorithms_2page__rank_8hpp_1ac95384668f16c55b454b76aad6b3871d:
+
+Variable nw::graph::pagerank::trace
+===================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::pagerank::trace
+   :project: NWgraph

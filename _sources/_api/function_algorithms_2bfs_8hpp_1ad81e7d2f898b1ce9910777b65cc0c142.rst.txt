@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2bfs_8hpp_1ad81e7d2f898b1ce9910777b65cc0c142:
+
+Template Function nw::graph::bfs(const Graph&, vertex_id_t<Graph>)
+==================================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::bfs(const Graph&, vertex_id_t<Graph>)
+   :project: NWgraph

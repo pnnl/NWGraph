@@ -1,0 +1,14 @@
+.. _exhale_function_boykov__kolmogorov_8hpp_1a9997aaf3e985d145fdf83370d4073098:
+
+Template Function nw::graph::bk_maxflow
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_boykov_kolmogorov.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::bk_maxflow(const Graph&, std::vector<double>&)
+   :project: NWgraph

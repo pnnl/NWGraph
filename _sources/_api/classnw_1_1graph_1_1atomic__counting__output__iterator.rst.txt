@@ -1,0 +1,26 @@
+.. _exhale_class_classnw_1_1graph_1_1atomic__counting__output__iterator:
+
+Class atomic_counting_output_iterator
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_util_util_par.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::iterator< std::random_access_iterator_tag, size_t >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::atomic_counting_output_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

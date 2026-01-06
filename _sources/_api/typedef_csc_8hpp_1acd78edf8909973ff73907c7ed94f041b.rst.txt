@@ -1,0 +1,14 @@
+.. _exhale_typedef_csc_8hpp_1acd78edf8909973ff73907c7ed94f041b:
+
+Typedef nw::graph::csc_matrix
+=============================
+
+- Defined in :ref:`file_include_nwgraph_csc.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::csc_matrix
+   :project: NWgraph

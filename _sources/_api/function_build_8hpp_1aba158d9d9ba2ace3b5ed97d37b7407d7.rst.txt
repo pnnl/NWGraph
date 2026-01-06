@@ -1,0 +1,18 @@
+.. _exhale_function_build_8hpp_1aba158d9d9ba2ace3b5ed97d37b7407d7:
+
+Template Function nw::graph::degrees(edge_list_t&, ExecutionPolicy&&)
+=====================================================================
+
+Defined in :ref:`file_include_nwgraph_build.hpp`
+
+.. rubric:: Signature
+
+.. code-block:: cpp
+
+    template <int, edge_list_graph, class ExecutionPolicy> auto nw::graph::degrees(edge_list_t&, ExecutionPolicy&&)
+
+.. note::
+
+    This function has multiple template overloads. The Doxygen/Breathe toolchain
+    cannot resolve which overload to display. See the source file for full documentation.
+

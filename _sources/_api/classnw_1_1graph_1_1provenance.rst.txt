@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1provenance:
+
+Class provenance
+================
+
+- Defined in :ref:`file_include_nwgraph_util_provenance.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::provenance
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_variable_traits_8hpp_1a93b92eb718a2af4026eb0887a1ccf3b5:
+
+Variable nw::graph::is_iterator_v
+=================================
+
+- Defined in :ref:`file_include_nwgraph_util_traits.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::is_iterator_v
+   :project: NWgraph

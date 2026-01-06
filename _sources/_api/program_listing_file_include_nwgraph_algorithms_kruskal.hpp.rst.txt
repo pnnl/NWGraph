@@ -1,0 +1,62 @@
+
+.. _program_listing_file_include_nwgraph_algorithms_kruskal.hpp:
+
+Program Listing for File kruskal.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_algorithms_kruskal.hpp>` (``include/nwgraph/algorithms/kruskal.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_KRUSKAL_HPP
+   #define NW_GRAPH_KRUSKAL_HPP
+   
+   #include <algorithm>
+   #include <tuple>
+   
+   #include "nwgraph/edge_list.hpp"
+   #include "nwgraph/graph_concepts.hpp"
+   #include "nwgraph/util/disjoint_set.hpp"
+   #include "nwgraph/util/util.hpp"
+   
+   #include "nwgraph/util/print_types.hpp"
+   
+   
+   namespace nw {
+   namespace graph {
+   
+   template <edge_list_graph EdgeListT>
+   EdgeListT kruskal(EdgeListT& E) {
+     return kruskal(E, [](auto t1, auto t2) { return std::get<2>(t1) < std::get<2>(t2); });
+   }
+   template <edge_list_graph EdgeListT, typename Compare>
+   EdgeListT kruskal(EdgeListT& E, Compare comp) {
+     size_t    n_vtx = E.size();
+     EdgeListT T(n_vtx);
+     std::sort(E.begin(), E.end(), comp);
+   
+     std::vector<std::pair<vertex_id_type, size_t>> subsets(n_vtx);
+     for (size_t i = 0; i < n_vtx; ++i) {
+       subsets[i].first  = i;
+       subsets[i].second = 0;
+     }
+   
+     for (auto y : E) {
+       //    auto u = std::get<0>(y);
+       //    auto v = std::get<1>(y);
+   
+       auto u = source(E, y);
+       auto v = target(E, y);
+       if (disjoint_union_find(subsets, u, v)) T.push_back(y);
+     }
+   
+     return T;
+   }
+   
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    //  NW_GRAPH_KRUSKAL_HPP

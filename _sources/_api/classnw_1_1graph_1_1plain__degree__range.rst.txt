@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1plain__degree__range:
+
+Template Class plain_degree_range
+=================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_plain_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1plain__degree__range_1_1iterator`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::plain_degree_range
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

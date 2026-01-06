@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a30457aaef104750d9487c21892286e1e:
+
+Template Function nw::graph::make_bipartite_graph
+=================================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_bipartite_graph(const V&, const V&, const E&)
+   :project: NWgraph

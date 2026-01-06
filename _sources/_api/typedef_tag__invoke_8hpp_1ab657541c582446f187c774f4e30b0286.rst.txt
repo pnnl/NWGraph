@@ -1,0 +1,14 @@
+.. _exhale_typedef_tag__invoke_8hpp_1ab657541c582446f187c774f4e30b0286:
+
+Typedef is_nothrow_tag_invocable
+================================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: is_nothrow_tag_invocable
+   :project: NWgraph

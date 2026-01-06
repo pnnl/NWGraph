@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2jaccard_8hpp_1a3b6bd8a558110ed362b2706ded3d3cf1:
+
+Template Function nw::graph::jaccard_similarity
+===============================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::jaccard_similarity(GraphT&, Weight)
+   :project: NWgraph

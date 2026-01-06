@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1is__unipartite_3_01unipartite__graph__base_01_4:
+
+Template Struct is_unipartite< unipartite_graph_base >
+======================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::is_unipartite< unipartite_graph_base >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

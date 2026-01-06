@@ -1,0 +1,95 @@
+
+.. _file_include_nwgraph_algorithms_triangle_count.hpp:
+
+File triangle_count.hpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_algorithms>` (``include/nwgraph/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/algorithms/triangle_count.hpp``)
+--------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_algorithms_triangle_count.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu Kevin Deweese 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``future``
+
+- ``nwgraph/adaptors/cyclic_range_adaptor.hpp`` (:ref:`file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp`)
+
+- ``nwgraph/adaptors/edge_range.hpp`` (:ref:`file_include_nwgraph_adaptors_edge_range.hpp`)
+
+- ``nwgraph/adaptors/neighbor_range.hpp`` (:ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/util/intersection_size.hpp`` (:ref:`file_include_nwgraph_util_intersection_size.hpp`)
+
+- ``nwgraph/util/parallel_for.hpp`` (:ref:`file_include_nwgraph_util_parallel_for.hpp`)
+
+- ``nwgraph/util/timer.hpp`` (:ref:`file_include_nwgraph_util_timer.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``thread``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_algorithms_2triangle__count_8hpp_1aa31ba65a88816f47f0e0e9583782e120`
+
+- :ref:`exhale_function_algorithms_2triangle__count_8hpp_1a2caa5f902615f93aae540a9307d03720`
+
+- :ref:`exhale_function_algorithms_2triangle__count_8hpp_1a5e13d2b5fb9d7b8c289345d809bcca91`
+

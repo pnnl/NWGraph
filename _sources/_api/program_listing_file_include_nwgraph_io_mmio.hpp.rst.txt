@@ -1,0 +1,482 @@
+
+.. _program_listing_file_include_nwgraph_io_mmio.hpp:
+
+Program Listing for File mmio.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_io_mmio.hpp>` (``include/nwgraph/io/mmio.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_MMIO_HPP
+   #define NW_GRAPH_MMIO_HPP
+   
+   #include <cassert>
+   #include <cstddef>
+   #include <cstdio>
+   #include <fcntl.h>
+   #include <future>
+   #include <iostream>
+   #include <sstream>
+   #include <sys/mman.h>
+   #include <sys/stat.h>
+   #include <sys/types.h>
+   #include <thread>
+   #include <unistd.h>
+   
+   #include "MatrixMarketFile.hpp"
+   #include "nwgraph/adjacency.hpp"
+   #include "nwgraph/edge_list.hpp"
+   
+   #include <tbb/concurrent_vector.h>
+   
+   namespace nw {
+   namespace graph {
+   
+   void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+     A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
+     A.open_for_push_back();
+     for (size_t i = 0; i < nNonzeros; ++i) {
+       std::string buffer;
+       size_t      d0, d1;
+   
+       std::getline(inputStream, buffer);
+       std::stringstream(buffer) >> d0 >> d1;
+   
+       A.push_back(d0 - 1, d1 - 1);
+   
+       if (file_symmetry && (d0 != d1)) {
+         A.push_back(d1 - 1, d0 - 1);
+       }
+     }
+     A.close_for_push_back();
+   }
+   
+   template <typename T>
+   void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+   
+     A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
+     A.open_for_push_back();
+     for (size_t i = 0; i < nNonzeros; ++i) {
+       std::string buffer;
+       size_t      d0, d1;
+       T           v(1.0);
+   
+       std::getline(inputStream, buffer);
+       if (pattern) {
+         std::stringstream(buffer) >> d0 >> d1;
+       } else {
+         std::stringstream(buffer) >> d0 >> d1 >> v;
+       }
+   
+       A.push_back(d0 - 1, d1 - 1, v);
+   
+       if (file_symmetry && (d0 != d1)) {
+         A.push_back(d1 - 1, d0 - 1, v);
+       }
+     }
+     A.close_for_push_back();
+   }
+   
+   void mm_fill(std::istream& inputStream, edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+     A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
+     A.open_for_push_back();
+     for (size_t i = 0; i < nNonzeros; ++i) {
+       std::string buffer;
+       size_t      d0, d1;
+   
+       std::getline(inputStream, buffer);
+       std::stringstream(buffer) >> d0 >> d1;
+   
+       A.push_back(d0 - 1, d1 - 1);
+   
+       if (file_symmetry && (d0 != d1)) {
+         A.push_back(d1 - 1, d0 - 1);
+       }
+     }
+     A.close_for_push_back();
+   }
+   
+   template <typename T>
+   void mm_fill(std::istream& inputStream, edge_list<directedness::directed, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+   
+     A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
+     A.open_for_push_back();
+     for (size_t i = 0; i < nNonzeros; ++i) {
+       std::string buffer;
+       size_t      d0, d1;
+       T           v(1.0);
+   
+       std::getline(inputStream, buffer);
+       if (pattern) {
+         std::stringstream(buffer) >> d0 >> d1;
+       } else {
+         std::stringstream(buffer) >> d0 >> d1 >> v;
+       }
+   
+       A.push_back(d0 - 1, d1 - 1, v);
+   
+       if (file_symmetry && (d0 != d1)) {
+         A.push_back(d1 - 1, d0 - 1, v);
+       }
+     }
+     A.close_for_push_back();
+   }
+   
+   void mm_fill(std::istream& inputStream, edge_list<directedness::undirected>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+   
+     A.reserve(nNonzeros);
+     A.open_for_push_back();
+   
+     for (size_t i = 0; i < nNonzeros; ++i) {
+       size_t d0, d1;
+       double d2;
+   
+       if (pattern) {
+         inputStream >> d0 >> d1;
+       } else {
+         inputStream >> d0 >> d1 >> d2;
+       }
+   
+       A.push_back(d0 - 1, d1 - 1);
+     }
+     A.close_for_push_back();
+   }
+   
+   template <typename T>
+   void mm_fill(std::istream& inputStream, edge_list<directedness::undirected, T>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+     // assert(file_symmetry);
+     A.reserve(nNonzeros);
+     A.open_for_push_back();
+     for (size_t i = 0; i < nNonzeros; ++i) {
+       std::string buffer;
+       size_t      d0, d1;
+       T           v(1.0);
+       std::getline(inputStream, buffer);
+       if (pattern) {
+         std::stringstream(buffer) >> d0 >> d1;
+       } else {
+         std::stringstream(buffer) >> d0 >> d1 >> v;
+       }
+       A.push_back(d0 - 1, d1 - 1, v);
+     }
+     A.close_for_push_back();
+   }
+   
+   template <directedness sym, typename... Attributes>
+   edge_list<sym, Attributes...> read_mm(std::istream& inputStream) {
+     std::string              string_input;
+     bool                     file_symmetry = false;
+     std::vector<std::string> header(5);
+   
+     // %%MatrixMarket matrix coordinate integer symmetric
+     std::getline(inputStream, string_input);
+     std::stringstream h(string_input);
+     for (auto& s : header)
+       h >> s;
+   
+     if (header[0] != "%%MatrixMarket") {
+       std::cerr << "Unsupported format" << std::endl;
+       throw;
+     }
+     if (header[4] == "symmetric") {
+       file_symmetry = true;
+     } else if (header[4] == "general") {
+       file_symmetry = false;
+     } else {
+       std::cerr << "Bad format (symmetry): " << header[4] << std::endl;
+       throw;
+     }
+   
+     while (std::getline(inputStream, string_input)) {
+       if (string_input[0] != '%') break;
+     }
+     size_t n0, n1, nNonzeros;
+     std::stringstream(string_input) >> n0 >> n1 >> nNonzeros;
+   
+     // assert(n0 == n1);
+   
+     edge_list<sym, Attributes...> A(n0);
+     mm_fill(inputStream, A, nNonzeros, file_symmetry, (header[3] == "pattern"));
+   
+     return A;
+   }
+   
+   template <directedness sym, typename... Attributes>
+   edge_list<sym, Attributes...> read_mm(const std::string& filename) {
+     std::ifstream inputFile(filename);
+   
+     edge_list<sym, Attributes...> A = read_mm<sym, Attributes...>(inputFile);
+   
+     return A;
+   }
+   
+   template <directedness sym, typename... Attributes, edge_list_graph edge_list_t>
+   edge_list_t read_mm(const std::string& filename) {
+     std::ifstream            inputStream(filename);
+     std::string              string_input;
+     bool                     file_symmetry = false;
+     std::vector<std::string> header(5);
+   
+     // %%MatrixMarket matrix coordinate integer symmetric
+     std::getline(inputStream, string_input);
+     std::stringstream h(string_input);
+     for (auto& s : header)
+       h >> s;
+   
+     if (header[0] != "%%MatrixMarket") {
+       std::cerr << "Unsupported format" << std::endl;
+       throw;
+     }
+     if (header[4] == "symmetric") {
+       file_symmetry = true;
+     } else if (header[4] == "general") {
+       file_symmetry = false;
+     } else {
+       std::cerr << "Bad format (symmetry): " << header[4] << std::endl;
+       throw;
+     }
+   
+     while (std::getline(inputStream, string_input)) {
+       if (string_input[0] != '%') break;
+     }
+     size_t n0, n1, nNonzeros;
+     std::stringstream(string_input) >> n0 >> n1 >> nNonzeros;
+   
+     if (n0 == n1 && is_unipartite<edge_list_t>::value) {
+       //unipartite edge list
+       //edge_list<sym, Attributes...> A(n0);
+       //mm_fill(inputStream, A, nNonzeros, file_symmetry, (header[3] == "pattern"));
+   
+       //return A;
+       std::cerr << "Can not populate unipartite graph with symmetric matrix" << std::endl;
+       throw;
+     } else if (n0 != n1 && false == is_unipartite<edge_list_t>::value) {
+       //bipartite edge list
+       if (file_symmetry) {
+         std::cerr << "Can not populate bipartite graph with symmetric matrix" << std::endl;
+         throw;
+       }
+       bi_edge_list<sym, Attributes...> A(n0, n1);
+       mm_fill(inputStream, A, nNonzeros, file_symmetry, (header[3] == "pattern"));
+   
+       return A;
+     } else {
+       std::cerr << "Mismatch edge list type with matrix symmetry" << std::endl;
+       throw;
+     }
+   }
+   
+   template <typename T>
+   auto read_mm_vector(std::istream& inputStream) {
+     std::string string_input;
+     bool        file_symmetry = false;
+     (void)file_symmetry;    // silence warnings
+     std::vector<std::string> header(5);
+   
+     // %%MatrixMarket matrix array real general
+     // 64 1
+     std::getline(inputStream, string_input);
+     std::stringstream h(string_input);
+     for (auto& s : header)
+       h >> s;
+   
+     if (header[0] != "%%MatrixMarket") {
+       std::cerr << "Unsupported format" << std::endl;
+       throw;
+     }
+     if (header[4] == "symmetric") {
+       file_symmetry = true;
+     } else if (header[4] == "general") {
+       file_symmetry = false;
+     } else {
+       std::cerr << "Bad format (symmetry): " << header[4] << std::endl;
+       throw;
+     }
+   
+     while (std::getline(inputStream, string_input)) {
+       if (string_input[0] != '%') break;
+     }
+     size_t n0, n1;
+     std::stringstream(string_input) >> n0 >> n1;
+   
+     assert(1 == n1);
+   
+     std::vector<T> vec(n0);
+   
+     if (header[3] == "real") {
+       double d;
+       for (size_t i = 0; i < n0; ++i) {
+         inputStream >> d;
+         vec[i] = d - 1;
+       }
+     } else {
+       size_t d;
+       for (size_t i = 0; i < n0; ++i) {
+         inputStream >> d;
+         vec[i] = d - 1;
+       }
+     }
+   
+     return vec;
+   }
+   
+   template <typename T>
+   auto read_mm_vector(const std::string& filename) {
+     std::ifstream inputFile(filename);
+   
+     auto v = read_mm_vector<T>(inputFile);
+   
+     return v;
+   }
+   
+   bool is_mm(const std::string& filename) {
+     std::ifstream            input_stream(filename);
+     std::vector<std::string> header(5);
+   
+     std::string buf;
+     std::getline(input_stream, buf);
+     std::stringstream h(buf);
+     for (auto& s : header) {
+       h >> s;
+     }
+   
+     return header[0] == "%%MatrixMarket";
+   }
+   
+   directedness get_mm_symmetry(const std::string& filename) {
+     std::ifstream            inputStream(filename);
+     std::string              string_input;
+     std::vector<std::string> header(5);
+   
+     // %%MatrixMarket matrix coordinate integer symmetric
+     std::getline(inputStream, string_input);
+     std::stringstream h(string_input);
+     for (auto& s : header) {
+       h >> s;
+     }
+   
+     if (header[0] != "%%MatrixMarket") {
+       std::cerr << "Unsupported format: " << header[0] << std::endl;
+       throw;
+     }
+     if (header[4] == "symmetric") {
+       return directedness::undirected;
+     } else {
+       return directedness::directed;
+     }
+   }
+   
+   template <size_t w_idx, directedness sym, typename... Attributes>
+   void aos_stream(std::ofstream& outputStream, edge_list<sym, Attributes...> A, const std::string& file_symmetry, std::string& w_type) {
+     outputStream << "%%MatrixMarket matrix coordinate " << w_type << " " << file_symmetry << "\n%%\n";
+   
+     if constexpr (is_unipartite<edge_list<sym, Attributes...>>::value) {
+       outputStream << num_vertices(A) << " " << num_vertices(A) << " ";    // + 1 ???
+     } else {
+       outputStream << num_vertices(A, 0) << " " << num_vertices(A, 1) << " ";    // + 1 ???
+     }
+   
+     if (file_symmetry == "general" && sym == directedness::undirected)
+       outputStream << 2 * (A.end() - A.begin()) << std::endl;
+     else
+       outputStream << A.end() - A.begin() << std::endl;
+   
+     for (auto&& element : A) {
+       outputStream << std::get<0>(element) + 1 << " " << std::get<1>(element) + 1;
+       if (w_idx != 0) outputStream << " " << std::get<w_idx>(element);
+       outputStream << std::endl;
+       if (file_symmetry == "general" && sym == directedness::undirected) {
+         outputStream << std::get<1>(element) + 1 << " " << std::get<0>(element) + 1;
+         if (w_idx != 0) outputStream << " " << std::get<w_idx>(element);
+         outputStream << std::endl;
+       }
+     }
+   }
+   
+   template <size_t w_idx = 0, typename idxtype = void, directedness sym, typename... Attributes>
+   void write_mm(const std::string& filename, edge_list<sym, Attributes...>& A, const std::string& file_symmetry = "general") {
+     if (file_symmetry == "symmetric" && sym == directedness::directed) {
+       std::cerr << "cannot save directed matrix as symmetric matrix market" << std::endl;
+     }
+   
+     std::string w_type = "pattern";
+     if (std::numeric_limits<idxtype>::is_integer)
+       w_type = "integer";
+     else if (std::is_floating_point<idxtype>::value)
+       w_type = "real";
+   
+     std::ofstream outputStream(filename);
+     aos_stream<w_idx>(outputStream, A, file_symmetry, w_type);
+   }
+   
+   template <size_t w_idx, int idx, typename... Attributes>
+   void adjacency_stream(std::ofstream& outputStream, adjacency<idx, Attributes...>& A, const std::string& file_symmetry, std::string& w_type) {
+     outputStream << "%%MatrixMarket matrix coordinate " << w_type << " " << file_symmetry << "\n%%\n";
+   
+     outputStream << num_vertices(A) << " " << num_vertices(A) << " "
+                  << std::accumulate(A.begin(), A.end(), 0, [&](int a, auto b) { return a + (int)(b.end() - b.begin()); }) << std::endl;
+   
+     for (auto first = A.begin(); first != A.end(); ++first) {
+       for (auto v = (*first).begin(); v != (*first).end(); ++v) {
+         outputStream << first - A.begin() + (1 - idx) << " " << std::get<0>(*v) + (1 - idx);
+         if (w_idx != 0) outputStream << " " << std::get<w_idx>(*v);
+         outputStream << std::endl;
+       }
+     }
+   }
+   
+   template <size_t w_idx = 0, typename idxtype = void, int idx, typename... Attributes>
+   void write_mm(const std::string& filename, adjacency<idx, Attributes...>& A, const std::string& file_symmetry = "general") {
+     /*if (file_symmetry == "symmetric" && sym == directedness::directed) {
+       std::cerr << "cannot save directed matrix as symmetric matrix market" << std::endl;
+     }*/
+   
+     std::string w_type = "pattern";
+     if (std::numeric_limits<idxtype>::is_integer)
+       w_type = "integer";
+     else if (std::is_floating_point<idxtype>::value)
+       w_type = "real";
+   
+     std::ofstream outputStream(filename);
+     adjacency_stream<w_idx>(outputStream, A, file_symmetry, w_type);
+   }
+   
+   template <size_t w_idx, int idx, typename... Attributes>
+   void adjacency_stream(std::ofstream& outputStream, biadjacency<idx, Attributes...>& A, const std::string& file_symmetry, std::string& w_type) {
+     outputStream << "%%MatrixMarket matrix coordinate " << w_type << " " << file_symmetry << "\n%%\n";
+   
+     outputStream << num_vertices(A, 0) << " " << num_vertices(A, 1) << " "
+                  << std::accumulate(A.begin(), A.end(), 0, [&](int a, auto b) { return a + (int)(b.end() - b.begin()); }) << std::endl;
+   
+     for (auto first = A.begin(); first != A.end(); ++first) {
+       for (auto v = (*first).begin(); v != (*first).end(); ++v) {
+         outputStream << first - A.begin() + (1 - idx) << " " << std::get<0>(*v) + (1 - idx);
+         if (w_idx != 0) outputStream << " " << std::get<w_idx>(*v);
+         outputStream << std::endl;
+       }
+     }
+   }
+   
+   template <size_t w_idx = 0, typename idxtype = void, int idx, typename... Attributes>
+   void write_mm(const std::string& filename, biadjacency<idx, Attributes...>& A, const std::string& file_symmetry = "general") {
+     /*if (file_symmetry == "symmetric" && sym == directedness::directed) {
+       std::cerr << "cannot save directed matrix as symmetric matrix market" << std::endl;
+     }*/
+   
+     std::string w_type = "pattern";
+     if (std::numeric_limits<idxtype>::is_integer)
+       w_type = "integer";
+     else if (std::is_floating_point<idxtype>::value)
+       w_type = "real";
+   
+     std::ofstream outputStream(filename);
+     adjacency_stream<w_idx>(outputStream, A, file_symmetry, w_type);
+   }
+   
+   }    // namespace graph
+   }    // namespace nw
+   #endif    // NW_GRAPH_MMIO_HPP

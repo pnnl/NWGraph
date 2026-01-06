@@ -1,0 +1,14 @@
+.. _exhale_function_mmio_8hpp_1a3c78e18fdbb523c2c79a62499a4885d9:
+
+Function nw::graph::mm_fill(std::istream&, bi_edge_list<directedness::directed>&, size_t, bool, bool)
+=====================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::mm_fill(std::istream&, bi_edge_list<directedness::directed>&, size_t, bool, bool)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_provenance_8hpp_1aceeea651a22ccdbe98fc2952ea1ed149:
+
+Function nw::graph::rtrim
+=========================
+
+- Defined in :ref:`file_include_nwgraph_util_provenance.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::rtrim(std::string&, const std::string&)
+   :project: NWgraph

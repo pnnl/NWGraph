@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a3dcd992efef4754c59d4e57845f4af14:
+
+Template Function nw::graph::lexical_stable_sort_by
+===================================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::lexical_stable_sort_by(edge_list_t&, ExecutionPolicy&&)
+   :project: NWgraph

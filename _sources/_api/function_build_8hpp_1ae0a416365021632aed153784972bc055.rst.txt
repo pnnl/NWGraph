@@ -1,0 +1,18 @@
+.. _exhale_function_build_8hpp_1ae0a416365021632aed153784972bc055:
+
+Template Function nw::graph::make_property_edges(M&, const E&)
+==============================================================
+
+Defined in :ref:`file_include_nwgraph_build.hpp`
+
+.. rubric:: Signature
+
+.. code-block:: cpp
+
+    template <class M, std::ranges::random_access_range, class Edge, class EdgeList> auto nw::graph::make_property_edges(M&, const E&)
+
+.. note::
+
+    This function has multiple template overloads. The Doxygen/Breathe toolchain
+    cannot resolve which overload to display. See the source file for full documentation.
+

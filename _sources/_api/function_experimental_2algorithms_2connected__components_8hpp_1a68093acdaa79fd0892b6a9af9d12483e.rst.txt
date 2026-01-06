@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a68093acdaa79fd0892b6a9af9d12483e:
+
+Template Function nw::graph::ccv1
+=================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::ccv1(const Graph&)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1ae10857eb799d710d1c06e3eeac9f0311:
+
+Variable MM_SPARSE_STR
+======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_SPARSE_STR
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a38f94ea6775a6d01b0d191b07986ee81:
+
+Template Function nw::graph::link(const Graph&, const T, std::vector<T>&, const size_t)
+=======================================================================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::link(const Graph&, const T, std::vector<T>&, const size_t)
+   :project: NWgraph

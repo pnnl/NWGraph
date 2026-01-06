@@ -1,0 +1,28 @@
+.. _exhale_class_classnw_1_1graph_1_1topdown__bfs__range:
+
+Template Class topdown_bfs_range
+================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_bfs_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1topdown__bfs__range_1_1end__sentinel__type`
+- :ref:`exhale_class_classnw_1_1graph_1_1topdown__bfs__range_1_1iterator`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::topdown_bfs_range
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

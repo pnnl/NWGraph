@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1zipped_1_1soa__iterator:
+
+Template Class zipped::soa_iterator
+===================================
+
+- Defined in :ref:`file_include_nwgraph_containers_zip.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_struct_structnw_1_1graph_1_1zipped`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::zipped::soa_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

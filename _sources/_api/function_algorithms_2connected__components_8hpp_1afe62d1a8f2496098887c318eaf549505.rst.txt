@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2connected__components_8hpp_1afe62d1a8f2496098887c318eaf549505:
+
+Template Function nw::graph::link(T, T, Vector&)
+================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::link(T, T, Vector&)
+   :project: NWgraph

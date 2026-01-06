@@ -1,0 +1,14 @@
+.. _exhale_function_graph__concepts_8hpp_1a59ee2c16a5b381a01c7bb67fc85c3769:
+
+Template Function nw::graph::tag_invoke(const target_tag, const T&, const U&)
+=============================================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::tag_invoke(const target_tag, const T&, const U&)
+   :project: NWgraph

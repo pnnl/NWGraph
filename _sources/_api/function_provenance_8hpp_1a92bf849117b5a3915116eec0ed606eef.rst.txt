@@ -1,0 +1,14 @@
+.. _exhale_function_provenance_8hpp_1a92bf849117b5a3915116eec0ed606eef:
+
+Function nw::graph::trim
+========================
+
+- Defined in :ref:`file_include_nwgraph_util_provenance.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::trim(std::string&, const std::string&)
+   :project: NWgraph

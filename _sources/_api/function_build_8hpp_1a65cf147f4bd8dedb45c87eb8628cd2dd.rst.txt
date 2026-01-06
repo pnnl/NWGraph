@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a65cf147f4bd8dedb45c87eb8628cd2dd:
+
+Template Function nw::graph::perm_by_degree(edge_list_t&, std::string)
+======================================================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::perm_by_degree(edge_list_t&, std::string)
+   :project: NWgraph

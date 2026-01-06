@@ -1,0 +1,14 @@
+.. _exhale_variable_edge__list_8hpp_1a9ac91a005f4723893bb1cdb69091b9db:
+
+Variable nw::graph::g_debug_edge_list
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::g_debug_edge_list
+   :project: NWgraph

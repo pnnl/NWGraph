@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1vertex__range:
+
+Template Class vertex_range
+===========================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_vertex_range.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::vertex_range
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

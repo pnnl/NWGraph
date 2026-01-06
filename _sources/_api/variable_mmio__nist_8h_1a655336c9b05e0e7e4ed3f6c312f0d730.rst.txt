@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1a655336c9b05e0e7e4ed3f6c312f0d730:
+
+Variable MM_COORDINATE_STR
+==========================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_COORDINATE_STR
+   :project: NWgraph

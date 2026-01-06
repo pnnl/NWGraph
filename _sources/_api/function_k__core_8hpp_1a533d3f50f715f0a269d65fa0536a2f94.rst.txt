@@ -1,0 +1,14 @@
+.. _exhale_function_k__core_8hpp_1a533d3f50f715f0a269d65fa0536a2f94:
+
+Function nw::graph::make_my_pair
+================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_my_pair(default_vertex_id_type, default_vertex_id_type)
+   :project: NWgraph

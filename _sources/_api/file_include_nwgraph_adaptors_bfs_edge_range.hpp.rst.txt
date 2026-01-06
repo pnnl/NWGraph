@@ -1,0 +1,123 @@
+
+.. _file_include_nwgraph_adaptors_bfs_edge_range.hpp:
+
+File bfs_edge_range.hpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Range adaptors for BFS edge traversal. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/bfs_edge_range.hpp``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_bfs_edge_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides range-based interfaces for iterating over edges in BFS order:
+
+- bfs_edge_range: Basic BFS edge iteration yielding (source, target, ...)
+
+- bfs_edge_range2: Priority queue-based for Dijkstra-style traversal
+
+- bfs_edge_range3: Two-queue version for level-synchronized BFS
+
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``queue`` (:ref:`file_include_nwgraph_util_make_priority_queue.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_dijkstra.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range2`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range3`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range3_1_1bfs__edge__range3__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range3_1_1bfs__edge__range3__iterator_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range_1_1bfs__edge__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range_1_1bfs__edge__range__iterator_1_1end__sentinel__type`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_bfs__edge__range_8hpp_1a1bf11385241ca57016ff59f70db0bb1d`
+

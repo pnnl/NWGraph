@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2connected__components_8hpp_1a5c15cdab252ce1f5b4a684b600bdca12:
+
+Template Function nw::graph::afforest
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::afforest(Execution&, const Graph1&, const Graph2&, const size_t)
+   :project: NWgraph

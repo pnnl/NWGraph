@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1index__vov:
+
+Template Class index_vov
+========================
+
+- Defined in :ref:`file_include_nwgraph_vovos.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public nw::graph::unipartite_graph_base``
+- ``public nw::graph::vector_of_vector_of_structs< vertex_id, Attributes... >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::index_vov
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

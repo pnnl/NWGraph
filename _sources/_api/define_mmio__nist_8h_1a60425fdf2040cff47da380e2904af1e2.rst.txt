@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a60425fdf2040cff47da380e2904af1e2:
+
+Define mm_set_coordinate
+========================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_set_coordinate
+   :project: NWgraph

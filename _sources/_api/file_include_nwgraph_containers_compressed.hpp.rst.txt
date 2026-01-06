@@ -1,0 +1,141 @@
+
+.. _file_include_nwgraph_containers_compressed.hpp:
+
+File compressed.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_containers>` (``include/nwgraph/containers``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/containers/compressed.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_containers_compressed.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro Kevin Deweese Krzysztof Drewniak Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``concepts`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``cxxabi.h``
+
+- ``execution``
+
+- ``iostream``
+
+- ``istream``
+
+- ``numeric``
+
+- ``nwgraph/adaptors/splittable_range_adaptor.hpp`` (:ref:`file_include_nwgraph_adaptors_splittable_range_adaptor.hpp`)
+
+- ``nwgraph/containers/soa.hpp`` (:ref:`file_include_nwgraph_containers_soa.hpp`)
+
+- ``nwgraph/graph_base.hpp`` (:ref:`file_include_nwgraph_graph_base.hpp`)
+
+- ``nwgraph/util/arrow_proxy.hpp`` (:ref:`file_include_nwgraph_util_arrow_proxy.hpp`)
+
+- ``nwgraph/util/defaults.hpp`` (:ref:`file_include_nwgraph_util_defaults.hpp`)
+
+- ``nwgraph/util/demangle.hpp`` (:ref:`file_include_nwgraph_util_demangle.hpp`)
+
+- ``nwgraph/util/proxysort.hpp`` (:ref:`file_include_nwgraph_util_proxysort.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adjacency.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1indexed__struct__of__arrays`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1indexed__struct__of__arrays_1_1my__outer__iterator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_compressed_8hpp_1a414dea08c6c1d351b10eced3405139e7`
+
+- :ref:`exhale_function_compressed_8hpp_1a2fc67ea8411948a726398e5326ff9691`
+
+- :ref:`exhale_function_compressed_8hpp_1a3e08385a0fd2d5ec0e81aac8ad2f1514`
+
+- :ref:`exhale_function_compressed_8hpp_1a6cd44a6d05458ba53515a7b8f7f5871a`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_compressed_8hpp_1ace47ecc7fa5f37becedd0f9ab7cf0919`
+
+- :ref:`exhale_variable_compressed_8hpp_1a7298f847d9b7704340dabc41d08c4463`
+

@@ -1,0 +1,13 @@
+
+.. _namespace_std__ranges:
+
+Namespace std::ranges
+=====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+

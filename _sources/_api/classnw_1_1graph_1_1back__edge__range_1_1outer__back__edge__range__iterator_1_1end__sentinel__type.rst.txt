@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1back__edge__range_1_1outer__back__edge__range__iterator_1_1end__sentinel__type:
+
+Class outer_back_edge_range_iterator::end_sentinel_type
+=======================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_back_edge_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1back__edge__range_1_1outer__back__edge__range__iterator`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::back_edge_range::outer_back_edge_range_iterator::end_sentinel_type
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

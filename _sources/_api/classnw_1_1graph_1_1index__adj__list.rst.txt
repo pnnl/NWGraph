@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1index__adj__list:
+
+Template Class index_adj_list
+=============================
+
+- Defined in :ref:`file_include_nwgraph_volos.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public nw::graph::unipartite_graph_base``
+- ``public nw::graph::vector_of_list_of_structs< vertex_id, Attributes... >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::index_adj_list
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_concept_concepttag__invocable:
+
+Concept tag_invocable
+=====================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Concept Documentation
+---------------------
+
+
+.. doxygenconcept:: tag_invocable
+   :project: NWgraph

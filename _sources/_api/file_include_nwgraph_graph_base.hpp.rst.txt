@@ -1,0 +1,118 @@
+
+.. _file_include_nwgraph_graph_base.hpp:
+
+File graph_base.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/graph_base.hpp``)
+-----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_graph_base.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``array``
+
+- ``cstddef``
+
+- ``istream``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adjacency.hpp`
+
+- :ref:`file_include_nwgraph_build.hpp`
+
+- :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+- :ref:`file_include_nwgraph_edge_list.hpp`
+
+- :ref:`file_include_nwgraph_graph_adaptor.hpp`
+
+- :ref:`file_include_nwgraph_vofos.hpp`
+
+- :ref:`file_include_nwgraph_volos.hpp`
+
+- :ref:`file_include_nwgraph_vovos.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__unipartite`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__unipartite_3_01unipartite__graph__base_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1other__direction`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1other__direction_3_01directedness_1_1undirected_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1other__succession`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1other__succession_3_01succession_1_1predecessor_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1other__succession_3_01succession_1_1successor_01_4`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bipartite__graph__base`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1other__direction_3_01directedness_1_1directed_01_4`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1unipartite__graph__base`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_graph__base_8hpp_1a671883528471e011f192898dcf7e3ded`
+
+- :ref:`exhale_enum_graph__base_8hpp_1ab117e54a0af661e9a2104cdc20833231`
+

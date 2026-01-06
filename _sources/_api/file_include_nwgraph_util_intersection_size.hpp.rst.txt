@@ -1,0 +1,97 @@
+
+.. _file_include_nwgraph_util_intersection_size.hpp:
+
+File intersection_size.hpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/intersection_size.hpp``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_intersection_size.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``execution``
+
+- ``numeric``
+
+- ``type_traits``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_truss.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_intersection__size_8hpp_1a00d5bda79e27a385795d2deb9c5c0156`
+
+- :ref:`exhale_function_intersection__size_8hpp_1a947ff7906b1c5cd4b63aca130795718e`
+
+- :ref:`exhale_function_intersection__size_8hpp_1ad842f9919baf84e4b187a587f3dde271`
+
+- :ref:`exhale_function_intersection__size_8hpp_1a3a26032fa1d2d600c56a2d651761ecb8`
+
+- :ref:`exhale_function_intersection__size_8hpp_1af889283b5068327bdf6f4d5d739df0bb`
+
+- :ref:`exhale_function_intersection__size_8hpp_1aaed03066ef57eb9dd8bfa6e86bfcdfe3`
+

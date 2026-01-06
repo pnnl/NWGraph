@@ -1,0 +1,23 @@
+.. _exhale_struct_structnw_1_1graph_1_1cyclic__range__adaptor_1_1iterator:
+
+Struct cyclic_range_adaptor::iterator
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1cyclic__range__adaptor`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::cyclic_range_adaptor::iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

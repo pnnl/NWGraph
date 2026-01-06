@@ -1,0 +1,14 @@
+.. _exhale_function_kruskal_8hpp_1ab6383c1ed77e977f5b44c3bb92f68ce8:
+
+Template Function nw::graph::kruskal(EdgeListT&)
+================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_kruskal.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::kruskal(EdgeListT&)
+   :project: NWgraph

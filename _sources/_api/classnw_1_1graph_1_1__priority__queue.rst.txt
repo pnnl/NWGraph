@@ -1,0 +1,26 @@
+.. _exhale_class_classnw_1_1graph_1_1__priority__queue:
+
+Template Class _priority_queue
+==============================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::priority_queue< T, std::vector< T >, std::less< typename Container::value_type > >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::_priority_queue
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

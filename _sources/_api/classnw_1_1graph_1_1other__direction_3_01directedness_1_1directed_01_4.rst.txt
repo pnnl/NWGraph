@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1other__direction_3_01directedness_1_1directed_01_4:
+
+Template Class other_direction< directedness::directed >
+========================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::other_direction< directedness::directed >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

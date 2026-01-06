@@ -1,0 +1,14 @@
+.. _exhale_typedef_build_8hpp_1a1ae6ff6f31a9a2212ea5236a1c5ec196:
+
+Typedef nw::graph::default_execution_policy
+===========================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::default_execution_policy
+   :project: NWgraph

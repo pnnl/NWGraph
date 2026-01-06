@@ -1,0 +1,13 @@
+
+.. _namespace__tag_invoke_cpo:
+
+Namespace _tag_invoke_cpo
+=========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+

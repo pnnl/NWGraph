@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1a3f8202a5661316a11245a79c083ead8a:
+
+Template Function nw::graph::relaxed(T&&, U&&)
+==============================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::relaxed(T&&, U&&)
+   :project: NWgraph

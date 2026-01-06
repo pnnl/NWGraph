@@ -1,0 +1,14 @@
+.. _exhale_function_util_8hpp_1a54430f286a4daf3e9c251ca29e074233:
+
+Template Function nw::graph::pow2
+=================================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::pow2(int)
+   :project: NWgraph

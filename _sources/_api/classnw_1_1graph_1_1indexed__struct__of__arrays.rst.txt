@@ -1,0 +1,37 @@
+.. _exhale_class_classnw_1_1graph_1_1indexed__struct__of__arrays:
+
+Template Class indexed_struct_of_arrays
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1indexed__struct__of__arrays_1_1my__outer__iterator`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public nw::graph::index_adjacency< idx, index_type, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__adjacency`)
+- ``public nw::graph::index_biadjacency< idx, index_type, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__biadjacency`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::indexed_struct_of_arrays
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2bfs_8hpp_1a642459fc07317cb4cefaa3c44baea345:
+
+Template Function nw::graph::TD_step
+====================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::TD_step(const Graph&, std::vector<vertex_id_t<Graph>>&, Vector&, std::vector<Vector>&)
+   :project: NWgraph

@@ -1,0 +1,26 @@
+.. _exhale_class_classnw_1_1util_1_1empty__timer:
+
+Class empty_timer
+=================
+
+- Defined in :ref:`file_include_nwgraph_util_timer.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public nw::util::life_timer`` (:ref:`exhale_class_classnw_1_1util_1_1life__timer`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::util::empty_timer
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

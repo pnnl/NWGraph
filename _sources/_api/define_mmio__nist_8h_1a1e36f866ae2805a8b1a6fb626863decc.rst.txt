@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a1e36f866ae2805a8b1a6fb626863decc:
+
+Define MM_COULD_NOT_READ_FILE
+=============================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_COULD_NOT_READ_FILE
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a7f391a079b4a0b2fdd784a345dccc9e1:
+
+Template Function nw::graph::findDominantComponentID
+====================================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::findDominantComponentID(const std::vector<T>&, size_t)
+   :project: NWgraph

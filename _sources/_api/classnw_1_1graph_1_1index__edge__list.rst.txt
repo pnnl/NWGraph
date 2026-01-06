@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1index__edge__list:
+
+Template Class index_edge_list
+==============================
+
+- Defined in :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public graph_base_t``
+- ``public nw::graph::struct_of_arrays< vertex_id, vertex_id, Attributes... >`` (:ref:`exhale_struct_structnw_1_1graph_1_1struct__of__arrays`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::index_edge_list
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:
