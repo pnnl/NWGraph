@@ -20,6 +20,7 @@
 #ifndef NW_GRAPH_DAG_RANGE_HPP
 #define NW_GRAPH_DAG_RANGE_HPP
 
+#include <cstdint>
 #include <queue>
 #include <vector>
 
