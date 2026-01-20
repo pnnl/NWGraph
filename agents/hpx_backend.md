@@ -623,6 +623,146 @@ make -j8 && sudo make install
 
 4. **Mixed backends**: Should we support runtime backend selection, or compile-time only?
 
+## Benchmarking Strategy
+
+### Scalability Benchmarks
+
+The `bench/scalability/` directory contains benchmarks for measuring parallel scalability:
+
+```
+bench/scalability/
+├── CMakeLists.txt
+├── scalability_common.hpp      # Common utilities for scalability benchmarks
+├── parallel_for_scaling.cpp    # parallel_for scalability tests
+└── parallel_reduce_scaling.cpp # parallel_reduce scalability tests
+```
+
+### Running Scalability Benchmarks
+
+```bash
+# Build the benchmarks
+cmake -B build && cmake --build build
+
+# Run parallel_for scalability benchmark
+./build/bench/scalability/parallel_for_scaling -n 5 -t 16 -s 10000000
+
+# Options:
+#   -n, --ntrials N      Number of trials per measurement
+#   -t, --threads N      Maximum threads to test
+#   -s, --size N         Problem size (number of elements)
+```
+
+### Benchmark Runner Scripts
+
+Two scripts are provided in `scripts/`:
+
+#### 1. `run_benchmarks.sh` - Run all benchmarks
+
+```bash
+./scripts/run_benchmarks.sh --suite scalability --ntrials 5 --max-threads 16
+./scripts/run_benchmarks.sh --suite gapbs --graph data/road.mtx
+./scripts/run_benchmarks.sh --suite all --output-dir results/
+```
+
+Options:
+- `--build-dir DIR` - Build directory (default: ./build)
+- `--output-dir DIR` - Output directory for results
+- `--ntrials N` - Number of trials per benchmark
+- `--max-threads N` - Maximum threads to test
+- `--size N` - Problem size for scalability benchmarks
+- `--graph FILE` - Graph file for GAPBS/APB benchmarks
+- `--suite SUITE` - Benchmark suite: all, scalability, gapbs, apb
+
+#### 2. `compare_backends.sh` - Compare TBB vs HPX
+
+```bash
+# First, build both backends
+cmake -B build-tbb && cmake --build build-tbb
+cmake -B build-hpx -DNWGRAPH_BACKEND_HPX=ON && cmake --build build-hpx
+
+# Run comparison
+./scripts/compare_backends.sh --tbb-build build-tbb --hpx-build build-hpx
+```
+
+### Benchmark Categories
+
+#### Memory-Bound Benchmarks
+- Vector increment operations
+- Tests memory bandwidth limitations
+- Expected: Limited scaling past memory bandwidth saturation
+
+#### Compute-Bound Benchmarks
+- Trigonometric operations (sin, cos, tan)
+- Tests CPU-bound parallel scaling
+- Expected: Near-linear scaling up to core count
+
+#### Splittable Range Benchmarks
+- Tests the range splitting mechanism used by graph algorithms
+- Uses `splittable_range_adaptor` directly
+- Important for validating graph algorithm performance
+
+#### Irregular Work Benchmarks
+- Simulates graph-like access patterns
+- Variable work per element (like neighbor iteration)
+- Tests load balancing effectiveness
+
+### Metrics to Collect
+
+1. **Execution Time**: Mean, min, max, stddev across trials
+2. **Speedup**: T(1) / T(N) for N threads
+3. **Efficiency**: Speedup / N (ideally 100%)
+4. **Scalability**: How speedup changes with thread count
+
+### Expected Results Format
+
+```
+=== Scaling study: parallel_for (compute bound) ===
+Backend: TBB
+Hardware threads: 16
+
+[trig_ops] threads=1 mean=245.123ms min=244.501ms max=246.012ms stddev=0.521ms trials=5
+[trig_ops] threads=2 mean=123.456ms min=122.891ms max=124.112ms stddev=0.412ms trials=5
+...
+
+--- Speedup (vs 1 thread) ---
+threads=1 speedup=1.00x efficiency=100.0%
+threads=2 speedup=1.99x efficiency=99.3%
+threads=4 speedup=3.91x efficiency=97.8%
+threads=8 speedup=7.62x efficiency=95.2%
+threads=16 speedup=14.21x efficiency=88.8%
+```
+
+### Performance Targets
+
+For compute-bound workloads:
+- **2 threads**: >1.9x speedup (>95% efficiency)
+- **4 threads**: >3.8x speedup (>95% efficiency)
+- **8 threads**: >7.2x speedup (>90% efficiency)
+- **16 threads**: >13x speedup (>80% efficiency)
+
+For memory-bound workloads:
+- Expect lower efficiency due to memory bandwidth limitations
+- Typically plateau at 4-8 threads on most systems
+
+### Comparison Methodology
+
+When comparing TBB vs HPX:
+
+1. **Use identical workloads**: Same problem size, same operations
+2. **Control for warmup**: Discard first trial or run warmup explicitly
+3. **Multiple trials**: Run 5+ trials and report mean/stddev
+4. **Same hardware**: Run on same machine, same conditions
+5. **Control thread count**: Use `ThreadLimiter` (TBB) or HPX thread settings
+
+### Known Differences
+
+| Aspect | TBB | HPX |
+|--------|-----|-----|
+| Initialization | Lazy (automatic) | Requires explicit init |
+| Range splitting | Built-in Range concept | Manual or via iterators |
+| Concurrent containers | Native support | Requires wrappers |
+| Thread management | Work-stealing scheduler | Task-based scheduler |
+
 ## References
 
 - [HPX Documentation](https://hpx-docs.stellar-group.org/)

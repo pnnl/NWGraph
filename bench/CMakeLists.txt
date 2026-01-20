@@ -5,6 +5,7 @@
 #
 #   gapbs/           - NWGraph implementations of GAP Benchmark Suite
 #   abstraction_penalty/ - Abstraction Penalty Benchmarks
+#   scalability/     - Parallel scalability benchmarks (TBB vs HPX)
 #   gapbs-reference/ - Original GAP Benchmark Suite (submodule, optional)
 # =============================================================================
 
@@ -16,6 +17,7 @@ add_custom_target(bench)
 # -----------------------------------------------------------------------------
 add_subdirectory(gapbs)
 add_subdirectory(abstraction_penalty)
+add_subdirectory(scalability)
 
 # -----------------------------------------------------------------------------
 # Original GAP Benchmark Suite (optional, for comparison)
