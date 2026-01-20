@@ -93,6 +93,15 @@ option(NWGRAPH_BUILD_EXAMPLES "Determines whether to build examples." OFF)
 option(NWGRAPH_BUILD_TESTS "Determines whether to build tests." ON)
 option(NWGRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
 
+# Parallel backend selection
+option(NWGRAPH_BACKEND_HPX "Use HPX for parallel execution (default: TBB)" OFF)
+
+# Validate backend selection
+if(NWGRAPH_BACKEND_HPX)
+  message(STATUS "NWGraph parallel backend: HPX")
+else()
+  message(STATUS "NWGraph parallel backend: TBB (default)")
+endif()
 
 # -----------------------------------------------------------------------------
 # Handle requests for parallel execution
@@ -100,55 +109,58 @@ option(NWGRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
-option(TBB_TEST "" OFF)
-
-option(BUILD_SHARED_LIBS "Enable building TBB shared library" ON)
-
-message(STATUS "BUILD_SHARED_LIBS " ${BUILD_SHARED_LIBS})
-if (DEFINED BUILD_SHARED_LIBS)
-message(STATUS "defined")
-endif()
-
-option(TBBMALLOC_BUILD "Enable tbbmalloc build" OFF)
-
-if(NWGRAPH_FETCH_TBB)
-
-# include(FetchContent)
-
-# Use fetch content rather than as a submodule
-include(FetchContent)
-FetchContent_Declare(
-  oneTBB
-  GIT_REPOSITORY https://github.com/oneapi-src/oneTBB.git
-#  GIT_TAG v2021.5.0
-)
-message(STATUS "Fetching TBB")
-
-FetchContent_MakeAvailable(oneTBB)
-
-else()
-
-# add_subdirectory(external/oneTBB)
-find_package(TBB REQUIRED)
-
-endif()
-
-# find_package(TBB REQUIRED)
-
-# find_package(TBB)
-# if (not TBB_Found)
-#   FetchContent(
-#     TBB_STUFF)
-# endif()
-
 find_package(Threads REQUIRED)
 
-add_library(nwgraph_tbb INTERFACE)
-target_compile_definitions(nwgraph_tbb INTERFACE EXECUTION_POLICY)
-target_link_libraries(nwgraph_tbb INTERFACE TBB::tbb Threads::Threads)
-if (NWGRAPH_USE_TBBMALLOC)
-  target_link_libraries(nwgraph_tbb INTERFACE TBB::tbbmalloc) 
-endif ()
+# Only find/fetch TBB if not using HPX backend
+if(NOT NWGRAPH_BACKEND_HPX)
+  option(TBB_TEST "" OFF)
+  option(BUILD_SHARED_LIBS "Enable building TBB shared library" ON)
+  option(TBBMALLOC_BUILD "Enable tbbmalloc build" OFF)
+
+  message(STATUS "BUILD_SHARED_LIBS " ${BUILD_SHARED_LIBS})
+
+  if(NWGRAPH_FETCH_TBB)
+    # Use fetch content rather than as a submodule
+    include(FetchContent)
+    FetchContent_Declare(
+      oneTBB
+      GIT_REPOSITORY https://github.com/oneapi-src/oneTBB.git
+      #  GIT_TAG v2021.5.0
+    )
+    message(STATUS "Fetching TBB")
+    FetchContent_MakeAvailable(oneTBB)
+  else()
+    find_package(TBB REQUIRED)
+  endif()
+endif()
+
+# -----------------------------------------------------------------------------
+# Backend-specific setup
+# -----------------------------------------------------------------------------
+if(NWGRAPH_BACKEND_HPX)
+  # HPX backend
+  find_package(HPX REQUIRED)
+
+  add_library(nwgraph_parallel INTERFACE)
+  target_compile_definitions(nwgraph_parallel INTERFACE NWGRAPH_BACKEND_HPX)
+  target_link_libraries(nwgraph_parallel INTERFACE HPX::hpx Threads::Threads)
+
+  # Alias for backwards compatibility
+  add_library(nwgraph_tbb ALIAS nwgraph_parallel)
+
+else()
+  # TBB backend (default)
+  add_library(nwgraph_tbb INTERFACE)
+  target_compile_definitions(nwgraph_tbb INTERFACE EXECUTION_POLICY NWGRAPH_BACKEND_TBB)
+  target_link_libraries(nwgraph_tbb INTERFACE TBB::tbb Threads::Threads)
+  if (NWGRAPH_USE_TBBMALLOC)
+    target_link_libraries(nwgraph_tbb INTERFACE TBB::tbbmalloc)
+  endif ()
+
+  # Alias for new code
+  add_library(nwgraph_parallel ALIAS nwgraph_tbb)
+
+endif()
 
 include(Docopt)
 
