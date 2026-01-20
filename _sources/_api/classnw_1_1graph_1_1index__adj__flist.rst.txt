@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1index__adj__flist:
+
+Template Class index_adj_flist
+==============================
+
+- Defined in :ref:`file_include_nwgraph_vofos.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public nw::graph::unipartite_graph_base``
+- ``public nw::graph::vector_of_flist_of_structs< vertex_id, Attributes... >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::index_adj_flist
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

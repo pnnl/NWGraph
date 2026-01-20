@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File delta_stepping.hpp &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File delta_stepping.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/file_include_nwgraph_algorithms_delta_stepping.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-delta-stepping-hpp">
+<span id="file-include-nwgraph-algorithms-delta-stepping-hpp"></span><h1>File delta_stepping.hpp<a class="headerlink" href="#file-delta-stepping-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_nwgraph_algorithms.html#dir-include-nwgraph-algorithms"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/algorithms</span></code>)</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-nwgraph-algorithms-delta-stepping-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/algorithms/delta_stepping.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
+<li><p><a class="reference internal" href="#included-by" id="id4">Included By</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id5">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#classes" id="id6">Classes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id7">Functions</a></p></li>
+</ul>
+</nav>
+<section id="definition-include-nwgraph-algorithms-delta-stepping-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/algorithms/delta_stepping.hpp</span></code>)<a class="headerlink" href="#definition-include-nwgraph-algorithms-delta-stepping-hpp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_nwgraph_algorithms_delta_stepping.hpp.html">Program Listing for File delta_stepping.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Link to this heading"></a></h2>
+<p>SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</p>
+<p>SPDX-FileCopyrightText: 2022 University of Washington</p>
+<p>SPDX-License-Identifier: BSD-3-Clause</p>
+<p>Andrew Lumsdaine Kevin Deweese Tony Liu</p>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">algorithm</span></code> (<a class="reference internal" href="file_include_nwgraph_algorithms_betweenness_centrality.hpp.html#file-include-nwgraph-algorithms-betweenness-centrality-hpp"><span class="std std-ref">File betweenness_centrality.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iostream</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/containers/compressed.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_containers_compressed.hpp.html#file-include-nwgraph-containers-compressed-hpp"><span class="std std-ref">File compressed.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/edge_list.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_edge_list.hpp.html#file-include-nwgraph-edge-list-hpp"><span class="std std-ref">File edge_list.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/graph_concepts.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_graph_concepts.hpp.html#file-include-nwgraph-graph-concepts-hpp"><span class="std std-ref">File graph_concepts.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/atomic.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_atomic.hpp.html#file-include-nwgraph-util-atomic-hpp"><span class="std std-ref">File atomic.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/parallel_for.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_parallel_for.hpp.html#file-include-nwgraph-util-parallel-for-hpp"><span class="std std-ref">File parallel_for.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/timer.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_timer.hpp.html#file-include-nwgraph-util-timer-hpp"><span class="std std-ref">File timer.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/util.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_util.hpp.html#file-include-nwgraph-util-util-hpp"><span class="std std-ref">File util.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queue</span></code> (<a class="reference internal" href="file_include_nwgraph_util_make_priority_queue.hpp.html#file-include-nwgraph-util-make-priority-queue-hpp"><span class="std std-ref">File make_priority_queue.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tbb/concurrent_vector.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tbb/parallel_for_each.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tbb/queuing_mutex.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code> (<a class="reference internal" href="file_include_nwgraph_util_tuple_hack.hpp.html#file-include-nwgraph-util-tuple-hack-hpp"><span class="std std-ref">File tuple_hack.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type_traits</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></li>
+</ul>
+</section>
+<section id="included-by">
+<h2>Included By<a class="headerlink" href="#included-by" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="file_include_nwgraph_experimental_algorithms_delta_stepping.hpp.html#file-include-nwgraph-experimental-algorithms-delta-stepping-hpp"><span class="std std-ref">File delta_stepping.hpp</span></a></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_nw.html#namespace-nw"><span class="std std-ref">Namespace nw</span></a></p></li>
+<li><p><a class="reference internal" href="namespace_nw__graph.html#namespace-nw-graph"><span class="std std-ref">Namespace nw::graph</span></a></p></li>
+</ul>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="classnw_1_1graph_1_1__priority__queue.html#exhale-class-classnw-1-1graph-1-1-priority-queue"><span class="std std-ref">Template Class _priority_queue</span></a></p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_algorithms_2delta__stepping_8hpp_1ab21093b5d29e7fb3c189dc930ad11ae2.html#exhale-function-algorithms-2delta-stepping-8hpp-1ab21093b5d29e7fb3c189dc930ad11ae2"><span class="std std-ref">Template Function nw::graph::delta_stepping(const Graph&amp;, vertex_id_t&lt;Graph&gt;, T, Weight)</span></a></p></li>
+<li><p><a class="reference internal" href="function_algorithms_2delta__stepping_8hpp_1ae390c1d743e718921aab7060b051d3ea.html#exhale-function-algorithms-2delta-stepping-8hpp-1ae390c1d743e718921aab7060b051d3ea"><span class="std std-ref">Template Function nw::graph::delta_stepping(const Graph&amp;, vertex_id_t&lt;Graph&gt;, T)</span></a></p></li>
+<li><p><a class="reference internal" href="function_algorithms_2delta__stepping_8hpp_1a562489fda8079f84197f2d163133d1dc.html#exhale-function-algorithms-2delta-stepping-8hpp-1a562489fda8079f84197f2d163133d1dc"><span class="std std-ref">Template Function nw::graph::delta_stepping_m1</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

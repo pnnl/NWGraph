@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1permutation__iterator:
+
+Template Class permutation_iterator
+===================================
+
+- Defined in :ref:`file_include_nwgraph_util_permutation_iterator.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::permutation_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

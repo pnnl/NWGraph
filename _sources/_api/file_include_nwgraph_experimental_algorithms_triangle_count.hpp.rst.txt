@@ -1,0 +1,121 @@
+
+.. _file_include_nwgraph_experimental_algorithms_triangle_count.hpp:
+
+File triangle_count.hpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_experimental_algorithms>` (``include/nwgraph/experimental/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/experimental/algorithms/triangle_count.hpp``)
+---------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_experimental_algorithms_triangle_count.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Kevin Deweese Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``future``
+
+- ``nwgraph/adaptors/cyclic_range_adaptor.hpp`` (:ref:`file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp`)
+
+- ``nwgraph/adaptors/edge_range.hpp`` (:ref:`file_include_nwgraph_adaptors_edge_range.hpp`)
+
+- ``nwgraph/adaptors/neighbor_range.hpp`` (:ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/util/intersection_size.hpp`` (:ref:`file_include_nwgraph_util_intersection_size.hpp`)
+
+- ``nwgraph/util/parallel_for.hpp`` (:ref:`file_include_nwgraph_util_parallel_for.hpp`)
+
+- ``nwgraph/util/timer.hpp`` (:ref:`file_include_nwgraph_util_timer.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``thread``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1ae54a7637431c17e4a1cea0ffce46a8c0`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a66d2127d75c316644729135e32882ea2`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a07096af7dfe6b680cc741f1c599a2e0f`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a1b176d9f650c2b637d12cb404298730a`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a8e6b416bb482d2cf6317327f04ca568a`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a059d5de75600592a80223050fc1ac149`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a9a17e4c700de5108ca58574dc9560fb5`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1abba4231f9ea3be6c7609c37c54f9686d`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a726a2a9237667889c8b46b0a0c3afeec`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1affada3fdb183887963aa8c10b69e8b17`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a541bf391ddbb546b038b6682b22af4b9`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1ad0c0392b4c4ade90e243bbf34e6b0666`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1ab4effa36db7d6614bc81bfc5a78bfbc5`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1ad502aa17bf3792f5e80f3465e3647bcb`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a3e59d344e779c8ad141e3264867ed46b`
+
+- :ref:`exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a6b33351373d470069cd87b5c19a4d6a2`
+

@@ -1,0 +1,26 @@
+.. _exhale_class_classnw_1_1graph_1_1array__of__structs:
+
+Template Class array_of_structs
+===============================
+
+- Defined in :ref:`file_include_nwgraph_containers_aos.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::vector< std::tuple< Attributes... > >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::array_of_structs
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

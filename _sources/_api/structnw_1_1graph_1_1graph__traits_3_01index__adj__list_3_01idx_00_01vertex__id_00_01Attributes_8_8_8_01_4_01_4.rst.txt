@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1graph__traits_3_01index__adj__list_3_01idx_00_01vertex__id_00_01Attributes_8_8_8_01_4_01_4:
+
+Template Struct graph_traits< index_adj_list< idx, vertex_id, Attributes... > >
+===============================================================================
+
+- Defined in :ref:`file_include_nwgraph_volos.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::graph_traits< index_adj_list< idx, vertex_id, Attributes... > >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

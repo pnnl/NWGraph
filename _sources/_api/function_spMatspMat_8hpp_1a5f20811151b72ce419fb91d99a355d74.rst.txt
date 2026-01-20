@@ -1,0 +1,14 @@
+.. _exhale_function_spMatspMat_8hpp_1a5f20811151b72ce419fb91d99a355d74:
+
+Template Function nw::graph::spMatspMatT
+========================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_spMatspMat.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::spMatspMatT(LGraphT&, RGraphT&)
+   :project: NWgraph

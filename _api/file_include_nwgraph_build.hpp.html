@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File build.hpp &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File build.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/file_include_nwgraph_build.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-build-hpp">
+<span id="file-include-nwgraph-build-hpp"></span><h1>File build.hpp<a class="headerlink" href="#file-build-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_nwgraph.html#dir-include-nwgraph"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/nwgraph</span></code>)</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-nwgraph-build-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/build.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
+<li><p><a class="reference internal" href="#included-by" id="id4">Included By</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id5">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id6">Functions</a></p></li>
+<li><p><a class="reference internal" href="#typedefs" id="id7">Typedefs</a></p></li>
+</ul>
+</nav>
+<section id="definition-include-nwgraph-build-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/build.hpp</span></code>)<a class="headerlink" href="#definition-include-nwgraph-build-hpp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_nwgraph_build.hpp.html">Program Listing for File build.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Link to this heading"></a></h2>
+<p>SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</p>
+<p>SPDX-FileCopyrightText: 2022 University of Washington</p>
+<p>SPDX-License-Identifier: BSD-3-Clause</p>
+<p>Andrew Lumsdaine Tony Liu</p>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">algorithm</span></code> (<a class="reference internal" href="file_include_nwgraph_algorithms_betweenness_centrality.hpp.html#file-include-nwgraph-algorithms-betweenness-centrality-hpp"><span class="std std-ref">File betweenness_centrality.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">atomic</span></code> (<a class="reference internal" href="file_include_nwgraph_util_atomic.hpp.html#file-include-nwgraph-util-atomic-hpp"><span class="std std-ref">File atomic.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cassert</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">execution</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">graph_concepts.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_graph_concepts.hpp.html#file-include-nwgraph-graph-concepts-hpp"><span class="std std-ref">File graph_concepts.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iostream</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">map</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/containers/zip.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_containers_zip.hpp.html#file-include-nwgraph-containers-zip-hpp"><span class="std std-ref">File zip.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/graph_base.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_graph_base.hpp.html#file-include-nwgraph-graph-base-hpp"><span class="std std-ref">File graph_base.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/graph_traits.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_graph_traits.hpp.html#file-include-nwgraph-graph-traits-hpp"><span class="std std-ref">File graph_traits.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/proxysort.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_proxysort.hpp.html#file-include-nwgraph-util-proxysort-hpp"><span class="std std-ref">File proxysort.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code> (<a class="reference internal" href="file_include_nwgraph_util_tuple_hack.hpp.html#file-include-nwgraph-util-tuple-hack-hpp"><span class="std std-ref">File tuple_hack.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type_traits</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utility</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></li>
+</ul>
+</section>
+<section id="included-by">
+<h2>Included By<a class="headerlink" href="#included-by" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="file_include_nwgraph_adjacency.hpp.html#file-include-nwgraph-adjacency-hpp"><span class="std std-ref">File adjacency.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_vofos.hpp.html#file-include-nwgraph-vofos-hpp"><span class="std std-ref">File vofos.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_volos.hpp.html#file-include-nwgraph-volos-hpp"><span class="std std-ref">File volos.hpp</span></a></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_nw.html#namespace-nw"><span class="std std-ref">Namespace nw</span></a></p></li>
+<li><p><a class="reference internal" href="namespace_nw__graph.html#namespace-nw-graph"><span class="std std-ref">Namespace nw::graph</span></a></p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_build_8hpp_1a4c52a2572d251cb96c86565816ca6644.html#exhale-function-build-8hpp-1a4c52a2572d251cb96c86565816ca6644"><span class="std std-ref">Template Function nw::graph::copy_helper</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ace153b5fbb79b38e627dbfc5a01fa631.html#exhale-function-build-8hpp-1ace153b5fbb79b38e627dbfc5a01fa631"><span class="std std-ref">Template Function nw::graph::data_to_graph_edge_list</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a3d23edf363e9b107ba8c516a36dc652f.html#exhale-function-build-8hpp-1a3d23edf363e9b107ba8c516a36dc652f"><span class="std std-ref">Template Function nw::graph::degrees(const Graph&amp;, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ac39ec8272cca97cd6280c4fc5eb599f5.html#exhale-function-build-8hpp-1ac39ec8272cca97cd6280c4fc5eb599f5"><span class="std std-ref">Template Function nw::graph::degrees(edge_list_t&amp;, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1aba158d9d9ba2ace3b5ed97d37b7407d7.html#exhale-function-build-8hpp-1aba158d9d9ba2ace3b5ed97d37b7407d7"><span class="std std-ref">Template Function nw::graph::degrees(edge_list_t&amp;, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a1ce4ca8848b499df86f193c49c756563.html#exhale-function-build-8hpp-1a1ce4ca8848b499df86f193c49c756563"><span class="std std-ref">Template Function nw::graph::fill(edge_list_t&amp;, adjacency_t&amp;, bool, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ac90eb545447966fe21d1e43fcdce26a8.html#exhale-function-build-8hpp-1ac90eb545447966fe21d1e43fcdce26a8"><span class="std std-ref">Template Function nw::graph::fill(edge_list_t&amp;, adjacency_t&amp;, directedness, bool, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a4cf35e4e64cc67aaf19110dd19e38f7f.html#exhale-function-build-8hpp-1a4cf35e4e64cc67aaf19110dd19e38f7f"><span class="std std-ref">Template Function nw::graph::fill_adj_list</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a0621116bbbeb6177f080d18eebd4299b.html#exhale-function-build-8hpp-1a0621116bbbeb6177f080d18eebd4299b"><span class="std std-ref">Template Function nw::graph::fill_biadjacency</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1af861c27794569ca0bdce2fc731fb62bf.html#exhale-function-build-8hpp-1af861c27794569ca0bdce2fc731fb62bf"><span class="std std-ref">Template Function nw::graph::fill_directed</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a013b771c93a87e67f30dc347249860c1.html#exhale-function-build-8hpp-1a013b771c93a87e67f30dc347249860c1"><span class="std std-ref">Template Function nw::graph::fill_helper</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a1836d9c555a57ec17e1c344ddb27e0de.html#exhale-function-build-8hpp-1a1836d9c555a57ec17e1c344ddb27e0de"><span class="std std-ref">Template Function nw::graph::fill_helper_tmp</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a603a403cd80d64ddbe4e5d4a4b6dc1f2.html#exhale-function-build-8hpp-1a603a403cd80d64ddbe4e5d4a4b6dc1f2"><span class="std std-ref">Template Function nw::graph::fill_undirected</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ace5341abcc1afa1e75265b4b4e051e71.html#exhale-function-build-8hpp-1ace5341abcc1afa1e75265b4b4e051e71"><span class="std std-ref">Template Function nw::graph::join</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a59ad489e1b2ea234a395b1db1b200607.html#exhale-function-build-8hpp-1a59ad489e1b2ea234a395b1db1b200607"><span class="std std-ref">Template Function nw::graph::lexical_sort_by</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a3dcd992efef4754c59d4e57845f4af14.html#exhale-function-build-8hpp-1a3dcd992efef4754c59d4e57845f4af14"><span class="std std-ref">Template Function nw::graph::lexical_stable_sort_by</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a30457aaef104750d9487c21892286e1e.html#exhale-function-build-8hpp-1a30457aaef104750d9487c21892286e1e"><span class="std std-ref">Template Function nw::graph::make_bipartite_graph</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1abcc7f70b6dfbaa5b72b25a0eaa89a6c2.html#exhale-function-build-8hpp-1abcc7f70b6dfbaa5b72b25a0eaa89a6c2"><span class="std std-ref">Template Function nw::graph::make_bipartite_graphs</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a02b3816ba50f3f9005d200500cc244f4.html#exhale-function-build-8hpp-1a02b3816ba50f3f9005d200500cc244f4"><span class="std std-ref">Template Function nw::graph::make_index_edges</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1aa789f458adceaf778190e2ad40557f53.html#exhale-function-build-8hpp-1aa789f458adceaf778190e2ad40557f53"><span class="std std-ref">Template Function nw::graph::make_index_graph</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a88777b2bb36a489934fd07cc39032957.html#exhale-function-build-8hpp-1a88777b2bb36a489934fd07cc39032957"><span class="std std-ref">Template Function nw::graph::make_index_map</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a8fedfd2d2ab3750a61cee8c50e1c7463.html#exhale-function-build-8hpp-1a8fedfd2d2ab3750a61cee8c50e1c7463"><span class="std std-ref">Template Function nw::graph::make_plain_bipartite_graph</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a9a98d78e89c8a08d83f149ee307cdf29.html#exhale-function-build-8hpp-1a9a98d78e89c8a08d83f149ee307cdf29"><span class="std std-ref">Template Function nw::graph::make_plain_bipartite_graphs</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ad2bb6d2f052e312a8394fc3942e749c2.html#exhale-function-build-8hpp-1ad2bb6d2f052e312a8394fc3942e749c2"><span class="std std-ref">Template Function nw::graph::make_plain_edges(M&amp;, const E&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a63e3930625bb02adb87dc2da3ef58045.html#exhale-function-build-8hpp-1a63e3930625bb02adb87dc2da3ef58045"><span class="std std-ref">Template Function nw::graph::make_plain_graph</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ae0a416365021632aed153784972bc055.html#exhale-function-build-8hpp-1ae0a416365021632aed153784972bc055"><span class="std std-ref">Template Function nw::graph::make_property_edges(M&amp;, const E&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1af09c2a71870a57cdb4f32c64afec7b79.html#exhale-function-build-8hpp-1af09c2a71870a57cdb4f32c64afec7b79"><span class="std std-ref">Template Function nw::graph::make_property_graph</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a65cf147f4bd8dedb45c87eb8628cd2dd.html#exhale-function-build-8hpp-1a65cf147f4bd8dedb45c87eb8628cd2dd"><span class="std std-ref">Template Function nw::graph::perm_by_degree(edge_list_t&amp;, std::string)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a80cbd52f25f797df9f79b76dbd6263a4.html#exhale-function-build-8hpp-1a80cbd52f25f797df9f79b76dbd6263a4"><span class="std std-ref">Template Function nw::graph::perm_by_degree(edge_list_t&amp;, const Vector&amp;, std::string, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a4ba1f1a6c89f5d39e2201a8ef9f72029.html#exhale-function-build-8hpp-1a4ba1f1a6c89f5d39e2201a8ef9f72029"><span class="std std-ref">Template Function nw::graph::permute</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1abbab867f491acf7f37ecf45f64751f55.html#exhale-function-build-8hpp-1abbab867f491acf7f37ecf45f64751f55"><span class="std std-ref">Template Function nw::graph::permute_helper(edge_list_t&amp;, adjacency_t&amp;, std::index_sequence&lt;Is…&gt;, const Perm&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ae4298b03686a717af20f587c1ab93660.html#exhale-function-build-8hpp-1ae4298b03686a717af20f587c1ab93660"><span class="std std-ref">Template Function nw::graph::permute_helper(edge_list_t&amp;, adjacency_t&amp;, std::index_sequence&lt;Is…&gt;, T&amp;, Perm&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a909db0257e564bc0a9a11ad6ab9b52b2.html#exhale-function-build-8hpp-1a909db0257e564bc0a9a11ad6ab9b52b2"><span class="std std-ref">Template Function nw::graph::permute_helper_all</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a12563324dd31be7c179e9e6573826f33.html#exhale-function-build-8hpp-1a12563324dd31be7c179e9e6573826f33"><span class="std std-ref">Template Function nw::graph::push_back_fill(edge_list_t&amp;, adjacency_t&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1aada93e7f42bd7903e1678b6c030cff78.html#exhale-function-build-8hpp-1aada93e7f42bd7903e1678b6c030cff78"><span class="std std-ref">Template Function nw::graph::push_back_fill(const EdgeList&amp;, Adjacency&amp;, bool, size_t)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ac23a5a3438b1a9af3c547ca584a2c64a.html#exhale-function-build-8hpp-1ac23a5a3438b1a9af3c547ca584a2c64a"><span class="std std-ref">Template Function nw::graph::push_back_fill_helper</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a9101375e29f734cadb9ac2d6b081d80e.html#exhale-function-build-8hpp-1a9101375e29f734cadb9ac2d6b081d80e"><span class="std std-ref">Template Function nw::graph::relabel(edge_list_t&amp;, const Vector&amp;, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a650f0e654ba757ad49d4563aba1254bb.html#exhale-function-build-8hpp-1a650f0e654ba757ad49d4563aba1254bb"><span class="std std-ref">Template Function nw::graph::relabel(edge_list_t&amp;, const Vector&amp;, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a20e2614475ba9410fad2497885cfd3c8.html#exhale-function-build-8hpp-1a20e2614475ba9410fad2497885cfd3c8"><span class="std std-ref">Template Function nw::graph::relabel_by_degree(edge_list_t&amp;, std::string, const Vector&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a80500ac8ce1051dc24b5cbd454d50399.html#exhale-function-build-8hpp-1a80500ac8ce1051dc24b5cbd454d50399"><span class="std std-ref">Template Function nw::graph::relabel_by_degree(edge_list_t&amp;, std::string, const Vector&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ad50c5e97656bea52b15fc0e00e22549d.html#exhale-function-build-8hpp-1ad50c5e97656bea52b15fc0e00e22549d"><span class="std std-ref">Template Function nw::graph::remove_self_loops</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1ab567c4856e595e8a52f335c8d37d6f74.html#exhale-function-build-8hpp-1ab567c4856e595e8a52f335c8d37d6f74"><span class="std std-ref">Template Function nw::graph::sort_by</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a14ce42d28f38e47945375c0c2226502c.html#exhale-function-build-8hpp-1a14ce42d28f38e47945375c0c2226502c"><span class="std std-ref">Template Function nw::graph::stable_sort_by</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a1cf201bc67ea098d68a8642fd48b5a92.html#exhale-function-build-8hpp-1a1cf201bc67ea098d68a8642fd48b5a92"><span class="std std-ref">Template Function nw::graph::swap_to_triangular(edge_list_t&amp;, succession)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1af859c42ccf1a9dacb69be300fba02a93.html#exhale-function-build-8hpp-1af859c42ccf1a9dacb69be300fba02a93"><span class="std std-ref">Template Function nw::graph::swap_to_triangular(edge_list_t&amp;, const std::string&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1a37d1da2eb3fac8538927ebe6b641eadc.html#exhale-function-build-8hpp-1a37d1da2eb3fac8538927ebe6b641eadc"><span class="std std-ref">Template Function nw::graph::swap_to_triangular(edge_list_t&amp;, ExecutionPolicy&amp;&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_build_8hpp_1af19089ca73097b4cbd0d45b176804d63.html#exhale-function-build-8hpp-1af19089ca73097b4cbd0d45b176804d63"><span class="std std-ref">Template Function nw::graph::uniq</span></a></p></li>
+</ul>
+</section>
+<section id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="typedef_build_8hpp_1a1ae6ff6f31a9a2212ea5236a1c5ec196.html#exhale-typedef-build-8hpp-1a1ae6ff6f31a9a2212ea5236a1c5ec196"><span class="std std-ref">Typedef nw::graph::default_execution_policy</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

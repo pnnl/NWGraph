@@ -1,0 +1,156 @@
+
+.. _file_include_nwgraph_util_timer.hpp:
+
+File timer.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Simple timer utilities for benchmarking and profiling. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/timer.hpp``)
+-----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_timer.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides timer classes for measuring execution time:
+
+- timer: Basic start/stop/elapsed timer with configurable duration type
+
+- life_timer: RAII timer that prints elapsed time on destruction
+
+- Type aliases: seconds_timer, ms_timer, us_timer
+
+
+
+Example usage: #include<:ref:`file_include_nwgraph_util_timer.hpp`>
+
+//Basictimerusage
+:ref:`exhale_class_classnw_1_1util_1_1timer`timer;
+timer.start();
+//...worktomeasure...
+timer.stop();
+std::cout<<"Elapsed:"<<timer.elapsed()<<"ms"<<std::endl;
+
+//Laptimer(stopandgetelapsedinonecall)
+timer.start();
+//...firstphase...
+doublephase1=timer.lap();
+//...secondphase...
+doublephase2=timer.lap();
+
+//RAIItimer-printselapsedtimewhenitgoesoutofscope
+{
+nw::util::life_timerlt("BFStraversal");
+//...BFScode...
+}//Prints:"#[BFStraversal]:123.45ms"
+
+//Usingostreamoperator
+:ref:`exhale_class_classnw_1_1util_1_1timer`named_timer("Dijkstra");
+named_timer.start();
+//...work...
+named_timer.stop();
+std::cout<<named_timer<<std::endl;//"(Dijkstra)45.2ms"
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``chrono``
+
+- ``iostream``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_truss.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+- :ref:`file_include_nwgraph_edge_list.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__util`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1util_1_1empty__timer`
+
+- :ref:`exhale_class_classnw_1_1util_1_1life__timer`
+
+- :ref:`exhale_class_classnw_1_1util_1_1timer`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_timer_8hpp_1a9ba2112f337794d24eb268c4d5a7b38f`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_timer_8hpp_1a968715c22b4857e674303d027093df8a`
+
+- :ref:`exhale_typedef_timer_8hpp_1a4a135ebc40d2e86ecbb3b5d11b95afdb`
+
+- :ref:`exhale_typedef_timer_8hpp_1a0cf31e93bbb9886dd1c3ae89cfc2fff1`
+

@@ -1,0 +1,14 @@
+.. _exhale_function_zip_8hpp_1ae0b5aa931e05b427d2f9aff09fd1cc46:
+
+Template Function nw::graph::make_zipped(Ranges&...)
+====================================================
+
+- Defined in :ref:`file_include_nwgraph_containers_zip.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_zipped(Ranges&...)
+   :project: NWgraph

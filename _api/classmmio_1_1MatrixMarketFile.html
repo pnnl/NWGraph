@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class MatrixMarketFile &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Class MatrixMarketFile</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classmmio_1_1MatrixMarketFile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-matrixmarketfile">
+<span id="exhale-class-classmmio-1-1matrixmarketfile"></span><h1>Class MatrixMarketFile<a class="headerlink" href="#class-matrixmarketfile" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_io_MatrixMarketFile.hpp.html#file-include-nwgraph-io-matrixmarketfile-hpp"><span class="std std-ref">File MatrixMarketFile.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="classmmio_1_1MatrixMarketFile_1_1iterator.html#exhale-class-classmmio-1-1matrixmarketfile-1-1iterator"><span class="std std-ref">Template Class MatrixMarketFile::iterator</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N4mmio16MatrixMarketFileE">
+<span id="_CPPv3N4mmio16MatrixMarketFileE"></span><span id="_CPPv2N4mmio16MatrixMarketFileE"></span><span id="mmio::MatrixMarketFile"></span><span class="target" id="classmmio_1_1MatrixMarketFile"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MatrixMarketFile</span></span></span><a class="headerlink" href="#_CPPv4N4mmio16MatrixMarketFileE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4mmio16MatrixMarketFile16MatrixMarketFileENSt10filesystem4pathE">
+<span id="_CPPv3N4mmio16MatrixMarketFile16MatrixMarketFileENSt10filesystem4pathE"></span><span id="_CPPv2N4mmio16MatrixMarketFile16MatrixMarketFileENSt10filesystem4pathE"></span><span id="mmio::MatrixMarketFile::MatrixMarketFile__std::filesystem::path"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1af65658737eb11e83ce7100d2bb209530"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MatrixMarketFile</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">filesystem</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">path</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4mmio16MatrixMarketFile16MatrixMarketFileENSt10filesystem4pathE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4mmio16MatrixMarketFileD0Ev">
+<span id="_CPPv3N4mmio16MatrixMarketFileD0Ev"></span><span id="_CPPv2N4mmio16MatrixMarketFileD0Ev"></span><span id="mmio::MatrixMarketFile::~MatrixMarketFile"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1ad73c428f363ce7aea197f084f849186e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~MatrixMarketFile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4mmio16MatrixMarketFileD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4mmio16MatrixMarketFile7releaseEv">
+<span id="_CPPv3N4mmio16MatrixMarketFile7releaseEv"></span><span id="_CPPv2N4mmio16MatrixMarketFile7releaseEv"></span><span id="mmio::MatrixMarketFile::release"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1ad85445697beca19901e616047fc2c875"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">release</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4mmio16MatrixMarketFile7releaseEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Release the memory mapping and file descriptor early. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4mmio16MatrixMarketFile8getNRowsEv">
+<span id="_CPPv3NK4mmio16MatrixMarketFile8getNRowsEv"></span><span id="_CPPv2NK4mmio16MatrixMarketFile8getNRowsEv"></span><span id="mmio::MatrixMarketFile::getNRowsC"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1a0f3083b6d9173380bb1b31778ca351a9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getNRows</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4mmio16MatrixMarketFile8getNRowsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4mmio16MatrixMarketFile8getNColsEv">
+<span id="_CPPv3NK4mmio16MatrixMarketFile8getNColsEv"></span><span id="_CPPv2NK4mmio16MatrixMarketFile8getNColsEv"></span><span id="mmio::MatrixMarketFile::getNColsC"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1a9a1fe6e92fd60d219b4d683d34529d62"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getNCols</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4mmio16MatrixMarketFile8getNColsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4mmio16MatrixMarketFile9getNEdgesEv">
+<span id="_CPPv3NK4mmio16MatrixMarketFile9getNEdgesEv"></span><span id="_CPPv2NK4mmio16MatrixMarketFile9getNEdgesEv"></span><span id="mmio::MatrixMarketFile::getNEdgesC"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1a9066a0ac779faff02f34500c70a9ead8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getNEdges</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4mmio16MatrixMarketFile9getNEdgesEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4mmio16MatrixMarketFile9isPatternEv">
+<span id="_CPPv3NK4mmio16MatrixMarketFile9isPatternEv"></span><span id="_CPPv2NK4mmio16MatrixMarketFile9isPatternEv"></span><span id="mmio::MatrixMarketFile::isPatternC"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1aea7fa0510670c5ab0bbedbd24e9f1c2b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPattern</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4mmio16MatrixMarketFile9isPatternEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4mmio16MatrixMarketFile11isSymmetricEv">
+<span id="_CPPv3NK4mmio16MatrixMarketFile11isSymmetricEv"></span><span id="_CPPv2NK4mmio16MatrixMarketFile11isSymmetricEv"></span><span id="mmio::MatrixMarketFile::isSymmetricC"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1a3cf6b32e2ae4dfc063c31ae8b7168232"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isSymmetric</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4mmio16MatrixMarketFile11isSymmetricEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpENK4mmio16MatrixMarketFile5beginE8iteratorIDp2VsEv">
+<span id="_CPPv3IDpENK4mmio16MatrixMarketFile5beginEv"></span><span id="_CPPv2IDpENK4mmio16MatrixMarketFile5beginEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Vs</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classmmio_1_1MatrixMarketFile_1aec97435afe0ac45b5e22b4a3dd005a5f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE" title="mmio::MatrixMarketFile::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4IDpENK4mmio16MatrixMarketFile5beginE8iteratorIDp2VsEv" title="mmio::MatrixMarketFile::begin::Vs"><span class="n"><span class="pre">Vs</span></span></a><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IDpENK4mmio16MatrixMarketFile5beginE8iteratorIDp2VsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpENK4mmio16MatrixMarketFile3endE8iteratorIDp2VsEv">
+<span id="_CPPv3IDpENK4mmio16MatrixMarketFile3endEv"></span><span id="_CPPv2IDpENK4mmio16MatrixMarketFile3endEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Vs</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classmmio_1_1MatrixMarketFile_1a90281a8ffd584fd45cd778160f9655ee"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE" title="mmio::MatrixMarketFile::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4IDpENK4mmio16MatrixMarketFile3endE8iteratorIDp2VsEv" title="mmio::MatrixMarketFile::end::Vs"><span class="n"><span class="pre">Vs</span></span></a><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IDpENK4mmio16MatrixMarketFile3endE8iteratorIDp2VsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpENK4mmio16MatrixMarketFile2atE8iteratorIDp2VsEl">
+<span id="_CPPv3IDpENK4mmio16MatrixMarketFile2atEl"></span><span id="_CPPv2IDpENK4mmio16MatrixMarketFile2atEl"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Vs</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classmmio_1_1MatrixMarketFile_1a03a9486a08804fc85e5c636ae915c4f0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE" title="mmio::MatrixMarketFile::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4IDpENK4mmio16MatrixMarketFile2atE8iteratorIDp2VsEl" title="mmio::MatrixMarketFile::at::Vs"><span class="n"><span class="pre">Vs</span></span></a><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">at</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">edge</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IDpENK4mmio16MatrixMarketFile2atE8iteratorIDp2VsEl" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4mmio16MatrixMarketFile7releaseER16MatrixMarketFile">
+<span id="_CPPv3N4mmio16MatrixMarketFile7releaseER16MatrixMarketFile"></span><span id="_CPPv2N4mmio16MatrixMarketFile7releaseER16MatrixMarketFile"></span><span id="mmio::MatrixMarketFile::release__MatrixMarketFileR"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1ab0b71963f43840d3c3e46b9af4f46a9f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">release</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4mmio16MatrixMarketFileE" title="mmio::MatrixMarketFile"><span class="n"><span class="pre">MatrixMarketFile</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4mmio16MatrixMarketFile7releaseER16MatrixMarketFile" title="Link to this definition"></a><br /></dt>
+<dd><p>ADL. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE">
+<span id="_CPPv3IDpEN4mmio16MatrixMarketFile8iteratorE"></span><span id="_CPPv2IDpEN4mmio16MatrixMarketFile8iteratorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Vs</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classmmio_1_1MatrixMarketFile_1_1iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><a class="headerlink" href="#_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4mmio16MatrixMarketFile8iterator8iteratorEPKc">
+<span id="_CPPv3N4mmio16MatrixMarketFile8iterator8iteratorEPKc"></span><span id="_CPPv2N4mmio16MatrixMarketFile8iterator8iteratorEPKc"></span><span id="mmio::MatrixMarketFile::iterator::iterator__cCP"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1_1iterator_1a2417c33f8679b7da8b7328c8e8f6b22c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4mmio16MatrixMarketFile8iterator8iteratorEPKc" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4mmio16MatrixMarketFile8iteratormlEv">
+<span id="_CPPv3NK4mmio16MatrixMarketFile8iteratormlEv"></span><span id="_CPPv2NK4mmio16MatrixMarketFile8iteratormlEv"></span><span id="mmio::MatrixMarketFile::iterator::mul-operatorC"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1_1iterator_1a4e895dc75b371b91e7717fcab2b54139"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE" title="mmio::MatrixMarketFile::iterator::Vs"><span class="n"><span class="pre">Vs</span></span></a><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4mmio16MatrixMarketFile8iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4mmio16MatrixMarketFile8iteratorppEv">
+<span id="_CPPv3N4mmio16MatrixMarketFile8iteratorppEv"></span><span id="_CPPv2N4mmio16MatrixMarketFile8iteratorppEv"></span><span id="mmio::MatrixMarketFile::iterator::inc-operator"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1_1iterator_1af2c07f9ab3083f6450572a874a94834d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE" title="mmio::MatrixMarketFile::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4mmio16MatrixMarketFile8iteratorppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4mmio16MatrixMarketFile8iteratorneERK8iterator">
+<span id="_CPPv3NK4mmio16MatrixMarketFile8iteratorneERK8iterator"></span><span id="_CPPv2NK4mmio16MatrixMarketFile8iteratorneERK8iterator"></span><span id="mmio::MatrixMarketFile::iterator::neq-operator__iteratorCRC"></span><span class="target" id="classmmio_1_1MatrixMarketFile_1_1iterator_1aa85cdf23bbd080abc8203f639e055ff3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4IDpEN4mmio16MatrixMarketFile8iteratorE" title="mmio::MatrixMarketFile::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4mmio16MatrixMarketFile8iteratorneERK8iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

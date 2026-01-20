@@ -1,0 +1,14 @@
+.. _exhale_function_provenance_8hpp_1ae2f9c3d89a0f718b79b7a72e8dfdcd5a:
+
+Function nw::graph::ltrim
+=========================
+
+- Defined in :ref:`file_include_nwgraph_util_provenance.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::ltrim(std::string&, const std::string&)
+   :project: NWgraph

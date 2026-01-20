@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Six Degrees of Kevin Bacon (BGL Book Chapter 4.1) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)" href="ch4_loop_detection.html" />
+    <link rel="prev" title="File Dependencies - Topological Sort (BGL Book Chapter 3)" href="ch3_toposort.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-graph-model">The Graph Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#algorithm-description">Algorithm Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwgraph-implementation">NWGraph Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-running-the-example">Building and Running the Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-output">Sample Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-nwgraph-features-demonstrated">Key NWGraph Features Demonstrated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+      <li class="breadcrumb-item active">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/ch4_kevin_bacon.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="six-degrees-of-kevin-bacon-bgl-book-chapter-4-1">
+<h1>Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)<a class="headerlink" href="#six-degrees-of-kevin-bacon-bgl-book-chapter-4-1" title="Link to this heading"></a></h1>
+<p><em>Based on “The Boost Graph Library” by Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine</em></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>An amusing application of breadth-first search comes up in the popular game “Six Degrees
+of Kevin Bacon.” The idea of the game is to connect an actor to Kevin Bacon through a trail
+of actors who appeared together in movies, and do so in less than six steps.</p>
+<p>For example, Theodore Hesburgh (President Emeritus of the University of Notre Dame) was
+in the movie <em>Rudy</em> with the actor Gerry Becker, who was in the movie <em>Sleepers</em> with
+Kevin Bacon. Why Kevin Bacon? For some reason, the three students who invented the game—
+Mike Ginelli, Craig Fass, and Brian Turtle—decided that Kevin Bacon was the center of the
+entertainment world.</p>
+<p>Mathematicians play a similar game; they keep track of their <em>Erdős number</em>, which is
+the number of co-authored publications that separate them from the famous Paul Erdős.</p>
+</section>
+<section id="the-graph-model">
+<h2>The Graph Model<a class="headerlink" href="#the-graph-model" title="Link to this heading"></a></h2>
+<p>The “Six Degrees of Kevin Bacon” game is really a graph problem. The graph representing
+the problem can be modeled by:</p>
+<ul class="simple">
+<li><p>Assigning a <strong>vertex</strong> for each actor</p></li>
+<li><p>Creating an <strong>edge</strong> between two vertices if the corresponding actors have appeared
+together in a movie</p></li>
+</ul>
+<p>Since the relationship between actors appearing together in a movie is symmetric, edges
+between actors can be undirected, resulting in an <strong>undirected graph</strong>.</p>
+</section>
+<section id="algorithm-description">
+<h2>Algorithm Description<a class="headerlink" href="#algorithm-description" title="Link to this heading"></a></h2>
+<p>The problem of finding a trail of actors to Kevin Bacon becomes a traditional graph
+problem—that of finding a path between two vertices. Since we wish to find a path that
+is shorter than six steps, ideally we would like to find the <strong>shortest path</strong> between vertices.</p>
+<p>Breadth-first search (BFS) can be used to find shortest paths in unweighted graphs.
+Similar to the Erdős number, we use the term <strong>Bacon number</strong> to mean the shortest path
+length from a given actor to Kevin Bacon.</p>
+<p>BFS works by exploring vertices in order of their distance from a source vertex:</p>
+<ol class="arabic simple">
+<li><p>Start at the source vertex (Kevin Bacon)</p></li>
+<li><p>Visit all vertices one edge away</p></li>
+<li><p>Then visit all vertices two edges away</p></li>
+<li><p>Continue until all reachable vertices are visited</p></li>
+</ol>
+<p>The distance at which each vertex is discovered is its shortest distance from the source.</p>
+</section>
+<section id="nwgraph-implementation">
+<h2>NWGraph Implementation<a class="headerlink" href="#nwgraph-implementation" title="Link to this heading"></a></h2>
+<p>NWGraph provides a <code class="docutils literal notranslate"><span class="pre">bfs_range</span></code> adaptor that yields vertices in BFS order, making it
+easy to compute shortest path distances.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Complete source code</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cm">/**</span>
+<span class="linenos"> 2</span><span class="cm"> * @file ch4_kevin_bacon.cpp</span>
+<span class="linenos"> 3</span><span class="cm"> *</span>
+<span class="linenos"> 4</span><span class="cm"> * @brief Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</span>
+<span class="linenos"> 5</span><span class="cm"> *</span>
+<span class="linenos"> 6</span><span class="cm"> * This example demonstrates BFS to compute the &quot;Bacon number&quot; - the number</span>
+<span class="linenos"> 7</span><span class="cm"> * of connections from any actor to Kevin Bacon through co-starring in movies.</span>
+<span class="linenos"> 8</span><span class="cm"> *</span>
+<span class="linenos"> 9</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</span>
+<span class="linenos">10</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 University of Washington</span>
+<span class="linenos">11</span><span class="cm"> *</span>
+<span class="linenos">12</span><span class="cm"> * SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="linenos">13</span><span class="cm"> *</span>
+<span class="linenos">14</span><span class="cm"> * @authors</span>
+<span class="linenos">15</span><span class="cm"> *   Andrew Lumsdaine</span>
+<span class="linenos">16</span><span class="cm"> *</span>
+<span class="linenos">17</span><span class="cm"> */</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="linenos">20</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos">21</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+<span class="linenos">22</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sstream&gt;</span>
+<span class="linenos">23</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="linenos">24</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/adjacency.hpp&quot;</span>
+<span class="linenos">27</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/adaptors/bfs_edge_range.hpp&quot;</span>
+<span class="linenos">28</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/edge_list.hpp&quot;</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">nw</span><span class="o">::</span><span class="nn">graph</span><span class="p">;</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="k">auto</span><span class="w"> </span><span class="n">parse_buffer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="nf">link</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="linenos">34</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">       </span><span class="n">actor_one</span><span class="p">,</span><span class="w"> </span><span class="n">movie_name</span><span class="p">,</span><span class="w"> </span><span class="n">actor_two</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">  </span><span class="n">getline</span><span class="p">(</span><span class="n">link</span><span class="p">,</span><span class="w"> </span><span class="n">actor_one</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;;&#39;</span><span class="p">);</span>
+<span class="linenos">36</span><span class="w">  </span><span class="n">getline</span><span class="p">(</span><span class="n">link</span><span class="p">,</span><span class="w"> </span><span class="n">movie_name</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;;&#39;</span><span class="p">);</span>
+<span class="linenos">37</span><span class="w">  </span><span class="n">getline</span><span class="p">(</span><span class="n">link</span><span class="p">,</span><span class="w"> </span><span class="n">actor_two</span><span class="p">);</span>
+<span class="linenos">38</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="n">actor_one</span><span class="p">,</span><span class="w"> </span><span class="n">movie_name</span><span class="p">,</span><span class="w"> </span><span class="n">actor_two</span><span class="p">);</span>
+<span class="linenos">39</span><span class="p">}</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="k">auto</span><span class="w"> </span><span class="n">read_imdb</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">42</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">  </span><span class="kt">size_t</span><span class="w">      </span><span class="n">actor_vertex_counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">44</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="nf">datastream</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">undirected</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">imdb</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">47</span><span class="w">  </span><span class="n">imdb</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">48</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">getline</span><span class="p">(</span><span class="n">datastream</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">49</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">actor_one</span><span class="p">,</span><span class="w"> </span><span class="n">movie_name</span><span class="p">,</span><span class="w"> </span><span class="n">actor_two</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parse_buffer</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">key_val_one</span><span class="p">,</span><span class="w"> </span><span class="n">inserted_one</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="w"> </span><span class="n">actor_one</span><span class="p">,</span><span class="w"> </span><span class="n">actor_vertex_counter</span><span class="w"> </span><span class="p">});</span>
+<span class="linenos">52</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inserted_one</span><span class="p">)</span><span class="w"> </span><span class="o">++</span><span class="n">actor_vertex_counter</span><span class="p">;</span>
+<span class="linenos">53</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">dummy_one</span><span class="p">,</span><span class="w"> </span><span class="n">index_one</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">key_val_one</span><span class="p">;</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">key_val_two</span><span class="p">,</span><span class="w"> </span><span class="n">inserted_two</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="w"> </span><span class="n">actor_two</span><span class="p">,</span><span class="w"> </span><span class="n">actor_vertex_counter</span><span class="w"> </span><span class="p">});</span>
+<span class="linenos">56</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inserted_two</span><span class="p">)</span><span class="w"> </span><span class="o">++</span><span class="n">actor_vertex_counter</span><span class="p">;</span>
+<span class="linenos">57</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">dummy_two</span><span class="p">,</span><span class="w"> </span><span class="n">index_two</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">key_val_two</span><span class="p">;</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span><span class="w">    </span><span class="n">imdb</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">index_one</span><span class="p">,</span><span class="w"> </span><span class="n">index_two</span><span class="p">,</span><span class="w"> </span><span class="n">movie_name</span><span class="p">);</span>
+<span class="linenos">60</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">61</span><span class="w">  </span><span class="n">imdb</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">imdb</span><span class="p">);</span>
+<span class="linenos">64</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">A</span><span class="p">;</span>
+<span class="linenos">65</span><span class="p">}</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">68</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Six Degrees of Kevin Bacon ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">69</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Based on BGL Book Chapter 4.1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">72</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; scsv_file&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">73</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos">74</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">75</span>
+<span class="linenos">76</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">;</span>
+<span class="linenos">77</span><span class="w">  </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w">                        </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_imdb</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">);</span>
+<span class="linenos">78</span>
+<span class="linenos">79</span><span class="w">  </span><span class="kt">size_t</span><span class="w">              </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="linenos">80</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bacon_number</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="linenos">81</span>
+<span class="linenos">82</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;Kevin Bacon&quot;</span><span class="p">);</span>
+<span class="linenos">83</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">84</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Kevin Bacon not found in the database&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">85</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos">86</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">87</span><span class="w">  </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">kb</span><span class="p">,</span><span class="w"> </span><span class="n">kb_id</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="p">;</span>
+<span class="linenos">88</span>
+<span class="linenos">89</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">movie</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">bfs_edge_range</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">kb_id</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">90</span><span class="w">    </span><span class="n">bacon_number</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bacon_number</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">91</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">92</span>
+<span class="linenos">93</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Bacon numbers:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">94</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">actor</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">actor_id_map</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">95</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">actor</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has Bacon number of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bacon_number</span><span class="p">[</span><span class="n">id</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">96</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">97</span>
+<span class="linenos">98</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">99</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="building-and-running-the-example">
+<h2>Building and Running the Example<a class="headerlink" href="#building-and-running-the-example" title="Link to this heading"></a></h2>
+<p>First, configure and build the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>ch4_kevin_bacon
+</pre></div>
+</div>
+<p>Then run the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./examples/bgl-book/ch4_kevin_bacon
+</pre></div>
+</div>
+<p>The program uses built-in sample data and computes the Bacon number for each actor.</p>
+</section>
+<section id="sample-output">
+<h2>Sample Output<a class="headerlink" href="#sample-output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Kevin Bacon has a Bacon number of 0
+Patrick Stewart has a Bacon number of 1
+Steve Martin has a Bacon number of 1
+Glenn Close has a Bacon number of 1
+Tom Hanks has a Bacon number of 1
+...
+</pre></div>
+</div>
+</section>
+<section id="key-nwgraph-features-demonstrated">
+<h2>Key NWGraph Features Demonstrated<a class="headerlink" href="#key-nwgraph-features-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Undirected graphs</strong>: Using symmetric edges for actor relationships</p></li>
+<li><p><strong>BFS traversal</strong>: Using <code class="docutils literal notranslate"><span class="pre">bfs_range</span></code> to compute shortest paths</p></li>
+<li><p><strong>Property maps</strong>: Associating actor names with vertices</p></li>
+<li><p><strong>Unweighted shortest paths</strong>: Computing Bacon numbers via BFS distances</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cormen, Leiserson, Rivest, and Stein. <em>Introduction to Algorithms</em>, 4th Edition (2022),
+<strong>Chapter 20.2: Breadth-First Search</strong></p></li>
+<li><p>Siek, Lee, and Lumsdaine. <em>The Boost Graph Library</em> (2002), Chapter 4.1</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ch4_loop_detection.html"><span class="doc">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</span></a> - Using DFS to detect cycles</p></li>
+<li><p><a class="reference internal" href="ch5_dijkstra.html"><span class="doc">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</span></a> - Weighted shortest paths</p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples overview</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch3_toposort.html" class="btn btn-neutral float-left" title="File Dependencies - Topological Sort (BGL Book Chapter 3)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch4_loop_detection.html" class="btn btn-neutral float-right" title="Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

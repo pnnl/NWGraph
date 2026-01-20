@@ -1,0 +1,83 @@
+
+.. _file_include_nwgraph_generators_configuration_model.hpp:
+
+File configuration_model.hpp
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_generators>` (``include/nwgraph/generators``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/generators/configuration_model.hpp``)
+-------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_generators_configuration_model.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``edge_list.hpp`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``execution``
+
+- ``math.h``
+
+- ``random`` (:ref:`file_include_nwgraph_adaptors_random_range.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_configuration__model_8hpp_1a4eb9b5ccf7e9e59573a99ff248187aa7`
+
+- :ref:`exhale_function_configuration__model_8hpp_1ae130e7963a9840ed5556b254143b63bd`
+
+- :ref:`exhale_function_configuration__model_8hpp_1ae0c4019abf06fe867d2cb050a71dd934`
+
+- :ref:`exhale_function_configuration__model_8hpp_1a3eb834fc112ecfcfe2e52916c1994fce`
+
+- :ref:`exhale_function_configuration__model_8hpp_1af27ee7198ab321c06754b9150df82b82`
+

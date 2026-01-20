@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a88777b2bb36a489934fd07cc39032957:
+
+Template Function nw::graph::make_index_map
+===========================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_index_map(const R&)
+   :project: NWgraph

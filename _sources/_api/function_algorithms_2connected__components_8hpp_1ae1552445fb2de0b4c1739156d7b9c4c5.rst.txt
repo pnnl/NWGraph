@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2connected__components_8hpp_1ae1552445fb2de0b4c1739156d7b9c4c5:
+
+Template Function nw::graph::compress(Execution&, Vector&)
+==========================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::compress(Execution&, Vector&)
+   :project: NWgraph

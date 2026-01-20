@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1a208cf515e1644244d6373c81ed7c23dc:
+
+Template Function nw::graph::store
+==================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::store(T&&, U&&)
+   :project: NWgraph

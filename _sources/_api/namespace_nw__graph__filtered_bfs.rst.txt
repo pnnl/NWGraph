@@ -1,0 +1,31 @@
+
+.. _namespace_nw__graph__filtered_bfs:
+
+Namespace nw::graph::filtered_bfs
+=================================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range_1_1filtered__bfs__edge__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range_1_1filtered__bfs__edge__range__iterator_1_1end__sentinel__type`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_filtered__bfs__range_8hpp_1a26dbd25690d96e73a76c593f7bfdd5da`

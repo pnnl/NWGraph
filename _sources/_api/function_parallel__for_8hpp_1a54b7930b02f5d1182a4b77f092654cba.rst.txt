@@ -1,0 +1,14 @@
+.. _exhale_function_parallel__for_8hpp_1a54b7930b02f5d1182a4b77f092654cba:
+
+Template Function nw::graph::parallel_for
+=========================================
+
+- Defined in :ref:`file_include_nwgraph_util_parallel_for.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::parallel_for(Range&&, Op&&)
+   :project: NWgraph

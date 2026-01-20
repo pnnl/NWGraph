@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1ab94a2a33e79dda9a50645718c3055bde:
+
+Define mm_set_matrix
+====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_set_matrix
+   :project: NWgraph

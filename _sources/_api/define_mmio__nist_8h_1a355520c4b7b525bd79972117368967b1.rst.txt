@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a355520c4b7b525bd79972117368967b1:
+
+Define mm_set_skew
+==================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_set_skew
+   :project: NWgraph

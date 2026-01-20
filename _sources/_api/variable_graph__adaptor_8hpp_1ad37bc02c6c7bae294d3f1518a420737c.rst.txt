@@ -1,0 +1,14 @@
+.. _exhale_variable_graph__adaptor_8hpp_1ad37bc02c6c7bae294d3f1518a420737c:
+
+Variable nw::graph::has_push_front_v
+====================================
+
+- Defined in :ref:`file_include_nwgraph_graph_adaptor.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::has_push_front_v
+   :project: NWgraph

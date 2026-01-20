@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class AtomicBitVector &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class AtomicBitVector</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1AtomicBitVector.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-atomicbitvector">
+<span id="exhale-class-classnw-1-1graph-1-1atomicbitvector"></span><h1>Template Class AtomicBitVector<a class="headerlink" href="#template-class-atomicbitvector" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_util_AtomicBitVector.hpp.html#file-include-nwgraph-util-atomicbitvector-hpp"><span class="std std-ref">File AtomicBitVector.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator.html#exhale-class-classnw-1-1graph-1-1atomicbitvector-1-1non-zero-iterator"><span class="std std-ref">Class AtomicBitVector::non_zero_iterator</span></a></p></li>
+<li><p><a class="reference internal" href="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range.html#exhale-class-classnw-1-1graph-1-1atomicbitvector-1-1non-zero-range"><span class="std std-ref">Class AtomicBitVector::non_zero_range</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph15AtomicBitVectorE">
+<span id="_CPPv3I0EN2nw5graph15AtomicBitVectorE"></span><span id="_CPPv2I0EN2nw5graph15AtomicBitVectorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Word</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1AtomicBitVector"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AtomicBitVector</span></span></span><a class="headerlink" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="Link to this definition"></a><br /></dt>
+<dd><p>Really basic concurrent bit vector for use as a bitmap.</p>
+<p>This bitmap supports a simple get/set API, where set operations are always implemented using acquire/release, while get operations can either be acquire or relaxed. Though simple to provide, resetting, clearing, and resizing are not supported as those operations are not currently needed in BGL17.</p>
+<p>Ideally this data structure or something equivalent would be provided by the standard library in the future. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector15AtomicBitVectorENSt6size_tEb">
+<span id="_CPPv3N2nw5graph15AtomicBitVector15AtomicBitVectorENSt6size_tEb"></span><span id="_CPPv2N2nw5graph15AtomicBitVector15AtomicBitVectorENSt6size_tEb"></span><span id="nw::graph::AtomicBitVector::AtomicBitVector__std::s.b"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1ac00d79ade20bf2e720aa4b1ac5f66b99"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AtomicBitVector</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bits</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">init</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector15AtomicBitVectorENSt6size_tEb" title="Link to this definition"></a><br /></dt>
+<dd><p>Allocate a bitmap.</p>
+<p>The bitmap bits can be allocated in an uninitialized state, which can lead to simpler code in some algorithms that would like to avoid initialization on some code paths.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bits</strong> – The number of bits to allocate. </p></li>
+<li><p><strong>init</strong> – If true, we’ll initialize the bitmap data to 0. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVectorD0Ev">
+<span id="_CPPv3N2nw5graph15AtomicBitVectorD0Ev"></span><span id="_CPPv2N2nw5graph15AtomicBitVectorD0Ev"></span><span id="nw::graph::AtomicBitVector::~AtomicBitVector"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1a6b078731ae92a19ec7389b4b08839aa0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~AtomicBitVector</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVectorD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Delete the bitmap. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector15AtomicBitVectorERR15AtomicBitVector">
+<span id="_CPPv3N2nw5graph15AtomicBitVector15AtomicBitVectorERR15AtomicBitVector"></span><span id="_CPPv2N2nw5graph15AtomicBitVector15AtomicBitVectorERR15AtomicBitVector"></span><span id="nw::graph::AtomicBitVector::AtomicBitVector__AtomicBitVectorRR"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1afdfbf00b7d121f7d462c161f71e2f69d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AtomicBitVector</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector15AtomicBitVectorERR15AtomicBitVector" title="nw::graph::AtomicBitVector::AtomicBitVector"><span class="n"><span class="pre">AtomicBitVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector15AtomicBitVectorERR15AtomicBitVector" title="Link to this definition"></a><br /></dt>
+<dd><p>The move constructor needs to be explicit. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVectoraSERR15AtomicBitVector">
+<span id="_CPPv3N2nw5graph15AtomicBitVectoraSERR15AtomicBitVector"></span><span id="_CPPv2N2nw5graph15AtomicBitVectoraSERR15AtomicBitVector"></span><span id="nw::graph::AtomicBitVector::assign-operator__AtomicBitVectorRR"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1af178276b4a0b8c3581853caaa3a357be"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector"><span class="n"><span class="pre">AtomicBitVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector"><span class="n"><span class="pre">AtomicBitVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVectoraSERR15AtomicBitVector" title="Link to this definition"></a><br /></dt>
+<dd><p>The move assignment operator needs to be explicit. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector5clearEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector5clearEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector5clearEv"></span><span id="nw::graph::AtomicBitVector::clear"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1ae6f2f9f688910e6ec842382398b67163"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector5clearEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Clear the bitmap. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_NSt12memory_orderEENK2nw5graph15AtomicBitVector3getE4WordNSt6size_tE">
+<span id="_CPPv3I_NSt12memory_orderEENK2nw5graph15AtomicBitVector3getENSt6size_tE"></span><span id="_CPPv2I_NSt12memory_orderEENK2nw5graph15AtomicBitVector3getENSt6size_tE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">memory_order</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">order</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">memory_order_relaxed</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1a23bc0b796e66d42abbab4aa60dad5a2d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector::Word"><span class="n"><span class="pre">Word</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I_NSt12memory_orderEENK2nw5graph15AtomicBitVector3getE4WordNSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a bit from the vector.</p>
+<p>This reads a single bit from the vector, but for performance reasons it returns the bit un-shifted in a word. This word can be used in a boolean expression and the compiler will deal with efficiently testing it for 0.</p>
+<p>By default it uses the memory_order_relaxed. This is not safe if there are ever concurrent set operations to the same underlying word, which can be hard to predict, and thus should mainly be used in sequential code. The <code class="docutils literal notranslate"><span class="pre">atomic_get</span></code> operation will propery synchronize with concurrent <code class="docutils literal notranslate"><span class="pre">atomic_set</span></code> operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>order</strong> – The memory model for the load operation.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>i</strong> – The bit to set.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The masked value of the word containing the bit. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_NSt12memory_orderEEN2nw5graph15AtomicBitVector3setE4WordNSt6size_tE">
+<span id="_CPPv3I_NSt12memory_orderEEN2nw5graph15AtomicBitVector3setENSt6size_tE"></span><span id="_CPPv2I_NSt12memory_orderEEN2nw5graph15AtomicBitVector3setENSt6size_tE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">memory_order</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">order</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">memory_order_relaxed</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1a59e4df43dca8844ca3c6969f294ce24d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector::Word"><span class="n"><span class="pre">Word</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_NSt12memory_orderEEN2nw5graph15AtomicBitVector3setE4WordNSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>Set a bit in the vector.</p>
+<p>This sets a single bit in the vector, and returns the previous value of that bit as a masked word. This returned workd can be used in a boolean expression and the compiler will deal with efficiently testing it for 0.</p>
+<p>By default it uses the memory_order_relaxed. This is not safe if there are ever concurrent set or get operations to the same underlying word, which can be hard to predict, and thus should be used only in sequential code. The <code class="docutils literal notranslate"><span class="pre">atomic_set</span></code> operation will properly synchronize with concurrent <code class="docutils literal notranslate"><span class="pre">atomic_get</span></code> and <code class="docutils literal notranslate"><span class="pre">atomic_set</span></code> operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>order</strong> – The memory model for the load operation.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>i</strong> – The bit to set.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The masked value of the word containing the bit prior to the set operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector10atomic_getENSt6size_tE">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector10atomic_getENSt6size_tE"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector10atomic_getENSt6size_tE"></span><span id="nw::graph::AtomicBitVector::atomic_get__std::sC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1adaf44e7fbc7185570e495d8d34d28248"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector::Word"><span class="n"><span class="pre">Word</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atomic_get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector10atomic_getENSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a bit from the vector.</p>
+<p>This forwards to the get operation with a stronger memory model and is safe for use in concurrent regions of code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> – The bit to set.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The masked value of the word containing the bit. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector10atomic_setENSt6size_tE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector10atomic_setENSt6size_tE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector10atomic_setENSt6size_tE"></span><span id="nw::graph::AtomicBitVector::atomic_set__std::s"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1acfc0f928fbf09c9a33ec3bf472e19e72"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector::Word"><span class="n"><span class="pre">Word</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atomic_set</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector10atomic_setENSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>Set a bit in the vector.</p>
+<p>This forward to the set operation with a stronger memory model and is safe to use in concurrent regions of code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> – The bit to set.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The masked value of the word containing the bit prior to the set operation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector5beginEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector5beginEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector5beginEv"></span><span id="nw::graph::AtomicBitVector::begin"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1a34261679626a81c24c6e57f95f1bfd47"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector5beginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector3endEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector3endEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector3endEv"></span><span id="nw::graph::AtomicBitVector::end"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1a9c1c2f1300d994042e223e8ad1d5e410"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector3endEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector9non_zerosENSt6size_tE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector9non_zerosENSt6size_tE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector9non_zerosENSt6size_tE"></span><span id="nw::graph::AtomicBitVector::non_zeros__std::s"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1aa759a128c05719222407338ff8d146bc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_rangeE" title="nw::graph::AtomicBitVector::non_zero_range"><span class="n"><span class="pre">non_zero_range</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zeros</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector9non_zerosENSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratorE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratorE"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_iterator</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1ab9a2bce88966308861165c1236783ace"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a576c053a6eeee28d27a878a4646a803c"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">difference_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1aa68829b0b67de5e4df42e0e226aa6430"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1af977199f20e0338e4c8729b4086d7693"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pointer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a9f9004eefaa49b100c94b4d8ff8b2dd5"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator_category</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">input_iterator_tag</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::non_zero_iterator__WordP.std::s.std::s"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a96003c7bad5afe0963010cff868c680c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_iterator</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector::Word"><span class="n"><span class="pre">Word</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">word</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratormlEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratormlEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratormlEv"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::mul-operator"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a64fecba8822b57a653776f1feef4a53e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE" title="nw::graph::AtomicBitVector::non_zero_iterator::reference"><span class="n"><span class="pre">reference</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratorppEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratorppEv"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::inc-operator"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1af42ef5cd1ddbb2f220a546eb6a125fb3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEi">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratorppEi"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratorppEi"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::inc-operator__i"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a8bb6ec5e5076e07f0d81af40e7fd7ad4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::neq-operator__non_zero_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a621ce91250ac5af646f9f78de13ac1e6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::eq-operator__non_zero_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1aeb7a84ade9bc786e32486a73cf8df951"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector14non_zero_rangeE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector14non_zero_rangeE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector14non_zero_rangeE"></span><span id="nw::graph::AtomicBitVector::non_zero_range"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_range</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_rangeE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeEP4WordNSt6size_tENSt6size_tENSt6size_tENSt6size_tE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeEP4WordNSt6size_tENSt6size_tENSt6size_tENSt6size_tE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeEP4WordNSt6size_tENSt6size_tENSt6size_tENSt6size_tE"></span><span id="nw::graph::AtomicBitVector::non_zero_range::non_zero_range__WordP.std::s.std::s.std::s.std::s"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1a56d7a000ea619ef3fb2d019ab953e899"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph15AtomicBitVectorE" title="nw::graph::AtomicBitVector::Word"><span class="n"><span class="pre">Word</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">begin</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeEP4WordNSt6size_tENSt6size_tENSt6size_tENSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERK14non_zero_range">
+<span id="_CPPv3N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERK14non_zero_range"></span><span id="_CPPv2N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERK14non_zero_range"></span><span id="nw::graph::AtomicBitVector::non_zero_range::non_zero_range__non_zero_rangeCR"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1a820b8a6bea5876d58d71a824566a2ba1"></span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_range</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERK14non_zero_range" title="nw::graph::AtomicBitVector::non_zero_range::non_zero_range"><span class="n"><span class="pre">non_zero_range</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERK14non_zero_range" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERR14non_zero_range">
+<span id="_CPPv3N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERR14non_zero_range"></span><span id="_CPPv2N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERR14non_zero_range"></span><span id="nw::graph::AtomicBitVector::non_zero_range::non_zero_range__non_zero_rangeRR"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1ac64804635fc8d7570a881e4fc8960e9e"></span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERR14non_zero_range" title="nw::graph::AtomicBitVector::non_zero_range::non_zero_range"><span class="n"><span class="pre">non_zero_range</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeERR14non_zero_range" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeER14non_zero_rangeN3tbb5splitE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeER14non_zero_rangeN3tbb5splitE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeER14non_zero_rangeN3tbb5splitE"></span><span id="nw::graph::AtomicBitVector::non_zero_range::non_zero_range__non_zero_rangeR.tbb::split"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1ae34bc668631d4474884ece48ec6fe07d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeER14non_zero_rangeN3tbb5splitE" title="nw::graph::AtomicBitVector::non_zero_range::non_zero_range"><span class="n"><span class="pre">non_zero_range</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">tbb</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">split</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range14non_zero_rangeER14non_zero_rangeN3tbb5splitE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector14non_zero_range5beginEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector14non_zero_range5beginEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector14non_zero_range5beginEv"></span><span id="nw::graph::AtomicBitVector::non_zero_range::begin"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1a43c8bed77671b874005e782d164716a7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range5beginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector14non_zero_range3endEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector14non_zero_range3endEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector14non_zero_range3endEv"></span><span id="nw::graph::AtomicBitVector::non_zero_range::end"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1a0bf13d1e739948d35eccbb1231612b5f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector14non_zero_range3endEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector14non_zero_range4sizeEv">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector14non_zero_range4sizeEv"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector14non_zero_range4sizeEv"></span><span id="nw::graph::AtomicBitVector::non_zero_range::sizeC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1aa7d6c09e080c98db36a98328faaccfdf"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector14non_zero_range4sizeEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector14non_zero_range5emptyEv">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector14non_zero_range5emptyEv"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector14non_zero_range5emptyEv"></span><span id="nw::graph::AtomicBitVector::non_zero_range::emptyC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1af3cd85fc5ae8ca6b9b1f3658f7cbafdb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector14non_zero_range5emptyEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector14non_zero_range12is_divisibleEv">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector14non_zero_range12is_divisibleEv"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector14non_zero_range12is_divisibleEv"></span><span id="nw::graph::AtomicBitVector::non_zero_range::is_divisibleC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range_1a4cc770503b2c34620bf6529803cea10a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_divisible</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector14non_zero_range12is_divisibleEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

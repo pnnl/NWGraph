@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1remove__atomic:
+
+Template Struct remove_atomic
+=============================
+
+- Defined in :ref:`file_include_nwgraph_util_traits.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::remove_atomic
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

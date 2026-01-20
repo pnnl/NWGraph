@@ -1,0 +1,199 @@
+
+.. _file_include_nwgraph_edge_list.hpp:
+
+File edge_list.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Edge list container for graph input and construction. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/edge_list.hpp``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_edge_list.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides the index_edge_list class template and its convenience aliases for storing edges before converting to adjacency format. Edge lists are the primary input format for building CSR graphs.
+
+Example usage: #include<:ref:`file_include_nwgraph_edge_list.hpp`>
+#include<:ref:`file_include_nwgraph_adjacency.hpp`>
+
+//Createadirectededgelistwith5vertices
+:ref:`exhale_class_classnw_1_1graph_1_1index__edge__list`edges(5);
+edges.push_back(0,1);
+edges.push_back(0,2);
+edges.push_back(1,2);
+edges.push_back(2,3);
+edges.push_back(3,4);
+edges.close();//Finalizetheedgelist
+
+//Createaweightededgelist
+:ref:`exhale_class_classnw_1_1graph_1_1index__edge__list`weighted(5);
+weighted.push_back(0,1,1.5);
+weighted.push_back(1,2,2.0);
+weighted.push_back(2,3,0.5);
+weighted.close();
+
+//Iterateoveredges
+for(auto&&[u,v]:edges){
+std::cout<<u<<"->"<<v<<std::endl;
+}
+
+//Converttoadjacencylist
+:ref:`exhale_class_classnw_1_1graph_1_1index__adjacency`graph(edges);
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``concepts`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``execution``
+
+- ``limits``
+
+- ``numeric``
+
+- ``nwgraph/containers/soa.hpp`` (:ref:`file_include_nwgraph_containers_soa.hpp`)
+
+- ``nwgraph/graph_base.hpp`` (:ref:`file_include_nwgraph_graph_base.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/defaults.hpp`` (:ref:`file_include_nwgraph_util_defaults.hpp`)
+
+- ``nwgraph/util/demangle.hpp`` (:ref:`file_include_nwgraph_util_demangle.hpp`)
+
+- ``tbb/parallel_sort.h``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``type_traits``
+
+- ``util/timer.hpp`` (:ref:`file_include_nwgraph_util_timer.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adjacency.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_kruskal.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_prim.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_spMatspMat.hpp`
+
+- :ref:`file_include_nwgraph_coo.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_generators_configuration_model.hpp`
+
+- :ref:`file_include_nwgraph_io_mmio.hpp`
+
+- :ref:`file_include_nwgraph_vofos.hpp`
+
+- :ref:`file_include_nwgraph_volos.hpp`
+
+- :ref:`file_include_nwgraph_vovos.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1graph__traits_3_01index__edge__list_3_01vertex__id_00_01graph__base__t_00_090cb78f12efff6d9c4985a18c7c99b30`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1index__edge__list`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_edge__list_8hpp_1a09d9c10751c43a8689d2721ad24831d0`
+
+- :ref:`exhale_function_edge__list_8hpp_1ab969fa47cba7c93bf8e4bba1e5358c20`
+
+- :ref:`exhale_function_edge__list_8hpp_1a79d7bcd419febe1f2dfd7b2d8e3a43ca`
+
+- :ref:`exhale_function_edge__list_8hpp_1a460842bbb34ddc0eef9b4ffdfd617019`
+
+- :ref:`exhale_function_edge__list_8hpp_1a2bc9cc5c20b5ce9b61698ab9680e50bd`
+
+- :ref:`exhale_function_edge__list_8hpp_1a43e8a137fef4a61877247f8b43e95481`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_edge__list_8hpp_1acb99fa2b22c0dc238eae9ae290d026f9`
+
+- :ref:`exhale_typedef_edge__list_8hpp_1ad8567a913059ce72983671e887093f58`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_edge__list_8hpp_1a9ac91a005f4723893bb1cdb69091b9db`
+
+- :ref:`exhale_variable_edge__list_8hpp_1a2e191732fcce2c5111a8a716dff9b576`
+

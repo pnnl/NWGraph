@@ -1,0 +1,14 @@
+.. _exhale_function_configuration__model_8hpp_1ae0c4019abf06fe867d2cb050a71dd934:
+
+Function nw::graph::random_power
+================================
+
+- Defined in :ref:`file_include_nwgraph_generators_configuration_model.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::random_power(bitgen_t *, double)
+   :project: NWgraph

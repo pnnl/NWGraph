@@ -1,0 +1,122 @@
+
+.. _file_include_nwgraph_util_backend.hpp:
+
+File backend.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Parallel backend selection and abstraction layer. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/backend.hpp``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_backend.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides compile-time selection between TBB and HPX parallel backends. When using HPX, provides lazy initialization of the HPX runtime.
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstddef``
+
+- ``oneapi/tbb.h``
+
+- ``tbb/blocked_range.h``
+
+- ``tbb/parallel_for.h``
+
+- ``tbb/parallel_for_each.h``
+
+- ``tbb/parallel_reduce.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_util_concurrent_containers.hpp`
+
+- :ref:`file_include_nwgraph_util_parallel_for.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+- :ref:`namespace_nw__graph__backend`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1backend_1_1init__guard`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a9cae9ffe8927d94942b440bf5ebfd7a2`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1ac82e6e7e5eb6e5b160b29d4b180b3819`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a7b9247b5f28c3cfdad7d94f22c0a85e1`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a8daf9fc38d654bcbb1c0c2be8c29c91e`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a7cc9db56eb3d8f725208d2ce25d0edc7`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_backend_8hpp_1a079025e63e048fd6a72fb70116d0b334`
+
+- :ref:`exhale_define_backend_8hpp_1a5eb7acf16396383dc9dc639a8e008a25`
+
+- :ref:`exhale_define_backend_8hpp_1ae5367e87d6d54f1ad10eac19f9933b5d`
+
+- :ref:`exhale_define_backend_8hpp_1a95790db4c85e6bf36cf09d83140dbe87`
+

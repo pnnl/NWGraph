@@ -1,0 +1,14 @@
+.. _exhale_variable_traits_8hpp_1a1897e8b97b20394ebf0de646e6be093d:
+
+Variable nw::graph::is_tuple_v
+==============================
+
+- Defined in :ref:`file_include_nwgraph_util_traits.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::is_tuple_v
+   :project: NWgraph

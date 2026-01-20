@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1aba5b8473ca88dace0f4365bab7d88910:
+
+Variable MM_COMPLEX_STR
+=======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_COMPLEX_STR
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1add74a290ac25b62447f27f5faed05f5d:
+
+Define MM_NOT_MTX
+=================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_NOT_MTX
+   :project: NWgraph

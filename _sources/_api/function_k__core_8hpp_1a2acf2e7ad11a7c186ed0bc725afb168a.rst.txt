@@ -1,0 +1,14 @@
+.. _exhale_function_k__core_8hpp_1a2acf2e7ad11a7c186ed0bc725afb168a:
+
+Template Function nw::graph::k_core
+===================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::k_core(const Graph&, int)
+   :project: NWgraph

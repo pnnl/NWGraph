@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1plain__degree__range_1_1iterator:
+
+Class plain_degree_range::iterator
+==================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_plain_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1plain__degree__range`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::plain_degree_range::iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

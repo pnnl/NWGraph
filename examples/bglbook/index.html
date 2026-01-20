@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boost Graph Library Examples (Rewritten for NW Graph) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="File Dependencies - Topological Sort (BGL Book Chapter 3)" href="ch3_toposort.html" />
+    <link rel="prev" title="Examples" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-3-file-dependencies-topological-sort">Chapter 3: File Dependencies (Topological Sort)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-4-graph-search">Chapter 4: Graph Search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-5-shortest-paths">Chapter 5: Shortest Paths</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-6-minimum-spanning-trees">Chapter 6: Minimum Spanning Trees</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-7-connected-components">Chapter 7: Connected Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-8-maximum-flow">Chapter 8: Maximum Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-9-implicit-graphs">Chapter 9: Implicit Graphs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Boost Graph Library Examples (Rewritten for NW Graph)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boost-graph-library-examples-rewritten-for-nw-graph">
+<h1>Boost Graph Library Examples (Rewritten for NW Graph)<a class="headerlink" href="#boost-graph-library-examples-rewritten-for-nw-graph" title="Link to this heading"></a></h1>
+<p>These examples are adapted from “The Boost Graph Library: User Guide and
+Reference Manual” by Jeremy G. Siek, Lie-Quan Lee, and Andrew Lumsdaine
+(Addison-Wesley, 2002). They demonstrate how NWGraph implements classic
+graph algorithms using modern C++20 idioms.</p>
+<p>Each example includes the complete source code with detailed explanations
+matching the pedagogical approach of the original book.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Chapter Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+</ul>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<section id="chapter-3-file-dependencies-topological-sort">
+<h3>Chapter 3: File Dependencies (Topological Sort)<a class="headerlink" href="#chapter-3-file-dependencies-topological-sort" title="Link to this heading"></a></h3>
+<p>Demonstrates topological sorting using DFS on a makefile dependency graph.
+Topological sort orders vertices so that for every edge (u,v), vertex u
+comes before v in the ordering.</p>
+<p><strong>Key concepts</strong>: DFS, DAG, topological ordering</p>
+</section>
+<section id="chapter-4-graph-search">
+<h3>Chapter 4: Graph Search<a class="headerlink" href="#chapter-4-graph-search" title="Link to this heading"></a></h3>
+<p><strong>4.1 Six Degrees of Kevin Bacon</strong></p>
+<p>Uses BFS to compute “Bacon numbers” - the number of connections from any
+actor to Kevin Bacon through co-starring in movies.</p>
+<p><strong>Key concepts</strong>: BFS, shortest paths in unweighted graphs, bipartite graphs</p>
+<p><strong>4.2 Loop Detection in Control-Flow Graphs</strong></p>
+<p>Uses DFS with three-coloring to detect back edges (cycles) in directed graphs.
+Back edges in a control-flow graph indicate loops.</p>
+<p><strong>Key concepts</strong>: DFS, back edges, cycle detection, control-flow analysis</p>
+</section>
+<section id="chapter-5-shortest-paths">
+<h3>Chapter 5: Shortest Paths<a class="headerlink" href="#chapter-5-shortest-paths" title="Link to this heading"></a></h3>
+<p><strong>5.3 Bellman-Ford Algorithm</strong></p>
+<p>Demonstrates the Bellman-Ford single-source shortest-paths algorithm applied
+to router networks (distance-vector routing). Can handle negative edge weights
+and detect negative cycles.</p>
+<p><strong>Key concepts</strong>: Edge relaxation, negative weights, negative cycle detection</p>
+<p><strong>5.4 Dijkstra’s Algorithm (OSPF Routing)</strong></p>
+<p>Uses Dijkstra’s algorithm for shortest paths in an OSPF network topology.
+OSPF is a link-state routing protocol where routers compute shortest paths
+to build routing tables.</p>
+<p><strong>Key concepts</strong>: Priority queue, greedy algorithm, link-state routing</p>
+</section>
+<section id="chapter-6-minimum-spanning-trees">
+<h3>Chapter 6: Minimum Spanning Trees<a class="headerlink" href="#chapter-6-minimum-spanning-trees" title="Link to this heading"></a></h3>
+<p><strong>6.1 Kruskal’s Algorithm</strong></p>
+<p>Demonstrates Kruskal’s MST algorithm by sorting edges by weight and using
+a union-find data structure to avoid cycles.</p>
+<p><strong>Key concepts</strong>: Union-find, edge sorting, greedy algorithm</p>
+<p><strong>6.2 Prim’s Algorithm</strong></p>
+<p>Demonstrates Prim’s MST algorithm by growing the tree from a starting vertex,
+always adding the minimum-weight edge to the tree.</p>
+<p><strong>Key concepts</strong>: Priority queue, cut property, growing a tree</p>
+</section>
+<section id="chapter-7-connected-components">
+<h3>Chapter 7: Connected Components<a class="headerlink" href="#chapter-7-connected-components" title="Link to this heading"></a></h3>
+<p><strong>7.1 Connected Components</strong></p>
+<p>Uses BFS to find connected components in an undirected graph. Each component
+is a maximal subgraph where every vertex is reachable from every other.</p>
+<p><strong>Key concepts</strong>: BFS, component labeling, graph connectivity</p>
+<p><strong>7.2 Strongly Connected Components</strong></p>
+<p>Demonstrates Tarjan’s algorithm for finding strongly connected components
+in a directed graph, with application to web page analysis.</p>
+<p><strong>Key concepts</strong>: Tarjan’s algorithm, lowlink values, web graph analysis</p>
+</section>
+<section id="chapter-8-maximum-flow">
+<h3>Chapter 8: Maximum Flow<a class="headerlink" href="#chapter-8-maximum-flow" title="Link to this heading"></a></h3>
+<p>Implements the Edmonds-Karp maximum flow algorithm (BFS-based Ford-Fulkerson).
+Maximum flow finds the maximum amount that can be pushed through a network
+from source to sink.</p>
+<p><strong>Key concepts</strong>: Augmenting paths, residual graph, flow networks</p>
+</section>
+<section id="chapter-9-implicit-graphs">
+<h3>Chapter 9: Implicit Graphs<a class="headerlink" href="#chapter-9-implicit-graphs" title="Link to this heading"></a></h3>
+<p>Solves the Knight’s Tour problem using an implicit graph representation.
+The graph structure is computed on-the-fly from the knight’s movement rules
+rather than stored explicitly.</p>
+<p><strong>Key concepts</strong>: Implicit graphs, backtracking, Warnsdorff’s heuristic,
+Hamiltonian path</p>
+</section>
+</section>
+<section id="building-the-examples">
+<h2>Building the Examples<a class="headerlink" href="#building-the-examples" title="Link to this heading"></a></h2>
+<p>The BGL book examples are built as part of the NWGraph examples:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>-j8
+
+<span class="c1"># Or build individual examples</span>
+make<span class="w"> </span>ch3_toposort<span class="w"> </span>ch4_kevin_bacon<span class="w"> </span>ch5_dijkstra<span class="w"> </span>-j8
+</pre></div>
+</div>
+<p>Executables are placed in <code class="docutils literal notranslate"><span class="pre">build/examples/bgl-book/</span></code>.</p>
+</section>
+<section id="running-the-examples">
+<h2>Running the Examples<a class="headerlink" href="#running-the-examples" title="Link to this heading"></a></h2>
+<p>Each example can be run directly from the build directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run topological sort example</span>
+./examples/bgl-book/ch3_toposort
+
+<span class="c1"># Run Kevin Bacon example</span>
+./examples/bgl-book/ch4_kevin_bacon
+
+<span class="c1"># Run Dijkstra shortest paths example</span>
+./examples/bgl-book/ch5_dijkstra
+
+<span class="c1"># Run Kruskal MST example</span>
+./examples/bgl-book/ch6_kruskal
+</pre></div>
+</div>
+<p>Most examples use built-in test data and do not require external input files.
+See individual example pages for specific usage details.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<p>Siek, J. G., Lee, L.-Q., &amp; Lumsdaine, A. (2002). <em>The Boost Graph Library:
+User Guide and Reference Manual</em>. Addison-Wesley Professional.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch3_toposort.html" class="btn btn-neutral float-right" title="File Dependencies - Topological Sort (BGL Book Chapter 3)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

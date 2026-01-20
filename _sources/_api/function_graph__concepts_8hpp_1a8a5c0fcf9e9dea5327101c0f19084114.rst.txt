@@ -1,0 +1,14 @@
+.. _exhale_function_graph__concepts_8hpp_1a8a5c0fcf9e9dea5327101c0f19084114:
+
+Function nw::graph::DECL_TAG_INVOKE(degree)
+===========================================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::DECL_TAG_INVOKE(degree)
+   :project: NWgraph

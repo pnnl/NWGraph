@@ -1,0 +1,29 @@
+.. _exhale_class_classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2:
+
+Class tbbworklist_range2::tbbworklist_range_iterator2
+=====================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_worklist.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range2`.
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1_1end__sentinel__type`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::tbbworklist_range2::tbbworklist_range_iterator2
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

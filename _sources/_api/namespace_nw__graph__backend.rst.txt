@@ -1,0 +1,40 @@
+
+.. _namespace_nw__graph__backend:
+
+Namespace nw::graph::backend
+============================
+
+
+Backend configuration and utilities. 
+
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1backend_1_1init__guard`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a9cae9ffe8927d94942b440bf5ebfd7a2`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1ac82e6e7e5eb6e5b160b29d4b180b3819`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a7b9247b5f28c3cfdad7d94f22c0a85e1`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a8daf9fc38d654bcbb1c0c2be8c29c91e`
+
+- :ref:`exhale_function_namespacenw_1_1graph_1_1backend_1a7cc9db56eb3d8f725208d2ce25d0edc7`

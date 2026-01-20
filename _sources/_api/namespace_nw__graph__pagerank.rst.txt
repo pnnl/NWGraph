@@ -1,0 +1,27 @@
+
+.. _namespace_nw__graph__pagerank:
+
+Namespace nw::graph::pagerank
+=============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_algorithms_2page__rank_8hpp_1ac4d54c218166652350b9dbaa4d2cf99e`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_algorithms_2page__rank_8hpp_1ac95384668f16c55b454b76aad6b3871d`

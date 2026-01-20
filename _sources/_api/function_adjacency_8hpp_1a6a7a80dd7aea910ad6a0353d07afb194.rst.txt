@@ -1,0 +1,14 @@
+.. _exhale_function_adjacency_8hpp_1a6a7a80dd7aea910ad6a0353d07afb194:
+
+Template Function nw::graph::make_adjacency(edge_list_t&)
+=========================================================
+
+- Defined in :ref:`file_include_nwgraph_adjacency.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_adjacency(edge_list_t&)
+   :project: NWgraph

@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File graph_concepts.hpp &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File graph_concepts.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/file_include_nwgraph_graph_concepts.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-graph-concepts-hpp">
+<span id="file-include-nwgraph-graph-concepts-hpp"></span><h1>File graph_concepts.hpp<a class="headerlink" href="#file-graph-concepts-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_nwgraph.html#dir-include-nwgraph"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/nwgraph</span></code>)</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-nwgraph-graph-concepts-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/graph_concepts.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
+<li><p><a class="reference internal" href="#included-by" id="id4">Included By</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id5">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#concepts" id="id6">Concepts</a></p></li>
+<li><p><a class="reference internal" href="#classes" id="id7">Classes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id8">Functions</a></p></li>
+<li><p><a class="reference internal" href="#typedefs" id="id9">Typedefs</a></p></li>
+</ul>
+</nav>
+<section id="definition-include-nwgraph-graph-concepts-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/graph_concepts.hpp</span></code>)<a class="headerlink" href="#definition-include-nwgraph-graph-concepts-hpp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_nwgraph_graph_concepts.hpp.html">Program Listing for File graph_concepts.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Link to this heading"></a></h2>
+<p>SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</p>
+<p>SPDX-FileCopyrightText: 2022 University of Washington</p>
+<p>SPDX-License-Identifier: BSD-3-Clause</p>
+<p>Andrew Lumsdaine Tony Liu</p>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">concepts</span></code> (<a class="reference internal" href="#file-include-nwgraph-graph-concepts-hpp"><span class="std std-ref">File graph_concepts.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iterator</span></code> (<a class="reference internal" href="file_include_nwgraph_util_permutation_iterator.hpp.html#file-include-nwgraph-util-permutation-iterator-hpp"><span class="std std-ref">File permutation_iterator.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/graph_traits.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_graph_traits.hpp.html#file-include-nwgraph-graph-traits-hpp"><span class="std std-ref">File graph_traits.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/tag_invoke.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_tag_invoke.hpp.html#file-include-nwgraph-util-tag-invoke-hpp"><span class="std std-ref">File tag_invoke.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ranges</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code> (<a class="reference internal" href="file_include_nwgraph_util_tuple_hack.hpp.html#file-include-nwgraph-util-tuple-hack-hpp"><span class="std std-ref">File tuple_hack.hpp</span></a>)</p></li>
+</ul>
+</section>
+<section id="included-by">
+<h2>Included By<a class="headerlink" href="#included-by" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="file_include_nwgraph_adaptors_edge_range.hpp.html#file-include-nwgraph-adaptors-edge-range-hpp"><span class="std std-ref">File edge_range.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_adjacency.hpp.html#file-include-nwgraph-adjacency-hpp"><span class="std std-ref">File adjacency.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_betweenness_centrality.hpp.html#file-include-nwgraph-algorithms-betweenness-centrality-hpp"><span class="std std-ref">File betweenness_centrality.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_bfs.hpp.html#file-include-nwgraph-algorithms-bfs-hpp"><span class="std std-ref">File bfs.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_delta_stepping.hpp.html#file-include-nwgraph-algorithms-delta-stepping-hpp"><span class="std std-ref">File delta_stepping.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_dijkstra.hpp.html#file-include-nwgraph-algorithms-dijkstra-hpp"><span class="std std-ref">File dijkstra.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_jaccard.hpp.html#file-include-nwgraph-algorithms-jaccard-hpp"><span class="std std-ref">File jaccard.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_kruskal.hpp.html#file-include-nwgraph-algorithms-kruskal-hpp"><span class="std std-ref">File kruskal.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_maximal_independent_set.hpp.html#file-include-nwgraph-algorithms-maximal-independent-set-hpp"><span class="std std-ref">File maximal_independent_set.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_page_rank.hpp.html#file-include-nwgraph-algorithms-page-rank-hpp"><span class="std std-ref">File page_rank.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_prim.hpp.html#file-include-nwgraph-algorithms-prim-hpp"><span class="std std-ref">File prim.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_algorithms_triangle_count.hpp.html#file-include-nwgraph-algorithms-triangle-count-hpp"><span class="std std-ref">File triangle_count.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_build.hpp.html#file-include-nwgraph-build-hpp"><span class="std std-ref">File build.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_edge_list.hpp.html#file-include-nwgraph-edge-list-hpp"><span class="std std-ref">File edge_list.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_experimental_algorithms_page_rank.hpp.html#file-include-nwgraph-experimental-algorithms-page-rank-hpp"><span class="std std-ref">File page_rank.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_experimental_algorithms_triangle_count.hpp.html#file-include-nwgraph-experimental-algorithms-triangle-count-hpp"><span class="std std-ref">File triangle_count.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_nwgraph_graph_adaptor.hpp.html#file-include-nwgraph-graph-adaptor-hpp"><span class="std std-ref">File graph_adaptor.hpp</span></a></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_nw.html#namespace-nw"><span class="std std-ref">Namespace nw</span></a></p></li>
+<li><p><a class="reference internal" href="namespace_nw__graph.html#namespace-nw-graph"><span class="std std-ref">Namespace nw::graph</span></a></p></li>
+</ul>
+</section>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1adjacency__list__graph.html#exhale-concept-conceptnw-1-1graph-1-1adjacency-list-graph"><span class="std std-ref">Concept adjacency_list_graph</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1degree__enumerable__graph.html#exhale-concept-conceptnw-1-1graph-1-1degree-enumerable-graph"><span class="std std-ref">Concept degree_enumerable_graph</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1edge__list__c.html#exhale-concept-conceptnw-1-1graph-1-1edge-list-c"><span class="std std-ref">Concept edge_list_c</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1edge__list__graph.html#exhale-concept-conceptnw-1-1graph-1-1edge-list-graph"><span class="std std-ref">Concept edge_list_graph</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1graph.html#exhale-concept-conceptnw-1-1graph-1-1graph"><span class="std std-ref">Concept graph</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1idx__adjacency__list.html#exhale-concept-conceptnw-1-1graph-1-1idx-adjacency-list"><span class="std std-ref">Concept idx_adjacency_list</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1min__idx__adjacency__list.html#exhale-concept-conceptnw-1-1graph-1-1min-idx-adjacency-list"><span class="std std-ref">Concept min_idx_adjacency_list</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1property__edge__list__c.html#exhale-concept-conceptnw-1-1graph-1-1property-edge-list-c"><span class="std std-ref">Concept property_edge_list_c</span></a></p></li>
+<li><p><a class="reference internal" href="conceptnw_1_1graph_1_1vertex__list__c.html#exhale-concept-conceptnw-1-1graph-1-1vertex-list-c"><span class="std std-ref">Concept vertex_list_c</span></a></p></li>
+</ul>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="structnw_1_1graph_1_1graph__traits_3_01G_01_4.html#exhale-struct-structnw-1-1graph-1-1graph-traits-3-01g-01-4"><span class="std std-ref">Template Struct graph_traits&lt; G &gt;</span></a></p></li>
+<li><p><a class="reference internal" href="structnw_1_1graph_1_1graph__traits_3_01Outer_3_01Inner_3_01Index_01_4_01_4_01_4.html#exhale-struct-structnw-1-1graph-1-1graph-traits-3-01outer-3-01inner-3-01index-01-4-01-4-01-4"><span class="std std-ref">Template Struct graph_traits&lt; Outer&lt; Inner&lt; Index &gt; &gt; &gt;</span></a></p></li>
+<li><p><a class="reference internal" href="structnw_1_1graph_1_1graph__traits_3_01Outer_3_01Inner_3_01std_1_1tuple_3_01Index_00_01Attributes_8_8_8_01_4_01_4_01_4_01_4.html#exhale-struct-structnw-1-1graph-1-1graph-traits-3-01outer-3-01inner-3-01std-1-1tuple-3-01index-00-01attributes-8-8-8-01-4-01-4-01-4-01-4"><span class="std std-ref">Template Struct graph_traits&lt; Outer&lt; Inner&lt; std::tuple&lt; Index, Attributes… &gt; &gt; &gt; &gt;</span></a></p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1aed80825060c859f5b33c22b3d16fcee1.html#exhale-function-graph-concepts-8hpp-1aed80825060c859f5b33c22b3d16fcee1"><span class="std std-ref">Function nw::graph::DECL_TAG_INVOKE(num_vertices)</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1a5fa81ae322acdbdc86c6487cd2c1d34f.html#exhale-function-graph-concepts-8hpp-1a5fa81ae322acdbdc86c6487cd2c1d34f"><span class="std std-ref">Function nw::graph::DECL_TAG_INVOKE(num_edges)</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1a8a5c0fcf9e9dea5327101c0f19084114.html#exhale-function-graph-concepts-8hpp-1a8a5c0fcf9e9dea5327101c0f19084114"><span class="std std-ref">Function nw::graph::DECL_TAG_INVOKE(degree)</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1a81445035e7a2792a74aad0364149064b.html#exhale-function-graph-concepts-8hpp-1a81445035e7a2792a74aad0364149064b"><span class="std std-ref">Function nw::graph::DECL_TAG_INVOKE(source)</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1aa618a115e1934ae5346a47e09173c5d3.html#exhale-function-graph-concepts-8hpp-1aa618a115e1934ae5346a47e09173c5d3"><span class="std std-ref">Function nw::graph::DECL_TAG_INVOKE(target)</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1aa3940a134507f8eb097bec103f4d4964.html#exhale-function-graph-concepts-8hpp-1aa3940a134507f8eb097bec103f4d4964"><span class="std std-ref">Template Function nw::graph::nth_cdr</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1a1aa3de3ee23d400c5adfbf0b69052e4d.html#exhale-function-graph-concepts-8hpp-1a1aa3de3ee23d400c5adfbf0b69052e4d"><span class="std std-ref">Template Function nw::graph::props</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1a59ee2c16a5b381a01c7bb67fc85c3769.html#exhale-function-graph-concepts-8hpp-1a59ee2c16a5b381a01c7bb67fc85c3769"><span class="std std-ref">Template Function nw::graph::tag_invoke(const target_tag, const T&amp;, const U&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_graph__concepts_8hpp_1acccaa3b00991e891bb8a97290f2ad91f.html#exhale-function-graph-concepts-8hpp-1acccaa3b00991e891bb8a97290f2ad91f"><span class="std std-ref">Template Function nw::graph::tag_invoke(const num_vertices_tag, const T&amp;)</span></a></p></li>
+</ul>
+</section>
+<section id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1ac3ceab8ce00af99a388de8188208ec36.html#exhale-typedef-graph-concepts-8hpp-1ac3ceab8ce00af99a388de8188208ec36"><span class="std std-ref">Typedef nw::graph::attributes_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1a9643d7168d066d5ef64f922cb4f71645.html#exhale-typedef-graph-concepts-8hpp-1a9643d7168d066d5ef64f922cb4f71645"><span class="std std-ref">Typedef nw::graph::const_iterator_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1a631084a919981e6fab7f3f9aa87ddafa.html#exhale-typedef-graph-concepts-8hpp-1a631084a919981e6fab7f3f9aa87ddafa"><span class="std std-ref">Typedef nw::graph::inner_const_iterator_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1a34d86d1f46fb80fa71d243ae82423ed3.html#exhale-typedef-graph-concepts-8hpp-1a34d86d1f46fb80fa71d243ae82423ed3"><span class="std std-ref">Typedef nw::graph::inner_iterator_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1a82fba6d5e63a665eb001794542df9142.html#exhale-typedef-graph-concepts-8hpp-1a82fba6d5e63a665eb001794542df9142"><span class="std std-ref">Typedef nw::graph::inner_range_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1abf8966021cb7c95c5aab179fd3cbf2a4.html#exhale-typedef-graph-concepts-8hpp-1abf8966021cb7c95c5aab179fd3cbf2a4"><span class="std std-ref">Typedef nw::graph::inner_reference_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1ad2869b2f8b629c22701be6bca243361c.html#exhale-typedef-graph-concepts-8hpp-1ad2869b2f8b629c22701be6bca243361c"><span class="std std-ref">Typedef nw::graph::inner_value_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_graph__concepts_8hpp_1a22841535e0eeb0afd67ac37de39d2207.html#exhale-typedef-graph-concepts-8hpp-1a22841535e0eeb0afd67ac37de39d2207"><span class="std std-ref">Typedef nw::graph::iterator_t</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

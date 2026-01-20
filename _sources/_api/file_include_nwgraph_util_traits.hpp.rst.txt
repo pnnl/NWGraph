@@ -1,0 +1,123 @@
+
+.. _file_include_nwgraph_util_traits.hpp:
+
+File traits.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/traits.hpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_traits.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``iterator`` (:ref:`file_include_nwgraph_util_permutation_iterator.hpp`)
+
+- ``tbb/blocked_range.h``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_containers_soa.hpp`
+
+- :ref:`file_include_nwgraph_containers_zip.hpp`
+
+- :ref:`file_include_nwgraph_util_atomic.hpp`
+
+- :ref:`file_include_nwgraph_util_parallel_for.hpp`
+
+- :ref:`file_include_nwgraph_util_util.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__iterator`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__iterator_3_01const_01T_01_5_00_01void_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__iterator_3_01T_01_5_00_01void_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1is__iterator_3_01T_00_01std_1_1enable__if__t_3_9std_1_1is__same__v_3_01type9ef7cf8b66d530217afb78cca5715fc7`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1remove__atomic`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1remove__atomic_3_01std_1_1atomic_3_01T_01_4_01_4`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1remove__atomic_3_01std_1_1atomic__ref_3_01T_01_4_01_4`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_traits_8hpp_1a1ca0e91ca64e9d47cf72d2ca6e06aa57`
+
+- :ref:`exhale_typedef_traits_8hpp_1a3184846c184b129d40f491888ef1a9a4`
+
+- :ref:`exhale_typedef_traits_8hpp_1a8374d9be95280a5be0ae5fff7f8219e5`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_traits_8hpp_1ad080c1231e32a75bd646d69cbdb98b10`
+
+- :ref:`exhale_variable_traits_8hpp_1a93b92eb718a2af4026eb0887a1ccf3b5`
+
+- :ref:`exhale_variable_traits_8hpp_1a17fc5edc05c4df0ffeef2b20742e8904`
+
+- :ref:`exhale_variable_traits_8hpp_1a1897e8b97b20394ebf0de646e6be093d`
+

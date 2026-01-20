@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1graph__traits_3_01index__edge__list_3_01vertex__id_00_01graph__base__t_00_090cb78f12efff6d9c4985a18c7c99b30:
+
+Template Struct graph_traits< index_edge_list< vertex_id, graph_base_t, direct, Attributes... > >
+=================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::graph_traits< index_edge_list< vertex_id, graph_base_t, direct, Attributes... > >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

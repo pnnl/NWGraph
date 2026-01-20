@@ -1,0 +1,14 @@
+.. _exhale_define_tag__invoke_8hpp_1a3b407e45a3524837901353cb56dc2f26:
+
+Define DECL_TAG_INVOKE
+======================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DECL_TAG_INVOKE
+   :project: NWgraph

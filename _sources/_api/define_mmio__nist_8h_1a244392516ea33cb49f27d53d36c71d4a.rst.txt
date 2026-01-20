@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a244392516ea33cb49f27d53d36c71d4a:
+
+Define mm_set_general
+=====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_set_general
+   :project: NWgraph

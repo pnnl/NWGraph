@@ -1,0 +1,148 @@
+
+.. _program_listing_file_include_nwgraph_util_parallel_for.hpp:
+
+Program Listing for File parallel_for.hpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_util_parallel_for.hpp>` (``include/nwgraph/util/parallel_for.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_PARALLEL_FOR_HPP
+   #define NW_GRAPH_PARALLEL_FOR_HPP
+   
+   #include "nwgraph/util/backend.hpp"
+   #include "nwgraph/util/traits.hpp"
+   
+   #if defined(NWGRAPH_BACKEND_HPX)
+     #include <hpx/parallel/algorithms/for_each.hpp>
+     #include <hpx/parallel/algorithms/for_loop.hpp>
+     #include <hpx/parallel/algorithms/transform_reduce.hpp>
+     #include <hpx/include/util.hpp>
+   #else
+     #include <tbb/parallel_for.h>
+     #include <tbb/parallel_reduce.h>
+   #endif
+   
+   namespace nw {
+   namespace graph {
+   
+   template <class Op, class It>
+   auto parallel_for_inner(Op&& op, It&& i) {
+     if constexpr (is_tuple_v<std::decay_t<It>>) {
+       return std::apply([&](auto&&... args) { return std::forward<Op>(op)(std::forward<decltype(args)>(args)...); }, std::forward<It>(i));
+     } else if constexpr (std::is_integral_v<std::decay_t<It>>) {
+       return std::forward<Op>(op)(std::forward<It>(i));
+     } else {
+       if constexpr (is_tuple_v<decltype(*std::forward<It>(i))>) {
+         return parallel_for_inner(std::forward<Op>(op), *std::forward<It>(i));
+       } else {
+         return std::forward<Op>(op)(*std::forward<It>(i));
+       }
+     }
+   }
+   
+   template <class Range, class Op>
+   void parallel_for_sequential(Range&& range, Op&& op) {
+     for (auto &&i = range.begin(), e = range.end(); i != e; ++i) {
+       parallel_for_inner(op, i);
+     }
+   }
+   
+   template <class Range, class Op, class Reduce, class T>
+   auto parallel_for_sequential(Range&& range, Op&& op, Reduce&& reduce, T init) {
+     for (auto &&i = range.begin(), e = range.end(); i != e; ++i) {
+       init = reduce(init, parallel_for_inner(op, i));
+     }
+     return init;
+   }
+   
+   template <class Range, class Op>
+   void parallel_for(Range&& range, Op&& op) {
+     backend::init_guard guard;  // Ensure runtime is initialized (HPX needs this)
+   
+     if (range.is_divisible()) {
+   #if defined(NWGRAPH_BACKEND_HPX)
+       // HPX uses for_each on the range
+       hpx::for_each(hpx::execution::par, range.begin(), range.end(),
+                     [&](auto&& elem) { parallel_for_inner(op, elem); });
+   #else
+       // TBB uses parallel_for with splittable ranges
+       tbb::parallel_for(std::forward<Range>(range),
+                         [&](auto&& sub) { parallel_for_sequential(std::forward<decltype(sub)>(sub), std::forward<Op>(op)); });
+   #endif
+     } else {
+       parallel_for_sequential(std::forward<Range>(range), std::forward<Op>(op));
+     }
+   }
+   
+   template <class Range, class Op, class Reduce, class T>
+   auto parallel_reduce(Range&& range, Op&& op, Reduce&& reduce, T init) {
+     backend::init_guard guard;  // Ensure runtime is initialized (HPX needs this)
+   
+     if (range.is_divisible()) {
+   #if defined(NWGRAPH_BACKEND_HPX)
+       // HPX uses transform_reduce
+       return hpx::transform_reduce(hpx::execution::par,
+                                     range.begin(), range.end(),
+                                     init,
+                                     std::forward<Reduce>(reduce),
+                                     [&](auto&& elem) { return parallel_for_inner(op, elem); });
+   #else
+       // TBB uses parallel_reduce with splittable ranges
+       return tbb::parallel_reduce(
+           std::forward<Range>(range), init,
+           [&](auto&& sub, auto partial) { return parallel_for_sequential(std::forward<decltype(sub)>(sub), op, reduce, partial); }, reduce);
+   #endif
+     } else {
+       return parallel_for_sequential(std::forward<Range>(range), std::forward<Op>(op), std::forward<Reduce>(reduce), init);
+     }
+   }
+   
+   template <class Op>
+   void parallel_for_each(std::size_t begin, std::size_t end, Op&& op) {
+     backend::init_guard guard;  // Ensure runtime is initialized
+   
+   #if defined(NWGRAPH_BACKEND_HPX)
+     hpx::for_loop(hpx::execution::par, begin, end, std::forward<Op>(op));
+   #else
+     tbb::parallel_for(tbb::blocked_range<std::size_t>(begin, end),
+                       [&](const auto& r) {
+                         for (auto i = r.begin(); i != r.end(); ++i) {
+                           op(i);
+                         }
+                       });
+   #endif
+   }
+   
+   template <class T, class Op, class Reduce>
+   T parallel_reduce_each(std::size_t begin, std::size_t end, T init, Op&& op, Reduce&& reduce) {
+     backend::init_guard guard;  // Ensure runtime is initialized
+   
+   #if defined(NWGRAPH_BACKEND_HPX)
+     return hpx::transform_reduce(hpx::execution::par,
+                                   hpx::util::counting_iterator<std::size_t>(begin),
+                                   hpx::util::counting_iterator<std::size_t>(end),
+                                   init,
+                                   std::forward<Reduce>(reduce),
+                                   std::forward<Op>(op));
+   #else
+     return tbb::parallel_reduce(
+         tbb::blocked_range<std::size_t>(begin, end), init,
+         [&](const auto& r, auto partial) {
+           for (auto i = r.begin(); i != r.end(); ++i) {
+             partial = reduce(partial, op(i));
+           }
+           return partial;
+         },
+         reduce);
+   #endif
+   }
+   
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_PARALLEL_FOR_HPP

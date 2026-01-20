@@ -1,0 +1,81 @@
+
+.. _file_include_nwgraph_algorithms_kruskal.hpp:
+
+File kruskal.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_algorithms>` (``include/nwgraph/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/algorithms/kruskal.hpp``)
+-------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_algorithms_kruskal.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``nwgraph/edge_list.hpp`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/util/disjoint_set.hpp`` (:ref:`file_include_nwgraph_util_disjoint_set.hpp`)
+
+- ``nwgraph/util/print_types.hpp`` (:ref:`file_include_nwgraph_util_print_types.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_kruskal_8hpp_1ab6383c1ed77e977f5b44c3bb92f68ce8`
+
+- :ref:`exhale_function_kruskal_8hpp_1ac73825f3545df3a6f3a0e3e61bedd4cc`
+

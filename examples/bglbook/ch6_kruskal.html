@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)" href="ch6_prim.html" />
+    <link rel="prev" title="Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)" href="ch5_bellman_ford.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#telephone-network-planning">Telephone Network Planning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kruskal-s-algorithm">Kruskal’s Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comparison-with-prim-s-algorithm">Comparison with Prim’s Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwgraph-implementation">NWGraph Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-running-the-example">Building and Running the Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-output">Sample Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-nwgraph-features-demonstrated">Key NWGraph Features Demonstrated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+      <li class="breadcrumb-item active">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/ch6_kruskal.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kruskal-s-minimum-spanning-tree-algorithm-bgl-book-chapter-6">
+<h1>Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)<a class="headerlink" href="#kruskal-s-minimum-spanning-tree-algorithm-bgl-book-chapter-6" title="Link to this heading"></a></h1>
+<p><em>Based on “The Boost Graph Library” by Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine</em></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Given an undirected, weighted graph, a <strong>minimum spanning tree</strong> (MST) is a subset of
+edges that connects all the vertices together, without any cycles, with the minimum
+possible total edge weight.</p>
+<p>More precisely, for a graph G = (V, E), the minimum spanning tree problem is to find
+an acyclic subset T of E that connects all the vertices in V and whose total weight is
+minimized.</p>
+</section>
+<section id="telephone-network-planning">
+<h2>Telephone Network Planning<a class="headerlink" href="#telephone-network-planning" title="Link to this heading"></a></h2>
+<p>Suppose that you are responsible for setting up the telephone lines for a remote region.
+The region consists of several towns and a network of roads. Setting up a telephone line
+requires access for the trucks, and hence, a road alongside the route for the line.</p>
+<p>Your budget is quite small, so building new roads is out of the question and the telephone
+lines will have to go in along existing roads. Also, you would like to minimize the total
+length of wire required to connect all the towns in the region.</p>
+<p>The telephone network planning problem is a classic application of minimum spanning trees.</p>
+</section>
+<section id="kruskal-s-algorithm">
+<h2>Kruskal’s Algorithm<a class="headerlink" href="#kruskal-s-algorithm" title="Link to this heading"></a></h2>
+<p>Kruskal’s algorithm starts with each vertex in a tree by itself and with no edges in the
+set T (which will become the minimum spanning tree). The algorithm then:</p>
+<ol class="arabic simple">
+<li><p><strong>Sort edges</strong> by weight in non-decreasing order</p></li>
+<li><p><strong>Examine each edge</strong> in sorted order</p></li>
+<li><p>If the edge connects two vertices in <strong>different trees</strong>, merge the trees and add the
+edge to T</p></li>
+<li><p>Continue until all edges have been examined</p></li>
+</ol>
+<p>When finished, T will span the graph (assuming it’s connected) and be a minimum spanning
+tree.</p>
+<p>The key data structure used by Kruskal’s algorithm is the <strong>disjoint-set</strong> (also called
+union-find), which efficiently tracks which vertices belong to the same tree and supports
+merging trees.</p>
+</section>
+<section id="comparison-with-prim-s-algorithm">
+<h2>Comparison with Prim’s Algorithm<a class="headerlink" href="#comparison-with-prim-s-algorithm" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Kruskal’s</p></th>
+<th class="head"><p>Prim’s</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Approach</p></td>
+<td><p>Edge-centric</p></td>
+<td><p>Vertex-centric</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data structure</p></td>
+<td><p>Disjoint-set (union-find)</p></td>
+<td><p>Priority queue</p></td>
+</tr>
+<tr class="row-even"><td><p>Better for</p></td>
+<td><p>Sparse graphs</p></td>
+<td><p>Dense graphs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Time complexity</p></td>
+<td><p>O(E log E)</p></td>
+<td><p>O(E log V) with heap</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that minimum spanning trees are not unique; there can be more than one MST for a
+particular graph if multiple edges have the same weight.</p>
+</section>
+<section id="nwgraph-implementation">
+<h2>NWGraph Implementation<a class="headerlink" href="#nwgraph-implementation" title="Link to this heading"></a></h2>
+<p>NWGraph provides a <code class="docutils literal notranslate"><span class="pre">kruskal</span></code> function that implements Kruskal’s algorithm using the
+disjoint-set data structure.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Complete source code</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file ch6_kruskal.cpp</span>
+<span class="linenos">  3</span><span class="cm"> *</span>
+<span class="linenos">  4</span><span class="cm"> * @brief Kruskal&#39;s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</span>
+<span class="linenos">  5</span><span class="cm"> *</span>
+<span class="linenos">  6</span><span class="cm"> * This example demonstrates Kruskal&#39;s algorithm for finding a minimum spanning</span>
+<span class="linenos">  7</span><span class="cm"> * tree of an undirected weighted graph. The algorithm works by sorting edges</span>
+<span class="linenos">  8</span><span class="cm"> * by weight and adding them to the tree if they don&#39;t create a cycle.</span>
+<span class="linenos">  9</span><span class="cm"> *</span>
+<span class="linenos"> 10</span><span class="cm"> * Application: Network design - finding the minimum cost way to connect all</span>
+<span class="linenos"> 11</span><span class="cm"> * nodes in a network (e.g., laying cable between cities).</span>
+<span class="linenos"> 12</span><span class="cm"> *</span>
+<span class="linenos"> 13</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</span>
+<span class="linenos"> 14</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 University of Washington</span>
+<span class="linenos"> 15</span><span class="cm"> *</span>
+<span class="linenos"> 16</span><span class="cm"> * SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="linenos"> 17</span><span class="cm"> *</span>
+<span class="linenos"> 18</span><span class="cm"> * @authors</span>
+<span class="linenos"> 19</span><span class="cm"> *   Andrew Lumsdaine</span>
+<span class="linenos"> 20</span><span class="cm"> *</span>
+<span class="linenos"> 21</span><span class="cm"> */</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 24</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
+<span class="linenos"> 25</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/algorithms/kruskal.hpp&quot;</span>
+<span class="linenos"> 28</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/edge_list.hpp&quot;</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">nw</span><span class="o">::</span><span class="nn">graph</span><span class="p">;</span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 33</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Kruskal&#39;s Minimum Spanning Tree ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 34</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Based on BGL Book Chapter 6&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span><span class="w">  </span><span class="c1">// Create a weighted undirected graph</span>
+<span class="linenos"> 37</span><span class="w">  </span><span class="c1">// This represents a network where we want to find the minimum cost</span>
+<span class="linenos"> 38</span><span class="w">  </span><span class="c1">// to connect all nodes.</span>
+<span class="linenos"> 39</span><span class="w">  </span><span class="c1">//</span>
+<span class="linenos"> 40</span><span class="w">  </span><span class="c1">//     1---7---2</span>
+<span class="linenos"> 41</span><span class="w">  </span><span class="c1">//    /|      /|\</span>
+<span class="linenos"> 42</span><span class="c1">  //   5 9     8 7 5</span>
+<span class="linenos"> 43</span><span class="w">  </span><span class="c1">//  /  |    /  |  \</span>
+<span class="linenos"> 44</span><span class="c1">  // 0   |   /   |   5</span>
+<span class="linenos"> 45</span><span class="w">  </span><span class="c1">//  \  |  /    |  /</span>
+<span class="linenos"> 46</span><span class="w">  </span><span class="c1">//   5 15     9  11</span>
+<span class="linenos"> 47</span><span class="w">  </span><span class="c1">//    \|/      |/</span>
+<span class="linenos"> 48</span><span class="w">  </span><span class="c1">//     4---6---6</span>
+<span class="linenos"> 49</span><span class="w">  </span><span class="c1">//</span>
+<span class="linenos"> 50</span><span class="w">  </span><span class="c1">// Vertex names (for reference):</span>
+<span class="linenos"> 51</span><span class="w">  </span><span class="c1">// 0=A, 1=B, 2=C, 3=D, 4=E, 5=F, 6=G</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Graph: 7 vertices representing cities&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 54</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Edges represent possible cable routes with costs&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 55</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">undirected</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="linenos"> 58</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos"> 59</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// A-B: cost 7</span>
+<span class="linenos"> 60</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// A-D: cost 5</span>
+<span class="linenos"> 61</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// B-C: cost 8</span>
+<span class="linenos"> 62</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// B-D: cost 9</span>
+<span class="linenos"> 63</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// B-E: cost 7</span>
+<span class="linenos"> 64</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// C-E: cost 5</span>
+<span class="linenos"> 65</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">15.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// D-E: cost 15</span>
+<span class="linenos"> 66</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// D-F: cost 6</span>
+<span class="linenos"> 67</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// E-F: cost 8</span>
+<span class="linenos"> 68</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// E-G: cost 9</span>
+<span class="linenos"> 69</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mf">11.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// F-G: cost 11</span>
+<span class="linenos"> 70</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Input edges (sorted by weight for Kruskal):&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 73</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">sorted_edges</span><span class="p">;</span>
+<span class="linenos"> 74</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 75</span><span class="w">    </span><span class="n">sorted_edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">});</span>
+<span class="linenos"> 76</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 77</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">sorted_edges</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">sorted_edges</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+<span class="linenos"> 78</span><span class="w">            </span><span class="p">[](</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">sorted_edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -- &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 82</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 83</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 84</span>
+<span class="linenos"> 85</span><span class="w">  </span><span class="c1">// Run Kruskal&#39;s algorithm</span>
+<span class="linenos"> 86</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">mst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kruskal</span><span class="p">(</span><span class="n">edges</span><span class="p">);</span>
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span><span class="w">  </span><span class="c1">// Display MST edges</span>
+<span class="linenos"> 89</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Minimum Spanning Tree edges:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 90</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">total_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos"> 91</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">mst</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 92</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -- &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="n">total_weight</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="linenos"> 94</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 97</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total MST weight: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">total_weight</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 98</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Number of MST edges: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">mst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">mst</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 99</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;(A tree with N vertices has N-1 edges)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="w">  </span><span class="c1">// Also demonstrate maximum spanning tree</span>
+<span class="linenos">102</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">103</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Maximum Spanning Tree ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="w">  </span><span class="c1">// Recreate edge list (kruskal modifies it)</span>
+<span class="linenos">106</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">undirected</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges2</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="linenos">107</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">108</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">);</span>
+<span class="linenos">109</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">);</span>
+<span class="linenos">110</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">);</span>
+<span class="linenos">111</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="p">);</span>
+<span class="linenos">112</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">);</span>
+<span class="linenos">113</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">);</span>
+<span class="linenos">114</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">15.0</span><span class="p">);</span>
+<span class="linenos">115</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">);</span>
+<span class="linenos">116</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">);</span>
+<span class="linenos">117</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="p">);</span>
+<span class="linenos">118</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mf">11.0</span><span class="p">);</span>
+<span class="linenos">119</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">max_compare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">t2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t2</span><span class="p">);</span><span class="w"> </span><span class="p">};</span>
+<span class="linenos">122</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">max_st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kruskal</span><span class="p">(</span><span class="n">edges2</span><span class="p">,</span><span class="w"> </span><span class="n">max_compare</span><span class="p">);</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Maximum Spanning Tree edges:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">125</span><span class="w">  </span><span class="n">total_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">126</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">max_st</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">127</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -- &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">128</span><span class="w">    </span><span class="n">total_weight</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="linenos">129</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">130</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">131</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total MaxST weight: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">total_weight</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">132</span>
+<span class="linenos">133</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">134</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="building-and-running-the-example">
+<h2>Building and Running the Example<a class="headerlink" href="#building-and-running-the-example" title="Link to this heading"></a></h2>
+<p>First, configure and build the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>ch6_kruskal
+</pre></div>
+</div>
+<p>Then run the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./examples/bgl-book/ch6_kruskal
+</pre></div>
+</div>
+<p>The program uses a sample road network and computes the minimum spanning tree, which represents
+the optimal layout for telephone lines.</p>
+</section>
+<section id="sample-output">
+<h2>Sample Output<a class="headerlink" href="#sample-output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Telephone Network MST (Kruskal&#39;s Algorithm)
+
+MST edges:
+Nobel -- Parry Sound (3 miles)
+Novar -- Huntsville (5 miles)
+Rosseau -- Sprucedale (8 miles)
+...
+
+Total wire required: 145 miles
+</pre></div>
+</div>
+</section>
+<section id="key-nwgraph-features-demonstrated">
+<h2>Key NWGraph Features Demonstrated<a class="headerlink" href="#key-nwgraph-features-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Undirected weighted graphs</strong>: Road networks with distances</p></li>
+<li><p><strong>Edge sorting</strong>: Processing edges by weight</p></li>
+<li><p><strong>Disjoint-set data structure</strong>: Tracking connected components</p></li>
+<li><p><strong>Edge list output</strong>: Collecting MST edges</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cormen, Leiserson, Rivest, and Stein. <em>Introduction to Algorithms</em>, 4th Edition (2022),
+<strong>Chapter 21.1: Growing a Minimum Spanning Tree</strong> and <strong>Chapter 21.2: Kruskal’s and Prim’s Algorithms</strong></p></li>
+<li><p>Siek, Lee, and Lumsdaine. <em>The Boost Graph Library</em> (2002), Chapter 6.3</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ch6_prim.html"><span class="doc">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</span></a> - Prim’s MST algorithm (vertex-centric approach)</p></li>
+<li><p><a class="reference internal" href="ch5_dijkstra.html"><span class="doc">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</span></a> - Dijkstra’s shortest paths (related algorithm)</p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples overview</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch5_bellman_ford.html" class="btn btn-neutral float-left" title="Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch6_prim.html" class="btn btn-neutral float-right" title="Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

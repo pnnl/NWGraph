@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2page__rank_8hpp_1ada25dffaa51ac9dc36b881560a1b5a0b:
+
+Template Function nw::graph::page_rank_v6
+=========================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::page_rank_v6(const Graph&, const std::vector<typename Graph::vertex_id_type>&, std::vector<Real>&, const Real, const Real, const size_t, size_t)
+   :project: NWgraph

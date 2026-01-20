@@ -1,0 +1,14 @@
+.. _exhale_typedef_tag__invoke_8hpp_1a0fe843f6da63395ee61dd4e46963923b:
+
+Typedef _tag_invoke::yes_type
+=============================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: _tag_invoke::yes_type
+   :project: NWgraph

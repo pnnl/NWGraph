@@ -1,0 +1,73 @@
+
+.. _file_include_nwgraph_algorithms_prim.hpp:
+
+File prim.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_algorithms>` (``include/nwgraph/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/algorithms/prim.hpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_algorithms_prim.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``nwgraph/edge_list.hpp`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_prim_8hpp_1a1441aad950279cc366d7dc064330e6ce`
+

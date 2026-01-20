@@ -1,0 +1,64 @@
+
+.. _file_include_nwgraph_graphs_karate-graph.hpp:
+
+File karate-graph.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_graphs>` (``include/nwgraph/graphs``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/graphs/karate-graph.hpp``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_graphs_karate-graph.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_karate-graph_8hpp_1a41c51e681500194a56cc3ac0eb99075d`
+
+- :ref:`exhale_variable_karate-graph_8hpp_1aa29dd4f8ae06f1bbcd6005eafa2ec098`
+
+- :ref:`exhale_variable_karate-graph_8hpp_1a28fc71994d7fd619197a0a2be3ee1f71`
+

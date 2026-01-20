@@ -1,0 +1,85 @@
+
+.. _file_include_nwgraph_util_defaults.hpp:
+
+File defaults.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/defaults.hpp``)
+--------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_defaults.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstddef``
+
+- ``cstdint``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adjacency.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+- :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+- :ref:`file_include_nwgraph_edge_list.hpp`
+
+- :ref:`file_include_nwgraph_util_disjoint_set.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_defaults_8hpp_1ab793c0487f8326ffccbbd32d86330469`
+
+- :ref:`exhale_typedef_defaults_8hpp_1a2769b786e30a1599704a0d758cdd72b2`
+

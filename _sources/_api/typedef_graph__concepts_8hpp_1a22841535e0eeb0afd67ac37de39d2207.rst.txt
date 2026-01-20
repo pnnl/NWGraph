@@ -1,0 +1,14 @@
+.. _exhale_typedef_graph__concepts_8hpp_1a22841535e0eeb0afd67ac37de39d2207:
+
+Typedef nw::graph::iterator_t
+=============================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::iterator_t
+   :project: NWgraph

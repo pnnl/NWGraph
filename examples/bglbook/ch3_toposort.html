@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Dependencies - Topological Sort (BGL Book Chapter 3) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)" href="ch4_kevin_bacon.html" />
+    <link rel="prev" title="Boost Graph Library Examples (Rewritten for NW Graph)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">File Dependencies - Topological Sort (BGL Book Chapter 3)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#algorithm-description">Algorithm Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwgraph-implementation">NWGraph Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-running-the-example">Building and Running the Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-output">Sample Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-nwgraph-features-demonstrated">Key NWGraph Features Demonstrated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+      <li class="breadcrumb-item active">File Dependencies - Topological Sort (BGL Book Chapter 3)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/ch3_toposort.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-dependencies-topological-sort-bgl-book-chapter-3">
+<h1>File Dependencies - Topological Sort (BGL Book Chapter 3)<a class="headerlink" href="#file-dependencies-topological-sort-bgl-book-chapter-3" title="Link to this heading"></a></h1>
+<p><em>Based on “The Boost Graph Library” by Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine</em></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>A common use of the graph abstraction is to represent dependencies. One common type of
+dependency that we programmers deal with on a routine basis is that of compilation dependencies
+between files in programs that we write. Information about these dependencies is
+used by programs such as <code class="docutils literal notranslate"><span class="pre">make</span></code>, or by IDEs such as Visual C++, to determine which files
+must be recompiled to generate a new version of a program (or, in general, of some target)
+after a change has been made to a source file.</p>
+<p>Consider a graph that has a vertex for each source file, object file, and library that
+is used in a program. An edge in the graph shows that a target depends on another
+target in some way (such as a dependency due to inclusion of a header file in a source file, or
+due to an object file being compiled from a source file).</p>
+<p>Answers to many of the questions that arise in creating a build system such as <code class="docutils literal notranslate"><span class="pre">make</span></code> can
+be formulated in terms of the dependency graph:</p>
+<ul class="simple">
+<li><p>If all of the targets need to be made, in what order should that be accomplished?</p></li>
+<li><p>Are there any cycles in the dependencies? A dependency cycle is an error, and an
+appropriate message should be emitted.</p></li>
+<li><p>How many steps are required to make all of the targets? How many steps are required
+to make all of the targets if independent targets are made simultaneously in parallel?</p></li>
+</ul>
+</section>
+<section id="algorithm-description">
+<h2>Algorithm Description<a class="headerlink" href="#algorithm-description" title="Link to this heading"></a></h2>
+<p>The first question—specifying an order in which to build all of the targets—requires ensuring
+that before building a given target, all the targets that it depends on are already built.
+This is the problem of computing a <strong>topological ordering</strong>.</p>
+<p>A topological ordering can be computed using a depth-first search (DFS). A DFS visits all of
+the vertices in a graph by starting at any vertex and then choosing an edge to follow. At the
+next vertex another edge is chosen to follow. This process continues until a dead end (a vertex
+with no out-edges that lead to a vertex not already discovered) is reached. The algorithm then
+backtracks to the last discovered vertex that is adjacent to a vertex that is not yet discovered.</p>
+<p>In the context of topological sorting, we record each vertex as it is <strong>finished</strong> (when the DFS
+backtracks from that vertex). The reverse of this finish order is the topological order.</p>
+</section>
+<section id="nwgraph-implementation">
+<h2>NWGraph Implementation<a class="headerlink" href="#nwgraph-implementation" title="Link to this heading"></a></h2>
+<p>NWGraph provides modern C++20 implementations of DFS and topological sorting that differ
+from the BGL approach by using range adaptors instead of visitors.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Complete source code</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cm">/**</span>
+<span class="linenos"> 2</span><span class="cm"> * @file ch3_toposort.cpp</span>
+<span class="linenos"> 3</span><span class="cm"> *</span>
+<span class="linenos"> 4</span><span class="cm"> * @brief File Dependencies - Topological Sort (BGL Book Chapter 3)</span>
+<span class="linenos"> 5</span><span class="cm"> *</span>
+<span class="linenos"> 6</span><span class="cm"> * This example demonstrates topological sorting using DFS on a makefile</span>
+<span class="linenos"> 7</span><span class="cm"> * dependency graph.</span>
+<span class="linenos"> 8</span><span class="cm"> *</span>
+<span class="linenos"> 9</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</span>
+<span class="linenos">10</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 University of Washington</span>
+<span class="linenos">11</span><span class="cm"> *</span>
+<span class="linenos">12</span><span class="cm"> * SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="linenos">13</span><span class="cm"> *</span>
+<span class="linenos">14</span><span class="cm"> * @authors</span>
+<span class="linenos">15</span><span class="cm"> *   Andrew Lumsdaine</span>
+<span class="linenos">16</span><span class="cm"> *</span>
+<span class="linenos">17</span><span class="cm"> */</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="linenos">20</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos">21</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="linenos">22</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/adjacency.hpp&quot;</span>
+<span class="linenos">25</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/adaptors/dfs_range.hpp&quot;</span>
+<span class="linenos">26</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/edge_list.hpp&quot;</span>
+<span class="linenos">27</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/io/mmio.hpp&quot;</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">nw</span><span class="o">::</span><span class="nn">graph</span><span class="p">;</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">32</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Topological Sort for Makefile Dependencies ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">33</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Based on BGL Book Chapter 3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_mm</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;makefile-dependencies.mmio&quot;</span><span class="p">);</span>
+<span class="linenos">36</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w">                      </span><span class="n">A</span><span class="p">(</span><span class="n">E</span><span class="p">);</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos">39</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w">            </span><span class="n">name_in</span><span class="p">(</span><span class="s">&quot;makefile-target-names.dat&quot;</span><span class="p">);</span>
+<span class="linenos">40</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">name_in</span><span class="p">.</span><span class="n">eof</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">41</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+<span class="linenos">42</span><span class="w">    </span><span class="n">name_in</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">buffer</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">44</span><span class="w">      </span><span class="n">name</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="linenos">45</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">46</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;DFS traversal order:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">49</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">order</span><span class="p">;</span>
+<span class="linenos">50</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">dfs_range</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">51</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">name</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">52</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">53</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">54</span><span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+<span class="linenos">55</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">58</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="building-and-running-the-example">
+<h2>Building and Running the Example<a class="headerlink" href="#building-and-running-the-example" title="Link to this heading"></a></h2>
+<p>First, configure and build the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>ch3_toposort
+</pre></div>
+</div>
+<p>Then run the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./examples/bgl-book/ch3_toposort
+</pre></div>
+</div>
+<p>The program reads a makefile dependency graph from a file and outputs the compilation order
+(files listed in order such that each file appears before any files that depend on it).</p>
+</section>
+<section id="sample-output">
+<h2>Sample Output<a class="headerlink" href="#sample-output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Compilation order:
+dax.h
+yow.h
+zow.h
+boz.h
+zig.cpp
+zig.o
+zag.cpp
+zag.o
+libzigzag.a
+foo.cpp
+foo.o
+bar.cpp
+bar.o
+libfoobar.a
+killerapp
+</pre></div>
+</div>
+</section>
+<section id="key-nwgraph-features-demonstrated">
+<h2>Key NWGraph Features Demonstrated<a class="headerlink" href="#key-nwgraph-features-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Edge list construction</strong>: Building graphs from edge pairs</p></li>
+<li><p><strong>DFS range adaptor</strong>: Using <code class="docutils literal notranslate"><span class="pre">dfs_range</span></code> to traverse the graph</p></li>
+<li><p><strong>Topological sorting</strong>: Computing a valid build order for dependencies</p></li>
+<li><p><strong>Modern C++ idioms</strong>: Range-based for loops and structured bindings</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cormen, Leiserson, Rivest, and Stein. <em>Introduction to Algorithms</em>, 4th Edition (2022),
+<strong>Chapter 20.4: Topological Sort</strong> and <strong>Chapter 20.3: Depth-First Search</strong></p></li>
+<li><p>Siek, Lee, and Lumsdaine. <em>The Boost Graph Library</em> (2002), Chapter 3</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ch4_loop_detection.html"><span class="doc">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</span></a> - Detecting cycles in dependency graphs</p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples overview</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Boost Graph Library Examples (Rewritten for NW Graph)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch4_kevin_bacon.html" class="btn btn-neutral float-right" title="Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

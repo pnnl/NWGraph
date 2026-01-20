@@ -1,0 +1,14 @@
+.. _exhale_function_mmio_8hpp_1a9dad98405a4a2a4f759ca58da5662a02:
+
+Template Function nw::graph::aos_stream
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::aos_stream(std::ofstream&, edge_list<sym, Attributes...>, const std::string&, std::string&)
+   :project: NWgraph

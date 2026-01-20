@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class concurrent_vector &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class concurrent_vector</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1concurrent__vector.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-concurrent-vector">
+<span id="exhale-class-classnw-1-1graph-1-1concurrent-vector"></span><h1>Template Class concurrent_vector<a class="headerlink" href="#template-class-concurrent-vector" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_util_concurrent_containers.hpp.html#file-include-nwgraph-util-concurrent-containers-hpp"><span class="std std-ref">File concurrent_containers.hpp</span></a></p></li>
+</ul>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph17concurrent_vectorE">
+<span id="_CPPv3I0EN2nw5graph17concurrent_vectorE"></span><span id="_CPPv2I0EN2nw5graph17concurrent_vectorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1concurrent__vector"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">concurrent_vector</span></span></span><a class="headerlink" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="Link to this definition"></a><br /></dt>
+<dd><p>Thread-safe vector for concurrent access. </p>
+<p>Provides a growable array that can be safely modified from multiple threads. Uses TBB’s <a class="reference internal" href="#classnw_1_1graph_1_1concurrent__vector"><span class="std std-ref">concurrent_vector</span></a> or a mutex-protected std::vector for HPX.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For HPX backend, concurrent push_back operations are thread-safe, but indexed access ([]) is not synchronized - caller must ensure thread safety for indexed access.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The element type. </p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector10value_typeE">
+<span id="_CPPv3N2nw5graph17concurrent_vector10value_typeE"></span><span id="_CPPv2N2nw5graph17concurrent_vector10value_typeE"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a85290f0a456ee1a7b53b2e8a79c85b7e"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector10value_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector9size_typeE">
+<span id="_CPPv3N2nw5graph17concurrent_vector9size_typeE"></span><span id="_CPPv2N2nw5graph17concurrent_vector9size_typeE"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a77923022737cdc19a0bd44d7e1bcbdf6"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector9referenceE">
+<span id="_CPPv3N2nw5graph17concurrent_vector9referenceE"></span><span id="_CPPv2N2nw5graph17concurrent_vector9referenceE"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1ad183370512f060ab4ab2fefe8c8a0911"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector9referenceE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector15const_referenceE">
+<span id="_CPPv3N2nw5graph17concurrent_vector15const_referenceE"></span><span id="_CPPv2N2nw5graph17concurrent_vector15const_referenceE"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1aafbf1f30fe48a2b09a56aa15fa629920"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector15const_referenceE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector8iteratorE">
+<span id="_CPPv3N2nw5graph17concurrent_vector8iteratorE"></span><span id="_CPPv2N2nw5graph17concurrent_vector8iteratorE"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a6a7c4138f2934d85a6ac49594339391f"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">tbb</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">concurrent_vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">iterator</span></span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector8iteratorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector14const_iteratorE">
+<span id="_CPPv3N2nw5graph17concurrent_vector14const_iteratorE"></span><span id="_CPPv2N2nw5graph17concurrent_vector14const_iteratorE"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a224daef05435e0f81e7a63f4662163ae"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">tbb</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">concurrent_vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector14const_iteratorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector17concurrent_vectorEv">
+<span id="_CPPv3N2nw5graph17concurrent_vector17concurrent_vectorEv"></span><span id="_CPPv2N2nw5graph17concurrent_vector17concurrent_vectorEv"></span><span id="nw::graph::concurrent_vector::concurrent_vector"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1ad858e3343d9678e2e86cf25b7f00c57e"></span><span class="sig-name descname"><span class="n"><span class="pre">concurrent_vector</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector17concurrent_vectorEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector17concurrent_vectorE9size_type">
+<span id="_CPPv3N2nw5graph17concurrent_vector17concurrent_vectorE9size_type"></span><span id="_CPPv2N2nw5graph17concurrent_vector17concurrent_vectorE9size_type"></span><span id="nw::graph::concurrent_vector::concurrent_vector__size_type"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a33825557c397d1d26a313b9110332061"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">concurrent_vector</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="nw::graph::concurrent_vector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector17concurrent_vectorE9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct with initial size. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> – Initial number of elements. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector17concurrent_vectorE9size_typeRK1T">
+<span id="_CPPv3N2nw5graph17concurrent_vector17concurrent_vectorE9size_typeRK1T"></span><span id="_CPPv2N2nw5graph17concurrent_vector17concurrent_vectorE9size_typeRK1T"></span><span id="nw::graph::concurrent_vector::concurrent_vector__size_type.TCR"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a79c536d9380a57bd7c8f5deebfe22e46"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">concurrent_vector</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="nw::graph::concurrent_vector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector17concurrent_vectorE9size_typeRK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct with initial size and value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – Initial number of elements. </p></li>
+<li><p><strong>val</strong> – Value to initialize elements with. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector9push_backERK1T">
+<span id="_CPPv3N2nw5graph17concurrent_vector9push_backERK1T"></span><span id="_CPPv2N2nw5graph17concurrent_vector9push_backERK1T"></span><span id="nw::graph::concurrent_vector::push_back__TCR"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1aac025fa18e0152415effc4f4f82e4f9c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">push_back</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">item</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector9push_backERK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Thread-safe push_back. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> – The item to append. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector9push_backERR1T">
+<span id="_CPPv3N2nw5graph17concurrent_vector9push_backERR1T"></span><span id="_CPPv2N2nw5graph17concurrent_vector9push_backERR1T"></span><span id="nw::graph::concurrent_vector::push_back__TRR"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a5907bf1c9499551743a26a2613f6fb4a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">push_back</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">item</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector9push_backERR1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Thread-safe push_back (move version). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> – The item to append. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vector4sizeEv">
+<span id="_CPPv3NK2nw5graph17concurrent_vector4sizeEv"></span><span id="_CPPv2NK2nw5graph17concurrent_vector4sizeEv"></span><span id="nw::graph::concurrent_vector::sizeC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a3637f787fe9a4db2a81fc32dfd084376"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="nw::graph::concurrent_vector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vector4sizeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the number of elements. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of elements. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vector5emptyEv">
+<span id="_CPPv3NK2nw5graph17concurrent_vector5emptyEv"></span><span id="_CPPv2NK2nw5graph17concurrent_vector5emptyEv"></span><span id="nw::graph::concurrent_vector::emptyC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a1085fb278cf30ff49ef514b0e7f06a5c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vector5emptyEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Check if empty. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true if no elements. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector5clearEv">
+<span id="_CPPv3N2nw5graph17concurrent_vector5clearEv"></span><span id="_CPPv2N2nw5graph17concurrent_vector5clearEv"></span><span id="nw::graph::concurrent_vector::clear"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a3097269dc37788a10a69e53435a06904"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector5clearEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Clear all elements. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector6resizeE9size_type">
+<span id="_CPPv3N2nw5graph17concurrent_vector6resizeE9size_type"></span><span id="_CPPv2N2nw5graph17concurrent_vector6resizeE9size_type"></span><span id="nw::graph::concurrent_vector::resize__size_type"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a465d4602963191306630f3c3256ed7c5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resize</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="nw::graph::concurrent_vector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector6resizeE9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Resize the vector. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> – New size. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector6resizeE9size_typeRK1T">
+<span id="_CPPv3N2nw5graph17concurrent_vector6resizeE9size_typeRK1T"></span><span id="_CPPv2N2nw5graph17concurrent_vector6resizeE9size_typeRK1T"></span><span id="nw::graph::concurrent_vector::resize__size_type.TCR"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1ac1447faf9b361e9952f12d91f5024ed1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resize</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="nw::graph::concurrent_vector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector6resizeE9size_typeRK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Resize with value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – New size. </p></li>
+<li><p><strong>val</strong> – Value for new elements. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vectorixE9size_type">
+<span id="_CPPv3N2nw5graph17concurrent_vectorixE9size_type"></span><span id="_CPPv2N2nw5graph17concurrent_vectorixE9size_type"></span><span id="nw::graph::concurrent_vector::subscript-operator__size_type"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1adb7e804bd548f58cf5472d0d13689060"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9referenceE" title="nw::graph::concurrent_vector::reference"><span class="n"><span class="pre">reference</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="nw::graph::concurrent_vector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vectorixE9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Access element by index (not thread-safe for writes). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> – Index. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to element. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vectorixE9size_type">
+<span id="_CPPv3NK2nw5graph17concurrent_vectorixE9size_type"></span><span id="_CPPv2NK2nw5graph17concurrent_vectorixE9size_type"></span><span id="nw::graph::concurrent_vector::subscript-operator__size_typeC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1aae60f9233df98a05fb37f94bdef4ca80"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector15const_referenceE" title="nw::graph::concurrent_vector::const_reference"><span class="n"><span class="pre">const_reference</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector9size_typeE" title="nw::graph::concurrent_vector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vectorixE9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Access element by index (const version). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> – Index. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Const reference to element. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector5beginEv">
+<span id="_CPPv3N2nw5graph17concurrent_vector5beginEv"></span><span id="_CPPv2N2nw5graph17concurrent_vector5beginEv"></span><span id="nw::graph::concurrent_vector::begin"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a9088e8d1c7151d14553c7668176ee986"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector8iteratorE" title="nw::graph::concurrent_vector::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector5beginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector3endEv">
+<span id="_CPPv3N2nw5graph17concurrent_vector3endEv"></span><span id="_CPPv2N2nw5graph17concurrent_vector3endEv"></span><span id="nw::graph::concurrent_vector::end"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1ad53d074755fb6f0acf41813fc319f1c7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector8iteratorE" title="nw::graph::concurrent_vector::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector3endEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vector5beginEv">
+<span id="_CPPv3NK2nw5graph17concurrent_vector5beginEv"></span><span id="_CPPv2NK2nw5graph17concurrent_vector5beginEv"></span><span id="nw::graph::concurrent_vector::beginC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a677b0657b0a5d091ee2775928ddcc422"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector14const_iteratorE" title="nw::graph::concurrent_vector::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vector5beginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vector3endEv">
+<span id="_CPPv3NK2nw5graph17concurrent_vector3endEv"></span><span id="_CPPv2NK2nw5graph17concurrent_vector3endEv"></span><span id="nw::graph::concurrent_vector::endC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1aac4f5cb95644154261f7057866079783"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector14const_iteratorE" title="nw::graph::concurrent_vector::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vector3endEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vector6cbeginEv">
+<span id="_CPPv3NK2nw5graph17concurrent_vector6cbeginEv"></span><span id="_CPPv2NK2nw5graph17concurrent_vector6cbeginEv"></span><span id="nw::graph::concurrent_vector::cbeginC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1add7ff7c4e7cb3e46ebba6cd0cacdcbb2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector14const_iteratorE" title="nw::graph::concurrent_vector::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cbegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vector6cbeginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vector4cendEv">
+<span id="_CPPv3NK2nw5graph17concurrent_vector4cendEv"></span><span id="_CPPv2NK2nw5graph17concurrent_vector4cendEv"></span><span id="nw::graph::concurrent_vector::cendC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a6e20d083a44476cfd31b6b0974866836"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph17concurrent_vector14const_iteratorE" title="nw::graph::concurrent_vector::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vector4cendEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph17concurrent_vector4dataEv">
+<span id="_CPPv3N2nw5graph17concurrent_vector4dataEv"></span><span id="_CPPv2N2nw5graph17concurrent_vector4dataEv"></span><span id="nw::graph::concurrent_vector::data"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a7b8ab8ad8d34a55419a8f05418a83e42"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph17concurrent_vector4dataEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get pointer to underlying data. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Pointer to first element. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph17concurrent_vector4dataEv">
+<span id="_CPPv3NK2nw5graph17concurrent_vector4dataEv"></span><span id="_CPPv2NK2nw5graph17concurrent_vector4dataEv"></span><span id="nw::graph::concurrent_vector::dataC"></span><span class="target" id="classnw_1_1graph_1_1concurrent__vector_1a82d0aec2212cbb869bd410b2e17c6e3e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph17concurrent_vectorE" title="nw::graph::concurrent_vector::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph17concurrent_vector4dataEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

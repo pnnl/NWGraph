@@ -1,0 +1,199 @@
+
+.. _file_include_nwgraph_util_util.hpp:
+
+File util.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/util.hpp``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_util.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Kevin Deweese 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``cassert``
+
+- ``cstddef``
+
+- ``functional``
+
+- ``iterator`` (:ref:`file_include_nwgraph_util_permutation_iterator.hpp`)
+
+- ``numeric``
+
+- ``nwgraph/util/traits.hpp`` (:ref:`file_include_nwgraph_util_traits.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``type_traits``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adaptors_back_edge_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_bfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_cyclic_neighbor_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_dfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_edge_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_filtered_bfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_new_dfs_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_plain_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_random_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_reverse.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_worklist.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_boykov_kolmogorov.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_truss.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_kruskal.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_spMatspMat.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+- :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+- :ref:`file_include_nwgraph_containers_soa.hpp`
+
+- :ref:`file_include_nwgraph_containers_zip.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1counter`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1max`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1min`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1null__vertex__s`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1counting__output__iterator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_util_8hpp_1a4a5ffea001832c943bc7183076bbe46b`
+
+- :ref:`exhale_function_util_8hpp_1a0bbb2f4e7e0ccf17c0db8eb5e6854130`
+
+- :ref:`exhale_function_util_8hpp_1a9ce843f367850422648d76a6c1301908`
+
+- :ref:`exhale_function_util_8hpp_1a3841c794b96b015409f053d053f23a5c`
+
+- :ref:`exhale_function_util_8hpp_1a0d371b8d843e39a030affc410e9abc19`
+
+- :ref:`exhale_function_util_8hpp_1aed9db4727268583745627d02a95eac42`
+
+- :ref:`exhale_function_util_8hpp_1aa479ddfe80c98b98bacfeea43bcf0f82`
+
+- :ref:`exhale_function_util_8hpp_1a6be514934905b246c04cd77b158da05a`
+
+- :ref:`exhale_function_util_8hpp_1a6babd9725d664cf8e874ab289ef09b5d`
+
+- :ref:`exhale_function_util_8hpp_1ae0411163b5fbc6c07ea564621777a958`
+
+- :ref:`exhale_function_util_8hpp_1a921d81b59b40d6329b32898a24f4986c`
+
+- :ref:`exhale_function_util_8hpp_1a54430f286a4daf3e9c251ca29e074233`
+
+- :ref:`exhale_function_util_8hpp_1a4c90a5d11e01d3475bdbbec8fd725786`
+
+- :ref:`exhale_function_util_8hpp_1a2c81419881972f3760ef9775b2020272`
+
+- :ref:`exhale_function_util_8hpp_1a1d620f80f5eace2900c4d83d21718f57`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_util_8hpp_1a4c817bff76fdada4bb42c7a2c25e6aae`
+

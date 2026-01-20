@@ -1,0 +1,616 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Six Degrees of Separation" href="../degrees/index.html" />
+    <link rel="prev" title="Maximum Flow (BGL Book Chapter 8)" href="ch8_maxflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implicit-graph-representation">Implicit Graph Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backtracking-graph-search">Backtracking Graph Search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#warnsdorff-s-heuristic">Warnsdorff’s Heuristic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwgraph-implementation">NWGraph Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-running-the-example">Building and Running the Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-output">Sample Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-nwgraph-features-demonstrated">Key NWGraph Features Demonstrated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+      <li class="breadcrumb-item active">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/ch9_knights_tour.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="implicit-graphs-a-knight-s-tour-bgl-book-chapter-9">
+<h1>Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)<a class="headerlink" href="#implicit-graphs-a-knight-s-tour-bgl-book-chapter-9" title="Link to this heading"></a></h1>
+<p><em>Based on “The Boost Graph Library” by Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine</em></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The <strong>knight’s tour problem</strong> is as follows: Find a path for a knight to touch all of
+the squares of an n x n chessboard exactly once.</p>
+<p>The knight’s tour is an example of a <strong>Hamiltonian path</strong>—a simple path that passes
+through each vertex of the graph exactly once. Each square of the chessboard is treated
+as a vertex in the graph, and edges are determined by the pattern in which a knight can
+jump (up two and over one, or vice versa).</p>
+<p>The Hamiltonian path problem is <strong>NP-complete</strong>, meaning that for large problem sizes it
+cannot be solved in a reasonable amount of time using brute-force methods.</p>
+</section>
+<section id="implicit-graph-representation">
+<h2>Implicit Graph Representation<a class="headerlink" href="#implicit-graph-representation" title="Link to this heading"></a></h2>
+<p>One unique aspect of this example is that it does not use an explicit data structure
+(such as adjacency list) to represent the graph. Rather, an <strong>implicit graph structure</strong>
+is deduced from the allowable moves of a knight on a chessboard.</p>
+<p>The knight’s possible jumps are stored in an array:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Position</span><span class="w"> </span><span class="n">knight_jumps</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The adjacency iterator iterates through these possible jumps, filtering out moves that
+would go off the board.</p>
+</section>
+<section id="backtracking-graph-search">
+<h2>Backtracking Graph Search<a class="headerlink" href="#backtracking-graph-search" title="Link to this heading"></a></h2>
+<p>The basic algorithm is a <strong>backtracking graph search</strong>, similar to depth-first search.
+The idea is:</p>
+<ol class="arabic simple">
+<li><p>Explore a path until a dead end is reached</p></li>
+<li><p>After a dead end, back up (unmarking the path) before continuing</p></li>
+<li><p>Try a different path</p></li>
+<li><p>Repeat until all vertices are visited or all paths exhausted</p></li>
+</ol>
+<p>The search uses a stack containing timestamp-vertex pairs, so the proper timestamp is
+available after backtracking from a dead end.</p>
+</section>
+<section id="warnsdorff-s-heuristic">
+<h2>Warnsdorff’s Heuristic<a class="headerlink" href="#warnsdorff-s-heuristic" title="Link to this heading"></a></h2>
+<p>The basic backtracking search is very slow (brute force). <strong>Warnsdorff’s heuristic</strong>
+dramatically improves performance by choosing the next move intelligently:</p>
+<blockquote>
+<div><p><em>Always move to the square with the fewest onward moves.</em></p>
+</div></blockquote>
+<p>This greedy strategy tends to avoid getting trapped in corners early, leaving those
+difficult squares for later when they can be reached more easily. With this heuristic,
+the knight’s tour can be solved efficiently even for larger boards.</p>
+</section>
+<section id="nwgraph-implementation">
+<h2>NWGraph Implementation<a class="headerlink" href="#nwgraph-implementation" title="Link to this heading"></a></h2>
+<p>NWGraph implements the knight’s tour using an implicit graph that models the
+AdjacencyGraph concept, demonstrating that graph algorithms work with any data
+structure that provides the required interface.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">Complete source code</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file ch9_knights_tour.cpp</span>
+<span class="linenos">  3</span><span class="cm"> *</span>
+<span class="linenos">  4</span><span class="cm"> * @brief Implicit Graphs: A Knight&#39;s Tour (BGL Book Chapter 9)</span>
+<span class="linenos">  5</span><span class="cm"> *</span>
+<span class="linenos">  6</span><span class="cm"> * This example demonstrates solving the knight&#39;s tour problem using an</span>
+<span class="linenos">  7</span><span class="cm"> * implicit graph representation. The knight&#39;s tour is finding a path for</span>
+<span class="linenos">  8</span><span class="cm"> * a chess knight to visit every square on an n×n chessboard exactly once.</span>
+<span class="linenos">  9</span><span class="cm"> *</span>
+<span class="linenos"> 10</span><span class="cm"> * Key concepts demonstrated:</span>
+<span class="linenos"> 11</span><span class="cm"> * - Implicit graph representation (no explicit adjacency list)</span>
+<span class="linenos"> 12</span><span class="cm"> * - Backtracking search algorithm</span>
+<span class="linenos"> 13</span><span class="cm"> * - Warnsdorff&#39;s heuristic for faster solution</span>
+<span class="linenos"> 14</span><span class="cm"> *</span>
+<span class="linenos"> 15</span><span class="cm"> * The knight&#39;s tour is an example of a Hamiltonian path problem, which is</span>
+<span class="linenos"> 16</span><span class="cm"> * NP-complete. Warnsdorff&#39;s heuristic makes it tractable for small boards.</span>
+<span class="linenos"> 17</span><span class="cm"> *</span>
+<span class="linenos"> 18</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</span>
+<span class="linenos"> 19</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 University of Washington</span>
+<span class="linenos"> 20</span><span class="cm"> *</span>
+<span class="linenos"> 21</span><span class="cm"> * SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="linenos"> 22</span><span class="cm"> *</span>
+<span class="linenos"> 23</span><span class="cm"> * @authors</span>
+<span class="linenos"> 24</span><span class="cm"> *   Andrew Lumsdaine</span>
+<span class="linenos"> 25</span><span class="cm"> *</span>
+<span class="linenos"> 26</span><span class="cm"> */</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+<span class="linenos"> 29</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="linenos"> 30</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 31</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;queue&gt;</span>
+<span class="linenos"> 32</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stack&gt;</span>
+<span class="linenos"> 33</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span><span class="cm">/**</span>
+<span class="linenos"> 36</span><span class="cm"> * @brief Position on the chessboard</span>
+<span class="linenos"> 37</span><span class="cm"> */</span>
+<span class="linenos"> 38</span><span class="k">struct</span><span class="w"> </span><span class="nc">Position</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 39</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">;</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span><span class="w">  </span><span class="n">Position</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos"> 42</span><span class="w">  </span><span class="n">Position</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">row</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="w">  </span><span class="n">Position</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Position</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">col</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Position</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">row</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">col</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 47</span><span class="p">};</span>
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span><span class="cm">/**</span>
+<span class="linenos"> 50</span><span class="cm"> * @brief The 8 possible knight jumps</span>
+<span class="linenos"> 51</span><span class="cm"> */</span>
+<span class="linenos"> 52</span><span class="k">const</span><span class="w"> </span><span class="n">Position</span><span class="w"> </span><span class="n">knight_jumps</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Position</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">),</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">),</span><span class="w">  </span><span class="n">Position</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">),</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">),</span>
+<span class="linenos"> 53</span><span class="w">                                  </span><span class="n">Position</span><span class="p">(</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w">   </span><span class="n">Position</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)};</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="cm">/**</span>
+<span class="linenos"> 56</span><span class="cm"> * @brief Implicit graph representation of knight&#39;s moves on a chessboard</span>
+<span class="linenos"> 57</span><span class="cm"> *</span>
+<span class="linenos"> 58</span><span class="cm"> * This class models the knight&#39;s possible moves as a graph without</span>
+<span class="linenos"> 59</span><span class="cm"> * explicitly storing the adjacency list. The graph is computed on-the-fly.</span>
+<span class="linenos"> 60</span><span class="cm"> */</span>
+<span class="linenos"> 61</span><span class="k">class</span><span class="w"> </span><span class="nc">KnightsTourGraph</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 62</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos"> 63</span><span class="w">  </span><span class="n">KnightsTourGraph</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">board_size</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">board_size</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="w">  </span><span class="cm">/**</span>
+<span class="linenos"> 68</span><span class="cm">   * @brief Check if a position is valid (on the board)</span>
+<span class="linenos"> 69</span><span class="cm">   */</span>
+<span class="linenos"> 70</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_valid</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Position</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">board_size</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">board_size</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="w">  </span><span class="cm">/**</span>
+<span class="linenos"> 73</span><span class="cm">   * @brief Convert position to linear index</span>
+<span class="linenos"> 74</span><span class="cm">   */</span>
+<span class="linenos"> 75</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">to_index</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Position</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">row</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">board_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">col</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span><span class="w">  </span><span class="cm">/**</span>
+<span class="linenos"> 78</span><span class="cm">   * @brief Convert linear index to position</span>
+<span class="linenos"> 79</span><span class="cm">   */</span>
+<span class="linenos"> 80</span><span class="w">  </span><span class="n">Position</span><span class="w"> </span><span class="n">to_position</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">board_size</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">board_size</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span><span class="w">  </span><span class="cm">/**</span>
+<span class="linenos"> 83</span><span class="cm">   * @brief Get all valid knight moves from a position</span>
+<span class="linenos"> 84</span><span class="cm">   */</span>
+<span class="linenos"> 85</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Position</span><span class="o">&gt;</span><span class="w"> </span><span class="n">adjacent_vertices</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Position</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 86</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Position</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">;</span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 88</span><span class="w">      </span><span class="n">Position</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">knight_jumps</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="linenos"> 89</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_valid</span><span class="p">(</span><span class="n">next</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 90</span><span class="w">        </span><span class="n">neighbors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+<span class="linenos"> 91</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos"> 92</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">neighbors</span><span class="p">;</span>
+<span class="linenos"> 94</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_vertices</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">board_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">board_size</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos"> 99</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">board_size</span><span class="p">;</span>
+<span class="linenos">100</span><span class="p">};</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span><span class="cm">/**</span>
+<span class="linenos">103</span><span class="cm"> * @brief Backtracking search for knight&#39;s tour</span>
+<span class="linenos">104</span><span class="cm"> *</span>
+<span class="linenos">105</span><span class="cm"> * This is a brute-force DFS approach that tries all possible paths.</span>
+<span class="linenos">106</span><span class="cm"> * It&#39;s slow but guaranteed to find a solution if one exists.</span>
+<span class="linenos">107</span><span class="cm"> */</span>
+<span class="linenos">108</span><span class="kt">bool</span><span class="w"> </span><span class="nf">backtracking_search</span><span class="p">(</span><span class="n">KnightsTourGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">Position</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">109</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_verts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">num_vertices</span><span class="p">();</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span><span class="w">  </span><span class="c1">// Initialize all positions as unvisited (-1)</span>
+<span class="linenos">112</span><span class="w">  </span><span class="n">visit_time</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">num_verts</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span><span class="w">  </span><span class="c1">// Stack contains (timestamp, position) pairs</span>
+<span class="linenos">115</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Position</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">S</span><span class="p">;</span>
+<span class="linenos">116</span><span class="w">  </span><span class="n">S</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">});</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">S</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">119</span><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+<span class="linenos">120</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">to_index</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="w">    </span><span class="c1">// Record the visit time</span>
+<span class="linenos">123</span><span class="w">    </span><span class="n">visit_time</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timestamp</span><span class="p">;</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span><span class="w">    </span><span class="c1">// Check if we&#39;ve visited all vertices</span>
+<span class="linenos">126</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timestamp</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num_verts</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">127</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">  </span><span class="c1">// Found a complete tour!</span>
+<span class="linenos">128</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="w">    </span><span class="c1">// Try to find an unvisited neighbor</span>
+<span class="linenos">131</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">found_next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">132</span><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">neighbors</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">adjacent_vertices</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">135</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">next_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">to_index</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+<span class="linenos">136</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visit_time</span><span class="p">[</span><span class="n">next_idx</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">137</span><span class="w">        </span><span class="n">S</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p">});</span>
+<span class="linenos">138</span><span class="w">        </span><span class="n">found_next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">139</span><span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w">  </span><span class="c1">// DFS: go deep first</span>
+<span class="linenos">140</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">141</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">142</span>
+<span class="linenos">143</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">found_next</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">144</span><span class="w">      </span><span class="c1">// Dead end: backtrack</span>
+<span class="linenos">145</span><span class="w">      </span><span class="n">visit_time</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos">146</span><span class="w">      </span><span class="n">S</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="linenos">147</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">148</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">149</span>
+<span class="linenos">150</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">  </span><span class="c1">// No solution found</span>
+<span class="linenos">151</span><span class="p">}</span>
+<span class="linenos">152</span>
+<span class="linenos">153</span><span class="cm">/**</span>
+<span class="linenos">154</span><span class="cm"> * @brief Count unvisited neighbors of a position</span>
+<span class="linenos">155</span><span class="cm"> */</span>
+<span class="linenos">156</span><span class="kt">int</span><span class="w"> </span><span class="nf">count_unvisited_neighbors</span><span class="p">(</span><span class="n">KnightsTourGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Position</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">157</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">158</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">neighbors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">adjacent_vertices</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+<span class="linenos">159</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">160</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visit_time</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">to_index</span><span class="p">(</span><span class="n">next</span><span class="p">)]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">161</span><span class="w">      </span><span class="o">++</span><span class="n">count</span><span class="p">;</span>
+<span class="linenos">162</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">163</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">164</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+<span class="linenos">165</span><span class="p">}</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="cm">/**</span>
+<span class="linenos">168</span><span class="cm"> * @brief Warnsdorff&#39;s heuristic for knight&#39;s tour</span>
+<span class="linenos">169</span><span class="cm"> *</span>
+<span class="linenos">170</span><span class="cm"> * The heuristic chooses the next square as the one with the fewest</span>
+<span class="linenos">171</span><span class="cm"> * onward moves. This greedy approach dramatically improves performance</span>
+<span class="linenos">172</span><span class="cm"> * by visiting constrained squares first, avoiding dead ends.</span>
+<span class="linenos">173</span><span class="cm"> */</span>
+<span class="linenos">174</span><span class="kt">bool</span><span class="w"> </span><span class="nf">warnsdorff_search</span><span class="p">(</span><span class="n">KnightsTourGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">Position</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">175</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_verts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">num_vertices</span><span class="p">();</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span><span class="w">  </span><span class="n">visit_time</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">num_verts</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="linenos">178</span><span class="w">  </span><span class="n">visit_time</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">to_index</span><span class="p">(</span><span class="n">start</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span><span class="w">  </span><span class="n">Position</span><span class="w"> </span><span class="n">current</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="linenos">181</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">move_count</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">move_count</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_verts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">184</span><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">neighbors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">adjacent_vertices</span><span class="p">(</span><span class="n">current</span><span class="p">);</span>
+<span class="linenos">185</span>
+<span class="linenos">186</span><span class="w">    </span><span class="c1">// Find the unvisited neighbor with minimum onward moves</span>
+<span class="linenos">187</span><span class="w">    </span><span class="n">Position</span><span class="w"> </span><span class="n">best_next</span><span class="p">;</span>
+<span class="linenos">188</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">min_degree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w">  </span><span class="c1">// More than maximum possible (8)</span>
+<span class="linenos">189</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">found</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">190</span>
+<span class="linenos">191</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">192</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">next_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">to_index</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+<span class="linenos">193</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visit_time</span><span class="p">[</span><span class="n">next_idx</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">194</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">degree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_unvisited_neighbors</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="n">visit_time</span><span class="p">);</span>
+<span class="linenos">195</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">degree</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">min_degree</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">196</span><span class="w">          </span><span class="n">min_degree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">degree</span><span class="p">;</span>
+<span class="linenos">197</span><span class="w">          </span><span class="n">best_next</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+<span class="linenos">198</span><span class="w">          </span><span class="n">found</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">199</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">200</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">201</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">202</span>
+<span class="linenos">203</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">found</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">204</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">  </span><span class="c1">// Dead end (shouldn&#39;t happen with Warnsdorff on standard boards)</span>
+<span class="linenos">205</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">206</span>
+<span class="linenos">207</span><span class="w">    </span><span class="n">current</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="n">best_next</span><span class="p">;</span>
+<span class="linenos">208</span><span class="w">    </span><span class="n">visit_time</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">to_index</span><span class="p">(</span><span class="n">current</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">move_count</span><span class="p">;</span>
+<span class="linenos">209</span><span class="w">    </span><span class="o">++</span><span class="n">move_count</span><span class="p">;</span>
+<span class="linenos">210</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">213</span><span class="p">}</span>
+<span class="linenos">214</span>
+<span class="linenos">215</span><span class="cm">/**</span>
+<span class="linenos">216</span><span class="cm"> * @brief Print the chessboard with move numbers</span>
+<span class="linenos">217</span><span class="cm"> */</span>
+<span class="linenos">218</span><span class="kt">void</span><span class="w"> </span><span class="nf">print_board</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">KnightsTourGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">219</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="linenos">220</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="p">;</span>
+<span class="linenos">221</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">222</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="linenos">223</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">224</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">225</span>
+<span class="linenos">226</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">227</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="linenos">228</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">229</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="linenos">230</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visit_time</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">231</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">;</span>
+<span class="linenos">232</span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">233</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+<span class="linenos">234</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">235</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">236</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">237</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">238</span><span class="p">}</span>
+<span class="linenos">239</span>
+<span class="linenos">240</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">241</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Knight&#39;s Tour: Implicit Graphs ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">242</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Based on BGL Book Chapter 9&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">243</span>
+<span class="linenos">244</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The knight&#39;s tour problem: find a path for a knight&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">245</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;to visit every square on an n×n chessboard exactly once.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">246</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">247</span>
+<span class="linenos">248</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Knight moves in an &#39;L&#39; pattern:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">249</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  (±2, ±1) or (±1, ±2)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">250</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">251</span>
+<span class="linenos">252</span><span class="w">  </span><span class="c1">// Small board example with Warnsdorff (backtracking is too slow even for 5x5)</span>
+<span class="linenos">253</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Small Board (5×5) with Warnsdorff ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">254</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">255</span><span class="w">    </span><span class="n">KnightsTourGraph</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos">256</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">;</span>
+<span class="linenos">257</span><span class="w">    </span><span class="n">Position</span><span class="w"> </span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">258</span>
+<span class="linenos">259</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Starting from position (0, 0)...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">260</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Note: Pure backtracking is O(8^25) for 5×5 - impractical!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">261</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Using Warnsdorff&#39;s heuristic instead...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">262</span>
+<span class="linenos">263</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">warnsdorff_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">visit_time</span><span class="p">);</span>
+<span class="linenos">264</span>
+<span class="linenos">265</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">found</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">266</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Found a knight&#39;s tour!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">267</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">268</span><span class="w">      </span><span class="n">print_board</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">visit_time</span><span class="p">);</span>
+<span class="linenos">269</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">270</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;No tour found from this starting position.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">271</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">272</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">273</span>
+<span class="linenos">274</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">275</span>
+<span class="linenos">276</span><span class="w">  </span><span class="c1">// Standard 8x8 board with Warnsdorff&#39;s heuristic</span>
+<span class="linenos">277</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Standard Board (8×8) with Warnsdorff&#39;s Heuristic ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">278</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">279</span><span class="w">    </span><span class="n">KnightsTourGraph</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="linenos">280</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">;</span>
+<span class="linenos">281</span><span class="w">    </span><span class="n">Position</span><span class="w"> </span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">282</span>
+<span class="linenos">283</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Starting from position (0, 0)...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">284</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Using Warnsdorff&#39;s heuristic (choose square with fewest onward moves)...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">285</span>
+<span class="linenos">286</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">warnsdorff_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">visit_time</span><span class="p">);</span>
+<span class="linenos">287</span>
+<span class="linenos">288</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">found</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">289</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Found a knight&#39;s tour!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">290</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">291</span><span class="w">      </span><span class="n">print_board</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">visit_time</span><span class="p">);</span>
+<span class="linenos">292</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">293</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;No tour found (unexpected with Warnsdorff).&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">294</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">295</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">296</span>
+<span class="linenos">297</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">298</span>
+<span class="linenos">299</span><span class="w">  </span><span class="c1">// Demonstrate different starting positions</span>
+<span class="linenos">300</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Different Starting Positions (6×6 board) ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">301</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">302</span><span class="w">    </span><span class="n">KnightsTourGraph</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="linenos">303</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">visit_time</span><span class="p">;</span>
+<span class="linenos">304</span>
+<span class="linenos">305</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Position</span><span class="o">&gt;</span><span class="w"> </span><span class="n">starts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Position</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)};</span>
+<span class="linenos">306</span>
+<span class="linenos">307</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">starts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">308</span><span class="w">      </span><span class="kt">bool</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">warnsdorff_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">visit_time</span><span class="p">);</span>
+<span class="linenos">309</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Start (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="n">row</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="n">col</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">found</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Tour found&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;No tour&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">310</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">311</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">312</span>
+<span class="linenos">313</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">314</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Algorithm Comparison ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">315</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">316</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Backtracking: O(8^(n²)) worst case - explores all possible paths&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">317</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Warnsdorff:   O(n²) greedy - visits constrained squares first&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">318</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">319</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Note: This example uses an implicit graph - the adjacency structure&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">320</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;is computed on-the-fly from the knight&#39;s movement rules rather&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">321</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;than stored explicitly in an adjacency list.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">322</span>
+<span class="linenos">323</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">324</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="building-and-running-the-example">
+<h2>Building and Running the Example<a class="headerlink" href="#building-and-running-the-example" title="Link to this heading"></a></h2>
+<p>First, configure and build the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>ch9_knights_tour
+</pre></div>
+</div>
+<p>Then run the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./examples/bgl-book/ch9_knights_tour
+</pre></div>
+</div>
+<p>The program finds a knight’s tour on an 8x8 chessboard (or reports if none exists for
+smaller boards).</p>
+</section>
+<section id="sample-output">
+<h2>Sample Output<a class="headerlink" href="#sample-output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Knight&#39;s Tour (8x8 board)
+
+Using Warnsdorff&#39;s heuristic...
+
+ 0  59  38  33  30  17   8  63
+37  34  31  60   9  62  29  16
+58   1  36  39  32  27  18   7
+35  48  41  26  61  10  15  28
+42  57   2  49  40  23   6  19
+47  50  45  54  25  20  11  14
+56  43  52   3  22  13  24   5
+51  46  55  44  53   4  21  12
+
+Tour found in 0.003 seconds
+</pre></div>
+</div>
+</section>
+<section id="key-nwgraph-features-demonstrated">
+<h2>Key NWGraph Features Demonstrated<a class="headerlink" href="#key-nwgraph-features-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Implicit graphs</strong>: No explicit adjacency list storage</p></li>
+<li><p><strong>Custom graph types</strong>: Implementing required concept interfaces</p></li>
+<li><p><strong>Backtracking search</strong>: DFS with undo capability</p></li>
+<li><p><strong>Heuristic optimization</strong>: Warnsdorff’s rule for efficiency</p></li>
+<li><p><strong>Hamiltonian paths</strong>: Classic combinatorial problem</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cormen, Leiserson, Rivest, and Stein. <em>Introduction to Algorithms</em>, 4th Edition (2022),
+<strong>Chapter 34: NP-Completeness</strong> (Hamiltonian path is discussed as an NP-complete problem)</p></li>
+<li><p>Siek, Lee, and Lumsdaine. <em>The Boost Graph Library</em> (2002), Chapter 9</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ch4_loop_detection.html"><span class="doc">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</span></a> - DFS-based algorithms</p></li>
+<li><p><a class="reference internal" href="ch3_toposort.html"><span class="doc">File Dependencies - Topological Sort (BGL Book Chapter 3)</span></a> - Another DFS application</p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples overview</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch8_maxflow.html" class="btn btn-neutral float-left" title="Maximum Flow (BGL Book Chapter 8)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../degrees/index.html" class="btn btn-neutral float-right" title="Six Degrees of Separation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

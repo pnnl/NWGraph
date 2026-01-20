@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connected Components (BGL Book Chapter 7) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)" href="ch7_strongly_connected.html" />
+    <link rel="prev" title="Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)" href="ch6_prim.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connected Components (BGL Book Chapter 7)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#internet-connectivity-study">Internet Connectivity Study</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#definitions">Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#algorithm">Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwgraph-implementation">NWGraph Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-running-the-example">Building and Running the Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-output">Sample Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-nwgraph-features-demonstrated">Key NWGraph Features Demonstrated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+      <li class="breadcrumb-item active">Connected Components (BGL Book Chapter 7)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/ch7_connected.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="connected-components-bgl-book-chapter-7">
+<h1>Connected Components (BGL Book Chapter 7)<a class="headerlink" href="#connected-components-bgl-book-chapter-7" title="Link to this heading"></a></h1>
+<p><em>Based on “The Boost Graph Library” by Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine</em></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>One basic question about a network is which vertices are reachable from one another.
+For example, a well-designed Web site should have enough links between Web pages so
+that all pages can be reached from the home page.</p>
+<p>A <strong>connected component</strong> is a group of vertices in an undirected graph that are
+reachable from one another. In a directed graph, groups of vertices that are <em>mutually</em>
+reachable are called <strong>strongly connected components</strong>.</p>
+</section>
+<section id="internet-connectivity-study">
+<h2>Internet Connectivity Study<a class="headerlink" href="#internet-connectivity-study" title="Link to this heading"></a></h2>
+<p>A study of 200 million Web pages has shown interesting connectivity properties:</p>
+<ul class="simple">
+<li><p><strong>56 million</strong> Web pages form one large strongly connected component</p></li>
+<li><p>When viewed as an undirected graph, <strong>150 million</strong> pages are in one large connected
+component</p></li>
+<li><p>About <strong>50 million</strong> pages are disconnected from the large component (they reside in
+much smaller connected components of their own)</p></li>
+</ul>
+<p>This demonstrates how connected components analysis can reveal the structure of large
+networks.</p>
+</section>
+<section id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading"></a></h2>
+<p>A <strong>path</strong> is a sequence of vertices where there is an edge connecting each vertex to
+the next vertex in the path. If there exists a path from vertex u to w, then we say
+that vertex w is <strong>reachable</strong> from vertex u.</p>
+<p>The reachable relation for undirected graphs is an <strong>equivalence relation</strong>: it is
+reflexive, symmetric, and transitive. Connected components are therefore equivalence
+classes with respect to the reachable relation, and they partition the vertices of
+a graph into disjoint subsets.</p>
+</section>
+<section id="algorithm">
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Link to this heading"></a></h2>
+<p>Computing the connected components of an undirected graph is a straightforward
+application of depth-first search:</p>
+<ol class="arabic simple">
+<li><p>Run DFS on the graph</p></li>
+<li><p>Mark all vertices in the same DFS tree as belonging to the same connected component</p></li>
+<li><p>Increment the component number at each “start vertex” event point</p></li>
+</ol>
+<p>The BGL implementation calls <code class="docutils literal notranslate"><span class="pre">depth_first_search()</span></code> with a special visitor object
+that labels each discovered vertex with the current component number.</p>
+</section>
+<section id="nwgraph-implementation">
+<h2>NWGraph Implementation<a class="headerlink" href="#nwgraph-implementation" title="Link to this heading"></a></h2>
+<p>NWGraph provides a <code class="docutils literal notranslate"><span class="pre">connected_components</span></code> function that computes all connected
+components using DFS.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">Complete source code</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file ch7_connected.cpp</span>
+<span class="linenos">  3</span><span class="cm"> *</span>
+<span class="linenos">  4</span><span class="cm"> * @brief Connected Components (BGL Book Chapter 7)</span>
+<span class="linenos">  5</span><span class="cm"> *</span>
+<span class="linenos">  6</span><span class="cm"> * This example demonstrates finding connected components in a graph.</span>
+<span class="linenos">  7</span><span class="cm"> * A connected component is a maximal subgraph where every vertex is</span>
+<span class="linenos">  8</span><span class="cm"> * reachable from every other vertex.</span>
+<span class="linenos">  9</span><span class="cm"> *</span>
+<span class="linenos"> 10</span><span class="cm"> * Application: Network analysis, image segmentation, social network clusters.</span>
+<span class="linenos"> 11</span><span class="cm"> *</span>
+<span class="linenos"> 12</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</span>
+<span class="linenos"> 13</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 University of Washington</span>
+<span class="linenos"> 14</span><span class="cm"> *</span>
+<span class="linenos"> 15</span><span class="cm"> * SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="linenos"> 16</span><span class="cm"> *</span>
+<span class="linenos"> 17</span><span class="cm"> * @authors</span>
+<span class="linenos"> 18</span><span class="cm"> *   Andrew Lumsdaine</span>
+<span class="linenos"> 19</span><span class="cm"> *</span>
+<span class="linenos"> 20</span><span class="cm"> */</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+<span class="linenos"> 23</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 24</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
+<span class="linenos"> 25</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+<span class="linenos"> 26</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/adjacency.hpp&quot;</span>
+<span class="linenos"> 29</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/edge_list.hpp&quot;</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">nw</span><span class="o">::</span><span class="nn">graph</span><span class="p">;</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="cm">/**</span>
+<span class="linenos"> 34</span><span class="cm"> * @brief Simple BFS-based connected components algorithm</span>
+<span class="linenos"> 35</span><span class="cm"> *</span>
+<span class="linenos"> 36</span><span class="cm"> * This implementation uses BFS to explore each component, similar to</span>
+<span class="linenos"> 37</span><span class="cm"> * the approach in the BGL book.</span>
+<span class="linenos"> 38</span><span class="cm"> */</span>
+<span class="linenos"> 39</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Graph</span><span class="o">&gt;</span>
+<span class="linenos"> 40</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">compute_connected_components_bfs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">G</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 41</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="linenos"> 42</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">component</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">());</span>
+<span class="linenos"> 43</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">current_component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 46</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">component</span><span class="p">[</span><span class="n">start</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 47</span><span class="w">      </span><span class="k">continue</span><span class="p">;</span><span class="w">  </span><span class="c1">// Already assigned to a component</span>
+<span class="linenos"> 48</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="w">    </span><span class="c1">// BFS from this vertex</span>
+<span class="linenos"> 51</span><span class="w">    </span><span class="n">component</span><span class="p">[</span><span class="n">start</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_component</span><span class="p">;</span>
+<span class="linenos"> 52</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">frontier</span><span class="p">;</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="n">frontier</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">frontier</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 56</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">next_frontier</span><span class="p">;</span>
+<span class="linenos"> 57</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">frontier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 58</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 59</span><span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">component</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 60</span><span class="w">            </span><span class="n">component</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_component</span><span class="p">;</span>
+<span class="linenos"> 61</span><span class="w">            </span><span class="n">next_frontier</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="linenos"> 62</span><span class="w">          </span><span class="p">}</span>
+<span class="linenos"> 63</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos"> 64</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos"> 65</span><span class="w">      </span><span class="n">frontier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">next_frontier</span><span class="p">);</span>
+<span class="linenos"> 66</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span><span class="w">    </span><span class="o">++</span><span class="n">current_component</span><span class="p">;</span>
+<span class="linenos"> 69</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">component</span><span class="p">;</span>
+<span class="linenos"> 72</span><span class="p">}</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 75</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Connected Components ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 76</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Based on BGL Book Chapter 7&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="w">  </span><span class="c1">// Create a graph with multiple connected components</span>
+<span class="linenos"> 79</span><span class="w">  </span><span class="c1">// Component 0: vertices 0, 1, 2 (triangle)</span>
+<span class="linenos"> 80</span><span class="w">  </span><span class="c1">// Component 1: vertices 3, 4 (edge)</span>
+<span class="linenos"> 81</span><span class="w">  </span><span class="c1">// Component 2: vertex 5 (isolated)</span>
+<span class="linenos"> 82</span><span class="w">  </span><span class="c1">// Component 3: vertices 6, 7, 8 (path)</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Graph structure:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 85</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Component 0: 0 - 1 - 2 - 0 (triangle)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 86</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Component 1: 3 - 4 (edge)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 87</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Component 2: 5 (isolated vertex)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 88</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Component 3: 6 - 7 - 8 (path)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 89</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">undirected</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos"> 93</span><span class="w">  </span><span class="c1">// Component 0: triangle</span>
+<span class="linenos"> 94</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 95</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos"> 96</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos"> 97</span><span class="w">  </span><span class="c1">// Component 1: single edge</span>
+<span class="linenos"> 98</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos"> 99</span><span class="w">  </span><span class="c1">// Component 2: vertex 5 is isolated (no edges)</span>
+<span class="linenos">100</span><span class="w">  </span><span class="c1">// Component 3: path</span>
+<span class="linenos">101</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+<span class="linenos">102</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="linenos">103</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="n">G</span><span class="p">(</span><span class="n">edges</span><span class="p">);</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span><span class="w">  </span><span class="c1">// Find connected components</span>
+<span class="linenos">108</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute_connected_components_bfs</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="w">  </span><span class="c1">// Display results</span>
+<span class="linenos">111</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Vertex assignments:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">112</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">G</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">113</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Vertex &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -&gt; Component &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">component</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">114</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span><span class="w">  </span><span class="c1">// Count components and their sizes</span>
+<span class="linenos">117</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">comp_members</span><span class="p">;</span>
+<span class="linenos">118</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">G</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">119</span><span class="w">    </span><span class="n">comp_members</span><span class="p">[</span><span class="n">component</span><span class="p">[</span><span class="n">v</span><span class="p">]].</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="linenos">120</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">123</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Number of connected components: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">comp_members</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">124</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Component details:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">127</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">comp_id</span><span class="p">,</span><span class="w"> </span><span class="n">members</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">comp_members</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">128</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Component &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">comp_id</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (size &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">members</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;): {&quot;</span><span class="p">;</span>
+<span class="linenos">129</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">members</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">130</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">;</span>
+<span class="linenos">131</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">members</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="linenos">132</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">133</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">134</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">135</span>
+<span class="linenos">136</span><span class="w">  </span><span class="c1">// Example with a fully connected graph</span>
+<span class="linenos">137</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">138</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Fully Connected Graph ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">undirected</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges2</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos">141</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">142</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">143</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">144</span><span class="w">      </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="linenos">145</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">146</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">147</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="n">G2</span><span class="p">(</span><span class="n">edges2</span><span class="p">);</span>
+<span class="linenos">150</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">component2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute_connected_components_bfs</span><span class="p">(</span><span class="n">G2</span><span class="p">);</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comp_counts</span><span class="p">;</span>
+<span class="linenos">153</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">component2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">154</span><span class="w">    </span><span class="n">comp_counts</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">155</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">156</span>
+<span class="linenos">157</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Complete graph K5 has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">comp_counts</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; component(s)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">158</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;All &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">G2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; vertices belong to component 0&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">159</span>
+<span class="linenos">160</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">161</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="building-and-running-the-example">
+<h2>Building and Running the Example<a class="headerlink" href="#building-and-running-the-example" title="Link to this heading"></a></h2>
+<p>First, configure and build the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>ch7_connected
+</pre></div>
+</div>
+<p>Then run the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./examples/bgl-book/ch7_connected
+</pre></div>
+</div>
+<p>The program uses a sample network of Internet routers and identifies the connected components,
+showing which groups of routers can reach each other.</p>
+</section>
+<section id="sample-output">
+<h2>Sample Output<a class="headerlink" href="#sample-output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Internet Router Network - Connected Components
+
+Found 4 connected components
+
+Component 0: boston1-br1, cambridge1-nbr2, nycmny1-cr1, chicago1-nbr1
+Component 1: engr-fe21, shub-e27
+Component 2: albnxg1, teledk, gw-dkuug
+Component 3: lilac-dmc, helios, rip, ccn-nerif35, ccngw-ner-cc
+</pre></div>
+</div>
+</section>
+<section id="key-nwgraph-features-demonstrated">
+<h2>Key NWGraph Features Demonstrated<a class="headerlink" href="#key-nwgraph-features-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Undirected graphs</strong>: Modeling bidirectional network connections</p></li>
+<li><p><strong>DFS-based traversal</strong>: Using depth-first search to find components</p></li>
+<li><p><strong>Component labeling</strong>: Assigning each vertex to its component</p></li>
+<li><p><strong>Equivalence classes</strong>: Partitioning vertices into disjoint subsets</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cormen, Leiserson, Rivest, and Stein. <em>Introduction to Algorithms</em>, 4th Edition (2022),
+<strong>Chapter 20.3: Depth-First Search</strong> (connected components via DFS forest)</p></li>
+<li><p>Siek, Lee, and Lumsdaine. <em>The Boost Graph Library</em> (2002), Chapter 7.2</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ch7_strongly_connected.html"><span class="doc">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</span></a> - Strongly connected components for directed graphs</p></li>
+<li><p><a class="reference internal" href="ch4_loop_detection.html"><span class="doc">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</span></a> - DFS for cycle detection</p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples overview</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch6_prim.html" class="btn btn-neutral float-left" title="Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch7_strongly_connected.html" class="btn btn-neutral float-right" title="Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

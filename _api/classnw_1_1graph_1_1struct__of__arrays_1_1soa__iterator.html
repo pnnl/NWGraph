@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class struct_of_arrays::soa_iterator &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class struct_of_arrays::soa_iterator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-struct-of-arrays-soa-iterator">
+<span id="exhale-class-classnw-1-1graph-1-1struct-of-arrays-1-1soa-iterator"></span><h1>Template Class struct_of_arrays::soa_iterator<a class="headerlink" href="#template-class-struct-of-arrays-soa-iterator" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_containers_soa.hpp.html#file-include-nwgraph-containers-soa-hpp"><span class="std std-ref">File soa.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<p>This class is a nested type of <a class="reference internal" href="structnw_1_1graph_1_1struct__of__arrays.html#exhale-struct-structnw-1-1graph-1-1struct-of-arrays"><span class="std std-ref">Template Struct struct_of_arrays</span></a>.</p>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE">
+<span id="_CPPv3I_bEN2nw5graph16struct_of_arrays12soa_iteratorE"></span><span id="_CPPv2I_bEN2nw5graph16struct_of_arrays12soa_iteratorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_const</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">soa_iterator</span></span></span><a class="headerlink" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="Link to this definition"></a><br /></dt>
+<dd><p>Member class defining the iterator for <code class="docutils literal notranslate"><a class="reference internal" href="structnw_1_1graph_1_1struct__of__arrays.html#structnw_1_1graph_1_1struct__of__arrays"><span class="std std-ref"><span class="pre">struct_of_arrays</span></span></a></code>. We use a template parameter <code class="docutils literal notranslate"><span class="pre">is_const</span></code> to allow us to define both the iterator type and the const_iterator type.</p>
+<p>Rather than maintaining a tuple of iterators (one for each underlying vector), we maintain a pointer to the <code class="docutils literal notranslate"><a class="reference internal" href="structnw_1_1graph_1_1struct__of__arrays.html#structnw_1_1graph_1_1struct__of__arrays"><span class="std std-ref"><span class="pre">struct_of_arrays</span></span></a></code> and maintain a cursor in the iterator to indicate our current location. We use this approach for efficiency. Rather than incrementing a set of iterators when we advance the <code class="docutils literal notranslate"><span class="pre">struct_or_arrays</span></code> iterator, we only need to advance the cursor. This only works for the random access case, which we have for <code class="docutils literal notranslate"><a class="reference internal" href="structnw_1_1graph_1_1struct__of__arrays.html#structnw_1_1graph_1_1struct__of__arrays"><span class="std std-ref"><span class="pre">struct_of_arrays</span></span></a></code>. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator10value_typeE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator10value_typeE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator10value_typeE"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a8339de06bdb8e24c44fcb9c2a6f4d68b"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator::is_const"><span class="n"><span class="pre">is_const</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Attributes</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">value_type</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Attributes</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">value_type</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator10value_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator15difference_typeE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator15difference_typeE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator15difference_typeE"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a5bb24bf75ecbf730a4b7741e2e85ef6e"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">difference_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator15difference_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator9referenceE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator9referenceE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator9referenceE"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a6a1641619842a3753cce8cf47b896267"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator::is_const"><span class="n"><span class="pre">is_const</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_traits_8hpp_1a3184846c184b129d40f491888ef1a9a4.html#_CPPv4I0EN2nw5graph18select_access_typeE" title="nw::graph::select_access_type"><span class="n"><span class="pre">select_access_type</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Attributes</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_traits_8hpp_1a3184846c184b129d40f491888ef1a9a4.html#_CPPv4I0EN2nw5graph18select_access_typeE" title="nw::graph::select_access_type"><span class="n"><span class="pre">select_access_type</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Attributes</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">iterator</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator9referenceE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator7pointerE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator7pointerE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator7pointerE"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1afc6a20ce0773f576af0fa7ebcb399e62"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pointer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="structnw_1_1graph_1_1arrow__proxy.html#_CPPv4I0EN2nw5graph11arrow_proxyE" title="nw::graph::arrow_proxy"><span class="n"><span class="pre">arrow_proxy</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator9referenceE" title="nw::graph::struct_of_arrays::soa_iterator::reference"><span class="n"><span class="pre">reference</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator7pointerE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator17iterator_categoryE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator17iterator_categoryE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator17iterator_categoryE"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1ad4b51f7667a3b7bb562fcaa1eb780203"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator_category</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">random_access_iterator_tag</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator17iterator_categoryE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEv">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEv"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEv"></span><span id="nw::graph::struct_of_arrays::soa_iterator::soa_iterator"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a01290e635d2e4e32e714af04caf1b54b"></span><span class="sig-name descname"><span class="n"><span class="pre">soa_iterator</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEP5soa_tNSt6size_tE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEP5soa_tNSt6size_tE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEP5soa_tNSt6size_tE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::soa_iterator__soa_tP.std::s"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1aa78b53d1345232228711c6a25a56f3f4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">soa_iterator</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">soa_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">soa</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorEP5soa_tNSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iterator">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iterator"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iterator"></span><span id="nw::graph::struct_of_arrays::soa_iterator::soa_iterator__soa_iteratorCR"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a13879648501494994a47d98d7fd1b18b"></span><span class="sig-name descname"><span class="n"><span class="pre">soa_iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iterator" title="nw::graph::struct_of_arrays::soa_iterator::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iteratorIXL0EEE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iteratorIXL0EEE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iteratorIXfalseEE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::soa_iterator__soa_iterator:false:CR"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1aa7bd0067cfda4ca41e1992c8f85b8cec"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">soa_iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iteratorIXL0EEE" title="nw::graph::struct_of_arrays::soa_iterator::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">false</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator12soa_iteratorERK12soa_iteratorIXL0EEE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iterator">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iterator"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iterator"></span><span id="nw::graph::struct_of_arrays::soa_iterator::assign-operator__soa_iteratorCR"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a8dfce4e2869c5186adcfbd977e84ba11"></span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iteratorIXL0EEE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iteratorIXL0EEE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iteratorIXfalseEE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::assign-operator__soa_iterator:false:CR"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1aac83691c2232406336fb0662ab6a1507"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">false</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratoraSERK12soa_iteratorIXL0EEE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratoreqERK12soa_iterator">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratoreqERK12soa_iterator"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratoreqERK12soa_iterator"></span><span id="nw::graph::struct_of_arrays::soa_iterator::eq-operator__soa_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a8bb817095102489633ec20d51dec600c"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratoreqERK12soa_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorssERK12soa_iterator">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratorssERK12soa_iterator"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratorssERK12soa_iterator"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1af1ce92aedd4a519d7787a4f055ffb590"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;=&gt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorssERK12soa_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorppEi">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratorppEi"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratorppEi"></span><span id="nw::graph::struct_of_arrays::soa_iterator::inc-operator__i"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1af3598c7209fb0f48a880e9d2c6d6878a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorppEi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormmEi">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratormmEi"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratormmEi"></span><span id="nw::graph::struct_of_arrays::soa_iterator::dec-operator__i"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a592b832ed4d362cdd302f7cf69a695d5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">--</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormmEi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorppEv">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratorppEv"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratorppEv"></span><span id="nw::graph::struct_of_arrays::soa_iterator::inc-operator"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a1dbb80444ed90419c9b09e2e074f90ec"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormmEv">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratormmEv"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratormmEv"></span><span id="nw::graph::struct_of_arrays::soa_iterator::dec-operator"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a6f50000e6eaaecc372146c264bdf62a4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">--</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormmEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorpLENSt9ptrdiff_tE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratorpLENSt9ptrdiff_tE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratorpLENSt9ptrdiff_tE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::add-assign-operator__std::ptrdiff_t"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1add526737d4cdd316d3fb48228041ed33"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+=</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorpLENSt9ptrdiff_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormIENSt9ptrdiff_tE">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratormIENSt9ptrdiff_tE"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratormIENSt9ptrdiff_tE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::sub-assign-operator__std::ptrdiff_t"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a55ee51343ca58967dd46e8eee30cc682"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-=</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormIENSt9ptrdiff_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::add-operator__std::ptrdiff_tC"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a1fb5f3da07ad8546d07443d838f7791f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::sub-operator__std::ptrdiff_tC"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1ad1e9409094a46d7861e3165c7fe11f82"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratormiERK12soa_iterator">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratormiERK12soa_iterator"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratormiERK12soa_iterator"></span><span id="nw::graph::struct_of_arrays::soa_iterator::sub-operator__soa_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a2e4ca3450cf2e35ecfd6c6e7338a8532"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratormiERK12soa_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratormlEv">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratormlEv"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratormlEv"></span><span id="nw::graph::struct_of_arrays::soa_iterator::mul-operatorC"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a5bf54f1c13f91009371c01c2bc2f629e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">decltype</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">auto</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorixENSt9ptrdiff_tE">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratorixENSt9ptrdiff_tE"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratorixENSt9ptrdiff_tE"></span><span id="nw::graph::struct_of_arrays::soa_iterator::subscript-operator__std::ptrdiff_tC"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1aec06faf701b632f0c613828be8e29a80"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">decltype</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">auto</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorixENSt9ptrdiff_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorptEv">
+<span id="_CPPv3NK2nw5graph16struct_of_arrays12soa_iteratorptEv"></span><span id="_CPPv2NK2nw5graph16struct_of_arrays12soa_iteratorptEv"></span><span id="nw::graph::struct_of_arrays::soa_iterator::pointer-operatorC"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a2ff064f5fc972c52dc10361d022ae9e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator7pointerE" title="nw::graph::struct_of_arrays::soa_iterator::pointer"><span class="n"><span class="pre">pointer</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-&gt;</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph16struct_of_arrays12soa_iteratorptEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorptEv">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratorptEv"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratorptEv"></span><span id="nw::graph::struct_of_arrays::soa_iterator::pointer-operator"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1ad11026ff74171379a243a45c90b2f90d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iterator7pointerE" title="nw::graph::struct_of_arrays::soa_iterator::pointer"><span class="n"><span class="pre">pointer</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-&gt;</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorptEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE12soa_iterator">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE12soa_iterator"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE12soa_iterator"></span><span id="nw::graph::struct_of_arrays::soa_iterator::add-operator__std::ptrdiff_t.soa_iterator"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1a0fbb9c41c7e83cdcf9f7e9e7a79c7cf4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratorplENSt9ptrdiff_tE12soa_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE12soa_iterator">
+<span id="_CPPv3N2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE12soa_iterator"></span><span id="_CPPv2N2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE12soa_iterator"></span><span id="nw::graph::struct_of_arrays::soa_iterator::sub-operator__std::ptrdiff_t.soa_iterator"></span><span class="target" id="classnw_1_1graph_1_1struct__of__arrays_1_1soa__iterator_1abd70f1c4b079dbe101eec264e56aab76"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv4I_bEN2nw5graph16struct_of_arrays12soa_iteratorE" title="nw::graph::struct_of_arrays::soa_iterator"><span class="n"><span class="pre">soa_iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph16struct_of_arrays12soa_iteratormiENSt9ptrdiff_tE12soa_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

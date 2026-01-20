@@ -1,0 +1,14 @@
+.. _exhale_function_parallel__for_8hpp_1a0879214148c6bbffe3a7ddbd735cb771:
+
+Template Function nw::graph::parallel_reduce_each
+=================================================
+
+- Defined in :ref:`file_include_nwgraph_util_parallel_for.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::parallel_reduce_each(std::size_t, std::size_t, T, Op&&, Reduce&&)
+   :project: NWgraph

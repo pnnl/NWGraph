@@ -1,0 +1,14 @@
+.. _exhale_function_util_8hpp_1a6be514934905b246c04cd77b158da05a:
+
+Template Function nw::graph::histogram(InputIterator, InputIterator, RandomAccessIterator, RandomAccessIterator)
+================================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::histogram(InputIterator, InputIterator, RandomAccessIterator, RandomAccessIterator)
+   :project: NWgraph

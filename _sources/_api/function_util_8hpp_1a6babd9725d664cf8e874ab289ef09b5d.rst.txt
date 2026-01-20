@@ -1,0 +1,14 @@
+.. _exhale_function_util_8hpp_1a6babd9725d664cf8e874ab289ef09b5d:
+
+Template Function nw::graph::idx
+================================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::idx(T)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_util_8hpp_1a0d371b8d843e39a030affc410e9abc19:
+
+Template Function nw::graph::get_source
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::get_source(OuterIter&)
+   :project: NWgraph

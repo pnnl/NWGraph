@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File mmio_nist.h &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Program Listing for File mmio_nist.h</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/program_listing_file_include_nwgraph_io_mmio_nist.h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-mmio-nist-h">
+<span id="program-listing-file-include-nwgraph-io-mmio-nist-h"></span><h1>Program Listing for File mmio_nist.h<a class="headerlink" href="#program-listing-for-file-mmio-nist-h" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="file_include_nwgraph_io_mmio_nist.h.html#file-include-nwgraph-io-mmio-nist-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/io/mmio_nist.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * @file mmio_nist.h</span>
+<span class="cm"> *</span>
+<span class="cm"> *   Matrix Market I/O library for ANSI C</span>
+<span class="cm"> *</span>
+<span class="cm"> *   See http://math.nist.gov/MatrixMarket for details.</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+
+<span class="cp">#ifndef MM_IO_H</span>
+<span class="cp">#define MM_IO_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ctype.h&gt;</span>
+
+<span class="cp">#define MM_MAX_LINE_LENGTH 1025</span>
+<span class="cp">#define MatrixMarketBanner &quot;%%MatrixMarket&quot;</span>
+<span class="cp">#define MM_MAX_TOKEN_LENGTH 64</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">MM_typecode</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+
+
+<span class="cm">/********************* MM_typecode query fucntions ***************************/</span>
+
+<span class="cp">#define mm_is_matrix(typecode)  ((typecode)[0]==&#39;M&#39;)</span>
+
+<span class="cp">#define mm_is_sparse(typecode)  ((typecode)[1]==&#39;C&#39;)</span>
+<span class="cp">#define mm_is_coordinate(typecode)((typecode)[1]==&#39;C&#39;)</span>
+<span class="cp">#define mm_is_dense(typecode)   ((typecode)[1]==&#39;A&#39;)</span>
+<span class="cp">#define mm_is_array(typecode)   ((typecode)[1]==&#39;A&#39;)</span>
+
+<span class="cp">#define mm_is_complex(typecode) ((typecode)[2]==&#39;C&#39;)</span>
+<span class="cp">#define mm_is_real(typecode)    ((typecode)[2]==&#39;R&#39;)</span>
+<span class="cp">#define mm_is_pattern(typecode) ((typecode)[2]==&#39;P&#39;)</span>
+<span class="cp">#define mm_is_integer(typecode) ((typecode)[2]==&#39;I&#39;)</span>
+
+<span class="cp">#define mm_is_symmetric(typecode)((typecode)[3]==&#39;S&#39;)</span>
+<span class="cp">#define mm_is_general(typecode) ((typecode)[3]==&#39;G&#39;)</span>
+<span class="cp">#define mm_is_skew(typecode)    ((typecode)[3]==&#39;K&#39;)</span>
+<span class="cp">#define mm_is_hermitian(typecode)((typecode)[3]==&#39;H&#39;)</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">mm_is_valid</span><span class="p">(</span><span class="n">MM_typecode</span><span class="w"> </span><span class="n">matcode</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">mm_is_matrix</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_dense</span><span class="p">(</span><span class="n">matcode</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mm_is_pattern</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_real</span><span class="p">(</span><span class="n">matcode</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mm_is_hermitian</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_pattern</span><span class="p">(</span><span class="n">matcode</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_hermitian</span><span class="p">(</span><span class="n">matcode</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                </span><span class="n">mm_is_skew</span><span class="p">(</span><span class="n">matcode</span><span class="p">)))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/********************* MM_typecode modify fucntions ***************************/</span>
+
+<span class="cp">#define mm_set_matrix(typecode) ((*typecode)[0]=&#39;M&#39;)</span>
+<span class="cp">#define mm_set_coordinate(typecode) ((*typecode)[1]=&#39;C&#39;)</span>
+<span class="cp">#define mm_set_array(typecode)  ((*typecode)[1]=&#39;A&#39;)</span>
+<span class="cp">#define mm_set_dense(typecode)  mm_set_array(typecode)</span>
+<span class="cp">#define mm_set_sparse(typecode) mm_set_coordinate(typecode)</span>
+
+<span class="cp">#define mm_set_complex(typecode)((*typecode)[2]=&#39;C&#39;)</span>
+<span class="cp">#define mm_set_real(typecode)   ((*typecode)[2]=&#39;R&#39;)</span>
+<span class="cp">#define mm_set_pattern(typecode)((*typecode)[2]=&#39;P&#39;)</span>
+<span class="cp">#define mm_set_integer(typecode)((*typecode)[2]=&#39;I&#39;)</span>
+
+
+<span class="cp">#define mm_set_symmetric(typecode)((*typecode)[3]=&#39;S&#39;)</span>
+<span class="cp">#define mm_set_general(typecode)((*typecode)[3]=&#39;G&#39;)</span>
+<span class="cp">#define mm_set_skew(typecode)   ((*typecode)[3]=&#39;K&#39;)</span>
+<span class="cp">#define mm_set_hermitian(typecode)((*typecode)[3]=&#39;H&#39;)</span>
+
+<span class="cp">#define mm_clear_typecode(typecode) ((*typecode)[0]=(*typecode)[1]= \</span>
+<span class="cp">                                    (*typecode)[2]=&#39; &#39;,(*typecode)[3]=&#39;G&#39;)</span>
+
+<span class="cp">#define mm_initialize_typecode(typecode) mm_clear_typecode(typecode)</span>
+
+
+<span class="cm">/********************* Matrix Market error codes ***************************/</span>
+
+
+<span class="cp">#define MM_COULD_NOT_READ_FILE  11</span>
+<span class="cp">#define MM_PREMATURE_EOF        12</span>
+<span class="cp">#define MM_NOT_MTX              13</span>
+<span class="cp">#define MM_NO_HEADER            14</span>
+<span class="cp">#define MM_UNSUPPORTED_TYPE     15</span>
+<span class="cp">#define MM_LINE_TOO_LONG        16</span>
+<span class="cp">#define MM_COULD_NOT_WRITE_FILE 17</span>
+
+
+<span class="cm">/******************** Matrix Market internal definitions ********************</span>
+
+<span class="cm">   MM_matrix_typecode: 4-character sequence</span>
+
+<span class="cm">                    ojbect      sparse/     data        storage</span>
+<span class="cm">                                dense       type        scheme</span>
+
+<span class="cm">   string position:  [0]        [1]         [2]         [3]</span>
+
+<span class="cm">   Matrix typecode:  M(atrix)  C(oord)      R(eal)      G(eneral)</span>
+<span class="cm">                                A(array)    C(omplex)   H(ermitian)</span>
+<span class="cm">                                            P(attern)   S(ymmetric)</span>
+<span class="cm">                                            I(nteger)   K(kew)</span>
+
+<span class="cm"> ***********************************************************************/</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_MTX_STR</span><span class="p">[]</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;matrix&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_ARRAY_STR</span><span class="p">[]</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;array&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_DENSE_STR</span><span class="p">[]</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;array&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_COORDINATE_STR</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;coordinate&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_SPARSE_STR</span><span class="p">[]</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;coordinate&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_COMPLEX_STR</span><span class="p">[]</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;complex&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_REAL_STR</span><span class="p">[]</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;real&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_INT_STR</span><span class="p">[]</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;integer&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_GENERAL_STR</span><span class="p">[]</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;general&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_SYMM_STR</span><span class="p">[]</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;symmetric&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_HERM_STR</span><span class="p">[]</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hermitian&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_SKEW_STR</span><span class="p">[]</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;skew-symmetric&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">MM_PATTERN_STR</span><span class="p">[]</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pattern&quot;</span><span class="p">;</span>
+
+
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">mm_strdup</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">((</span><span class="n">len</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">strcpy</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">mm_typecode_to_str</span><span class="p">(</span><span class="n">MM_typecode</span><span class="w"> </span><span class="n">matcode</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="n">MM_MAX_LINE_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">types</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">mm_strdup</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* check for MTX type */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_matrix</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_MTX_STR</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* check for CRD or ARR matrix */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_sparse</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_SPARSE_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_dense</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_DENSE_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* check for element data type */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_real</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_REAL_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_complex</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_COMPLEX_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_pattern</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_PATTERN_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_integer</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_INT_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="cm">/* check for symmetry type */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_general</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_GENERAL_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_symmetric</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_SYMM_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_hermitian</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_HERM_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mm_is_skew</span><span class="p">(</span><span class="n">matcode</span><span class="p">))</span>
+<span class="w">        </span><span class="n">types</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MM_SKEW_STR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">sprintf</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="s">&quot;%s %s %s %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">types</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">types</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">types</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mm_strdup</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">mm_read_banner</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">MM_typecode</span><span class="w"> </span><span class="o">*</span><span class="n">matcode</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">line</span><span class="p">[</span><span class="n">MM_MAX_LINE_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">banner</span><span class="p">[</span><span class="n">MM_MAX_TOKEN_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">mtx</span><span class="p">[</span><span class="n">MM_MAX_TOKEN_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">crd</span><span class="p">[</span><span class="n">MM_MAX_TOKEN_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">data_type</span><span class="p">[</span><span class="n">MM_MAX_TOKEN_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">storage_scheme</span><span class="p">[</span><span class="n">MM_MAX_TOKEN_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="n">mm_clear_typecode</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">MM_MAX_LINE_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MM_PREMATURE_EOF</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sscanf</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%s %s %s %s %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">banner</span><span class="p">,</span><span class="w"> </span><span class="n">mtx</span><span class="p">,</span><span class="w"> </span><span class="n">crd</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span>
+<span class="w">        </span><span class="n">storage_scheme</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MM_PREMATURE_EOF</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">mtx</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="n">tolower</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">),</span><span class="n">p</span><span class="o">++</span><span class="p">);</span><span class="w">  </span><span class="cm">/* convert to lower case */</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">crd</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="n">tolower</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">),</span><span class="n">p</span><span class="o">++</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">data_type</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="n">tolower</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">),</span><span class="n">p</span><span class="o">++</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">storage_scheme</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="n">tolower</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">),</span><span class="n">p</span><span class="o">++</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* check for banner */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">banner</span><span class="p">,</span><span class="w"> </span><span class="n">MatrixMarketBanner</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">MatrixMarketBanner</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MM_NO_HEADER</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* first field should be &quot;mtx&quot; */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span><span class="w"> </span><span class="n">MM_MTX_STR</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w">  </span><span class="n">MM_UNSUPPORTED_TYPE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">mm_set_matrix</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="cm">/* second field describes whether this is a sparse matrix (in coordinate</span>
+<span class="cm">            storgae) or a dense array */</span>
+
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">crd</span><span class="p">,</span><span class="w"> </span><span class="n">MM_SPARSE_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_sparse</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">crd</span><span class="p">,</span><span class="w"> </span><span class="n">MM_DENSE_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="n">mm_set_dense</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MM_UNSUPPORTED_TYPE</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="cm">/* third field */</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">MM_REAL_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_real</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">MM_COMPLEX_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_complex</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">MM_PATTERN_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_pattern</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">MM_INT_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_integer</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MM_UNSUPPORTED_TYPE</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="cm">/* fourth field */</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">storage_scheme</span><span class="p">,</span><span class="w"> </span><span class="n">MM_GENERAL_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_general</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">storage_scheme</span><span class="p">,</span><span class="w"> </span><span class="n">MM_SYMM_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_symmetric</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">storage_scheme</span><span class="p">,</span><span class="w"> </span><span class="n">MM_HERM_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_hermitian</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">storage_scheme</span><span class="p">,</span><span class="w"> </span><span class="n">MM_SKEW_STR</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mm_set_skew</span><span class="p">(</span><span class="n">matcode</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MM_UNSUPPORTED_TYPE</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">mm_read_mtx_crd_size</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">nz</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">line</span><span class="p">[</span><span class="n">MM_MAX_LINE_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_items_read</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* set return null parameter values, in case we exit with errors */</span>
+<span class="w">    </span><span class="o">*</span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">nz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* now continue scanning until you reach the end-of-comments */</span>
+<span class="w">    </span><span class="k">do</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">MM_MAX_LINE_LENGTH</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">MM_PREMATURE_EOF</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* line[] is either blank or has M,N, nz */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sscanf</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%d %d %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">nz</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">do</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">num_items_read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fscanf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%d %d %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">nz</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">num_items_read</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EOF</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">MM_PREMATURE_EOF</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">num_items_read</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">mm_read_mtx_array_size</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">line</span><span class="p">[</span><span class="n">MM_MAX_LINE_LENGTH</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_items_read</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* set return null parameter values, in case we exit with errors */</span>
+<span class="w">    </span><span class="o">*</span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* now continue scanning until you reach the end-of-comments */</span>
+<span class="w">    </span><span class="k">do</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">MM_MAX_LINE_LENGTH</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">MM_PREMATURE_EOF</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* line[] is either blank or has M,N, nz */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sscanf</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%d %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="cm">/* we have a blank line */</span>
+<span class="w">    </span><span class="k">do</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">num_items_read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fscanf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%d %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">num_items_read</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EOF</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">MM_PREMATURE_EOF</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">num_items_read</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//int mm_write_banner(FILE *f, MM_typecode matcode);</span>
+<span class="c1">//int mm_write_mtx_crd_size(FILE *f, int M, int N, int nz);</span>
+<span class="c1">//int mm_write_mtx_array_size(FILE *f, int M, int N);</span>
+
+<span class="cm">/*  high level routines */</span>
+
+<span class="c1">//int mm_write_mtx_crd(char fname[], int M, int N, int nz, int I[], int J[],</span>
+<span class="c1">//       double val[], MM_typecode matcode);</span>
+<span class="c1">//int mm_read_mtx_crd_data(FILE *f, int M, int N, int nz, int I[], int J[],</span>
+<span class="c1">//      double val[], MM_typecode matcode);</span>
+<span class="c1">//int mm_read_mtx_crd_entry(FILE *f, int *I, int *J, double *real, double *img,</span>
+<span class="c1">//          MM_typecode matcode);</span>
+
+<span class="c1">//int mm_read_unsymmetric_sparse(const char *fname, int *M_, int *N_, int *nz_,</span>
+<span class="c1">//                double **val_, int **I_, int **J_);</span>
+
+
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

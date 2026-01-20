@@ -1,0 +1,23 @@
+.. _dir_include_nwgraph_containers:
+
+
+Directory containers
+====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph/containers``
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_containers_aos.hpp`
+- :ref:`file_include_nwgraph_containers_compressed.hpp`
+- :ref:`file_include_nwgraph_containers_soa.hpp`
+- :ref:`file_include_nwgraph_containers_zip.hpp`
+
+

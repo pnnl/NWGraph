@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1neighbor__range:
+
+Template Class neighbor_range
+=============================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1neighbor__range_1_1my__iterator`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::neighbor_range
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

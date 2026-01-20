@@ -1,0 +1,14 @@
+.. _exhale_typedef_coo_8hpp_1ab402428a967a7d72a4fea915eff770f9:
+
+Typedef nw::graph::coo_graph
+============================
+
+- Defined in :ref:`file_include_nwgraph_coo.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::coo_graph
+   :project: NWgraph

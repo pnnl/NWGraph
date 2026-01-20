@@ -1,0 +1,120 @@
+
+.. _file_include_nwgraph_adaptors_worklist.hpp:
+
+File worklist.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Worklist range adaptors for iterative graph algorithms. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/worklist.hpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_worklist.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides worklist-based range adaptors for algorithms that process vertices dynamically (e.g., label propagation, iterative refinement):
+
+- worklist_range: Sequential worklist with std::queue
+
+- tbbworklist_range: Concurrent worklist with TBB concurrent_queue
+
+- tbbworklist_range2: Bucketed concurrent worklist for priority-based processing
+
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro Kevin Deweese 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``list`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``queue`` (:ref:`file_include_nwgraph_util_make_priority_queue.hpp`)
+
+- ``tbb/concurrent_priority_queue.h``
+
+- ``tbb/concurrent_queue.h``
+
+- ``tbb/concurrent_vector.h``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range2`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range_1_1tbbworklist__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1tbbworklist__range_1_1tbbworklist__range__iterator_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1worklist__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1worklist__range_1_1worklist__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1worklist__range_1_1worklist__range__iterator_1_1end__sentinel__type`
+

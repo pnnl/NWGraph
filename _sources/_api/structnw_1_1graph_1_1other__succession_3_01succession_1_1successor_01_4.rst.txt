@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1other__succession_3_01succession_1_1successor_01_4:
+
+Template Struct other_succession< succession::successor >
+=========================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::other_succession< succession::successor >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

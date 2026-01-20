@@ -1,0 +1,14 @@
+.. _exhale_function_mmio_8hpp_1a228ec3b62c474785548837dbf0e6d4d0:
+
+Template Function nw::graph::write_mm(const std::string&, biadjacency<idx, Attributes...>&, const std::string&)
+===============================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::write_mm(const std::string&, biadjacency<idx, Attributes...>&, const std::string&)
+   :project: NWgraph

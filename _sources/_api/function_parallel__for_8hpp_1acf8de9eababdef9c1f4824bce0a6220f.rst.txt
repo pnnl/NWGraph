@@ -1,0 +1,14 @@
+.. _exhale_function_parallel__for_8hpp_1acf8de9eababdef9c1f4824bce0a6220f:
+
+Template Function nw::graph::parallel_reduce
+============================================
+
+- Defined in :ref:`file_include_nwgraph_util_parallel_for.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::parallel_reduce(Range&&, Op&&, Reduce&&, T)
+   :project: NWgraph

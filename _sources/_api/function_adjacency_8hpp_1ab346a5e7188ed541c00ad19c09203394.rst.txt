@@ -1,0 +1,14 @@
+.. _exhale_function_adjacency_8hpp_1ab346a5e7188ed541c00ad19c09203394:
+
+Template Function nw::graph::tag_invoke(const degree_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>&, lookup_type)
+================================================================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_adjacency.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::tag_invoke(const degree_tag, const index_biadjacency<idx, index_type, vertex_id_type, Attributes...>&, lookup_type)
+   :project: NWgraph

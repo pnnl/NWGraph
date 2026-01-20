@@ -1,0 +1,14 @@
+.. _exhale_enum_new__dfs__range_8hpp_1a1bf11385241ca57016ff59f70db0bb1d:
+
+Enum three_colors
+=================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_new_dfs_range.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::three_colors
+   :project: NWgraph

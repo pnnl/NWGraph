@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1aee7772c709001e294bd67e6fd8382dc3:
+
+Define mm_is_sparse
+===================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_is_sparse
+   :project: NWgraph

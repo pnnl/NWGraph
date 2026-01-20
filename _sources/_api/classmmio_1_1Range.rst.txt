@@ -1,0 +1,17 @@
+.. _exhale_class_classmmio_1_1Range:
+
+Template Class Range
+====================
+
+- Defined in :ref:`file_include_nwgraph_io_MatrixMarketFile.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: mmio::Range
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

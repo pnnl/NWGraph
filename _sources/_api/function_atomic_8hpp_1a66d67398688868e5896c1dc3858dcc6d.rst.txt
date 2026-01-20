@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1a66d67398688868e5896c1dc3858dcc6d:
+
+Template Function nw::graph::fetch_or
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::fetch_or(T&&, U&&)
+   :project: NWgraph

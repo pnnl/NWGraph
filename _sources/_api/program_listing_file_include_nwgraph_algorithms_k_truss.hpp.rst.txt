@@ -1,0 +1,35 @@
+
+.. _program_listing_file_include_nwgraph_algorithms_k_truss.hpp:
+
+Program Listing for File k_truss.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_algorithms_k_truss.hpp>` (``include/nwgraph/algorithms/k_truss.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_K_TRUSS_HPP
+   #define NW_GRAPH_K_TRUSS_HPP
+   
+   #include "nwgraph/adaptors/cyclic_range_adapter.hpp"
+   #include "nwgraph/util/parallel_for.hpp"
+   #include <atomic>
+   #include <future>
+   #include <thread>
+   
+   #include "nwgraph/adaptors/edge_range.hpp"
+   #include "nwgraph/util/intersection_size.hpp"
+   #include "nwgraph/util/util.hpp"
+   #include "util/timer.hpp"
+   
+   #include <tuple>
+   #include <vector>
+   
+   namespace nw {
+   namespace graph {}    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_K_TRUSS_HPP

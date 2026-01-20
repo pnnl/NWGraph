@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1a4dafcb22ea50cf414f6d559c2bf647f8:
+
+Variable MM_HERM_STR
+====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_HERM_STR
+   :project: NWgraph

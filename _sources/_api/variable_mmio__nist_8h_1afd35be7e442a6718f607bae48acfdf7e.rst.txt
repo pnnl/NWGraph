@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1afd35be7e442a6718f607bae48acfdf7e:
+
+Variable MM_ARRAY_STR
+=====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_ARRAY_STR
+   :project: NWgraph

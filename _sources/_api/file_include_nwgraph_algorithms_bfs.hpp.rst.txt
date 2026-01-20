@@ -1,0 +1,99 @@
+
+.. _file_include_nwgraph_algorithms_bfs.hpp:
+
+File bfs.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_algorithms>` (``include/nwgraph/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/algorithms/bfs.hpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_algorithms_bfs.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Kevin Deweese Tony Liu
+
+Breadth-first search algorithms
+
+Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms", 4th Edition (2022), Chapter 20.2: Breadth-First Search 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``nwgraph/adaptors/cyclic_range_adaptor.hpp`` (:ref:`file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp`)
+
+- ``nwgraph/adaptors/neighbor_range.hpp`` (:ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`)
+
+- ``nwgraph/adaptors/vertex_range.hpp`` (:ref:`file_include_nwgraph_adaptors_vertex_range.hpp`)
+
+- ``nwgraph/containers/compressed.hpp`` (:ref:`file_include_nwgraph_containers_compressed.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/AtomicBitVector.hpp`` (:ref:`file_include_nwgraph_util_AtomicBitVector.hpp`)
+
+- ``nwgraph/util/atomic.hpp`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``nwgraph/util/parallel_for.hpp`` (:ref:`file_include_nwgraph_util_parallel_for.hpp`)
+
+- ``queue`` (:ref:`file_include_nwgraph_util_make_priority_queue.hpp`)
+
+- ``tbb/concurrent_queue.h``
+
+- ``tbb/concurrent_vector.h``
+
+- ``tbb/parallel_for_each.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_algorithms_2bfs_8hpp_1a0f34c9a91adbd17c3f13e46990e902a1`
+
+- :ref:`exhale_function_algorithms_2bfs_8hpp_1ad81e7d2f898b1ce9910777b65cc0c142`
+
+- :ref:`exhale_function_algorithms_2bfs_8hpp_1a6664953d0f9f4fbb42c960e3611e5b46`
+

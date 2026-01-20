@@ -1,0 +1,107 @@
+
+.. _file_include_nwgraph_util_atomic.hpp:
+
+File atomic.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/atomic.hpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_atomic.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``nwgraph/util/traits.hpp`` (:ref:`file_include_nwgraph_util_traits.hpp`)
+
+- ``type_traits``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_util_AtomicBitVector.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_atomic_8hpp_1ab72f1718c76dc8616b5441b739b8766b`
+
+- :ref:`exhale_function_atomic_8hpp_1a51c1b44a10103c47086332e9b13d8476`
+
+- :ref:`exhale_function_atomic_8hpp_1a3c48b0bfdedd93ec53f7a86fe67d777f`
+
+- :ref:`exhale_function_atomic_8hpp_1a66d67398688868e5896c1dc3858dcc6d`
+
+- :ref:`exhale_function_atomic_8hpp_1a97edd2dc69a833462d08c7ff0232700d`
+
+- :ref:`exhale_function_atomic_8hpp_1a4d7cbd67be82ac4543b71788db265a90`
+
+- :ref:`exhale_function_atomic_8hpp_1a3f8202a5661316a11245a79c083ead8a`
+
+- :ref:`exhale_function_atomic_8hpp_1a959f8382589254a24bab59903d8ac236`
+
+- :ref:`exhale_function_atomic_8hpp_1a208cf515e1644244d6373c81ed7c23dc`
+

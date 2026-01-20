@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2triangle__count_8hpp_1a5e13d2b5fb9d7b8c289345d809bcca91:
+
+Template Function nw::graph::triangle_count_async
+=================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::triangle_count_async(std::size_t, Op&&)
+   :project: NWgraph

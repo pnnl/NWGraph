@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class cyclic_neighbor_range &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class cyclic_neighbor_range</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1cyclic__neighbor__range.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-cyclic-neighbor-range">
+<span id="exhale-class-classnw-1-1graph-1-1cyclic-neighbor-range"></span><h1>Template Class cyclic_neighbor_range<a class="headerlink" href="#template-class-cyclic-neighbor-range" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_adaptors_cyclic_neighbor_range.hpp.html#file-include-nwgraph-adaptors-cyclic-neighbor-range-hpp"><span class="std std-ref">File cyclic_neighbor_range.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator.html#exhale-struct-structnw-1-1graph-1-1cyclic-neighbor-range-1-1iterator"><span class="std std-ref">Struct cyclic_neighbor_range::iterator</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph21cyclic_neighbor_rangeE">
+<span id="_CPPv3I0EN2nw5graph21cyclic_neighbor_rangeE"></span><span id="_CPPv2I0EN2nw5graph21cyclic_neighbor_rangeE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Iterator</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></span><a class="headerlink" href="#_CPPv4I0EN2nw5graph21cyclic_neighbor_rangeE" title="Link to this definition"></a><br /></dt>
+<dd><p>The cyclic neighbor range adapter.</p>
+<p>This adapter takes an underlying random access range and provides the ability to split the range into cycles for TBB. A cycle is a subset of the range such that each subsequent element is some stride from the previous element.</p>
+<p>The cyclic range adapter is implemented recursively, that is that each time the range is split it simply returns two ranges that cover the previous range, each with twice the cycle and one offset by one element.</p>
+<p>Key to the adapter is the <em>cutoff</em>, which is defined in terms of the maximum stride rather than in terms of the number of elements. A <em>cutoff</em> of <code class="docutils literal notranslate"><span class="pre">1</span></code> implies that the range can’t be split, while a <code class="docutils literal notranslate"><span class="pre">_cutoff_</span></code> of <code class="docutils literal notranslate"><span class="pre">n</span></code> means that the range can be split into up to <code class="docutils literal notranslate"><span class="pre">n</span></code> cycles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Iterator</strong> – The type of the underlying range iterator (must be at least random access). </p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range15difference_typeE">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range15difference_typeE"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range15difference_typeE"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a877b4c8e418e25c52f9a25640a9b1015"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">difference_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">iterator_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph21cyclic_neighbor_rangeE" title="nw::graph::cyclic_neighbor_range::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">difference_type</span></span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range15difference_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EN2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR5Range6Cutoff">
+<span id="_CPPv3I00EN2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR5Range6Cutoff"></span><span id="_CPPv2I00EN2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR5Range6Cutoff"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Range</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Cutoff</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a710c77ff0e3bc910a178879f2adea07d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00EN2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR5Range6Cutoff" title="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range::Range"><span class="n"><span class="pre">Range</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">range</span></span>, <a class="reference internal" href="#_CPPv4I00EN2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR5Range6Cutoff" title="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range::Cutoff"><span class="n"><span class="pre">Cutoff</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EN2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR5Range6Cutoff" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERK21cyclic_neighbor_range">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERK21cyclic_neighbor_range"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERK21cyclic_neighbor_range"></span><span id="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range__cyclic_neighbor_rangeCR"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1aa61c95704d24c449798e5deac57c3f36"></span><span class="sig-name descname"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERK21cyclic_neighbor_range" title="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERK21cyclic_neighbor_range" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR21cyclic_neighbor_range">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR21cyclic_neighbor_range"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR21cyclic_neighbor_range"></span><span id="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range__cyclic_neighbor_rangeRR"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a471d269f1ba1988cc8888cc0c6dc3a11"></span><span class="sig-name descname"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR21cyclic_neighbor_range" title="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeERR21cyclic_neighbor_range" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeER21cyclic_neighbor_rangeN3tbb5splitE">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeER21cyclic_neighbor_rangeN3tbb5splitE"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeER21cyclic_neighbor_rangeN3tbb5splitE"></span><span id="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range__cyclic_neighbor_rangeR.tbb::split"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a75e5e0011c3f77a910d2723dfa69973b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeER21cyclic_neighbor_rangeN3tbb5splitE" title="nw::graph::cyclic_neighbor_range::cyclic_neighbor_range"><span class="n"><span class="pre">cyclic_neighbor_range</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span>, <span class="n"><span class="pre">tbb</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">split</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range21cyclic_neighbor_rangeER21cyclic_neighbor_rangeN3tbb5splitE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph21cyclic_neighbor_range5beginEv">
+<span id="_CPPv3NK2nw5graph21cyclic_neighbor_range5beginEv"></span><span id="_CPPv2NK2nw5graph21cyclic_neighbor_range5beginEv"></span><span id="nw::graph::cyclic_neighbor_range::beginC"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a902dd876fb3cae70d4dc48a594369829"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorE" title="nw::graph::cyclic_neighbor_range::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph21cyclic_neighbor_range5beginEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Return an iterator that points to the start of the cycle. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph21cyclic_neighbor_range3endEv">
+<span id="_CPPv3NK2nw5graph21cyclic_neighbor_range3endEv"></span><span id="_CPPv2NK2nw5graph21cyclic_neighbor_range3endEv"></span><span id="nw::graph::cyclic_neighbor_range::endC"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1ab31a22b3935e533a2bb1251974047055"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorE" title="nw::graph::cyclic_neighbor_range::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph21cyclic_neighbor_range3endEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Return an iterator that points to the end of the cycle.</p>
+<p>The end of the cycle is the first iterator in the cycle that is greater than or equal to the end_ iterator in the underlying range. End iterators for different cycles will be different even if the underlying range and strides match, so tests should not be performed across cycles. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph21cyclic_neighbor_range4sizeEv">
+<span id="_CPPv3NK2nw5graph21cyclic_neighbor_range4sizeEv"></span><span id="_CPPv2NK2nw5graph21cyclic_neighbor_range4sizeEv"></span><span id="nw::graph::cyclic_neighbor_range::sizeC"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a6d4f88f551e04ff04becf5a724773a5c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range15difference_typeE" title="nw::graph::cyclic_neighbor_range::difference_type"><span class="n"><span class="pre">difference_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph21cyclic_neighbor_range4sizeEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph21cyclic_neighbor_range5emptyEv">
+<span id="_CPPv3NK2nw5graph21cyclic_neighbor_range5emptyEv"></span><span id="_CPPv2NK2nw5graph21cyclic_neighbor_range5emptyEv"></span><span id="nw::graph::cyclic_neighbor_range::emptyC"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a82e8b5db10757028d740273fef5b96ec"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph21cyclic_neighbor_range5emptyEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph21cyclic_neighbor_range12is_divisibleEv">
+<span id="_CPPv3NK2nw5graph21cyclic_neighbor_range12is_divisibleEv"></span><span id="_CPPv2NK2nw5graph21cyclic_neighbor_range12is_divisibleEv"></span><span id="nw::graph::cyclic_neighbor_range::is_divisibleC"></span><span class="target" id="classnw_1_1graph_1_1cyclic__neighbor__range_1a355f5f6323c4515f330e38790ebd23b3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_divisible</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph21cyclic_neighbor_range12is_divisibleEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Runtime check to see if the range is divisible.</p>
+<p>The range can be subdivided if its stride can be increased relative to the cutoff. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorE">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range8iteratorE"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range8iteratorE"></span><span id="nw::graph::cyclic_neighbor_range::iterator"></span><span class="target" id="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range8iteratormlEv">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range8iteratormlEv"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range8iteratormlEv"></span><span id="nw::graph::cyclic_neighbor_range::iterator::mul-operator"></span><span class="target" id="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator_1a6361c614b9b3d55d337842b58f0acbdf"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">decltype</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">auto</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorppEv">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range8iteratorppEv"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range8iteratorppEv"></span><span id="nw::graph::cyclic_neighbor_range::iterator::inc-operator"></span><span class="target" id="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator_1a3e500441b03ae0ac2ffe9e7abfdfa0b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorE" title="nw::graph::cyclic_neighbor_range::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph21cyclic_neighbor_range8iteratorneERK8iterator">
+<span id="_CPPv3NK2nw5graph21cyclic_neighbor_range8iteratorneERK8iterator"></span><span id="_CPPv2NK2nw5graph21cyclic_neighbor_range8iteratorneERK8iterator"></span><span id="nw::graph::cyclic_neighbor_range::iterator::neq-operator__iteratorCRC"></span><span class="target" id="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator_1a728b600d4963739da43d43d88028936a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iteratorE" title="nw::graph::cyclic_neighbor_range::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph21cyclic_neighbor_range8iteratorneERK8iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range8iterator6begin_E">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range8iterator6begin_E"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range8iterator6begin_E"></span><span id="nw::graph::cyclic_neighbor_range::iterator::begin___Iterator"></span><span class="target" id="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator_1adacaf5f3b0e63dd8ae278375824cf5fb"></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph21cyclic_neighbor_rangeE" title="nw::graph::cyclic_neighbor_range::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin_</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iterator6begin_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range8iterator2i_E">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range8iterator2i_E"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range8iterator2i_E"></span><span id="nw::graph::cyclic_neighbor_range::iterator::i___Iterator"></span><span class="target" id="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator_1a3c4d64d28b8ee0b0ef94b877dac08e4b"></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph21cyclic_neighbor_rangeE" title="nw::graph::cyclic_neighbor_range::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">i_</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iterator2i_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph21cyclic_neighbor_range8iterator7stride_E">
+<span id="_CPPv3N2nw5graph21cyclic_neighbor_range8iterator7stride_E"></span><span id="_CPPv2N2nw5graph21cyclic_neighbor_range8iterator7stride_E"></span><span id="nw::graph::cyclic_neighbor_range::iterator::stride___difference_type"></span><span class="target" id="structnw_1_1graph_1_1cyclic__neighbor__range_1_1iterator_1a436e183eec5c19e45d46f235396088bd"></span><a class="reference internal" href="#_CPPv4N2nw5graph21cyclic_neighbor_range15difference_typeE" title="nw::graph::cyclic_neighbor_range::difference_type"><span class="n"><span class="pre">difference_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stride_</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph21cyclic_neighbor_range8iterator7stride_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

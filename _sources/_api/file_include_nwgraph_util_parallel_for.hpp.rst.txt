@@ -1,0 +1,122 @@
+
+.. _file_include_nwgraph_util_parallel_for.hpp:
+
+File parallel_for.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Backend-agnostic parallel for and reduce operations. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/parallel_for.hpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_parallel_for.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides parallel_for and parallel_reduce operations that work with both TBB and HPX backends. The backend is selected at compile time via the NWGRAPH_BACKEND_HPX or NWGRAPH_BACKEND_TBB macros.
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``nwgraph/util/backend.hpp`` (:ref:`file_include_nwgraph_util_backend.hpp`)
+
+- ``nwgraph/util/traits.hpp`` (:ref:`file_include_nwgraph_util_traits.hpp`)
+
+- ``tbb/parallel_for.h``
+
+- ``tbb/parallel_reduce.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_truss.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_parallel__for_8hpp_1a54b7930b02f5d1182a4b77f092654cba`
+
+- :ref:`exhale_function_parallel__for_8hpp_1a8be6e94f1beb734069439ad66fc7a04c`
+
+- :ref:`exhale_function_parallel__for_8hpp_1ac8d361c2d6be92784107fc1198f9bcef`
+
+- :ref:`exhale_function_parallel__for_8hpp_1a638374032d7a75cc90ec41a1a7d74956`
+
+- :ref:`exhale_function_parallel__for_8hpp_1aac8b388bc7f316ef3b8f116dabac8b9b`
+
+- :ref:`exhale_function_parallel__for_8hpp_1acf8de9eababdef9c1f4824bce0a6220f`
+
+- :ref:`exhale_function_parallel__for_8hpp_1a0879214148c6bbffe3a7ddbd735cb771`
+

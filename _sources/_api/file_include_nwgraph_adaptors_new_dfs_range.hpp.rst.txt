@@ -1,0 +1,115 @@
+
+.. _file_include_nwgraph_adaptors_new_dfs_range.hpp:
+
+File new_dfs_range.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Alternative DFS range implementation with edge classification. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/new_dfs_range.hpp``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_new_dfs_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides DFS range adaptors with additional features:
+
+- dfs_range: Vertex iteration in DFS order
+
+- dfs_edge_range: Edge iteration with tree/back edge classification
+
+
+
+The edge range yields tuples (is_tree_edge, source, target, ...) allowing algorithms to distinguish between tree edges and back edges.
+
+Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms", 4th Edition (2022), Chapter 20.3: Depth-First Search
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``stack``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1dfs__edge__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1dfs__edge__range_1_1dfs__edge__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1dfs__edge__range_1_1dfs__edge__range__iterator_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1dfs__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1dfs__range_1_1dfs__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1dfs__range_1_1dfs__range__iterator_1_1end__sentinel__type`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_new__dfs__range_8hpp_1a1bf11385241ca57016ff59f70db0bb1d`
+

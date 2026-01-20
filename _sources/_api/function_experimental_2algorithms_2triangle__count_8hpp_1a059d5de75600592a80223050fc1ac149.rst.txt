@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2triangle__count_8hpp_1a059d5de75600592a80223050fc1ac149:
+
+Template Function nw::graph::triangle_count_v12
+===============================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::triangle_count_v12(const Graph&, int, SetExecutionPolicy&&)
+   :project: NWgraph

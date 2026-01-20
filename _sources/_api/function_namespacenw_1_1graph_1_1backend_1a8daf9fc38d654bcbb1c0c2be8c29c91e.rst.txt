@@ -1,0 +1,14 @@
+.. _exhale_function_namespacenw_1_1graph_1_1backend_1a8daf9fc38d654bcbb1c0c2be8c29c91e:
+
+Function nw::graph::backend::is_tbb
+===================================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::backend::is_tbb()
+   :project: NWgraph

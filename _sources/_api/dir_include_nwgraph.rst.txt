@@ -1,0 +1,44 @@
+.. _dir_include_nwgraph:
+
+
+Directory nwgraph
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include>` (``include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph``
+
+Subdirectories
+--------------
+
+- :ref:`dir_include_nwgraph_adaptors`
+- :ref:`dir_include_nwgraph_algorithms`
+- :ref:`dir_include_nwgraph_containers`
+- :ref:`dir_include_nwgraph_experimental`
+- :ref:`dir_include_nwgraph_generators`
+- :ref:`dir_include_nwgraph_graphs`
+- :ref:`dir_include_nwgraph_io`
+- :ref:`dir_include_nwgraph_util`
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_adjacency.hpp`
+- :ref:`file_include_nwgraph_build.hpp`
+- :ref:`file_include_nwgraph_coo.hpp`
+- :ref:`file_include_nwgraph_csc.hpp`
+- :ref:`file_include_nwgraph_csr.hpp`
+- :ref:`file_include_nwgraph_edge_list.hpp`
+- :ref:`file_include_nwgraph_graph_adaptor.hpp`
+- :ref:`file_include_nwgraph_graph_base.hpp`
+- :ref:`file_include_nwgraph_graph_concepts.hpp`
+- :ref:`file_include_nwgraph_graph_traits.hpp`
+- :ref:`file_include_nwgraph_vofos.hpp`
+- :ref:`file_include_nwgraph_volos.hpp`
+- :ref:`file_include_nwgraph_vovos.hpp`
+
+

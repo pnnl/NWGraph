@@ -1,0 +1,14 @@
+.. _exhale_function_dag__based__mis_8hpp_1a51b58ec671bd1ea87f27169ba383bfc6:
+
+Template Function nw::graph::dag_based_mis
+==========================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_dag_based_mis.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::dag_based_mis(Graph&, std::vector<bool>&)
+   :project: NWgraph

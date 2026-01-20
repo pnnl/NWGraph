@@ -1,0 +1,78 @@
+:orphan:
+
+
+Full API
+========
+
+Namespaces
+**********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace__tag_invoke.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace__tag_invoke_cpo.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_mmio.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_nw.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_nw__graph.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_nw__graph__backend.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_nw__graph__filtered_bfs.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_nw__graph__has.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_nw__graph__pagerank.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_nw__util.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_std.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_std__ranges.rst
+
+Pages
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   page_todo.rst

@@ -1,0 +1,14 @@
+.. _exhale_function_mmio__nist_8h_1aa60179f0306eeb5130c925f5ec8f7a0a:
+
+Function mm_strdup
+==================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: mm_strdup(const char *)
+   :project: NWgraph

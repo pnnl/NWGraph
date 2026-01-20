@@ -1,0 +1,18 @@
+.. _exhale_function_make__priority__queue_8hpp_1a391af469a7f70c11246e4178f5b6884d:
+
+Template Function nw::graph::make_priority_queue(Compare&&)
+===========================================================
+
+Defined in :ref:`file_include_nwgraph_util_make_priority_queue.hpp`
+
+.. rubric:: Signature
+
+.. code-block:: cpp
+
+    template <class T, class Compare> constexpr auto nw::graph::make_priority_queue(Compare&&)
+
+.. note::
+
+    This function has multiple template overloads. The Doxygen/Breathe toolchain
+    cannot resolve which overload to display. See the source file for full documentation.
+

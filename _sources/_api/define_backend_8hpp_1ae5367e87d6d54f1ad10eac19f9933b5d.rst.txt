@@ -1,0 +1,14 @@
+.. _exhale_define_backend_8hpp_1ae5367e87d6d54f1ad10eac19f9933b5d:
+
+Define NWGRAPH_BACKEND_TBB_ENABLED
+==================================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: NWGRAPH_BACKEND_TBB_ENABLED
+   :project: NWgraph

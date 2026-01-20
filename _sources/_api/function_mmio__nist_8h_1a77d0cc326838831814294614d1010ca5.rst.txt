@@ -1,0 +1,14 @@
+.. _exhale_function_mmio__nist_8h_1a77d0cc326838831814294614d1010ca5:
+
+Function mm_read_mtx_array_size
+===============================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: mm_read_mtx_array_size(FILE *, int *, int *)
+   :project: NWgraph

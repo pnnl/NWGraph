@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1abbab867f491acf7f37ecf45f64751f55:
+
+Template Function nw::graph::permute_helper(edge_list_t&, adjacency_t&, std::index_sequence<Is...>, const Perm&)
+================================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::permute_helper(edge_list_t&, adjacency_t&, std::index_sequence<Is...>, const Perm&)
+   :project: NWgraph

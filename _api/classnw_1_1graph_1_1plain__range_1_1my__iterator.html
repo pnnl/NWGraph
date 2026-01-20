@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class plain_range::my_iterator &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class plain_range::my_iterator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1plain__range_1_1my__iterator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-plain-range-my-iterator">
+<span id="exhale-class-classnw-1-1graph-1-1plain-range-1-1my-iterator"></span><h1>Template Class plain_range::my_iterator<a class="headerlink" href="#template-class-plain-range-my-iterator" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_adaptors_plain_range.hpp.html#file-include-nwgraph-adaptors-plain-range-hpp"><span class="std std-ref">File plain_range.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<p>This class is a nested type of <a class="reference internal" href="classnw_1_1graph_1_1plain__range.html#exhale-class-classnw-1-1graph-1-1plain-range"><span class="std std-ref">Template Class plain_range</span></a>.</p>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE">
+<span id="_CPPv3I_bEN2nw5graph11plain_range11my_iteratorE"></span><span id="_CPPv2I_bEN2nw5graph11plain_range11my_iteratorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_const</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">my_iterator</span></span></span><a class="headerlink" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iterator17iterator_categoryE">
+<span id="_CPPv3N2nw5graph11plain_range11my_iterator17iterator_categoryE"></span><span id="_CPPv2N2nw5graph11plain_range11my_iterator17iterator_categoryE"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a125e7945e2ce0fcb65577f8e8d1b2c23"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator_category</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">forward_iterator_tag</span></span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iterator17iterator_categoryE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iterator10value_typeE">
+<span id="_CPPv3N2nw5graph11plain_range11my_iterator10value_typeE"></span><span id="_CPPv2N2nw5graph11plain_range11my_iterator10value_typeE"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a19e6625840636cf3dcf859b5b1e05e67"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_disjoint__set_8hpp_1a8608c11e78d3bffcc3c2021e1f978b3e.html#_CPPv4N2nw5graph14vertex_id_typeE" title="nw::graph::vertex_id_type"><span class="n"><span class="pre">vertex_id_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iterator10value_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iterator15difference_typeE">
+<span id="_CPPv3N2nw5graph11plain_range11my_iterator15difference_typeE"></span><span id="_CPPv2N2nw5graph11plain_range11my_iterator15difference_typeE"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1abbd0c79288cb967f1058eb0837fb264b"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">difference_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iterator15difference_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iterator9referenceE">
+<span id="_CPPv3N2nw5graph11plain_range11my_iterator9referenceE"></span><span id="_CPPv2N2nw5graph11plain_range11my_iterator9referenceE"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1ab8311fe2ec047acbf6005d3922d4b040"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph11plain_range11my_iterator10value_typeE" title="nw::graph::plain_range::my_iterator::value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iterator9referenceE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iterator7pointerE">
+<span id="_CPPv3N2nw5graph11plain_range11my_iterator7pointerE"></span><span id="_CPPv2N2nw5graph11plain_range11my_iterator7pointerE"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a77e9d2043ff97344b56ed2372231bf50"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pointer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph11plain_range11my_iterator10value_typeE" title="nw::graph::plain_range::my_iterator::value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="p"><span class="pre">*</span></span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iterator7pointerE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iterator11my_iteratorE14graph_iterator14graph_iterator14graph_iterator">
+<span id="_CPPv3N2nw5graph11plain_range11my_iterator11my_iteratorE14graph_iterator14graph_iterator14graph_iterator"></span><span id="_CPPv2N2nw5graph11plain_range11my_iterator11my_iteratorE14graph_iterator14graph_iterator14graph_iterator"></span><span id="nw::graph::plain_range::my_iterator::my_iterator__graph_iterator.graph_iterator.graph_iterator"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1ade7914b74f9338d1919e89ace90d57b3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">my_iterator</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">graph_iterator</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">base</span></span>, <span class="n"><span class="pre">graph_iterator</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">begin</span></span>, <span class="n"><span class="pre">graph_iterator</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iterator11my_iteratorE14graph_iterator14graph_iterator14graph_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iterator">
+<span id="_CPPv3N2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iterator"></span><span id="_CPPv2N2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iterator"></span><span id="nw::graph::plain_range::my_iterator::my_iterator__my_iteratorCR"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a7bb06368e5ba67ef3c94c83397143ef9"></span><span class="sig-name descname"><span class="n"><span class="pre">my_iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iterator" title="nw::graph::plain_range::my_iterator::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iteratoraSERK11my_iterator">
+<span id="_CPPv3N2nw5graph11plain_range11my_iteratoraSERK11my_iterator"></span><span id="_CPPv2N2nw5graph11plain_range11my_iteratoraSERK11my_iterator"></span><span id="nw::graph::plain_range::my_iterator::assign-operator__my_iteratorCR"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a5ad0c1de01eb66db8266b85c5d5f1042"></span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iteratoraSERK11my_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_b0EN2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iteratorI9was_constE">
+<span id="_CPPv3I_b0EN2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iteratorI9was_constE"></span><span id="_CPPv2I_b0EN2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iteratorI9was_constE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">was_const</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_if_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator::is_const"><span class="n"><span class="pre">is_const</span></span></a><span class="w"> </span><span class="o"><span class="pre">&amp;&amp;</span></span><span class="w"> </span><span class="o"><span class="pre">!</span></span><a class="reference internal" href="#_CPPv4I_b0EN2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iteratorI9was_constE" title="nw::graph::plain_range::my_iterator::my_iterator::was_const"><span class="n"><span class="pre">was_const</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a93f676dbb0ce749974b70fb60fcf3bf4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">my_iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_b0EN2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iteratorI9was_constE" title="nw::graph::plain_range::my_iterator::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_b0EN2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iteratorI9was_constE" title="nw::graph::plain_range::my_iterator::my_iterator::was_const"><span class="n"><span class="pre">was_const</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_b0EN2nw5graph11plain_range11my_iterator11my_iteratorERK11my_iteratorI9was_constE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_b0EN2nw5graph11plain_range11my_iteratoraSER11my_iteratorRK11my_iteratorI9was_constE">
+<span id="_CPPv3I_b0EN2nw5graph11plain_range11my_iteratoraSERK11my_iteratorI9was_constE"></span><span id="_CPPv2I_b0EN2nw5graph11plain_range11my_iteratoraSERK11my_iteratorI9was_constE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">was_const</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_if_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator::is_const"><span class="n"><span class="pre">is_const</span></span></a><span class="w"> </span><span class="o"><span class="pre">&amp;&amp;</span></span><span class="w"> </span><span class="o"><span class="pre">!</span></span><a class="reference internal" href="#_CPPv4I_b0EN2nw5graph11plain_range11my_iteratoraSER11my_iteratorRK11my_iteratorI9was_constE" title="nw::graph::plain_range::my_iterator::operator=::was_const"><span class="n"><span class="pre">was_const</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a1050eb2c8c2c7bf85b899b33e9d8dbe8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_b0EN2nw5graph11plain_range11my_iteratoraSER11my_iteratorRK11my_iteratorI9was_constE" title="nw::graph::plain_range::my_iterator::operator=::was_const"><span class="n"><span class="pre">was_const</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_b0EN2nw5graph11plain_range11my_iteratoraSER11my_iteratorRK11my_iteratorI9was_constE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iteratorppEv">
+<span id="_CPPv3N2nw5graph11plain_range11my_iteratorppEv"></span><span id="_CPPv2N2nw5graph11plain_range11my_iteratorppEv"></span><span id="nw::graph::plain_range::my_iterator::inc-operator"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a21d873e0343c37fd2f639e8697d8fb47"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iteratorppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph11plain_range11my_iteratormlEv">
+<span id="_CPPv3N2nw5graph11plain_range11my_iteratormlEv"></span><span id="_CPPv2N2nw5graph11plain_range11my_iteratormlEv"></span><span id="nw::graph::plain_range::my_iterator::mul-operator"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a763d9b84733f60770a5be4ee690e12c2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph11plain_range11my_iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph11plain_range11my_iteratormlEv">
+<span id="_CPPv3NK2nw5graph11plain_range11my_iteratormlEv"></span><span id="_CPPv2NK2nw5graph11plain_range11my_iteratormlEv"></span><span id="nw::graph::plain_range::my_iterator::mul-operatorC"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1af8b43c5300d7deef5a19f722c5e53208"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph11plain_range11my_iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph11plain_range11my_iteratoreqERK11my_iterator">
+<span id="_CPPv3NK2nw5graph11plain_range11my_iteratoreqERK11my_iterator"></span><span id="_CPPv2NK2nw5graph11plain_range11my_iteratoreqERK11my_iterator"></span><span id="nw::graph::plain_range::my_iterator::eq-operator__my_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a5bfc7276ede26cb974374160fb46a7f1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph11plain_range11my_iteratoreqERK11my_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph11plain_range11my_iteratorneERK11my_iterator">
+<span id="_CPPv3NK2nw5graph11plain_range11my_iteratorneERK11my_iterator"></span><span id="_CPPv2NK2nw5graph11plain_range11my_iteratorneERK11my_iterator"></span><span id="nw::graph::plain_range::my_iterator::neq-operator__my_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1a254621b3417ba83391e89692d8e08913"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph11plain_range11my_iteratorneERK11my_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph11plain_range11my_iteratorltERK11my_iterator">
+<span id="_CPPv3NK2nw5graph11plain_range11my_iteratorltERK11my_iterator"></span><span id="_CPPv2NK2nw5graph11plain_range11my_iteratorltERK11my_iterator"></span><span id="nw::graph::plain_range::my_iterator::lt-operator__my_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1af957c87007782c265436fbe2b5b4ceb6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph11plain_range11my_iteratorltERK11my_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph11plain_range11my_iteratormiERK11my_iterator">
+<span id="_CPPv3NK2nw5graph11plain_range11my_iteratormiERK11my_iterator"></span><span id="_CPPv2NK2nw5graph11plain_range11my_iteratormiERK11my_iterator"></span><span id="nw::graph::plain_range::my_iterator::sub-operator__my_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1ad296d24dbc72c5c9c9567cfcfe420f69"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph11plain_range11my_iterator15difference_typeE" title="nw::graph::plain_range::my_iterator::difference_type"><span class="n"><span class="pre">difference_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph11plain_range11my_iteratormiERK11my_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph11plain_range11my_iteratorplE15difference_type">
+<span id="_CPPv3NK2nw5graph11plain_range11my_iteratorplE15difference_type"></span><span id="_CPPv2NK2nw5graph11plain_range11my_iteratorplE15difference_type"></span><span id="nw::graph::plain_range::my_iterator::add-operator__difference_typeC"></span><span class="target" id="classnw_1_1graph_1_1plain__range_1_1my__iterator_1af7a5d63d93c18955099b9b0e2a14a097"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_bEN2nw5graph11plain_range11my_iteratorE" title="nw::graph::plain_range::my_iterator"><span class="n"><span class="pre">my_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph11plain_range11my_iterator15difference_typeE" title="nw::graph::plain_range::my_iterator::difference_type"><span class="n"><span class="pre">difference_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">step</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph11plain_range11my_iteratorplE15difference_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

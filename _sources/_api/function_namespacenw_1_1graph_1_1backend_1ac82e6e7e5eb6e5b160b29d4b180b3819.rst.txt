@@ -1,0 +1,14 @@
+.. _exhale_function_namespacenw_1_1graph_1_1backend_1ac82e6e7e5eb6e5b160b29d4b180b3819:
+
+Function nw::graph::backend::is_hpx
+===================================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::backend::is_hpx()
+   :project: NWgraph

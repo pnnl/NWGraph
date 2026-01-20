@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1concurrent__queue:
+
+Template Class concurrent_queue
+===============================
+
+- Defined in :ref:`file_include_nwgraph_util_concurrent_containers.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::concurrent_queue
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

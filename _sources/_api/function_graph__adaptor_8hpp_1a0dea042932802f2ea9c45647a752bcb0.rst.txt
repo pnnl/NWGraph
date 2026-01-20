@@ -1,0 +1,14 @@
+.. _exhale_function_graph__adaptor_8hpp_1a0dea042932802f2ea9c45647a752bcb0:
+
+Template Function nw::graph::push_back_plain_fill
+=================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_adaptor.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::push_back_plain_fill(const EdgeList&, Adjacency&, bool, size_t)
+   :project: NWgraph

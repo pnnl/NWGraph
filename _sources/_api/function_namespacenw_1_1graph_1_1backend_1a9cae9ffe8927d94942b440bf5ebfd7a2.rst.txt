@@ -1,0 +1,14 @@
+.. _exhale_function_namespacenw_1_1graph_1_1backend_1a9cae9ffe8927d94942b440bf5ebfd7a2:
+
+Function nw::graph::backend::ensure_initialized
+===============================================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::backend::ensure_initialized()
+   :project: NWgraph

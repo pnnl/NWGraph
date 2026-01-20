@@ -1,0 +1,108 @@
+
+.. _file_include_nwgraph_algorithms_page_rank.hpp:
+
+File page_rank.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_algorithms>` (``include/nwgraph/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/algorithms/page_rank.hpp``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_algorithms_page_rank.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Kevin Deweese Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cmath``
+
+- ``future``
+
+- ``iomanip``
+
+- ``iostream``
+
+- ``memory``
+
+- ``nwgraph/adaptors/edge_range.hpp`` (:ref:`file_include_nwgraph_adaptors_edge_range.hpp`)
+
+- ``nwgraph/adaptors/vertex_range.hpp`` (:ref:`file_include_nwgraph_adaptors_vertex_range.hpp`)
+
+- ``nwgraph/containers/compressed.hpp`` (:ref:`file_include_nwgraph_containers_compressed.hpp`)
+
+- ``nwgraph/edge_list.hpp`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/util/parallel_for.hpp`` (:ref:`file_include_nwgraph_util_parallel_for.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+- :ref:`namespace_nw__graph__pagerank`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_algorithms_2page__rank_8hpp_1a688296b3331b02c6e4e063ea6236021b`
+
+- :ref:`exhale_function_algorithms_2page__rank_8hpp_1ac4d54c218166652350b9dbaa4d2cf99e`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_algorithms_2page__rank_8hpp_1ac95384668f16c55b454b76aad6b3871d`
+

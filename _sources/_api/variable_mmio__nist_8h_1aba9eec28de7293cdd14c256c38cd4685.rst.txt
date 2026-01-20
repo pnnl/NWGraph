@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1aba9eec28de7293cdd14c256c38cd4685:
+
+Variable MM_PATTERN_STR
+=======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_PATTERN_STR
+   :project: NWgraph

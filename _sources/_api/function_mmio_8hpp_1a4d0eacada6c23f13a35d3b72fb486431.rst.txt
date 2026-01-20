@@ -1,0 +1,14 @@
+.. _exhale_function_mmio_8hpp_1a4d0eacada6c23f13a35d3b72fb486431:
+
+Template Function nw::graph::read_mm(std::istream&)
+===================================================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::read_mm(std::istream&)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_mmio_8hpp_1a9615bae2086252a3221f45399b8e296f:
+
+Function nw::graph::is_mm
+=========================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::is_mm(const std::string&)
+   :project: NWgraph

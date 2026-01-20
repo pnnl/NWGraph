@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1af089e501e297b43b22ff2680bf12c608:
+
+Variable MM_GENERAL_STR
+=======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_GENERAL_STR
+   :project: NWgraph

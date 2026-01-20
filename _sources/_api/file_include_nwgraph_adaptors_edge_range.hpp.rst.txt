@@ -1,0 +1,122 @@
+
+.. _file_include_nwgraph_adaptors_edge_range.hpp:
+
+File edge_range.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/edge_range.hpp``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_edge_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``nwgraph/graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/util/arrow_proxy.hpp`` (:ref:`file_include_nwgraph_util_arrow_proxy.hpp`)
+
+- ``nwgraph/util/print_types.hpp`` (:ref:`file_include_nwgraph_util_print_types.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``ranges``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``utility``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_dag_based_mis.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_jones_plassmann_coloring.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_k_truss.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_jaccard.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_jones_plassmann_coloring.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1edge__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1edge__range_1_1my__iterator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_edge__range_8hpp_1a572ebf3e8b6ef0fa1a0e87ce0f65c65d`
+
+- :ref:`exhale_function_edge__range_8hpp_1a546e53fab292eaec4bf35b089fb67eb3`
+
+- :ref:`exhale_function_edge__range_8hpp_1a6ffcc7916489ac205fee0f1997bb5f4a`
+

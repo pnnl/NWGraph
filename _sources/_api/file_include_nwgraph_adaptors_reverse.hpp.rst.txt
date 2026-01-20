@@ -1,0 +1,88 @@
+
+.. _file_include_nwgraph_adaptors_reverse.hpp:
+
+File reverse.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Range adaptor for traversing paths in reverse order. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/reverse.hpp``)
+-----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_reverse.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides a range-based interface for iterating over a shortest path from destination back to source, following predecessor pointers. Useful for reconstructing paths after running Dijkstra or BFS.
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``concepts`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1reverse__path`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1reverse__path_1_1reverse__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1reverse__path_1_1reverse__iterator_1_1end__sentinel__type`
+

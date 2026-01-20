@@ -1,0 +1,14 @@
+.. _exhale_variable_edge__list_8hpp_1a2e191732fcce2c5111a8a716dff9b576:
+
+Variable nw::graph::g_time_edge_list
+====================================
+
+- Defined in :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::g_time_edge_list
+   :project: NWgraph

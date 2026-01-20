@@ -1,0 +1,14 @@
+.. _exhale_function_configuration__model_8hpp_1af27ee7198ab321c06754b9150df82b82:
+
+Function nw::graph::standard_exponential_unlikely
+=================================================
+
+- Defined in :ref:`file_include_nwgraph_generators_configuration_model.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::standard_exponential_unlikely(bitgen_t *, uint8_t, double)
+   :project: NWgraph

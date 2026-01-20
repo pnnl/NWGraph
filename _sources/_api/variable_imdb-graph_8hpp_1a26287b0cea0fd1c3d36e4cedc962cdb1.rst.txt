@@ -1,0 +1,14 @@
+.. _exhale_variable_imdb-graph_8hpp_1a26287b0cea0fd1c3d36e4cedc962cdb1:
+
+Variable movie_actor_edge_list
+==============================
+
+- Defined in :ref:`file_include_nwgraph_graphs_imdb-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: movie_actor_edge_list
+   :project: NWgraph

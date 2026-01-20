@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1concurrent__vector:
+
+Template Class concurrent_vector
+================================
+
+- Defined in :ref:`file_include_nwgraph_util_concurrent_containers.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::concurrent_vector
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

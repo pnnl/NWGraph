@@ -1,0 +1,14 @@
+.. _exhale_function_mmio__nist_8h_1ad8204d233b87eeba15de78abae85c814:
+
+Function mm_read_banner
+=======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: mm_read_banner(FILE *, MM_typecode *)
+   :project: NWgraph

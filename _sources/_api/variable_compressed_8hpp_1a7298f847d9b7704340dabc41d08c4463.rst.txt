@@ -1,0 +1,14 @@
+.. _exhale_variable_compressed_8hpp_1a7298f847d9b7704340dabc41d08c4463:
+
+Variable nw::graph::g_time_compressed
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::g_time_compressed
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2jones__plassmann__coloring_8hpp_1a480f42aedeb688767fffaa9333b40754:
+
+Template Function nw::graph::jones_plassmann_coloring2
+======================================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_jones_plassmann_coloring.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::jones_plassmann_coloring2(Graph&, std::vector<size_t>&)
+   :project: NWgraph

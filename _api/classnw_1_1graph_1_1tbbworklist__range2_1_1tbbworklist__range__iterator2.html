@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class tbbworklist_range2::tbbworklist_range_iterator2 &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Class tbbworklist_range2::tbbworklist_range_iterator2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-tbbworklist-range2-tbbworklist-range-iterator2">
+<span id="exhale-class-classnw-1-1graph-1-1tbbworklist-range2-1-1tbbworklist-range-iterator2"></span><h1>Class tbbworklist_range2::tbbworklist_range_iterator2<a class="headerlink" href="#class-tbbworklist-range2-tbbworklist-range-iterator2" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_adaptors_worklist.hpp.html#file-include-nwgraph-adaptors-worklist-hpp"><span class="std std-ref">File worklist.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<p>This class is a nested type of <a class="reference internal" href="classnw_1_1graph_1_1tbbworklist__range2.html#exhale-class-classnw-1-1graph-1-1tbbworklist-range2"><span class="std std-ref">Template Class tbbworklist_range2</span></a>.</p>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1_1end__sentinel__type.html#exhale-class-classnw-1-1graph-1-1tbbworklist-range2-1-1tbbworklist-range-iterator2-1-1end-sentinel-type"><span class="std std-ref">Class tbbworklist_range_iterator2::end_sentinel_type</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2E">
+<span id="_CPPv3N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2E"></span><span id="_CPPv2N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2E"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tbbworklist_range_iterator2</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2E" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator227tbbworklist_range_iterator2ER18tbbworklist_range2I5Graph8Workitem5QueueE">
+<span id="_CPPv3N2nw5graph18tbbworklist_range227tbbworklist_range_iterator227tbbworklist_range_iterator2ER18tbbworklist_range2I5Graph8Workitem5QueueE"></span><span id="_CPPv2N2nw5graph18tbbworklist_range227tbbworklist_range_iterator227tbbworklist_range_iterator2ER18tbbworklist_range2I5Graph8Workitem5QueueE"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::tbbworklist_range_iterator2__tbbworklist_range2:Graph.Workitem.Queue:R"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1adc9e5e486508ad33eeb8aa583166c9f8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tbbworklist_range_iterator2</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tbbworklist_range2</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Graph</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">Workitem</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">Queue</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">range</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator227tbbworklist_range_iterator2ER18tbbworklist_range2I5Graph8Workitem5QueueE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2ppEv">
+<span id="_CPPv3N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2ppEv"></span><span id="_CPPv2N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2ppEv"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::inc-operator"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1a0aaabb8468023eee204390d575e5e91f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2E" title="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2"><span class="n"><span class="pre">tbbworklist_range_iterator2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2ppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2mlEv">
+<span id="_CPPv3N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2mlEv"></span><span id="_CPPv2N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2mlEv"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::mul-operator"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1a8b6759bd82ea5177a3a574582c023522"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator2mlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2eqERK17end_sentinel_type">
+<span id="_CPPv3NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2eqERK17end_sentinel_type"></span><span id="_CPPv2NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2eqERK17end_sentinel_type"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::eq-operator__end_sentinel_typeCRC"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1a601bd68172d651ec06460f3ce63ada84"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_typeE" title="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::end_sentinel_type"><span class="n"><span class="pre">end_sentinel_type</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2eqERK17end_sentinel_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2neERK17end_sentinel_type">
+<span id="_CPPv3NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2neERK17end_sentinel_type"></span><span id="_CPPv2NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2neERK17end_sentinel_type"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::neq-operator__end_sentinel_typeCRC"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1accf6c259447a8ec1e3bfd4d5fff91527"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_typeE" title="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::end_sentinel_type"><span class="n"><span class="pre">end_sentinel_type</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph18tbbworklist_range227tbbworklist_range_iterator2neERK17end_sentinel_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_typeE">
+<span id="_CPPv3N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_typeE"></span><span id="_CPPv2N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_typeE"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::end_sentinel_type"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1_1end__sentinel__type"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end_sentinel_type</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_typeE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_type17end_sentinel_typeEv">
+<span id="_CPPv3N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_type17end_sentinel_typeEv"></span><span id="_CPPv2N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_type17end_sentinel_typeEv"></span><span id="nw::graph::tbbworklist_range2::tbbworklist_range_iterator2::end_sentinel_type::end_sentinel_type"></span><span class="target" id="classnw_1_1graph_1_1tbbworklist__range2_1_1tbbworklist__range__iterator2_1_1end__sentinel__type_1a95eef6b9b8bcb9c499638e6b310adefa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end_sentinel_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph18tbbworklist_range227tbbworklist_range_iterator217end_sentinel_type17end_sentinel_typeEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

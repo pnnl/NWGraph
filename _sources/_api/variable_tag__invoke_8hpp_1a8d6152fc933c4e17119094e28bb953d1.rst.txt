@@ -1,0 +1,14 @@
+.. _exhale_variable_tag__invoke_8hpp_1a8d6152fc933c4e17119094e28bb953d1:
+
+Variable is_tag_invocable_v
+===========================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: is_tag_invocable_v
+   :project: NWgraph

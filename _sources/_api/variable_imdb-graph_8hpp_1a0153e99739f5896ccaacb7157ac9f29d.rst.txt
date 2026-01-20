@@ -1,0 +1,14 @@
+.. _exhale_variable_imdb-graph_8hpp_1a0153e99739f5896ccaacb7157ac9f29d:
+
+Variable actor_actor_adjacency_list
+===================================
+
+- Defined in :ref:`file_include_nwgraph_graphs_imdb-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: actor_actor_adjacency_list
+   :project: NWgraph

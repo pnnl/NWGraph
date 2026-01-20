@@ -1,0 +1,55 @@
+
+.. _program_listing_file_include_nwgraph_experimental_algorithms_jaccard.hpp:
+
+Program Listing for File jaccard.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_experimental_algorithms_jaccard.hpp>` (``include/nwgraph/experimental/algorithms/jaccard.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_EXPERIMENTAL_JACCARD_HPP
+   #define NW_GRAPH_EXPERIMENTAL_JACCARD_HPP
+   
+   #include "nwgraph/adaptors/cyclic_range_adapter.hpp"
+   #include "nwgraph/util/parallel_for.hpp"
+   #include <atomic>
+   #include <future>
+   #include <thread>
+   
+   #include "nwgraph/adaptors/edge_range.hpp"
+   #include "nwgraph/util/intersection_size.hpp"
+   #include "nwgraph/util/timer.hpp"
+   #include "nwgraph/util/util.hpp"
+   
+   #include <tuple>
+   #include <vector>
+   
+   namespace nw {
+   namespace graph {
+   
+   template <typename GraphT>
+   size_t jaccard_similarity_v1(const GraphT& A) {
+     size_t ctr   = 0;
+     auto   first = A.begin();
+     auto   last  = A.end();
+   
+     for (auto G = first; first != last; ++first) {
+       for (auto v = (*first).begin(); v != (*first).end(); ++v) {
+         auto   numer    = nw::graph::intersection_size(v(*first).end(), G[std::get<0>(*v)]);
+         auto   denom    = degree(*first) + degree(G[std::get<0>(*v)]) - numer;
+         double rat      = ((double)numer) / ((double)denom);
+         std::get<2>(*v) = rat;
+         ++ctr;
+       }
+     }
+     return ctr;
+   }
+   
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_EXPERIMENTAL_JACCARD_HPP

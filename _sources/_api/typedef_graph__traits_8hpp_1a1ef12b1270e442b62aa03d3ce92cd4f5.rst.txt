@@ -1,0 +1,14 @@
+.. _exhale_typedef_graph__traits_8hpp_1a1ef12b1270e442b62aa03d3ce92cd4f5:
+
+Typedef nw::graph::vertex_id_t
+==============================
+
+- Defined in :ref:`file_include_nwgraph_graph_traits.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::vertex_id_t
+   :project: NWgraph

@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Maximum Flow (BGL Book Chapter 8)" href="ch8_maxflow.html" />
+    <link rel="prev" title="Connected Components (BGL Book Chapter 7)" href="ch7_connected.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_loop_detection.html">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web-page-link-analysis">Web Page Link Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tarjan-s-algorithm">Tarjan’s Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutually-reachable-relation">Mutually Reachable Relation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwgraph-implementation">NWGraph Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-running-the-example">Building and Running the Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-output">Sample Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-nwgraph-features-demonstrated">Key NWGraph Features Demonstrated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+      <li class="breadcrumb-item active">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/ch7_strongly_connected.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="strongly-connected-components-and-web-page-links-bgl-book-chapter-7-3">
+<h1>Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)<a class="headerlink" href="#strongly-connected-components-and-web-page-links-bgl-book-chapter-7-3" title="Link to this heading"></a></h1>
+<p><em>Based on “The Boost Graph Library” by Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine</em></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>In a directed graph, groups of vertices that are mutually reachable are called
+<strong>strongly connected components</strong> (SCCs). A strongly connected component is a maximal
+set of vertices where every vertex is reachable from every other vertex <em>following the
+direction of edges</em>.</p>
+<p>This is different from connected components in undirected graphs, where edge direction
+is ignored.</p>
+</section>
+<section id="web-page-link-analysis">
+<h2>Web Page Link Analysis<a class="headerlink" href="#web-page-link-analysis" title="Link to this heading"></a></h2>
+<p>The World Wide Web can be naturally represented as a directed graph:</p>
+<ul class="simple">
+<li><p>Each <strong>web page</strong> is a vertex</p></li>
+<li><p>Each <strong>hyperlink</strong> from page A to page B is a directed edge</p></li>
+</ul>
+<p>Our goal is to compute the strongly connected components of this web graph. Pages that
+link to each other (directly or indirectly) form a strongly connected component.</p>
+<p>A study of 200 million Web pages found that <strong>56 million</strong> pages form one large strongly
+connected component, demonstrating that a significant portion of the web is highly
+interconnected.</p>
+</section>
+<section id="tarjan-s-algorithm">
+<h2>Tarjan’s Algorithm<a class="headerlink" href="#tarjan-s-algorithm" title="Link to this heading"></a></h2>
+<p>The BGL implements <strong>Tarjan’s algorithm</strong> for computing strongly connected components
+in linear time O(<a href="#id2"><span class="problematic" id="id3">|V|</span></a> + <a href="#id4"><span class="problematic" id="id5">|E|</span></a>). The algorithm uses a single depth-first search traversal
+and maintains two key pieces of information for each vertex:</p>
+<ol class="arabic simple">
+<li><p><strong>Discovery time</strong> (d[v]): When the vertex was first discovered</p></li>
+<li><p><strong>Low-link value</strong>: The smallest discovery time reachable from the subtree rooted at v</p></li>
+</ol>
+<p>The algorithm identifies SCC boundaries by detecting when a vertex’s low-link value
+equals its discovery time, indicating it’s the “root” of an SCC.</p>
+</section>
+<section id="mutually-reachable-relation">
+<h2>Mutually Reachable Relation<a class="headerlink" href="#mutually-reachable-relation" title="Link to this heading"></a></h2>
+<p>The mutually reachable relation for directed graphs is an equivalence relation:</p>
+<ul class="simple">
+<li><p><strong>Reflexive</strong>: Every vertex is reachable from itself</p></li>
+<li><p><strong>Symmetric</strong>: If u can reach v and v can reach u, they are mutually reachable</p></li>
+<li><p><strong>Transitive</strong>: If u↔v and v↔w, then u↔w</p></li>
+</ul>
+<p>Strongly connected components are therefore equivalence classes under the mutually
+reachable relation, and they partition the vertices of a directed graph into disjoint
+subsets.</p>
+</section>
+<section id="nwgraph-implementation">
+<h2>NWGraph Implementation<a class="headerlink" href="#nwgraph-implementation" title="Link to this heading"></a></h2>
+<p>NWGraph provides a <code class="docutils literal notranslate"><span class="pre">strong_components</span></code> function that implements Tarjan’s algorithm.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">Complete source code</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file ch7_strongly_connected.cpp</span>
+<span class="linenos">  3</span><span class="cm"> *</span>
+<span class="linenos">  4</span><span class="cm"> * @brief Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</span>
+<span class="linenos">  5</span><span class="cm"> *</span>
+<span class="linenos">  6</span><span class="cm"> * This example demonstrates Tarjan&#39;s algorithm for finding strongly connected</span>
+<span class="linenos">  7</span><span class="cm"> * components (SCCs) in a directed graph. A strongly connected component is a</span>
+<span class="linenos">  8</span><span class="cm"> * maximal set of vertices where every vertex is reachable from every other vertex.</span>
+<span class="linenos">  9</span><span class="cm"> *</span>
+<span class="linenos"> 10</span><span class="cm"> * Application: Web page analysis - groups of pages that link to each other form</span>
+<span class="linenos"> 11</span><span class="cm"> * strongly connected components. A study of 200 million web pages found that</span>
+<span class="linenos"> 12</span><span class="cm"> * 56 million pages formed one large SCC.</span>
+<span class="linenos"> 13</span><span class="cm"> *</span>
+<span class="linenos"> 14</span><span class="cm"> * Tarjan&#39;s algorithm runs in O(V + E) time using a single DFS traversal.</span>
+<span class="linenos"> 15</span><span class="cm"> *</span>
+<span class="linenos"> 16</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</span>
+<span class="linenos"> 17</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 University of Washington</span>
+<span class="linenos"> 18</span><span class="cm"> *</span>
+<span class="linenos"> 19</span><span class="cm"> * SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="linenos"> 20</span><span class="cm"> *</span>
+<span class="linenos"> 21</span><span class="cm"> * @authors</span>
+<span class="linenos"> 22</span><span class="cm"> *   Andrew Lumsdaine</span>
+<span class="linenos"> 23</span><span class="cm"> *</span>
+<span class="linenos"> 24</span><span class="cm"> */</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+<span class="linenos"> 27</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 28</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+<span class="linenos"> 29</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stack&gt;</span>
+<span class="linenos"> 30</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/adjacency.hpp&quot;</span>
+<span class="linenos"> 33</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/edge_list.hpp&quot;</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">nw</span><span class="o">::</span><span class="nn">graph</span><span class="p">;</span>
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="cm">/**</span>
+<span class="linenos"> 38</span><span class="cm"> * @brief Tarjan&#39;s algorithm for strongly connected components</span>
+<span class="linenos"> 39</span><span class="cm"> *</span>
+<span class="linenos"> 40</span><span class="cm"> * This implementation uses a single DFS traversal to find all SCCs.</span>
+<span class="linenos"> 41</span><span class="cm"> * Each vertex is assigned a component ID (0, 1, 2, ...).</span>
+<span class="linenos"> 42</span><span class="cm"> *</span>
+<span class="linenos"> 43</span><span class="cm"> * The algorithm maintains:</span>
+<span class="linenos"> 44</span><span class="cm"> * - Discovery time for each vertex</span>
+<span class="linenos"> 45</span><span class="cm"> * - Low-link value (smallest discovery time reachable)</span>
+<span class="linenos"> 46</span><span class="cm"> * - A stack of vertices in the current DFS path</span>
+<span class="linenos"> 47</span><span class="cm"> */</span>
+<span class="linenos"> 48</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Graph</span><span class="o">&gt;</span>
+<span class="linenos"> 49</span><span class="k">class</span><span class="w"> </span><span class="nc">TarjanSCC</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 50</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos"> 51</span><span class="w">  </span><span class="n">TarjanSCC</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">(</span><span class="n">g</span><span class="p">),</span><span class="w"> </span><span class="n">N</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()),</span><span class="w"> </span><span class="n">index_counter</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">num_components</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 52</span><span class="w">    </span><span class="n">index</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="n">lowlink</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="n">on_stack</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="n">component</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="linenos"> 56</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">compute</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 59</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 60</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 61</span><span class="w">        </span><span class="n">strongconnect</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="linenos"> 62</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 64</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">num_components</span><span class="p">;</span>
+<span class="linenos"> 65</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">get_components</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">component</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos"> 70</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">strongconnect</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 71</span><span class="w">    </span><span class="c1">// Set the discovery index and lowlink value</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="n">index</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">index_counter</span><span class="p">;</span>
+<span class="linenos"> 73</span><span class="w">    </span><span class="n">lowlink</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">index_counter</span><span class="p">;</span>
+<span class="linenos"> 74</span><span class="w">    </span><span class="o">++</span><span class="n">index_counter</span><span class="p">;</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="n">S</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="linenos"> 77</span><span class="w">    </span><span class="n">on_stack</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="c1">// Consider successors of v</span>
+<span class="linenos"> 80</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 81</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 82</span><span class="w">        </span><span class="c1">// Successor w has not yet been visited; recurse on it</span>
+<span class="linenos"> 83</span><span class="w">        </span><span class="n">strongconnect</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="n">lowlink</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">lowlink</span><span class="p">[</span><span class="n">v</span><span class="p">],</span><span class="w"> </span><span class="n">lowlink</span><span class="p">[</span><span class="n">w</span><span class="p">]);</span>
+<span class="linenos"> 85</span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">on_stack</span><span class="p">[</span><span class="n">w</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 86</span><span class="w">        </span><span class="c1">// Successor w is on the stack and hence in the current SCC</span>
+<span class="linenos"> 87</span><span class="w">        </span><span class="n">lowlink</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">lowlink</span><span class="p">[</span><span class="n">v</span><span class="p">],</span><span class="w"> </span><span class="n">index</span><span class="p">[</span><span class="n">w</span><span class="p">]);</span>
+<span class="linenos"> 88</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="w">    </span><span class="c1">// If v is a root node, pop the stack and generate an SCC</span>
+<span class="linenos"> 92</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lowlink</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">index</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 93</span><span class="w">      </span><span class="c1">// Start a new strongly connected component</span>
+<span class="linenos"> 94</span><span class="w">      </span><span class="kt">size_t</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="linenos"> 95</span><span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 96</span><span class="w">        </span><span class="n">w</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+<span class="linenos"> 97</span><span class="w">        </span><span class="n">S</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="linenos"> 98</span><span class="w">        </span><span class="n">on_stack</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos"> 99</span><span class="w">        </span><span class="n">component</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num_components</span><span class="p">;</span>
+<span class="linenos">100</span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">w</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
+<span class="linenos">101</span><span class="w">      </span><span class="o">++</span><span class="n">num_components</span><span class="p">;</span>
+<span class="linenos">102</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">103</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">G</span><span class="p">;</span>
+<span class="linenos">106</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
+<span class="linenos">107</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">index_counter</span><span class="p">;</span>
+<span class="linenos">108</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">num_components</span><span class="p">;</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">index</span><span class="p">;</span><span class="w">     </span><span class="c1">// Discovery time</span>
+<span class="linenos">111</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lowlink</span><span class="p">;</span><span class="w">   </span><span class="c1">// Lowest reachable discovery time</span>
+<span class="linenos">112</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">on_stack</span><span class="p">;</span>
+<span class="linenos">113</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">component</span><span class="p">;</span>
+<span class="linenos">114</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">S</span><span class="p">;</span>
+<span class="linenos">115</span><span class="p">};</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="cm">/**</span>
+<span class="linenos">118</span><span class="cm"> * @brief Convenience function to compute strongly connected components</span>
+<span class="linenos">119</span><span class="cm"> */</span>
+<span class="linenos">120</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Graph</span><span class="o">&gt;</span>
+<span class="linenos">121</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">strong_components</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">G</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">122</span><span class="w">  </span><span class="n">TarjanSCC</span><span class="o">&lt;</span><span class="n">Graph</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tarjan</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+<span class="linenos">123</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">num_comp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tarjan</span><span class="p">.</span><span class="n">compute</span><span class="p">();</span>
+<span class="linenos">124</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">num_comp</span><span class="p">,</span><span class="w"> </span><span class="n">tarjan</span><span class="p">.</span><span class="n">get_components</span><span class="p">()};</span>
+<span class="linenos">125</span><span class="p">}</span>
+<span class="linenos">126</span>
+<span class="linenos">127</span><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">128</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Strongly Connected Components ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">129</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Based on BGL Book Chapter 7.3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span><span class="w">  </span><span class="c1">// Web pages graph from the BGL book (Figure 7.3)</span>
+<span class="linenos">132</span><span class="w">  </span><span class="c1">// Vertices represent web sites:</span>
+<span class="linenos">133</span><span class="w">  </span><span class="c1">// 0: www.boost.org</span>
+<span class="linenos">134</span><span class="w">  </span><span class="c1">// 1: anubis.dkuug.dk</span>
+<span class="linenos">135</span><span class="w">  </span><span class="c1">// 2: sourceforge.net</span>
+<span class="linenos">136</span><span class="w">  </span><span class="c1">// 3: www.lsc.nd.edu</span>
+<span class="linenos">137</span><span class="w">  </span><span class="c1">// 4: www.hp.com</span>
+<span class="linenos">138</span><span class="w">  </span><span class="c1">// 5: www.lam-mpi.org</span>
+<span class="linenos">139</span><span class="w">  </span><span class="c1">// 6: www.yahoogroups.com</span>
+<span class="linenos">140</span><span class="w">  </span><span class="c1">// 7: weather.yahoo.com</span>
+<span class="linenos">141</span><span class="w">  </span><span class="c1">// 8: nytimes.com</span>
+<span class="linenos">142</span><span class="w">  </span><span class="c1">// 9: www.boston.com</span>
+<span class="linenos">143</span>
+<span class="linenos">144</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">site_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;www.boost.org&quot;</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;anubis.dkuug.dk&quot;</span><span class="p">,</span><span class="w">    </span><span class="s">&quot;sourceforge.net&quot;</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;www.lsc.nd.edu&quot;</span><span class="p">,</span>
+<span class="linenos">145</span><span class="w">                                         </span><span class="s">&quot;www.hp.com&quot;</span><span class="p">,</span><span class="w">     </span><span class="s">&quot;www.lam-mpi.org&quot;</span><span class="p">,</span><span class="w">    </span><span class="s">&quot;www.yahoogroups.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;weather.yahoo.com&quot;</span><span class="p">,</span>
+<span class="linenos">146</span><span class="w">                                         </span><span class="s">&quot;nytimes.com&quot;</span><span class="p">,</span><span class="w">    </span><span class="s">&quot;www.boston.com&quot;</span><span class="p">};</span>
+<span class="linenos">147</span>
+<span class="linenos">148</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">num_sites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">site_names</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="linenos">149</span>
+<span class="linenos">150</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Web site link graph (directed):&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">151</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num_sites</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; web sites connected by URL links&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">152</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span><span class="w">  </span><span class="c1">// Create directed graph of URL links</span>
+<span class="linenos">155</span><span class="w">  </span><span class="c1">// Links based on the BGL book example structure</span>
+<span class="linenos">156</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges</span><span class="p">(</span><span class="n">num_sites</span><span class="p">);</span>
+<span class="linenos">157</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">158</span>
+<span class="linenos">159</span><span class="w">  </span><span class="c1">// Create a structure with some strongly connected components</span>
+<span class="linenos">160</span><span class="w">  </span><span class="c1">// Component 1: boost.org &lt;-&gt; sourceforge.net &lt;-&gt; lsc.nd.edu (mutual links)</span>
+<span class="linenos">161</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">  </span><span class="c1">// boost.org -&gt; sourceforge.net</span>
+<span class="linenos">162</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// sourceforge.net -&gt; boost.org</span>
+<span class="linenos">163</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// sourceforge.net -&gt; lsc.nd.edu</span>
+<span class="linenos">164</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// lsc.nd.edu -&gt; boost.org</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span><span class="w">  </span><span class="c1">// Component 2: anubis.dkuug.dk (single vertex)</span>
+<span class="linenos">167</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// boost.org -&gt; anubis.dkuug.dk (one-way)</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span><span class="w">  </span><span class="c1">// Component 3: hp.com &lt;-&gt; lam-mpi.org (mutual links)</span>
+<span class="linenos">170</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">  </span><span class="c1">// hp.com -&gt; lam-mpi.org</span>
+<span class="linenos">171</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">  </span><span class="c1">// lam-mpi.org -&gt; hp.com</span>
+<span class="linenos">172</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">  </span><span class="c1">// lsc.nd.edu -&gt; hp.com (one-way into component)</span>
+<span class="linenos">173</span>
+<span class="linenos">174</span><span class="w">  </span><span class="c1">// Component 4: yahoogroups.com &lt;-&gt; weather.yahoo.com (mutual links)</span>
+<span class="linenos">175</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w">  </span><span class="c1">// yahoogroups.com -&gt; weather.yahoo.com</span>
+<span class="linenos">176</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w">  </span><span class="c1">// weather.yahoo.com -&gt; yahoogroups.com</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span><span class="w">  </span><span class="c1">// Component 5: nytimes.com &lt;-&gt; boston.com (mutual links)</span>
+<span class="linenos">179</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w">  </span><span class="c1">// nytimes.com -&gt; boston.com</span>
+<span class="linenos">180</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span><span class="w">  </span><span class="c1">// boston.com -&gt; nytimes.com</span>
+<span class="linenos">181</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span><span class="w">  </span><span class="c1">// weather.yahoo.com -&gt; nytimes.com (one-way)</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span><span class="w">  </span><span class="n">edges</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">184</span>
+<span class="linenos">185</span><span class="w">  </span><span class="c1">// Build adjacency representation</span>
+<span class="linenos">186</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="n">G</span><span class="p">(</span><span class="n">edges</span><span class="p">);</span>
+<span class="linenos">187</span>
+<span class="linenos">188</span><span class="w">  </span><span class="c1">// Find strongly connected components</span>
+<span class="linenos">189</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">num_components</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strong_components</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+<span class="linenos">190</span>
+<span class="linenos">191</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Found &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num_components</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; strongly connected components:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">192</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">193</span>
+<span class="linenos">194</span><span class="w">  </span><span class="c1">// Group sites by component</span>
+<span class="linenos">195</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">comp_members</span><span class="p">;</span>
+<span class="linenos">196</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_sites</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">197</span><span class="w">    </span><span class="n">comp_members</span><span class="p">[</span><span class="n">component</span><span class="p">[</span><span class="n">v</span><span class="p">]].</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="linenos">198</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">199</span>
+<span class="linenos">200</span><span class="w">  </span><span class="c1">// Display components</span>
+<span class="linenos">201</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">comp_id</span><span class="p">,</span><span class="w"> </span><span class="n">members</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">comp_members</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">202</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Component &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">comp_id</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">members</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; site&quot;</span>
+<span class="linenos">203</span><span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">members</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;):&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">204</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">members</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">205</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">site_names</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">206</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">207</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">208</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">209</span>
+<span class="linenos">210</span><span class="w">  </span><span class="c1">// Show vertex-to-component mapping</span>
+<span class="linenos">211</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Vertex to component mapping:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">212</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_sites</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">213</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">site_names</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -&gt; Component &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">component</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">214</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">215</span>
+<span class="linenos">216</span><span class="w">  </span><span class="c1">// Example: Simple directed graph with clear SCC structure</span>
+<span class="linenos">217</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">218</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Simple Example ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">219</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">220</span>
+<span class="linenos">221</span><span class="w">  </span><span class="c1">// Graph with 8 vertices forming 3 SCCs:</span>
+<span class="linenos">222</span><span class="w">  </span><span class="c1">// SCC1: {0, 1, 2} - cycle</span>
+<span class="linenos">223</span><span class="w">  </span><span class="c1">// SCC2: {3, 4, 5, 6} - cycle</span>
+<span class="linenos">224</span><span class="w">  </span><span class="c1">// SCC3: {7} - single vertex</span>
+<span class="linenos">225</span><span class="w">  </span><span class="c1">// Plus edges: 2-&gt;3 (connects SCC1 to SCC2), 6-&gt;7 (connects SCC2 to SCC3)</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges2</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="linenos">228</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">229</span>
+<span class="linenos">230</span><span class="w">  </span><span class="c1">// SCC1: 0 -&gt; 1 -&gt; 2 -&gt; 0</span>
+<span class="linenos">231</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">232</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">233</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">234</span>
+<span class="linenos">235</span><span class="w">  </span><span class="c1">// SCC2: 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 3</span>
+<span class="linenos">236</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos">237</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos">238</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="linenos">239</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">240</span>
+<span class="linenos">241</span><span class="w">  </span><span class="c1">// Cross-SCC edges (one-way)</span>
+<span class="linenos">242</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// SCC1 -&gt; SCC2</span>
+<span class="linenos">243</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w">  </span><span class="c1">// SCC2 -&gt; SCC3</span>
+<span class="linenos">244</span>
+<span class="linenos">245</span><span class="w">  </span><span class="n">edges2</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">246</span>
+<span class="linenos">247</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="n">G2</span><span class="p">(</span><span class="n">edges2</span><span class="p">);</span>
+<span class="linenos">248</span>
+<span class="linenos">249</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Graph structure:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">250</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  SCC1: 0 -&gt; 1 -&gt; 2 -&gt; 0 (cycle)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">251</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  SCC2: 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 3 (cycle)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">252</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  SCC3: 7 (isolated sink)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">253</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Cross edges: 2-&gt;3, 6-&gt;7&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">254</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">255</span>
+<span class="linenos">256</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">num_comp2</span><span class="p">,</span><span class="w"> </span><span class="n">comp2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strong_components</span><span class="p">(</span><span class="n">G2</span><span class="p">);</span>
+<span class="linenos">257</span>
+<span class="linenos">258</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Found &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num_comp2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; strongly connected components&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">259</span>
+<span class="linenos">260</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">members2</span><span class="p">;</span>
+<span class="linenos">261</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">262</span><span class="w">    </span><span class="n">members2</span><span class="p">[</span><span class="n">comp2</span><span class="p">[</span><span class="n">v</span><span class="p">]].</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="linenos">263</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">264</span>
+<span class="linenos">265</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">comp_id</span><span class="p">,</span><span class="w"> </span><span class="n">members</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">members2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">266</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  Component &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">comp_id</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: {&quot;</span><span class="p">;</span>
+<span class="linenos">267</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">members</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">268</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">;</span>
+<span class="linenos">269</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">members</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="linenos">270</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">271</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">272</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">273</span>
+<span class="linenos">274</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">275</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Note: Tarjan&#39;s algorithm runs in O(V + E) time using DFS.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">276</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;SCCs form a DAG when contracted - useful for dependency analysis.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">277</span>
+<span class="linenos">278</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">279</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="building-and-running-the-example">
+<h2>Building and Running the Example<a class="headerlink" href="#building-and-running-the-example" title="Link to this heading"></a></h2>
+<p>First, configure and build the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>ch7_strongly_connected
+</pre></div>
+</div>
+<p>Then run the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./examples/bgl-book/ch7_strongly_connected
+</pre></div>
+</div>
+<p>The program uses a sample graph of web pages connected by URL links and identifies the
+strongly connected components.</p>
+</section>
+<section id="sample-output">
+<h2>Sample Output<a class="headerlink" href="#sample-output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Web Page Links - Strongly Connected Components
+
+Found 6 strongly connected components
+
+SCC 0: www.boost.org, sourceforge.net (mutually linked open source sites)
+SCC 1: www.lsc.nd.edu, www.lam-mpi.org (HPC-related sites)
+SCC 2: anubis.dkuug.dk
+SCC 3: www.hp.com
+SCC 4: www.yahoogroups.com, weather.yahoo.com (Yahoo properties)
+SCC 5: nytimes.com, www.boston.com (news sites)
+</pre></div>
+</div>
+</section>
+<section id="key-nwgraph-features-demonstrated">
+<h2>Key NWGraph Features Demonstrated<a class="headerlink" href="#key-nwgraph-features-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Directed graphs</strong>: Web links are naturally directional</p></li>
+<li><p><strong>Tarjan’s algorithm</strong>: Linear-time SCC computation</p></li>
+<li><p><strong>DFS with low-link values</strong>: Tracking reachability information</p></li>
+<li><p><strong>Component labeling</strong>: Mapping vertices to their SCC</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cormen, Leiserson, Rivest, and Stein. <em>Introduction to Algorithms</em>, 4th Edition (2022),
+<strong>Chapter 20.5: Strongly Connected Components</strong></p></li>
+<li><p>Siek, Lee, and Lumsdaine. <em>The Boost Graph Library</em> (2002), Chapter 7.3</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ch7_connected.html"><span class="doc">Connected Components (BGL Book Chapter 7)</span></a> - Connected components for undirected graphs</p></li>
+<li><p><a class="reference internal" href="ch4_loop_detection.html"><span class="doc">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</span></a> - DFS for cycle detection</p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples overview</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch7_connected.html" class="btn btn-neutral float-left" title="Connected Components (BGL Book Chapter 7)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch8_maxflow.html" class="btn btn-neutral float-right" title="Maximum Flow (BGL Book Chapter 8)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

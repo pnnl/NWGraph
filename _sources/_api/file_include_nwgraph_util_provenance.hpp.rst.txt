@@ -1,0 +1,84 @@
+
+.. _file_include_nwgraph_util_provenance.hpp:
+
+File provenance.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/provenance.hpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_provenance.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Kevin Deweese 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``fstream``
+
+- ``iostream``
+
+- ``string``
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1provenance`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_provenance_8hpp_1ae2f9c3d89a0f718b79b7a72e8dfdcd5a`
+
+- :ref:`exhale_function_provenance_8hpp_1aceeea651a22ccdbe98fc2952ea1ed149`
+
+- :ref:`exhale_function_provenance_8hpp_1a92bf849117b5a3915116eec0ed606eef`
+

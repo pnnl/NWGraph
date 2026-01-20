@@ -1,0 +1,30 @@
+.. _exhale_class_classnw_1_1graph_1_1unipartite__graph__base:
+
+Class unipartite_graph_base
+===========================
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public nw::graph::graph_adaptor< T >`` (:ref:`exhale_class_classnw_1_1graph_1_1graph__adaptor`)
+- ``public nw::graph::index_adj_flist< idx, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__adj__flist`)
+- ``public nw::graph::index_adj_list< idx, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__adj__list`)
+- ``public nw::graph::index_adjacency< idx, index_type, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__adjacency`)
+- ``public nw::graph::index_vov< idx, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__vov`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::unipartite_graph_base
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

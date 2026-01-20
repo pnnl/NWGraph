@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a3d23edf363e9b107ba8c516a36dc652f:
+
+Template Function nw::graph::degrees(const Graph&, ExecutionPolicy&&)
+=====================================================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::degrees(const Graph&, ExecutionPolicy&&)
+   :project: NWgraph

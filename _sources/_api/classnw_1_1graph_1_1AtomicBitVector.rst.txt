@@ -1,0 +1,28 @@
+.. _exhale_class_classnw_1_1graph_1_1AtomicBitVector:
+
+Template Class AtomicBitVector
+==============================
+
+- Defined in :ref:`file_include_nwgraph_util_AtomicBitVector.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator`
+- :ref:`exhale_class_classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__range`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::AtomicBitVector
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

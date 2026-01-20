@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class graph_adaptor &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class graph_adaptor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1graph__adaptor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-graph-adaptor">
+<span id="exhale-class-classnw-1-1graph-1-1graph-adaptor"></span><h1>Template Class graph_adaptor<a class="headerlink" href="#template-class-graph-adaptor" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_graph_adaptor.hpp.html#file-include-nwgraph-graph-adaptor-hpp"><span class="std std-ref">File graph_adaptor.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading"></a></h2>
+<section id="base-types">
+<h3>Base Types<a class="headerlink" href="#base-types" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">nw::graph::unipartite_graph_base</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">T</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph13graph_adaptorE">
+<span id="_CPPv3I0EN2nw5graph13graph_adaptorE"></span><span id="_CPPv2I0EN2nw5graph13graph_adaptorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1graph__adaptor"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">graph_adaptor</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">nw</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classnw_1_1graph_1_1unipartite__graph__base.html#_CPPv4N2nw5graph21unipartite_graph_baseE" title="nw::graph::unipartite_graph_base"><span class="n"><span class="pre">unipartite_graph_base</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph13graph_adaptorE" title="nw::graph::graph_adaptor::T"><span class="n"><span class="pre">T</span></span></a><a class="headerlink" href="#_CPPv4I0EN2nw5graph13graph_adaptorE" title="Link to this definition"></a><br /></dt>
+<dd><p>Adaptor class that wraps an adjacency list to provide graph operations. </p>
+<p><a class="reference internal" href="#classnw_1_1graph_1_1graph__adaptor"><span class="std std-ref">graph_adaptor</span></a> provides a uniform interface for building and querying graphs backed by different container types. It supports dynamic edge insertion via push_back and push_front operations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The underlying type T must satisfy either min_idx_adjacency_list or idx_adjacency_list concepts. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The underlying adjacency list type (must satisfy min_idx_adjacency_list or idx_adjacency_list).</p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph13graph_adaptor13graph_adaptorE6size_t">
+<span id="_CPPv3N2nw5graph13graph_adaptor13graph_adaptorE6size_t"></span><span id="_CPPv2N2nw5graph13graph_adaptor13graph_adaptorE6size_t"></span><span id="nw::graph::graph_adaptor::graph_adaptor__s"></span><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1a8fcd08f8729ea5856d34df3c49829fc8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">graph_adaptor</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">N</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph13graph_adaptor13graph_adaptorE6size_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct a graph adaptor with N vertices. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>N</strong> – The number of vertices (default: 0). </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph13graph_adaptor18open_for_push_backEv">
+<span id="_CPPv3N2nw5graph13graph_adaptor18open_for_push_backEv"></span><span id="_CPPv2N2nw5graph13graph_adaptor18open_for_push_backEv"></span><span id="nw::graph::graph_adaptor::open_for_push_back"></span><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1a56c845a56dcb6798f02432d8dab6d29f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">open_for_push_back</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph13graph_adaptor18open_for_push_backEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Open the graph for edge insertion via push_back. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph13graph_adaptor19close_for_push_backEv">
+<span id="_CPPv3N2nw5graph13graph_adaptor19close_for_push_backEv"></span><span id="_CPPv2N2nw5graph13graph_adaptor19close_for_push_backEv"></span><span id="nw::graph::graph_adaptor::close_for_push_back"></span><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1ad550c0178a383523c9de73d9dd6597df"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">close_for_push_back</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph13graph_adaptor19close_for_push_backEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Close the graph after edge insertion. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN2nw5graph13graph_adaptor9push_backEv6size_tDp10Attributes">
+<span id="_CPPv3IDpEN2nw5graph13graph_adaptor9push_backE6size_tDp10Attributes"></span><span id="_CPPv2IDpEN2nw5graph13graph_adaptor9push_backE6size_tDp10Attributes"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Attributes</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1ad567e04e59e91eae77289fdd3dbfa06b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">push_back</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span>, <a class="reference internal" href="#_CPPv4IDpEN2nw5graph13graph_adaptor9push_backEv6size_tDp10Attributes" title="nw::graph::graph_adaptor::push_back::Attributes"><span class="n"><span class="pre">Attributes</span></span></a><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">attrs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4IDpEN2nw5graph13graph_adaptor9push_backEv6size_tDp10Attributes" title="Link to this definition"></a><br /></dt>
+<dd><p>Add an edge to vertex i with the given attributes. </p>
+<p>
+If vertex i doesn’t exist, the graph is automatically expanded. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Attributes</strong> – Types of edge attributes. </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>i</strong> – Source vertex index. </p></li>
+<li><p><strong>attrs</strong> – Edge attributes (target vertex, weights, etc.).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN2nw5graph13graph_adaptor10push_frontEv6size_tDp10Attributes">
+<span id="_CPPv3IDpEN2nw5graph13graph_adaptor10push_frontE6size_tDp10Attributes"></span><span id="_CPPv2IDpEN2nw5graph13graph_adaptor10push_frontE6size_tDp10Attributes"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Attributes</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1a3fc5a74756376d1236370c3ee1c4e454"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">push_front</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span>, <a class="reference internal" href="#_CPPv4IDpEN2nw5graph13graph_adaptor10push_frontEv6size_tDp10Attributes" title="nw::graph::graph_adaptor::push_front::Attributes"><span class="n"><span class="pre">Attributes</span></span></a><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">attrs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4IDpEN2nw5graph13graph_adaptor10push_frontEv6size_tDp10Attributes" title="Link to this definition"></a><br /></dt>
+<dd><p>Add an edge to the front of vertex i’s adjacency list. </p>
+<p>
+If vertex i doesn’t exist, the graph is automatically expanded. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Attributes</strong> – Types of edge attributes. </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>i</strong> – Source vertex index. </p></li>
+<li><p><strong>attrs</strong> – Edge attributes (target vertex, weights, etc.).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph13graph_adaptor4sizeEv">
+<span id="_CPPv3NK2nw5graph13graph_adaptor4sizeEv"></span><span id="_CPPv2NK2nw5graph13graph_adaptor4sizeEv"></span><span id="nw::graph::graph_adaptor::sizeC"></span><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1a83e485317978157442eded3721d49899"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph13graph_adaptor4sizeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Return the number of vertices in the graph. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph13graph_adaptor12num_verticesEv">
+<span id="_CPPv3NK2nw5graph13graph_adaptor12num_verticesEv"></span><span id="_CPPv2NK2nw5graph13graph_adaptor12num_verticesEv"></span><span id="nw::graph::graph_adaptor::num_verticesC"></span><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1a7f33dbb2f9514b53a76101db20b5cb9b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">num_vertices</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph13graph_adaptor12num_verticesEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Return the number of vertices in the graph. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph13graph_adaptor10num_edgeesEv">
+<span id="_CPPv3NK2nw5graph13graph_adaptor10num_edgeesEv"></span><span id="_CPPv2NK2nw5graph13graph_adaptor10num_edgeesEv"></span><span id="nw::graph::graph_adaptor::num_edgeesC"></span><span class="target" id="classnw_1_1graph_1_1graph__adaptor_1a525ef3359f660ffaf6d98f8e16701f92"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">num_edgees</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph13graph_adaptor10num_edgeesEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Return the number of edges in the graph. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

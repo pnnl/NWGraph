@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1a38a76e271c9b5be8c073b8d9dd24ad6f:
+
+Variable MM_DENSE_STR
+=====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_DENSE_STR
+   :project: NWgraph

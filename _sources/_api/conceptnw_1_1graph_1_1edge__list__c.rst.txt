@@ -1,0 +1,14 @@
+.. _exhale_concept_conceptnw_1_1graph_1_1edge__list__c:
+
+Concept edge_list_c
+===================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Concept Documentation
+---------------------
+
+
+.. doxygenconcept:: nw::graph::edge_list_c
+   :project: NWgraph

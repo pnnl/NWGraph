@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class AtomicBitVector::non_zero_iterator &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Class AtomicBitVector::non_zero_iterator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-atomicbitvector-non-zero-iterator">
+<span id="exhale-class-classnw-1-1graph-1-1atomicbitvector-1-1non-zero-iterator"></span><h1>Class AtomicBitVector::non_zero_iterator<a class="headerlink" href="#class-atomicbitvector-non-zero-iterator" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_util_AtomicBitVector.hpp.html#file-include-nwgraph-util-atomicbitvector-hpp"><span class="std std-ref">File AtomicBitVector.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<p>This class is a nested type of <a class="reference internal" href="classnw_1_1graph_1_1AtomicBitVector.html#exhale-class-classnw-1-1graph-1-1atomicbitvector"><span class="std std-ref">Template Class AtomicBitVector</span></a>.</p>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratorE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratorE"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_iterator</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1ab9a2bce88966308861165c1236783ace"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator10value_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a576c053a6eeee28d27a878a4646a803c"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">difference_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ptrdiff_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator15difference_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1aa68829b0b67de5e4df42e0e226aa6430"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1af977199f20e0338e4c8729b4086d7693"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pointer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator7pointerE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a9f9004eefaa49b100c94b4d8ff8b2dd5"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator_category</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">input_iterator_tag</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17iterator_categoryE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::non_zero_iterator__WordP.std::s.std::s"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a96003c7bad5afe0963010cff868c680c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">non_zero_iterator</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Word</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">word</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator17non_zero_iteratorEP4WordNSt6size_tENSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratormlEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratormlEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratormlEv"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::mul-operator"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a64fecba8822b57a653776f1feef4a53e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iterator9referenceE" title="nw::graph::AtomicBitVector::non_zero_iterator::reference"><span class="n"><span class="pre">reference</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEv">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratorppEv"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratorppEv"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::inc-operator"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1af42ef5cd1ddbb2f220a546eb6a125fb3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEi">
+<span id="_CPPv3N2nw5graph15AtomicBitVector17non_zero_iteratorppEi"></span><span id="_CPPv2N2nw5graph15AtomicBitVector17non_zero_iteratorppEi"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::inc-operator__i"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a8bb6ec5e5076e07f0d81af40e7fd7ad4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorppEi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::neq-operator__non_zero_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1a621ce91250ac5af646f9f78de13ac1e6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratorneERK17non_zero_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator">
+<span id="_CPPv3NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator"></span><span id="_CPPv2NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator"></span><span id="nw::graph::AtomicBitVector::non_zero_iterator::eq-operator__non_zero_iteratorCRC"></span><span class="target" id="classnw_1_1graph_1_1AtomicBitVector_1_1non__zero__iterator_1aeb7a84ade9bc786e32486a73cf8df951"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15AtomicBitVector17non_zero_iteratorE" title="nw::graph::AtomicBitVector::non_zero_iterator"><span class="n"><span class="pre">non_zero_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15AtomicBitVector17non_zero_iteratoreqERK17non_zero_iterator" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

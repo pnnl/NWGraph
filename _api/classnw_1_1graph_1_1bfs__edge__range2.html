@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class bfs_edge_range2 &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class bfs_edge_range2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1bfs__edge__range2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-bfs-edge-range2">
+<span id="exhale-class-classnw-1-1graph-1-1bfs-edge-range2"></span><h1>Template Class bfs_edge_range2<a class="headerlink" href="#template-class-bfs-edge-range2" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_adaptors_bfs_edge_range.hpp.html#file-include-nwgraph-adaptors-bfs-edge-range-hpp"><span class="std std-ref">File bfs_edge_range.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading"></a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator.html#exhale-class-classnw-1-1graph-1-1bfs-edge-range2-1-1bfs-edge-range2-iterator"><span class="std std-ref">Class bfs_edge_range2::bfs_edge_range2_iterator</span></a></p></li>
+<li><p><a class="reference internal" href="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1_1end__sentinel__type.html#exhale-class-classnw-1-1graph-1-1bfs-edge-range2-1-1bfs-edge-range2-iterator-1-1end-sentinel-type"><span class="std std-ref">Class bfs_edge_range2_iterator::end_sentinel_type</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I00EN2nw5graph15bfs_edge_range2E">
+<span id="_CPPv3I00EN2nw5graph15bfs_edge_range2E"></span><span id="_CPPv2I00EN2nw5graph15bfs_edge_range2E"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Graph</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PriorityQueue</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bfs_edge_range2</span></span></span><a class="headerlink" href="#_CPPv4I00EN2nw5graph15bfs_edge_range2E" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range28iteratorE">
+<span id="_CPPv3N2nw5graph15bfs_edge_range28iteratorE"></span><span id="_CPPv2N2nw5graph15bfs_edge_range28iteratorE"></span><span id="nw::graph::bfs_edge_range2::iterator"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1ac714a6ad68e91c8edb4f321999af04ad"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorE" title="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator"><span class="n"><span class="pre">bfs_edge_range2_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range28iteratorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ER5GraphR13PriorityQueueNSt5tupleI6size_t6size_tEE">
+<span id="_CPPv3N2nw5graph15bfs_edge_range215bfs_edge_range2ER5GraphR13PriorityQueueNSt5tupleI6size_t6size_tEE"></span><span id="_CPPv2N2nw5graph15bfs_edge_range215bfs_edge_range2ER5GraphR13PriorityQueueNSt5tupleI6size_t6size_tEE"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2__GraphR.PriorityQueueR.std::tuple:s.s:"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1a237eb66b1876a95b635397cb822060f0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bfs_edge_range2</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00EN2nw5graph15bfs_edge_range2E" title="nw::graph::bfs_edge_range2::Graph"><span class="n"><span class="pre">Graph</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">graph</span></span>, <a class="reference internal" href="#_CPPv4I00EN2nw5graph15bfs_edge_range2E" title="nw::graph::bfs_edge_range2::PriorityQueue"><span class="n"><span class="pre">PriorityQueue</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Q</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seed</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ER5GraphR13PriorityQueueNSt5tupleI6size_t6size_tEE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ERK15bfs_edge_range2">
+<span id="_CPPv3N2nw5graph15bfs_edge_range215bfs_edge_range2ERK15bfs_edge_range2"></span><span id="_CPPv2N2nw5graph15bfs_edge_range215bfs_edge_range2ERK15bfs_edge_range2"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2__bfs_edge_range2CR"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1a2f6ea2386cfd405dad5870639ab0ef8c"></span><span class="sig-name descname"><span class="n"><span class="pre">bfs_edge_range2</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ERK15bfs_edge_range2" title="nw::graph::bfs_edge_range2::bfs_edge_range2"><span class="n"><span class="pre">bfs_edge_range2</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ERK15bfs_edge_range2" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ERRK15bfs_edge_range2">
+<span id="_CPPv3N2nw5graph15bfs_edge_range215bfs_edge_range2ERRK15bfs_edge_range2"></span><span id="_CPPv2N2nw5graph15bfs_edge_range215bfs_edge_range2ERRK15bfs_edge_range2"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2__bfs_edge_range2CRR"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1a7c847b721d1e66d62737d9ace68e9740"></span><span class="sig-name descname"><span class="n"><span class="pre">bfs_edge_range2</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ERRK15bfs_edge_range2" title="nw::graph::bfs_edge_range2::bfs_edge_range2"><span class="n"><span class="pre">bfs_edge_range2</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range215bfs_edge_range2ERRK15bfs_edge_range2" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range25emptyEv">
+<span id="_CPPv3N2nw5graph15bfs_edge_range25emptyEv"></span><span id="_CPPv2N2nw5graph15bfs_edge_range25emptyEv"></span><span id="nw::graph::bfs_edge_range2::empty"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1abf40d28f92ca88d74a2a94aafefb9c56"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range25emptyEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range25beginEv">
+<span id="_CPPv3N2nw5graph15bfs_edge_range25beginEv"></span><span id="_CPPv2N2nw5graph15bfs_edge_range25beginEv"></span><span id="nw::graph::bfs_edge_range2::begin"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1a13dc1c8a9f48a6181ddb0144e3b400d9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range25beginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range23endEv">
+<span id="_CPPv3N2nw5graph15bfs_edge_range23endEv"></span><span id="_CPPv2N2nw5graph15bfs_edge_range23endEv"></span><span id="nw::graph::bfs_edge_range2::end"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1a9a37c26c98da34cd1620fb5ecc8d1b65"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range23endEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorE">
+<span id="_CPPv3N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorE"></span><span id="_CPPv2N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorE"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bfs_edge_range2_iterator</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator24bfs_edge_range2_iteratorER15bfs_edge_range2I5Graph13PriorityQueueE">
+<span id="_CPPv3N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator24bfs_edge_range2_iteratorER15bfs_edge_range2I5Graph13PriorityQueueE"></span><span id="_CPPv2N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator24bfs_edge_range2_iteratorER15bfs_edge_range2I5Graph13PriorityQueueE"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::bfs_edge_range2_iterator__bfs_edge_range2:Graph.PriorityQueue:R"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1a6c7b02c85025a64fa5e0936700477038"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bfs_edge_range2_iterator</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00EN2nw5graph15bfs_edge_range2E" title="nw::graph::bfs_edge_range2"><span class="n"><span class="pre">bfs_edge_range2</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00EN2nw5graph15bfs_edge_range2E" title="nw::graph::bfs_edge_range2::Graph"><span class="n"><span class="pre">Graph</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EN2nw5graph15bfs_edge_range2E" title="nw::graph::bfs_edge_range2::PriorityQueue"><span class="n"><span class="pre">PriorityQueue</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">range</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator24bfs_edge_range2_iteratorER15bfs_edge_range2I5Graph13PriorityQueueE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorppEv">
+<span id="_CPPv3N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorppEv"></span><span id="_CPPv2N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorppEv"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::inc-operator"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1ae552575d6f2c74a5a85d6e6bac260897"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorE" title="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator"><span class="n"><span class="pre">bfs_edge_range2_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorppEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratormlEv">
+<span id="_CPPv3N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratormlEv"></span><span id="_CPPv2N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratormlEv"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::mul-operator"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1a687d237b344f808c98969a5163aa6bc8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iteratormlEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratoreqERK17end_sentinel_type">
+<span id="_CPPv3NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratoreqERK17end_sentinel_type"></span><span id="_CPPv2NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratoreqERK17end_sentinel_type"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::eq-operator__end_sentinel_typeCRC"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1a3b06ad77f5413aae40d8974451ce0c4b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_typeE" title="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::end_sentinel_type"><span class="n"><span class="pre">end_sentinel_type</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratoreqERK17end_sentinel_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorneERK17end_sentinel_type">
+<span id="_CPPv3NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorneERK17end_sentinel_type"></span><span id="_CPPv2NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorneERK17end_sentinel_type"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::neq-operator__end_sentinel_typeCRC"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1a10d2d0fb163f855db18ec4bb4f3ac18d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_typeE" title="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::end_sentinel_type"><span class="n"><span class="pre">end_sentinel_type</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph15bfs_edge_range224bfs_edge_range2_iteratorneERK17end_sentinel_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_typeE">
+<span id="_CPPv3N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_typeE"></span><span id="_CPPv2N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_typeE"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::end_sentinel_type"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1_1end__sentinel__type"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end_sentinel_type</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_typeE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_type17end_sentinel_typeEv">
+<span id="_CPPv3N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_type17end_sentinel_typeEv"></span><span id="_CPPv2N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_type17end_sentinel_typeEv"></span><span id="nw::graph::bfs_edge_range2::bfs_edge_range2_iterator::end_sentinel_type::end_sentinel_type"></span><span class="target" id="classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1_1end__sentinel__type_1abd08153e237d2e1e9bff3dc107c15b0d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end_sentinel_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph15bfs_edge_range224bfs_edge_range2_iterator17end_sentinel_type17end_sentinel_typeEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+.. _exhale_function_timer_8hpp_1a9ba2112f337794d24eb268c4d5a7b38f:
+
+Function nw::util::operator<<
+=============================
+
+- Defined in :ref:`file_include_nwgraph_util_timer.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::util::operator<<(std::ostream&, const seconds_timer&)
+   :project: NWgraph

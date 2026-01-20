@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Six Degrees of Separation &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+      <script>window.MathJax = {"TeX": {"Macros": {"RR": "{\\mathbb R}", "Real": "{\\mathbb R}", "Complex": "{\\mathbb C}", "mat": ["{\\mathbf{#1}}", 1], "vec": ["{\\mathbf{#1}}", 1], "bold": ["{\\bf #1}", 1], "Spc": ["\\mathbb{#1}", 1], "norm": ["|| #1 ||", 1]}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="IMDB Network Analysis Examples" href="../imdb/index.html" />
+    <link rel="prev" title="Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)" href="../bglbook/ch9_knights_tour.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../bglbook/index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Six Degrees of Separation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/degrees/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="six-degrees-of-separation">
+<h1>Six Degrees of Separation<a class="headerlink" href="#six-degrees-of-separation" title="Link to this heading"></a></h1>
+<p>To illustrate the effectiveness of NWGraph’s “there is no graph” design
+philosophy, this section walks through an example that ingests a
+database table and uses graph algorithms for some basic knowledge
+discovery. The desired goal is to the find the popularized Bacon number,
+which is the degree of separation of various Hollywood actors from the
+actor Kevin Bacon. The starting point of this example is an Oracle web
+crawl of Wikipedia which is then parsed by an open source script to
+create a Wikipedia movie database, with several entries of the following
+form.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Movie Title&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;cast&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Actor1&quot;</span><span class="p">,</span><span class="s2">&quot;Actor2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;directors&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Director&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="s2">&quot;year&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">year</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is not a graph; it is a relational database that we wish to query
+with graph algorithms. After reading into a vector of json entries, we
+will populate an NWGraph edge list with directed edges from movie titles
+to actors. We will also keep a map from movie titles to movie ids, and
+from actor names to actor ids.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">json</span><span class="o">&gt;</span><span class="w"> </span><span class="n">jsons</span><span class="p">;</span>
+<span class="c1">// Populate jsons vector</span>
+
+<span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">titles_map</span><span class="p">,</span><span class="w"> </span><span class="n">names_map</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w">      </span><span class="n">titles</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">;</span>
+
+<span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="o">:</span><span class="w"> </span><span class="n">jsons</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">titles_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">titles_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Add title to title map if it</span>
+<span class="w">    </span><span class="c1">// doesn&#39;t exist</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Movie has multiple cast members</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">j</span><span class="p">[</span><span class="s">&quot;cast&quot;</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">delink</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">names_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">names_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Add actor to actor map if</span>
+<span class="w">      </span><span class="c1">// it doesn&#39;t exist</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Add title-&gt;actor edge to edge list</span>
+<span class="w">    </span><span class="n">edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">titles_map</span><span class="p">[</span><span class="n">title</span><span class="p">],</span><span class="w"> </span><span class="n">names_map</span><span class="p">[</span><span class="n">name</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It will be useful to have adjacency access to both the actors involved
+in a movie <span class="math notranslate nohighlight">\(Adj[movie]\)</span> and the movies and actor is involved in
+<span class="math notranslate nohighlight">\(Adj[actor]\)</span>, so we create adjacency structures for both sets.
+Note that since these sets to not overlap, we really have a bipartite
+graph.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Adj[movie]</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">edges</span><span class="p">);</span>
+<span class="c1">// Adj[actor]</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">H</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">edges</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Two actors share a common movie if there is a length two path between
+them in this bipartite graph. To make this a direct relationship, we
+construct an S overlap edge list which connects actors if this
+relationship exists. We will need adjacency lookup into this graph, so
+we then compress it to the final costar adjacency structure.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">undirected</span><span class="p">,</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s_overlap</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">H</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">s_overlap</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">costar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">s_overlap</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now we can perform a breadth first search from Kevin Bacon to find the
+Bacon number of every actor. This makes use of the bfs_edge_range
+adaptor to provide a lightweight view of the BFS traversal.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w"> </span><span class="n">bacon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">names_map</span><span class="p">[</span><span class="s">&quot;Kevin Bacon&quot;</span><span class="p">];</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bacon_number</span><span class="p">(</span><span class="n">costar</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">parents</span><span class="p">(</span><span class="n">costar</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">together_in</span><span class="p">(</span><span class="n">costar</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">:</span>
+<span class="w">  </span><span class="n">nw</span><span class="o">::</span><span class="n">graph</span><span class="o">::</span><span class="n">bfs_edge_range</span><span class="p">(</span><span class="n">costar</span><span class="p">,</span><span class="w"> </span><span class="n">bacon</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">bacon_number</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bacon_number</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">parents</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
+<span class="w">  </span><span class="n">together_in</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After writing a path_to_bacon helper function to traverse the parent tree, we can
+query the Bacon number of various actors to find their relationship to Kevin Bacon.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Kevin Bacon&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Kyra Sedgwick&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;David Suchet&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Julie Kavner&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Samuel L. Jackson&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;William Shatner&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Oona O&#39;Neill&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">Kyra</span><span class="w"> </span><span class="n">Sedgwick</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="n">Kyra</span><span class="w"> </span><span class="n">Sedgwick</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Murder</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">First</span><span class="w"> </span><span class="p">(</span><span class="n">film</span><span class="p">)</span>
+<span class="n">David</span><span class="w"> </span><span class="n">Suchet</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">David</span><span class="w"> </span><span class="n">Suchet</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Lori</span><span class="w"> </span><span class="n">Singer</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">Falcon</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Snowman</span>
+<span class="w">  </span><span class="n">Lori</span><span class="w"> </span><span class="n">Singer</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Footloose</span><span class="w"> </span><span class="p">(</span><span class="mi">1984</span><span class="w"> </span><span class="n">film</span><span class="p">)</span>
+<span class="n">Julie</span><span class="w"> </span><span class="n">Kavner</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">Julie</span><span class="w"> </span><span class="n">Kavner</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Dianne</span><span class="w"> </span><span class="n">Wiest</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Radio</span><span class="w"> </span><span class="n">Days</span>
+<span class="w">  </span><span class="n">Dianne</span><span class="w"> </span><span class="n">Wiest</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Footloose</span><span class="w"> </span><span class="p">(</span><span class="mi">1984</span><span class="w"> </span><span class="n">film</span><span class="p">)</span>
+<span class="n">Samuel</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="w"> </span><span class="n">Jackson</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">Samuel</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="w"> </span><span class="n">Jackson</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Chris</span><span class="w"> </span><span class="n">Penn</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">True</span><span class="w"> </span><span class="n">Romance</span>
+<span class="w">  </span><span class="n">Chris</span><span class="w"> </span><span class="n">Penn</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Footloose</span><span class="w"> </span><span class="p">(</span><span class="mi">1984</span><span class="w"> </span><span class="n">film</span><span class="p">)</span>
+<span class="n">William</span><span class="w"> </span><span class="n">Shatner</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">William</span><span class="w"> </span><span class="n">Shatner</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Sarah</span><span class="w"> </span><span class="n">Jessica</span><span class="w"> </span><span class="n">Parker</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Escape</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">Planet</span><span class="w"> </span><span class="n">Earth</span>
+<span class="w">  </span><span class="n">Sarah</span><span class="w"> </span><span class="n">Jessica</span><span class="w"> </span><span class="n">Parker</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Footloose</span><span class="w"> </span><span class="p">(</span><span class="mi">1984</span><span class="w"> </span><span class="n">film</span><span class="p">)</span>
+<span class="n">Oona</span><span class="w"> </span><span class="n">O</span><span class="err">&#39;</span><span class="n">Neill</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">  </span><span class="n">Oona</span><span class="w"> </span><span class="n">O</span><span class="err">&#39;</span><span class="n">Neill</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Beverly</span><span class="w"> </span><span class="n">Ross</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Broken</span><span class="w"> </span><span class="n">English</span><span class="w"> </span><span class="p">(</span><span class="mi">1981</span><span class="w"> </span><span class="n">film</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Beverly</span><span class="w"> </span><span class="n">Ross</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Vittorio</span><span class="w"> </span><span class="n">Gassman</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">Wedding</span>
+<span class="w">  </span><span class="n">Vittorio</span><span class="w"> </span><span class="n">Gassman</span><span class="w"> </span><span class="n">starred</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Sleepers</span>
+</pre></div>
+</div>
+<p>We can also check the Bacon numbers
+of the actors that have played Batman, and find that none of them have a
+number greater than two.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Adam West&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Michael Keaton&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Val Kilmer&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;George Clooney&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Christian Bale&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Ben Affleck&quot;</span><span class="p">);</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Robert Pattinson&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Adam</span><span class="w"> </span><span class="n">West</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">Adam</span><span class="w"> </span><span class="n">West</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Frank</span><span class="w"> </span><span class="n">Welker</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Aloha</span><span class="p">,</span><span class="w"> </span><span class="n">Scooby</span><span class="o">-</span><span class="n">Doo</span><span class="o">!</span>
+<span class="w">  </span><span class="n">Frank</span><span class="w"> </span><span class="n">Welker</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Balto</span><span class="w"> </span><span class="p">(</span><span class="n">film</span><span class="p">)</span>
+<span class="n">Michael</span><span class="w"> </span><span class="n">Keaton</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="n">Michael</span><span class="w"> </span><span class="n">Keaton</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">She</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">Having</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Baby</span>
+<span class="n">Val</span><span class="w"> </span><span class="n">Kilmer</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">Val</span><span class="w"> </span><span class="n">Kilmer</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Brad</span><span class="w"> </span><span class="n">Renfro</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="mi">10</span><span class="n">th</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Wolf</span>
+<span class="w">  </span><span class="n">Brad</span><span class="w"> </span><span class="n">Renfro</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Sleepers</span>
+<span class="n">George</span><span class="w"> </span><span class="n">Clooney</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">George</span><span class="w"> </span><span class="n">Clooney</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Minnie</span><span class="w"> </span><span class="n">Driver</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">South</span><span class="w"> </span><span class="n">Park</span><span class="o">:</span><span class="w"> </span><span class="n">Bigger</span><span class="p">,</span><span class="w"> </span><span class="n">Longer</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Uncut</span>
+<span class="w">  </span><span class="n">Minnie</span><span class="w"> </span><span class="n">Driver</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Sleepers</span>
+<span class="n">Christian</span><span class="w"> </span><span class="n">Bale</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">Christian</span><span class="w"> </span><span class="n">Bale</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Brad</span><span class="w"> </span><span class="n">Pitt</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">Big</span><span class="w"> </span><span class="n">Short</span><span class="w"> </span><span class="p">(</span><span class="n">film</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Brad</span><span class="w"> </span><span class="n">Pitt</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Sleepers</span>
+<span class="n">Ben</span><span class="w"> </span><span class="n">Affleck</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">Ben</span><span class="w"> </span><span class="n">Affleck</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Minnie</span><span class="w"> </span><span class="n">Driver</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Good</span><span class="w"> </span><span class="n">Will</span><span class="w"> </span><span class="n">Hunting</span>
+<span class="w">  </span><span class="n">Minnie</span><span class="w"> </span><span class="n">Driver</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Sleepers</span>
+<span class="n">Robert</span><span class="w"> </span><span class="n">Pattinson</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Bacon</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">Robert</span><span class="w"> </span><span class="n">Pattinson</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Jennifer</span><span class="w"> </span><span class="n">Jason</span><span class="w"> </span><span class="n">Leigh</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">Good</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="p">(</span><span class="n">film</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Jennifer</span><span class="w"> </span><span class="n">Jason</span><span class="w"> </span><span class="n">Leigh</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Kevin</span><span class="w"> </span><span class="n">Bacon</span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">In</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Cut</span><span class="w"> </span><span class="p">(</span><span class="n">film</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../bglbook/ch9_knights_tour.html" class="btn btn-neutral float-left" title="Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../imdb/index.html" class="btn btn-neutral float-right" title="IMDB Network Analysis Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

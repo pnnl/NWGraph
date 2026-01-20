@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1counting__output__iterator:
+
+Template Class counting_output_iterator
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::counting_output_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

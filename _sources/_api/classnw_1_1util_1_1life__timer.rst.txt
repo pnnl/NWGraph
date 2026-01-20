@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1util_1_1life__timer:
+
+Class life_timer
+================
+
+- Defined in :ref:`file_include_nwgraph_util_timer.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public nw::util::empty_timer``
+- ``public nw::util::timer< D >`` (:ref:`exhale_class_classnw_1_1util_1_1timer`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::util::life_timer
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_typedef_mmio__nist_8h_1a27c4a0610b9f2ecb5edb6430e79ae9ee:
+
+Typedef MM_typecode
+===================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: MM_typecode
+   :project: NWgraph

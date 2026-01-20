@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMDB Network Analysis Examples &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NWGraph API Reference" href="../../nwgraph_api.html" />
+    <link rel="prev" title="Six Degrees of Separation" href="../degrees/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../bglbook/index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IMDB Network Analysis Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-programs">Example Programs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#imdb-cpp-core-imdb-processing">imdb.cpp - Core IMDB Processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#oracle-cpp-oracle-of-bacon">oracle.cpp - Oracle of Bacon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dblp-cpp-dblp-academic-network">dblp.cpp - DBLP Academic Network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dns-cpp-dns-network-topology">dns.cpp - DNS Network Topology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#oracle-dblp-cpp-combined-analysis">oracle+dblp.cpp - Combined Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-requirements">Data Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+      <li class="breadcrumb-item active">IMDB Network Analysis Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/imdb/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="imdb-network-analysis-examples">
+<h1>IMDB Network Analysis Examples<a class="headerlink" href="#imdb-network-analysis-examples" title="Link to this heading"></a></h1>
+<p>These examples demonstrate real-world graph analysis using data from the
+Internet Movie Database (IMDB) and other large-scale networks.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The IMDB examples show how to:</p>
+<ul class="simple">
+<li><p>Process large datasets and build graphs from raw data</p></li>
+<li><p>Compute shortest paths between entities (actors, papers, etc.)</p></li>
+<li><p>Analyze network structure and connectivity</p></li>
+<li><p>Handle multiple related networks</p></li>
+</ul>
+</section>
+<section id="example-programs">
+<h2>Example Programs<a class="headerlink" href="#example-programs" title="Link to this heading"></a></h2>
+<section id="imdb-cpp-core-imdb-processing">
+<h3>imdb.cpp - Core IMDB Processing<a class="headerlink" href="#imdb-cpp-core-imdb-processing" title="Link to this heading"></a></h3>
+<p>The main IMDB graph loading and processing example. Reads actor-movie
+relationships and builds the co-star graph.</p>
+<p><strong>Key features:</strong></p>
+<ul class="simple">
+<li><p>Reading JSON-formatted IMDB data</p></li>
+<li><p>Building bipartite actor-movie graph</p></li>
+<li><p>Computing the co-star graph (actors who appeared together)</p></li>
+<li><p>Shortest path queries</p></li>
+</ul>
+</section>
+<section id="oracle-cpp-oracle-of-bacon">
+<h3>oracle.cpp - Oracle of Bacon<a class="headerlink" href="#oracle-cpp-oracle-of-bacon" title="Link to this heading"></a></h3>
+<p>Implementation of the “Oracle of Bacon” - computing the Bacon number
+(shortest path to Kevin Bacon) for any actor.</p>
+<p><strong>Key features:</strong></p>
+<ul class="simple">
+<li><p>BFS-based shortest path computation</p></li>
+<li><p>Path reconstruction with movie names</p></li>
+<li><p>Interactive query interface</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Query example</span>
+<span class="n">path_to_bacon</span><span class="p">(</span><span class="s">&quot;Tom Hanks&quot;</span><span class="p">);</span>
+<span class="c1">// Output: Tom Hanks -&gt; Apollo 13 -&gt; Kevin Bacon (Bacon number: 1)</span>
+</pre></div>
+</div>
+</section>
+<section id="dblp-cpp-dblp-academic-network">
+<h3>dblp.cpp - DBLP Academic Network<a class="headerlink" href="#dblp-cpp-dblp-academic-network" title="Link to this heading"></a></h3>
+<p>Analysis of the DBLP computer science bibliography network, where authors
+are connected through co-authorship.</p>
+<p><strong>Key features:</strong></p>
+<ul class="simple">
+<li><p>Academic collaboration network</p></li>
+<li><p>“Erdős number” style analysis</p></li>
+<li><p>Community detection in co-author networks</p></li>
+</ul>
+</section>
+<section id="dns-cpp-dns-network-topology">
+<h3>dns.cpp - DNS Network Topology<a class="headerlink" href="#dns-cpp-dns-network-topology" title="Link to this heading"></a></h3>
+<p>Analysis of DNS (Domain Name System) network topology.</p>
+<p><strong>Key features:</strong></p>
+<ul class="simple">
+<li><p>Network infrastructure analysis</p></li>
+<li><p>Connectivity and path analysis</p></li>
+<li><p>Critical node identification</p></li>
+</ul>
+</section>
+<section id="oracle-dblp-cpp-combined-analysis">
+<h3>oracle+dblp.cpp - Combined Analysis<a class="headerlink" href="#oracle-dblp-cpp-combined-analysis" title="Link to this heading"></a></h3>
+<p>Demonstrates analyzing multiple networks together, finding connections
+across different domains.</p>
+</section>
+</section>
+<section id="building-the-examples">
+<h2>Building the Examples<a class="headerlink" href="#building-the-examples" title="Link to this heading"></a></h2>
+<p>The IMDB examples require additional data files not included in the
+repository. To build:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make
+</pre></div>
+</div>
+</section>
+<section id="data-requirements">
+<h2>Data Requirements<a class="headerlink" href="#data-requirements" title="Link to this heading"></a></h2>
+<p>These examples require external data files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oracle.json</span></code> - IMDB movie database in JSON format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dblp.json</span></code> - DBLP bibliography data</p></li>
+</ul>
+<p>See the <code class="docutils literal notranslate"><span class="pre">examples/imdb/download.sh</span></code> script for data download instructions.</p>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h2>
+<p>These examples demonstrate NWGraph’s ability to handle large graphs:</p>
+<ul class="simple">
+<li><p>IMDB: ~500K actors, millions of edges</p></li>
+<li><p>DBLP: ~2M authors, millions of co-authorships</p></li>
+</ul>
+<p>Key techniques for large-scale analysis:</p>
+<ol class="arabic simple">
+<li><p><strong>Efficient data structures</strong>: CSR representation for minimal memory</p></li>
+<li><p><strong>Parallel algorithms</strong>: TBB-based parallelism for BFS</p></li>
+<li><p><strong>Incremental construction</strong>: Building graphs from streaming data</p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../degrees/index.html"><span class="doc">Six Degrees of Separation</span></a> - Simpler Six Degrees example</p></li>
+<li><p><a class="reference internal" href="../bglbook/ch4_kevin_bacon.html"><span class="doc">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</span></a> - BGL book version of Bacon numbers</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../degrees/index.html" class="btn btn-neutral float-left" title="Six Degrees of Separation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../nwgraph_api.html" class="btn btn-neutral float-right" title="NWGraph API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

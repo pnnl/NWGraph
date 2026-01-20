@@ -1,0 +1,206 @@
+
+.. _file_include_nwgraph_build.hpp:
+
+File build.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/build.hpp``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_build.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``cassert``
+
+- ``execution``
+
+- ``graph_concepts.hpp`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``iostream``
+
+- ``map``
+
+- ``nwgraph/containers/zip.hpp`` (:ref:`file_include_nwgraph_containers_zip.hpp`)
+
+- ``nwgraph/graph_base.hpp`` (:ref:`file_include_nwgraph_graph_base.hpp`)
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/proxysort.hpp`` (:ref:`file_include_nwgraph_util_proxysort.hpp`)
+
+- ``string``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``type_traits``
+
+- ``utility``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adjacency.hpp`
+
+- :ref:`file_include_nwgraph_vofos.hpp`
+
+- :ref:`file_include_nwgraph_volos.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_build_8hpp_1a4c52a2572d251cb96c86565816ca6644`
+
+- :ref:`exhale_function_build_8hpp_1ace153b5fbb79b38e627dbfc5a01fa631`
+
+- :ref:`exhale_function_build_8hpp_1a3d23edf363e9b107ba8c516a36dc652f`
+
+- :ref:`exhale_function_build_8hpp_1ac39ec8272cca97cd6280c4fc5eb599f5`
+
+- :ref:`exhale_function_build_8hpp_1aba158d9d9ba2ace3b5ed97d37b7407d7`
+
+- :ref:`exhale_function_build_8hpp_1a1ce4ca8848b499df86f193c49c756563`
+
+- :ref:`exhale_function_build_8hpp_1ac90eb545447966fe21d1e43fcdce26a8`
+
+- :ref:`exhale_function_build_8hpp_1a4cf35e4e64cc67aaf19110dd19e38f7f`
+
+- :ref:`exhale_function_build_8hpp_1a0621116bbbeb6177f080d18eebd4299b`
+
+- :ref:`exhale_function_build_8hpp_1af861c27794569ca0bdce2fc731fb62bf`
+
+- :ref:`exhale_function_build_8hpp_1a013b771c93a87e67f30dc347249860c1`
+
+- :ref:`exhale_function_build_8hpp_1a1836d9c555a57ec17e1c344ddb27e0de`
+
+- :ref:`exhale_function_build_8hpp_1a603a403cd80d64ddbe4e5d4a4b6dc1f2`
+
+- :ref:`exhale_function_build_8hpp_1ace5341abcc1afa1e75265b4b4e051e71`
+
+- :ref:`exhale_function_build_8hpp_1a59ad489e1b2ea234a395b1db1b200607`
+
+- :ref:`exhale_function_build_8hpp_1a3dcd992efef4754c59d4e57845f4af14`
+
+- :ref:`exhale_function_build_8hpp_1a30457aaef104750d9487c21892286e1e`
+
+- :ref:`exhale_function_build_8hpp_1abcc7f70b6dfbaa5b72b25a0eaa89a6c2`
+
+- :ref:`exhale_function_build_8hpp_1a02b3816ba50f3f9005d200500cc244f4`
+
+- :ref:`exhale_function_build_8hpp_1aa789f458adceaf778190e2ad40557f53`
+
+- :ref:`exhale_function_build_8hpp_1a88777b2bb36a489934fd07cc39032957`
+
+- :ref:`exhale_function_build_8hpp_1a8fedfd2d2ab3750a61cee8c50e1c7463`
+
+- :ref:`exhale_function_build_8hpp_1a9a98d78e89c8a08d83f149ee307cdf29`
+
+- :ref:`exhale_function_build_8hpp_1ad2bb6d2f052e312a8394fc3942e749c2`
+
+- :ref:`exhale_function_build_8hpp_1a63e3930625bb02adb87dc2da3ef58045`
+
+- :ref:`exhale_function_build_8hpp_1ae0a416365021632aed153784972bc055`
+
+- :ref:`exhale_function_build_8hpp_1af09c2a71870a57cdb4f32c64afec7b79`
+
+- :ref:`exhale_function_build_8hpp_1a65cf147f4bd8dedb45c87eb8628cd2dd`
+
+- :ref:`exhale_function_build_8hpp_1a80cbd52f25f797df9f79b76dbd6263a4`
+
+- :ref:`exhale_function_build_8hpp_1a4ba1f1a6c89f5d39e2201a8ef9f72029`
+
+- :ref:`exhale_function_build_8hpp_1abbab867f491acf7f37ecf45f64751f55`
+
+- :ref:`exhale_function_build_8hpp_1ae4298b03686a717af20f587c1ab93660`
+
+- :ref:`exhale_function_build_8hpp_1a909db0257e564bc0a9a11ad6ab9b52b2`
+
+- :ref:`exhale_function_build_8hpp_1a12563324dd31be7c179e9e6573826f33`
+
+- :ref:`exhale_function_build_8hpp_1aada93e7f42bd7903e1678b6c030cff78`
+
+- :ref:`exhale_function_build_8hpp_1ac23a5a3438b1a9af3c547ca584a2c64a`
+
+- :ref:`exhale_function_build_8hpp_1a9101375e29f734cadb9ac2d6b081d80e`
+
+- :ref:`exhale_function_build_8hpp_1a650f0e654ba757ad49d4563aba1254bb`
+
+- :ref:`exhale_function_build_8hpp_1a20e2614475ba9410fad2497885cfd3c8`
+
+- :ref:`exhale_function_build_8hpp_1a80500ac8ce1051dc24b5cbd454d50399`
+
+- :ref:`exhale_function_build_8hpp_1ad50c5e97656bea52b15fc0e00e22549d`
+
+- :ref:`exhale_function_build_8hpp_1ab567c4856e595e8a52f335c8d37d6f74`
+
+- :ref:`exhale_function_build_8hpp_1a14ce42d28f38e47945375c0c2226502c`
+
+- :ref:`exhale_function_build_8hpp_1a1cf201bc67ea098d68a8642fd48b5a92`
+
+- :ref:`exhale_function_build_8hpp_1af859c42ccf1a9dacb69be300fba02a93`
+
+- :ref:`exhale_function_build_8hpp_1a37d1da2eb3fac8538927ebe6b641eadc`
+
+- :ref:`exhale_function_build_8hpp_1af19089ca73097b4cbd0d45b176804d63`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_build_8hpp_1a1ae6ff6f31a9a2212ea5236a1c5ec196`
+

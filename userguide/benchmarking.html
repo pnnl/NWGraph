@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benchmarking with NWGraph &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NWGraph: The Northwest Graph Library" href="introduction.html" />
+    <link rel="prev" title="Quickstart" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmarking with NWGraph</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#building-benchmarks">Building Benchmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-test">Quick Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gap-benchmark-suite">GAP Benchmark Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gap-benchmark-datasets">GAP Benchmark Datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dataset-overview">Dataset Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detailed-dataset-information">Detailed Dataset Information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#twitter-gap-twitter">Twitter (GAP-twitter)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web-gap-web-sk-2005">Web (GAP-web / sk-2005)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#road-gap-road-usa-road-d">Road (GAP-road / USA-road-d)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kron-gap-kron">Kron (GAP-kron)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#urand-gap-urand">Urand (GAP-urand)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-graphs">Downloading Graphs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-download-script">Using the Download Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-download">Manual Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storage-requirements">Storage Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#file-formats">File Formats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-market-mtx">Matrix Market (.mtx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edge-list-el">Edge List (.el)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dimacs-gr">DIMACS (.gr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nwgraph-binary-nw">NWGraph Binary (.nw)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-benchmarks">Running Benchmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#standard-benchmark-parameters">Standard Benchmark Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-threading">Multi-threading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-results">Logging Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Benchmarking with NWGraph</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/userguide/benchmarking.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="benchmarking-with-nwgraph">
+<h1>Benchmarking with NWGraph<a class="headerlink" href="#benchmarking-with-nwgraph" title="Link to this heading"></a></h1>
+<p>This guide covers how to build and run the NWGraph benchmarks, including the
+GAP Benchmark Suite implementations.</p>
+<section id="building-benchmarks">
+<h2>Building Benchmarks<a class="headerlink" href="#building-benchmarks" title="Link to this heading"></a></h2>
+<p>NWGraph benchmarks are disabled by default. To build them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+
+<span class="c1"># Configure with benchmarks enabled</span>
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_BENCH<span class="o">=</span>ON
+
+<span class="c1"># Build all benchmarks</span>
+make<span class="w"> </span>bench<span class="w"> </span>-j8
+
+<span class="c1"># Or build individual benchmarks</span>
+make<span class="w"> </span>bfs<span class="w"> </span>bc<span class="w"> </span>cc<span class="w"> </span>pr<span class="w"> </span>sssp<span class="w"> </span>tc<span class="w"> </span>-j8
+</pre></div>
+</div>
+<p>The benchmark executables are placed in <code class="docutils literal notranslate"><span class="pre">build/bench/gapbs/</span></code>.</p>
+<section id="quick-test">
+<h3>Quick Test<a class="headerlink" href="#quick-test" title="Link to this heading"></a></h3>
+<p>To verify benchmarks are working, run with a small test graph:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the build directory</span>
+./bench/gapbs/bfs<span class="w"> </span>-f<span class="w"> </span>../test/data/karate.mtx<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>--verify
+./bench/gapbs/cc<span class="w"> </span>-f<span class="w"> </span>../test/data/karate.mtx<span class="w"> </span>--verify
+./bench/gapbs/tc<span class="w"> </span>-f<span class="w"> </span>../test/data/karate.mtx<span class="w"> </span>--verify
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gap-benchmark-suite">
+<h2>GAP Benchmark Suite<a class="headerlink" href="#gap-benchmark-suite" title="Link to this heading"></a></h2>
+<p>NWGraph implements the six kernels from the GAP Benchmark Suite:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">GAP Benchmark Kernels</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 35.0%" />
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Kernel</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Best Version</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>BFS</strong></p></td>
+<td><p>Breadth-First Search</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">11</span></code></p></td>
+<td><p>Direction-optimizing BFS</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>SSSP</strong></p></td>
+<td><p>Single-Source Shortest Path</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">12</span></code></p></td>
+<td><p>Delta-stepping algorithm</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>PR</strong></p></td>
+<td><p>PageRank</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">11</span></code></p></td>
+<td><p>1000 iterations typical</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>CC</strong></p></td>
+<td><p>Connected Components</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">7</span></code></p></td>
+<td><p>Afforest algorithm</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>BC</strong></p></td>
+<td><p>Betweenness Centrality</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">5</span></code></p></td>
+<td><p>Brandes’ algorithm</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>TC</strong></p></td>
+<td><p>Triangle Counting</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">4</span></code></p></td>
+<td><p>Requires <code class="docutils literal notranslate"><span class="pre">--relabel</span> <span class="pre">--upper</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="gap-benchmark-datasets">
+<h2>GAP Benchmark Datasets<a class="headerlink" href="#gap-benchmark-datasets" title="Link to this heading"></a></h2>
+<p>The GAP Benchmark Suite uses five standard graphs for evaluation. These graphs
+are available from the <a class="reference external" href="https://sparse.tamu.edu/GAP">SuiteSparse Matrix Collection</a>.</p>
+<section id="dataset-overview">
+<h3>Dataset Overview<a class="headerlink" href="#dataset-overview" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">GAP Benchmark Graphs</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 12.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 43.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Vertices</p></th>
+<th class="head"><p>Edges</p></th>
+<th class="head"><p>Download Size</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>twitter</strong></p></td>
+<td><p>61,578,415</p></td>
+<td><p>1,468,365,182</p></td>
+<td><p>~26 GB</p></td>
+<td><p>Twitter follower network snapshot. Exhibits realistic social network
+properties with highly skewed degree distribution (power-law).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>web</strong></p></td>
+<td><p>50,636,154</p></td>
+<td><p>1,949,412,601</p></td>
+<td><p>~7 GB</p></td>
+<td><p>Web crawl of the .sk (Slovakia) domain from 2005. From the Laboratory
+for Web Algorithmics. Shows substantial locality.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>road</strong></p></td>
+<td><p>23,947,347</p></td>
+<td><p>58,333,344</p></td>
+<td><p>~1 GB</p></td>
+<td><p>Road network of the entire USA. Notable for being much smaller but
+having very high diameter (~6000 hops).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>kron</strong></p></td>
+<td><p>134,217,726</p></td>
+<td><p>2,111,632,938</p></td>
+<td><p>Generated</p></td>
+<td><p>Kronecker synthetic graph using Graph 500 parameters (scale 27, edge
+factor 16). Exhibits scale-free properties.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>urand</strong></p></td>
+<td><p>134,217,728</p></td>
+<td><p>2,147,483,648</p></td>
+<td><p>Generated</p></td>
+<td><p>Erdos-Renyi uniform random graph (2^27 vertices, degree 16). Represents
+worst-case memory access locality.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="detailed-dataset-information">
+<h3>Detailed Dataset Information<a class="headerlink" href="#detailed-dataset-information" title="Link to this heading"></a></h3>
+<section id="twitter-gap-twitter">
+<h4>Twitter (GAP-twitter)<a class="headerlink" href="#twitter-gap-twitter" title="Link to this heading"></a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">Source<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ANLAB-KAIST GitHub repository</p>
+</dd>
+<dt class="field-even">Original<span class="colon">:</span></dt>
+<dd class="field-even"><p>Twitter follower graph (Kwak et al., WWW 2010)</p>
+</dd>
+<dt class="field-odd">Format<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Edge list (.el)</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Directed, unweighted</p>
+</dd>
+<dt class="field-odd">Characteristics<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Power-law degree distribution</p></li>
+<li><p>Maximum in-degree: 2,997,469</p></li>
+<li><p>Maximum out-degree: 770,155</p></li>
+<li><p>Average degree: ~48</p></li>
+</ul>
+</dd>
+</dl>
+<p>The Twitter graph is split into 4 compressed parts for download. Use the
+download script to automatically fetch and combine them.</p>
+</section>
+<section id="web-gap-web-sk-2005">
+<h4>Web (GAP-web / sk-2005)<a class="headerlink" href="#web-gap-web-sk-2005" title="Link to this heading"></a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">Source<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://sparse.tamu.edu/LAW/sk-2005">SuiteSparse Matrix Collection</a></p>
+</dd>
+<dt class="field-even">Original<span class="colon">:</span></dt>
+<dd class="field-even"><p>Laboratory for Web Algorithmics</p>
+</dd>
+<dt class="field-odd">Format<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matrix Market (.mtx)</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Directed, unweighted</p>
+</dd>
+<dt class="field-odd">Characteristics<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Web crawl locality patterns</p></li>
+<li><p>Maximum out-degree: 8,563</p></li>
+<li><p>High clustering coefficient</p></li>
+<li><p>Contains many small SCCs</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="road-gap-road-usa-road-d">
+<h4>Road (GAP-road / USA-road-d)<a class="headerlink" href="#road-gap-road-usa-road-d" title="Link to this heading"></a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">Source<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.dis.uniroma1.it/challenge9/">9th DIMACS Implementation Challenge</a></p>
+</dd>
+<dt class="field-even">Original<span class="colon">:</span></dt>
+<dd class="field-even"><p>TIGER/Line road network data</p>
+</dd>
+<dt class="field-odd">Format<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DIMACS graph format (.gr)</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Directed, weighted (distances in meters)</p>
+</dd>
+<dt class="field-odd">Characteristics<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Very high diameter (~6000)</p></li>
+<li><p>Low average degree (~2.4)</p></li>
+<li><p>Nearly planar structure</p></li>
+<li><p>Weights represent travel distances</p></li>
+</ul>
+</dd>
+</dl>
+<p>This graph tests algorithms on high-diameter, low-degree networks.</p>
+</section>
+<section id="kron-gap-kron">
+<h4>Kron (GAP-kron)<a class="headerlink" href="#kron-gap-kron" title="Link to this heading"></a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">Source<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generated using Graph 500 Kronecker generator</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scale 27, edge factor 16 (<code class="docutils literal notranslate"><span class="pre">-g27</span> <span class="pre">-k16</span></code>)</p>
+</dd>
+<dt class="field-odd">Format<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Edge list or serialized binary</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Undirected, unweighted</p>
+</dd>
+<dt class="field-odd">Characteristics<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Scale-free degree distribution</p></li>
+<li><p>Small-world properties</p></li>
+<li><p>Self-similar structure</p></li>
+<li><p>Synthetic but realistic</p></li>
+</ul>
+</dd>
+</dl>
+<p>Generate using the GAPBS reference <code class="docutils literal notranslate"><span class="pre">converter</span></code> tool (included in
+<code class="docutils literal notranslate"><span class="pre">bench/gapbs-reference/</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate Kronecker graph as edge list (for NWGraph)</span>
+./bench/gapbs-reference/converter<span class="w"> </span>-g27<span class="w"> </span>-k16<span class="w"> </span>-e<span class="w"> </span>kron.el
+
+<span class="c1"># Or generate as GAPBS serialized format</span>
+./bench/gapbs-reference/converter<span class="w"> </span>-g27<span class="w"> </span>-k16<span class="w"> </span>-b<span class="w"> </span>kron.sg
+</pre></div>
+</div>
+<p>For smaller test graphs, use a lower scale (e.g., <code class="docutils literal notranslate"><span class="pre">-g20</span></code> for ~1M vertices).</p>
+</section>
+<section id="urand-gap-urand">
+<h4>Urand (GAP-urand)<a class="headerlink" href="#urand-gap-urand" title="Link to this heading"></a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">Source<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generated using Erdos-Renyi random generator</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p>2^27 vertices, degree 16 (<code class="docutils literal notranslate"><span class="pre">-u27</span> <span class="pre">-k16</span></code>)</p>
+</dd>
+<dt class="field-odd">Format<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Edge list or serialized binary</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Undirected, unweighted</p>
+</dd>
+<dt class="field-odd">Characteristics<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Uniform random edge placement</p></li>
+<li><p>Worst-case memory locality</p></li>
+<li><p>No clustering structure</p></li>
+<li><p>Binomial degree distribution around 16</p></li>
+</ul>
+</dd>
+</dl>
+<p>Generate using the GAPBS reference <code class="docutils literal notranslate"><span class="pre">converter</span></code> tool:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate uniform random graph as edge list (for NWGraph)</span>
+./bench/gapbs-reference/converter<span class="w"> </span>-u27<span class="w"> </span>-k16<span class="w"> </span>-e<span class="w"> </span>urand.el
+
+<span class="c1"># Or generate as GAPBS serialized format</span>
+./bench/gapbs-reference/converter<span class="w"> </span>-u27<span class="w"> </span>-k16<span class="w"> </span>-b<span class="w"> </span>urand.sg
+</pre></div>
+</div>
+<p>For smaller test graphs, use a lower scale (e.g., <code class="docutils literal notranslate"><span class="pre">-u20</span></code> for ~1M vertices).</p>
+</section>
+</section>
+</section>
+<section id="downloading-graphs">
+<h2>Downloading Graphs<a class="headerlink" href="#downloading-graphs" title="Link to this heading"></a></h2>
+<section id="using-the-download-script">
+<h3>Using the Download Script<a class="headerlink" href="#using-the-download-script" title="Link to this heading"></a></h3>
+<p>NWGraph provides a script to download the GAP benchmark graphs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show available graphs and sizes</span>
+./scripts/download_gap_graphs.sh<span class="w"> </span>--list
+
+<span class="c1"># Download road network only (smallest, ~1GB)</span>
+./scripts/download_gap_graphs.sh<span class="w"> </span>road
+
+<span class="c1"># Download multiple graphs</span>
+./scripts/download_gap_graphs.sh<span class="w"> </span>road<span class="w"> </span>web
+
+<span class="c1"># Download all real-world graphs</span>
+./scripts/download_gap_graphs.sh<span class="w"> </span>all
+
+<span class="c1"># Download small test graphs (for quick testing)</span>
+./scripts/download_gap_graphs.sh<span class="w"> </span>--small
+
+<span class="c1"># Specify custom download directory</span>
+./scripts/download_gap_graphs.sh<span class="w"> </span>-d<span class="w"> </span>/data/gap<span class="w"> </span>road<span class="w"> </span>web
+</pre></div>
+</div>
+</section>
+<section id="manual-download">
+<h3>Manual Download<a class="headerlink" href="#manual-download" title="Link to this heading"></a></h3>
+<p>Graphs can also be downloaded manually from SuiteSparse:</p>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://sparse.tamu.edu/GAP">https://sparse.tamu.edu/GAP</a></p></li>
+<li><p>Click on the desired graph</p></li>
+<li><p>Download in Matrix Market format</p></li>
+<li><p>Extract and place in your data directory</p></li>
+</ol>
+</section>
+<section id="storage-requirements">
+<h3>Storage Requirements<a class="headerlink" href="#storage-requirements" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Disk Space Requirements</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Graph</p></th>
+<th class="head"><p>Compressed</p></th>
+<th class="head"><p>Uncompressed</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Small test set</p></td>
+<td><p>~5 MB</p></td>
+<td><p>~10 MB</p></td>
+<td><p>Good for development</p></td>
+</tr>
+<tr class="row-odd"><td><p>road</p></td>
+<td><p>~1 GB</p></td>
+<td><p>~2 GB</p></td>
+<td><p>Recommended starting point</p></td>
+</tr>
+<tr class="row-even"><td><p>web</p></td>
+<td><p>~7 GB</p></td>
+<td><p>~20 GB</p></td>
+<td><p>Moderate size</p></td>
+</tr>
+<tr class="row-odd"><td><p>twitter</p></td>
+<td><p>~26 GB</p></td>
+<td><p>~80 GB</p></td>
+<td><p>Largest real-world graph</p></td>
+</tr>
+<tr class="row-even"><td><p>kron (generated)</p></td>
+<td><p>N/A</p></td>
+<td><p>~25 GB</p></td>
+<td><p>Generated in memory</p></td>
+</tr>
+<tr class="row-odd"><td><p>urand (generated)</p></td>
+<td><p>N/A</p></td>
+<td><p>~25 GB</p></td>
+<td><p>Generated in memory</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total for all graphs:</strong> ~150 GB (plus ~64 GB RAM for generation)</p>
+</section>
+</section>
+<section id="file-formats">
+<h2>File Formats<a class="headerlink" href="#file-formats" title="Link to this heading"></a></h2>
+<p>NWGraph supports multiple graph file formats:</p>
+<section id="matrix-market-mtx">
+<h3>Matrix Market (.mtx)<a class="headerlink" href="#matrix-market-mtx" title="Link to this heading"></a></h3>
+<p>The standard format for sparse matrices. Human-readable but slower to load.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%%MatrixMarket matrix coordinate pattern general
+% Comment lines start with %
+5 5 8
+1 2
+1 3
+2 3
+...
+</pre></div>
+</div>
+</section>
+<section id="edge-list-el">
+<h3>Edge List (.el)<a class="headerlink" href="#edge-list-el" title="Link to this heading"></a></h3>
+<p>Simple format with one edge per line:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0 1
+0 2
+1 2
+...
+</pre></div>
+</div>
+</section>
+<section id="dimacs-gr">
+<h3>DIMACS (.gr)<a class="headerlink" href="#dimacs-gr" title="Link to this heading"></a></h3>
+<p>Format from the DIMACS Implementation Challenges:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>c Comment lines
+p sp 5 8
+a 1 2 10
+a 1 3 5
+...
+</pre></div>
+</div>
+</section>
+<section id="nwgraph-binary-nw">
+<h3>NWGraph Binary (.nw)<a class="headerlink" href="#nwgraph-binary-nw" title="Link to this heading"></a></h3>
+<p>Native binary format for fast loading. Convert using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bench/gapbs/process_edge_list<span class="w"> </span>-d<span class="w"> </span>output.nw<span class="w"> </span>input.mtx
+</pre></div>
+</div>
+</section>
+</section>
+<section id="running-benchmarks">
+<h2>Running Benchmarks<a class="headerlink" href="#running-benchmarks" title="Link to this heading"></a></h2>
+<section id="standard-benchmark-parameters">
+<h3>Standard Benchmark Parameters<a class="headerlink" href="#standard-benchmark-parameters" title="Link to this heading"></a></h3>
+<p>For reproducible benchmarking matching the GAP methodology:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># BFS: 64 random sources</span>
+./bench/gapbs/bfs<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span>-n<span class="w"> </span><span class="m">64</span><span class="w"> </span>--version<span class="w"> </span><span class="m">11</span>
+
+<span class="c1"># SSSP: 64 random sources, delta=2 (or 50000 for road)</span>
+./bench/gapbs/sssp<span class="w"> </span>-f<span class="w"> </span>graph.wsg<span class="w"> </span>-n<span class="w"> </span><span class="m">64</span><span class="w"> </span>-d<span class="w"> </span><span class="m">2</span><span class="w"> </span>--version<span class="w"> </span><span class="m">12</span>
+
+<span class="c1"># PR: 1000 iterations</span>
+./bench/gapbs/pr<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span>-i<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--version<span class="w"> </span><span class="m">11</span>
+
+<span class="c1"># CC: 16 trials</span>
+./bench/gapbs/cc<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span>--version<span class="w"> </span><span class="m">7</span>
+
+<span class="c1"># BC: 4 sources, 16 trials</span>
+./bench/gapbs/bc<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span>-i<span class="w"> </span><span class="m">4</span><span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span>--version<span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># TC: Requires undirected, upper triangular</span>
+./bench/gapbs/tc<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>--relabel<span class="w"> </span>--upper<span class="w"> </span>--version<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-threading">
+<h3>Multi-threading<a class="headerlink" href="#multi-threading" title="Link to this heading"></a></h3>
+<p>Thread count is specified as a positional argument:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run with 16 threads</span>
+./bench/gapbs/bfs<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">16</span>
+
+<span class="c1"># Run with 64 threads</span>
+./bench/gapbs/cc<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span><span class="m">64</span>
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h3>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h3>
+<p>Add <code class="docutils literal notranslate"><span class="pre">--verify</span></code> to check correctness:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bench/gapbs/bfs<span class="w"> </span>-f<span class="w"> </span>../test/data/karate.mtx<span class="w"> </span>--verify
+</pre></div>
+</div>
+</section>
+<section id="logging-results">
+<h3>Logging Results<a class="headerlink" href="#logging-results" title="Link to this heading"></a></h3>
+<p>Output results to a file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bench/gapbs/bfs<span class="w"> </span>-f<span class="w"> </span>graph.mtx<span class="w"> </span>-n<span class="w"> </span><span class="m">64</span><span class="w"> </span>--log<span class="w"> </span>results.csv<span class="w"> </span>--log-header
+</pre></div>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Beamer, S., Asanovic, K., &amp; Patterson, D. (2015). <em>The GAP Benchmark Suite</em>.
+arXiv:1508.03619. https://arxiv.org/abs/1508.03619</p></li>
+<li><p>SuiteSparse Matrix Collection: <a class="reference external" href="https://sparse.tamu.edu/">https://sparse.tamu.edu/</a></p></li>
+<li><p>GAP Benchmark Reference Implementation: <a class="reference external" href="https://github.com/sbeamer/gapbs">https://github.com/sbeamer/gapbs</a></p></li>
+<li><p>9th DIMACS Implementation Challenge (Shortest Paths):
+<a class="reference external" href="http://www.dis.uniroma1.it/challenge9/">http://www.dis.uniroma1.it/challenge9/</a></p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="getting_started.html"><span class="doc">Quickstart</span></a> - Installation and basic usage</p></li>
+<li><p><a class="reference internal" href="../examples/bglbook/index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="NWGraph: The Northwest Graph Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

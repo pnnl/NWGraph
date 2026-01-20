@@ -1,0 +1,14 @@
+.. _exhale_typedef_k__core_8hpp_1a9fb00568675aabe420230df7bc355069:
+
+Typedef nw::graph::Neighbors
+============================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::Neighbors
+   :project: NWgraph

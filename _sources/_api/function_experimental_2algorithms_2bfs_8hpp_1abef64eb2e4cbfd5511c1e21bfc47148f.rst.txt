@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2bfs_8hpp_1abef64eb2e4cbfd5511c1e21bfc47148f:
+
+Template Function nw::graph::BU_step
+====================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::BU_step(const Graph&, std::vector<vertex_id_t<Graph>>&, nw::graph::AtomicBitVector<>&, nw::graph::AtomicBitVector<>&)
+   :project: NWgraph

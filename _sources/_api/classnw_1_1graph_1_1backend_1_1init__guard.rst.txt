@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1backend_1_1init__guard:
+
+Class init_guard
+================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::backend::init_guard
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

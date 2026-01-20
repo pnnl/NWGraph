@@ -1,0 +1,26 @@
+.. _exhale_class_classstd_1_1tuple__size_3_01nw_1_1graph_1_1struct__of__arrays_3_01Attributes_8_8_8_01_4_01_4:
+
+Template Class tuple_size< nw::graph::struct_of_arrays< Attributes... > >
+=========================================================================
+
+- Defined in :ref:`file_include_nwgraph_containers_soa.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::integral_constant< std::size_t, sizeof...(Attributes)>``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: std::tuple_size< nw::graph::struct_of_arrays< Attributes... > >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

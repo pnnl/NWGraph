@@ -1,0 +1,14 @@
+.. _exhale_function_max__flow_8hpp_1a3553cb5a6a816ea591d695ef0f96094d:
+
+Template Function nw::graph::max_flow
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::max_flow(const Graph&, vertex_id_type, vertex_id_type, size_t)
+   :project: NWgraph

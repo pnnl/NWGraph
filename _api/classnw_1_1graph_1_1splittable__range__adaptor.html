@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class splittable_range_adaptor &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class splittable_range_adaptor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1splittable__range__adaptor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-splittable-range-adaptor">
+<span id="exhale-class-classnw-1-1graph-1-1splittable-range-adaptor"></span><h1>Template Class splittable_range_adaptor<a class="headerlink" href="#template-class-splittable-range-adaptor" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_adaptors_splittable_range_adaptor.hpp.html#file-include-nwgraph-adaptors-splittable-range-adaptor-hpp"><span class="std std-ref">File splittable_range_adaptor.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">std::ranges::view_base</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph24splittable_range_adaptorE">
+<span id="_CPPv3I0EN2nw5graph24splittable_range_adaptorE"></span><span id="_CPPv2I0EN2nw5graph24splittable_range_adaptorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Iterator</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ranges</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">view_base</span></span><a class="headerlink" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="Link to this definition"></a><br /></dt>
+<dd><p>Splittable_range_adaptor can split a range into sub_views of a range. </p>
+<p>This adaptor wraps a range and provides the interface required by parallel backends (TBB’s Range concept, or HPX’s iteration patterns) to split work across multiple threads.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Iterator</strong> – iterator type of the range passed in </p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor8iteratorE">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor8iteratorE"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor8iteratorE"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1afc55257c8a2989df36ed05c4c3056fc8"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor8iteratorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor10value_typeE">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor10value_typeE"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor10value_typeE"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a6574b4d7a91b0930e50232271ba40202"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph24splittable_range_adaptor8iteratorE" title="nw::graph::splittable_range_adaptor::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">value_type</span></span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor10value_typeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5Range">
+<span id="_CPPv3I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5Range"></span><span id="_CPPv2I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5Range"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Range</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a88223fa1c470757b9668c69ea06cdced"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5Range" title="nw::graph::splittable_range_adaptor::splittable_range_adaptor::Range"><span class="n"><span class="pre">Range</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">range</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5Range" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct from a range. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>range</strong> – The range to adapt. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5RangeNSt6size_tE">
+<span id="_CPPv3I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5RangeNSt6size_tE"></span><span id="_CPPv2I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5RangeNSt6size_tE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Range</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a5acaaf08284dfe48dc4ef2769218d59b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5RangeNSt6size_tE" title="nw::graph::splittable_range_adaptor::splittable_range_adaptor::Range"><span class="n"><span class="pre">Range</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">range</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR5RangeNSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct from a range with custom cutoff. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>range</strong> – The range to adapt. </p></li>
+<li><p><strong>cutoff</strong> – Minimum size below which the range won’t be split. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8Iterator">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8Iterator"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8Iterator"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor__Iterator.Iterator"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a6474ac7f035e1b8e41544555519f71e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">begin</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8Iterator" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct from iterators. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>begin</strong> – Start iterator. </p></li>
+<li><p><strong>end</strong> – End iterator. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8IteratorNSt6size_tE">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8IteratorNSt6size_tE"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8IteratorNSt6size_tE"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor__Iterator.Iterator.std::s"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a98a02f1f0fe2ceb87229c7654b965349"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">begin</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorE8Iterator8IteratorNSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct from iterators with custom cutoff. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>begin</strong> – Start iterator. </p></li>
+<li><p><strong>end</strong> – End iterator. </p></li>
+<li><p><strong>cutoff</strong> – Minimum size below which the range won’t be split. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptorN3tbb5splitE">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptorN3tbb5splitE"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptorN3tbb5splitE"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor__splittable_range_adaptorR.tbb::split"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a48cd00ecaf8d5d56f3cf0733c9a35e76"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptorN3tbb5splitE" title="nw::graph::splittable_range_adaptor::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span>, <span class="n"><span class="pre">tbb</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">split</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptorN3tbb5splitE" title="Link to this definition"></a><br /></dt>
+<dd><p>TBB split constructor. </p>
+<p>Creates a new range representing the second half of the original range, and modifies the original to represent only the first half. Required by TBB’s Range concept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> – The range to split (will be modified to represent first half). </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor9split_tag">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor9split_tag"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor9split_tag"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor__splittable_range_adaptorR.split_tag"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a7e39472e37394405e1fa5d1a331a8686"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor9split_tag" title="nw::graph::splittable_range_adaptor::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span>, <a class="reference internal" href="structnw_1_1graph_1_1split__tag.html#_CPPv4N2nw5graph9split_tagE" title="nw::graph::split_tag"><span class="n"><span class="pre">split_tag</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor9split_tag" title="Link to this definition"></a><br /></dt>
+<dd><p>Generic split constructor. </p>
+<p>Creates a new range representing the second half of the original range, and modifies the original to represent only the first half. Used by backends other than TBB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> – The range to split (will be modified to represent first half). </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor__splittable_range_adaptorR"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a0c890a1fa5ef0e77f35426c81673c38c"></span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor" title="nw::graph::splittable_range_adaptor::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorER24splittable_range_adaptor" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERK24splittable_range_adaptor">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERK24splittable_range_adaptor"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERK24splittable_range_adaptor"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor__splittable_range_adaptorCR"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a8e76e37559522d0055f06818d6e5882a"></span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERK24splittable_range_adaptor" title="nw::graph::splittable_range_adaptor::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERK24splittable_range_adaptor" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR24splittable_range_adaptor">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR24splittable_range_adaptor"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR24splittable_range_adaptor"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor__splittable_range_adaptorRR"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1ad37219a24c9b2b473cbb548f8de9e2e7"></span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR24splittable_range_adaptor" title="nw::graph::splittable_range_adaptor::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorERR24splittable_range_adaptor" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptoraSERK24splittable_range_adaptor">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptoraSERK24splittable_range_adaptor"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptoraSERK24splittable_range_adaptor"></span><span id="nw::graph::splittable_range_adaptor::assign-operator__splittable_range_adaptorCR"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1af34b012873bda97b150e814dc53c3044"></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptoraSERK24splittable_range_adaptor" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptoraSERR24splittable_range_adaptor">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptoraSERR24splittable_range_adaptor"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptoraSERR24splittable_range_adaptor"></span><span id="nw::graph::splittable_range_adaptor::assign-operator__splittable_range_adaptorRR"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1ad2656225fd81685a39ee12bd0657476c"></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph24splittable_range_adaptorE" title="nw::graph::splittable_range_adaptor"><span class="n"><span class="pre">splittable_range_adaptor</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptoraSERR24splittable_range_adaptor" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorEv">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor24splittable_range_adaptorEv"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor24splittable_range_adaptorEv"></span><span id="nw::graph::splittable_range_adaptor::splittable_range_adaptor"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a19768e79e173792f1a043e355da57559"></span><span class="sig-name descname"><span class="n"><span class="pre">splittable_range_adaptor</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor24splittable_range_adaptorEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph24splittable_range_adaptor5beginEv">
+<span id="_CPPv3NK2nw5graph24splittable_range_adaptor5beginEv"></span><span id="_CPPv2NK2nw5graph24splittable_range_adaptor5beginEv"></span><span id="nw::graph::splittable_range_adaptor::beginC"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1ab9428a4abf040b9c9eedca5f9112eb11"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">decltype</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">auto</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph24splittable_range_adaptor5beginEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the begin iterator. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph24splittable_range_adaptor3endEv">
+<span id="_CPPv3NK2nw5graph24splittable_range_adaptor3endEv"></span><span id="_CPPv2NK2nw5graph24splittable_range_adaptor3endEv"></span><span id="nw::graph::splittable_range_adaptor::endC"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1acaecf717c31e3f8aa12d54f76fd39f2f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">decltype</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">auto</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph24splittable_range_adaptor3endEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the end iterator. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph24splittable_range_adaptor6cutoffENSt6size_tE">
+<span id="_CPPv3N2nw5graph24splittable_range_adaptor6cutoffENSt6size_tE"></span><span id="_CPPv2N2nw5graph24splittable_range_adaptor6cutoffENSt6size_tE"></span><span id="nw::graph::splittable_range_adaptor::cutoff__std::s"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1a9a66b78a1a3ba055117845a22ae525fd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">decltype</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">auto</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph24splittable_range_adaptor6cutoffENSt6size_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>Set the cutoff for splitting. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cutoff</strong> – New cutoff value. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to this adaptor for chaining. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph24splittable_range_adaptor6cutoffEv">
+<span id="_CPPv3NK2nw5graph24splittable_range_adaptor6cutoffEv"></span><span id="_CPPv2NK2nw5graph24splittable_range_adaptor6cutoffEv"></span><span id="nw::graph::splittable_range_adaptor::cutoffC"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1af6cc876fa389b9fc0eaa4dab3bef5bce"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph24splittable_range_adaptor6cutoffEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the current cutoff value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The cutoff value. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph24splittable_range_adaptor4sizeEv">
+<span id="_CPPv3NK2nw5graph24splittable_range_adaptor4sizeEv"></span><span id="_CPPv2NK2nw5graph24splittable_range_adaptor4sizeEv"></span><span id="nw::graph::splittable_range_adaptor::sizeC"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1ab6a46d5fc6452e23750e55f6410802e1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph24splittable_range_adaptor4sizeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the size of the range. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of elements in the range. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph24splittable_range_adaptor5emptyEv">
+<span id="_CPPv3NK2nw5graph24splittable_range_adaptor5emptyEv"></span><span id="_CPPv2NK2nw5graph24splittable_range_adaptor5emptyEv"></span><span id="nw::graph::splittable_range_adaptor::emptyC"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1af262f9414d65901ec99a46b7374b1f38"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph24splittable_range_adaptor5emptyEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Check if the range is empty. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true if the range has no elements. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph24splittable_range_adaptor12is_divisibleEv">
+<span id="_CPPv3NK2nw5graph24splittable_range_adaptor12is_divisibleEv"></span><span id="_CPPv2NK2nw5graph24splittable_range_adaptor12is_divisibleEv"></span><span id="nw::graph::splittable_range_adaptor::is_divisibleC"></span><span class="target" id="classnw_1_1graph_1_1splittable__range__adaptor_1af72dbc7b3c099adb8808947f1b810a86"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_divisible</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph24splittable_range_adaptor12is_divisibleEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Check if the range can be split. </p>
+<p>A range is divisible if its size exceeds the cutoff threshold. Required by TBB’s Range concept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true if the range can be split into sub-ranges. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

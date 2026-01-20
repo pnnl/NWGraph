@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2) &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)" href="ch5_dijkstra.html" />
+    <link rel="prev" title="Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)" href="ch4_kevin_bacon.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/references.html">References Cited</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch3_toposort.html">File Dependencies - Topological Sort (BGL Book Chapter 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_kevin_bacon.html">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detecting-cycles-with-dfs">Detecting Cycles with DFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finding-loops-in-control-flow-graphs">Finding Loops in Control-Flow Graphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-algorithm">The Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwgraph-implementation">NWGraph Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-running-the-example">Building and Running the Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-output">Sample Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-nwgraph-features-demonstrated">Key NWGraph Features Demonstrated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_dijkstra.html">Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_bellman_ford.html">Bellman-Ford Algorithm and Distance Vector Routing (BGL Book Chapter 5.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_kruskal.html">Kruskal’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_prim.html">Prim’s Minimum Spanning Tree Algorithm (BGL Book Chapter 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_connected.html">Connected Components (BGL Book Chapter 7)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_strongly_connected.html">Strongly Connected Components and Web Page Links (BGL Book Chapter 7.3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8_maxflow.html">Maximum Flow (BGL Book Chapter 8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_knights_tour.html">Implicit Graphs: A Knight’s Tour (BGL Book Chapter 9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#building-the-examples">Building the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../degrees/index.html">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imdb/index.html">IMDB Network Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#bgl-book-examples">BGL Book Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#six-degrees-of-separation">Six Degrees of Separation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imdb-examples">IMDB Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Boost Graph Library Examples (Rewritten for NW Graph)</a></li>
+      <li class="breadcrumb-item active">Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/bglbook/ch4_loop_detection.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="finding-loops-in-program-control-flow-graphs-bgl-book-chapter-4-2">
+<h1>Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)<a class="headerlink" href="#finding-loops-in-program-control-flow-graphs-bgl-book-chapter-4-2" title="Link to this heading"></a></h1>
+<p><em>Based on “The Boost Graph Library” by Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine</em></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>One important assumption when using topological sorting is that the dependency graph does not
+have any cycles. A graph with cycles does not have a topological ordering. A well-formed
+makefile will have no cycles, but errors do occur, and our build system should be able to
+catch and report such errors.</p>
+<p>This example applies the same concept to program analysis: finding loops in control-flow
+graphs. Each box in a control-flow graph represents a basic block of instructions, and
+edges represent possible control flow between blocks.</p>
+</section>
+<section id="detecting-cycles-with-dfs">
+<h2>Detecting Cycles with DFS<a class="headerlink" href="#detecting-cycles-with-dfs" title="Link to this heading"></a></h2>
+<p>Depth-first search can be used for detecting cycles. If DFS is applied to a graph that has
+a cycle, then one of the branches of a DFS tree will loop back on itself. That is, there
+will be an edge from a vertex to one of its ancestors in the tree. This kind of edge is
+called a <strong>back edge</strong>.</p>
+<p>This occurrence can be detected using a three-way coloring scheme instead of simple
+visited/not-visited marking:</p>
+<ul class="simple">
+<li><p><strong>White</strong> means undiscovered</p></li>
+<li><p><strong>Gray</strong> means discovered but still searching descendants</p></li>
+<li><p><strong>Black</strong> means the vertex and all of its descendants have been discovered</p></li>
+</ul>
+<p>A cycle in the graph is then identified by an adjacent vertex that is gray, meaning that
+an edge is looping back to an ancestor.</p>
+</section>
+<section id="finding-loops-in-control-flow-graphs">
+<h2>Finding Loops in Control-Flow Graphs<a class="headerlink" href="#finding-loops-in-control-flow-graphs" title="Link to this heading"></a></h2>
+<p>Finding the loops in a control-flow graph consists of two steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Find all back edges</strong>: Each back edge (u, v) identifies a loop, since v is the
+ancestor of u in the DFS tree and adding (u, v) completes the loop. The vertex v
+is called the <em>loop head</em>. DFS is used to identify the back edges.</p></li>
+<li><p><strong>Determine which vertices belong to each loop</strong>: For a vertex v to belong to a loop
+indicated by a back edge (t, h), v must be reachable from h (the loop head) and t
+(the loop tail) must be reachable from v.</p></li>
+</ol>
+</section>
+<section id="the-algorithm">
+<h2>The Algorithm<a class="headerlink" href="#the-algorithm" title="Link to this heading"></a></h2>
+<p>The algorithm uses DFS to find back edges by recording edges that connect a vertex to
+one of its ancestors (a gray vertex). For each back edge found, we then compute the
+<em>loop extent</em>—the set of all vertices that belong to that loop—by:</p>
+<ol class="arabic simple">
+<li><p>Computing all vertices reachable from the loop head</p></li>
+<li><p>Computing all vertices from which you can reach the loop tail</p></li>
+<li><p>Intersecting these two sets</p></li>
+</ol>
+</section>
+<section id="nwgraph-implementation">
+<h2>NWGraph Implementation<a class="headerlink" href="#nwgraph-implementation" title="Link to this heading"></a></h2>
+<p>NWGraph provides the <code class="docutils literal notranslate"><span class="pre">back_edge_range</span></code> adaptor that yields back edges during a DFS
+traversal, making it easy to detect cycles and find loops.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">Complete source code</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file ch4_loop_detection.cpp</span>
+<span class="linenos">  3</span><span class="cm"> *</span>
+<span class="linenos">  4</span><span class="cm"> * @brief Finding Loops in Program Control-Flow Graphs (BGL Book Chapter 4.2)</span>
+<span class="linenos">  5</span><span class="cm"> *</span>
+<span class="linenos">  6</span><span class="cm"> * This example demonstrates using DFS to detect back edges (cycles) in a</span>
+<span class="linenos">  7</span><span class="cm"> * directed graph. In program analysis, back edges in a control-flow graph</span>
+<span class="linenos">  8</span><span class="cm"> * indicate loops.</span>
+<span class="linenos">  9</span><span class="cm"> *</span>
+<span class="linenos"> 10</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</span>
+<span class="linenos"> 11</span><span class="cm"> * @copyright SPDX-FileCopyrightText: 2022 University of Washington</span>
+<span class="linenos"> 12</span><span class="cm"> *</span>
+<span class="linenos"> 13</span><span class="cm"> * SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="linenos"> 14</span><span class="cm"> *</span>
+<span class="linenos"> 15</span><span class="cm"> * @authors</span>
+<span class="linenos"> 16</span><span class="cm"> *   Andrew Lumsdaine</span>
+<span class="linenos"> 17</span><span class="cm"> *</span>
+<span class="linenos"> 18</span><span class="cm"> */</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 21</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/adjacency.hpp&quot;</span>
+<span class="linenos"> 24</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nwgraph/edge_list.hpp&quot;</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">nw</span><span class="o">::</span><span class="nn">graph</span><span class="p">;</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="c1">// Three-way coloring for DFS cycle detection</span>
+<span class="linenos"> 29</span><span class="k">enum</span><span class="w"> </span><span class="nc">color_t</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">white_color</span><span class="p">,</span><span class="w"> </span><span class="n">grey_color</span><span class="p">,</span><span class="w"> </span><span class="n">black_color</span><span class="w"> </span><span class="p">};</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="cm">/**</span>
+<span class="linenos"> 32</span><span class="cm"> * @brief Detect if a graph has a cycle using DFS</span>
+<span class="linenos"> 33</span><span class="cm"> *</span>
+<span class="linenos"> 34</span><span class="cm"> * A cycle exists if we find a back edge - an edge from a vertex to one of its</span>
+<span class="linenos"> 35</span><span class="cm"> * ancestors in the DFS tree (a grey vertex).</span>
+<span class="linenos"> 36</span><span class="cm"> *</span>
+<span class="linenos"> 37</span><span class="cm"> * @param G The graph to check</span>
+<span class="linenos"> 38</span><span class="cm"> * @return true if the graph contains a cycle</span>
+<span class="linenos"> 39</span><span class="cm"> */</span>
+<span class="linenos"> 40</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Graph</span><span class="o">&gt;</span>
+<span class="linenos"> 41</span><span class="kt">bool</span><span class="w"> </span><span class="n">has_cycle_dfs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">color_t</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 42</span><span class="w">  </span><span class="n">color</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grey_color</span><span class="p">;</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 45</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">grey_color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 46</span><span class="w">      </span><span class="c1">// Found a back edge - this indicates a cycle</span>
+<span class="linenos"> 47</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos"> 48</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 49</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">white_color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 50</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_cycle_dfs</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 51</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos"> 52</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 54</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span><span class="w">  </span><span class="n">color</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">black_color</span><span class="p">;</span>
+<span class="linenos"> 57</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos"> 58</span><span class="p">}</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span><span class="cm">/**</span>
+<span class="linenos"> 61</span><span class="cm"> * @brief Check if a directed graph contains any cycles</span>
+<span class="linenos"> 62</span><span class="cm"> */</span>
+<span class="linenos"> 63</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Graph</span><span class="o">&gt;</span>
+<span class="linenos"> 64</span><span class="kt">bool</span><span class="w"> </span><span class="n">has_cycle</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">G</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 65</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">color_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">color</span><span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="n">white_color</span><span class="p">);</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">G</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 68</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">white_color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 69</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_cycle_dfs</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 70</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos"> 71</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 73</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 74</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos"> 75</span><span class="p">}</span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span><span class="cm">/**</span>
+<span class="linenos"> 78</span><span class="cm"> * @brief Find and print all back edges (loops) in a graph</span>
+<span class="linenos"> 79</span><span class="cm"> */</span>
+<span class="linenos"> 80</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Graph</span><span class="o">&gt;</span>
+<span class="linenos"> 81</span><span class="kt">void</span><span class="w"> </span><span class="n">find_back_edges</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Graph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">color_t</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">color</span><span class="p">,</span>
+<span class="linenos"> 82</span><span class="w">                     </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">back_edges</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 83</span><span class="w">  </span><span class="n">color</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grey_color</span><span class="p">;</span>
+<span class="linenos"> 84</span>
+<span class="linenos"> 85</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 86</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">grey_color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 87</span><span class="w">      </span><span class="c1">// This is a back edge</span>
+<span class="linenos"> 88</span><span class="w">      </span><span class="n">back_edges</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">});</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">white_color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 90</span><span class="w">      </span><span class="n">find_back_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">back_edges</span><span class="p">);</span>
+<span class="linenos"> 91</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span><span class="w">  </span><span class="n">color</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">black_color</span><span class="p">;</span>
+<span class="linenos"> 95</span><span class="p">}</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 98</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Loop Detection in Control-Flow Graphs ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 99</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Based on BGL Book Chapter 4.2&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="w">  </span><span class="c1">// Create a simple control-flow graph with a loop</span>
+<span class="linenos">102</span><span class="w">  </span><span class="c1">// This represents a simple while loop:</span>
+<span class="linenos">103</span><span class="w">  </span><span class="c1">//   0 (entry)</span>
+<span class="linenos">104</span><span class="w">  </span><span class="c1">//   |</span>
+<span class="linenos">105</span><span class="w">  </span><span class="c1">//   v</span>
+<span class="linenos">106</span><span class="w">  </span><span class="c1">//   1 (condition) &lt;--+</span>
+<span class="linenos">107</span><span class="w">  </span><span class="c1">//   |                |</span>
+<span class="linenos">108</span><span class="w">  </span><span class="c1">//   v                |</span>
+<span class="linenos">109</span><span class="w">  </span><span class="c1">//   2 (body) --------+</span>
+<span class="linenos">110</span><span class="w">  </span><span class="c1">//   |</span>
+<span class="linenos">111</span><span class="w">  </span><span class="c1">//   v</span>
+<span class="linenos">112</span><span class="w">  </span><span class="c1">//   3 (exit)</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Graph 1: Simple while loop&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">115</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  0 -&gt; 1 -&gt; 2 -&gt; 1 (loop back)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">116</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;            |&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">117</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;            v&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">118</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;            3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">119</span>
+<span class="linenos">120</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">E1</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos">121</span><span class="w">  </span><span class="n">E1</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">122</span><span class="w">  </span><span class="n">E1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// entry -&gt; condition</span>
+<span class="linenos">123</span><span class="w">  </span><span class="n">E1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">  </span><span class="c1">// condition -&gt; body</span>
+<span class="linenos">124</span><span class="w">  </span><span class="n">E1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// body -&gt; condition (back edge - loop!)</span>
+<span class="linenos">125</span><span class="w">  </span><span class="n">E1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// condition -&gt; exit</span>
+<span class="linenos">126</span><span class="w">  </span><span class="n">E1</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="n">G1</span><span class="p">(</span><span class="n">E1</span><span class="p">);</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">color_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">color1</span><span class="p">(</span><span class="n">G1</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="n">white_color</span><span class="p">);</span>
+<span class="linenos">131</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">back_edges1</span><span class="p">;</span>
+<span class="linenos">132</span>
+<span class="linenos">133</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">G1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">134</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color1</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">white_color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">135</span><span class="w">      </span><span class="n">find_back_edges</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">color1</span><span class="p">,</span><span class="w"> </span><span class="n">back_edges1</span><span class="p">);</span>
+<span class="linenos">136</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">137</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">138</span>
+<span class="linenos">139</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Has cycle: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">has_cycle</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;yes&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">140</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Back edges found: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">back_edges1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">141</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">back_edges1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">142</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -&gt; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (loop)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">143</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">144</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span><span class="w">  </span><span class="c1">// Create a DAG (no loops)</span>
+<span class="linenos">147</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Graph 2: DAG (no loops)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">148</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  0 -&gt; 1 -&gt; 3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">149</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  |    |&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">150</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  v    v&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">151</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  2 -&gt; 3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">152</span>
+<span class="linenos">153</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">E2</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos">154</span><span class="w">  </span><span class="n">E2</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">155</span><span class="w">  </span><span class="n">E2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">156</span><span class="w">  </span><span class="n">E2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">157</span><span class="w">  </span><span class="n">E2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">158</span><span class="w">  </span><span class="n">E2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">159</span><span class="w">  </span><span class="n">E2</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="n">G2</span><span class="p">(</span><span class="n">E2</span><span class="p">);</span>
+<span class="linenos">162</span>
+<span class="linenos">163</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Has cycle: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">has_cycle</span><span class="p">(</span><span class="n">G2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;yes&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">164</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span><span class="w">  </span><span class="c1">// Create a graph with nested loops</span>
+<span class="linenos">167</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Graph 3: Nested loops&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">168</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 2 (inner loop)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">169</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;       ^         |&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">170</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;       +---------+ (outer loop)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">171</span>
+<span class="linenos">172</span><span class="w">  </span><span class="n">edge_list</span><span class="o">&lt;</span><span class="n">directedness</span><span class="o">::</span><span class="n">directed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">E3</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos">173</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">open_for_push_back</span><span class="p">();</span>
+<span class="linenos">174</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// entry</span>
+<span class="linenos">175</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">  </span><span class="c1">// outer loop start</span>
+<span class="linenos">176</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// inner loop start</span>
+<span class="linenos">177</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">  </span><span class="c1">// inner loop back edge</span>
+<span class="linenos">178</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// outer loop back edge</span>
+<span class="linenos">179</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">  </span><span class="c1">// exit</span>
+<span class="linenos">180</span><span class="w">  </span><span class="n">E3</span><span class="p">.</span><span class="n">close_for_push_back</span><span class="p">();</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span><span class="w">  </span><span class="n">adjacency</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="w"> </span><span class="n">G3</span><span class="p">(</span><span class="n">E3</span><span class="p">);</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">color_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">color3</span><span class="p">(</span><span class="n">G3</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="n">white_color</span><span class="p">);</span>
+<span class="linenos">185</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">back_edges3</span><span class="p">;</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">G3</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">188</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color3</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">white_color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">189</span><span class="w">      </span><span class="n">find_back_edges</span><span class="p">(</span><span class="n">G3</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">color3</span><span class="p">,</span><span class="w"> </span><span class="n">back_edges3</span><span class="p">);</span>
+<span class="linenos">190</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">191</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Has cycle: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">has_cycle</span><span class="p">(</span><span class="n">G3</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;yes&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">194</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Back edges found: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">back_edges3</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">195</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">back_edges3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">196</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -&gt; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (loop)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">197</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">200</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="building-and-running-the-example">
+<h2>Building and Running the Example<a class="headerlink" href="#building-and-running-the-example" title="Link to this heading"></a></h2>
+<p>First, configure and build the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the NWGraph root directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DNWGRAPH_BUILD_EXAMPLES<span class="o">=</span>ON
+make<span class="w"> </span>ch4_loop_detection
+</pre></div>
+</div>
+<p>Then run the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./examples/bgl-book/ch4_loop_detection
+</pre></div>
+</div>
+<p>The program constructs a control-flow graph and identifies all back edges (loops) in
+the graph.</p>
+</section>
+<section id="sample-output">
+<h2>Sample Output<a class="headerlink" href="#sample-output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Control-flow graph loop detection
+Found back edge: B7 -&gt; B1 (indicates a loop)
+Loop head: B1
+Loop vertices: B1, B2, B4, B5, B7
+</pre></div>
+</div>
+</section>
+<section id="key-nwgraph-features-demonstrated">
+<h2>Key NWGraph Features Demonstrated<a class="headerlink" href="#key-nwgraph-features-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Directed graphs</strong>: Control-flow graphs are naturally directed</p></li>
+<li><p><strong>DFS traversal</strong>: Using depth-first search to classify edges</p></li>
+<li><p><strong>Back edge detection</strong>: Using <code class="docutils literal notranslate"><span class="pre">back_edge_range</span></code> to find cycles</p></li>
+<li><p><strong>Edge classification</strong>: Distinguishing tree edges from back edges</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cormen, Leiserson, Rivest, and Stein. <em>Introduction to Algorithms</em>, 4th Edition (2022),
+<strong>Chapter 20.3: Depth-First Search</strong> (edge classification and back edges)</p></li>
+<li><p>Siek, Lee, and Lumsdaine. <em>The Boost Graph Library</em> (2002), Chapter 4.2</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="ch3_toposort.html"><span class="doc">File Dependencies - Topological Sort (BGL Book Chapter 3)</span></a> - Topological sorting (requires acyclic graphs)</p></li>
+<li><p><a class="reference internal" href="ch4_kevin_bacon.html"><span class="doc">Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)</span></a> - BFS for shortest paths</p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Boost Graph Library Examples (Rewritten for NW Graph)</span></a> - BGL Book examples overview</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch4_kevin_bacon.html" class="btn btn-neutral float-left" title="Six Degrees of Kevin Bacon (BGL Book Chapter 4.1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch5_dijkstra.html" class="btn btn-neutral float-right" title="Internet Routing with Dijkstra’s Algorithm (BGL Book Chapter 5.4)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

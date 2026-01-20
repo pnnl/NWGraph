@@ -1,0 +1,14 @@
+.. _exhale_define_backend_8hpp_1a079025e63e048fd6a72fb70116d0b334:
+
+Define NWGRAPH_BACKEND_HPX_ENABLED
+==================================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: NWGRAPH_BACKEND_HPX_ENABLED
+   :project: NWgraph

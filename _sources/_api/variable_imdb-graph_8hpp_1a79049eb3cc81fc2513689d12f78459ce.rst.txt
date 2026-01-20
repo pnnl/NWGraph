@@ -1,0 +1,14 @@
+.. _exhale_variable_imdb-graph_8hpp_1a79049eb3cc81fc2513689d12f78459ce:
+
+Variable actors
+===============
+
+- Defined in :ref:`file_include_nwgraph_graphs_imdb-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: actors
+   :project: NWgraph

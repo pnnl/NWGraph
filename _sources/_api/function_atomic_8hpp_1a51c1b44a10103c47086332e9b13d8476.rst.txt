@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1a51c1b44a10103c47086332e9b13d8476:
+
+Template Function nw::graph::cas
+================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::cas(T&&, U&&, V&&)
+   :project: NWgraph

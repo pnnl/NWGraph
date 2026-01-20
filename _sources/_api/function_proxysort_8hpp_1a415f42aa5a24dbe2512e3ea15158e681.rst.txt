@@ -1,0 +1,14 @@
+.. _exhale_function_proxysort_8hpp_1a415f42aa5a24dbe2512e3ea15158e681:
+
+Template Function nw::util::proxysort(const ThingToSort&, std::vector<IntT>&, Comparator, ExecutionPolicy)
+==========================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_util_proxysort.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::util::proxysort(const ThingToSort&, std::vector<IntT>&, Comparator, ExecutionPolicy)
+   :project: NWgraph

@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File page_rank.hpp &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File page_rank.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/file_include_nwgraph_experimental_algorithms_page_rank.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-page-rank-hpp">
+<span id="file-include-nwgraph-experimental-algorithms-page-rank-hpp"></span><h1>File page_rank.hpp<a class="headerlink" href="#file-page-rank-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_nwgraph_experimental_algorithms.html#dir-include-nwgraph-experimental-algorithms"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/experimental/algorithms</span></code>)</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-nwgraph-experimental-algorithms-page-rank-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/experimental/algorithms/page_rank.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id4">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id5">Functions</a></p></li>
+</ul>
+</nav>
+<section id="definition-include-nwgraph-experimental-algorithms-page-rank-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/experimental/algorithms/page_rank.hpp</span></code>)<a class="headerlink" href="#definition-include-nwgraph-experimental-algorithms-page-rank-hpp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_nwgraph_experimental_algorithms_page_rank.hpp.html">Program Listing for File page_rank.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Link to this heading"></a></h2>
+<p>SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</p>
+<p>SPDX-FileCopyrightText: 2022 University of Washington</p>
+<p>SPDX-License-Identifier: BSD-3-Clause</p>
+<dl class="simple">
+<dt>Tony Liu Andrew Lumsdaine</dt><dd><p>Kevin Deweese</p>
+</dd>
+</dl>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmath</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">future</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iomanip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iostream</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memory</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/adaptors/edge_range.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_adaptors_edge_range.hpp.html#file-include-nwgraph-adaptors-edge-range-hpp"><span class="std std-ref">File edge_range.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/adaptors/vertex_range.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_adaptors_vertex_range.hpp.html#file-include-nwgraph-adaptors-vertex-range-hpp"><span class="std std-ref">File vertex_range.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/algorithms/page_rank.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_algorithms_page_rank.hpp.html#file-include-nwgraph-algorithms-page-rank-hpp"><span class="std std-ref">File page_rank.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/containers/compressed.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_containers_compressed.hpp.html#file-include-nwgraph-containers-compressed-hpp"><span class="std std-ref">File compressed.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/edge_list.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_edge_list.hpp.html#file-include-nwgraph-edge-list-hpp"><span class="std std-ref">File edge_list.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/graph_concepts.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_graph_concepts.hpp.html#file-include-nwgraph-graph-concepts-hpp"><span class="std std-ref">File graph_concepts.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/parallel_for.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_parallel_for.hpp.html#file-include-nwgraph-util-parallel-for-hpp"><span class="std std-ref">File parallel_for.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code> (<a class="reference internal" href="file_include_nwgraph_util_tuple_hack.hpp.html#file-include-nwgraph-util-tuple-hack-hpp"><span class="std std-ref">File tuple_hack.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_nw.html#namespace-nw"><span class="std std-ref">Namespace nw</span></a></p></li>
+<li><p><a class="reference internal" href="namespace_nw__graph.html#namespace-nw-graph"><span class="std std-ref">Namespace nw::graph</span></a></p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1ae61dbdaddaf0344bb3ec55a406912c66.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1ae61dbdaddaf0344bb3ec55a406912c66"><span class="std std-ref">Template Function nw::graph::page_rank_v1</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1a961aee9bb4cc3b2c4ce9020342134a53.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1a961aee9bb4cc3b2c4ce9020342134a53"><span class="std std-ref">Template Function nw::graph::page_rank_v10</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1a629f0e1ed958445671c51e2058724ba5.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1a629f0e1ed958445671c51e2058724ba5"><span class="std std-ref">Template Function nw::graph::page_rank_v12</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1a948ad28d235f68bb4b1fe11d11f5c1c6.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1a948ad28d235f68bb4b1fe11d11f5c1c6"><span class="std std-ref">Template Function nw::graph::page_rank_v13</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1ae32019ac555f44f1e2b128263cca6aff.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1ae32019ac555f44f1e2b128263cca6aff"><span class="std std-ref">Template Function nw::graph::page_rank_v14</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1ad16759484e48728cef4a25d7ff41d620.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1ad16759484e48728cef4a25d7ff41d620"><span class="std std-ref">Template Function nw::graph::page_rank_v2</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1a5e56edc79cb9122f5a54ff141727101d.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1a5e56edc79cb9122f5a54ff141727101d"><span class="std std-ref">Template Function nw::graph::page_rank_v3</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1a8c54b34dbbf69149260cfa62d0edccd7.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1a8c54b34dbbf69149260cfa62d0edccd7"><span class="std std-ref">Template Function nw::graph::page_rank_v4</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1ada25dffaa51ac9dc36b881560a1b5a0b.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1ada25dffaa51ac9dc36b881560a1b5a0b"><span class="std std-ref">Template Function nw::graph::page_rank_v6</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1af8a0fe2a4f6e4610e341a1703a3a5164.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1af8a0fe2a4f6e4610e341a1703a3a5164"><span class="std std-ref">Template Function nw::graph::page_rank_v7</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1a4f30374ed9f27d3461f04ddcde9aad8d.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1a4f30374ed9f27d3461f04ddcde9aad8d"><span class="std std-ref">Template Function nw::graph::page_rank_v8</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1aa845f57c135e2af0acfba9623d936200.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1aa845f57c135e2af0acfba9623d936200"><span class="std std-ref">Template Function nw::graph::page_rank_v9</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2page__rank_8hpp_1a94a2f82ce90358231c3956d8870e4c47.html#exhale-function-experimental-2algorithms-2page-rank-8hpp-1a94a2f82ce90358231c3956d8870e4c47"><span class="std std-ref">Template Function nw::graph::page_rank_vc</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

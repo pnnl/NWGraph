@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2triangle__count_8hpp_1ae54a7637431c17e4a1cea0ffce46a8c0:
+
+Template Function nw::graph::lower_bound_set_intersection
+=========================================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::lower_bound_set_intersection(_InputIterator1, _InputIterator1, _InputIterator2, _InputIterator2, _OutputIterator)
+   :project: NWgraph

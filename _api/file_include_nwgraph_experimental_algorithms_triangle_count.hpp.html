@@ -1,0 +1,197 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File triangle_count.hpp &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File triangle_count.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/file_include_nwgraph_experimental_algorithms_triangle_count.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-triangle-count-hpp">
+<span id="file-include-nwgraph-experimental-algorithms-triangle-count-hpp"></span><h1>File triangle_count.hpp<a class="headerlink" href="#file-triangle-count-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_nwgraph_experimental_algorithms.html#dir-include-nwgraph-experimental-algorithms"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/experimental/algorithms</span></code>)</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-nwgraph-experimental-algorithms-triangle-count-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/experimental/algorithms/triangle_count.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id4">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id5">Functions</a></p></li>
+</ul>
+</nav>
+<section id="definition-include-nwgraph-experimental-algorithms-triangle-count-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/experimental/algorithms/triangle_count.hpp</span></code>)<a class="headerlink" href="#definition-include-nwgraph-experimental-algorithms-triangle-count-hpp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_nwgraph_experimental_algorithms_triangle_count.hpp.html">Program Listing for File triangle_count.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Link to this heading"></a></h2>
+<p>SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</p>
+<p>SPDX-FileCopyrightText: 2022 University of Washington</p>
+<p>SPDX-License-Identifier: BSD-3-Clause</p>
+<p>Andrew Lumsdaine Kevin Deweese Tony Liu</p>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">atomic</span></code> (<a class="reference internal" href="file_include_nwgraph_util_atomic.hpp.html#file-include-nwgraph-util-atomic-hpp"><span class="std std-ref">File atomic.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">future</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/adaptors/cyclic_range_adaptor.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp.html#file-include-nwgraph-adaptors-cyclic-range-adaptor-hpp"><span class="std std-ref">File cyclic_range_adaptor.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/adaptors/edge_range.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_adaptors_edge_range.hpp.html#file-include-nwgraph-adaptors-edge-range-hpp"><span class="std std-ref">File edge_range.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/adaptors/neighbor_range.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_adaptors_neighbor_range.hpp.html#file-include-nwgraph-adaptors-neighbor-range-hpp"><span class="std std-ref">File neighbor_range.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/graph_concepts.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_graph_concepts.hpp.html#file-include-nwgraph-graph-concepts-hpp"><span class="std std-ref">File graph_concepts.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/intersection_size.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_intersection_size.hpp.html#file-include-nwgraph-util-intersection-size-hpp"><span class="std std-ref">File intersection_size.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/parallel_for.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_parallel_for.hpp.html#file-include-nwgraph-util-parallel-for-hpp"><span class="std std-ref">File parallel_for.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/timer.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_timer.hpp.html#file-include-nwgraph-util-timer-hpp"><span class="std std-ref">File timer.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nwgraph/util/util.hpp</span></code> (<a class="reference internal" href="file_include_nwgraph_util_util.hpp.html#file-include-nwgraph-util-util-hpp"><span class="std std-ref">File util.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">thread</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code> (<a class="reference internal" href="file_include_nwgraph_util_tuple_hack.hpp.html#file-include-nwgraph-util-tuple-hack-hpp"><span class="std std-ref">File tuple_hack.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_nw.html#namespace-nw"><span class="std std-ref">Namespace nw</span></a></p></li>
+<li><p><a class="reference internal" href="namespace_nw__graph.html#namespace-nw-graph"><span class="std std-ref">Namespace nw::graph</span></a></p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1ae54a7637431c17e4a1cea0ffce46a8c0.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1ae54a7637431c17e4a1cea0ffce46a8c0"><span class="std std-ref">Template Function nw::graph::lower_bound_set_intersection</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a66d2127d75c316644729135e32882ea2.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a66d2127d75c316644729135e32882ea2"><span class="std std-ref">Template Function nw::graph::triangle_count_edgesplit</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a07096af7dfe6b680cc741f1c599a2e0f.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a07096af7dfe6b680cc741f1c599a2e0f"><span class="std std-ref">Template Function nw::graph::triangle_count_edgesplit_upper</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a1b176d9f650c2b637d12cb404298730a.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a1b176d9f650c2b637d12cb404298730a"><span class="std std-ref">Template Function nw::graph::triangle_count_v1</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a8e6b416bb482d2cf6317327f04ca568a.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a8e6b416bb482d2cf6317327f04ca568a"><span class="std std-ref">Template Function nw::graph::triangle_count_v10</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a059d5de75600592a80223050fc1ac149.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a059d5de75600592a80223050fc1ac149"><span class="std std-ref">Template Function nw::graph::triangle_count_v12</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a9a17e4c700de5108ca58574dc9560fb5.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a9a17e4c700de5108ca58574dc9560fb5"><span class="std std-ref">Template Function nw::graph::triangle_count_v13</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1abba4231f9ea3be6c7609c37c54f9686d.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1abba4231f9ea3be6c7609c37c54f9686d"><span class="std std-ref">Template Function nw::graph::triangle_count_v14</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a726a2a9237667889c8b46b0a0c3afeec.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a726a2a9237667889c8b46b0a0c3afeec"><span class="std std-ref">Template Function nw::graph::triangle_count_v15</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1affada3fdb183887963aa8c10b69e8b17.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1affada3fdb183887963aa8c10b69e8b17"><span class="std std-ref">Template Function nw::graph::triangle_count_v2</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a541bf391ddbb546b038b6682b22af4b9.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a541bf391ddbb546b038b6682b22af4b9"><span class="std std-ref">Template Function nw::graph::triangle_count_v3</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1ad0c0392b4c4ade90e243bbf34e6b0666.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1ad0c0392b4c4ade90e243bbf34e6b0666"><span class="std std-ref">Template Function nw::graph::triangle_count_v4</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1ab4effa36db7d6614bc81bfc5a78bfbc5.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1ab4effa36db7d6614bc81bfc5a78bfbc5"><span class="std std-ref">Template Function nw::graph::triangle_count_v5</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1ad502aa17bf3792f5e80f3465e3647bcb.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1ad502aa17bf3792f5e80f3465e3647bcb"><span class="std std-ref">Template Function nw::graph::triangle_count_v6</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a3e59d344e779c8ad141e3264867ed46b.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a3e59d344e779c8ad141e3264867ed46b"><span class="std std-ref">Template Function nw::graph::triangle_count_v7</span></a></p></li>
+<li><p><a class="reference internal" href="function_experimental_2algorithms_2triangle__count_8hpp_1a6b33351373d470069cd87b5c19a4d6a2.html#exhale-function-experimental-2algorithms-2triangle-count-8hpp-1a6b33351373d470069cd87b5c19a4d6a2"><span class="std std-ref">Template Function nw::graph::triangle_count_vc</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+.. _exhale_function_demangle_8hpp_1a14db0f0c5564de9159f59e2f34da3342:
+
+Template Function nw::graph::demangle
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_util_demangle.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::demangle(Args&&...)
+   :project: NWgraph

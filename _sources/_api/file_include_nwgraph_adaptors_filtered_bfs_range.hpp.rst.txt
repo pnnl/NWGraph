@@ -1,0 +1,113 @@
+
+.. _file_include_nwgraph_adaptors_filtered_bfs_range.hpp:
+
+File filtered_bfs_range.hpp
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Filtered BFS range adaptor for target-directed search. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/filtered_bfs_range.hpp``)
+----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_filtered_bfs_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides a BFS traversal that can skip edges based on a filter predicate and terminates early when a target vertex is found. Useful for:
+
+- Constrained shortest path problems
+
+- Reachability queries with edge restrictions
+
+- Max-flow augmenting path search
+
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``functional``
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``queue`` (:ref:`file_include_nwgraph_util_make_priority_queue.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+- :ref:`namespace_nw__graph__filtered_bfs`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range_1_1filtered__bfs__edge__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range_1_1filtered__bfs__edge__range__iterator_1_1end__sentinel__type`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_filtered__bfs__range_8hpp_1a26dbd25690d96e73a76c593f7bfdd5da`
+

@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2betweenness__centrality_8hpp_1a32b1bc6ffd7968a8de5b0f2e47106bb3:
+
+Template Function nw::graph::bc2_v0
+===================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::bc2_v0(const Graph&, const std::vector<typename Graph::vertex_id_type>, bool)
+   :project: NWgraph

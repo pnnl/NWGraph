@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File tag_invoke.hpp &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File tag_invoke.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/file_include_nwgraph_util_tag_invoke.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-tag-invoke-hpp">
+<span id="file-include-nwgraph-util-tag-invoke-hpp"></span><h1>File tag_invoke.hpp<a class="headerlink" href="#file-tag-invoke-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_nwgraph_util.html#dir-include-nwgraph-util"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/util</span></code>)</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-nwgraph-util-tag-invoke-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/util/tag_invoke.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
+<li><p><a class="reference internal" href="#included-by" id="id4">Included By</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id5">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#concepts" id="id6">Concepts</a></p></li>
+<li><p><a class="reference internal" href="#classes" id="id7">Classes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id8">Functions</a></p></li>
+<li><p><a class="reference internal" href="#defines" id="id9">Defines</a></p></li>
+<li><p><a class="reference internal" href="#typedefs" id="id10">Typedefs</a></p></li>
+<li><p><a class="reference internal" href="#variables" id="id11">Variables</a></p></li>
+</ul>
+</nav>
+<section id="definition-include-nwgraph-util-tag-invoke-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/nwgraph/util/tag_invoke.hpp</span></code>)<a class="headerlink" href="#definition-include-nwgraph-util-tag-invoke-hpp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_nwgraph_util_tag_invoke.hpp.html">Program Listing for File tag_invoke.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Link to this heading"></a></h2>
+<p>SPDX-FileCopyrightText: 2022 Battelle Memorial Institute</p>
+<p>SPDX-FileCopyrightText: 2022 University of Washington</p>
+<p>SPDX-License-Identifier: BSD-3-Clause</p>
+<p>Andrew Lumsdaine Luke D’Alessandro</p>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type_traits</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utility</span></code></p></li>
+</ul>
+</section>
+<section id="included-by">
+<h2>Included By<a class="headerlink" href="#included-by" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="file_include_nwgraph_graph_concepts.hpp.html#file-include-nwgraph-graph-concepts-hpp"><span class="std std-ref">File graph_concepts.hpp</span></a></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace__tag_invoke.html#namespace-tag-invoke"><span class="std std-ref">Namespace _tag_invoke</span></a></p></li>
+<li><p><a class="reference internal" href="namespace__tag_invoke_cpo.html#namespace-tag-invoke-cpo"><span class="std std-ref">Namespace _tag_invoke_cpo</span></a></p></li>
+</ul>
+</section>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="concepttag__invocable.html#exhale-concept-concepttag-invocable"><span class="std std-ref">Concept tag_invocable</span></a></p></li>
+</ul>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="struct__tag__invoke_1_1__fn.html#exhale-struct-struct-tag-invoke-1-1-fn"><span class="std std-ref">Struct _fn</span></a></p></li>
+<li><p><a class="reference internal" href="struct__tag__invoke_1_1defer.html#exhale-struct-struct-tag-invoke-1-1defer"><span class="std std-ref">Template Struct defer</span></a></p></li>
+<li><p><a class="reference internal" href="struct__tag__invoke_1_1empty.html#exhale-struct-struct-tag-invoke-1-1empty"><span class="std std-ref">Struct empty</span></a></p></li>
+<li><p><a class="reference internal" href="structtag__invoke__result.html#exhale-struct-structtag-invoke-result"><span class="std std-ref">Template Struct tag_invoke_result</span></a></p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_tag__invoke_8hpp_1a9ee1eb0e0197ef8dfbee41dfed68c97d.html#exhale-function-tag-invoke-8hpp-1a9ee1eb0e0197ef8dfbee41dfed68c97d"><span class="std std-ref">Function _tag_invoke::tag_invoke</span></a></p></li>
+<li><p><a class="reference internal" href="function_tag__invoke_8hpp_1acdf464f10989dcffd795a85fbf775974.html#exhale-function-tag-invoke-8hpp-1acdf464f10989dcffd795a85fbf775974"><span class="std std-ref">Template Function _tag_invoke::try_tag_invoke(int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_tag__invoke_8hpp_1a9189b4b289ef505be81fa00bb253b509.html#exhale-function-tag-invoke-8hpp-1a9189b4b289ef505be81fa00bb253b509"><span class="std std-ref">Template Function _tag_invoke::try_tag_invoke(…)</span></a></p></li>
+</ul>
+</section>
+<section id="defines">
+<h2>Defines<a class="headerlink" href="#defines" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="define_tag__invoke_8hpp_1a3b407e45a3524837901353cb56dc2f26.html#exhale-define-tag-invoke-8hpp-1a3b407e45a3524837901353cb56dc2f26"><span class="std std-ref">Define DECL_TAG_INVOKE</span></a></p></li>
+</ul>
+</section>
+<section id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="typedef_tag__invoke_8hpp_1aa5e09234508687bae00e698f29a32e2b.html#exhale-typedef-tag-invoke-8hpp-1aa5e09234508687bae00e698f29a32e2b"><span class="std std-ref">Typedef _tag_invoke::no_type</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_tag__invoke_8hpp_1aeec3eee89e80d4a8e33d4d92b3f1cf01.html#exhale-typedef-tag-invoke-8hpp-1aeec3eee89e80d4a8e33d4d92b3f1cf01"><span class="std std-ref">Typedef _tag_invoke::tag_invoke_result_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_tag__invoke_8hpp_1a0fe843f6da63395ee61dd4e46963923b.html#exhale-typedef-tag-invoke-8hpp-1a0fe843f6da63395ee61dd4e46963923b"><span class="std std-ref">Typedef _tag_invoke::yes_type</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_tag__invoke_8hpp_1ab657541c582446f187c774f4e30b0286.html#exhale-typedef-tag-invoke-8hpp-1ab657541c582446f187c774f4e30b0286"><span class="std std-ref">Typedef is_nothrow_tag_invocable</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_tag__invoke_8hpp_1abe2e504031308e1fb8f07f5cf5bcf74f.html#exhale-typedef-tag-invoke-8hpp-1abe2e504031308e1fb8f07f5cf5bcf74f"><span class="std std-ref">Typedef is_tag_invocable</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_tag__invoke_8hpp_1acb007618c7d02c3cca31609e416314c6.html#exhale-typedef-tag-invoke-8hpp-1acb007618c7d02c3cca31609e416314c6"><span class="std std-ref">Typedef tag_t</span></a></p></li>
+</ul>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="variable_tag__invoke_8hpp_1a33b794a664c1ee7751e5c524f31bd70b.html#exhale-variable-tag-invoke-8hpp-1a33b794a664c1ee7751e5c524f31bd70b"><span class="std std-ref">Variable _tag_invoke_cpo::tag_invoke</span></a></p></li>
+<li><p><a class="reference internal" href="variable_tag__invoke_8hpp_1ac9297785bc1cff48dae735a140253041.html#exhale-variable-tag-invoke-8hpp-1ac9297785bc1cff48dae735a140253041"><span class="std std-ref">Variable is_nothrow_tag_invocable_v</span></a></p></li>
+<li><p><a class="reference internal" href="variable_tag__invoke_8hpp_1a8d6152fc933c4e17119094e28bb953d1.html#exhale-variable-tag-invoke-8hpp-1a8d6152fc933c4e17119094e28bb953d1"><span class="std std-ref">Variable is_tag_invocable_v</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

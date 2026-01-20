@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a8397a5d870f5a9827caa1c4b766de609:
+
+Define MM_LINE_TOO_LONG
+=======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_LINE_TOO_LONG
+   :project: NWgraph

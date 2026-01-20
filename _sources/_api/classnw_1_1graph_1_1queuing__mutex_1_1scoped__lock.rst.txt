@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1queuing__mutex_1_1scoped__lock:
+
+Class queuing_mutex::scoped_lock
+================================
+
+- Defined in :ref:`file_include_nwgraph_util_concurrent_containers.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1queuing__mutex`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::queuing_mutex::scoped_lock
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

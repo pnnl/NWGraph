@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1disjoint__set:
+
+Template Class disjoint_set
+===========================
+
+- Defined in :ref:`file_include_nwgraph_util_disjoint_set.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::disjoint_set
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

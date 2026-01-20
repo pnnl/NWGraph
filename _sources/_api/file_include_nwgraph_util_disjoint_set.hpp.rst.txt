@@ -1,0 +1,116 @@
+
+.. _file_include_nwgraph_util_disjoint_set.hpp:
+
+File disjoint_set.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Disjoint-set (union-find) data structure. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/disjoint_set.hpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_disjoint_set.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Implements the disjoint-set data structure with union by rank and path compression optimizations. Used by Kruskal's MST algorithm and connected components.
+
+Cormen, Leiserson, Rivest, and Stein, "Introduction to Algorithms", 4th Edition (2022), Chapter 19: Data Structures for Disjoint Sets
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu Kevin Deweese 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``execution``
+
+- ``iostream``
+
+- ``map``
+
+- ``nwgraph/util/defaults.hpp`` (:ref:`file_include_nwgraph_util_defaults.hpp`)
+
+- ``set`` (:ref:`file_include_nwgraph_util_disjoint_set.hpp`)
+
+- ``stack``
+
+- ``string.h``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_kruskal.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1disjoint__set`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_disjoint__set_8hpp_1a3fefca73795ffac8867a3f8016b76ddd`
+
+- :ref:`exhale_function_disjoint__set_8hpp_1ad2c9a4519f7506231db05f701e2e022a`
+
+- :ref:`exhale_function_disjoint__set_8hpp_1a88c17763c8d4f041c835d4fc8916c6b3`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_disjoint__set_8hpp_1a8608c11e78d3bffcc3c2021e1f978b3e`
+

@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Class disjoint_set &mdash; NW Graph 0.10.15 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=afbbf639" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a8af70a8"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            NW Graph
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/getting_started.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/benchmarking.html">Benchmarking with NWGraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/introduction.html">NWGraph: The Northwest Graph Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-background-ii.html">Graph Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/generic-programming.html">Generic Programming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/graph-concepts.html">Generic Graph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/algorithms.html">NWGraph Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/adaptors.html">Graph Range Adaptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/data-structures.html">Model Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/performance.html">Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/related.html">Related Libraries and Toolkits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/references.html">References Cited</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nwgraph_api.html">NWGraph API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NW Graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Template Class disjoint_set</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/classnw_1_1graph_1_1disjoint__set.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="template-class-disjoint-set">
+<span id="exhale-class-classnw-1-1graph-1-1disjoint-set"></span><h1>Template Class disjoint_set<a class="headerlink" href="#template-class-disjoint-set" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_nwgraph_util_disjoint_set.hpp.html#file-include-nwgraph-util-disjoint-set-hpp"><span class="std std-ref">File disjoint_set.hpp</span></a></p></li>
+</ul>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph12disjoint_setE">
+<span id="_CPPv3I0EN2nw5graph12disjoint_setE"></span><span id="_CPPv2I0EN2nw5graph12disjoint_setE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">disjoint_set</span></span></span><a class="headerlink" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set12disjoint_setEv">
+<span id="_CPPv3N2nw5graph12disjoint_set12disjoint_setEv"></span><span id="_CPPv2N2nw5graph12disjoint_set12disjoint_setEv"></span><span id="nw::graph::disjoint_set::disjoint_set"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a9635e9c4b588f619ac149f663cba087d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">disjoint_set</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set12disjoint_setEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set12disjoint_setE1T">
+<span id="_CPPv3N2nw5graph12disjoint_set12disjoint_setE1T"></span><span id="_CPPv2N2nw5graph12disjoint_set12disjoint_setE1T"></span><span id="nw::graph::disjoint_set::disjoint_set__T"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a96520a36845f3275b33c8595c0a41217"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">disjoint_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">max_element</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set12disjoint_setE1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Create a new set representation with not more the &#64;max_element elements. Initially every element is in its own set (-1). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_element</strong> – maximum number of elements </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set12disjoint_setERK12disjoint_setI1TE">
+<span id="_CPPv3N2nw5graph12disjoint_set12disjoint_setERK12disjoint_setI1TE"></span><span id="_CPPv2N2nw5graph12disjoint_set12disjoint_setERK12disjoint_setI1TE"></span><span id="nw::graph::disjoint_set::disjoint_set__disjoint_set:T:CR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1aa372a0e70dd53e70d65fcbb3eec41280"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">disjoint_set</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2nw5graph12disjoint_set12disjoint_setERK12disjoint_setI1TE" title="nw::graph::disjoint_set::disjoint_set"><span class="n"><span class="pre">disjoint_set</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set12disjoint_setERK12disjoint_setI1TE" title="Link to this definition"></a><br /></dt>
+<dd><p>Copy constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – The other set to copy from. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_setD0Ev">
+<span id="_CPPv3N2nw5graph12disjoint_setD0Ev"></span><span id="_CPPv2N2nw5graph12disjoint_setD0Ev"></span><span id="nw::graph::disjoint_set::~disjoint_set"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a0b09051eb9b81660f2ecf9e462869836"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~disjoint_set</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_setD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set5resetEv">
+<span id="_CPPv3N2nw5graph12disjoint_set5resetEv"></span><span id="_CPPv2N2nw5graph12disjoint_set5resetEv"></span><span id="nw::graph::disjoint_set::reset"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1ae3e5eca8e06b9a836bb2fdfd437ec354"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set5resetEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Assigns every element to -1. Set id is equal to element id. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set5resetEK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set5resetEK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set5resetEK1T"></span><span id="nw::graph::disjoint_set::reset__TC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1aacbbd3ec3ebdb22e65316493675cbe4e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set5resetEK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Assigns every element to -1. Set id to element id. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvRR15ExecutionPolicy">
+<span id="_CPPv3I0EN2nw5graph12disjoint_set15allToSingletonsERR15ExecutionPolicy"></span><span id="_CPPv2I0EN2nw5graph12disjoint_set15allToSingletonsERR15ExecutionPolicy"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ExecutionPolicy</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">execution</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">parallel_unsequenced_policy</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a4bb47c8fa742b5fd82567ff18d40bb17"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">allToSingletons</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvRR15ExecutionPolicy" title="nw::graph::disjoint_set::allToSingletons::ExecutionPolicy"><span class="n"><span class="pre">ExecutionPolicy</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">policy</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvRR15ExecutionPolicy" title="Link to this definition"></a><br /></dt>
+<dd><p>Set id is equal to element id. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set25find_with_pathcompressionE1T">
+<span id="_CPPv3N2nw5graph12disjoint_set25find_with_pathcompressionE1T"></span><span id="_CPPv2N2nw5graph12disjoint_set25find_with_pathcompressionE1T"></span><span id="nw::graph::disjoint_set::find_with_pathcompression__T"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a3b80f8dd1e1cd5e8c4830a5eca4c5b1d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find_with_pathcompression</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set25find_with_pathcompressionE1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Find with path compression. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – Element to find. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Representative of set containing the element. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set4findE1T">
+<span id="_CPPv3NK2nw5graph12disjoint_set4findE1T"></span><span id="_CPPv2NK2nw5graph12disjoint_set4findE1T"></span><span id="nw::graph::disjoint_set::find__TC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1af306ad0e3e6f9a7508d44fe13c55e3a5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set4findE1T" title="Link to this definition"></a><br /></dt>
+<dd><p>find is a simple find for &#64;u. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>representative of set containing &#64;u </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set10directFindEK1T">
+<span id="_CPPv3NK2nw5graph12disjoint_set10directFindEK1T"></span><span id="_CPPv2NK2nw5graph12disjoint_set10directFindEK1T"></span><span id="nw::graph::disjoint_set::directFind__TCC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1aca15e8e1dc1ed118fd97941471d2c3b3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">directFind</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set10directFindEK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>directFind is a direct find for element at ‘index’. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the element at index </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set4joinERK1TRK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set4joinERK1TRK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set4joinERK1TRK1T"></span><span id="nw::graph::disjoint_set::join__TCR.TCR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a3486799caa0880665810fed4d12cec36"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">join</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set4joinERK1TRK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Element v changes its membership to the set of element u, v-&gt;setOf(u). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – element u </p></li>
+<li><p><strong>v</strong> – element v </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set10directJoinERK1TRK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set10directJoinERK1TRK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set10directJoinERK1TRK1T"></span><span id="nw::graph::disjoint_set::directJoin__TCR.TCR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a927fa97e6125d0c6682b41537db34a13"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">directJoin</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set10directJoinERK1TRK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Element v changes its value to u, set[v] = u. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – element u </p></li>
+<li><p><strong>v</strong> – element v </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set11unionBySizeERK1TRK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set11unionBySizeERK1TRK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set11unionBySizeERK1TRK1T"></span><span id="nw::graph::disjoint_set::unionBySize__TCR.TCR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a8e918d130954f8430b42fd7e40815986"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unionBySize</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set11unionBySizeERK1TRK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Union the two disjoint sets &#64;u and &#64;v by the size of them. Depends how you want to join, you can have the combination of UnionByheight, UnionBySize with find, find_with_pathcompression. Path compression is perfectly compatible with union-by-size. Path compression is not entirely compatible with union-by-height, because path compression can change the heights of the trees. Currently, the smaller set will join the larger set. If the size of two sets are equal, the latter will join the former one. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – element u </p></li>
+<li><p><strong>v</strong> – element v </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set13unionByHeightERK1TRK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set13unionByHeightERK1TRK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set13unionByHeightERK1TRK1T"></span><span id="nw::graph::disjoint_set::unionByHeight__TCR.TCR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1ac58f65e9c4e0c4d03da8e0e4e632c0bb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unionByHeight</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set13unionByHeightERK1TRK1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set13combineBySizeERK1TRK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set13combineBySizeERK1TRK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set13combineBySizeERK1TRK1T"></span><span id="nw::graph::disjoint_set::combineBySize__TCR.TCR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1af49a079a84612551ce66479721902042"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">combineBySize</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set13combineBySizeERK1TRK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Union the two disjoint sets by size &#64;u and &#64;v, the set with smaller size will be included in the set with larger size. If two sets have the same size, the latter will join the former. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – element u </p></li>
+<li><p><strong>v</strong> – element v </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set17unionBySizeAtomicE1T1T">
+<span id="_CPPv3N2nw5graph12disjoint_set17unionBySizeAtomicE1T1T"></span><span id="_CPPv2N2nw5graph12disjoint_set17unionBySizeAtomicE1T1T"></span><span id="nw::graph::disjoint_set::unionBySizeAtomic__T.T"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1ae5c6d3b0f7bb057c9857df513137d9ee"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unionBySizeAtomic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">u</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set17unionBySizeAtomicE1T1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set15combineByHeightERK1TRK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set15combineByHeightERK1TRK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set15combineByHeightERK1TRK1T"></span><span id="nw::graph::disjoint_set::combineByHeight__TCR.TCR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a63ff23b599f3a696ff3e3dcddfe144ff"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">combineByHeight</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set15combineByHeightERK1TRK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Union the two disjoint sets by height &#64;u and &#64;v. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – element u </p></li>
+<li><p><strong>v</strong> – element v </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set15UnionBySplicingE1T1T">
+<span id="_CPPv3N2nw5graph12disjoint_set15UnionBySplicingE1T1T"></span><span id="_CPPv2N2nw5graph12disjoint_set15UnionBySplicingE1T1T"></span><span id="nw::graph::disjoint_set::UnionBySplicing__T.T"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a7fa468efde2ffc5ef3600d9a5492b63c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnionBySplicing</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">v</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">u</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set15UnionBySplicingE1T1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set13getRawSubsetsEv">
+<span id="_CPPv3NK2nw5graph12disjoint_set13getRawSubsetsEv"></span><span id="_CPPv2NK2nw5graph12disjoint_set13getRawSubsetsEv"></span><span id="nw::graph::disjoint_set::getRawSubsetsC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a598e1cb4a46b572908d71542af653840"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getRawSubsets</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set13getRawSubsetsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set10getSubsetsEv">
+<span id="_CPPv3NK2nw5graph12disjoint_set10getSubsetsEv"></span><span id="_CPPv2NK2nw5graph12disjoint_set10getSubsetsEv"></span><span id="nw::graph::disjoint_set::getSubsetsC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1aff9ebb950bc3fd3deede308d3f8821da"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSubsets</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set10getSubsetsEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the subsets. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>subsets in disjoint_set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set18getCompactDisjSetsER6size_t">
+<span id="_CPPv3NK2nw5graph12disjoint_set18getCompactDisjSetsER6size_t"></span><span id="_CPPv2NK2nw5graph12disjoint_set18getCompactDisjSetsER6size_t"></span><span id="nw::graph::disjoint_set::getCompactDisjSets__sRC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a0f7c385f12661c2a1aedf3b719705103"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getCompactDisjSets</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nsets</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set18getCompactDisjSetsER6size_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the compact version of communities in vector form for verification. This version is for disjoint sets communities. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a vector of elements labeled under different set label. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set18getCompactDisjSetsEv">
+<span id="_CPPv3NK2nw5graph12disjoint_set18getCompactDisjSetsEv"></span><span id="_CPPv2NK2nw5graph12disjoint_set18getCompactDisjSetsEv"></span><span id="nw::graph::disjoint_set::getCompactDisjSetsC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a053128cd40563c3a45657c3f4d7e9d52"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getCompactDisjSets</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set18getCompactDisjSetsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set12getSetNumberEv">
+<span id="_CPPv3NK2nw5graph12disjoint_set12getSetNumberEv"></span><span id="_CPPv2NK2nw5graph12disjoint_set12getSetNumberEv"></span><span id="nw::graph::disjoint_set::getSetNumberC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a3eeb8516f438597b568f255360644ade"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSetNumber</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set12getSetNumberEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the number of disjoint sets. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the number of disjoint sets. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set10getSetSizeEK1T">
+<span id="_CPPv3NK2nw5graph12disjoint_set10getSetSizeEK1T"></span><span id="_CPPv2NK2nw5graph12disjoint_set10getSetSizeEK1T"></span><span id="nw::graph::disjoint_set::getSetSize__TCC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a4afbc76f621adbcf606fcbf5c0da25d0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSetSize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">u</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set10getSetSizeEK1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Given an element in a set, get the size of disjoint set containing this element. &#64; param[in] u, an element of the set to query </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the size of disjoint set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set13printDisjSetsERNSt7ostreamE">
+<span id="_CPPv3NK2nw5graph12disjoint_set13printDisjSetsERNSt7ostreamE"></span><span id="_CPPv2NK2nw5graph12disjoint_set13printDisjSetsERNSt7ostreamE"></span><span id="nw::graph::disjoint_set::printDisjSets__osRC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1ad68830538db5c029c45984848717b6d0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">printDisjSets</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">os</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set13printDisjSetsERNSt7ostreamE" title="Link to this definition"></a><br /></dt>
+<dd><p>Print the whole disjoint sets. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2nw5graph12disjoint_set8getMaxIdEv">
+<span id="_CPPv3NK2nw5graph12disjoint_set8getMaxIdEv"></span><span id="_CPPv2NK2nw5graph12disjoint_set8getMaxIdEv"></span><span id="nw::graph::disjoint_set::getMaxIdC"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a09ad6ecd3e3b8cd6d9598fa1512b1624"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaxId</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2nw5graph12disjoint_set8getMaxIdEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get the max id in this disjoint sets. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>max id </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK2nw5graph12disjoint_set7forEachEv1L">
+<span id="_CPPv3I0ENK2nw5graph12disjoint_set7forEachE1L"></span><span id="_CPPv2I0ENK2nw5graph12disjoint_set7forEachE1L"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a31de4780459c39f276a22203a3ab307a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">forEach</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK2nw5graph12disjoint_set7forEachEv1L" title="nw::graph::disjoint_set::forEach::L"><span class="n"><span class="pre">L</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">handle</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK2nw5graph12disjoint_set7forEachEv1L" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK2nw5graph12disjoint_set14forEachElementEv1L">
+<span id="_CPPv3I0ENK2nw5graph12disjoint_set14forEachElementE1L"></span><span id="_CPPv2I0ENK2nw5graph12disjoint_set14forEachElementE1L"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a115810de99c2ca65d4af0d17a8058f8d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">forEachElement</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK2nw5graph12disjoint_set14forEachElementEv1L" title="nw::graph::disjoint_set::forEachElement::L"><span class="n"><span class="pre">L</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">handle</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK2nw5graph12disjoint_set14forEachElementEv1L" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK2nw5graph12disjoint_set11forEachRootEv1L">
+<span id="_CPPv3I0ENK2nw5graph12disjoint_set11forEachRootE1L"></span><span id="_CPPv2I0ENK2nw5graph12disjoint_set11forEachRootE1L"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set_1aa6b236355ca4dfd910816e3239a5c8f0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">forEachRoot</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK2nw5graph12disjoint_set11forEachRootEv1L" title="nw::graph::disjoint_set::forEachRoot::L"><span class="n"><span class="pre">L</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">handle</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK2nw5graph12disjoint_set11forEachRootEv1L" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK2nw5graph12disjoint_set16forEachRootIndexEv1L">
+<span id="_CPPv3I0ENK2nw5graph12disjoint_set16forEachRootIndexE1L"></span><span id="_CPPv2I0ENK2nw5graph12disjoint_set16forEachRootIndexE1L"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a7a82ea4339ada2f6cf6dcb7cd7e52fb9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">forEachRootIndex</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK2nw5graph12disjoint_set16forEachRootIndexEv1L" title="nw::graph::disjoint_set::forEachRootIndex::L"><span class="n"><span class="pre">L</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">handle</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK2nw5graph12disjoint_set16forEachRootIndexEv1L" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvP1LK6size_t">
+<span id="_CPPv3I0EN2nw5graph12disjoint_set15allToSingletonsEP1LK6size_t"></span><span id="_CPPv2I0EN2nw5graph12disjoint_set15allToSingletonsEP1LK6size_t"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set_1abde1326e4612df032f80f07f13305c32"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">allToSingletons</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvP1LK6size_t" title="nw::graph::disjoint_set::allToSingletons::L"><span class="n"><span class="pre">L</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">arr</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvP1LK6size_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvRNSt6vectorI1LEEK6size_t">
+<span id="_CPPv3I0EN2nw5graph12disjoint_set15allToSingletonsERNSt6vectorI1LEEK6size_t"></span><span id="_CPPv2I0EN2nw5graph12disjoint_set15allToSingletonsERNSt6vectorI1LEEK6size_t"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a9fbe29d132fa6cb223952fa0a82f6003"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">allToSingletons</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvRNSt6vectorI1LEEK6size_t" title="nw::graph::disjoint_set::allToSingletons::L"><span class="n"><span class="pre">L</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">arr</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2nw5graph12disjoint_set15allToSingletonsEvRNSt6vectorI1LEEK6size_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set25find_with_pathcompressionER12disjoint_setI1TE1T">
+<span id="_CPPv3N2nw5graph12disjoint_set25find_with_pathcompressionER12disjoint_setI1TE1T"></span><span id="_CPPv2N2nw5graph12disjoint_set25find_with_pathcompressionER12disjoint_setI1TE1T"></span><span id="nw::graph::disjoint_set::find_with_pathcompression__disjoint_set:T:R.T"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a646a9a63c120c243fe7084f2314a3ccf"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find_with_pathcompression</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set"><span class="n"><span class="pre">disjoint_set</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set25find_with_pathcompressionER12disjoint_setI1TE1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set4findER12disjoint_setI1TE1T">
+<span id="_CPPv3N2nw5graph12disjoint_set4findER12disjoint_setI1TE1T"></span><span id="_CPPv2N2nw5graph12disjoint_set4findER12disjoint_setI1TE1T"></span><span id="nw::graph::disjoint_set::find__disjoint_set:T:R.T"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1aaf75c7579562ea1f881bbf318c5dc0a6"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set"><span class="n"><span class="pre">disjoint_set</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set4findER12disjoint_setI1TE1T" title="Link to this definition"></a><br /></dt>
+<dd><p>Static wrapper for find. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> – The disjoint set. </p></li>
+<li><p><strong>index</strong> – Element to find. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Representative of set containing the element. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set11unionBySizeER12disjoint_setI1TERK1TRK1T">
+<span id="_CPPv3N2nw5graph12disjoint_set11unionBySizeER12disjoint_setI1TERK1TRK1T"></span><span id="_CPPv2N2nw5graph12disjoint_set11unionBySizeER12disjoint_setI1TERK1TRK1T"></span><span id="nw::graph::disjoint_set::unionBySize__disjoint_set:T:R.TCR.TCR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a7d809bacdf14fbb4ee72356470b6eaae"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unionBySize</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set"><span class="n"><span class="pre">disjoint_set</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set11unionBySizeER12disjoint_setI1TERK1TRK1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set6nsets_E">
+<span id="_CPPv3N2nw5graph12disjoint_set6nsets_E"></span><span id="_CPPv2N2nw5graph12disjoint_set6nsets_E"></span><span id="nw::graph::disjoint_set::nsets___s"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a003da270e650bfb2b0d83fbb6daca749"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nsets_</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set6nsets_E" title="Link to this definition"></a><br /></dt>
+<dd><p>Number of disjoint sets. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set6maxid_E">
+<span id="_CPPv3N2nw5graph12disjoint_set6maxid_E"></span><span id="_CPPv2N2nw5graph12disjoint_set6maxid_E"></span><span id="nw::graph::disjoint_set::maxid___T"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a7620864bd912d4214accf47f31bc198e"></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxid_</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set6maxid_E" title="Link to this definition"></a><br /></dt>
+<dd><p>Max element appears in the set. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_set5sets_E">
+<span id="_CPPv3N2nw5graph12disjoint_set5sets_E"></span><span id="_CPPv2N2nw5graph12disjoint_set5sets_E"></span><span id="nw::graph::disjoint_set::sets___TP"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1a7b5eaca51b6fd1f09c43a363f2f41f22"></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">sets_</span></span></span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_set5sets_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2nw5graph12disjoint_setlsERNSt7ostreamERK12disjoint_setI1TE">
+<span id="_CPPv3N2nw5graph12disjoint_setlsERNSt7ostreamERK12disjoint_setI1TE"></span><span id="_CPPv2N2nw5graph12disjoint_setlsERNSt7ostreamERK12disjoint_setI1TE"></span><span id="nw::graph::disjoint_set::lshift-operator__osR.disjoint_set:T:CR"></span><span class="target" id="classnw_1_1graph_1_1disjoint__set_1aec14eac365197e5187fcd7587407fa9a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">os</span></span>, <a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set"><span class="n"><span class="pre">disjoint_set</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN2nw5graph12disjoint_setE" title="nw::graph::disjoint_set::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2nw5graph12disjoint_setlsERNSt7ostreamERK12disjoint_setI1TE" title="Link to this definition"></a><br /></dt>
+<dd><p>Overload operator&lt;&lt; for formatted output. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>os</strong> – Output stream. </p></li>
+<li><p><strong>s</strong> – The disjoint set to print. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Output stream reference. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, PNNL, UW.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

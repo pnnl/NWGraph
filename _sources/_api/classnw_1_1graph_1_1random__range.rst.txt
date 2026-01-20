@@ -1,0 +1,28 @@
+.. _exhale_class_classnw_1_1graph_1_1random__range:
+
+Template Class random_range
+===========================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_random_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1random__range_1_1edge__range__iterator`
+- :ref:`exhale_struct_structnw_1_1graph_1_1random__range_1_1edge__range__iterator_1_1end__sentinel__type`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::random_range
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

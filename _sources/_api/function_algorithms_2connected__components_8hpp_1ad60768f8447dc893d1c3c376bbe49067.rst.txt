@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2connected__components_8hpp_1ad60768f8447dc893d1c3c376bbe49067:
+
+Template Function nw::graph::sample_frequent_element
+====================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::sample_frequent_element(const Vector&, size_t)
+   :project: NWgraph

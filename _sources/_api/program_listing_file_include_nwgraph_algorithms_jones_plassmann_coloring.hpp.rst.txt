@@ -1,0 +1,77 @@
+
+.. _program_listing_file_include_nwgraph_algorithms_jones_plassmann_coloring.hpp:
+
+Program Listing for File jones_plassmann_coloring.hpp
+=====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_algorithms_jones_plassmann_coloring.hpp>` (``include/nwgraph/algorithms/jones_plassmann_coloring.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   /*Implements Jones-Plassmann algorithm for coloring */
+   #ifndef JONES_PLASSMANN_COLORING_HPP
+   #define JONES_PLASSMANN_COLORING_HPP
+   
+   #include "nwgraph/adaptors/dag_range.hpp"
+   #include "nwgraph/adaptors/edge_range.hpp"
+   #include "nwgraph/adaptors/plain_range.hpp"
+   
+   #include "nwgraph/algorithms/maximal_independent_set.hpp"
+   
+   namespace nw {
+   namespace graph {
+   
+   template <adjacency_list_graph Graph>
+   void jones_plassmann_coloring(Graph& A, std::vector<size_t>& colors) {
+     size_t N = num_vertices(A);
+     //init every nodes' color to 0
+     std::fill(colors.begin(), colors.end(), 0);
+   
+     //find the maximal independent set
+     std::vector<size_t> independentSet;
+     maximal_independent_set(A, independentSet);
+   
+     // Function for finding the first
+     // missing positive number in an (unsorted) array
+     auto firstMissingPositive = []<typename T>(std::vector<T> arr) -> T {
+       size_t n = arr.size();
+       // Loop to traverse the whole array
+       for (size_t i = 0; i < n; ++i) {
+         // Loop to check boundary
+         // condition and for swapping
+         while (1 <= arr[i] && arr[i] <= n && arr[i] != arr[arr[i] - 1]) {
+           std::swap(arr[i], arr[arr[i] - 1]);
+         }
+       }
+   
+       // Checking any element which
+       // is not equal to i+1
+       for (size_t i = 0; i < n; ++i) {
+         if (arr[i] != i + 1) {
+           return i + 1;
+         }
+       }
+   
+       // Nothing is present return last index
+       return n + 1;
+     };
+   
+     //calculate colors based on the maximal independent set
+     std::vector<std::vector<size_t>> neighbor_colors(N);
+     for (auto& u : independentSet) {
+       //memorize colors of every independent vertex's neighbors
+       for (auto it = A[u].begin(); it != A[u].end(); ++it) {
+         auto v = std::get<0>(*it);
+         neighbor_colors[u].push_back(colors[v]);
+       }
+       //find the first unused color within every independent vertex's neighbors
+       colors[u] = firstMissingPositive(neighbor_colors[u]);
+     }
+   }
+   
+   }    // namespace graph
+   }    // namespace nw
+   #endif    // JONES_PLASSMANN_COLORING_HPP

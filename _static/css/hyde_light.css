@@ -1,0 +1,1020 @@
+@charset "UTF-8";
+#hyde-content {
+  /**
+   * Reset some basic elements
+   */
+  /**
+   * Basic styling
+   */
+  /**
+   * Set `margin-bottom` to maintain vertical rhythm
+   */
+  /**
+   * Images
+   */
+  /**
+   * Figures
+   */
+  /**
+   * Lists
+   */
+  /**
+   * Headings
+   */
+  /**
+   * Links
+   */
+  /**
+   * Blockquotes
+   */
+  /**
+   * Code formatting
+   */
+  /**
+   * Clearfix
+   */
+  /**
+   * Icons
+   */
+  /**
+   * Site header
+   */
+  /**
+   * Site footer
+   */
+  /**
+   * Main content
+   */
+  /**
+   * Top bar
+   */
+  /**
+   * Breadcrumbs
+   */
+  /**
+   * Page content
+   */
+  /**
+   * Posts
+   */
+  /**
+   * Tables
+   */
+  /**
+   * Definition tables are indented on the left, and have horizontal lines between
+   * every row.
+   */
+  /**
+   * Associated tables are those that enumerate library subcomponents and
+   * associated elements.
+   */
+  /**
+   * Declaration tables are identical to definition tables, but without the
+   * indent.
+   */
+  /**
+   * State transition tables, like the one in the transaction docs.
+   */
+  /**
+   * Parameter Notes, like the one in the collection connect_insert docs.
+   */
+  /**
+   * Directory tables, like the ones that structure the `eng` folder.
+   */
+  /**
+   * Description list for method descriptions
+   */
+  /**
+   * Annotations.
+   */
+  /**
+   * Parameter tables are identical to definition tables, but without the
+   * horizontal lines.
+   */
+  /**
+   * Example tables are indented on the left, and have horizontal lines between
+   * every row.
+   */
+  /**
+   * Contributors listed in the About page
+   */
+  /**
+   * Styling for some of the auto generated stuff
+   */
+  /**
+   * Front page iconography
+   */
+  /**
+   * Dialogs, for lack of a better name
+   */
+  /**
+   * Syntax highlighting styles
+   */
+  /**
+   * Syntax highlighting styles
+   */
+  /* `highlighted` text */
+  /* `highlighted` text in headers or links */
+}
+#hyde-content body, #hyde-content h1, #hyde-content h2, #hyde-content h3, #hyde-content h4, #hyde-content h5, #hyde-content h6,
+#hyde-content p, #hyde-content blockquote, #hyde-content pre, #hyde-content hr,
+#hyde-content dl, #hyde-content dd, #hyde-content ol, #hyde-content ul, #hyde-content figure {
+  margin: 0;
+  padding: 0;
+}
+#hyde-content * {
+  margin: 0;
+}
+#hyde-content html, #hyde-content body {
+  height: 100%;
+}
+#hyde-content body {
+  font: 400 16px/1.5 "Source Serif Pro", serif;
+  color: #333;
+  background-color: white;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+#hyde-content pre, #hyde-content code {
+  font-family: "Source Code Pro", monospace;
+}
+#hyde-content h1, #hyde-content h2, #hyde-content h3, #hyde-content h4, #hyde-content h5, #hyde-content h6, #hyde-content blockquote,
+#hyde-content ul, #hyde-content ol, #hyde-content dl, #hyde-content p {
+  margin-bottom: 15px;
+}
+#hyde-content img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+#hyde-content figure > img {
+  display: block;
+}
+#hyde-content figcaption {
+  font-size: 14px;
+}
+#hyde-content ul, #hyde-content ol {
+  margin-left: 30px;
+}
+#hyde-content li > ul,
+#hyde-content li > ol {
+  margin-bottom: 0;
+}
+#hyde-content h1, #hyde-content h2, #hyde-content h3, #hyde-content h4, #hyde-content h5, #hyde-content h6 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+}
+#hyde-content a {
+  color: #000060;
+  text-decoration: none;
+}
+#hyde-content a:hover {
+  text-decoration: underline;
+}
+#hyde-content blockquote {
+  color: #333;
+  background-color: #f0f0f0;
+  border-left: 4px solid #dbdbdb;
+  padding-left: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px;
+}
+#hyde-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+#hyde-content dt {
+  font-weight: bold;
+  margin-top: 8px;
+}
+#hyde-content dd {
+  margin-left: 8px;
+}
+#hyde-content pre {
+  overflow-x: auto;
+  margin: 0;
+}
+#hyde-content pre > code {
+  line-height: 0.8;
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+#hyde-content .wrapper {
+  max-width: -webkit-calc(1000px - (30px * 2));
+  max-width: calc(1000px - (30px * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+@media screen and (max-width: 800px) {
+  #hyde-content .wrapper {
+    max-width: -webkit-calc(1000px - (30px));
+    max-width: calc(1000px - (30px));
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+#hyde-content .wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#hyde-content .icon > svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+#hyde-content .icon > svg path {
+  fill: #000060;
+}
+#hyde-content .site-header {
+  background-color: #e4e4e4;
+  border-bottom: 1px solid transparent;
+  min-height: 32px;
+  margin-bottom: 10px;
+  padding-bottom: 14px;
+  padding-top: 16px;
+  position: relative;
+}
+#hyde-content .site-title {
+  /*
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 56px;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  float: left;
+  */
+  float: left;
+  width: 50%;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  min-height: 32px;
+  /*
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  */
+  background-image: "hyde.svg";
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#hyde-content .site-nav {
+  float: right;
+  line-height: 32px;
+  margin-top: 3px;
+}
+#hyde-content .site-nav .menu-icon {
+  display: none;
+}
+#hyde-content .site-nav .page-link {
+  color: #000060;
+  line-height: 1.5;
+}
+#hyde-content .site-nav .page-link:not(:last-child) {
+  margin-right: 20px;
+}
+@media screen and (max-width: 600px) {
+  #hyde-content .site-nav {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: inherit;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    text-align: right;
+  }
+  #hyde-content .site-nav .menu-icon {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 26px;
+    line-height: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
+  #hyde-content .site-nav .menu-icon > svg {
+    width: 18px;
+    height: 15px;
+  }
+  #hyde-content .site-nav .menu-icon > svg path {
+    fill: #555557;
+  }
+  #hyde-content .site-nav .trigger {
+    clear: both;
+    display: none;
+  }
+  #hyde-content .site-nav:hover .trigger {
+    display: block;
+    padding-bottom: 5px;
+  }
+  #hyde-content .site-nav .page-link {
+    display: block;
+    padding: 5px 10px;
+    margin-left: 20px;
+  }
+  #hyde-content .site-nav .page-link:not(:last-child) {
+    margin-right: 0;
+  }
+}
+#hyde-content .site-footer {
+  border-top: 1px solid transparent;
+  padding: 20px 0;
+  background-color: #e4e4e4;
+}
+#hyde-content .footer-heading {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+#hyde-content .contact-list,
+#hyde-content .social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+#hyde-content .footer-table {
+  font-size: 14px;
+  color: #949597;
+  width: 100%;
+}
+#hyde-content .footer-table > tbody > tr > td > a {
+  color: #949597;
+}
+#hyde-content .footer-left {
+  text-align: left;
+  vertical-align: top;
+  width: 33%;
+}
+#hyde-content .footer-center {
+  text-align: center;
+  vertical-align: top;
+  width: 34%;
+}
+#hyde-content .footer-right {
+  text-align: right;
+  vertical-align: top;
+  width: 33%;
+}
+#hyde-content .main-content {
+  min-height: 100%;
+  margin-bottom: -100px;
+  background-color: white;
+}
+#hyde-content .main-content:after {
+  content: "";
+  display: block;
+}
+#hyde-content .site-footer, #hyde-content .main-content:after {
+  height: 100px;
+  box-sizing: border-box;
+}
+#hyde-content .top-bar {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 600px) {
+  #hyde-content .top-bar {
+    flex-direction: column;
+  }
+}
+#hyde-content .top-bar-breadcrumb {
+  flex: 0 0 auto;
+}
+#hyde-content .top-bar-spacer {
+  flex: 1 1 auto;
+}
+#hyde-content .top-bar-theme {
+  flex: 0 0 auto;
+}
+#hyde-content .breadcrumb {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#hyde-content .breadcrumb > li {
+  display: inline;
+}
+#hyde-content .breadcrumb > li.active {
+  font-style: oblique;
+}
+#hyde-content .breadcrumb > li.crumb:before {
+  content: " | ";
+}
+#hyde-content .page-content {
+  padding: 15px 0;
+}
+
+#hyde-content .brief {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+#hyde-content .post-brief {
+  margin-left: 0;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+#hyde-content .post {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+#hyde-content .post-list {
+  margin-left: 0;
+  list-style: none;
+}
+#hyde-content .post-list > li {
+  margin-bottom: 30px;
+}
+#hyde-content .post-meta {
+  font-size: 14px;
+  color: #949597;
+}
+#hyde-content .post-link {
+  display: block;
+  font-size: 24px;
+}
+#hyde-content .post-header {
+  margin-bottom: 15px;
+}
+#hyde-content .post-header > .code {
+  font-family: "Source Code Pro", monospace;
+}
+#hyde-content .post-title {
+  font-size: 2.5em;
+}
+@media screen and (max-width: 800px) {
+  #hyde-content .post-title {
+    font-size: 2.3em;
+  }
+}
+#hyde-content .post-content {
+  margin-bottom: 30px;
+}
+#hyde-content .post-content h1 {
+  font-size: 2em;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 800px) {
+  #hyde-content .post-content h1 {
+    font-size: 1.8em;
+  }
+}
+#hyde-content .post-content h2 {
+  font-size: 1.8em;
+}
+@media screen and (max-width: 800px) {
+  #hyde-content .post-content h2 {
+    font-size: 1.6em;
+  }
+}
+#hyde-content .post-content h3 {
+  font-size: 1.6em;
+}
+@media screen and (max-width: 800px) {
+  #hyde-content .post-content h3 {
+    font-size: 1.4em;
+  }
+}
+#hyde-content .post-content h4 {
+  font-size: 1.4em;
+}
+@media screen and (max-width: 800px) {
+  #hyde-content .post-content h4 {
+    font-size: 1.2em;
+  }
+}
+#hyde-content .post-content h5 {
+  font-size: 1.2em;
+}
+@media screen and (max-width: 800px) {
+  #hyde-content .post-content h5 {
+    font-size: 1em;
+  }
+}
+#hyde-content table {
+  border-collapse: collapse;
+}
+#hyde-content .indent {
+  margin-left: 15px;
+}
+#hyde-content .definition-table {
+  margin-left: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  width: 100%;
+}
+#hyde-content .definition-table > tbody > tr {
+  border-top: 1px solid #efefef;
+}
+#hyde-content .definition-table > tbody > tr > th {
+  text-align: left;
+}
+#hyde-content .definition-table > tbody > tr > td {
+  padding-right: 1.5em;
+  vertical-align: top;
+}
+#hyde-content .definition-table > tbody > tr > td > p {
+  margin: 0;
+  display: inline;
+}
+#hyde-content .definition-table > tbody > tr > td.type {
+  font-family: "Source Code Pro", monospace;
+  white-space: nowrap;
+  vertical-align: top;
+}
+#hyde-content .definition-table > tbody > tr > td.field {
+  font-family: "Source Code Pro", monospace;
+  white-space: nowrap;
+  vertical-align: top;
+}
+#hyde-content .definition-table > tbody > tr > td.decl {
+  text-indent: -3em;
+  padding-left: 3em;
+  font-family: "Source Code Pro", monospace;
+  vertical-align: top;
+}
+#hyde-content .definition-table > tbody > tr > td.defn {
+  padding-right: 0;
+}
+#hyde-content .associated-table {
+  margin-left: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  width: 100%;
+}
+#hyde-content .associated-table > tbody > tr {
+  border-top: 1px solid #efefef;
+}
+#hyde-content .associated-table > tbody > tr > th {
+  text-align: left;
+}
+#hyde-content .associated-table > tbody > tr > td > p {
+  margin: 0;
+  display: inline;
+}
+#hyde-content .associated-table > tbody > tr > td.name {
+  text-indent: -3em;
+  padding-left: 3em;
+  font-family: "Source Code Pro", monospace;
+  vertical-align: top;
+  padding-right: 1.5em;
+}
+#hyde-content .declaration-table {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  width: 100%;
+}
+#hyde-content .declaration-table > tbody > tr {
+  border-top: 1px solid #efefef;
+}
+#hyde-content .declaration-table > tbody > tr > th {
+  text-align: left;
+}
+#hyde-content .declaration-table > tbody > tr > td > p {
+  margin: 0;
+  display: inline;
+}
+#hyde-content .declaration-table > tbody > tr > td.decl {
+  font-family: "Source Code Pro", monospace;
+  white-space: nowrap;
+  vertical-align: top;
+  padding-right: 1.5em;
+}
+#hyde-content .state-transition {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  width: 100%;
+}
+#hyde-content .state-transition > thead > tr {
+  border-bottom: 1px solid #efefef;
+}
+#hyde-content .state-transition > tbody > tr {
+  border-top: 1px solid #efefef;
+}
+#hyde-content .parameter-table {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  width: 100%;
+}
+#hyde-content .parameter-table > thead > tr {
+  border-bottom: 1px solid #efefef;
+}
+#hyde-content .parameter-table > thead > tr > th {
+  font-weight: bold;
+  text-align: left;
+}
+#hyde-content .parameter-table > tbody > tr {
+  border-top: 1px solid #efefef;
+  border-spacing: 0.1em;
+}
+#hyde-content .parameter-table > tbody > tr > td {
+  vertical-align: top;
+  padding-right: 0.5em;
+}
+#hyde-content .directory-table {
+  margin-left: 1em;
+}
+#hyde-content .directory-table > tbody > tr > td {
+  padding-right: 0.2em;
+  line-height: 1;
+  vertical-align: top;
+}
+#hyde-content .description-list > li {
+  padding-bottom: 0.5em;
+}
+#hyde-content .description-list > li > p {
+  margin: 0;
+  display: inline;
+}
+#hyde-content span.annotation {
+  color: blue;
+  font-style: italic;
+}
+#hyde-content .parameter-table {
+  margin-left: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+#hyde-content .parameter-table > tbody > tr > th {
+  text-align: left;
+}
+#hyde-content .parameter-table > tbody > tr > td {
+  vertical-align: top;
+}
+#hyde-content .parameter-table > tbody > tr > td > p {
+  margin: 0;
+  display: inline;
+}
+#hyde-content .parameter-table > tbody > tr > td.decl {
+  font-family: "Source Code Pro", monospace;
+  padding-right: 1.5em;
+}
+#hyde-content .example-table {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  width: 100%;
+}
+#hyde-content .example-table > tbody > tr {
+  border-top: 1px solid #efefef;
+}
+#hyde-content .example-table > tbody > tr > th {
+  text-align: left;
+}
+#hyde-content .example-table > tbody > tr > td {
+  vertical-align: top;
+}
+#hyde-content .example-table > tbody > tr > td > p {
+  margin: 0;
+  display: inline;
+}
+#hyde-content .example-table > tbody > tr > td.decl_func {
+  font-family: "Source Code Pro", monospace;
+}
+#hyde-content .example-table > tbody > tr > td.decl_link {
+  font-family: "Source Code Pro", monospace;
+  padding-left: 1.5em;
+}
+#hyde-content .example-table > tbody > tr > td.defn {
+  padding-left: 1.5em;
+}
+#hyde-content .contributors-table > tbody > tr > td {
+  padding-left: 1.5em;
+  padding-bottom: 1em;
+}
+#hyde-content .contributors-table > tbody > tr > td > img {
+  width: 5em;
+  height: 5em;
+}
+#hyde-content .declaration-list > p {
+  display: inline;
+}
+#hyde-content .icon-table {
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 3em 0;
+}
+#hyde-content .icon-table > tbody > tr > td > a {
+  text-decoration: none;
+}
+@media screen and (max-width: 600px) {
+  #hyde-content .icon-table {
+    border-spacing: 1em 0;
+  }
+}
+#hyde-content .icon-box {
+  background: #000060;
+  color: #000060;
+  border-radius: 1em;
+}
+@media screen and (max-width: 600px) {
+  #hyde-content .icon-box {
+    border-radius: 0.3em;
+  }
+}
+#hyde-content .icon-box > .top {
+  border-radius: 1em 1em 0 0;
+}
+@media screen and (max-width: 600px) {
+  #hyde-content .icon-box > .top {
+    border-radius: 0.3em 0.3em 0 0;
+  }
+}
+#hyde-content .icon-box > .top > .fa {
+  display: inline-block;
+  width: 1.7em;
+  text-align: center;
+  line-height: 1.4em;
+  font-size: 5em;
+  vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+  #hyde-content .icon-box > .top > .fa {
+    font-size: 2em;
+  }
+}
+#hyde-content .icon-box > .bottom {
+  background: white;
+  border-radius: 0 0 1em 1em;
+  border-left: 1px solid #949597;
+  border-right: 1px solid #949597;
+  border-bottom: 1px solid #949597;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+}
+@media screen and (max-width: 600px) {
+  #hyde-content .icon-box > .bottom {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    border-radius: 0 0 0.3em 0.3em;
+  }
+}
+#hyde-content .icon-box:hover {
+  background: #949597;
+  color: #949597;
+}
+#hyde-content .icon-box:hover > .bottom {
+  background: white;
+  border-left: 1px solid #949597;
+  border-right: 1px solid #949597;
+  border-bottom: 1px solid #949597;
+}
+#hyde-content .rss-subscribe {
+  text-align: right;
+}
+#hyde-content .warning-box {
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  border: 1px solid #f0f000;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9f977+0,fcfccf+100 */
+  background: #f9f977;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f9f977 0%, #fcfccf 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #f9f977 0%, #fcfccf 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #f9f977 0%, #fcfccf 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f9f977", endColorstr="#fcfccf",GradientType=0 );
+  /* IE6-9 */
+}
+#hyde-content .warning-box:before {
+  content: "Warning: ";
+}
+#hyde-content code.highlighter-rouge {
+  padding: 0.1em 0.3em;
+  font-size: 0.8em;
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #f0f0f0;
+}
+#hyde-content h1 code.highlighter-rouge, #hyde-content h2 code.highlighter-rouge, #hyde-content h3 code.highlighter-rouge, #hyde-content h4 code.highlighter-rouge, #hyde-content h5 code.highlighter-rouge, #hyde-content h6 code.highlighter-rouge, #hyde-content a code.highlighter-rouge {
+  padding: 0.1em;
+  font-size: 0.9em;
+  color: inherit;
+  background-color: inherit;
+  border: none;
+}
+.highlighter-rouge #hyde-content pre.highlight {
+  border-left: 4px solid #f0f0f0;
+  margin: 1em 0;
+  overflow: auto;
+  padding: 1em;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 3px;
+}
+#hyde-content pre.highlight .c {
+  color: #009926;
+  font-style: italic;
+}
+#hyde-content pre.highlight .err {
+  color: #a61717;
+}
+#hyde-content pre.highlight .k {
+  color: #0000dd;
+}
+#hyde-content pre.highlight .o {
+  font-weight: bold;
+}
+#hyde-content pre.highlight .cm {
+  color: #009926;
+  font-style: italic;
+}
+#hyde-content pre.highlight .cp {
+  color: #c33f40;
+  font-weight: bold;
+}
+#hyde-content pre.highlight .c1 {
+  color: #009926;
+  font-style: italic;
+}
+#hyde-content pre.highlight .cs {
+  color: #999;
+  font-weight: bold;
+  font-style: italic;
+}
+#hyde-content pre.highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+#hyde-content pre.highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+#hyde-content pre.highlight .ge {
+  font-style: italic;
+}
+#hyde-content pre.highlight .gr {
+  color: #a00;
+}
+#hyde-content pre.highlight .gh {
+  color: #999;
+}
+#hyde-content pre.highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+#hyde-content pre.highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+#hyde-content pre.highlight .go {
+  color: #888;
+}
+#hyde-content pre.highlight .gp {
+  color: #555;
+}
+#hyde-content pre.highlight .gs {
+  font-weight: bold;
+}
+#hyde-content pre.highlight .gu {
+  color: #aaa;
+}
+#hyde-content pre.highlight .gt {
+  color: #a00;
+}
+#hyde-content pre.highlight .kc {
+  font-weight: bold;
+}
+#hyde-content pre.highlight .kd {
+  font-weight: bold;
+}
+#hyde-content pre.highlight .kp {
+  font-weight: bold;
+}
+#hyde-content pre.highlight .kr {
+  font-weight: bold;
+}
+#hyde-content pre.highlight .kt {
+  color: #458;
+  font-weight: bold;
+}
+#hyde-content pre.highlight .m {
+  color: #099;
+}
+#hyde-content pre.highlight .s {
+  color: #d14;
+}
+#hyde-content pre.highlight .na {
+  color: #008080;
+}
+#hyde-content pre.highlight .nb {
+  color: #0086B3;
+}
+#hyde-content pre.highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+#hyde-content pre.highlight .no {
+  color: #008080;
+}
+#hyde-content pre.highlight .ni {
+  color: #800080;
+}
+#hyde-content pre.highlight .ne {
+  color: #900;
+  font-weight: bold;
+}
+#hyde-content pre.highlight .nf {
+  color: #900;
+  font-weight: bold;
+}
+#hyde-content pre.highlight .nn {
+  color: #555;
+}
+#hyde-content pre.highlight .nt {
+  color: #000080;
+}
+#hyde-content pre.highlight .nv {
+  color: #008080;
+}
+#hyde-content pre.highlight .ow {
+  font-weight: bold;
+}
+#hyde-content pre.highlight .w {
+  color: #bbb;
+}
+#hyde-content pre.highlight .mf {
+  color: #099;
+}
+#hyde-content pre.highlight .mh {
+  color: #099;
+}
+#hyde-content pre.highlight .mi {
+  color: #099;
+}
+#hyde-content pre.highlight .mo {
+  color: #099;
+}
+#hyde-content pre.highlight .sb {
+  color: #d14;
+}
+#hyde-content pre.highlight .sc {
+  color: #d14;
+}
+#hyde-content pre.highlight .sd {
+  color: #d14;
+}
+#hyde-content pre.highlight .s2 {
+  color: #d14;
+}
+#hyde-content pre.highlight .se {
+  color: #d14;
+}
+#hyde-content pre.highlight .sh {
+  color: #d14;
+}
+#hyde-content pre.highlight .si {
+  color: #d14;
+}
+#hyde-content pre.highlight .sx {
+  color: #d14;
+}
+#hyde-content pre.highlight .sr {
+  color: #009926;
+}
+#hyde-content pre.highlight .s1 {
+  color: #d14;
+}
+#hyde-content pre.highlight .ss {
+  color: #990073;
+}
+#hyde-content pre.highlight .bp {
+  color: #999;
+}
+#hyde-content pre.highlight .vc {
+  color: #008080;
+}
+#hyde-content pre.highlight .vg {
+  color: #008080;
+}
+#hyde-content pre.highlight .vi {
+  color: #008080;
+}
+#hyde-content pre.highlight .il {
+  color: #099;
+}
+
+/*# sourceMappingURL=hyde_light.css.map */

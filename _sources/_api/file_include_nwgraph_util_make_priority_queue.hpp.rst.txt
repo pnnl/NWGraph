@@ -1,0 +1,71 @@
+
+.. _file_include_nwgraph_util_make_priority_queue.hpp:
+
+File make_priority_queue.hpp
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/make_priority_queue.hpp``)
+-------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_make_priority_queue.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``queue`` (:ref:`file_include_nwgraph_util_make_priority_queue.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_make__priority__queue_8hpp_1a391af469a7f70c11246e4178f5b6884d`
+
+- :ref:`exhale_function_make__priority__queue_8hpp_1ae560ce3dcb2ef9c506b2bb01f3823f75`
+

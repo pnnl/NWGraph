@@ -1,0 +1,116 @@
+
+.. _program_listing_file_include_nwgraph_adaptors_splittable_range_adaptor.hpp:
+
+Program Listing for File splittable_range_adaptor.hpp
+=====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_adaptors_splittable_range_adaptor.hpp>` (``include/nwgraph/adaptors/splittable_range_adaptor.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_SPLITTABLE_RANGE_ADAPTOR_HPP
+   #define NW_GRAPH_SPLITTABLE_RANGE_ADAPTOR_HPP
+   
+   #include <cstddef>
+   #include <ranges>
+   
+   // Only include TBB when using TBB backend
+   #if !defined(NWGRAPH_BACKEND_HPX)
+     #include <oneapi/tbb.h>
+   #endif
+   
+   namespace nw {
+   namespace graph {
+   
+   struct split_tag {};
+   
+   template <class Iterator>
+   class splittable_range_adaptor : public std::ranges::view_base {
+     Iterator    begin_;
+     Iterator    end_;
+     std::size_t cutoff_ = 16384;
+   
+   public:
+     using iterator   = Iterator;
+     using value_type = typename iterator::value_type;
+   
+     template <class Range>
+     explicit splittable_range_adaptor(Range&& range) : splittable_range_adaptor(range.begin(), range.end()) {
+     }
+   
+     template <class Range>
+     splittable_range_adaptor(Range&& range, std::size_t cutoff) : splittable_range_adaptor(range.begin(), range.end(), cutoff) {
+     }
+   
+     splittable_range_adaptor(Iterator begin, Iterator end) : begin_(begin > end ? end : begin), end_(end) {
+     }
+   
+     splittable_range_adaptor(Iterator begin, Iterator end, std::size_t cutoff) : begin_(begin > end ? end : begin), end_(end), cutoff_(cutoff) {
+     }
+   
+   #if !defined(NWGRAPH_BACKEND_HPX)
+     splittable_range_adaptor(splittable_range_adaptor& rhs, tbb::split)
+         : begin_(rhs.begin_), end_(rhs.begin_ += rhs.size() / 2), cutoff_(rhs.cutoff_) {
+     }
+   #endif
+   
+     splittable_range_adaptor(splittable_range_adaptor& rhs, split_tag)
+         : begin_(rhs.begin_), end_(rhs.begin_ += rhs.size() / 2), cutoff_(rhs.cutoff_) {
+     }
+   
+     // We need the weird ref version to disambiguate the explicit range
+     // initializer, which would otherwise get called incorrectly during a tbb
+     // split event.
+     splittable_range_adaptor(splittable_range_adaptor&)       = default;
+     splittable_range_adaptor(const splittable_range_adaptor&) = default;
+     splittable_range_adaptor(splittable_range_adaptor&&)      = default;
+   
+     splittable_range_adaptor& operator=(const splittable_range_adaptor&) = default;
+     splittable_range_adaptor& operator=(splittable_range_adaptor&&)      = default;
+   
+     splittable_range_adaptor() = default;
+   
+     decltype(auto) begin() const {
+       return begin_;
+     }
+   
+     decltype(auto) end() const {
+       return end_;
+     }
+   
+     decltype(auto) cutoff(std::size_t cutoff) {
+       cutoff_ = cutoff;
+       return *this;
+     }
+   
+     std::size_t cutoff() const {
+       return cutoff_;
+     }
+   
+     std::size_t size() const {
+       return end_ - begin_;
+     }
+   
+     bool empty() const {
+       return size() == 0;
+     }
+   
+     bool is_divisible() const {
+       return size() > cutoff_;
+     }
+   };
+   
+   // Deduction guides
+   template <class Range>
+   splittable_range_adaptor(Range&& range) -> splittable_range_adaptor<decltype(range.begin())>;
+   
+   template <class Range>
+   splittable_range_adaptor(Range&& range, std::size_t) -> splittable_range_adaptor<decltype(range.begin())>;
+   
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_SPLITTABLE_RANGE_ADAPTOR_HPP

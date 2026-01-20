@@ -1,0 +1,102 @@
+
+.. _file_include_nwgraph_adaptors_back_edge_range.hpp:
+
+File back_edge_range.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Range adaptor providing back-edge access for undirected graphs. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/back_edge_range.hpp``)
+-------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_back_edge_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+For undirected graphs stored as directed adjacency lists, this adaptor provides efficient access to reverse (back) edges. Given edge (u,v), get_back_edge returns a reference to the corresponding edge (v,u).
+
+This is particularly useful for algorithms that need to update both directions of an undirected edge, such as max-flow or min-cut algorithms.
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``functional``
+
+- ``iostream``
+
+- ``map``
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1back__edge__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1back__edge__range_1_1back__edge__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1back__edge__range_1_1back__edge__range__iterator_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1back__edge__range_1_1outer__back__edge__range__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1back__edge__range_1_1outer__back__edge__range__iterator_1_1end__sentinel__type`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1back__edge__range_1_1sub__view`
+

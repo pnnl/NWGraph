@@ -1,0 +1,14 @@
+.. _exhale_typedef_coo_8hpp_1a956becc70710fdc6f7df32aabe353111:
+
+Typedef nw::graph::coo_matrix
+=============================
+
+- Defined in :ref:`file_include_nwgraph_coo.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::coo_matrix
+   :project: NWgraph

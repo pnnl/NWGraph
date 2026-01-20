@@ -1,0 +1,14 @@
+.. _exhale_function_volos_8hpp_1a5896a46e9c4f381dcce450968c3ccf16:
+
+Template Function nw::graph::tag_invoke(const num_vertices_tag, index_adj_list<idx, vertex_id, Attributes...>&)
+===============================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_volos.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::tag_invoke(const num_vertices_tag, index_adj_list<idx, vertex_id, Attributes...>&)
+   :project: NWgraph

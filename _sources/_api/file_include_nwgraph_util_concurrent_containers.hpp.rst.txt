@@ -1,0 +1,96 @@
+
+.. _file_include_nwgraph_util_concurrent_containers.hpp:
+
+File concurrent_containers.hpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Backend-agnostic concurrent container abstractions. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/concurrent_containers.hpp``)
+---------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_concurrent_containers.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides concurrent queue, vector, and mutex abstractions that work with both TBB and HPX backends. These containers are used internally by parallel graph algorithms.
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``cstddef``
+
+- ``mutex``
+
+- ``nwgraph/util/backend.hpp`` (:ref:`file_include_nwgraph_util_backend.hpp`)
+
+- ``tbb/concurrent_queue.h``
+
+- ``tbb/concurrent_vector.h``
+
+- ``tbb/queuing_mutex.h``
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1concurrent__queue`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1concurrent__vector`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1queuing__mutex`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1queuing__mutex_1_1scoped__lock`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1spinlock`
+

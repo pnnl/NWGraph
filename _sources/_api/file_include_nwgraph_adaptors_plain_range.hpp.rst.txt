@@ -1,0 +1,123 @@
+
+.. _file_include_nwgraph_adaptors_plain_range.hpp:
+
+File plain_range.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Range adaptors for iterating over graph vertices. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/plain_range.hpp``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_plain_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides range-based interfaces for vertex iteration:
+
+- plain_range: Iterate over vertex indices with TBB splittable support
+
+- plain_degree_range: Iterate over (vertex, degree) pairs
+
+
+
+These ranges support parallel execution with TBB.
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``execution``
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``nwgraph/util/print_types.hpp`` (:ref:`file_include_nwgraph_util_print_types.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``queue`` (:ref:`file_include_nwgraph_util_make_priority_queue.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_dag_based_mis.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_jones_plassmann_coloring.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_spMatspMat.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_jones_plassmann_coloring.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1plain__degree__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1plain__degree__range_1_1iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1plain__range`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1plain__range_1_1my__iterator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_plain__range_8hpp_1a6a9b7ef1354fc746c9f9ece7708d6ee5`
+
+- :ref:`exhale_function_plain__range_8hpp_1a07625d3d75a1246a5f63e9b5b1a66114`
+

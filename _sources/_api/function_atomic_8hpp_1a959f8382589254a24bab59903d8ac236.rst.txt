@@ -1,0 +1,14 @@
+.. _exhale_function_atomic_8hpp_1a959f8382589254a24bab59903d8ac236:
+
+Template Function nw::graph::release
+====================================
+
+- Defined in :ref:`file_include_nwgraph_util_atomic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::release(T&&, U&&)
+   :project: NWgraph

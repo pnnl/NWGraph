@@ -1,0 +1,14 @@
+.. _exhale_function_graph__concepts_8hpp_1acccaa3b00991e891bb8a97290f2ad91f:
+
+Template Function nw::graph::tag_invoke(const num_vertices_tag, const T&)
+=========================================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::tag_invoke(const num_vertices_tag, const T&)
+   :project: NWgraph
