@@ -24,6 +24,7 @@
 #include "nwgraph/util/AtomicBitVector.hpp"
 #include "nwgraph/util/atomic.hpp"
 #include "nwgraph/util/parallel_for.hpp"
+#include "nwgraph/util/execution_policy.hpp"
 #include <queue>
 
 #include <tbb/concurrent_queue.h>
@@ -48,7 +49,7 @@ auto bfs_v4(const Graph& graph, typename graph_traits<Graph>::vertex_id_type roo
 
   while (!q1.empty()) {
 
-    std::for_each(std::execution::par_unseq, q1.unsafe_begin(), q1.unsafe_end(), [&](vertex_id_type u) {
+    nw::graph::par_for_each(nw::graph::execution::par_unseq, q1.unsafe_begin(), q1.unsafe_end(), [&](vertex_id_type u) {
       std::for_each(graph[u].begin(), graph[u].end(), [&](auto&& x) {
         vertex_id_type v = target(graph, x);
         if (level[v] == std::numeric_limits<vertex_id_type>::max()) {
@@ -115,7 +116,7 @@ auto bfs_v7(const Graph& graph, typename graph_traits<Graph>::vertex_id_type roo
   parents[root] = root;
 
   while (!q1.empty()) {
-    std::for_each(std::execution::par_unseq, q1.begin(), q1.end(), [&](vertex_id_type u) {
+    nw::graph::par_for_each(nw::graph::execution::par_unseq, q1.begin(), q1.end(), [&](vertex_id_type u) {
       std::for_each(graph[u].begin(), graph[u].end(), [&](auto&& x) {
         vertex_id_type v       = target(graph, x);
         vertex_id_type old_lvl = level[v];
@@ -161,8 +162,8 @@ auto bfs_v8(const Graph& graph, typename graph_traits<Graph>::vertex_id_type roo
 
   while (!q[cur].empty()) {
 
-    std::for_each(std::execution::par_unseq, q[cur].unsafe_begin(), q[cur].unsafe_end(), [&](vertex_id_type u) {
-      std::for_each(std::execution::par_unseq, graph[u].begin(), graph[u].end(), [&](auto&& x) {
+    nw::graph::par_for_each(nw::graph::execution::par_unseq, q[cur].unsafe_begin(), q[cur].unsafe_end(), [&](vertex_id_type u) {
+      nw::graph::par_for_each(nw::graph::execution::par_unseq, graph[u].begin(), graph[u].end(), [&](auto&& x) {
         vertex_id_type v = target(graph, x);
         if (level[v] == std::numeric_limits<vertex_id_type>::max()) {
           q[!cur].push(v);
@@ -198,8 +199,8 @@ auto bfs_v9(const Graph& graph, typename graph_traits<Graph>::vertex_id_type roo
 
   bool done = false;
   while (!done) {
-    std::for_each(std::execution::par_unseq, q1.begin(), q1.end(), [&](auto& q) {
-      std::for_each(std::execution::par_unseq, q.begin(), q.end(), [&](vertex_id_type u) {
+    nw::graph::par_for_each(nw::graph::execution::par_unseq, q1.begin(), q1.end(), [&](auto& q) {
+      nw::graph::par_for_each(nw::graph::execution::par_unseq, q.begin(), q.end(), [&](vertex_id_type u) {
         tbb::parallel_for(graph[u], [&](auto&& gu) {
           std::for_each(gu.begin(), gu.end(), [&](auto&& x) {
             vertex_id_type v = target(graph, x);
@@ -244,15 +245,15 @@ template <adjacency_list_graph Graph>
 
   constexpr const auto null_vertex = null_vertex_v<vertex_id_type>();
 
-  std::fill(std::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
+  nw::graph::par_fill(nw::graph::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
 
   q1[0].push_back(root);
   parents[root] = root;
 
   bool done = false;
   while (!done) {
-    std::for_each(std::execution::par_unseq, q1.begin(), q1.end(), [&](auto&& q) {
-      std::for_each(std::execution::par_unseq, q.begin(), q.end(), [&](auto&& u) {
+    nw::graph::par_for_each(nw::graph::execution::par_unseq, q1.begin(), q1.end(), [&](auto&& q) {
+      nw::graph::par_for_each(nw::graph::execution::par_unseq, q.begin(), q.end(), [&](auto&& u) {
         nw::graph::parallel_for(graph[u], [&](auto&& v) {
           if (nw::graph::relaxed(parents[v]) == null_vertex) {
             nw::graph::relaxed(parents[v], u);
@@ -292,7 +293,7 @@ template <adjacency_list_graph Graph>
 
   constexpr const auto null_vertex = null_vertex_v<vertex_id_type>();
 
-  std::fill(std::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
+  nw::graph::par_fill(nw::graph::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
 
   q1[0].push_back(root);
   parents[root] = root;
@@ -300,8 +301,8 @@ template <adjacency_list_graph Graph>
 
   bool done = false;
   while (!done) {
-    std::for_each(std::execution::par_unseq, q1.begin(), q1.end(), [&](auto&& q) {
-      std::for_each(std::execution::par_unseq, q.begin(), q.end(), [&](auto&& u) {
+    nw::graph::par_for_each(nw::graph::execution::par_unseq, q1.begin(), q1.end(), [&](auto&& q) {
+      nw::graph::par_for_each(nw::graph::execution::par_unseq, q.begin(), q.end(), [&](auto&& u) {
         nw::graph::parallel_for(graph[u], [&](auto&& v) {
           if (visited.atomic_get(v) == 0 && visited.atomic_set(v) == 0) {
             parents[v] = u;
@@ -339,7 +340,7 @@ template <adjacency_list_graph Graph, adjacency_list_graph Transpose>
   std::vector<vertex_id_type> parents(N);
 
   constexpr const auto null_vertex = null_vertex_v<vertex_id_type>();
-  std::fill(std::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
+  nw::graph::par_fill(nw::graph::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
 
   parents[root] = root;
   next.set(root);
@@ -426,7 +427,7 @@ size_t TD_step(const Graph& g, std::vector<vertex_id_t<Graph>>& parents, Vector&
 }
 template <class T>
 inline void queue_to_bitmap(std::vector<T>& queue, nw::graph::AtomicBitVector<>& bitmap) {
-  std::for_each(std::execution::par_unseq, queue.begin(), queue.end(), [&](auto&& u) { bitmap.atomic_set(u); });
+  nw::graph::par_for_each(nw::graph::execution::par_unseq, queue.begin(), queue.end(), [&](auto&& u) { bitmap.atomic_set(u); });
 }
 template <typename Vector>
 inline void bitmap_to_queue(nw::graph::AtomicBitVector<>& bitmap, std::vector<Vector>& lqueue) {
@@ -454,10 +455,10 @@ void flush(std::vector<Vector>& lqueue, Vector& queue) {
   }
   //resize 'queue'
   queue.resize(size);
-  std::for_each(std::execution::par_unseq, counting_iterator(0ul), counting_iterator(n), [&](auto i) {
+  nw::graph::par_for_each(nw::graph::execution::par_unseq, counting_iterator(0ul), counting_iterator(n), [&](auto i) {
     //copy each thread-local queue to global queue based on their size offset
     auto begin = std::next(queue.begin(), size_array[i]);
-    std::copy(std::execution::par_unseq, lqueue[i].begin(), lqueue[i].end(), begin);
+    nw::graph::par_copy(nw::graph::execution::par_unseq, lqueue[i].begin(), lqueue[i].end(), begin);
     lqueue[i].clear();
   });
 }
@@ -477,7 +478,7 @@ template <adjacency_list_graph OutGraph, adjacency_list_graph InGraph>
   std::vector<vertex_id_type> parents(N);
 
   constexpr const auto null_vertex = null_vertex_v<vertex_id_type>();
-  std::fill(std::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
+  nw::graph::par_fill(nw::graph::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
 
   std::uint64_t edges_to_check = M;
   std::uint64_t scout_count    = out_graph[root].size();
@@ -570,7 +571,7 @@ template <adjacency_list_graph OutGraph, adjacency_list_graph InGraph>
   size_t               N = num_vertices(out_graph);
   Vector               parents(N);
   constexpr const auto null_vertex = null_vertex_v<vertex_id_type>();
-  std::fill(std::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
+  nw::graph::par_fill(nw::graph::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
   parents[root] = root;
   Vector              frontier;
   std::vector<Vector> nextfrontier(n);

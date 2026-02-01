@@ -44,7 +44,7 @@
 #include <dpstd/execution>
 #else
 #include <algorithm>
-#include <execution>
+#include "nwgraph/util/execution_policy.hpp"
 #endif
 
 
@@ -273,15 +273,15 @@ struct zipped : std::tuple<Ranges&...> {
     std::apply([&](auto&... vs) { (deserialize(infile, vs), ...); }, *this);
   }
 
-  template <typename index_t, typename vertex_id_type, class T, class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <typename index_t, typename vertex_id_type, class T, class ExecutionPolicy = nw::graph::default_execution_policy>
   void permute(const std::vector<index_t>& indices, const std::vector<index_t>& new_indices, const std::vector<vertex_id_type>& perm, T& vs,
                ExecutionPolicy&& ex_policy = {}) {
     T ws(vs.size());
     for (size_t i = 0, e = indices.size() - 1; i < e; ++i) {
       vertex_id_type j = perm[i];
-      std::copy(ex_policy, vs.begin() + indices[j], vs.begin() + indices[j + 1], ws.begin() + new_indices[i]);
+      nw::graph::par_copy(ex_policy, vs.begin() + indices[j], vs.begin() + indices[j + 1], ws.begin() + new_indices[i]);
     }
-    std::copy(ex_policy, ws.begin(), ws.end(), vs.begin());
+    nw::graph::par_copy(ex_policy, ws.begin(), ws.end(), vs.begin());
   }
 
   template <typename index_t, typename vertex_id_type>
@@ -294,7 +294,7 @@ struct zipped : std::tuple<Ranges&...> {
   }
 
   bool operator==(zipped& a) {
-    return std::equal(std::execution::par, begin(), end(), a.begin());
+    return nw::graph::par_equal(nw::graph::execution::par, begin(), end(), a.begin());
   }
 
   bool operator!=(const storage_type& a) {

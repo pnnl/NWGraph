@@ -23,7 +23,6 @@
 #include <algorithm>
 #include <atomic>
 #include <cassert>
-#include <execution>
 #include <iostream>
 #include <map>
 #include <string>
@@ -32,6 +31,7 @@
 #include <utility>
 #include <vector>
 
+#include "nwgraph/util/execution_policy.hpp"
 
 #include "graph_concepts.hpp"
 
@@ -41,17 +41,15 @@
 namespace nw {
 namespace graph {
 
-using default_execution_policy = std::execution::parallel_unsequenced_policy;
-
 template <int idx, edge_list_graph edge_list_t, class ExecutionPolicy = default_execution_policy>
 void sort_by(edge_list_t& el, ExecutionPolicy&& policy = {}) {
-  std::sort(std::execution::seq, el.begin(), el.end(),
+  par_sort(execution::seq, el.begin(), el.end(),
             [](const auto& a, const auto& b) -> bool { return (std::get<idx>(a) < std::get<idx>(b)); });
 }
 
 template <int idx, edge_list_graph edge_list_t, class ExecutionPolicy = default_execution_policy>
 void stable_sort_by(edge_list_t& el, ExecutionPolicy&& policy = {}) {
-  std::stable_sort(policy, el.begin(), el.end(), [](const auto& a, const auto& b) -> bool { return (std::get<idx>(a) < std::get<idx>(b)); });
+  par_stable_sort(policy, el.begin(), el.end(), [](const auto& a, const auto& b) -> bool { return (std::get<idx>(a) < std::get<idx>(b)); });
 }
 
 template <int idx, edge_list_graph edge_list_t, class ExecutionPolicy = default_execution_policy>
@@ -61,9 +59,9 @@ void lexical_sort_by(edge_list_t& el, ExecutionPolicy&& policy = {}) {
   const int jdx = (idx + 1) % 2;
 
   if constexpr (idx == 0) {
-    std::sort(policy, el.begin(), el.end());
+    par_sort(policy, el.begin(), el.end());
   } else {
-    std::sort(policy, el.begin(), el.end(), [](const auto& a, const auto& b) -> bool {
+    par_sort(policy, el.begin(), el.end(), [](const auto& a, const auto& b) -> bool {
       return std::tie(std::get<1>(a), std::get<0>(a)) < std::tie(std::get<1>(b), std::get<0>(b));
     });
   }
@@ -74,7 +72,7 @@ void lexical_stable_sort_by(edge_list_t& el, ExecutionPolicy&& policy = {}) {
 
   const int jdx = (idx + 1) % 2;
 
-  std::stable_sort(policy, el.begin(), el.end(), [](const auto& a, const auto& b) -> bool {
+  par_stable_sort(policy, el.begin(), el.end(), [](const auto& a, const auto& b) -> bool {
     return std::tie(std::get<idx>(a), std::get<jdx>(a)) < std::tie(std::get<idx>(b), std::get<jdx>(b));
   });
 }
@@ -167,21 +165,21 @@ void permute_helper(edge_list_t& el, adjacency_t& cs, std::index_sequence<Is...>
 
 template <edge_list_graph edge_list_t, adjacency_list_graph adjacency_t, class ExecutionPolicy = default_execution_policy, size_t... Is>
 void fill_helper(edge_list_t& el, adjacency_t& cs, std::index_sequence<Is...> is, ExecutionPolicy&& policy = {}) {
-  (..., (std::copy(policy, std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
+  (..., (par_copy(policy, std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
                    std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(el)).end(), std::get<Is + 1>(cs.to_be_indexed_).begin())));
 }
 
 template <edge_list_graph edge_list_t, adjacency_list_graph adjacency_t, class ExecutionPolicy = default_execution_policy, size_t... Is>
 void copy_helper(edge_list_t& el, adjacency_t& cs, std::index_sequence<Is...> is, size_t offset, ExecutionPolicy&& policy = {}) {
   (...,
-   (std::copy(policy, std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
+   (par_copy(policy, std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
               std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(el)).end(), std::get<Is + 1>(cs.to_be_indexed_).begin() + offset)));
 }
 
 template <edge_list_graph edge_list_t, adjacency_list_graph adjacency_t, class T, class ExecutionPolicy = default_execution_policy,
           size_t... Is>
 void fill_helper_tmp(edge_list_t& el, adjacency_t& cs, std::index_sequence<Is...> is, T& Tmp, ExecutionPolicy&& policy = {}) {
-  (..., (std::copy(policy, std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(Tmp)).begin(),
+  (..., (par_copy(policy, std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(Tmp)).begin(),
                    std::get<Is + 2>(dynamic_cast<typename edge_list_t::base&>(Tmp)).end(), std::get<Is + 1>(cs.to_be_indexed_).begin())));
 }
 
@@ -213,11 +211,11 @@ void fill_directed(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& po
 
   cs.indices_.resize(N + 1);
   cs.indices_[0] = 0;
-  std::inclusive_scan(policy, degree.begin(), degree.end(), cs.indices_.begin() + 1);
+  par_inclusive_scan(policy, degree.begin(), degree.end(), cs.indices_.begin() + 1);
   cs.to_be_indexed_.resize(el.size());
 
   const int kdx = (idx + 1) % 2;
-  std::copy(policy, std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
+  par_copy(policy, std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).begin(),
             std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(el)).end(), std::get<0>(cs.to_be_indexed_).begin());
 
   // Copy properties
@@ -228,7 +226,7 @@ void fill_directed(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& po
   std::vector<nw::graph::vertex_id_t<adjacency_t>> tmp(std::get<idx>(dynamic_cast<typename edge_list_t::base&>(el)));
 
   auto a = make_zipped(tmp, cs.to_be_indexed_);
-  std::sort(policy, a.begin(), a.end(), [](auto&& a, auto&& b) { return std::get<0>(a) < std::get<0>(b); });
+  par_sort(policy, a.begin(), a.end(), [](auto&& a, auto&& b) { return std::get<0>(a) < std::get<0>(b); });
 }
 
 
@@ -244,21 +242,21 @@ void fill_undirected(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& 
   std::vector<vertex_id_type> Tmp(2 * el.size());
   const int                   kdx = (idx + 1) % 2;
 
-  std::copy(policy, std::get<idx>(el).begin(), std::get<idx>(el).end(), Tmp.begin());
-  std::copy(policy, std::get<kdx>(el).begin(), std::get<kdx>(el).end(), Tmp.begin() + el.size());
+  par_copy(policy, std::get<idx>(el).begin(), std::get<idx>(el).end(), Tmp.begin());
+  par_copy(policy, std::get<kdx>(el).begin(), std::get<kdx>(el).end(), Tmp.begin() + el.size());
 
   {
     std::vector<vertex_id_type> degrees(N);
     cs.indices_.resize(N + 1);
     cs.indices_[0] = 0;
     std::for_each(/* policy, */ Tmp.begin(), Tmp.end(), [&](auto&& i) { ++degrees[i]; });
-    std::inclusive_scan(policy, degrees.begin(), degrees.end(), cs.indices_.begin() + 1);
+    par_inclusive_scan(policy, degrees.begin(), degrees.end(), cs.indices_.begin() + 1);
   }
 
   cs.to_be_indexed_.resize(Tmp.size());
 
-  std::copy(policy, std::get<kdx>(el).begin(), std::get<kdx>(el).end(), std::get<0>(cs.to_be_indexed_).begin());
-  std::copy(policy, std::get<idx>(el).begin(), std::get<idx>(el).end(), std::get<0>(cs.to_be_indexed_).begin() + el.size());
+  par_copy(policy, std::get<kdx>(el).begin(), std::get<kdx>(el).end(), std::get<0>(cs.to_be_indexed_).begin());
+  par_copy(policy, std::get<idx>(el).begin(), std::get<idx>(el).end(), std::get<0>(cs.to_be_indexed_).begin() + el.size());
 
   if constexpr (std::tuple_size<typename edge_list_t::attributes_t>::value > 0) {
     copy_helper(el, cs, std::make_integer_sequence<size_t, std::tuple_size<typename edge_list_t::attributes_t>::value>(), 0, policy);
@@ -268,7 +266,7 @@ void fill_undirected(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& 
   }
 
   auto a = make_zipped(Tmp, cs.to_be_indexed_);
-  std::sort(policy, a.begin(), a.end(), [](auto&& a, auto&& b) { return std::get<0>(a) < std::get<0>(b); });
+  par_sort(policy, a.begin(), a.end(), [](auto&& a, auto&& b) { return std::get<0>(a) < std::get<0>(b); });
 
 #else
 
@@ -278,7 +276,7 @@ void fill_undirected(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& 
 
   Tmp.resize(2 * el.size());
 
-  std::copy(policy, el.begin(), el.end(), Tmp.begin());
+  par_copy(policy, el.begin(), el.end(), Tmp.begin());
 
   std::transform(policy, el.begin(), el.end(), Tmp.begin() + el.size(), [&](auto&& elt) {
     auto flt = elt;
@@ -291,13 +289,13 @@ void fill_undirected(edge_list_t& el, Int N, adjacency_t& cs, ExecutionPolicy&& 
   {
     auto degree = degrees<idx>(Tmp);    // Can have a fast version if we know it is sorted -- using equal_range
     cs.indices_.resize(N + 1);
-    std::inclusive_scan(policy, degree.begin(), degree.end(), cs.indices_.begin() + 1);
+    par_inclusive_scan(policy, degree.begin(), degree.end(), cs.indices_.begin() + 1);
   }
 
   cs.to_be_indexed_.resize(Tmp.size());
 
   const int kdx = (idx + 1) % 2;
-  std::copy(policy, std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(Tmp)).begin(),
+  par_copy(policy, std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(Tmp)).begin(),
             std::get<kdx>(dynamic_cast<typename edge_list_t::base&>(Tmp)).end(), std::get<0>(cs.to_be_indexed_).begin());
 
   if constexpr (std::tuple_size<typename edge_list_t::attributes_t>::value > 0) {
@@ -375,13 +373,13 @@ template <int idx, edge_list_graph edge_list_t, succession cessor = succession::
 void swap_to_triangular(edge_list_t& el, ExecutionPolicy&& policy = {}) {
 
   if constexpr ((idx == 0 && cessor == succession::predecessor) || (idx == 1 && cessor == succession::successor)) {
-    std::for_each(policy, el.begin(), el.end(), [](auto&& f) {
+    par_for_each(policy, el.begin(), el.end(), [](auto&& f) {
       if (std::get<0>(f) < std::get<1>(f)) {
         std::swap(std::get<0>(f), std::get<1>(f));
       }
     });
   } else if constexpr ((idx == 0 && cessor == succession::successor) || (idx == 1 && cessor == succession::predecessor)) {
-    std::for_each(policy, el.begin(), el.end(), [](auto&& f) {
+    par_for_each(policy, el.begin(), el.end(), [](auto&& f) {
       if (std::get<1>(f) < std::get<0>(f)) {
         std::swap(std::get<1>(f), std::get<0>(f));
       }
@@ -394,7 +392,7 @@ void swap_to_triangular(edge_list_t& el, ExecutionPolicy&& policy = {}) {
 template <edge_list_graph edge_list_t, class ExecutionPolicy = default_execution_policy>
 void uniq(edge_list_t& el, ExecutionPolicy&& policy = {}) {
 
-  auto past_the_end = std::unique(policy, el.begin(), el.end(),
+  auto past_the_end = par_unique(policy, el.begin(), el.end(),
                                   [](auto&& x, auto&& y) { return std::get<0>(x) == std::get<0>(y) && std::get<1>(x) == std::get<1>(y); });
 
   // el.erase(past_the_end, el.end());
@@ -444,18 +442,18 @@ auto degrees(edge_list_t& el, ExecutionPolicy&& policy = {})
   if constexpr (edge_list_t::edge_directedness == directedness::directed) {
     std::vector<std::atomic<vertex_id_type>> tmp(degree.size());
 
-    std::for_each(policy, el.begin(), el.end(), [&](auto&& x) { ++tmp[std::get<d_idx>(x)]; });
+    par_for_each(policy, el.begin(), el.end(), [&](auto&& x) { ++tmp[std::get<d_idx>(x)]; });
 
-    std::copy(policy, tmp.begin(), tmp.end(), degree.begin());
+    par_copy(policy, tmp.begin(), tmp.end(), degree.begin());
 
   } else if constexpr (edge_list_t::edge_directedness == directedness::undirected) {
     std::vector<std::atomic<vertex_id_type>> tmp(degree.size());
 
-    std::for_each(policy, el.begin(), el.end(), [&](auto&& x) {
+    par_for_each(policy, el.begin(), el.end(), [&](auto&& x) {
       ++tmp[std::get<0>(x)];
       ++tmp[std::get<1>(x)];
     });
-    std::copy(policy, tmp.begin(), tmp.end(), degree.begin());
+    par_copy(policy, tmp.begin(), tmp.end(), degree.begin());
   }
   return degree;
 }
@@ -475,9 +473,9 @@ auto degrees(edge_list_t& el, ExecutionPolicy&& policy = {})
   if constexpr (edge_list_t::edge_directedness == directedness::directed) {
     std::vector<std::atomic<vertex_id_type>> tmp(degree.size());
 
-    std::for_each(policy, el.begin(), el.end(), [&](auto&& x) { ++tmp[std::get<d_idx>(x)]; });
+    par_for_each(policy, el.begin(), el.end(), [&](auto&& x) { ++tmp[std::get<d_idx>(x)]; });
 
-    std::copy(policy, tmp.begin(), tmp.end(), degree.begin());
+    par_copy(policy, tmp.begin(), tmp.end(), degree.begin());
   }
   return degree;
 }
@@ -502,9 +500,9 @@ auto perm_by_degree(edge_list_t& el, const Vector& degree, std::string direction
   auto d = degree.begin();
 
   if (direction == "descending") {
-    std::sort(policy, perm.begin(), perm.end(), [&](auto a, auto b) { return d[a] > d[b]; });
+    par_sort(policy, perm.begin(), perm.end(), [&](auto a, auto b) { return d[a] > d[b]; });
   } else if (direction == "ascending") {
-    std::sort(policy, perm.begin(), perm.end(), [&](auto a, auto b) { return d[a] < d[b]; });
+    par_sort(policy, perm.begin(), perm.end(), [&](auto a, auto b) { return d[a] < d[b]; });
   } else {
     std::cout << "Unknown direction: " << direction << std::endl;
   }
@@ -534,7 +532,7 @@ auto relabel(edge_list_t& el, const Vector& perm, ExecutionPolicy&& policy = {})
     }
   });
 
-  std::for_each(policy, el.begin(), el.end(), [&](auto&& x) {
+  par_for_each(policy, el.begin(), el.end(), [&](auto&& x) {
     std::get<0>(x) = iperm[std::get<0>(x)];
     std::get<1>(x) = iperm[std::get<1>(x)];
   });
@@ -564,7 +562,7 @@ auto relabel(edge_list_t& el, const Vector& perm, ExecutionPolicy&& policy = {})
     }
   });
 
-  std::for_each(policy, el.begin(), el.end(), [&](auto&& x) { std::get<idx>(x) = iperm[std::get<idx>(x)]; });
+  par_for_each(policy, el.begin(), el.end(), [&](auto&& x) { std::get<idx>(x) = iperm[std::get<idx>(x)]; });
   return iperm;
 }
 

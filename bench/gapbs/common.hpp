@@ -100,7 +100,7 @@ edge_list<Directedness, Attributes...> load_graph(std::string file) {
   }
 }
 
-template <int Adj, class ExecutionPolicy = std::execution::parallel_unsequenced_policy, directedness Directedness, class... Attributes>
+template <int Adj, class ExecutionPolicy = nw::graph::default_execution_policy, directedness Directedness, class... Attributes>
 adjacency<Adj, Attributes...> build_adjacency(edge_list<Directedness, Attributes...>& graph, bool sort_adjacency = false,
                                               ExecutionPolicy&& policy = {}) {
   nw::util::life_timer _("build adjacency");

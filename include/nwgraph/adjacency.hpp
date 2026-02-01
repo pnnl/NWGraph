@@ -112,7 +112,7 @@ public:
    */
   //  index_adjacency(std::array<size_t, 1> N, size_t M = 0) requires(std::is_same<unipartite_graph_base, unipartite_graph_base>::value) : unipartite_graph_base(N), base(N[0], M) {}
 
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   index_adjacency(index_edge_list<vertex_id_type, unipartite_graph_base, directedness::directed, Attributes...>& A, bool sort_adjacency = false,
                   ExecutionPolicy&& policy = {})
     requires(std::is_same<unipartite_graph_base, unipartite_graph_base>::value)
@@ -120,7 +120,7 @@ public:
     fill<idx>(A, *this, sort_adjacency, policy);
   }
 
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   index_adjacency(index_edge_list<vertex_id_type, unipartite_graph_base, directedness::undirected, Attributes...>& A,
                   bool sort_adjacency = false, ExecutionPolicy&& policy = {})
     requires(std::is_same<unipartite_graph_base, unipartite_graph_base>::value)
@@ -128,14 +128,14 @@ public:
     fill<idx>(A, *this, sort_adjacency, policy);
   }
 
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   index_adjacency(size_t N, index_edge_list<vertex_id_type, unipartite_graph_base, directedness::directed, Attributes...>& A,
                   bool sort_adjacency = false, ExecutionPolicy&& policy = {})
     requires(std::is_same<unipartite_graph_base, unipartite_graph_base>::value)
       : unipartite_graph_base(N), base(N) {
     fill<idx>(A, *this, sort_adjacency, policy);
   }
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   index_adjacency(size_t N, index_edge_list<vertex_id_type, unipartite_graph_base, directedness::undirected, Attributes...>& A,
                   bool sort_adjacency = false, ExecutionPolicy&& policy = {})
     requires(std::is_same<unipartite_graph_base, unipartite_graph_base>::value)
@@ -201,7 +201,7 @@ auto make_adjacency(edge_list_t& el) {
 
 
 template <int idx, edge_list_c edge_list_t, std::unsigned_integral u_integral,
-          class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+          class ExecutionPolicy = nw::graph::default_execution_policy>
 auto make_adjacency(edge_list_t& el, u_integral n, directedness edge_directedness = directedness::directed, ExecutionPolicy&& policy = {}) {
   adjacency<idx> adj(n);
   fill<idx>(el, adj, edge_directedness, policy);
@@ -253,7 +253,7 @@ public:
       : bipartite_graph_base(N[idx], N[(idx + 1) % 2]), base(N[idx], M) {
   }
 
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   index_biadjacency(index_edge_list<vertex_id_type, bipartite_graph_base, directedness::directed, Attributes...>& A,
                     bool sort_biadjacency = false, ExecutionPolicy&& policy = {})
     requires(std::is_same<bipartite_graph_base, bipartite_graph_base>::value)
@@ -261,7 +261,7 @@ public:
     fill_biadjacency<idx>(A, *this, sort_biadjacency, policy);
   }
 
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   index_biadjacency(index_edge_list<vertex_id_type, bipartite_graph_base, directedness::undirected, Attributes...>& A,
                     bool sort_biadjacency = false, ExecutionPolicy&& policy = {})
     requires(std::is_same<bipartite_graph_base, bipartite_graph_base>::value)
@@ -327,7 +327,7 @@ auto make_biadjacency(edge_list_t& el) {
 
 
 template <int idx, edge_list_c edge_list_t, std::unsigned_integral u_integral,
-          class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+          class ExecutionPolicy = nw::graph::default_execution_policy>
 auto make_biadjacency(edge_list_t& el, u_integral n0, u_integral n1, directedness edge_directedness = directedness::directed,
                       ExecutionPolicy&& policy = {}) {
   biadjacency<idx> adj(n0, n1);
