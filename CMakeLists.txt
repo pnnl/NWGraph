@@ -111,6 +111,37 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 find_package(Threads REQUIRED)
 
+# -----------------------------------------------------------------------------
+# TBB/HPX Root Path Configuration
+# -----------------------------------------------------------------------------
+# Users can specify paths via:
+#   - CMake variables: TBB_ROOT, HPX_ROOT
+#   - Environment variables: TBB_ROOT, TBBROOT, HPX_ROOT
+#
+# Example:
+#   cmake .. -DTBB_ROOT=/opt/intel/tbb
+#   cmake .. -DHPX_ROOT=/opt/hpx
+#   TBB_ROOT=/opt/intel/tbb cmake ..
+
+# TBB path hints (check environment variables)
+if(NOT TBB_ROOT)
+  if(DEFINED ENV{TBB_ROOT})
+    set(TBB_ROOT $ENV{TBB_ROOT})
+    message(STATUS "Using TBB_ROOT from environment: ${TBB_ROOT}")
+  elseif(DEFINED ENV{TBBROOT})
+    set(TBB_ROOT $ENV{TBBROOT})
+    message(STATUS "Using TBBROOT from environment: ${TBB_ROOT}")
+  endif()
+endif()
+
+# HPX path hints (check environment variables)
+if(NOT HPX_ROOT)
+  if(DEFINED ENV{HPX_ROOT})
+    set(HPX_ROOT $ENV{HPX_ROOT})
+    message(STATUS "Using HPX_ROOT from environment: ${HPX_ROOT}")
+  endif()
+endif()
+
 # Only find/fetch TBB if not using HPX backend
 if(NOT NWGRAPH_BACKEND_HPX)
   option(TBB_TEST "" OFF)
@@ -130,7 +161,12 @@ if(NOT NWGRAPH_BACKEND_HPX)
     message(STATUS "Fetching TBB")
     FetchContent_MakeAvailable(oneTBB)
   else()
-    find_package(TBB REQUIRED)
+    # Find TBB with optional hints from TBB_ROOT
+    if(TBB_ROOT)
+      find_package(TBB REQUIRED HINTS ${TBB_ROOT} ${TBB_ROOT}/lib/cmake/TBB)
+    else()
+      find_package(TBB REQUIRED)
+    endif()
   endif()
 endif()
 
@@ -139,7 +175,12 @@ endif()
 # -----------------------------------------------------------------------------
 if(NWGRAPH_BACKEND_HPX)
   # HPX backend
-  find_package(HPX REQUIRED)
+  # Find HPX with optional hints from HPX_ROOT
+  if(HPX_ROOT)
+    find_package(HPX REQUIRED HINTS ${HPX_ROOT} ${HPX_ROOT}/lib/cmake/HPX)
+  else()
+    find_package(HPX REQUIRED)
+  endif()
 
   add_library(nwgraph_parallel INTERFACE)
   target_compile_definitions(nwgraph_parallel INTERFACE NWGRAPH_BACKEND_HPX)

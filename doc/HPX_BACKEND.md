@@ -1,8 +1,10 @@
 # NWGraph HPX Backend
 
 NWGraph supports two parallel backends for executing graph algorithms:
-- **TBB** (Intel Threading Building Blocks) - the default backend
-- **HPX** (High Performance ParalleX) - an alternative backend for distributed computing scenarios
+- **TBB** (Intel Threading Building Blocks) - the current default backend
+- **HPX** (High Performance ParalleX) - a modern C++ runtime system for parallelism and concurrency
+
+HPX is an actively developed, standards-conforming runtime system that provides unified syntax for local and distributed parallelism. NWGraph collaborates with the [HPX team at LSU](https://github.com/STEllAR-GROUP/hpx) to ensure seamless integration.
 
 ## Prerequisites
 
@@ -47,8 +49,79 @@ If HPX is installed in a non-standard location, specify the path:
 ```bash
 cmake .. -DCMAKE_BUILD_TYPE=Release \
          -DNWGRAPH_BACKEND_HPX=ON \
-         -DHPX_DIR=/path/to/hpx/lib/cmake/HPX
+         -DHPX_ROOT=/path/to/hpx
 ```
+
+Or use environment variables:
+```bash
+export HPX_ROOT=/path/to/hpx
+cmake .. -DCMAKE_BUILD_TYPE=Release -DNWGRAPH_BACKEND_HPX=ON
+```
+
+### Custom TBB Location
+
+For TBB backend with custom installation:
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=Release -DTBB_ROOT=/path/to/tbb
+```
+
+Or use environment variables (Intel's convention):
+```bash
+export TBB_ROOT=/opt/intel/oneapi/tbb/latest   # or TBBROOT
+cmake .. -DCMAKE_BUILD_TYPE=Release
+```
+
+### Path Configuration Summary
+
+| Variable | Description |
+|----------|-------------|
+| `TBB_ROOT` | CMake variable or environment variable for TBB installation |
+| `TBBROOT` | Alternative environment variable (Intel convention) |
+| `HPX_ROOT` | CMake variable or environment variable for HPX installation |
+| `HPX_DIR` | Direct path to HPX CMake config directory |
+
+### Building with Tests
+
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=Release -DNWGRAPH_BUILD_TESTS=ON
+make -j$(nproc)
+ctest --output-on-failure
+```
+
+### Building Documentation
+
+Prerequisites:
+- Python 3 with virtual environment support
+- Doxygen
+
+**Note:** Building documentation requires several Python packages. Using a virtual environment is recommended to avoid polluting your system Python.
+
+Set up virtual environment and install dependencies:
+```bash
+# Create and activate virtual environment
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install documentation dependencies
+pip install -r doc-src/sphinx/requirements.txt sphinx
+```
+
+Build documentation:
+```bash
+# Make sure virtual environment is activated
+source .venv/bin/activate
+
+mkdir build-docs && cd build-docs
+cmake .. -DNWGRAPH_BUILD_DOCS=ON
+make docs          # Build complete documentation
+make docs-open     # Build and open in browser (macOS/Linux)
+```
+
+Documentation targets:
+- `make docs` - Build complete documentation (Doxygen + Sphinx)
+- `make docs-html` - Build HTML only (faster, uses cached Doxygen)
+- `make docs-clean` - Clean built documentation
+- `make docs-open` - Build and open in browser
 
 ## Backend Selection
 
@@ -57,7 +130,7 @@ The parallel backend is selected at compile time via the `NWGRAPH_BACKEND_HPX` C
 | Option | Backend | Description |
 |--------|---------|-------------|
 | `OFF` (default) | TBB | Uses Intel TBB for parallelism with `std::execution` policies |
-| `ON` | HPX | Uses HPX runtime for parallelism |
+| `ON` | HPX | Uses HPX runtime for parallelism with future-proof C++ standards conformance |
 
 ## Running Applications
 
@@ -142,19 +215,37 @@ nw::graph::execution::par_unseq
 nw::graph::default_execution_policy
 ```
 
-## Performance Considerations
+## When to Use Each Backend
 
 ### TBB Backend
-- Lower overhead for local parallelism
-- Better suited for shared-memory multicore systems
-- Consistent scaling behavior
-- Work-stealing scheduler adapts well to irregular workloads
+- Shared-memory multicore systems
+- When using `std::execution` policies extensively in your codebase
+- Rapid prototyping with familiar STL-style interfaces
 
 ### HPX Backend
-- Designed for distributed computing (MPI + threads)
-- Supports remote procedure calls and distributed data structures
-- Higher overhead for purely local parallelism
-- Better suited when scaling beyond a single node
+- Distributed computing scenarios (cluster/HPC environments)
+- When scaling beyond a single node with MPI + threads
+- Future-oriented development with C++ standards-conforming parallelism
+- Applications requiring asynchronous task-based parallelism
+- Integration with HPX-based applications and libraries
+
+HPX provides a unified programming model that works identically for local and distributed execution, making it easier to scale applications from laptops to supercomputers without code changes.
+
+## Running Tests
+
+### TBB Backend Tests
+
+```bash
+cd build
+ctest --output-on-failure -R ".*"
+```
+
+### HPX Backend Tests
+
+```bash
+cd build-hpx
+ctest --output-on-failure -R ".*"
+```
 
 ## Benchmarks
 
@@ -203,5 +294,6 @@ On NUMA systems, thread binding can significantly impact performance:
 
 - [HPX GitHub Repository](https://github.com/STEllAR-GROUP/hpx)
 - [HPX Documentation](https://hpx-docs.stellar-group.org/latest/html/index.html)
+- [HPX: A Task Based Programming Model in a Global Address Space](https://stellar-group.org/research/)
 - [Intel TBB GitHub Repository](https://github.com/oneapi-src/oneTBB)
 - [NWGraph Documentation](https://pnnl.github.io/NWGraph/)

@@ -31,16 +31,10 @@
 #include <iostream>
 #include <istream>
 #include <numeric>
-
-#if defined(CL_SYCL_LANGUAGE_VERSION)
-#include <dpstd/algorithm>
-#include <dpstd/execution>
-#include <dpstd/numeric>
-#else
-#include <execution>
-#endif
-
 #include <tuple>
+
+#include "nwgraph/util/execution_policy.hpp"
+#include "nwgraph/util/parallel_for.hpp"
 #include <vector>
 
 #include "nwgraph/util/arrow_proxy.hpp"
@@ -470,13 +464,11 @@ public:    // fixme
   /*
   * Parallel version to compute degree of each vertex.
   */
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   std::vector<index_t> degrees(ExecutionPolicy&& ex_policy = {}) const {
     std::vector<index_t> degs(indices_.size() - 1);
-    tbb::parallel_for(tbb::blocked_range(0ul, indices_.size() - 1), [&](auto&& r) {
-      for (auto i = r.begin(), e = r.end(); i != e; ++i) {
-        degs[i] = indices_[i + 1] - indices_[i];
-      }
+    nw::graph::parallel_for_each(0ul, indices_.size() - 1, [&](auto i) {
+      degs[i] = indices_[i + 1] - indices_[i];
     });
     if (g_debug_compressed) {
       for (size_t i = 0, e = indices_.size() - 1; i < e; ++i)
@@ -488,7 +480,7 @@ public:    // fixme
   /*
   * Sort each neighbor list.
   */
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   void sort_to_be_indexed(ExecutionPolicy&& ex_policy = {}) {
     auto s = std::get<0>(to_be_indexed_).begin();
 
@@ -505,13 +497,11 @@ public:    // fixme
   * Based on the new_id_perm of the vertices, relabel each vertex i into new_id_perm[i]
   * and then sort each neighbor list.
   */
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   void relabel_to_be_indexed(const std::vector<index_t>& new_id_perm, ExecutionPolicy&& ex_policy = {}) {
     auto s = std::get<0>(to_be_indexed_).begin();
-    tbb::parallel_for(tbb::blocked_range(0ul, std::get<0>(to_be_indexed_).size()), [&](auto&& r) {
-      for (auto i = r.begin(), e = r.end(); i != e; ++i) {
-        s[i] = new_id_perm[s[i]];
-      }
+    nw::graph::parallel_for_each(0ul, std::get<0>(to_be_indexed_).size(), [&](auto i) {
+      s[i] = new_id_perm[s[i]];
     });
     sort_to_be_indexed(ex_policy);
   }
@@ -520,17 +510,15 @@ public:    // fixme
   * This function permutes the indices of the adjacency and to_be_indexed
   * but does NOT relabel the ids in the to_be_indexed.
   * */
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   std::vector<index_t> permute_by_degree(const std::string& direction = "descending", ExecutionPolicy&& ex_policy = {}) {
     //1. get the degrees of all the vertices
     size_t      n    = indices_.size() - 1;
     std::vector degs = degrees<ExecutionPolicy>(ex_policy);
     //2. populate permutation with vertex id
     std::vector<index_t> perm(n);
-    tbb::parallel_for(tbb::blocked_range(0ul, n), [&](auto&& r) {
-      for (auto i = r.begin(), e = r.end(); i != e; ++i) {
-        perm[i] = i;
-      }
+    nw::graph::parallel_for_each(0ul, n, [&](auto i) {
+      perm[i] = i;
     });
 
     //3. do a proxy sort on the permutation based on the degree of each vertex
@@ -553,12 +541,10 @@ public:    // fixme
 
     //5. permutate the old indices based on the degree of the new_id
     // to get the new_id_perm
-    tbb::parallel_for(tbb::blocked_range(0ul, n), [&](auto&& r) {
-      for (auto old_id = r.begin(), e = r.end(); old_id != e; ++old_id) {
-        auto new_id         = perm[old_id];
-        new_tmp[old_id]     = degs[new_id];
-        new_id_perm[new_id] = old_id;
-      }
+    nw::graph::parallel_for_each(0ul, n, [&](auto old_id) {
+      auto new_id         = perm[old_id];
+      new_tmp[old_id]     = degs[new_id];
+      new_id_perm[new_id] = old_id;
     });
 
     //6. Computes an inclusive prefix sum operation for the new_indices
@@ -591,7 +577,7 @@ public:    // fixme
   * Call permute_by_degree on adjacency<idx>, 
   * then call relabel_to_be_indexed on adjacency<(idx + 1) % 2>.
   */
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   void sort_by_degree(const std::string& direction = "descending", ExecutionPolicy&& ex_policy = {}) {
     auto&& perm = permute_by_degree(direction, ex_policy);
     relabel_to_be_indexed(perm, ex_policy);

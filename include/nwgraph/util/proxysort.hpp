@@ -19,10 +19,11 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
-#include <execution>
 #include <functional>
 #include <numeric>
 #include <vector>
+
+#include "nwgraph/util/execution_policy.hpp"
 
 namespace nw {
 namespace util {
@@ -33,7 +34,7 @@ namespace util {
 //  std::sort(perm.begin(), perm.end(), [&](auto a, auto b) { return x(a) > x(b); });
 //}
 
-template <typename ThingToSort, typename Comparator, typename IntT, class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+template <typename ThingToSort, typename Comparator, typename IntT, class ExecutionPolicy = nw::graph::default_execution_policy>
 void proxysort(const ThingToSort& x, std::vector<IntT>& perm, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
   assert(perm.size() == x.size());
 
@@ -50,7 +51,7 @@ void proxysort(const ThingToSort& x, std::vector<IntT>& perm, Comparator comp = 
 }
 
 template <typename IntT         = uint32_t, typename Comparator, typename ThingToSort,
-          class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+          class ExecutionPolicy = nw::graph::default_execution_policy>
 auto proxysort(const ThingToSort& x, Comparator comp = std::less<IntT>(), ExecutionPolicy policy = {}) {
   std::vector<IntT> perm(x.size());
   proxysort(x, perm, comp, policy);

@@ -31,13 +31,8 @@
 #include <string.h>
 #include <vector>
 
-#if defined(CL_SYCL_LANGUAGE_VERSION)
-#include <dpstd/execution>
-#else
-#include <execution>
-#endif
-
 #include "nwgraph/util/defaults.hpp"
+#include "nwgraph/util/execution_policy.hpp"
 
 namespace nw {
 namespace graph {
@@ -167,7 +162,7 @@ public:
   /**
 		 * Set id is equal to element id.
 		 */
-  template <class ExecutionPolicy = std::execution::parallel_unsequenced_policy>
+  template <class ExecutionPolicy = nw::graph::default_execution_policy>
   void allToSingletons(ExecutionPolicy&& policy = {}) {
     size_t i = 0;
     std::for_each(policy, this->sets_, this->sets_ + this->maxid_, [&i, this]() {

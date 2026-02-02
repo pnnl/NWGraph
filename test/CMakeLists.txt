@@ -100,6 +100,13 @@ nwgraph_add_test(timer_test)
 nwgraph_add_test(util_test)
 
 # -----------------------------------------------------------------------------
+# Parallel Backend Tests
+# -----------------------------------------------------------------------------
+# Tests for execution policy compatibility and parallel operations
+# These tests verify correct behavior with both TBB and HPX backends
+nwgraph_add_test(parallel_backend_test)
+
+# -----------------------------------------------------------------------------
 # Built-in Graph Tests
 # -----------------------------------------------------------------------------
 nwgraph_add_test(builtin_graphs_test)

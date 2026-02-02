@@ -51,13 +51,8 @@
 #define NW_GRAPH_ATOMIC_BIT_VECTOR_HPP
 
 #include "nwgraph/util/atomic.hpp"
-#if defined(CL_SYCL_LANGUAGE_VERSION)
-#include <dpstd/algorithm>
-#include <dpstd/execution>
-#else
+#include "nwgraph/util/execution_policy.hpp"
 #include <algorithm>
-#include <execution>
-#endif
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -113,7 +108,7 @@ public:
 
   /// Clear the bitmap.
   void clear() {
-    std::fill(std::execution::par_unseq, data_, data_ + words(bits_), Word(0));
+    nw::graph::par_fill(nw::graph::execution::par_unseq, data_, data_ + words(bits_), Word(0));
   }
 
   /// Get a bit from the vector.

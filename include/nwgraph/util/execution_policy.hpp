@@ -19,11 +19,15 @@
 #ifndef NW_GRAPH_EXECUTION_POLICY_HPP
 #define NW_GRAPH_EXECUTION_POLICY_HPP
 
+#include <algorithm>
+#include <numeric>
+
 #if defined(NWGRAPH_BACKEND_HPX)
   // HPX provides its own execution policies in hpx::execution namespace
   #include <hpx/execution.hpp>
   #include <hpx/algorithm.hpp>
   #include <hpx/numeric.hpp>
+  #include "nwgraph/util/backend.hpp"
 
   namespace nw {
   namespace graph {
@@ -43,53 +47,64 @@
   using default_execution_policy = execution::parallel_unsequenced_policy;
 
   // Wrapper functions for parallel algorithms using HPX
+  // Each function ensures HPX runtime is initialized via backend::init_guard
   template <typename ExPolicy, typename Iter, typename Comp>
   void par_sort(ExPolicy&& policy, Iter first, Iter last, Comp comp) {
+    backend::init_guard guard;
     hpx::sort(std::forward<ExPolicy>(policy), first, last, comp);
   }
 
   template <typename ExPolicy, typename Iter>
   void par_sort(ExPolicy&& policy, Iter first, Iter last) {
+    backend::init_guard guard;
     hpx::sort(std::forward<ExPolicy>(policy), first, last);
   }
 
   template <typename ExPolicy, typename Iter, typename Comp>
   void par_stable_sort(ExPolicy&& policy, Iter first, Iter last, Comp comp) {
+    backend::init_guard guard;
     hpx::stable_sort(std::forward<ExPolicy>(policy), first, last, comp);
   }
 
   template <typename ExPolicy, typename InIter, typename OutIter>
   OutIter par_copy(ExPolicy&& policy, InIter first, InIter last, OutIter dest) {
+    backend::init_guard guard;
     return hpx::copy(std::forward<ExPolicy>(policy), first, last, dest);
   }
 
   template <typename ExPolicy, typename Iter, typename Func>
   void par_for_each(ExPolicy&& policy, Iter first, Iter last, Func func) {
+    backend::init_guard guard;
     hpx::for_each(std::forward<ExPolicy>(policy), first, last, func);
   }
 
   template <typename ExPolicy, typename InIter, typename OutIter, typename Pred>
   OutIter par_unique(ExPolicy&& policy, InIter first, InIter last, Pred pred) {
+    backend::init_guard guard;
     return hpx::unique(std::forward<ExPolicy>(policy), first, last, pred);
   }
 
   template <typename ExPolicy, typename InIter, typename OutIter>
   OutIter par_inclusive_scan(ExPolicy&& policy, InIter first, InIter last, OutIter dest) {
+    backend::init_guard guard;
     return hpx::inclusive_scan(std::forward<ExPolicy>(policy), first, last, dest);
   }
 
   template <typename ExPolicy, typename Iter1, typename Iter2>
   bool par_equal(ExPolicy&& policy, Iter1 first1, Iter1 last1, Iter2 first2) {
+    backend::init_guard guard;
     return hpx::equal(std::forward<ExPolicy>(policy), first1, last1, first2);
   }
 
   template <typename ExPolicy, typename Iter, typename T>
   void par_fill(ExPolicy&& policy, Iter first, Iter last, const T& value) {
+    backend::init_guard guard;
     hpx::fill(std::forward<ExPolicy>(policy), first, last, value);
   }
 
   template <typename ExPolicy, typename InIter, typename OutIter, typename UnaryOp>
   OutIter par_transform(ExPolicy&& policy, InIter first, InIter last, OutIter dest, UnaryOp op) {
+    backend::init_guard guard;
     return hpx::transform(std::forward<ExPolicy>(policy), first, last, dest, op);
   }
 
@@ -97,10 +112,8 @@
   }  // namespace nw
 
 #else
-  // TBB/standard library backend
+  // TBB/standard library backend (requires compiler with std::execution support, e.g., g++)
   #include <execution>
-  #include <algorithm>
-  #include <numeric>
 
   namespace nw {
   namespace graph {

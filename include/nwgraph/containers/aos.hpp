@@ -25,8 +25,6 @@
 #ifndef NW_GRAPH_AOS_HPP
 #define NW_GRAPH_AOS_HPP
 
-#include <execution>
-
 #include <algorithm>
 #include <cassert>
 
@@ -38,11 +36,7 @@
 #include <ostream>
 #include <vector>
 
-#if defined(CL_SYCL_LANGUAGE_VERSION)
-#include <dpstd/execution>
-#else
-#include <execution>
-#endif
+#include "nwgraph/util/execution_policy.hpp"
 
 namespace nw {
 namespace graph {
@@ -70,7 +64,7 @@ public:
   }
 
   bool operator==(array_of_structs& a) {
-    return std::equal(std::execution::par, base::begin(), base::end(), a.begin());
+    return nw::graph::par_equal(nw::graph::execution::par, base::begin(), base::end(), a.begin());
   }
   bool operator!=(const storage_type& a) {
     return !operator==(a);

@@ -131,6 +131,56 @@ Known TODO locations:
 
 ---
 
+## Priority 5.5: HPX Backend Infrastructure ✅
+
+### Execution Policy Compatibility Layer
+- [x] Created `include/nwgraph/util/execution_policy.hpp`
+  - Unified interface for parallel execution policies
+  - Maps `std::execution` policies to HPX equivalents when HPX backend is enabled
+  - Provides `nw::graph::execution::seq`, `par`, `par_unseq` that work with both backends
+  - Wrapper functions: `par_sort`, `par_copy`, `par_for_each`, `par_fill`, `par_equal`, etc.
+
+### Backend Infrastructure
+- [x] Created `include/nwgraph/util/backend.hpp`
+  - Backend detection: `backend::is_hpx()`, `backend::is_tbb()`
+  - Lazy initialization for HPX runtime
+  - Thread control: `backend::set_num_threads()`
+
+### Updated Headers to Use Compatibility Layer
+- [x] `include/nwgraph/containers/soa.hpp`
+- [x] `include/nwgraph/containers/aos.hpp`
+- [x] `include/nwgraph/containers/compressed.hpp`
+- [x] `include/nwgraph/containers/zip.hpp`
+- [x] `include/nwgraph/util/proxysort.hpp`
+- [x] `include/nwgraph/util/disjoint_set.hpp`
+- [x] `include/nwgraph/util/AtomicBitVector.hpp`
+- [x] `include/nwgraph/util/intersection_size.hpp`
+- [x] `include/nwgraph/algorithms/bfs.hpp`
+- [x] `include/nwgraph/build.hpp`
+- [x] `include/nwgraph/adjacency.hpp`
+
+### CMake Integration
+- [x] `NWGRAPH_BACKEND_HPX` option to select HPX backend
+- [x] Support for `TBB_ROOT`, `TBBROOT`, `HPX_ROOT` environment variables
+- [x] Automatic backend detection and configuration
+
+### Documentation
+- [x] Created `doc/HPX_BACKEND.md` with comprehensive documentation:
+  - Building with TBB vs HPX backends
+  - Thread control configuration
+  - Environment variables
+  - Virtual environment setup for documentation builds
+
+### Unit Tests
+- [x] Created `test/parallel_backend_test.cpp`
+  - Tests execution policy types and instances
+  - Tests wrapper functions (par_sort, par_copy, par_for_each, etc.)
+  - Tests parallel_for_each and parallel_reduce
+  - Backend detection tests
+  - Concurrent correctness tests
+
+---
+
 ## Priority 6: Testing ✅
 
 ### Modernize Test Infrastructure

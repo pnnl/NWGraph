@@ -15,16 +15,11 @@
 #ifndef NW_GRAPH_INTERSECTION_SIZE_HPP
 #define NW_GRAPH_INTERSECTION_SIZE_HPP
 
-#if defined(CL_SYCL_LANGUAGE_VERSION)
-#include <dpstd/algorithm>
-#include <dpstd/execution>
-#include <dpstd/numeric>
-#else
 #include <algorithm>
-#include <execution>
 #include <numeric>
-#endif
 #include <type_traits>
+
+#include "nwgraph/util/execution_policy.hpp"
 
 namespace nw {
 namespace graph {
@@ -59,7 +54,7 @@ std::size_t intersection_size(A i, B&& ie, C j, D&& je, ExecutionPolicy&& ep) {
   // @todo We really don't need set intersection. You'd hope that it would be
   //       efficient with the output counter, but it just isn't. Parallelizing
   //       the intersection size seems non-trivial though.
-  if constexpr (std::is_same_v<std::decay_t<ExecutionPolicy>, std::execution::sequenced_policy>) {
+  if constexpr (std::is_same_v<std::decay_t<ExecutionPolicy>, nw::graph::execution::sequenced_policy>) {
     std::size_t n = 0;
     while (i != ie && j != je) {
       if (lt(*i, *j)) {
@@ -143,7 +138,7 @@ std::size_t intersection_size(A&& i, B&& ie, Range&& j, ExecutionPolicy&& ep) {
  */
 template <class A, class B, class C, class D, std::enable_if_t<!std::is_execution_policy_v<std::decay_t<D>>, void**> = nullptr>
 std::size_t intersection_size(A&& i, B&& ie, C&& j, D&& je) {
-  return intersection_size(std::forward<A>(i), std::forward<B>(ie), std::forward<C>(j), std::forward<D>(je), std::execution::seq);
+  return intersection_size(std::forward<A>(i), std::forward<B>(ie), std::forward<C>(j), std::forward<D>(je), nw::graph::execution::seq);
 }
 
 /**
@@ -160,7 +155,7 @@ std::size_t intersection_size(A&& i, B&& ie, C&& j, D&& je) {
  */
 template <class R, class S>
 std::size_t intersection_size(R&& i, S&& j) {
-  return intersection_size(i.begin(), i.end(), j.begin(), j.end(), std::execution::seq);
+  return intersection_size(i.begin(), i.end(), j.begin(), j.end(), nw::graph::execution::seq);
 }
 
 /**
@@ -181,7 +176,7 @@ std::size_t intersection_size(R&& i, S&& j) {
  */
 template <class A, class B, class Range, std::enable_if_t<!std::is_execution_policy_v<std::decay_t<Range>>, void**> = nullptr>
 std::size_t intersection_size(A&& i, B&& ie, Range&& j) {
-  return intersection_size(std::forward<A>(i), std::forward<B>(ie), j.begin(), j.end(), std::execution::seq);
+  return intersection_size(std::forward<A>(i), std::forward<B>(ie), j.begin(), j.end(), nw::graph::execution::seq);
 }
 }    // namespace graph
 }    // namespace nw

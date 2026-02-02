@@ -24,6 +24,7 @@
 #include "nwgraph/graph_traits.hpp"
 #include "nwgraph/util/AtomicBitVector.hpp"
 #include "nwgraph/util/atomic.hpp"
+#include "nwgraph/util/execution_policy.hpp"
 #include "nwgraph/util/parallel_for.hpp"
 #include <queue>
 
@@ -176,7 +177,7 @@ template <adjacency_list_graph OutGraph, adjacency_list_graph InGraph>
   nw::graph::AtomicBitVector  curr(N);
 
   constexpr const auto null_vertex = null_vertex_v<vertex_id_type>();
-  std::fill(std::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
+  nw::graph::par_fill(nw::graph::execution::par_unseq, parents.begin(), parents.end(), null_vertex);
 
   std::uint64_t edges_to_check = M;
   std::uint64_t scout_count    = out_graph[root].size();
@@ -199,9 +200,9 @@ template <adjacency_list_graph OutGraph, adjacency_list_graph InGraph>
             return q.size();
           }, std::plus{}, 0ul);
       */
-      std::for_each(std::execution::par_unseq, q1.begin(), q1.end(), [&](auto&& q) {
+      nw::graph::par_for_each(nw::graph::execution::par_unseq, q1.begin(), q1.end(), [&](auto&& q) {
         nw::graph::fetch_add(awake_count, q.size());
-        std::for_each(std::execution::par_unseq, q.begin(), q.end(), [&](auto&& u) { curr.atomic_set(u); });
+        nw::graph::par_for_each(nw::graph::execution::par_unseq, q.begin(), q.end(), [&](auto&& u) { curr.atomic_set(u); });
       });
 
       std::size_t old_awake_count = 0;
