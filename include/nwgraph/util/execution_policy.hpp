@@ -24,6 +24,10 @@
 
 #if defined(NWGRAPH_BACKEND_HPX)
   // HPX provides its own execution policies in hpx::execution namespace
+  // Workaround: HPX may have been built with std::execution support detection
+  // but we're compiling with Apple Clang which lacks std::execution.
+  // Disable HPX's std::execution interop to avoid compilation errors.
+  #undef HPX_HAVE_CXX17_STD_EXECUTION_POLICES
   #include <hpx/execution.hpp>
   #include <hpx/algorithm.hpp>
   #include <hpx/numeric.hpp>
