@@ -41,6 +41,7 @@ static constexpr const char USAGE[] =
 #include "nwgraph/edge_list.hpp"
 #include "nwgraph/volos.hpp"
 #include "nwgraph/vovos.hpp"
+#include "nwgraph/util/execution_policy.hpp"
 
 #include "Log.hpp"
 #include "common.hpp"
@@ -95,7 +96,7 @@ static bool worth_relabeling(const EdgeList& el, const Vector& degree) {
     samples[trial] = degree[udist(rng)];
     sample_total += samples[trial];
   }
-  std::sort(std::execution::par_unseq, samples.begin(), samples.end());
+  nw::graph::par_sort(nw::graph::execution::par_unseq, samples.begin(), samples.end());
   double sample_average = static_cast<double>(sample_total) / num_samples;
   double sample_median  = samples[num_samples / 2];
   return sample_average / 1.3 > sample_median;
@@ -219,13 +220,13 @@ void run_bench(int argc, char* argv[]) {
               case 7:
                 return triangle_count_v7(cel_a);
               case 8:
-                return triangle_count_v7(cel_a, std::execution::seq, std::execution::par_unseq);
+                return triangle_count_v7(cel_a, nw::graph::execution::seq, nw::graph::execution::par_unseq);
               case 9:
-                return triangle_count_v7(cel_a, std::execution::par_unseq, std::execution::par_unseq);
+                return triangle_count_v7(cel_a, nw::graph::execution::par_unseq, nw::graph::execution::par_unseq);
               case 10:
                 return triangle_count_v10(cel_a);
               case 11:
-                return triangle_count_v10(cel_a, std::execution::par_unseq, std::execution::par_unseq, std::execution::par_unseq);
+                return triangle_count_v10(cel_a, nw::graph::execution::par_unseq, nw::graph::execution::par_unseq, nw::graph::execution::par_unseq);
               case 12:
                 return triangle_count_v12(cel_a, thread);
               case 13:

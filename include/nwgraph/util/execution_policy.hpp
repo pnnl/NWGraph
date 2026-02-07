@@ -78,8 +78,8 @@
     hpx::for_each(std::forward<ExPolicy>(policy), first, last, func);
   }
 
-  template <typename ExPolicy, typename InIter, typename OutIter, typename Pred>
-  OutIter par_unique(ExPolicy&& policy, InIter first, InIter last, Pred pred) {
+  template <typename ExPolicy, typename Iter, typename Pred>
+  Iter par_unique(ExPolicy&& policy, Iter first, Iter last, Pred pred) {
     backend::init_guard guard;
     return hpx::unique(std::forward<ExPolicy>(policy), first, last, pred);
   }
@@ -158,8 +158,8 @@
     std::for_each(std::forward<ExPolicy>(policy), first, last, func);
   }
 
-  template <typename ExPolicy, typename InIter, typename OutIter, typename Pred>
-  OutIter par_unique(ExPolicy&& policy, InIter first, InIter last, Pred pred) {
+  template <typename ExPolicy, typename Iter, typename Pred>
+  Iter par_unique(ExPolicy&& policy, Iter first, Iter last, Pred pred) {
     return std::unique(std::forward<ExPolicy>(policy), first, last, pred);
   }
 

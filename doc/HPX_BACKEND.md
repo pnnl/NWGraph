@@ -47,16 +47,22 @@ make -j$(nproc)
 
 If HPX is installed in a non-standard location, specify the path:
 ```bash
+# Example: HPX installed in ~/usr/local/hpx
 cmake .. -DCMAKE_BUILD_TYPE=Release \
          -DNWGRAPH_BACKEND_HPX=ON \
-         -DHPX_ROOT=/path/to/hpx
+         -DHPX_ROOT=~/usr/local/hpx
 ```
 
 Or use environment variables:
 ```bash
-export HPX_ROOT=/path/to/hpx
+export HPX_ROOT=~/usr/local/hpx
 cmake .. -DCMAKE_BUILD_TYPE=Release -DNWGRAPH_BACKEND_HPX=ON
 ```
+
+Common HPX installation locations:
+- `~/usr/local/hpx` - User-local installation
+- `/usr/local` - System-wide installation (Homebrew or `make install`)
+- `/opt/hpx` - Custom system installation
 
 ### Custom TBB Location
 
