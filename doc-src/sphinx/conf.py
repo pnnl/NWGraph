@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 
 project = 'NW Graph'
-copyright = '2020-2022, PNNL, UW'
+copyright = '2020-2026, PNNL, UW'
 author = 'Andrew Lumsdaine'
 
 # The full version, including alpha/beta/rc tags
