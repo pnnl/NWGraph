@@ -3,8 +3,8 @@
 ..
 .. SPDX-License-Identifier: BSD-3-Clause
 
-NWGraph API Reference
-=====================
+Core API
+========
 
 .. highlight:: c++
 

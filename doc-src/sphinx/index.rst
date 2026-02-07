@@ -55,17 +55,14 @@ Examples
 
 
 
-================
-Reference Manual
-================
+=============
+API Reference
+=============
 
 .. toctree::
    :maxdepth: 2
 
    nwgraph_api.rst
-
-
-
    api/library_root
 ..   doxyref/index.rst
 
