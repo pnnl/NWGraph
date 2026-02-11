@@ -170,10 +170,10 @@ public:
   };
   /**
    * @brief Serialize the index_adjacency into binary file.
-   * 
+   *
    * @param outfile_name The output file name.
    */
-  void serialize(const std::string& outfile_name) const {
+  void serialize(const std::string& outfile_name) {
     std::ofstream out_file(outfile_name, std::ofstream::binary);
     unipartite_graph_base::serialize(out_file);
     base::serialize(out_file);
