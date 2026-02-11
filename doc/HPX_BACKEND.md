@@ -1,31 +1,29 @@
-# NWGraph HPX Backend
+# NWGraph Parallel Backends
 
-NWGraph supports two parallel backends for executing graph algorithms:
-- **TBB** (Intel Threading Building Blocks) - the current default backend
-- **HPX** (High Performance ParalleX) - a modern C++ runtime system for parallelism and concurrency
+NWGraph supports three parallel backend configurations, selected at compile time:
 
-HPX is an actively developed, standards-conforming runtime system that provides unified syntax for local and distributed parallelism. NWGraph collaborates with the [HPX team at LSU](https://github.com/STEllAR-GROUP/hpx) to ensure seamless integration.
+| Backend | CMake Option | Runtime | Description |
+|---------|-------------|---------|-------------|
+| **TBB** (default) | _(none, or `-DNWGRAPH_BACKEND_HPX=OFF`)_ | Intel oneTBB | `std::execution` policies backed by TBB's work-stealing scheduler |
+| **HPX** | `-DNWGRAPH_BACKEND_HPX=ON` | HPX runtime | HPX execution policies with distributed parallelism support |
+| **None** | `-DNWGRAPH_BACKEND_NONE=ON` | _(none)_ | Sequential fallback; no external parallel runtime needed |
 
-## Prerequisites
+Only one backend can be active at a time.
 
-### HPX Installation
+## Compiler Requirements
 
-HPX must be installed before building NWGraph with HPX support. See the [HPX GitHub repository](https://github.com/STEllAR-GROUP/hpx) for installation instructions.
+NWGraph requires a compiler with C++20 support and (for TBB and HPX backends) `std::execution` policy support.
 
-Quick install on macOS with Homebrew:
+**macOS**: Use g++ from Homebrew, not Apple Clang. Apple Clang lacks `<execution>` header support.
+
 ```bash
-brew install hpx
+brew install gcc@13
+# Then pass -DCMAKE_CXX_COMPILER=/opt/homebrew/bin/g++-13 to cmake
 ```
 
-Or build from source:
-```bash
-git clone https://github.com/STEllAR-GROUP/hpx.git
-cd hpx
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j$(nproc)
-sudo make install
-```
+**Linux**: g++-11 or later. Most distributions ship a suitable version.
+
+**Important**: Both HPX and NWGraph must be built with the same compiler. If you build HPX from source with g++-13, build NWGraph with g++-13.
 
 ## Building NWGraph
 
@@ -33,273 +31,307 @@ sudo make install
 
 ```bash
 mkdir build && cd build
+
+# Linux (system g++):
 cmake .. -DCMAKE_BUILD_TYPE=Release
+
+# macOS (Homebrew g++):
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+         -DCMAKE_CXX_COMPILER=/opt/homebrew/bin/g++-13
+
 make -j$(nproc)
+```
+
+TBB is found automatically if installed system-wide. For custom locations:
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=Release -DTBB_ROOT=/path/to/tbb
+# or: export TBB_ROOT=/path/to/tbb (also accepts TBBROOT)
 ```
 
 ### With HPX Backend
 
+HPX must be installed before building. See [Installing HPX](#installing-hpx) below.
+
 ```bash
 mkdir build-hpx && cd build-hpx
-cmake .. -DCMAKE_BUILD_TYPE=Release -DNWGRAPH_BACKEND_HPX=ON
-make -j$(nproc)
-```
 
-If HPX is installed in a non-standard location, specify the path:
-```bash
-# Example: HPX installed in ~/usr/local/hpx
+# Linux:
 cmake .. -DCMAKE_BUILD_TYPE=Release \
          -DNWGRAPH_BACKEND_HPX=ON \
-         -DHPX_ROOT=~/usr/local/hpx
+         -DHPX_ROOT=/path/to/hpx
+
+# macOS:
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+         -DNWGRAPH_BACKEND_HPX=ON \
+         -DHPX_ROOT=~/usr/local/hpx \
+         -DCMAKE_CXX_COMPILER=/opt/homebrew/bin/g++-13
+
+make -j$(nproc)
 ```
 
-Or use environment variables:
+`HPX_ROOT` can also be set as an environment variable:
 ```bash
 export HPX_ROOT=~/usr/local/hpx
-cmake .. -DCMAKE_BUILD_TYPE=Release -DNWGRAPH_BACKEND_HPX=ON
 ```
 
-Common HPX installation locations:
-- `~/usr/local/hpx` - User-local installation
-- `/usr/local` - System-wide installation (Homebrew or `make install`)
-- `/opt/hpx` - Custom system installation
+### Without Any Parallel Backend
 
-### Custom TBB Location
-
-For TBB backend with custom installation:
-```bash
-cmake .. -DCMAKE_BUILD_TYPE=Release -DTBB_ROOT=/path/to/tbb
-```
-
-Or use environment variables (Intel's convention):
-```bash
-export TBB_ROOT=/opt/intel/oneapi/tbb/latest   # or TBBROOT
-cmake .. -DCMAKE_BUILD_TYPE=Release
-```
-
-### Path Configuration Summary
-
-| Variable | Description |
-|----------|-------------|
-| `TBB_ROOT` | CMake variable or environment variable for TBB installation |
-| `TBBROOT` | Alternative environment variable (Intel convention) |
-| `HPX_ROOT` | CMake variable or environment variable for HPX installation |
-| `HPX_DIR` | Direct path to HPX CMake config directory |
-
-### Building with Tests
+For environments where neither TBB nor HPX is available (e.g., minimal containers, quick compilation checks):
 
 ```bash
-cmake .. -DCMAKE_BUILD_TYPE=Release -DNWGRAPH_BUILD_TESTS=ON
+mkdir build-seq && cd build-seq
+cmake .. -DCMAKE_BUILD_TYPE=Release -DNWGRAPH_BACKEND_NONE=ON
 make -j$(nproc)
-ctest --output-on-failure
 ```
 
-### Building Documentation
+All parallel algorithms fall back to sequential execution. No `<execution>` header or parallel runtime is required.
 
-Prerequisites:
-- Python 3 with virtual environment support
-- Doxygen
+### Build Options Summary
 
-**Note:** Building documentation requires several Python packages. Using a virtual environment is recommended to avoid polluting your system Python.
-
-Set up virtual environment and install dependencies:
-```bash
-# Create and activate virtual environment
-python3 -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install documentation dependencies
-pip install -r doc-src/sphinx/requirements.txt sphinx
-```
-
-Build documentation:
-```bash
-# Make sure virtual environment is activated
-source .venv/bin/activate
-
-mkdir build-docs && cd build-docs
-cmake .. -DNWGRAPH_BUILD_DOCS=ON
-make docs          # Build complete documentation
-make docs-open     # Build and open in browser (macOS/Linux)
-```
-
-Documentation targets:
-- `make docs` - Build complete documentation (Doxygen + Sphinx)
-- `make docs-html` - Build HTML only (faster, uses cached Doxygen)
-- `make docs-clean` - Clean built documentation
-- `make docs-open` - Build and open in browser
-
-## Backend Selection
-
-The parallel backend is selected at compile time via the `NWGRAPH_BACKEND_HPX` CMake option:
-
-| Option | Backend | Description |
+| Option | Default | Description |
 |--------|---------|-------------|
-| `OFF` (default) | TBB | Uses Intel TBB for parallelism with `std::execution` policies |
-| `ON` | HPX | Uses HPX runtime for parallelism with future-proof C++ standards conformance |
+| `NWGRAPH_BACKEND_HPX` | `OFF` | Use HPX backend |
+| `NWGRAPH_BACKEND_NONE` | `OFF` | No parallel backend (sequential) |
+| `TBB_ROOT` | _(auto)_ | Path to TBB installation |
+| `HPX_ROOT` | _(auto)_ | Path to HPX installation |
+| `NWGRAPH_BUILD_TESTS` | `ON` | Build unit tests |
+| `NWGRAPH_BUILD_BENCH` | `OFF` | Build benchmarks |
+| `NWGRAPH_BUILD_DOCS` | `OFF` | Build documentation |
+| `NWGRAPH_BUILD_EXAMPLES` | `OFF` | Build examples |
 
-## Running Applications
+## Installing HPX
 
-### TBB Backend
-
-Applications built with the TBB backend use standard environment variables:
-
-```bash
-# Set number of threads
-export TBB_NUM_THREADS=8
-
-# Run application
-./my_graph_app -f graph.mtx
-```
-
-### HPX Backend
-
-HPX applications accept runtime configuration via command-line arguments:
+### From Homebrew (macOS)
 
 ```bash
-# Run with specific number of threads
-./my_graph_app -f graph.mtx --hpx:threads=8
-
-# Run with all available cores
-./my_graph_app -f graph.mtx --hpx:threads=all
-
-# Show HPX runtime options
-./my_graph_app --hpx:help
+brew install hpx
 ```
 
-Common HPX runtime options:
-- `--hpx:threads=N` - Number of OS threads to use
-- `--hpx:cores=N` - Number of cores to use
-- `--hpx:bind=<policy>` - Thread binding policy (none, compact, scatter, balanced)
-- `--hpx:print-bind` - Print thread binding information
+### From Source
 
-## Programmatic Thread Control
+```bash
+git clone https://github.com/STEllAR-GROUP/hpx.git
+cd hpx && mkdir build && cd build
 
-### TBB Backend
+# macOS:
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+         -DCMAKE_CXX_COMPILER=/opt/homebrew/bin/g++-13 \
+         -DCMAKE_INSTALL_PREFIX=~/usr/local/hpx
 
-```cpp
-#include <tbb/global_control.h>
+# Linux:
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+         -DCMAKE_INSTALL_PREFIX=~/usr/local/hpx
 
-// Limit to 4 threads
-tbb::global_control gc(tbb::global_control::max_allowed_parallelism, 4);
+make -j$(nproc)
+make install
 ```
 
-### HPX Backend
+## Execution Policy Compatibility Layer
 
-```cpp
-#include "nwgraph/util/backend.hpp"
-
-// Set thread count before any parallel operations
-nw::graph::backend::set_num_threads(4);
-
-// Use ThreadLimiter for scoped thread control
-{
-    nw::graph::backend::ThreadLimiter limiter(4);
-    // Parallel operations here use 4 threads
-}
-// Thread count restored after scope
-```
-
-## Execution Policy Compatibility
-
-NWGraph provides a compatibility layer that abstracts execution policies across backends. The `nw::graph::execution` namespace provides:
+NWGraph provides a backend-agnostic API in `nw::graph::execution` that maps to the active backend:
 
 ```cpp
 #include "nwgraph/util/execution_policy.hpp"
 
-// Execution policy types (map to std:: or hpx:: based on backend)
-nw::graph::execution::sequenced_policy
-nw::graph::execution::parallel_policy
-nw::graph::execution::parallel_unsequenced_policy
+// Policy instances — same names regardless of backend
+nw::graph::execution::seq        // sequential
+nw::graph::execution::par        // parallel
+nw::graph::execution::par_unseq  // parallel unsequenced
 
-// Execution policy instances
-nw::graph::execution::seq
-nw::graph::execution::par
-nw::graph::execution::par_unseq
-
-// Default policy for NWGraph algorithms
-nw::graph::default_execution_policy
+// Algorithm wrappers
+nw::graph::par_sort(policy, first, last, comp);
+nw::graph::par_for_each(policy, first, last, func);
+nw::graph::par_copy(policy, first, last, dest);
+nw::graph::par_unique(policy, first, last, pred);
+nw::graph::par_fill(policy, first, last, value);
+nw::graph::par_equal(policy, first1, last1, first2);
+nw::graph::par_inclusive_scan(policy, first, last, dest);
+nw::graph::par_transform(policy, first, last, dest, op);
+nw::graph::par_stable_sort(policy, first, last, comp);
 ```
 
-## When to Use Each Backend
+These wrappers dispatch to `hpx::`, `std::` (with TBB), or plain sequential `std::` depending on the backend.
 
-### TBB Backend
-- Shared-memory multicore systems
-- When using `std::execution` policies extensively in your codebase
-- Rapid prototyping with familiar STL-style interfaces
+## Backend-Specific Features
+
+The compatibility layer covers the common `std::execution`-style algorithms. Each backend also provides features that **have no cross-backend equivalent**. Code using these must be guarded:
+
+```cpp
+#include "nwgraph/util/backend.hpp"
+
+// Compile-time checks
+#if NWGRAPH_BACKEND_TBB_ENABLED
+  // TBB-specific code
+#endif
+
+#if NWGRAPH_BACKEND_HPX_ENABLED
+  // HPX-specific code
+#endif
+
+// Runtime checks
+if constexpr (nw::graph::backend::is_tbb()) { ... }
+if constexpr (nw::graph::backend::is_hpx()) { ... }
+if constexpr (nw::graph::backend::is_parallel()) { ... }
+```
+
+### TBB-Specific Features (no std/HPX equivalent)
+
+| Feature | API | Notes |
+|---------|-----|-------|
+| Thread count control | `tbb::global_control(tbb::global_control::max_allowed_parallelism, N)` | Scoped; no `std::` equivalent |
+| Parallel reduce | `tbb::parallel_reduce(tbb::blocked_range<T>(...), ...)` | `std::reduce` exists but TBB's version supports arbitrary blocked ranges and join semantics |
+| Parallel for with ranges | `tbb::parallel_for(tbb::blocked_range<T>(...), ...)` | Explicit chunking control via grain size |
+| Task groups | `tbb::task_group` | Fork-join task parallelism |
+| Flow graphs | `tbb::flow::graph` | Dataflow parallelism |
+| Scalable allocator | `tbb::scalable_allocator<T>` | Thread-safe memory allocation |
+
+### HPX-Specific Features (no std/TBB equivalent)
+
+| Feature | API | Notes |
+|---------|-----|-------|
+| Thread count control | `--hpx:threads=N` (command line) or `backend::set_num_threads(N)` (before first use) | Must be set before HPX runtime starts |
+| Parallel for_loop | `hpx::for_loop(policy, begin, end, f)` | Index-based parallel loop |
+| Futures / async | `hpx::async()`, `hpx::future<T>` | Asynchronous task execution |
+| Distributed parallelism | `hpx::find_here()`, remote actions | Execution across multiple nodes |
+| Thread binding | `--hpx:bind=scatter\|compact\|balanced` | NUMA-aware thread placement |
+| Transform reduce | `hpx::transform_reduce(policy, ...)` | Fused transform + reduce |
+
+### Features Common to the Compatibility Layer
+
+| Feature | TBB | HPX | None |
+|---------|-----|-----|------|
+| `par_sort` | `std::sort` (parallel via TBB) | `hpx::sort` | `std::sort` (sequential) |
+| `par_for_each` | `std::for_each` (parallel via TBB) | `hpx::for_each` | `std::for_each` (sequential) |
+| `par_copy` | `std::copy` (parallel via TBB) | `hpx::copy` | `std::copy` (sequential) |
+| `par_unique` | `std::unique` (parallel via TBB) | `hpx::unique` | `std::unique` (sequential) |
+| `par_fill` | `std::fill` (parallel via TBB) | `hpx::fill` | `std::fill` (sequential) |
+| `par_equal` | `std::equal` (parallel via TBB) | `hpx::equal` | `std::equal` (sequential) |
+| `par_inclusive_scan` | `std::inclusive_scan` (parallel via TBB) | `hpx::inclusive_scan` | `std::inclusive_scan` (sequential) |
+| `par_transform` | `std::transform` (parallel via TBB) | `hpx::transform` | `std::transform` (sequential) |
+
+## Known Shortcomings
 
 ### HPX Backend
-- Distributed computing scenarios (cluster/HPC environments)
-- When scaling beyond a single node with MPI + threads
-- Future-oriented development with C++ standards-conforming parallelism
-- Applications requiring asynchronous task-based parallelism
-- Integration with HPX-based applications and libraries
 
-HPX provides a unified programming model that works identically for local and distributed execution, making it easier to scale applications from laptops to supercomputers without code changes.
+- **Custom iterator compatibility**: HPX parallel algorithms have compatibility issues with NWGraph's custom iterators (e.g., `soa_iterator`). Some algorithms may fail to compile when used with these types. The triangle counting benchmark (`tc.cpp`) cannot currently run with the HPX backend for this reason.
+- **Runtime initialization overhead**: HPX requires runtime initialization before any parallel operation. NWGraph handles this lazily via `backend::init_guard`, but the first parallel call incurs startup cost.
+- **No `parallel_reduce` in compatibility layer**: HPX provides `hpx::reduce` and `hpx::transform_reduce`, but these don't map 1:1 to TBB's `parallel_reduce` with `blocked_range` and join semantics. Code using `tbb::parallel_reduce` must be rewritten for HPX.
+- **Thread count is immutable after startup**: Once the HPX runtime starts, the thread count cannot be changed. `backend::set_num_threads()` must be called before the first parallel operation.
+
+### TBB Backend
+
+- **`parallel_reduce` is TBB-specific**: TBB's `parallel_reduce` with `blocked_range` and custom join is a powerful pattern with no `std::execution` equivalent. Code using it is not portable to HPX or the sequential backend without rewriting.
+- **Thread control is TBB-specific**: `tbb::global_control` for limiting parallelism has no `std::` equivalent.
+- **libstdc++ dependency**: On Linux with g++, `std::execution` parallel policies dispatch to TBB internally. Without TBB linked, `std::execution::par` may silently execute sequentially.
+
+### Sequential Backend (None)
+
+- **No parallelism**: All `par_*` wrappers execute sequentially. The `par` and `par_unseq` policies are accepted syntactically but do not provide parallel execution.
+- **No thread control**: `backend::set_num_threads()` is a no-op.
+- **No `parallel_reduce`**: Code guarded by `#if NWGRAPH_BACKEND_TBB_ENABLED` or `#if NWGRAPH_BACKEND_HPX_ENABLED` will be skipped entirely.
+
+### General
+
+- **Only one backend at a time**: You cannot mix TBB and HPX in the same build.
+- **Backend-specific code requires guards**: Any use of `tbb::*` or `hpx::*` APIs directly must be wrapped in `#if NWGRAPH_BACKEND_TBB_ENABLED` / `#if NWGRAPH_BACKEND_HPX_ENABLED` preprocessor guards.
+
+## Running Applications
+
+### Thread Control
+
+**TBB:**
+```cpp
+#include <tbb/global_control.h>
+
+// Scoped thread limiter
+tbb::global_control gc(tbb::global_control::max_allowed_parallelism, 4);
+```
+
+**HPX** (command line):
+```bash
+./my_app --hpx:threads=8
+./my_app --hpx:threads=all
+./my_app --hpx:bind=scatter    # NUMA-aware placement
+```
+
+**HPX** (programmatic, before first parallel operation):
+```cpp
+#include "nwgraph/util/backend.hpp"
+nw::graph::backend::set_num_threads(4);
+```
+
+### HPX Runtime Options
+
+```bash
+--hpx:threads=N       # Number of OS threads
+--hpx:cores=N         # Number of cores
+--hpx:bind=<policy>   # Thread binding (none, compact, scatter, balanced)
+--hpx:print-bind      # Print thread binding information
+--hpx:help            # Show all HPX options
+```
 
 ## Running Tests
 
-### TBB Backend Tests
-
 ```bash
-cd build
-ctest --output-on-failure -R ".*"
-```
+# TBB backend
+cd build && ctest --output-on-failure
 
-### HPX Backend Tests
+# HPX backend
+cd build-hpx && ctest --output-on-failure
 
-```bash
-cd build-hpx
-ctest --output-on-failure -R ".*"
+# Sequential backend
+cd build-seq && ctest --output-on-failure
 ```
 
 ## Benchmarks
 
-NWGraph includes scalability benchmarks to compare backend performance:
-
 ```bash
-# Build benchmarks
 cmake .. -DNWGRAPH_BUILD_BENCH=ON
 make parallel_for_scaling parallel_reduce_scaling
 
-# Run with TBB
+# TBB
 ./bench/scalability/parallel_for_scaling -t 8 -n 5 -s 10000000
 
-# Run with HPX
+# HPX
 ./bench/scalability/parallel_for_scaling -t 8 -n 5 -s 10000000 --hpx:threads=8
 ```
 
 ## Troubleshooting
 
 ### HPX Runtime Not Initialized
-If you see errors about HPX runtime not being initialized, ensure your `main()` function is wrapped with HPX initialization or use the lazy initialization provided by NWGraph:
-
+If you see HPX runtime errors, ensure `backend::init_guard` is used:
 ```cpp
 #include "nwgraph/util/backend.hpp"
 
-int main(int argc, char* argv[]) {
-    // Automatic initialization on first parallel operation
+int main() {
     nw::graph::backend::init_guard guard;
-
-    // Your code here
+    // ... code ...
 }
 ```
 
-### Thread Binding Issues
-On NUMA systems, thread binding can significantly impact performance:
-
+### Apple Clang Build Failures
+Apple Clang does not support `<execution>`. Use Homebrew g++:
 ```bash
-# Scatter threads across NUMA nodes
-./my_app --hpx:threads=8 --hpx:bind=scatter
+cmake .. -DCMAKE_CXX_COMPILER=/opt/homebrew/bin/g++-13
+```
 
-# Compact binding (fill cores sequentially)
-./my_app --hpx:threads=8 --hpx:bind=compact
+### TBB Not Found
+```bash
+# Homebrew
+brew install tbb
+# Or specify path
+cmake .. -DTBB_ROOT=/opt/homebrew
+```
+
+### HPX Not Found
+Specify the full path (not `~`, use `$HOME`):
+```bash
+cmake .. -DHPX_ROOT=$HOME/usr/local/hpx
 ```
 
 ## References
 
 - [HPX GitHub Repository](https://github.com/STEllAR-GROUP/hpx)
 - [HPX Documentation](https://hpx-docs.stellar-group.org/latest/html/index.html)
-- [HPX: A Task Based Programming Model in a Global Address Space](https://stellar-group.org/research/)
-- [Intel TBB GitHub Repository](https://github.com/oneapi-src/oneTBB)
+- [Intel oneTBB GitHub Repository](https://github.com/oneapi-src/oneTBB)
 - [NWGraph Documentation](https://pnnl.github.io/NWGraph/)

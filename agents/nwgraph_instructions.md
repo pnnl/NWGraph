@@ -131,22 +131,63 @@ Known TODO locations:
 
 ---
 
-## Priority 5.5: HPX Backend Infrastructure ✅
+## Priority 5.5: Parallel Backend Infrastructure ✅
 
-### Execution Policy Compatibility Layer
-- [x] Created `include/nwgraph/util/execution_policy.hpp`
-  - Unified interface for parallel execution policies
-  - Maps `std::execution` policies to HPX equivalents when HPX backend is enabled
-  - Provides `nw::graph::execution::seq`, `par`, `par_unseq` that work with both backends
-  - Wrapper functions: `par_sort`, `par_copy`, `par_for_each`, `par_fill`, `par_equal`, etc.
+NWGraph supports three parallel backend configurations (one at a time):
+- **TBB** (default) — `std::execution` policies backed by TBB's work-stealing scheduler
+- **HPX** — HPX execution policies with distributed parallelism support
+- **None** — Sequential fallback, no parallel runtime needed
 
-### Backend Infrastructure
-- [x] Created `include/nwgraph/util/backend.hpp`
-  - Backend detection: `backend::is_hpx()`, `backend::is_tbb()`
-  - Lazy initialization for HPX runtime
-  - Thread control: `backend::set_num_threads()`
+### Key Files
+- `include/nwgraph/util/execution_policy.hpp` — Compatibility layer
+  - Three-way `#if`: `NWGRAPH_BACKEND_HPX` / `NWGRAPH_BACKEND_TBB` / neither
+  - Provides `nw::graph::execution::{seq, par, par_unseq}` for all backends
+  - Algorithm wrappers: `par_sort`, `par_copy`, `par_for_each`, `par_fill`, `par_equal`, `par_unique`, `par_inclusive_scan`, `par_transform`, `par_stable_sort`
+- `include/nwgraph/util/backend.hpp` — Backend detection and runtime management
+  - `backend::is_hpx()`, `backend::is_tbb()`, `backend::is_parallel()`
+  - `backend::init_guard` — RAII guard for HPX lazy initialization
+  - `backend::set_num_threads()` — Pre-init thread control (HPX only)
+- `doc/HPX_BACKEND.md` — Comprehensive documentation for all three backends
 
-### Updated Headers to Use Compatibility Layer
+### CMake Integration
+- `NWGRAPH_BACKEND_HPX=ON` — Use HPX backend
+- `NWGRAPH_BACKEND_NONE=ON` — Sequential only (no TBB or HPX)
+- Neither set — TBB backend (default)
+- Support for `TBB_ROOT`, `TBBROOT`, `HPX_ROOT` via CMake variables or environment
+
+### Compiler Requirements
+- **macOS**: Must use g++-13 or later (`brew install gcc@13`)
+  - Apple Clang lacks `<execution>` header / `std::execution` support
+  - Always pass `-DCMAKE_CXX_COMPILER=/opt/homebrew/bin/g++-13`
+  - Both HPX and NWGraph must be built with the same compiler
+- **Linux**: g++-11 or later recommended
+- HPX lives at `~/usr/local/hpx` (user-local) — set via `-DHPX_ROOT=$HOME/usr/local/hpx`
+
+### Backend-Specific Features (not in compatibility layer)
+Each backend has features with no cross-backend equivalent. Code using these
+must be guarded with `#if NWGRAPH_BACKEND_TBB_ENABLED` or `#if NWGRAPH_BACKEND_HPX_ENABLED`.
+
+**TBB-specific (no std/HPX equivalent):**
+- `tbb::global_control` — scoped thread count control
+- `tbb::parallel_reduce` with `tbb::blocked_range` — parallel reduction with custom join
+- `tbb::parallel_for` with `tbb::blocked_range` — chunked parallel loops with grain size control
+- `tbb::task_group`, `tbb::flow::graph`, `tbb::scalable_allocator`
+
+**HPX-specific (no std/TBB equivalent):**
+- `--hpx:threads=N` / `backend::set_num_threads()` — thread count (immutable after runtime start)
+- `hpx::for_loop`, `hpx::transform_reduce` — index-based parallel loops
+- `hpx::async()`, `hpx::future<T>` — async task execution
+- Distributed parallelism (remote actions, `hpx::find_here()`)
+- `--hpx:bind=scatter|compact|balanced` — NUMA-aware thread binding
+
+### Known Shortcomings
+- **HPX + custom iterators**: HPX algorithms don't work with NWGraph's `soa_iterator`; e.g., `tc.cpp` cannot run with HPX
+- **HPX thread count immutable**: `set_num_threads()` must be called before first parallel op
+- **TBB `parallel_reduce` not portable**: No std or HPX equivalent for `blocked_range` + join pattern
+- **TBB `global_control` not portable**: Thread limiting is TBB-specific
+- **Sequential backend**: `par` / `par_unseq` are syntactically accepted but execute sequentially
+
+### Headers Updated to Use Compatibility Layer
 - [x] `include/nwgraph/containers/soa.hpp`
 - [x] `include/nwgraph/containers/aos.hpp`
 - [x] `include/nwgraph/containers/compressed.hpp`
@@ -159,25 +200,12 @@ Known TODO locations:
 - [x] `include/nwgraph/build.hpp`
 - [x] `include/nwgraph/adjacency.hpp`
 
-### CMake Integration
-- [x] `NWGRAPH_BACKEND_HPX` option to select HPX backend
-- [x] Support for `TBB_ROOT`, `TBBROOT`, `HPX_ROOT` environment variables
-- [x] Automatic backend detection and configuration
-
-### Documentation
-- [x] Created `doc/HPX_BACKEND.md` with comprehensive documentation:
-  - Building with TBB vs HPX backends
-  - Thread control configuration
-  - Environment variables
-  - Virtual environment setup for documentation builds
-
 ### Unit Tests
-- [x] Created `test/parallel_backend_test.cpp`
+- [x] `test/parallel_backend_test.cpp`
   - Tests execution policy types and instances
   - Tests wrapper functions (par_sort, par_copy, par_for_each, etc.)
-  - Tests parallel_for_each and parallel_reduce
+  - TBB-specific tests (parallel_reduce) guarded with `#if !defined(NWGRAPH_BACKEND_HPX)`
   - Backend detection tests
-  - Concurrent correctness tests
 
 ---
 

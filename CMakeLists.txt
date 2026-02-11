@@ -93,12 +93,20 @@ option(NWGRAPH_BUILD_EXAMPLES "Determines whether to build examples." OFF)
 option(NWGRAPH_BUILD_TESTS "Determines whether to build tests." ON)
 option(NWGRAPH_USE_TBBMALLOC "Link to tbbmalloc" OFF)
 
-# Parallel backend selection
-option(NWGRAPH_BACKEND_HPX "Use HPX for parallel execution (default: TBB)" OFF)
+# Parallel backend selection: HPX, TBB (default), or none
+# Only one of these should be ON at a time.
+option(NWGRAPH_BACKEND_HPX "Use HPX for parallel execution" OFF)
+option(NWGRAPH_BACKEND_NONE "Build without any parallel backend (sequential only)" OFF)
 
 # Validate backend selection
+if(NWGRAPH_BACKEND_HPX AND NWGRAPH_BACKEND_NONE)
+  message(FATAL_ERROR "Cannot enable both NWGRAPH_BACKEND_HPX and NWGRAPH_BACKEND_NONE")
+endif()
+
 if(NWGRAPH_BACKEND_HPX)
   message(STATUS "NWGraph parallel backend: HPX")
+elseif(NWGRAPH_BACKEND_NONE)
+  message(STATUS "NWGraph parallel backend: none (sequential only)")
 else()
   message(STATUS "NWGraph parallel backend: TBB (default)")
 endif()
@@ -142,8 +150,8 @@ if(NOT HPX_ROOT)
   endif()
 endif()
 
-# Only find/fetch TBB if not using HPX backend
-if(NOT NWGRAPH_BACKEND_HPX)
+# Only find/fetch TBB if using TBB backend (not HPX, not none)
+if(NOT NWGRAPH_BACKEND_HPX AND NOT NWGRAPH_BACKEND_NONE)
   option(TBB_TEST "" OFF)
   option(BUILD_SHARED_LIBS "Enable building TBB shared library" ON)
   option(TBBMALLOC_BUILD "Enable tbbmalloc build" OFF)
@@ -174,8 +182,7 @@ endif()
 # Backend-specific setup
 # -----------------------------------------------------------------------------
 if(NWGRAPH_BACKEND_HPX)
-  # HPX backend
-  # Find HPX with optional hints from HPX_ROOT
+  # --- HPX backend ---
   if(HPX_ROOT)
     find_package(HPX REQUIRED HINTS ${HPX_ROOT} ${HPX_ROOT}/lib/cmake/HPX)
   else()
@@ -186,13 +193,21 @@ if(NWGRAPH_BACKEND_HPX)
   target_compile_definitions(nwgraph_parallel INTERFACE NWGRAPH_BACKEND_HPX)
   target_link_libraries(nwgraph_parallel INTERFACE HPX::hpx Threads::Threads)
 
+  # Alias for backwards compatibility with older CMakeLists that use nwgraph_tbb
+  add_library(nwgraph_tbb ALIAS nwgraph_parallel)
+
+elseif(NWGRAPH_BACKEND_NONE)
+  # --- No parallel backend (sequential only) ---
+  add_library(nwgraph_parallel INTERFACE)
+  target_link_libraries(nwgraph_parallel INTERFACE Threads::Threads)
+
   # Alias for backwards compatibility
   add_library(nwgraph_tbb ALIAS nwgraph_parallel)
 
 else()
-  # TBB backend (default)
+  # --- TBB backend (default) ---
   add_library(nwgraph_tbb INTERFACE)
-  target_compile_definitions(nwgraph_tbb INTERFACE EXECUTION_POLICY NWGRAPH_BACKEND_TBB)
+  target_compile_definitions(nwgraph_tbb INTERFACE NWGRAPH_BACKEND_TBB)
   target_link_libraries(nwgraph_tbb INTERFACE TBB::tbb Threads::Threads)
   if (NWGRAPH_USE_TBBMALLOC)
     target_link_libraries(nwgraph_tbb INTERFACE TBB::tbbmalloc)
