@@ -22,6 +22,7 @@
 #define BFS_EDGE_RANGE_HPP
 
 
+#include "nwgraph/adaptors/three_colors.hpp"
 #include "nwgraph/graph_traits.hpp"
 
 #include <cassert>
@@ -33,8 +34,7 @@ namespace nw {
 namespace graph {
 
 
-/// @brief Vertex coloring for BFS traversal.
-enum three_colors { black, white, grey };
+// three_colors is defined in nwgraph/adaptors/three_colors.hpp (included above)
 
 /**
  * @brief Range adaptor for BFS edge traversal.

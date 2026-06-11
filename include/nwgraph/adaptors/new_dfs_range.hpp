@@ -25,6 +25,7 @@
 #ifndef NW_GRAPH_NEW_DFS_RANGE_HPP
 #define NW_GRAPH_NEW_DFS_RANGE_HPP
 
+#include "nwgraph/adaptors/three_colors.hpp"
 #include "nwgraph/graph_traits.hpp"
 #include "nwgraph/util/util.hpp"
 #include <cassert>
@@ -34,7 +35,7 @@
 namespace nw {
 namespace graph {
 
-enum three_colors { black, white, grey };
+// three_colors is defined in nwgraph/adaptors/three_colors.hpp (included above)
 
 template <typename Graph, typename Stack = std::stack<vertex_id_t<Graph>>>
 class dfs_range {
