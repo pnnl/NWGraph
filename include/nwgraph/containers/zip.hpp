@@ -120,10 +120,14 @@ struct zipped : std::tuple<Ranges&...> {
     auto operator<=>(const soa_iterator&) const = default;
 
     soa_iterator operator++(int) {
-      return soa_iterator(i_++, soa_);
+      auto previous = *this;
+      ++(*this);
+      return previous;
     }
     soa_iterator operator--(int) {
-      return soa_iterator(i_--, soa_);
+      auto previous = *this;
+      --(*this);
+      return previous;
     }
 
     soa_iterator& operator++() {
