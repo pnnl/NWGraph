@@ -141,11 +141,15 @@ struct struct_of_arrays : std::tuple<std::vector<Attributes>...> {
     auto operator<=>(const soa_iterator&) const = default;
 
     soa_iterator operator++(int) {
-      return soa_iterator { i_++, soa_ };
+      auto previous = *this;
+      ++(*this);
+      return previous;
     }
 
     soa_iterator operator--(int) {
-      return soa_iterator { i_--, soa_ };
+      auto previous = *this;
+      --(*this);
+      return previous;
     }
 
     soa_iterator& operator++() {

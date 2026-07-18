@@ -124,6 +124,33 @@ TEST_CASE("struct of arrays", "[soa]") {
     test_assignment<2>(h, 3);
     test_assignment<3>(h, 3);
   }
+
+  SECTION("postfix iterator movement returns the previous position") {
+    struct_of_arrays<size_t, size_t> values {
+      { 1, 10 },
+      { 2, 20 },
+      { 3, 30 }
+    };
+
+    auto current  = values.begin();
+    auto previous = current++;
+    REQUIRE(std::get<0>(*previous) == 1);
+    REQUIRE(std::get<0>(*current) == 2);
+
+    auto later = current--;
+    REQUIRE(std::get<1>(*later) == 20);
+    REQUIRE(std::get<1>(*current) == 10);
+
+    const auto& const_values   = values;
+    auto        const_current  = const_values.begin();
+    auto        const_previous = const_current++;
+    REQUIRE(std::get<0>(*const_previous) == 1);
+    REQUIRE(std::get<0>(*const_current) == 2);
+
+    auto const_later = const_current--;
+    REQUIRE(std::get<1>(*const_later) == 20);
+    REQUIRE(std::get<1>(*const_current) == 10);
+  }
 }
 
 template <typename SOA>

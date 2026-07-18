@@ -132,6 +132,31 @@ TEST_CASE("Zipped iterator operations", "[zip]") {
     REQUIRE(x == 2);
     REQUIRE(y == 5);
   }
+
+  SECTION("Postfix movement returns the previous position") {
+    std::vector<int> a = { 1, 2, 3 };
+    std::vector<int> b = { 10, 20, 30 };
+    auto             z = make_zipped(a, b);
+
+    auto current  = z.begin();
+    auto previous = current++;
+    REQUIRE(std::get<0>(*previous) == 1);
+    REQUIRE(std::get<0>(*current) == 2);
+
+    auto later = current--;
+    REQUIRE(std::get<1>(*later) == 20);
+    REQUIRE(std::get<1>(*current) == 10);
+
+    const auto& const_z        = z;
+    auto        const_current  = const_z.begin();
+    auto        const_previous = const_current++;
+    REQUIRE(std::get<0>(*const_previous) == 1);
+    REQUIRE(std::get<0>(*const_current) == 2);
+
+    auto const_later = const_current--;
+    REQUIRE(std::get<1>(*const_later) == 20);
+    REQUIRE(std::get<1>(*const_current) == 10);
+  }
 }
 
 TEST_CASE("Zipped empty and resize", "[zip]") {
