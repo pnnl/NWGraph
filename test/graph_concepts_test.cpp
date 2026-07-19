@@ -21,6 +21,13 @@
 
 using namespace nw::graph;
 
+// Non-graph types must fail the graph concept softly.  (Regression check:
+// evaluating the concept used to instantiate graph_traits on the non-graph
+// type and abort compilation with a hard error.)
+static_assert(!nw::graph::graph<int>);
+static_assert(!nw::graph::graph<double>);
+static_assert(!nw::graph::graph<std::vector<double>>);
+
 // Test that graph types satisfy the appropriate concepts
 TEST_CASE("Graph concepts compile-time checks", "[concepts]") {
 

@@ -14,13 +14,29 @@
 #ifndef NW_GRAPH_GRAPH_TRAITS_HPP
 #define NW_GRAPH_GRAPH_TRAITS_HPP
 
+#include <type_traits>
+
 namespace nw {
 namespace graph {
 
-template <typename G>
-struct graph_traits {
+namespace detail {
 
+// Exposes vertex_id_type only when G provides it, so that instantiating the
+// primary graph_traits for a non-graph type leaves an empty struct instead of
+// a hard error.  This lets `typename vertex_id_t<G>` inside a concept fail
+// softly (the concept evaluates to false) rather than aborting compilation.
+template <class G, class = void>
+struct default_graph_traits {};
+
+template <class G>
+struct default_graph_traits<G, std::void_t<typename G::vertex_id_type>> {
   using vertex_id_type = typename G::vertex_id_type;
+};
+
+}    // namespace detail
+
+template <typename G>
+struct graph_traits : detail::default_graph_traits<G> {
 
   // using vertex_size_type  = typename G::vertex_id_type;
   // using num_vertices_type = typename G::num_vertices_type;
