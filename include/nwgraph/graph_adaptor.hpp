@@ -214,7 +214,7 @@ public:
   }
 
   /// @brief Return the number of edges in the graph.
-  auto num_edgees() const {
+  auto num_edges() const {
     return num_edges_;
   }
 };
