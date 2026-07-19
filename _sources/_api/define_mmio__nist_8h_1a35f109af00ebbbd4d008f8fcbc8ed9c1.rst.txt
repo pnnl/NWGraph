@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a35f109af00ebbbd4d008f8fcbc8ed9c1:
+
+Define MM_PREMATURE_EOF
+=======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_PREMATURE_EOF
+   :project: NWgraph

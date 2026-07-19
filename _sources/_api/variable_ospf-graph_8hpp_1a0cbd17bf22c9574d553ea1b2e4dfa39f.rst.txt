@@ -1,0 +1,14 @@
+.. _exhale_variable_ospf-graph_8hpp_1a0cbd17bf22c9574d553ea1b2e4dfa39f:
+
+Variable ospf_index_adjacency_list
+==================================
+
+- Defined in :ref:`file_include_nwgraph_graphs_ospf-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ospf_index_adjacency_list
+   :project: NWgraph

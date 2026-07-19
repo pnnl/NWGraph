@@ -1,0 +1,30 @@
+
+.. _program_listing_file_include_nwgraph_coo.hpp:
+
+Program Listing for File coo.hpp
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_coo.hpp>` (``include/nwgraph/coo.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_COO_HPP
+   #define NW_GRAPH_COO_HPP
+   
+   #include "nwgraph/edge_list.hpp"
+   
+   namespace nw {
+   namespace graph {
+   
+   using coo_graph = edge_list<directedness::directed>;
+   
+   template <typename T = double>
+   using coo_matrix = edge_list<directedness::directed, T>;
+   
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_COO_HPP

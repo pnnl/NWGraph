@@ -1,0 +1,14 @@
+.. _exhale_function_cyclic__range__adaptor_8hpp_1ab282f78e94077eb60013dcd8caa2defe:
+
+Template Function nw::graph::cyclic_range_adaptor
+=================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_cyclic_range_adaptor.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::cyclic_range_adaptor(Range&&, Cutoff)
+   :project: NWgraph

@@ -1,0 +1,28 @@
+.. _exhale_class_classnw_1_1graph_1_1bfs__edge__range2:
+
+Template Class bfs_edge_range2
+==============================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_bfs_edge_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator`
+- :ref:`exhale_class_classnw_1_1graph_1_1bfs__edge__range2_1_1bfs__edge__range2__iterator_1_1end__sentinel__type`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::bfs_edge_range2
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

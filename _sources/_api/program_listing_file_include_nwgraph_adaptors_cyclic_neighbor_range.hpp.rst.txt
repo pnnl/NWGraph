@@ -1,0 +1,99 @@
+
+.. _program_listing_file_include_nwgraph_adaptors_cyclic_neighbor_range.hpp:
+
+Program Listing for File cyclic_neighbor_range.hpp
+==================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_adaptors_cyclic_neighbor_range.hpp>` (``include/nwgraph/adaptors/cyclic_neighbor_range.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_CYCLIC_NEIGHBOR_RANGE_HPP
+   #define NW_GRAPH_CYCLIC_NEIGHBOR_RANGE_HPP
+   
+   #include "nwgraph/util/util.hpp"
+   #include <iterator>
+   
+   namespace nw {
+   namespace graph {
+   template <class Iterator>
+   class cyclic_neighbor_range {
+     static_assert(std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<Iterator>::iterator_category>);
+   
+   public:
+     using difference_type = typename std::iterator_traits<Iterator>::difference_type;
+   
+   private:
+     Iterator        begin_;
+     Iterator        end_;
+     difference_type cutoff_;
+     difference_type cycle_  = 0;
+     difference_type stride_ = 1;
+   
+   public:
+     template <class Range, class Cutoff>
+     cyclic_neighbor_range(Range&& range, Cutoff cutoff)
+         : begin_(range.begin()), end_(range.end()), cutoff_(nw::graph::pow2(nw::graph::ceil_log2(cutoff))) {
+     }
+   
+     cyclic_neighbor_range(const cyclic_neighbor_range&) = default;
+     cyclic_neighbor_range(cyclic_neighbor_range&&)      = default;
+   
+     cyclic_neighbor_range(cyclic_neighbor_range& rhs, tbb::split)
+         : begin_(rhs.begin_), end_(rhs.end_), cutoff_(rhs.cutoff_), cycle_(rhs.cycle_ + rhs.stride_), stride_(rhs.stride_ *= 2) {
+     }
+   
+     struct iterator {
+       Iterator        begin_;
+       Iterator        i_;
+       difference_type stride_;
+   
+       decltype(auto) operator*() {
+         return std::make_tuple(static_cast<std::size_t>(i_ - begin_), *i_);
+       }
+   
+       iterator& operator++() {
+         i_ += stride_;
+         return *this;
+       }
+   
+       bool operator!=(const iterator& rhs) const {
+         return i_ != rhs.i_;
+       }
+     };
+   
+     iterator begin() const {
+       return { begin_, begin_ + cycle_, stride_ };
+     }
+   
+     iterator end() const {
+       difference_type n = end_ - begin_ - cycle_;     // shifted span for cycle
+       difference_type r = n % stride_;                // remainder in last stride
+       difference_type e = (stride_ - r) % stride_;    // amount past `end_` we'll go
+       return { begin_, end_ + e, stride_ };
+     }
+   
+     difference_type size() const {
+       // figure out the number of valid elements in our cycle, which depends on
+       // the total number of elements, where our cycle starts, and the stride
+       difference_type n = end_ - begin_;
+       return n / stride_ + ((cycle_ < n % stride_) ? 1 : 0);
+     }
+   
+     bool empty() const {
+       return size() == 0;
+     }
+   
+     bool is_divisible() const {
+       return stride_ <= cutoff_;
+     }
+   };
+   
+   template <class Range, class Cutoff>
+   cyclic_neighbor_range(Range range, Cutoff) -> cyclic_neighbor_range<decltype(range.begin())>;
+   }    // namespace graph
+   }    // namespace nw
+   #endif    // NW_GRAPH_CYCLIC_NEIGHBOR_RANGE_HPP

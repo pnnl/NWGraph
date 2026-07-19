@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a37d1da2eb3fac8538927ebe6b641eadc:
+
+Template Function nw::graph::swap_to_triangular(edge_list_t&, ExecutionPolicy&&)
+================================================================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::swap_to_triangular(edge_list_t&, ExecutionPolicy&&)
+   :project: NWgraph

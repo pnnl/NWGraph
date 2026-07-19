@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1graph__traits_3_01Outer_3_01Inner_3_01std_1_1tuple_3_01Index_00_01Attributes_8_8_8_01_4_01_4_01_4_01_4:
+
+Template Struct graph_traits< Outer< Inner< std::tuple< Index, Attributes... > > > >
+====================================================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::graph_traits< Outer< Inner< std::tuple< Index, Attributes... > > > >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

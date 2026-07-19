@@ -1,0 +1,14 @@
+.. _exhale_function_mmio__nist_8h_1a5949d10b55cd420aa0ea7ba05ac03268:
+
+Function mm_typecode_to_str
+===========================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: mm_typecode_to_str(MM_typecode)
+   :project: NWgraph

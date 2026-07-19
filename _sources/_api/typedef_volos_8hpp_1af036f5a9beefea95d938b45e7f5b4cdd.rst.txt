@@ -1,0 +1,14 @@
+.. _exhale_typedef_volos_8hpp_1af036f5a9beefea95d938b45e7f5b4cdd:
+
+Typedef nw::graph::adj_list
+===========================
+
+- Defined in :ref:`file_include_nwgraph_volos.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::adj_list
+   :project: NWgraph

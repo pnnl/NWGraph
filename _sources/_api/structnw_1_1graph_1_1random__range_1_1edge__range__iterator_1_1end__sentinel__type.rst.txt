@@ -1,0 +1,23 @@
+.. _exhale_struct_structnw_1_1graph_1_1random__range_1_1edge__range__iterator_1_1end__sentinel__type:
+
+Struct edge_range_iterator::end_sentinel_type
+=============================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_random_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1random__range_1_1edge__range__iterator`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::random_range::edge_range_iterator::end_sentinel_type
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

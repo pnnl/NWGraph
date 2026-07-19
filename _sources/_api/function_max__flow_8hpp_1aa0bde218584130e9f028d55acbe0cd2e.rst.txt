@@ -1,0 +1,14 @@
+.. _exhale_function_max__flow_8hpp_1aa0bde218584130e9f028d55acbe0cd2e:
+
+Template Function nw::graph::backedge_property
+==============================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::backedge_property(Edge)
+   :project: NWgraph

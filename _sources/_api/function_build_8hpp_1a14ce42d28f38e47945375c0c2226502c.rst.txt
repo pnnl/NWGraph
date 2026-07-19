@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a14ce42d28f38e47945375c0c2226502c:
+
+Template Function nw::graph::stable_sort_by
+===========================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::stable_sort_by(edge_list_t&, ExecutionPolicy&&)
+   :project: NWgraph

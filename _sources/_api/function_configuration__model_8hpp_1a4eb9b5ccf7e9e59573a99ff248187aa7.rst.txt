@@ -1,0 +1,14 @@
+.. _exhale_function_configuration__model_8hpp_1a4eb9b5ccf7e9e59573a99ff248187aa7:
+
+Function nw::graph::power_gen
+=============================
+
+- Defined in :ref:`file_include_nwgraph_generators_configuration_model.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::power_gen(double, double)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a099de03c35a8b30cf035c46b5349e48b:
+
+Define mm_is_complex
+====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_is_complex
+   :project: NWgraph

@@ -1,0 +1,48 @@
+
+.. _namespace_nw__util:
+
+Namespace nw::util
+==================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1util_1_1empty__timer`
+
+- :ref:`exhale_class_classnw_1_1util_1_1life__timer`
+
+- :ref:`exhale_class_classnw_1_1util_1_1timer`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_timer_8hpp_1a9ba2112f337794d24eb268c4d5a7b38f`
+
+- :ref:`exhale_function_timer_8hpp_1a431a9ca3a2cc8b9ccbf8535505e8383b`
+
+- :ref:`exhale_function_proxysort_8hpp_1a415f42aa5a24dbe2512e3ea15158e681`
+
+- :ref:`exhale_function_proxysort_8hpp_1a941aa8ec6b7ca00b0cd76eae5509df3b`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_timer_8hpp_1a4263ac671b0ea068baebf112f852352f`
+
+- :ref:`exhale_typedef_timer_8hpp_1aeac62c0f2ca9a000c44b296f231856c2`
+
+- :ref:`exhale_typedef_timer_8hpp_1a347efe89ee58950b4634ecee4cd8537e`

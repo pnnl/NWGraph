@@ -1,0 +1,14 @@
+.. _exhale_function_mmio__nist_8h_1aa1015f3b0282e7ef7ef3448fca37958d:
+
+Function mm_is_valid
+====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: mm_is_valid(MM_typecode)
+   :project: NWgraph

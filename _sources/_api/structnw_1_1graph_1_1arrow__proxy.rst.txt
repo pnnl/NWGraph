@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1arrow__proxy:
+
+Template Struct arrow_proxy
+===========================
+
+- Defined in :ref:`file_include_nwgraph_util_arrow_proxy.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::arrow_proxy
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

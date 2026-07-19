@@ -1,0 +1,17 @@
+.. _exhale_struct_struct__tag__invoke_1_1defer:
+
+Template Struct defer
+=====================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: _tag_invoke::defer
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

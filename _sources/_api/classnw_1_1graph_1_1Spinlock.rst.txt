@@ -1,0 +1,17 @@
+.. _exhale_class_classnw_1_1graph_1_1Spinlock:
+
+Class Spinlock
+==============
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::Spinlock
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

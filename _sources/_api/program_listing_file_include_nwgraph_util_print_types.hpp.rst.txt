@@ -1,0 +1,25 @@
+
+.. _program_listing_file_include_nwgraph_util_print_types.hpp:
+
+Program Listing for File print_types.hpp
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_util_print_types.hpp>` (``include/nwgraph/util/print_types.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef PRINT_TYPES_HPP
+   #define PRINT_TYPES_HPP
+   
+   template <class... Ts>
+   struct print_types_t;
+   
+   template <class... Ts>
+   constexpr auto print_types(Ts...) {
+     return print_types_t<Ts...> {};
+   }
+   
+   #endif    // PRINT_TYPES_HPP

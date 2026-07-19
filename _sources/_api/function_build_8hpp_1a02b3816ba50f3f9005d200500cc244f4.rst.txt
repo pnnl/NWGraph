@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a02b3816ba50f3f9005d200500cc244f4:
+
+Template Function nw::graph::make_index_edges
+=============================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_index_edges(M&, const E&)
+   :project: NWgraph

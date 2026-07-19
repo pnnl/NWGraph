@@ -1,0 +1,14 @@
+.. _exhale_function_spMatspMat_8hpp_1a739b8bba710dae07ebefdd013e6c5dba:
+
+Template Function nw::graph::set_ewise_intersection
+===================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_spMatspMat.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::set_ewise_intersection(InputIt1, InputIt1, InputIt2, InputIt2, Output&, Compare, Map)
+   :project: NWgraph

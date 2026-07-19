@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a7c4977adc296451d59e66972fd4e58db:
+
+Define MM_UNSUPPORTED_TYPE
+==========================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_UNSUPPORTED_TYPE
+   :project: NWgraph

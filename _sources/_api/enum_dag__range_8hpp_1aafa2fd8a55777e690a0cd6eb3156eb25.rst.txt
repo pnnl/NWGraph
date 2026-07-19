@@ -1,0 +1,14 @@
+.. _exhale_enum_dag__range_8hpp_1aafa2fd8a55777e690a0cd6eb3156eb25:
+
+Enum ready_to_process
+=====================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_dag_range.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::ready_to_process
+   :project: NWgraph

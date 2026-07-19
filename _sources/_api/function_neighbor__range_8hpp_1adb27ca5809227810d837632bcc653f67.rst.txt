@@ -1,0 +1,14 @@
+.. _exhale_function_neighbor__range_8hpp_1adb27ca5809227810d837632bcc653f67:
+
+Template Function nw::graph::make_neighbor_range(Graph&, std::size_t)
+=====================================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_neighbor_range.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_neighbor_range(Graph&, std::size_t)
+   :project: NWgraph

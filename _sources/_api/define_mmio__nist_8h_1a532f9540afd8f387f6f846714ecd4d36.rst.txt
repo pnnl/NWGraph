@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a532f9540afd8f387f6f846714ecd4d36:
+
+Define MM_MAX_TOKEN_LENGTH
+==========================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_MAX_TOKEN_LENGTH
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_compressed_8hpp_1a414dea08c6c1d351b10eced3405139e7:
+
+Function nw::graph::debug_compressed
+====================================
+
+- Defined in :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::debug_compressed(bool)
+   :project: NWgraph

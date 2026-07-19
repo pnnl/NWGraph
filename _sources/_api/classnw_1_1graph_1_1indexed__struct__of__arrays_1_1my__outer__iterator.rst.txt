@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1indexed__struct__of__arrays_1_1my__outer__iterator:
+
+Template Class indexed_struct_of_arrays::my_outer_iterator
+==========================================================
+
+- Defined in :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1indexed__struct__of__arrays`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::indexed_struct_of_arrays::my_outer_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

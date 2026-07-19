@@ -1,0 +1,80 @@
+
+.. _file_include_nwgraph_graphs_imdb-graph.hpp:
+
+File imdb-graph.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_graphs>` (``include/nwgraph/graphs``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/graphs/imdb-graph.hpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_graphs_imdb-graph.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``string``
+
+- ``vector``
+
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a0153e99739f5896ccaacb7157ac9f29d`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1ac155dbe57970dfdde8e2d1ae6cd9c880`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1aaacc871e8b3d5c6d9600c4eb0472b820`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a9cd3ce9bece1d92b9bf7e8d9ec1fb880`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a79049eb3cc81fc2513689d12f78459ce`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a26287b0cea0fd1c3d36e4cedc962cdb1`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a969ace62c727d6d27f2f0fce1a3b16a6`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a20b8125337af9bd0a0cb09b5b259c67c`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a909a960593cc733f7bc6f80053387717`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a1028647cdefe45e5b7153a126ad9af63`
+
+- :ref:`exhale_variable_imdb-graph_8hpp_1a6dba731c26a5303e41b74484819e07f9`
+

@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1null__vertex__s:
+
+Template Struct null_vertex_s
+=============================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::null_vertex_s
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

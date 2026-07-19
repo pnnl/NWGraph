@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1ae3eab2d2f506a37bc1cda68b21bce9c4:
+
+Define mm_is_symmetric
+======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_is_symmetric
+   :project: NWgraph

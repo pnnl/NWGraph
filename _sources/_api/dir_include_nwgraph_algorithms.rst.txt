@@ -1,0 +1,37 @@
+.. _dir_include_nwgraph_algorithms:
+
+
+Directory algorithms
+====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph/algorithms``
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+- :ref:`file_include_nwgraph_algorithms_boykov_kolmogorov.hpp`
+- :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+- :ref:`file_include_nwgraph_algorithms_dag_based_mis.hpp`
+- :ref:`file_include_nwgraph_algorithms_delta_stepping.hpp`
+- :ref:`file_include_nwgraph_algorithms_dijkstra.hpp`
+- :ref:`file_include_nwgraph_algorithms_jaccard.hpp`
+- :ref:`file_include_nwgraph_algorithms_jones_plassmann_coloring.hpp`
+- :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+- :ref:`file_include_nwgraph_algorithms_k_truss.hpp`
+- :ref:`file_include_nwgraph_algorithms_kruskal.hpp`
+- :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+- :ref:`file_include_nwgraph_algorithms_maximal_independent_set.hpp`
+- :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+- :ref:`file_include_nwgraph_algorithms_prim.hpp`
+- :ref:`file_include_nwgraph_algorithms_spMatspMat.hpp`
+- :ref:`file_include_nwgraph_algorithms_triangle_count.hpp`
+
+

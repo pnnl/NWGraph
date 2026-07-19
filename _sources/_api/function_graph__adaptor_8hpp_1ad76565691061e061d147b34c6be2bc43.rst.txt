@@ -1,0 +1,14 @@
+.. _exhale_function_graph__adaptor_8hpp_1ad76565691061e061d147b34c6be2bc43:
+
+Template Function nw::graph::graph_edge
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_graph_adaptor.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::graph_edge(std::tuple<Ts...>)
+   :project: NWgraph

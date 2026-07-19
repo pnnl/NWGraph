@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1edge__range_1_1my__iterator:
+
+Template Class edge_range::my_iterator
+======================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_edge_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1edge__range`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::edge_range::my_iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_typedef_graph__concepts_8hpp_1ac3ceab8ce00af99a388de8188208ec36:
+
+Typedef nw::graph::attributes_t
+===============================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::attributes_t
+   :project: NWgraph

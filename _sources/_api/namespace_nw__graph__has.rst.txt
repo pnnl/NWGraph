@@ -1,0 +1,22 @@
+
+.. _namespace_nw__graph__has:
+
+Namespace nw::graph::has
+========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1has_1_1has__push__back`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1has_1_1has__push__front`

@@ -1,0 +1,70 @@
+
+.. _file_include_nwgraph_graphs_ospf-graph.hpp:
+
+File ospf-graph.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_graphs>` (``include/nwgraph/graphs``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/graphs/ospf-graph.hpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_graphs_ospf-graph.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``string``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_ospf-graph_8hpp_1aeebafa8309584feb06950d35e559c7b9`
+
+- :ref:`exhale_variable_ospf-graph_8hpp_1a0cbd17bf22c9574d553ea1b2e4dfa39f`
+
+- :ref:`exhale_variable_ospf-graph_8hpp_1a1038c083b2cbb4f98abebd306c2a8e51`
+
+- :ref:`exhale_variable_ospf-graph_8hpp_1ac052b9c2048c557e89a024d9cb3b1059`
+
+- :ref:`exhale_variable_ospf-graph_8hpp_1a34c8e6fe62f67145ea1a17cbb633283c`
+

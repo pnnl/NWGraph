@@ -1,0 +1,122 @@
+
+.. _file_include_nwgraph_vovos.hpp:
+
+File vovos.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Vector-of-vectors graph representation using struct-of-arrays edges. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/vovos.hpp``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_vovos.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Provides vov (vector_of_vector_of_structs), a dynamic adjacency list representation where each vertex has a vector of neighbors stored as tuples. This format supports O(1) edge insertion but has slower traversal than CSR formats.
+
+Example usage: #include<:ref:`file_include_nwgraph_vovos.hpp`>
+
+//Createanunweightedgraphwith5vertices
+nw::graph::vov<>graph(5);
+graph.open_for_push_back();
+graph.push_back(0,1);//edge0->1
+graph.push_back(0,2);//edge0->2
+graph.push_back(1,3);//edge1->3
+graph.close_for_push_back();
+
+//Iterateoverneighbors
+for(auto&&[neighbor]:graph[0]){
+std::cout<<"0->"<<neighbor<<std::endl;
+}
+
+//Createaweightedgraph
+nw::graph::vov<double>weighted(5);
+weighted.open_for_push_back();
+weighted.push_back(0,1,1.5);//edge0->1withweight1.5
+weighted.push_back(0,2,2.0);//edge0->2withweight2.0
+weighted.close_for_push_back();
+
+for(auto&&[neighbor,weight]:weighted[0]){
+std::cout<<"0->"<<neighbor<<"(w="<<weight<<")"<<std::endl;
+}
+
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Krzysztof Drewniak Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``cassert``
+
+- ``concepts`` (:ref:`file_include_nwgraph_graph_concepts.hpp`)
+
+- ``edge_list.hpp`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``nwgraph/graph_base.hpp`` (:ref:`file_include_nwgraph_graph_base.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1index__vov`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1vector__of__vector__of__structs`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_vovos_8hpp_1af12ce53461696a9ffc87941cf90d1182`
+

@@ -1,0 +1,23 @@
+.. _exhale_struct_structnw_1_1graph_1_1topdown__bfs__range_1_1end__sentinel__type:
+
+Struct topdown_bfs_range::end_sentinel_type
+===========================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_bfs_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1topdown__bfs__range`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::topdown_bfs_range::end_sentinel_type
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2bfs_8hpp_1ad6f2f67ff3c1ee75d0110f1dcf01ca70:
+
+Template Function nw::graph::queue_to_bitmap
+============================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::queue_to_bitmap(std::vector<T>&, nw::graph::AtomicBitVector<>&)
+   :project: NWgraph

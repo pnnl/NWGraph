@@ -1,0 +1,14 @@
+.. _exhale_typedef_csr_8hpp_1aa22ef7b4b41b6affd06b9960bc22410b:
+
+Typedef nw::graph::csr_matrix
+=============================
+
+- Defined in :ref:`file_include_nwgraph_csr.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::csr_matrix
+   :project: NWgraph

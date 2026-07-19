@@ -1,0 +1,14 @@
+.. _exhale_function_splittable__range__adaptor_8hpp_1a1f83f1a549e312c6728fb3f2ea73335d:
+
+Template Function nw::graph::splittable_range_adaptor(Range&&)
+==============================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_splittable_range_adaptor.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::splittable_range_adaptor(Range&&)
+   :project: NWgraph

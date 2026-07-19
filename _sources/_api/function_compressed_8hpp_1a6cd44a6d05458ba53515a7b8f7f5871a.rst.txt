@@ -1,0 +1,14 @@
+.. _exhale_function_compressed_8hpp_1a6cd44a6d05458ba53515a7b8f7f5871a:
+
+Function nw::graph::time_compressed
+===================================
+
+- Defined in :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::time_compressed(bool)
+   :project: NWgraph

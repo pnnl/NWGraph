@@ -1,0 +1,23 @@
+.. _exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range_1_1filtered__bfs__edge__range__iterator_1_1end__sentinel__type:
+
+Class filtered_bfs_edge_range_iterator::end_sentinel_type
+=========================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_filtered_bfs_range.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnw_1_1graph_1_1filtered__bfs_1_1filtered__bfs__edge__range_1_1filtered__bfs__edge__range__iterator`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::filtered_bfs::filtered_bfs_edge_range::filtered_bfs_edge_range_iterator::end_sentinel_type
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_function_intersection__size_8hpp_1aaed03066ef57eb9dd8bfa6e86bfcdfe3:
+
+Template Function nw::graph::intersection_size(A&&, B&&, Range&&)
+=================================================================
+
+- Defined in :ref:`file_include_nwgraph_util_intersection_size.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::intersection_size(A&&, B&&, Range&&)
+   :project: NWgraph

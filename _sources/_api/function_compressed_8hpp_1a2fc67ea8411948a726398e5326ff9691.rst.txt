@@ -1,0 +1,14 @@
+.. _exhale_function_compressed_8hpp_1a2fc67ea8411948a726398e5326ff9691:
+
+Template Function nw::graph::operator+(typename std::iter_difference_t<typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator>, const typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator&)
+====================================================================================================================================================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::operator+(typename std::iter_difference_t<typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator>, const typename indexed_struct_of_arrays<index_t, Attributes...>::outer_iterator&)
+   :project: NWgraph

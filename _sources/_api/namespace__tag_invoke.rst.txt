@@ -1,0 +1,13 @@
+
+.. _namespace__tag_invoke:
+
+Namespace _tag_invoke
+=====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+

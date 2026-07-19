@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1pair__hash:
+
+Struct pair_hash
+================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::pair_hash
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

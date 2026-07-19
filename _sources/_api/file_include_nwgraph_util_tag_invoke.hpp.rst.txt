@@ -1,0 +1,134 @@
+
+.. _file_include_nwgraph_util_tag_invoke.hpp:
+
+File tag_invoke.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/tag_invoke.hpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_tag_invoke.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``type_traits``
+
+- ``utility``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace__tag_invoke`
+
+- :ref:`namespace__tag_invoke_cpo`
+
+
+Concepts
+--------
+
+
+- :ref:`exhale_concept_concepttag__invocable`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_struct__tag__invoke_1_1__fn`
+
+- :ref:`exhale_struct_struct__tag__invoke_1_1defer`
+
+- :ref:`exhale_struct_struct__tag__invoke_1_1empty`
+
+- :ref:`exhale_struct_structtag__invoke__result`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_tag__invoke_8hpp_1a9ee1eb0e0197ef8dfbee41dfed68c97d`
+
+- :ref:`exhale_function_tag__invoke_8hpp_1acdf464f10989dcffd795a85fbf775974`
+
+- :ref:`exhale_function_tag__invoke_8hpp_1a9189b4b289ef505be81fa00bb253b509`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_tag__invoke_8hpp_1a3b407e45a3524837901353cb56dc2f26`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_tag__invoke_8hpp_1aa5e09234508687bae00e698f29a32e2b`
+
+- :ref:`exhale_typedef_tag__invoke_8hpp_1aeec3eee89e80d4a8e33d4d92b3f1cf01`
+
+- :ref:`exhale_typedef_tag__invoke_8hpp_1a0fe843f6da63395ee61dd4e46963923b`
+
+- :ref:`exhale_typedef_tag__invoke_8hpp_1ab657541c582446f187c774f4e30b0286`
+
+- :ref:`exhale_typedef_tag__invoke_8hpp_1abe2e504031308e1fb8f07f5cf5bcf74f`
+
+- :ref:`exhale_typedef_tag__invoke_8hpp_1acb007618c7d02c3cca31609e416314c6`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_tag__invoke_8hpp_1a33b794a664c1ee7751e5c524f31bd70b`
+
+- :ref:`exhale_variable_tag__invoke_8hpp_1ac9297785bc1cff48dae735a140253041`
+
+- :ref:`exhale_variable_tag__invoke_8hpp_1a8d6152fc933c4e17119094e28bb953d1`
+

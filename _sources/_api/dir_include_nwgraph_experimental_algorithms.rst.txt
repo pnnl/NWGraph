@@ -1,0 +1,27 @@
+.. _dir_include_nwgraph_experimental_algorithms:
+
+
+Directory algorithms
+====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_experimental>` (``include/nwgraph/experimental``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph/experimental/algorithms``
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+- :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+- :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+- :ref:`file_include_nwgraph_experimental_algorithms_delta_stepping.hpp`
+- :ref:`file_include_nwgraph_experimental_algorithms_jaccard.hpp`
+- :ref:`file_include_nwgraph_experimental_algorithms_jones_plassmann_coloring.hpp`
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+- :ref:`file_include_nwgraph_experimental_algorithms_triangle_count.hpp`
+
+

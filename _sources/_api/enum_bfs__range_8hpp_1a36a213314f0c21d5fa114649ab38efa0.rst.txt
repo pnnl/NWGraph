@@ -1,0 +1,14 @@
+.. _exhale_enum_bfs__range_8hpp_1a36a213314f0c21d5fa114649ab38efa0:
+
+Enum status
+===========
+
+- Defined in :ref:`file_include_nwgraph_adaptors_bfs_range.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::status
+   :project: NWgraph

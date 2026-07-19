@@ -1,0 +1,14 @@
+.. _exhale_typedef_k__core_8hpp_1a0627371560ed66e724578f1958dece51:
+
+Typedef nw::graph::Unordered_map
+================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_k_core.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::Unordered_map
+   :project: NWgraph

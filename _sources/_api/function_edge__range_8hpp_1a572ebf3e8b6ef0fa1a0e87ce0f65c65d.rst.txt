@@ -1,0 +1,14 @@
+.. _exhale_function_edge__range_8hpp_1a572ebf3e8b6ef0fa1a0e87ce0f65c65d:
+
+Template Function nw::graph::make_edge_range(Graph&, std::size_t)
+=================================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_edge_range.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_edge_range(Graph&, std::size_t)
+   :project: NWgraph

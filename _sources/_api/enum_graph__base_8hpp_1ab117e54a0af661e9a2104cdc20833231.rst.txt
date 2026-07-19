@@ -1,0 +1,14 @@
+.. _exhale_enum_graph__base_8hpp_1ab117e54a0af661e9a2104cdc20833231:
+
+Enum succession
+===============
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::succession
+   :project: NWgraph

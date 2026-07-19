@@ -1,0 +1,14 @@
+.. _exhale_function_dijkstra_8hpp_1a740f0e8ad2a1aedad1cc92d2b7e150ce:
+
+Template Function nw::graph::dijkstra_er
+========================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_dijkstra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::dijkstra_er(const Graph&, vertex_id_t<Graph>)
+   :project: NWgraph

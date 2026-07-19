@@ -1,0 +1,14 @@
+.. _exhale_variable_util__par_8hpp_1a46c00e7e6304c88b46671b6489be6a74:
+
+Variable nw::graph::mtx
+=======================
+
+- Defined in :ref:`file_include_nwgraph_util_util_par.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::mtx
+   :project: NWgraph

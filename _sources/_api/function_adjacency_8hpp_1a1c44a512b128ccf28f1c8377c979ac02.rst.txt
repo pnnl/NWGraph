@@ -1,0 +1,14 @@
+.. _exhale_function_adjacency_8hpp_1a1c44a512b128ccf28f1c8377c979ac02:
+
+Template Function nw::graph::tag_invoke(const degree_tag, const splittable_range_adaptor<Iterator>&)
+====================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_adjacency.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::tag_invoke(const degree_tag, const splittable_range_adaptor<Iterator>&)
+   :project: NWgraph

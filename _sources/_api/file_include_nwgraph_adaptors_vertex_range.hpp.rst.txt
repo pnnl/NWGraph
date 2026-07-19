@@ -1,0 +1,89 @@
+
+.. _file_include_nwgraph_adaptors_vertex_range.hpp:
+
+File vertex_range.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/vertex_range.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_vertex_range.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``oneapi/tbb.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+- :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+- :ref:`file_include_nwgraph_experimental_algorithms_page_rank.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnw_1_1graph_1_1counting__iterator`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1vertex__range`
+

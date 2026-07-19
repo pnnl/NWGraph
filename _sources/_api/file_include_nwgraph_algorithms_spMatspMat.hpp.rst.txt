@@ -1,0 +1,81 @@
+
+.. _file_include_nwgraph_algorithms_spMatspMat.hpp:
+
+File spMatspMat.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_algorithms>` (``include/nwgraph/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/algorithms/spMatspMat.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_algorithms_spMatspMat.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Scott McMillan Kevin Deweese Haley Riggs Tony Liu 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``map``
+
+- ``nwgraph/adaptors/plain_range.hpp`` (:ref:`file_include_nwgraph_adaptors_plain_range.hpp`)
+
+- ``nwgraph/edge_list.hpp`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_spMatspMat_8hpp_1a739b8bba710dae07ebefdd013e6c5dba`
+
+- :ref:`exhale_function_spMatspMat_8hpp_1a6c4605c61931ec52400bcbb9c308b574`
+
+- :ref:`exhale_function_spMatspMat_8hpp_1a5f20811151b72ce419fb91d99a355d74`
+

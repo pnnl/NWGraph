@@ -1,0 +1,14 @@
+.. _exhale_typedef_traits_8hpp_1a0eb9a9bfb7d3da7120dd682bcf799811:
+
+Typedef nw::graph::select_access_type
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_util_traits.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::select_access_type
+   :project: NWgraph

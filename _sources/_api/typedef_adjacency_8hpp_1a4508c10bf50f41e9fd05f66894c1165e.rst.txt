@@ -1,0 +1,14 @@
+.. _exhale_typedef_adjacency_8hpp_1a4508c10bf50f41e9fd05f66894c1165e:
+
+Typedef nw::graph::adjacency
+============================
+
+- Defined in :ref:`file_include_nwgraph_adjacency.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::adjacency
+   :project: NWgraph

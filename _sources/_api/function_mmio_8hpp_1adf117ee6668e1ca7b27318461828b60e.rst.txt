@@ -1,0 +1,14 @@
+.. _exhale_function_mmio_8hpp_1adf117ee6668e1ca7b27318461828b60e:
+
+Template Function nw::graph::adjacency_stream(std::ofstream&, biadjacency<idx, Attributes...>&, const std::string&, std::string&)
+=================================================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::adjacency_stream(std::ofstream&, biadjacency<idx, Attributes...>&, const std::string&, std::string&)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2page__rank_8hpp_1ac4d54c218166652350b9dbaa4d2cf99e:
+
+Template Function nw::graph::pagerank::time_op
+==============================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_page_rank.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::pagerank::time_op(Op&&)
+   :project: NWgraph

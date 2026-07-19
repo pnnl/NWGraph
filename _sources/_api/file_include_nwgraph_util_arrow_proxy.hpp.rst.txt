@@ -1,0 +1,73 @@
+
+.. _file_include_nwgraph_util_arrow_proxy.hpp:
+
+File arrow_proxy.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/arrow_proxy.hpp``)
+-----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_arrow_proxy.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Luke D'Alessandro 
+
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adaptors_edge_range.hpp`
+
+- :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+- :ref:`file_include_nwgraph_containers_soa.hpp`
+
+- :ref:`file_include_nwgraph_containers_zip.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1arrow__proxy`
+

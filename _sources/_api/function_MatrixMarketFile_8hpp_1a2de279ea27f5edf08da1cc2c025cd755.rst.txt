@@ -1,0 +1,14 @@
+.. _exhale_function_MatrixMarketFile_8hpp_1a2de279ea27f5edf08da1cc2c025cd755:
+
+Template Function mmio::edges
+=============================
+
+- Defined in :ref:`file_include_nwgraph_io_MatrixMarketFile.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: mmio::edges(const MatrixMarketFile&, int, int)
+   :project: NWgraph

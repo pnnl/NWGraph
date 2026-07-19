@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a63e3930625bb02adb87dc2da3ef58045:
+
+Template Function nw::graph::make_plain_graph
+=============================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_plain_graph(const V&, const E&, bool, size_t)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_variable_tag__invoke_8hpp_1a33b794a664c1ee7751e5c524f31bd70b:
+
+Variable _tag_invoke_cpo::tag_invoke
+====================================
+
+- Defined in :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: _tag_invoke_cpo::tag_invoke
+   :project: NWgraph

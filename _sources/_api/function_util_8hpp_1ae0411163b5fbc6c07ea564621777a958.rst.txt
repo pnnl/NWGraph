@@ -1,0 +1,14 @@
+.. _exhale_function_util_8hpp_1ae0411163b5fbc6c07ea564621777a958:
+
+Function nw::graph::log2
+========================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::log2(uint64_t)
+   :project: NWgraph

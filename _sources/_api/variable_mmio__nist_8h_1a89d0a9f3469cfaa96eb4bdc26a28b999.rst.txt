@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1a89d0a9f3469cfaa96eb4bdc26a28b999:
+
+Variable MM_REAL_STR
+====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_REAL_STR
+   :project: NWgraph

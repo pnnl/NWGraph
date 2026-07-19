@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1ae9726ddb1d9f3146fc2759871b8c3ce4:
+
+Template Function nw::graph::sv_v9
+==================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::sv_v9(Graph&)
+   :project: NWgraph

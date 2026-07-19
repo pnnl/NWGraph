@@ -1,0 +1,91 @@
+
+.. _file_include_nwgraph_util_proxysort.hpp:
+
+File proxysort.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_util>` (``include/nwgraph/util``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/util/proxysort.hpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_util_proxysort.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`)
+
+- ``cassert``
+
+- ``cstddef``
+
+- ``cstdint``
+
+- ``execution``
+
+- ``functional``
+
+- ``numeric``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_build.hpp`
+
+- :ref:`file_include_nwgraph_containers_compressed.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__util`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_proxysort_8hpp_1a415f42aa5a24dbe2512e3ea15158e681`
+
+- :ref:`exhale_function_proxysort_8hpp_1a941aa8ec6b7ca00b0cd76eae5509df3b`
+

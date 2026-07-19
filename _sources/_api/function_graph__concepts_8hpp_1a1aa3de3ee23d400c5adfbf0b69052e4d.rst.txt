@@ -1,0 +1,14 @@
+.. _exhale_function_graph__concepts_8hpp_1a1aa3de3ee23d400c5adfbf0b69052e4d:
+
+Template Function nw::graph::props
+==================================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::props(std::tuple<Ts...>)
+   :project: NWgraph

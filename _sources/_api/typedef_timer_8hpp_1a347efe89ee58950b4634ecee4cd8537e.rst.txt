@@ -1,0 +1,14 @@
+.. _exhale_typedef_timer_8hpp_1a347efe89ee58950b4634ecee4cd8537e:
+
+Typedef nw::util::us_timer
+==========================
+
+- Defined in :ref:`file_include_nwgraph_util_timer.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::util::us_timer
+   :project: NWgraph

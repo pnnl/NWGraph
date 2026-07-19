@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2bfs_8hpp_1a7a4049a73724267f3f32fc456c94e0bc:
+
+Template Function nw::graph::bfs_top_down
+=========================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_bfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::bfs_top_down(const Graph&, typename graph_traits<Graph>::vertex_id_type)
+   :project: NWgraph

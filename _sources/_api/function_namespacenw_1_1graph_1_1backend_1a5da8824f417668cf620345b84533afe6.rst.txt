@@ -1,0 +1,14 @@
+.. _exhale_function_namespacenw_1_1graph_1_1backend_1a5da8824f417668cf620345b84533afe6:
+
+Function nw::graph::backend::set_num_threads
+============================================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::backend::set_num_threads(std::size_t)
+   :project: NWgraph

@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2connected__components_8hpp_1a6f31324fa847fb956f84fa32a766e778:
+
+Template Function nw::graph::CCVerifier
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::CCVerifier(const Graph&, const Transpose&, Vector&&)
+   :project: NWgraph

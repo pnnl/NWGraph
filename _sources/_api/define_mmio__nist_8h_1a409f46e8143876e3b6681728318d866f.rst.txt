@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a409f46e8143876e3b6681728318d866f:
+
+Define mm_is_hermitian
+======================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_is_hermitian
+   :project: NWgraph

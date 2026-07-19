@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a0447d925c5aeb2a414ab252ed84af0ee:
+
+Template Function nw::graph::lpcc
+=================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::lpcc(Execution&, Graph&, int)
+   :project: NWgraph

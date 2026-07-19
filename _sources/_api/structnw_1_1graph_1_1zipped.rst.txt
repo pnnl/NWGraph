@@ -1,0 +1,36 @@
+.. _exhale_struct_structnw_1_1graph_1_1zipped:
+
+Template Struct zipped
+======================
+
+- Defined in :ref:`file_include_nwgraph_containers_zip.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnw_1_1graph_1_1zipped_1_1soa__iterator`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::tuple< Ranges &... >``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::zipped
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

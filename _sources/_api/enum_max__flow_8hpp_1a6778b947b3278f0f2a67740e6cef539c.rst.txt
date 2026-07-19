@@ -1,0 +1,14 @@
+.. _exhale_enum_max__flow_8hpp_1a6778b947b3278f0f2a67740e6cef539c:
+
+Enum default_dict
+=================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::default_dict
+   :project: NWgraph

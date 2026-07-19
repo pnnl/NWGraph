@@ -1,0 +1,14 @@
+.. _exhale_variable_tuple__hack_8hpp_1aee5d7a7ed05ed1708343ad341b6d81e1:
+
+Variable nw::graph::is_std_tuple_v
+==================================
+
+- Defined in :ref:`file_include_nwgraph_util_tuple_hack.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::is_std_tuple_v
+   :project: NWgraph

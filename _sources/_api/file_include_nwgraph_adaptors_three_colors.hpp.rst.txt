@@ -1,0 +1,66 @@
+
+.. _file_include_nwgraph_adaptors_three_colors.hpp:
+
+File three_colors.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_adaptors>` (``include/nwgraph/adaptors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Vertex coloring shared by the BFS/DFS range adaptors. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/adaptors/three_colors.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_adaptors_three_colors.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Factored out of :ref:`file_include_nwgraph_adaptors_bfs_edge_range.hpp` and :ref:`file_include_nwgraph_adaptors_new_dfs_range.hpp` so those adaptor headers can coexist in one translation unit. Both previously defined an identical ``enum three_colors`` at namespace scope, which is an ODR clash when both headers are included together. 
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_nwgraph_adaptors_bfs_edge_range.hpp`
+
+- :ref:`file_include_nwgraph_adaptors_new_dfs_range.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_three__colors_8hpp_1a1bf11385241ca57016ff59f70db0bb1d`
+

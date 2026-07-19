@@ -1,0 +1,14 @@
+.. _exhale_function_configuration__model_8hpp_1a3eb834fc112ecfcfe2e52916c1994fce:
+
+Function nw::graph::random_standard_exponential
+===============================================
+
+- Defined in :ref:`file_include_nwgraph_generators_configuration_model.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::random_standard_exponential(bitgen_t *)
+   :project: NWgraph

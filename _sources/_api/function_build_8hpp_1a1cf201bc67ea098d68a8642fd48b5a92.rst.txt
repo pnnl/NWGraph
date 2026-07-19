@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1a1cf201bc67ea098d68a8642fd48b5a92:
+
+Template Function nw::graph::swap_to_triangular(edge_list_t&, succession)
+=========================================================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::swap_to_triangular(edge_list_t&, succession)
+   :project: NWgraph

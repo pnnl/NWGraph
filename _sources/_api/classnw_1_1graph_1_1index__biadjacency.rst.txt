@@ -1,0 +1,27 @@
+.. _exhale_class_classnw_1_1graph_1_1index__biadjacency:
+
+Template Class index_biadjacency
+================================
+
+- Defined in :ref:`file_include_nwgraph_adjacency.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public nw::graph::bipartite_graph_base``
+- ``public nw::graph::indexed_struct_of_arrays< index_type, vertex_id, Attributes... >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::index_biadjacency
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

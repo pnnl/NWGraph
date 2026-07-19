@@ -1,0 +1,14 @@
+.. _exhale_typedef_defaults_8hpp_1ab793c0487f8326ffccbbd32d86330469:
+
+Typedef nw::graph::default_index_t
+==================================
+
+- Defined in :ref:`file_include_nwgraph_util_defaults.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nw::graph::default_index_t
+   :project: NWgraph

@@ -1,0 +1,22 @@
+.. _dir_include_nwgraph_graphs:
+
+
+Directory graphs
+================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph/graphs``
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_graphs_imdb-graph.hpp`
+- :ref:`file_include_nwgraph_graphs_karate-graph.hpp`
+- :ref:`file_include_nwgraph_graphs_ospf-graph.hpp`
+
+

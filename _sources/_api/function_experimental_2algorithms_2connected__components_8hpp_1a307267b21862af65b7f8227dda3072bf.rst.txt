@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a307267b21862af65b7f8227dda3072bf:
+
+Template Function nw::graph::hook
+=================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::hook(T, T, std::vector<T>&)
+   :project: NWgraph

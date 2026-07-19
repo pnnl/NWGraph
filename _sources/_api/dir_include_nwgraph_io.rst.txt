@@ -1,0 +1,22 @@
+.. _dir_include_nwgraph_io:
+
+
+Directory io
+============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph/io``
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_io_MatrixMarketFile.hpp`
+- :ref:`file_include_nwgraph_io_mmio.hpp`
+- :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+

@@ -1,0 +1,32 @@
+.. _exhale_class_classnw_1_1graph_1_1vector__of__list__of__structs:
+
+Template Class vector_of_list_of_structs
+========================================
+
+- Defined in :ref:`file_include_nwgraph_volos.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::vector< std::list< std::tuple< Attributes... > > >``
+
+
+Derived Type
+************
+
+- ``public nw::graph::index_adj_list< idx, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__adj__list`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::vector_of_list_of_structs
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

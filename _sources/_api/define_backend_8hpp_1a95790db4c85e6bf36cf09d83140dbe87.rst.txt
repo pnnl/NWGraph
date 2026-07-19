@@ -1,0 +1,14 @@
+.. _exhale_define_backend_8hpp_1a95790db4c85e6bf36cf09d83140dbe87:
+
+Define NWGRAPH_PARALLEL_BACKEND
+===============================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: NWGRAPH_PARALLEL_BACKEND
+   :project: NWgraph

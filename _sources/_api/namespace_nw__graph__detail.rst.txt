@@ -1,0 +1,22 @@
+
+.. _namespace_nw__graph__detail:
+
+Namespace nw::graph::detail
+===========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1detail_1_1default__graph__traits`
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1detail_1_1default__graph__traits_3_01G_00_01std_1_1void__t_3_01typename_01G_1_1vertex__id__type_01_4_01_4`

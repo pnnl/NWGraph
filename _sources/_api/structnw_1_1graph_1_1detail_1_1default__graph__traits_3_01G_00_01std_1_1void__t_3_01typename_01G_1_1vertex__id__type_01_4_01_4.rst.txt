@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1detail_1_1default__graph__traits_3_01G_00_01std_1_1void__t_3_01typename_01G_1_1vertex__id__type_01_4_01_4:
+
+Template Struct default_graph_traits< G, std::void_t< typename G::vertex_id_type > >
+====================================================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_traits.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::detail::default_graph_traits< G, std::void_t< typename G::vertex_id_type > >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

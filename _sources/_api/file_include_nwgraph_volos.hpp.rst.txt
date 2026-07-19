@@ -1,0 +1,99 @@
+
+.. _file_include_nwgraph_volos.hpp:
+
+File volos.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/volos.hpp``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_volos.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Andrew Lumsdaine Krzysztof Drewniak 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cassert``
+
+- ``edge_list.hpp`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``list`` (:ref:`file_include_nwgraph_edge_list.hpp`)
+
+- ``nwgraph/build.hpp`` (:ref:`file_include_nwgraph_build.hpp`)
+
+- ``nwgraph/graph_base.hpp`` (:ref:`file_include_nwgraph_graph_base.hpp`)
+
+- ``nwgraph/graph_traits.hpp`` (:ref:`file_include_nwgraph_graph_traits.hpp`)
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnw_1_1graph_1_1graph__traits_3_01index__adj__list_3_01idx_00_01vertex__id_00_01Attributes_8_8_8_01_4_01_4`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1index__adj__list`
+
+- :ref:`exhale_class_classnw_1_1graph_1_1vector__of__list__of__structs`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_volos_8hpp_1a5896a46e9c4f381dcce450968c3ccf16`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_volos_8hpp_1af036f5a9beefea95d938b45e7f5b4cdd`
+

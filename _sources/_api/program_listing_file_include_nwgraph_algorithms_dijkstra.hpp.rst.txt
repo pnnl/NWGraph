@@ -1,0 +1,95 @@
+
+.. _program_listing_file_include_nwgraph_algorithms_dijkstra.hpp:
+
+Program Listing for File dijkstra.hpp
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_algorithms_dijkstra.hpp>` (``include/nwgraph/algorithms/dijkstra.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef DIJKSTRA_HPP
+   #define DIJKSTRA_HPP
+   
+   #include <algorithm>
+   #include <cassert>
+   #include <functional>
+   #include <limits>
+   #include <queue>
+   #include <tuple>
+   #include <vector>
+   
+   #include "nwgraph/adaptors/bfs_edge_range.hpp"
+   #include "nwgraph/graph_concepts.hpp"
+   
+   namespace nw {
+   namespace graph {
+   
+   template <typename Distance, adjacency_list_graph Graph>
+   std::vector<Distance> dijkstra_er(const Graph& graph, vertex_id_t<Graph> source) {
+     using vertex_id_type = vertex_id_t<Graph>;
+   
+     size_t N(graph.end() - graph.begin());
+     assert(source < N);
+   
+     std::vector<Distance> distance(N, 0xDEADBEEF);
+     distance[source] = 0;
+   
+     using weight_t        = Distance;
+     using weighted_vertex = std::tuple<vertex_id_type, weight_t>;
+   
+     std::priority_queue<weighted_vertex, std::vector<weighted_vertex>, std::greater<weighted_vertex>> Q;
+   
+     for (auto&& [u, v, w] : bfs_edge_range2(graph, Q)) {
+       if (distance[u] + w < distance[v]) {
+         distance[v] = distance[u] + w;
+         Q.push({ v, distance[v] });
+       }
+     }
+   
+     return distance;
+   }
+   
+   template <
+       typename Distance, adjacency_list_graph Graph,
+       std::invocable<inner_value_t<Graph>> Weight = std::function<std::tuple_element_t<1, inner_value_t<Graph>>(const inner_value_t<Graph>&)>>
+   auto dijkstra(const Graph& graph, vertex_id_t<Graph> source, Weight weight = [](auto& e) { return std::get<1>(e); }) {
+     using vertex_id_type = vertex_id_t<Graph>;
+   
+     size_t N(graph.end() - graph.begin());
+     assert(source < N);
+   
+     std::vector<Distance> distance(N, std::numeric_limits<vertex_id_type>::max());
+     distance[source] = 0;
+   
+     auto g                = graph.begin();
+     using weight_t        = Distance;
+     using weighted_vertex = std::tuple<vertex_id_type, weight_t>;
+   
+     std::priority_queue<weighted_vertex, std::vector<weighted_vertex>, std::greater<weighted_vertex>> Q;
+   
+     Q.push({ source, distance[source] });
+   
+     while (!Q.empty()) {
+   
+       auto u = std::get<0>(Q.top());
+       Q.pop();
+   
+       std::for_each(g[u].begin(), g[u].end(), [&](auto&& e) {
+         auto v = target(graph, e);
+         auto w = weight(e);
+         if (distance[u] + w < distance[v]) {
+           distance[v] = distance[u] + w;
+           Q.push({ v, distance[v] });
+         }
+       });
+     }
+     return distance;
+   }
+   
+   }    // namespace graph
+   }    // namespace nw
+   #endif    // DIJKSTRA_HPP

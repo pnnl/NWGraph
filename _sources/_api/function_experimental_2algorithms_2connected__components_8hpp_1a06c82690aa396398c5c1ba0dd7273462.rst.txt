@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2connected__components_8hpp_1a06c82690aa396398c5c1ba0dd7273462:
+
+Template Function nw::graph::compute_connected_components_v1
+============================================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_connected_components.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::compute_connected_components_v1(const Graph&)
+   :project: NWgraph

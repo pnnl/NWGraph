@@ -1,0 +1,14 @@
+.. _exhale_concept_conceptnw_1_1graph_1_1idx__adjacency__list:
+
+Concept idx_adjacency_list
+==========================
+
+- Defined in :ref:`file_include_nwgraph_graph_concepts.hpp`
+
+
+Concept Documentation
+---------------------
+
+
+.. doxygenconcept:: nw::graph::idx_adjacency_list
+   :project: NWgraph

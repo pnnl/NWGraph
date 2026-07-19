@@ -1,0 +1,14 @@
+.. _exhale_function_plain__range_8hpp_1a07625d3d75a1246a5f63e9b5b1a66114:
+
+Template Function nw::graph::make_plain_range(Graph&)
+=====================================================
+
+- Defined in :ref:`file_include_nwgraph_adaptors_plain_range.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::make_plain_range(Graph&)
+   :project: NWgraph

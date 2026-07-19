@@ -1,0 +1,17 @@
+.. _exhale_struct_structnw_1_1graph_1_1other__direction_3_01directedness_1_1undirected_01_4:
+
+Template Struct other_direction< directedness::undirected >
+===========================================================
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::other_direction< directedness::undirected >
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

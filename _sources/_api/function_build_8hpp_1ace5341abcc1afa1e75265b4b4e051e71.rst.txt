@@ -1,0 +1,14 @@
+.. _exhale_function_build_8hpp_1ace5341abcc1afa1e75265b4b4e051e71:
+
+Template Function nw::graph::join
+=================================
+
+- Defined in :ref:`file_include_nwgraph_build.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::join(const Graph1&, const Graph2&)
+   :project: NWgraph

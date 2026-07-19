@@ -1,0 +1,14 @@
+.. _exhale_variable_karate-graph_8hpp_1aa29dd4f8ae06f1bbcd6005eafa2ec098:
+
+Variable karate_index_edge_list
+===============================
+
+- Defined in :ref:`file_include_nwgraph_graphs_karate-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: karate_index_edge_list
+   :project: NWgraph

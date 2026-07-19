@@ -1,0 +1,23 @@
+.. _exhale_class_classmmio_1_1MatrixMarketFile_1_1iterator:
+
+Template Class MatrixMarketFile::iterator
+=========================================
+
+- Defined in :ref:`file_include_nwgraph_io_MatrixMarketFile.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classmmio_1_1MatrixMarketFile`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: mmio::MatrixMarketFile::iterator
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

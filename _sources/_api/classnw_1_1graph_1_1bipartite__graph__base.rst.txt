@@ -1,0 +1,26 @@
+.. _exhale_class_classnw_1_1graph_1_1bipartite__graph__base:
+
+Class bipartite_graph_base
+==========================
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public nw::graph::index_biadjacency< idx, index_type, vertex_id, Attributes >`` (:ref:`exhale_class_classnw_1_1graph_1_1index__biadjacency`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nw::graph::bipartite_graph_base
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

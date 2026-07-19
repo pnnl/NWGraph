@@ -1,0 +1,14 @@
+.. _exhale_function_util_8hpp_1a4c90a5d11e01d3475bdbbec8fd725786:
+
+Template Function nw::graph::property
+=====================================
+
+- Defined in :ref:`file_include_nwgraph_util_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::property(Iterator&)
+   :project: NWgraph

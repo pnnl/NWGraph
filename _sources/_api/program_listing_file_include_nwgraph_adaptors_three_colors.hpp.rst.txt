@@ -1,0 +1,25 @@
+
+.. _program_listing_file_include_nwgraph_adaptors_three_colors.hpp:
+
+Program Listing for File three_colors.hpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_adaptors_three_colors.hpp>` (``include/nwgraph/adaptors/three_colors.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_THREE_COLORS_HPP
+   #define NW_GRAPH_THREE_COLORS_HPP
+   
+   namespace nw {
+   namespace graph {
+   
+   enum three_colors { black, white, grey };
+   
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_THREE_COLORS_HPP

@@ -1,0 +1,14 @@
+.. _exhale_function_experimental_2algorithms_2betweenness__centrality_8hpp_1afd4f887bc37635e388f78006ba2b7849:
+
+Template Function nw::graph::approx_betweenness_worklist_serial
+===============================================================
+
+- Defined in :ref:`file_include_nwgraph_experimental_algorithms_betweenness_centrality.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::approx_betweenness_worklist_serial(const Graph&, std::vector<typename Graph::vertex_id_type>&)
+   :project: NWgraph

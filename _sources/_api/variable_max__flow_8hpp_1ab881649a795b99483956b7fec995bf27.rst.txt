@@ -1,0 +1,14 @@
+.. _exhale_variable_max__flow_8hpp_1ab881649a795b99483956b7fec995bf27:
+
+Variable nw::graph::DEFAULT_MAX
+===============================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_max_flow.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::DEFAULT_MAX
+   :project: NWgraph

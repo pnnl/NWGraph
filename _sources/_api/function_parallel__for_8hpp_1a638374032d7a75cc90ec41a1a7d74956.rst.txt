@@ -1,0 +1,14 @@
+.. _exhale_function_parallel__for_8hpp_1a638374032d7a75cc90ec41a1a7d74956:
+
+Template Function nw::graph::parallel_for_sequential(Range&&, Op&&, Reduce&&, T)
+================================================================================
+
+- Defined in :ref:`file_include_nwgraph_util_parallel_for.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::parallel_for_sequential(Range&&, Op&&, Reduce&&, T)
+   :project: NWgraph

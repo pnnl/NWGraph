@@ -1,0 +1,14 @@
+.. _exhale_variable_karate-graph_8hpp_1a41c51e681500194a56cc3ac0eb99075d:
+
+Variable karate_directed_adjacency_list
+=======================================
+
+- Defined in :ref:`file_include_nwgraph_graphs_karate-graph.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: karate_directed_adjacency_list
+   :project: NWgraph

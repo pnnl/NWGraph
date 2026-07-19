@@ -1,0 +1,14 @@
+.. _exhale_function_edge__list_8hpp_1a79d7bcd419febe1f2dfd7b2d8e3a43ca:
+
+Template Function nw::graph::tag_invoke(const num_vertices_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, int)
+============================================================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_edge_list.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::tag_invoke(const num_vertices_tag, const index_edge_list<vertex_id, graph_base_t, direct, Attributes...>&, int)
+   :project: NWgraph

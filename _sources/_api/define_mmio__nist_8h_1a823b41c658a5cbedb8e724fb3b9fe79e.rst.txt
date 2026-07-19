@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a823b41c658a5cbedb8e724fb3b9fe79e:
+
+Define MM_COULD_NOT_WRITE_FILE
+==============================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MM_COULD_NOT_WRITE_FILE
+   :project: NWgraph

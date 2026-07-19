@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a0839683fb6e8a9ce931aec600871f8f8:
+
+Define mm_is_dense
+==================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_is_dense
+   :project: NWgraph

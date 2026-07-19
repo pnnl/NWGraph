@@ -1,0 +1,40 @@
+.. _dir_include_nwgraph_util:
+
+
+Directory util
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph>` (``include/nwgraph``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/nwgraph/util``
+
+
+Files
+-----
+
+- :ref:`file_include_nwgraph_util_arrow_proxy.hpp`
+- :ref:`file_include_nwgraph_util_atomic.hpp`
+- :ref:`file_include_nwgraph_util_AtomicBitVector.hpp`
+- :ref:`file_include_nwgraph_util_backend.hpp`
+- :ref:`file_include_nwgraph_util_concurrent_containers.hpp`
+- :ref:`file_include_nwgraph_util_defaults.hpp`
+- :ref:`file_include_nwgraph_util_demangle.hpp`
+- :ref:`file_include_nwgraph_util_disjoint_set.hpp`
+- :ref:`file_include_nwgraph_util_intersection_size.hpp`
+- :ref:`file_include_nwgraph_util_make_priority_queue.hpp`
+- :ref:`file_include_nwgraph_util_parallel_for.hpp`
+- :ref:`file_include_nwgraph_util_permutation_iterator.hpp`
+- :ref:`file_include_nwgraph_util_print_types.hpp`
+- :ref:`file_include_nwgraph_util_provenance.hpp`
+- :ref:`file_include_nwgraph_util_proxysort.hpp`
+- :ref:`file_include_nwgraph_util_tag_invoke.hpp`
+- :ref:`file_include_nwgraph_util_timer.hpp`
+- :ref:`file_include_nwgraph_util_traits.hpp`
+- :ref:`file_include_nwgraph_util_tuple_hack.hpp`
+- :ref:`file_include_nwgraph_util_util.hpp`
+- :ref:`file_include_nwgraph_util_util_par.hpp`
+
+

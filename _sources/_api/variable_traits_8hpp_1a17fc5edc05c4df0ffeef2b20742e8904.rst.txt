@@ -1,0 +1,14 @@
+.. _exhale_variable_traits_8hpp_1a17fc5edc05c4df0ffeef2b20742e8904:
+
+Variable nw::graph::is_tbb_range_v
+==================================
+
+- Defined in :ref:`file_include_nwgraph_util_traits.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::is_tbb_range_v
+   :project: NWgraph

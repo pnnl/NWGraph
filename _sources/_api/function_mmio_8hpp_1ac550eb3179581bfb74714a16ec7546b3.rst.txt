@@ -1,0 +1,18 @@
+.. _exhale_function_mmio_8hpp_1ac550eb3179581bfb74714a16ec7546b3:
+
+Template Function nw::graph::read_mm(const std::string&)
+========================================================
+
+Defined in :ref:`file_include_nwgraph_io_mmio.hpp`
+
+.. rubric:: Signature
+
+.. code-block:: cpp
+
+    template <directedness, typename...> edge_list<sym, Attributes...> nw::graph::read_mm(const std::string&)
+
+.. note::
+
+    This function has multiple template overloads. The Doxygen/Breathe toolchain
+    cannot resolve which overload to display. See the source file for full documentation.
+

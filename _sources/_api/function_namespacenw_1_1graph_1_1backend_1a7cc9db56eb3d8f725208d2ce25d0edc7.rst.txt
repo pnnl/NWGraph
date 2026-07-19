@@ -1,0 +1,14 @@
+.. _exhale_function_namespacenw_1_1graph_1_1backend_1a7cc9db56eb3d8f725208d2ce25d0edc7:
+
+Function nw::graph::backend::name
+=================================
+
+- Defined in :ref:`file_include_nwgraph_util_backend.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::backend::name()
+   :project: NWgraph

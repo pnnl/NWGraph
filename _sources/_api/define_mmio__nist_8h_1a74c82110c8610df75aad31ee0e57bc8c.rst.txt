@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a74c82110c8610df75aad31ee0e57bc8c:
+
+Define mm_is_array
+==================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_is_array
+   :project: NWgraph

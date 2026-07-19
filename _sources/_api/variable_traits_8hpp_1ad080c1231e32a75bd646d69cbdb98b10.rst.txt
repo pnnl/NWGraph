@@ -1,0 +1,14 @@
+.. _exhale_variable_traits_8hpp_1ad080c1231e32a75bd646d69cbdb98b10:
+
+Variable nw::graph::is_atomic_v
+===============================
+
+- Defined in :ref:`file_include_nwgraph_util_traits.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: nw::graph::is_atomic_v
+   :project: NWgraph

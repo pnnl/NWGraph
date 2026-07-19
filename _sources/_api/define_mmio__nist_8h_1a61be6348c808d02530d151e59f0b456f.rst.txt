@@ -1,0 +1,14 @@
+.. _exhale_define_mmio__nist_8h_1a61be6348c808d02530d151e59f0b456f:
+
+Define mm_initialize_typecode
+=============================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: mm_initialize_typecode
+   :project: NWgraph

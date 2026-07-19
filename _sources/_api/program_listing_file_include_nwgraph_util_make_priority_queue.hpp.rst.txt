@@ -1,0 +1,35 @@
+
+.. _program_listing_file_include_nwgraph_util_make_priority_queue.hpp:
+
+Program Listing for File make_priority_queue.hpp
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_nwgraph_util_make_priority_queue.hpp>` (``include/nwgraph/util/make_priority_queue.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef NW_GRAPH_MAKE_PRIORITY_QUEUE_HPP
+   #define NW_GRAPH_MAKE_PRIORITY_QUEUE_HPP
+   
+   #include <queue>
+   #include <vector>
+   
+   namespace nw {
+   namespace graph {
+   template <class T, class Container, class Compare>
+   constexpr auto make_priority_queue(Compare&& compare) {
+     using PQ = std::priority_queue<T, Container, std::decay_t<Compare>>;
+     return PQ { std::forward<Compare>(compare) };
+   }
+   
+   template <class T, class Compare>
+   constexpr auto make_priority_queue(Compare&& compare) {
+     return make_priority_queue<T, std::vector<T>>(std::forward<Compare>(compare));
+   }
+   }    // namespace graph
+   }    // namespace nw
+   
+   #endif    // NW_GRAPH_MAKE_PRIORITY_QUEUE_HPP

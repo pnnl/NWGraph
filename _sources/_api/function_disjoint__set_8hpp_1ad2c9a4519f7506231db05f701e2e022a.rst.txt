@@ -1,0 +1,14 @@
+.. _exhale_function_disjoint__set_8hpp_1ad2c9a4519f7506231db05f701e2e022a:
+
+Function nw::graph::disjoint_union
+==================================
+
+- Defined in :ref:`file_include_nwgraph_util_disjoint_set.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::disjoint_union(std::vector<std::pair<vertex_id_type, size_t>>&, vertex_id_type, vertex_id_type)
+   :project: NWgraph

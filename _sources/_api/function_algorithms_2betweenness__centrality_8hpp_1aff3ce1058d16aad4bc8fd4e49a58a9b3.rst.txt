@@ -1,0 +1,14 @@
+.. _exhale_function_algorithms_2betweenness__centrality_8hpp_1aff3ce1058d16aad4bc8fd4e49a58a9b3:
+
+Template Function nw::graph::brandes_bc(const Graph&, const std::vector<typename Graph::vertex_id_type>&, int, OuterExecutionPolicy&&, InnerExecutionPolicy&&, bool)
+====================================================================================================================================================================
+
+- Defined in :ref:`file_include_nwgraph_algorithms_betweenness_centrality.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: nw::graph::brandes_bc(const Graph&, const std::vector<typename Graph::vertex_id_type>&, int, OuterExecutionPolicy&&, InnerExecutionPolicy&&, bool)
+   :project: NWgraph

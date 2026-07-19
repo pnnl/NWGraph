@@ -1,0 +1,14 @@
+.. _exhale_enum_graph__base_8hpp_1a671883528471e011f192898dcf7e3ded:
+
+Enum directedness
+=================
+
+- Defined in :ref:`file_include_nwgraph_graph_base.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nw::graph::directedness
+   :project: NWgraph

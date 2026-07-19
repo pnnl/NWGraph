@@ -1,0 +1,14 @@
+.. _exhale_variable_mmio__nist_8h_1ad8b73e630cabff9c742d8605c3146efc:
+
+Variable MM_SYMM_STR
+====================
+
+- Defined in :ref:`file_include_nwgraph_io_mmio_nist.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MM_SYMM_STR
+   :project: NWgraph

@@ -1,0 +1,26 @@
+.. _exhale_struct_structnw_1_1graph_1_1graph__traits:
+
+Template Struct graph_traits
+============================
+
+- Defined in :ref:`file_include_nwgraph_graph_traits.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nw::graph::detail::default_graph_traits< G >``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nw::graph::graph_traits
+   :project: NWgraph
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,87 @@
+
+.. _file_include_nwgraph_experimental_algorithms_jaccard.hpp:
+
+File jaccard.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_nwgraph_experimental_algorithms>` (``include/nwgraph/experimental/algorithms``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/nwgraph/experimental/algorithms/jaccard.hpp``)
+--------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_nwgraph_experimental_algorithms_jaccard.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+SPDX-FileCopyrightText: 2022 Battelle Memorial Institute 
+
+SPDX-FileCopyrightText: 2022 University of Washington
+
+SPDX-License-Identifier: BSD-3-Clause
+
+Tony Liu Andrew Lumsdaine 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic`` (:ref:`file_include_nwgraph_util_atomic.hpp`)
+
+- ``future``
+
+- ``nwgraph/adaptors/cyclic_range_adapter.hpp``
+
+- ``nwgraph/adaptors/edge_range.hpp`` (:ref:`file_include_nwgraph_adaptors_edge_range.hpp`)
+
+- ``nwgraph/util/intersection_size.hpp`` (:ref:`file_include_nwgraph_util_intersection_size.hpp`)
+
+- ``nwgraph/util/parallel_for.hpp`` (:ref:`file_include_nwgraph_util_parallel_for.hpp`)
+
+- ``nwgraph/util/timer.hpp`` (:ref:`file_include_nwgraph_util_timer.hpp`)
+
+- ``nwgraph/util/util.hpp`` (:ref:`file_include_nwgraph_util_util.hpp`)
+
+- ``thread``
+
+- ``tuple`` (:ref:`file_include_nwgraph_util_tuple_hack.hpp`)
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nw`
+
+- :ref:`namespace_nw__graph`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_experimental_2algorithms_2jaccard_8hpp_1a673f20c6802e7c0e40031f37ce4416e5`
+
