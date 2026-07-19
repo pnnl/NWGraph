@@ -27,7 +27,7 @@ namespace graph {
 * dist_min - Minimum value of distribution.  
 * dist_max - Maximum value of distribution.
 */
-std::size_t power_gen(double dist_min, double dist_max) {
+inline std::size_t power_gen(double dist_min, double dist_max) {
   /* Inverse square.  */
   double exponent = -2;
 
@@ -46,7 +46,7 @@ static double standard_exponential_unlikely(bitgen_t* bitgen_state, uint8_t idx,
     return random_standard_exponential(bitgen_state);
   }
 }
-double random_standard_exponential(bitgen_t* bitgen_state) {
+inline double random_standard_exponential(bitgen_t* bitgen_state) {
   uint64_t ri;
   uint8_t  idx;
   double   x;
@@ -61,7 +61,7 @@ double random_standard_exponential(bitgen_t* bitgen_state) {
   return standard_exponential_unlikely(bitgen_state, idx, x);
 }
 
-double random_power(bitgen_t* bitgen_state, double a) {
+inline double random_power(bitgen_t* bitgen_state, double a) {
   return pow(1 - exp(-random_standard_exponential(bitgen_state)), 1. / a);
 }
 

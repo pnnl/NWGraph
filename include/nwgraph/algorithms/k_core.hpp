@@ -50,7 +50,7 @@ using Unordered_map = std::unordered_map<Neighbors, bool, pair_hash>;
  * @param y The other endpoint of an edge.
  * @return Neighbors of an edge such that 0th element in the pair is smaller than 1th element.
  */
-Neighbors make_my_pair(default_vertex_id_type x, default_vertex_id_type y) {
+inline Neighbors make_my_pair(default_vertex_id_type x, default_vertex_id_type y) {
   if (x < y) return std::make_pair(x, y);
   return std::make_pair(y, x);
 }

@@ -38,7 +38,7 @@
 namespace nw {
 namespace graph {
 
-void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
   A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
   A.open_for_push_back();
   for (size_t i = 0; i < nNonzeros; ++i) {
@@ -83,7 +83,7 @@ void mm_fill(std::istream& inputStream, bi_edge_list<directedness::directed, T>&
   A.close_for_push_back();
 }
 
-void mm_fill(std::istream& inputStream, edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, edge_list<directedness::directed>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
   A.reserve((file_symmetry ? 2 : 1) * nNonzeros);
   A.open_for_push_back();
   for (size_t i = 0; i < nNonzeros; ++i) {
@@ -128,7 +128,7 @@ void mm_fill(std::istream& inputStream, edge_list<directedness::directed, T>& A,
   A.close_for_push_back();
 }
 
-void mm_fill(std::istream& inputStream, edge_list<directedness::undirected>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
+inline void mm_fill(std::istream& inputStream, edge_list<directedness::undirected>& A, size_t nNonzeros, bool file_symmetry, bool pattern) {
 
   A.reserve(nNonzeros);
   A.open_for_push_back();
@@ -335,7 +335,7 @@ auto read_mm_vector(const std::string& filename) {
   return v;
 }
 
-bool is_mm(const std::string& filename) {
+inline bool is_mm(const std::string& filename) {
   std::ifstream            input_stream(filename);
   std::vector<std::string> header(5);
 
@@ -349,7 +349,7 @@ bool is_mm(const std::string& filename) {
   return header[0] == "%%MatrixMarket";
 }
 
-directedness get_mm_symmetry(const std::string& filename) {
+inline directedness get_mm_symmetry(const std::string& filename) {
   std::ifstream            inputStream(filename);
   std::string              string_input;
   std::vector<std::string> header(5);

@@ -79,13 +79,13 @@
 namespace nw {
 namespace graph {
 
-static bool g_debug_edge_list = false;
-static bool g_time_edge_list  = false;
+inline bool g_debug_edge_list = false;
+inline bool g_time_edge_list  = false;
 
-void debug_edge_list(bool flag = true) {
+inline void debug_edge_list(bool flag = true) {
   g_debug_edge_list = flag;
 }
-void time_edge_list(bool flag = true) {
+inline void time_edge_list(bool flag = true) {
   g_time_edge_list = flag;
 }
 

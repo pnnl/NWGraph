@@ -50,14 +50,14 @@
 namespace nw {
 namespace graph {
 
-bool g_debug_compressed = false;
-bool g_time_compressed  = false;
+inline bool g_debug_compressed = false;
+inline bool g_time_compressed  = false;
 
-void debug_compressed(bool flag = true) {
+inline void debug_compressed(bool flag = true) {
   g_debug_compressed = flag;
 }
 
-void time_compressed(bool flag = true) {
+inline void time_compressed(bool flag = true) {
   g_time_compressed = flag;
 }
 
@@ -377,12 +377,15 @@ public:    // fixme
   void serialize(std::ostream& outfile) {
     size_t el_size = sizeof(indices_[0]);
     size_t st_size = indices_.size();
+    // N_ is an index_t, which may be narrower than the size_t field the file
+    // format uses; round-trip through a size_t to keep the format stable.
+    size_t n = N_;
 
     outfile.write(reinterpret_cast<const char*>(magic_), sizeof(magic_));
-    outfile.write(reinterpret_cast<char*>(&N_), sizeof(size_t));
+    outfile.write(reinterpret_cast<char*>(&n), sizeof(n));
 
-    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    outfile.write(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    outfile.write(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     outfile.write(reinterpret_cast<char*>(indices_.data()), st_size * el_size);
     to_be_indexed_.serialize(outfile);
   }
@@ -396,12 +399,14 @@ public:    // fixme
     char   spell[sizeof(magic_) + 1];
     size_t el_size = -1;
     size_t st_size = -1;
+    size_t n       = 0;
 
     infile.read(reinterpret_cast<char*>(spell), sizeof(magic_));
-    infile.read(reinterpret_cast<char*>(&N_), sizeof(size_t));
+    infile.read(reinterpret_cast<char*>(&n), sizeof(n));
+    N_ = static_cast<index_t>(n);
 
-    infile.read(reinterpret_cast<char*>(&st_size), sizeof(size_t));
-    infile.read(reinterpret_cast<char*>(&el_size), sizeof(size_t));
+    infile.read(reinterpret_cast<char*>(&st_size), sizeof(st_size));
+    infile.read(reinterpret_cast<char*>(&el_size), sizeof(el_size));
     indices_.resize(st_size);
     infile.read(reinterpret_cast<char*>(indices_.data()), st_size * el_size);
     to_be_indexed_.deserialize(infile);
